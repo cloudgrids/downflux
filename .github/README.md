@@ -1,1 +1,78 @@
-# imagemagick.js
+# Importer
+
+A modular, highly scalable media importer, scraper, and downloader tool built with Node.js, TypeScript, and `undici`.
+
+## Features
+
+- **Builder Pattern API:** Easy-to-use chainable methods (`new DefaultProvider(url).getAlbums()`).
+- **Advanced HTTP Fetching:** Uses `undici` for robust connection pooling and chunk streaming.
+- **Multiple Output Targets:** Easily pipe your downloads to `local` disk, a `pipeline` buffer, a `zip` file, or simply `log`.
+- **Modular Architecture:** Clean dependency injection separating fetchers, parsers, extractors, and downloaders.
+- **Dual module support:** Provides both CommonJS (`index.js`) and ESM (`index.mjs`) exports.
+
+## Installation
+
+Install using your preferred package manager:
+
+```bash
+pnpm add importer
+# or
+npm install importer
+# or
+yarn add importer
+```
+
+## Quick Start / Usage
+
+```typescript
+import { importer } from 'importer';
+
+async function main() {
+  const url = 'https://sitename/albums/1300/';
+
+  // 1. Initialize the specific provider via the factory
+  const extractor = importer.import(url);
+
+  // 2. Chain exactly what you want to extract and where to output it
+  const result = await extractor
+ .setOutput(OutputType.DEVICE)
+ .addOptions({ device: { path: 'downloads' } })
+ .getAlbum('6641');
+
+  console.log('Finished extraction! Downloaded files:', result.downloads?.length);
+}
+
+main().catch(console.error);
+```
+
+## Supported Providers
+
+Currently, the default library provides handlers for:
+
+- `OkPornProvider`
+- `CoomerProvider`
+- _More incoming..._
+
+Each provider inherits from `BaseProvider` and exposes methods tailored specifically to its media source patterns.
+
+## Development
+
+Clone the project and install dependencies:
+
+```bash
+git clone https://github.com/forkts/importer.git
+cd importer
+pnpm install
+```
+
+### Useful Scripts
+
+- `pnpm test:run` - Runs the test executor (via `tsx`) to manually verify extraction routines.
+- `pnpm build` - Compiles TypeScript to `dist/` and generates ESM wrappers.
+- `pnpm format` - Auto-formats code via Prettier.
+- `pnpm lint:test` - Lints the codebase using ESLint.
+- `pnpm release` - Generates changelog and bumps version using `standard-version`.
+
+## License
+
+MIT © [forkts](https://github.com/forkts)

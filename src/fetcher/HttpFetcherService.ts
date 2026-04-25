@@ -1,0 +1,139 @@
+import { Dispatcher, Pool, interceptors } from 'undici';
+import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
+import type { FetchOptions } from '../types';
+
+export interface FetchResult {
+	html: string;
+	finalUrl: string;
+	status: number;
+	ok: boolean;
+	headers: Record<string, string>;
+}
+
+export class HttpFetcherService {
+	private readonly DEFAULT_HEADERS: Record<string, string> = {
+		'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0',
+		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+		'Accept-Language': 'en-US,en;q=0.5',
+		'Accept-Encoding': 'gzip, deflate',
+		'Connection': 'keep-alive'
+	};
+
+	private readonly pools = new Map<string, Dispatcher>();
+
+	private getPool(url: string): Dispatcher {
+		const origin = new URL(url).origin;
+		if (!this.pools.has(origin)) {
+			const pool = new Pool(origin).compose(interceptors.redirect({ maxRedirections: 10 }));
+			this.pools.set(origin, pool);
+		}
+		return this.pools.get(origin)!;
+	}
+
+	public async fetchHtml(url: string, opts: FetchOptions = {}): Promise<FetchResult> {
+		const { headers = {}, timeoutMs = 30_000, retries = 3, backoffMs = 400 } = opts;
+		const mergedHeaders = { ...this.DEFAULT_HEADERS, ...headers } as Record<string, string>;
+		let lastError: unknown;
+
+		for (let attempt = 0; attempt < retries; attempt++) {
+			try {
+				const pool = this.getPool(url);
+				const parsedUrl = new URL(url);
+
+				const {
+					statusCode,
+					headers: resHeaders,
+					body,
+					context
+				} = await pool.request({
+					path: parsedUrl.pathname + parsedUrl.search,
+					method: 'GET',
+					headers: mergedHeaders,
+					headersTimeout: timeoutMs,
+					bodyTimeout: timeoutMs
+				});
+
+				const contextData = context as { history?: URL[] };
+				const finalUrl = contextData?.history
+					? contextData.history.length > 0
+						? contextData.history[contextData.history.length - 1].toString()
+						: url
+					: url;
+				const ok = statusCode >= 200 && statusCode < 300;
+
+				const responseHeaders: Record<string, string> = {};
+				for (const [key, value] of Object.entries(resHeaders)) {
+					if (Array.isArray(value)) responseHeaders[key] = value.join(', ');
+					else if (value) responseHeaders[key] = value;
+				}
+
+				const html = this.decodeBody(await this.readBody(body), responseHeaders).toString('utf8');
+
+				return { html, finalUrl, status: statusCode, ok, headers: responseHeaders };
+			} catch (err) {
+				lastError = err;
+				if (attempt < retries - 1) await this.sleep(backoffMs * (attempt + 1));
+			}
+		}
+
+		throw lastError;
+	}
+
+	public async fetchBuffer(url: string, opts: FetchOptions = {}): Promise<Buffer> {
+		const { headers = {}, timeoutMs = 60_000, retries = 3, backoffMs = 400 } = opts;
+		const mergedHeaders = { ...this.DEFAULT_HEADERS, Accept: '*/*', ...headers } as Record<string, string>;
+		let lastError: unknown;
+
+		for (let attempt = 0; attempt < retries; attempt++) {
+			try {
+				const pool = this.getPool(url);
+				const parsedUrl = new URL(url);
+
+				const { statusCode, body } = await pool.request({
+					path: parsedUrl.pathname + parsedUrl.search,
+					method: 'GET',
+					headers: mergedHeaders,
+					headersTimeout: timeoutMs,
+					bodyTimeout: timeoutMs
+				});
+
+				const ok = statusCode >= 200 && statusCode < 300;
+				if (!ok) throw new Error(`HTTP ${statusCode} for ${url}`);
+
+				const chunks: Buffer[] = [];
+				for await (const chunk of body) {
+					chunks.push(Buffer.from(chunk));
+				}
+				return Buffer.concat(chunks);
+			} catch (err) {
+				lastError = err;
+				if (attempt < retries - 1) await this.sleep(backoffMs * (attempt + 1));
+			}
+		}
+
+		throw lastError;
+	}
+
+	private sleep(ms: number): Promise<void> {
+		return new Promise((resolve) => setTimeout(resolve, ms));
+	}
+
+	private async readBody(body: AsyncIterable<unknown>): Promise<Buffer> {
+		const chunks: Buffer[] = [];
+		for await (const chunk of body) {
+			chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk as ArrayBuffer));
+		}
+		return Buffer.concat(chunks);
+	}
+
+	private decodeBody(buffer: Buffer, headers: Record<string, string>): Buffer {
+		const encoding = headers['content-encoding']?.toLowerCase();
+		if (!encoding) return buffer;
+
+		if (encoding.includes('gzip')) return gunzipSync(buffer);
+		if (encoding.includes('deflate')) return inflateSync(buffer);
+		if (encoding.includes('br')) return brotliDecompressSync(buffer);
+
+		return buffer;
+	}
+}

@@ -1,11 +1,33 @@
 {
-  "singleQuote": true,
-  "trailingComma": "all",
   "endOfLine": "lf",
   "semi": true,
-  "useTabs": false,
-  "tabWidth": 2,
-  "printWidth": 120,
+  "tabWidth": 4,
+  "printWidth": 140,
+  "singleQuote": true,
+  "quoteProps": "consistent",
   "bracketSpacing": true,
-  "quoteProps": "consistent"
+  "trailingComma": "none",
+  "overrides": [
+    {
+      "files": ["*.json"],
+      "options": {
+        "tabWidth": 2,
+        "printWidth": 120
+      }
+    },
+    {
+      "files": ["*.md"],
+      "options": {
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["*.yml"],
+      "options": {
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    }
+  ]
 }

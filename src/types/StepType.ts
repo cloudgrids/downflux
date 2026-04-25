@@ -1,7 +1,0 @@
-export enum StepType {
-  FETCH = 'FETCH',
-  EXTRACT = 'EXTRACT',
-  DOWNLOAD = 'DOWNLOAD',
-  COMPLETE = 'COMPLETE',
-  ERROR = 'ERROR',
-}
