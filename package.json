@@ -1,19 +1,66 @@
 {
-  "name": "importer",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.27.0",
-  "devDependencies": {
-    "@types/node": "^25.6.0"
-  },
-  "dependencies": {
-    "undici": "^8.1.0"
-  }
+	"name": "importer",
+	"version": "1.0.0",
+	"description": "A modular media importer tool",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc && gen-esm-wrapper dist/index.js dist/index.mjs",
+		"prepare": "rimraf dist && npm run build",
+		"lint:test": "eslint .",
+		"lint:fix": "eslint --fix .",
+		"test": "TZ=UTC jest --setupFiles dotenv/config --config ./jest.config.json",
+		"test:watch": "npm run test -- --watch",
+		"test:run": "tsx test/run.ts",
+		"format": "prettier --write \"src/**/*.ts\"",
+		"release": "standard-version"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/forkts/importer.git"
+	},
+	"keywords": [
+		"importer",
+		"downloader",
+		"scraper",
+		"media"
+	],
+	"author": "forkts <forkts@users.noreply.github.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/forkts/importer/issues"
+	},
+	"homepage": "https://github.com/forkts/importer#readme",
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"packageManager": "pnpm@10.27.0",
+	"devDependencies": {
+		"@types/jest": "^30.0.0",
+		"@types/node": "^25.6.0",
+		"dotenv": "^17.4.2",
+		"eslint": "^10.2.1",
+		"gen-esm-wrapper": "^1.1.3",
+		"jest": "^30.3.0",
+		"prettier": "^3.8.3",
+		"rimraf": "^6.1.3",
+		"standard-version": "^9.5.0",
+		"ts-jest": "^29.4.9",
+		"tsx": "^4.21.0",
+		"typescript": "^6.0.3"
+	},
+	"dependencies": {
+		"undici": "^8.1.0"
+	}
 }
