@@ -1,7 +1,8 @@
-import { DownloaderService } from '../downloader/DownloaderService';
+import { DownloaderService } from '../downloaders/DownloaderService';
 import { OutputType, UrlType } from '../enums';
 import { ExtractorService } from '../extractors/ExtractorService';
 import { FileService } from '../file/FileService';
+import { filterUrlsByExtension } from '../helpers/FilterUrls';
 import { DownloadResult, ExtractorResult } from '../types';
 import { ExecutionArguments } from '../types/ExecutionArguments';
 import { ExecutionResult } from '../types/ExecutionResult';
@@ -14,12 +15,16 @@ export class JobService {
 		private readonly fileService: FileService
 	) {}
 
-	public async execute<T>(request: ExecutionArguments): Promise<ExecutionResult<T>> {
+	public async execute<TExtractedMetadata = unknown, TDownloadMetadata = unknown>(
+		request: ExecutionArguments
+	): Promise<ExecutionResult<TExtractedMetadata, TDownloadMetadata>> {
 		const { outputType = OutputType.JSON, targets, urlType, service, ...options } = request;
 
-		const downloads: DownloadResult[] = [];
+		const extractor = this.extractorService.getExtractor(service);
+
+		const downloads: DownloadResult<TDownloadMetadata>[] = [];
 		const errors: Error[] = [];
-		const extracted: ExtractorResult<T>[] = [];
+		const extracted: ExtractorResult<TExtractedMetadata>[] = [];
 		let targetUrls: string[] = [];
 
 		// Generate metadata and select URLs based on quality
@@ -27,8 +32,7 @@ export class JobService {
 			if (options?.signal?.aborted) break;
 
 			try {
-				const extractor = this.extractorService.getExtractor(service);
-				const metadata = await extractor.extractFromUrl<T>(url, request);
+				const metadata = await extractor.extractFromUrl<TExtractedMetadata>(url, request);
 				extracted.push(metadata);
 
 				const selected = extractor.selectUrlsByQuality(metadata, urlType ?? metadata.urlType ?? UrlType.IMAGES);
@@ -41,7 +45,7 @@ export class JobService {
 
 		targetUrls = this.applyFilters(targetUrls, options);
 
-		const result: ExecutionResult<T> = {
+		const result: ExecutionResult<TExtractedMetadata, TDownloadMetadata> = {
 			service: request.service,
 			method: request.method,
 			entryUrl: request.entryUrl,
@@ -66,18 +70,16 @@ export class JobService {
 			case OutputType.BUFFER:
 			case OutputType.DEVICE: {
 				const target = outputType;
-
-				if (target === OutputType.DEVICE && !options?.dirConfig?.path) {
-					throw new Error('device.path is required');
-				}
+				const downloader = this.downloaderService.getDownloader(service);
 
 				for (const fileUrl of targetUrls) {
 					if (options?.signal?.aborted) break;
 
 					try {
-						const download = await this.downloaderService.downloadFile(fileUrl, {
+						const download = await downloader.downloadFile<TDownloadMetadata>(fileUrl, {
 							...options,
-							outputType: target
+							outputType: target,
+							service
 						});
 
 						downloads.push(download);
@@ -106,7 +108,7 @@ export class JobService {
 		let result = urls;
 
 		if (options?.allowedExtensions?.length) {
-			result = this.downloaderService.filterUrlsByExtension(result, options.allowedExtensions);
+			result = filterUrlsByExtension(result, options.allowedExtensions);
 		}
 
 		if (typeof options?.maxDownloads === 'number') {

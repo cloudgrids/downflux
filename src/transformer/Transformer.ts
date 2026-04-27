@@ -1,7 +1,7 @@
 import { ServiceType } from '../enums';
-import { METHOD_MAPPER } from '../helpers/types';
-import { OkPornAlbumOutput } from '../services/okporn/output/okporn-album.output';
-import { OkPornVideoOutput } from '../services/okporn/output/okporn-video.output';
+import { METHOD_MAPPER } from '../helpers/Mappers';
+import { OkPornAlbumOutput } from '../services/okporn/output/OkPornAlbumOutput';
+import { OkPornVideoOutput } from '../services/okporn/output/OkPornVideoOutput';
 import { ExecutionResult, ExtractorResult } from '../types';
 
 type ServiceMethods = typeof METHOD_MAPPER;

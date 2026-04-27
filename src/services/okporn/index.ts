@@ -1,2 +1,2 @@
-export * from './okporn.service';
+export * from './OkPornService';
 export * from './output';

@@ -1,8 +1,8 @@
 import { ServiceType, UrlType } from '../../enums';
-import { METHOD_MAPPER } from '../../helpers/types';
+import { METHOD_MAPPER } from '../../helpers/Mappers';
 import { ExecutionResult } from '../../types';
 import { BaseService } from '../BaseService';
-import { OkPornAlbumOutput } from './output/okporn-album.output';
+import { OkPornAlbumOutput } from './output/OkPornAlbumOutput';
 
 export class OkPornService extends BaseService {
 	private readonly ALBUMS_URL = 'https://ok.porn/albums/';

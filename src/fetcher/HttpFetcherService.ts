@@ -79,7 +79,7 @@ export class HttpFetcherService {
 		throw lastError;
 	}
 
-	public async fetchBuffer(url: string, opts: HttpFetchOptions = {}): Promise<Buffer> {
+	public async fetchBuffer(url: string, opts: HttpFetchOptions): Promise<Buffer> {
 		const { headers = {}, timeoutMs = 60_000, retries = 3, backoffMs = 400 } = opts;
 		const mergedHeaders = { ...this.DEFAULT_HEADERS, Accept: '*/*', ...headers } as Record<string, string>;
 		let lastError: unknown;

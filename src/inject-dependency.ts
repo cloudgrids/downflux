@@ -1,4 +1,4 @@
-import { DownloaderService } from './downloader/DownloaderService';
+import { DownloaderService } from './downloaders/DownloaderService';
 import { ExtractorService } from './extractors/ExtractorService';
 import { HttpFetcherService } from './fetcher/HttpFetcherService';
 import { FileService } from './file/FileService';

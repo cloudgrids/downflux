@@ -1,4 +1,4 @@
-import { OkPornAlbumOutput } from './okporn-album.output';
+import { OkPornAlbumOutput } from './OkPornAlbumOutput';
 
 export interface OkPornVideoOutput {
 	modelName?: string;
