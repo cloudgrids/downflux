@@ -1,6 +1,6 @@
 import { Dispatcher, Pool, interceptors } from 'undici';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
-import type { FetchOptions } from '../types';
+import { HttpFetchOptions } from '../types/HttpFetchOptions';
 
 export interface FetchResult {
 	html: string;
@@ -30,7 +30,7 @@ export class HttpFetcherService {
 		return this.pools.get(origin)!;
 	}
 
-	public async fetchHtml(url: string, opts: FetchOptions = {}): Promise<FetchResult> {
+	public async fetchHtml(url: string, opts: HttpFetchOptions = {}): Promise<FetchResult> {
 		const { headers = {}, timeoutMs = 30_000, retries = 3, backoffMs = 400 } = opts;
 		const mergedHeaders = { ...this.DEFAULT_HEADERS, ...headers } as Record<string, string>;
 		let lastError: unknown;
@@ -79,7 +79,7 @@ export class HttpFetcherService {
 		throw lastError;
 	}
 
-	public async fetchBuffer(url: string, opts: FetchOptions = {}): Promise<Buffer> {
+	public async fetchBuffer(url: string, opts: HttpFetchOptions = {}): Promise<Buffer> {
 		const { headers = {}, timeoutMs = 60_000, retries = 3, backoffMs = 400 } = opts;
 		const mergedHeaders = { ...this.DEFAULT_HEADERS, Accept: '*/*', ...headers } as Record<string, string>;
 		let lastError: unknown;
@@ -106,6 +106,7 @@ export class HttpFetcherService {
 				}
 				return Buffer.concat(chunks);
 			} catch (err) {
+				console.warn(`Fetch attempt ${attempt + 1} for ${url} failed:`, err instanceof Error ? err.message : err);
 				lastError = err;
 				if (attempt < retries - 1) await this.sleep(backoffMs * (attempt + 1));
 			}

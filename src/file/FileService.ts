@@ -2,7 +2,7 @@ import { createWriteStream, existsSync, mkdirSync, writeFileSync } from 'fs';
 import { extname, join } from 'path';
 import { Readable } from 'stream';
 import { pipeline } from 'stream/promises';
-import { ImportExecutionResult } from '../types/ImportExecutionResult';
+import { ExecutionResult } from '../types/ExecutionResult';
 
 export class FileService {
 	public getFilenameAndExtensionFromUrl(
@@ -13,9 +13,9 @@ export class FileService {
 		extension: string;
 		extendedFilename: string;
 	} {
-		let originalFilename = `file-${Date.now().toLocaleString()}`;
-		let extension = '';
-		let extendedFilename = `${prefix ? prefix : ''}${originalFilename}`;
+		const originalFilename = `file-${Date.now().toLocaleString()}`;
+		const extension = '';
+		const extendedFilename = `${prefix ? prefix : ''}${originalFilename}`;
 
 		const result = {
 			originalFilename,
@@ -26,8 +26,8 @@ export class FileService {
 		try {
 			const pathname = new URL(url).pathname.split('?')[0];
 
-			let originalFilename = pathname.split('/').pop() ?? '';
-			let extension = extname(originalFilename).substring(1);
+			const originalFilename = pathname.split('/').pop() ?? '';
+			const extension = extname(originalFilename).substring(1);
 
 			if (extension)
 				return {
@@ -61,7 +61,7 @@ export class FileService {
 		return map[ext.toLowerCase()] ?? 'application/octet-stream';
 	}
 
-	public saveJson(result: ImportExecutionResult, dir: string = 'importer_json_output'): string {
+	public saveJson(result: ExecutionResult, dir: string = 'importer_json_output'): string {
 		const base = join(process.cwd(), dir);
 		if (!existsSync(base)) mkdirSync(base, { recursive: true });
 

@@ -4,7 +4,7 @@ A modular, highly scalable media importer, scraper, and downloader tool built wi
 
 ## Features
 
-- **Builder Pattern API:** Easy-to-use chainable methods (`new DefaultProvider(url).getAlbums()`).
+- **Builder Pattern API:** Easy-to-use chainable methods (`new DefaultService(url).getAlbums()`).
 - **Advanced HTTP Fetching:** Uses `undici` for robust connection pooling and chunk streaming.
 - **Multiple Output Targets:** Easily pipe your downloads to `local` disk, a `pipeline` buffer, a `zip` file, or simply `log`.
 - **Modular Architecture:** Clean dependency injection separating fetchers, parsers, extractors, and downloaders.
@@ -30,7 +30,7 @@ import { importer } from 'importer';
 async function main() {
   const url = 'https://sitename/albums/1300/';
 
-  // 1. Initialize the specific provider via the factory
+  // 1. Initialize the specific Service via the factory
   const extractor = importer.import(url);
 
   // 2. Chain exactly what you want to extract and where to output it
@@ -45,15 +45,15 @@ async function main() {
 main().catch(console.error);
 ```
 
-## Supported Providers
+## Supported Services
 
 Currently, the default library provides handlers for:
 
-- `OkPornProvider`
-- `CoomerProvider`
+- `OkPornService`
+- `CoomerService`
 - _More incoming..._
 
-Each provider inherits from `BaseProvider` and exposes methods tailored specifically to its media source patterns.
+Each Service inherits from `BaseService` and exposes methods tailored specifically to its media source patterns.
 
 ## Development
 

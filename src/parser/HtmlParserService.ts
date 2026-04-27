@@ -58,6 +58,25 @@ export class HtmlParserService {
 		return [...seen];
 	}
 
+	public extractAnchorTextsByHref(html: string, hrefPattern: RegExp): string[] {
+		const seen = new Set<string>();
+		const anchorPattern = /<a\b[^>]*\bhref\s*=\s*(["'])(.*?)\1[^>]*>([\s\S]*?)<\/a>/gi;
+		let match: RegExpExecArray | null;
+
+		while ((match = anchorPattern.exec(html)) !== null) {
+			const [, , href, text] = match;
+			if (!href || !text) continue;
+
+			hrefPattern.lastIndex = 0;
+			if (!hrefPattern.test(href)) continue;
+
+			const label = this.decodeHtmlEntities(text.replace(/<[^>]*>/g, '').trim());
+			if (label) seen.add(label);
+		}
+
+		return [...seen];
+	}
+
 	public extractImageUrls(html: string): string[] {
 		const attrs = ['data-original="', 'data-src="', 'data-lazy="', 'src="'];
 		const seen = new Set<string>();

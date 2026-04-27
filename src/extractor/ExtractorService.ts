@@ -1,7 +1,8 @@
+import { UrlType } from '../enums';
 import { HttpFetcherService } from '../fetcher/HttpFetcherService';
-import { SITE_EXTRACTORS } from '../helpers/site-extractors';
+import { SITE_EXTRACTORS } from '../helpers/SiteExtractors';
 import { HtmlParserService } from '../parser/HtmlParserService';
-import { ExtractorResult, UrlType } from '../types';
+import { ExtractorResult } from '../types';
 import { SiteDescriptor } from '../types/SiteDescriptor';
 
 export class ExtractorService {
@@ -14,7 +15,7 @@ export class ExtractorService {
 		return SITE_EXTRACTORS.find((d) => d.pattern.test(url)) ?? null;
 	}
 
-	public async extractFromUrl(url: string): Promise<ExtractorResult> {
+	public async extractFromUrl<T>(url: string): Promise<ExtractorResult<T>> {
 		const fetched = await this.httpFetcherService.fetchHtml(url);
 
 		const descriptor = this.findExtractor(url);
@@ -36,15 +37,15 @@ export class ExtractorService {
 		return { ...base, urlType: descriptor?.urlType };
 	}
 
-	private defaultParse(html: string, finalUrl: string): ExtractorResult {
+	private defaultParse(html: string, baseUrl: string): ExtractorResult {
 		return {
-			anchors: this.htmlParserService.extractAnchors(html, finalUrl),
+			anchors: this.htmlParserService.extractAnchors(html, baseUrl),
 			images: this.htmlParserService.extractImageUrls(html),
 			sources: this.htmlParserService.extractSourceUrls(html),
 			title: this.htmlParserService.extractTitle(html),
 			description: this.htmlParserService.extractMetaDescription(html),
 			keywords: this.htmlParserService.extractMetaKeywords(html),
-			finalUrl,
+			baseUrl,
 			status: 200
 		};
 	}
