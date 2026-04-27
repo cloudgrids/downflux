@@ -1,8 +1,7 @@
 import { DownloaderService } from '../downloader/DownloaderService';
 import { OutputType, UrlType } from '../enums';
-import { ExtractorService } from '../extractor/ExtractorService';
+import { ExtractorService } from '../extractors/ExtractorService';
 import { FileService } from '../file/FileService';
-import { TRANSFORMER } from '../transformer/Transformer';
 import { DownloadResult, ExtractorResult } from '../types';
 import { ExecutionArguments } from '../types/ExecutionArguments';
 import { ExecutionResult } from '../types/ExecutionResult';
@@ -16,7 +15,7 @@ export class JobService {
 	) {}
 
 	public async execute<T>(request: ExecutionArguments): Promise<ExecutionResult<T>> {
-		const { outputType = OutputType.JSON, targets, urlType, service, method, ...options } = request;
+		const { outputType = OutputType.JSON, targets, urlType, service, ...options } = request;
 
 		const downloads: DownloadResult[] = [];
 		const errors: Error[] = [];
@@ -28,10 +27,11 @@ export class JobService {
 			if (options?.signal?.aborted) break;
 
 			try {
-				const metadata = await this.extractorService.extractFromUrl<T>(url);
+				const extractor = this.extractorService.getExtractor(service);
+				const metadata = await extractor.extractFromUrl<T>(url, request);
 				extracted.push(metadata);
 
-				const selected = this.extractorService.selectUrlsByQuality(metadata, urlType ?? metadata.urlType ?? UrlType.IMAGES);
+				const selected = extractor.selectUrlsByQuality(metadata, urlType ?? metadata.urlType ?? UrlType.IMAGES);
 
 				targetUrls.push(...selected);
 			} catch (err) {
@@ -41,7 +41,7 @@ export class JobService {
 
 		targetUrls = this.applyFilters(targetUrls, options);
 
-		let result: ExecutionResult<T> = {
+		const result: ExecutionResult<T> = {
 			service: request.service,
 			method: request.method,
 			entryUrl: request.entryUrl,
@@ -57,11 +57,9 @@ export class JobService {
 			errors
 		};
 
-		result = TRANSFORMER[service]?.[method]?.transform(result) ?? result;
-
 		switch (outputType) {
 			case OutputType.JSON: {
-				result.jsonPath = this.fileService.saveJson(result, options?.json?.path as string);
+				result.jsonPath = this.fileService.saveJson(result, options?.dirConfig?.path as string);
 				return result;
 			}
 
@@ -69,7 +67,7 @@ export class JobService {
 			case OutputType.DEVICE: {
 				const target = outputType;
 
-				if (target === OutputType.DEVICE && !options?.device?.path) {
+				if (target === OutputType.DEVICE && !options?.dirConfig?.path) {
 					throw new Error('device.path is required');
 				}
 

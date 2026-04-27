@@ -1,7 +1,7 @@
 {
-	"name": "importer",
+	"name": "downflux",
 	"version": "1.0.0",
-	"description": "A modular media importer tool",
+	"description": "A modular media downflux tool",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
@@ -24,14 +24,15 @@
 		"test:watch": "npm run test -- --watch",
 		"test:run": "tsx test/run.ts",
 		"format": "prettier --write \"src/**/*.ts\"",
-		"release": "standard-version"
+		"release": "standard-version",
+		"make:index": "tsx scripts/make-index.ts"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/forkts/importer.git"
+		"url": "git+https://github.com/forkts/downflux.git"
 	},
 	"keywords": [
-		"importer",
+		"downflux",
 		"downloader",
 		"scraper",
 		"media"
@@ -39,9 +40,9 @@
 	"author": "forkts <forkts@users.noreply.github.com>",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/forkts/importer/issues"
+		"url": "https://github.com/forkts/downflux/issues"
 	},
-	"homepage": "https://github.com/forkts/importer#readme",
+	"homepage": "https://github.com/forkts/downflux#readme",
 	"engines": {
 		"node": ">=18.0.0"
 	},

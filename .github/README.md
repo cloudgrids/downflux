@@ -1,6 +1,6 @@
-# Importer
+# DownFlux
 
-A modular, highly scalable media importer, scraper, and downloader tool built with Node.js, TypeScript, and `undici`.
+A modular, highly scalable media downflux, scraper, and downloader tool built with Node.js, TypeScript, and `undici`.
 
 ## Features
 
@@ -15,23 +15,23 @@ A modular, highly scalable media importer, scraper, and downloader tool built wi
 Install using your preferred package manager:
 
 ```bash
-pnpm add importer
+pnpm add downflux
 # or
-npm install importer
+npm install downflux
 # or
-yarn add importer
+yarn add downflux
 ```
 
 ## Quick Start / Usage
 
 ```typescript
-import { importer } from 'importer';
+import { downflux } from 'downflux';
 
 async function main() {
   const url = 'https://sitename/albums/1300/';
 
   // 1. Initialize the specific Service via the factory
-  const extractor = importer.import(url);
+  const extractor = downflux.import(url);
 
   // 2. Chain exactly what you want to extract and where to output it
   const result = await extractor
@@ -60,8 +60,8 @@ Each Service inherits from `BaseService` and exposes methods tailored specifical
 Clone the project and install dependencies:
 
 ```bash
-git clone https://github.com/forkts/importer.git
-cd importer
+git clone https://github.com/forkts/downflux.git
+cd downflux
 pnpm install
 ```
 

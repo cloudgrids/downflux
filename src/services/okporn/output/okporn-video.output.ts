@@ -1,3 +1,5 @@
+import { OkPornAlbumOutput } from './okporn-album.output';
+
 export interface OkPornVideoOutput {
 	modelName?: string;
 	videoId: string;
@@ -8,9 +10,8 @@ export interface OkPornVideoOutput {
 	videoScreenshot: string;
 	videoSources: string[];
 	videoPoster: string;
-	videoImageCount: number;
-	videoImages?: string[];
 	videoCreateDate?: string;
 	fullVideoSource?: string;
 	videoAlbumId?: string;
+	videoAlbum?: OkPornAlbumOutput;
 }

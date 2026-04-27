@@ -1,5 +1,5 @@
-import { UrlType } from '../enums';
-import { BaseService } from './BaseService';
+import { UrlType } from '../../enums';
+import { BaseService } from '../BaseService';
 
 export class DefaultService extends BaseService {
 	constructor(url: string) {

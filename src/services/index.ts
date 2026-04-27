@@ -1,4 +1,3 @@
 export * from './BaseService';
-export * from './CoomerService';
-export * from './DefaultService';
+export * from './default/DefaultService';
 export * from './okporn/okporn.service';

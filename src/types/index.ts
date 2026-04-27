@@ -3,3 +3,5 @@ export * from './ExecutionArguments';
 export * from './ExecutionResult';
 export * from './ExtractorResult';
 export * from './HttpFetchOptions';
+export * from './JobOptions';
+export * from './SiteDescriptor';
