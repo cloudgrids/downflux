@@ -5,7 +5,7 @@ import { HtmlParserService } from '../parser/HtmlParserService';
 import { ExecutionArguments, ExtractorResult } from '../types';
 import { SiteDescriptor } from '../types/SiteDescriptor';
 
-export class BaseExtractor {
+export abstract class BaseExtractor {
 	constructor(
 		protected readonly htmlParserService: HtmlParserService,
 		protected readonly httpFetcherService: HttpFetcherService

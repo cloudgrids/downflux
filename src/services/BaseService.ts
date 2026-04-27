@@ -8,10 +8,11 @@ import { JobOptions } from '../types/JobOptions';
 
 export type ServiceConstructor<T = any> = new (...args: any[]) => T;
 
-export class BaseService {
+export abstract class BaseService {
 	protected jobOptions: JobOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
 	protected readonly deps: ImporterDependencies;
+	protected abstract validateUrl(url: string): void;
 
 	constructor(public readonly url: string) {
 		this.deps = createDefaultDependencies();

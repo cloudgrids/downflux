@@ -8,7 +8,7 @@ async function main() {
 		await new OkPornService(url1)
 			.setOutput(OutputType.JSON)
 			.setJobOptions({ dirConfig: { path: 'okporn_downloads' } })
-			.getVideos(1300, 1305);
+			.getVideos(1300);
 	} catch (error) {
 		console.error('Error during getVideos:', error instanceof Error ? error.message : String(error));
 	} finally {

@@ -30,7 +30,8 @@ const paths = [
 	'src/enums',
 	'src/types',
 	'src/extractors',
-	'src/downloaders'
+	'src/downloaders',
+	'src/errors'
 ];
 
 (async () => {

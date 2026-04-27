@@ -1,4 +1,6 @@
 import { ServiceType, UrlType } from '../../enums';
+import { InvalidRangeError } from '../../errors/InvalidRangeError';
+import { InvalidUrlError } from '../../errors/InvalidUrlError';
 import { METHOD_MAPPER } from '../../helpers/Mappers';
 import { ExecutionResult } from '../../types';
 import { BaseService } from '../BaseService';
@@ -15,9 +17,15 @@ export class OkPornService extends BaseService {
 		super(url);
 	}
 
-	public async getAlbums(start = 0, end = 10): Promise<ExecutionResult<OkPornAlbumOutput>> {
+	validateUrl(url: string): void {
+		if (!url.startsWith('https://ok.porn/')) {
+			throw new InvalidUrlError(`Invalid URL for OkPornService: ${url}`);
+		}
+	}
+
+	public async getAlbums(start = 0, end = 1): Promise<ExecutionResult<OkPornAlbumOutput>> {
 		return await this.execute<OkPornAlbumOutput>({
-			targets: Array.from({ length: end - start + 1 }, (_, i) => `${this.ALBUMS_URL}${start + i}/`),
+			targets: this.targets(this.ALBUMS_URL, start, end),
 			method: METHOD_MAPPER[ServiceType.OKPORN].getAlbums,
 			service: ServiceType.OKPORN,
 			urlType: UrlType.IMAGES
@@ -33,9 +41,9 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getModels(start = 0, end = 10) {
+	public getModels(start = 0, end = 1) {
 		return this.execute({
-			targets: Array.from({ length: end - start + 1 }, (_, i) => `${this.MODELS_URL}${start + i}/`),
+			targets: this.targets(this.MODELS_URL, start, end),
 			urlType: UrlType.ANCHORS,
 			method: METHOD_MAPPER[ServiceType.OKPORN].getModels,
 			service: ServiceType.OKPORN
@@ -53,18 +61,18 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getChannels(start = 0, end = 10) {
+	public getChannels(start = 0, end = 1) {
 		return this.execute({
-			targets: Array.from({ length: end - start + 1 }, (_, i) => `${this.CHANNELS_URL}${start + i}/`),
+			targets: this.targets(this.CHANNELS_URL, start, end),
 			urlType: UrlType.ANCHORS,
 			method: METHOD_MAPPER[ServiceType.OKPORN].getChannels,
 			service: ServiceType.OKPORN
 		});
 	}
 
-	public getVideos(start = 0, end = 10) {
+	public getVideos(start = 0, end = 1) {
 		return this.execute({
-			targets: Array.from({ length: end - start + 1 }, (_, i) => `${this.VIDEOS_URL}${start + i}/`),
+			targets: this.targets(this.VIDEOS_URL, start, end),
 			urlType: UrlType.ANCHORS,
 			method: METHOD_MAPPER[ServiceType.OKPORN].getVideos,
 			service: ServiceType.OKPORN
@@ -78,5 +86,10 @@ export class OkPornService extends BaseService {
 			method: METHOD_MAPPER[ServiceType.OKPORN].getVideo,
 			service: ServiceType.OKPORN
 		});
+	}
+
+	private targets(baseUrl: string, start = 0, end = 1) {
+		if (start < 0 || end < 0 || start > end) throw new InvalidRangeError('Invalid range for targets', `${start}-${end}`);
+		return Array.from({ length: end - start + 1 }, (_, i) => `${baseUrl}${start + i}/`);
 	}
 }

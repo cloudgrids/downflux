@@ -1,0 +1,18 @@
+[
+  {
+    "service": "OkPornService",
+    "method": "getVideos",
+    "entryUrl": "https://ok.porn/albums/1300/",
+    "targets": [],
+    "executionType": "SEQUENTIAL",
+    "urlType": "ANCHORS",
+    "outputType": "JSON",
+    "pipeline": [],
+    "extracted": [],
+    "targetUrls": [],
+    "downloads": [],
+    "downloaded": 0,
+    "failed": 0,
+    "errors": []
+  }
+]
