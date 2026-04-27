@@ -1,9 +1,12 @@
+import { OutputType } from '../enums';
 import { HttpFetcherService } from '../fetcher/HttpFetcherService';
 import { FileService } from '../file/FileService';
 import { DEFAULT_ALLOWED_EXTENSIONS } from '../helpers/extensions';
-import { DownloadResult, FetchOptions, ImportExecutionOptions, OutputType } from '../types';
+import { DownloadResult } from '../types';
+import { HttpFetchOptions } from '../types/HttpFetchOptions';
+import { JobOptions } from '../types/JobOptions';
 
-export interface DownloadOptions extends FetchOptions, ImportExecutionOptions {
+export interface DownloadOptions extends HttpFetchOptions, JobOptions {
 	outputType: OutputType;
 }
 
@@ -34,25 +37,31 @@ export class DownloaderService {
 				result.buffer = buffer;
 				return result;
 
-			case OutputType.DEVICE:
+			case OutputType.DEVICE: {
 				const localPath = await this.fileService.saveToDevice(buffer, device?.path as string, extendedFilename);
 				result.localPath = localPath;
 
 				return result;
+			}
 			default:
 				throw new Error('Invalid output type');
 		}
 	}
 
 	public filterUrlsByExtension(urls: string[], allowed: string[] = DEFAULT_ALLOWED_EXTENSIONS): string[] {
-		return [
-			...new Set(
-				urls.filter((url) => {
-					const pathname = url.split('?')[0];
-					const ext = `.${pathname.split('.').pop()?.toLowerCase()}`;
-					return allowed.includes(ext);
-				})
-			)
-		];
+		try {
+			return [
+				...new Set(
+					urls.filter((url) => {
+						const pathname = url.split('?')[0];
+						const ext = `.${pathname.split('.').pop()?.toLowerCase()}`;
+						return allowed.includes(ext);
+					})
+				)
+			];
+		} catch (error) {
+			console.error('Error filtering URLs by extension:', error);
+			return [];
+		}
 	}
 }

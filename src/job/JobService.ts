@@ -1,9 +1,12 @@
 import { DownloaderService } from '../downloader/DownloaderService';
+import { OutputType, UrlType } from '../enums';
 import { ExtractorService } from '../extractor/ExtractorService';
 import { FileService } from '../file/FileService';
-import { DownloadResult, ExtractorResult, ImportExecutionOptions, OutputType, UrlType } from '../types';
-import { ImportExecutionRequest } from '../types/ImportExecutionRequest';
-import { ImportExecutionResult } from '../types/ImportExecutionResult';
+import { TRANSFORMER } from '../transformer/Transformer';
+import { DownloadResult, ExtractorResult } from '../types';
+import { ExecutionArguments } from '../types/ExecutionArguments';
+import { ExecutionResult } from '../types/ExecutionResult';
+import { JobOptions } from '../types/JobOptions';
 
 export class JobService {
 	constructor(
@@ -12,41 +15,49 @@ export class JobService {
 		private readonly fileService: FileService
 	) {}
 
-	public async execute(request: ImportExecutionRequest): Promise<ImportExecutionResult> {
-		const { outputType, urls, urlType, callbacks, ...options } = request;
+	public async execute<T>(request: ExecutionArguments): Promise<ExecutionResult<T>> {
+		const { outputType = OutputType.JSON, targets, urlType, service, method, ...options } = request;
 
 		const downloads: DownloadResult[] = [];
 		const errors: Error[] = [];
-		const metadataList: ExtractorResult[] = [];
+		const extracted: ExtractorResult<T>[] = [];
+		let targetUrls: string[] = [];
 
-		let finalUrls: string[] = [];
-
-		for (const url of urls) {
+		// Generate metadata and select URLs based on quality
+		for (const url of targets) {
 			if (options?.signal?.aborted) break;
 
 			try {
-				const metadata = await this.extractorService.extractFromUrl(url);
-				metadataList.push(metadata);
+				const metadata = await this.extractorService.extractFromUrl<T>(url);
+				extracted.push(metadata);
 
 				const selected = this.extractorService.selectUrlsByQuality(metadata, urlType ?? metadata.urlType ?? UrlType.IMAGES);
 
-				finalUrls.push(...selected);
+				targetUrls.push(...selected);
 			} catch (err) {
 				errors.push(err instanceof Error ? err : new Error(String(err)));
 			}
 		}
 
-		finalUrls = this.applyFilters(finalUrls, options);
+		targetUrls = this.applyFilters(targetUrls, options);
 
-		const result: ImportExecutionResult = {
+		let result: ExecutionResult<T> = {
+			service: request.service,
+			method: request.method,
+			entryUrl: request.entryUrl,
+			targets: request.targets,
+			executionType: request.executionType,
+			urlType: request.urlType,
 			outputType,
-			metadataList,
-			urls: finalUrls,
+			extracted,
+			targetUrls,
 			downloads,
 			downloaded: 0,
 			failed: 0,
 			errors
 		};
+
+		result = TRANSFORMER[service]?.[method]?.transform(result) ?? result;
 
 		switch (outputType) {
 			case OutputType.JSON: {
@@ -62,7 +73,7 @@ export class JobService {
 					throw new Error('device.path is required');
 				}
 
-				for (const fileUrl of finalUrls) {
+				for (const fileUrl of targetUrls) {
 					if (options?.signal?.aborted) break;
 
 					try {
@@ -80,16 +91,8 @@ export class JobService {
 				break;
 			}
 
-			case OutputType.LOG: {
-				console.log(
-					metadataList.map((m) => ({
-						url: m.finalUrl,
-						title: m.title,
-						images: m.images.length
-					}))
-				);
-				break;
-			}
+			case OutputType.RETURN:
+				return result;
 
 			default:
 				throw new Error('Invalid output type');
@@ -101,7 +104,7 @@ export class JobService {
 		return result;
 	}
 
-	private applyFilters(urls: string[], options: ImportExecutionOptions): string[] {
+	private applyFilters(urls: string[], options: JobOptions): string[] {
 		let result = urls;
 
 		if (options?.allowedExtensions?.length) {

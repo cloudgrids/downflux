@@ -1,0 +1,96 @@
+import { OutputType, ServiceType, UrlType } from '../enums';
+import { ExecutionType } from '../enums/ExecutionType';
+import { createDefaultDependencies, ImporterDependencies } from '../inject-dependency';
+import { HttpFetchOptions } from '../types';
+import { ExecutionArguments } from '../types/ExecutionArguments';
+import { ExecutionResult } from '../types/ExecutionResult';
+import { JobOptions } from '../types/JobOptions';
+
+export type ServiceConstructor<T = any> = new (...args: any[]) => T;
+
+export class BaseService {
+	protected jobOptions: JobOptions = {};
+	protected httpOptions: HttpFetchOptions = {};
+	protected readonly deps: ImporterDependencies;
+
+	constructor(public readonly url: string) {
+		this.deps = createDefaultDependencies();
+		this.jobOptions = {
+			outputType: OutputType.JSON,
+			executionType: ExecutionType.SEQUENTIAL,
+			json: { path: 'importer_json_output', prefix: 'imported_' },
+			device: { path: 'importer_device_output', prefix: 'imported_' }
+		};
+	}
+
+	public setHeaders(headers: Record<string, string>): this {
+		this.httpOptions.headers = headers;
+		return this;
+	}
+
+	public setTimeout(timeoutMs: number): this {
+		this.httpOptions.timeoutMs = timeoutMs;
+		return this;
+	}
+
+	public setRetries(retries: number): this {
+		this.httpOptions.retries = retries;
+		return this;
+	}
+
+	public setBackoff(backoffMs: number): this {
+		this.httpOptions.backoffMs = backoffMs;
+		return this;
+	}
+
+	public setHttpOptions(opts: HttpFetchOptions): this {
+		this.httpOptions = { ...this.httpOptions, ...opts };
+		return this;
+	}
+
+	public setJobOptions(opts: JobOptions): this {
+		this.jobOptions = { ...this.jobOptions, ...opts };
+		return this;
+	}
+
+	public setMaxDownloads(maxDownloads: number): this {
+		this.jobOptions.maxDownloads = maxDownloads;
+		return this;
+	}
+
+	public setAllowedExtensions(extensions: string[]): this {
+		this.jobOptions.allowedExtensions = extensions;
+		return this;
+	}
+
+	public setOutput(type: OutputType, path?: string, prefix?: string): this {
+		this.jobOptions.outputType = type;
+
+		if (type === OutputType.DEVICE && path) this.jobOptions.device = { path, prefix };
+		else if (type === OutputType.JSON && path) this.jobOptions.json = { path, prefix };
+
+		return this;
+	}
+
+	public setExecutionType(type: ExecutionType): this {
+		this.jobOptions.executionType = type;
+		return this;
+	}
+
+	protected buildRequest(overrides?: Partial<ExecutionArguments>): ExecutionArguments {
+		return {
+			service: overrides?.service as ServiceType,
+			method: overrides?.method as string,
+			targets: overrides?.targets as string[],
+			entryUrl: this.url,
+			urlType: UrlType.ANCHORS,
+			executionType: ExecutionType.SEQUENTIAL,
+			...this.jobOptions,
+			...overrides
+		};
+	}
+
+	protected async execute<T>(overrides?: Partial<ExecutionArguments>): Promise<ExecutionResult<T>> {
+		return await this.deps.job.execute<T>(this.buildRequest(overrides));
+	}
+}

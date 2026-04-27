@@ -1,20 +1,26 @@
-import { UrlType } from '../types';
+import { UrlType } from '../enums';
 import { SiteDescriptor } from '../types/SiteDescriptor';
 
 export const SITE_EXTRACTORS: SiteDescriptor[] = [
 	{
 		category: 'okporn',
-		pattern: /(?:https?:\/\/)?(?:www\.)?ok\.porn\/albums\/(\d+)/,
+		pattern: /(?:https?:\/\/)?(?:www\.)?ok\.porn\/(?:albums|video)\/(\d+)/,
 		urlType: UrlType.IMAGES,
 		transform: ({ html, parser }) => ({
 			images: [...html.matchAll(/data-original="(https?:\/\/[^"]+)"/g)].map((m) => m[1]),
-			title: parser.decodeHtmlEntities(parser.extractElementText(html, 'h1 class=title>', '</h1>')),
-			customTitle: parser.extractCustomTitle(html),
+			title: parser.decodeHtmlEntities(parser.extractTitle(html)),
+			customFields: {
+				modelName: parser.extractCustomTitle(html).split('/')?.filter(Boolean)?.pop()?.trim() || 'unknown',
+				videoAlbumId: html.match(/class="vodeo-gallery"[^>]*href="\/albums\/(\d+)\/"/)?.[1],
+				videoCreateDate: parser.extractElementText(html, 'class="date">', '</'),
+				starredBy: parser.extractAnchorTextsByHref(html, /^(?:https?:\/\/(?:www\.)?ok\.porn)?\/models\/[^/?#]+\/?$/i),
+				videoPoster: html.match(/poster="(https?:\/\/[^"]+)"/)?.[1] || undefined
+			},
+			videoPosters: parser.extractVideoPosters(html),
 			description: parser.extractMetaDescription(html),
 			keywords: parser.extractMetaKeywords(html)
 		})
 	},
-
 	{
 		category: 'coomer',
 		pattern: /https?:\/\/coomer\.(?:st|party)\/([^/]+)\/user\/([^/?#]+)/,

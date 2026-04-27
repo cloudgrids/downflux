@@ -1,14 +1,13 @@
 import { ExecutionType, OutputType } from '../enums';
-import { FetchOptions } from './FetchOptions';
 
-export interface ImportExecutionOptions extends FetchOptions {
-	outputType?: OutputType;
-	executionType?: ExecutionType;
+export interface JobOptions {
 	device?: DeviceOutputOptions;
 	json?: JsonOutputOptions;
 	allowedExtensions?: string[];
 	maxDownloads?: number;
 	signal?: AbortSignal;
+	executionType?: ExecutionType;
+	outputType?: OutputType;
 }
 
 export interface JsonOutputOptions {
