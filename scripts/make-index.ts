@@ -24,14 +24,26 @@ const makeIndex = async (directory: string) => {
 };
 
 const paths = [
+	'src/downloaders',
+	'src/downloaders/okporn',
+	'src/downloaders/okporn/output',
+	'src/downloaders/default',
+	'src/enums',
+	'src/enums/services',
+	'src/exceptions',
+	'src/extractors',
+	'src/fetcher',
+	'src/file',
+	'src/helpers',
+	'src/job',
+	'src/parser',
+	'src/types',
+	'src/services',
 	'src/services/coomer',
 	'src/services/okporn',
+	'src/services/okporn/output',
 	'src/services/default',
-	'src/enums',
-	'src/types',
-	'src/extractors',
-	'src/downloaders',
-	'src/errors'
+	'src/common'
 ];
 
 (async () => {

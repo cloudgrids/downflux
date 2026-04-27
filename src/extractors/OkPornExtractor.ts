@@ -1,5 +1,4 @@
-import { ServiceType, UrlType } from '../enums';
-import { METHOD_MAPPER } from '../helpers/Mappers';
+import { OkPornMethods, UrlType } from '../enums';
 import { OkPornAlbumOutput } from '../services/okporn/output/OkPornAlbumOutput';
 import { OkPornVideoOutput } from '../services/okporn/output/OkPornVideoOutput';
 import { ExecutionArguments, ExtractorResult } from '../types';
@@ -37,7 +36,7 @@ export class OkPornExtractor extends BaseExtractor {
 
 		const albumMetadata = await super.extractFromUrl<OkPornAlbumOutput>(`${this.ALBUMS_URL}${videoAlbumId}/`, {
 			...request,
-			method: METHOD_MAPPER[ServiceType.OKPORN].getAlbum,
+			method: OkPornMethods.getAlbum,
 			urlType: UrlType.IMAGES
 		} as ExecutionArguments);
 
@@ -45,17 +44,11 @@ export class OkPornExtractor extends BaseExtractor {
 	}
 
 	private isAlbumMethod(request?: ExecutionArguments): boolean {
-		return (
-			request?.method === METHOD_MAPPER[ServiceType.OKPORN].getAlbum ||
-			request?.method === METHOD_MAPPER[ServiceType.OKPORN].getAlbums
-		);
+		return [OkPornMethods.getAlbum, OkPornMethods.getAlbums].includes(request?.method as OkPornMethods);
 	}
 
 	private isVideoMethod(request?: ExecutionArguments): boolean {
-		return (
-			request?.method === METHOD_MAPPER[ServiceType.OKPORN].getVideo ||
-			request?.method === METHOD_MAPPER[ServiceType.OKPORN].getVideos
-		);
+		return [OkPornMethods.getVideo, OkPornMethods.getVideos].includes(request?.method as OkPornMethods);
 	}
 
 	private toAlbumOutput(metadata: ExtractorResult): OkPornAlbumOutput {
