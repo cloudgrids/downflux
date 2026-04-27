@@ -72,6 +72,7 @@ export const TRANSFORMER: TransformerMap = {
 						videoPoster: metadata.customFields?.videoPoster,
 						modelName: metadata.customFields?.starredBy?.[0],
 						videoAlbumId: metadata.customFields?.videoAlbumId,
+						videoAlbum: metadata.customFields?.videoAlbum,
 						videoCreateDate: metadata.customFields?.videoCreateDate
 					}
 				})) as ExtractorResult<OkPornVideoOutput>[]
@@ -92,6 +93,7 @@ export const TRANSFORMER: TransformerMap = {
 						videoPoster: metadata.customFields?.videoPoster,
 						modelName: metadata.customFields?.starredBy?.[0],
 						videoAlbumId: metadata.customFields?.videoAlbumId,
+						videoAlbum: metadata.customFields?.videoAlbum,
 						videoCreateDate: metadata.customFields?.videoCreateDate
 					}
 				})) as ExtractorResult<OkPornVideoOutput>[]

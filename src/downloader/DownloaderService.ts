@@ -17,9 +17,9 @@ export class DownloaderService {
 	) {}
 
 	public async downloadFile(url: string, opts: DownloadOptions): Promise<DownloadResult> {
-		const { outputType, device, ...fetchOpts } = opts;
+		const { outputType, dirConfig, ...fetchOpts } = opts;
 
-		const { originalFilename, extension, extendedFilename } = this.fileService.getFilenameAndExtensionFromUrl(url, device?.prefix);
+		const { originalFilename, extension, extendedFilename } = this.fileService.getFilenameAndExtensionFromUrl(url, dirConfig?.prefix);
 		const mimeType = this.fileService.resolveMimeFromExtension(extension);
 
 		const buffer = await this.httpFetcherService.fetchBuffer(url, fetchOpts);
@@ -38,7 +38,7 @@ export class DownloaderService {
 				return result;
 
 			case OutputType.DEVICE: {
-				const localPath = await this.fileService.saveToDevice(buffer, device?.path as string, extendedFilename);
+				const localPath = await this.fileService.saveToDevice(buffer, dirConfig?.path as string, extendedFilename);
 				result.localPath = localPath;
 
 				return result;

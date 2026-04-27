@@ -18,8 +18,7 @@ export class BaseService {
 		this.jobOptions = {
 			outputType: OutputType.JSON,
 			executionType: ExecutionType.SEQUENTIAL,
-			json: { path: 'importer_json_output', prefix: 'imported_' },
-			device: { path: 'importer_device_output', prefix: 'imported_' }
+			dirConfig: { path: 'downflux_device_output', prefix: 'imported_' }
 		};
 	}
 
@@ -66,8 +65,8 @@ export class BaseService {
 	public setOutput(type: OutputType, path?: string, prefix?: string): this {
 		this.jobOptions.outputType = type;
 
-		if (type === OutputType.DEVICE && path) this.jobOptions.device = { path, prefix };
-		else if (type === OutputType.JSON && path) this.jobOptions.json = { path, prefix };
+		if (type === OutputType.DEVICE && path) this.jobOptions.dirConfig = { path, prefix };
+		else if (type === OutputType.JSON && path) this.jobOptions.dirConfig = { path, prefix };
 
 		return this;
 	}
