@@ -1,4 +1,4 @@
-import { OkPornService, OutputType } from '../src';
+import { OkPornService, OutputType, VideoQuality } from '../src';
 
 async function main() {
 	const url1 = 'https://ok.porn/albums/1300/';
@@ -10,7 +10,7 @@ async function main() {
 			.onProgress((event) => console.log(event))
 			.setAllowedExtensions('mp4')
 			.setOutput(OutputType.JSON)
-			.getVideo('68664');
+			.getVideo('68664', { videoQualities: [VideoQuality.Q480] });
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {

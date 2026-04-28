@@ -24,7 +24,7 @@ export class OkPornTransformer extends BaseTransformer<
 			case OkPornMethods.getVideo:
 			case OkPornMethods.getVideos: {
 				const album = await this.getVideoAlbum(metadata, request);
-				return this.toVideoOutput(metadata, album);
+				return this.toVideoOutput(metadata, request, album);
 			}
 
 			case OkPornMethods.getModels:
@@ -68,14 +68,18 @@ export class OkPornTransformer extends BaseTransformer<
 		};
 	}
 
-	private toVideoOutput(metadata: DefaultExtractorResult, videoAlbum?: OkPornAlbumOutput): OkPornVideoOutput {
+	private toVideoOutput(
+		metadata: DefaultExtractorResult,
+		request: ExecutionArguments,
+		videoAlbum?: OkPornAlbumOutput
+	): OkPornVideoOutput {
 		return {
 			videoTitle: metadata.title,
 			videoUrl: metadata.baseUrl,
 			videoKeywords: metadata.keywords,
 			videoDescription: metadata.description,
 			videoId: metadata.baseUrl.split('/').filter(Boolean).pop() ?? '',
-			videoSources: metadata.sources.map((url) => ({ quality: this.detectVideoQuality(url), url })),
+			videoSources: this.filterByQuality(request, metadata.sources),
 			videoPoster: metadata.customFields?.videoPoster,
 			videoScreenshot: metadata.customFields?.videoPoster,
 			modelName: metadata.customFields?.starredBy?.[0],
@@ -116,5 +120,12 @@ export class OkPornTransformer extends BaseTransformer<
 		if (url.includes('240')) return VideoQuality.Q240;
 		if (url.includes('144')) return VideoQuality.Q144;
 		return VideoQuality.Q480;
+	}
+
+	private filterByQuality(request: ExecutionArguments, sources: string[]) {
+		const extendedSources = sources.map((url) => ({ url, quality: this.detectVideoQuality(url) }));
+		if (!request?.videoQualities?.length) return extendedSources;
+
+		return extendedSources.filter((source) => request.videoQualities?.includes(source.quality));
 	}
 }

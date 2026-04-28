@@ -73,22 +73,23 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getVideos(range: Range): Promise<OkPornVideoOutput[]> {
+	public getVideos(range: Range, options: { videoQualities?: VideoQuality[] }): Promise<OkPornVideoOutput[]> {
 		return this.execute<OkPornVideoOutput>({
 			targets: this.targets(this.VIDEOS_URL, range),
 			urlType: UrlType.SOURCES,
 			method: OkPornMethods.getVideos,
-			service: ServiceType.OKPORN
+			service: ServiceType.OKPORN,
+			videoQualities: options.videoQualities
 		});
 	}
 
-	public async getVideo(id: string, quality: VideoQuality[] = [VideoQuality.Q720]): Promise<OkPornVideoOutput> {
+	public async getVideo(id: string, options: { videoQualities?: VideoQuality[] }): Promise<OkPornVideoOutput> {
 		const [video] = await this.execute<OkPornVideoOutput>({
 			targets: [`${this.VIDEOS_URL}${id}/`],
 			urlType: UrlType.SOURCES,
 			method: OkPornMethods.getVideo,
 			service: ServiceType.OKPORN,
-			videoQualities: quality
+			videoQualities: options.videoQualities
 		});
 
 		return video;

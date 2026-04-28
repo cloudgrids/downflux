@@ -24,6 +24,8 @@ export class BasePipeline<T = DefaultExtractorResult> {
 	}
 
 	protected filterByExt(pipelineItems: PipelineItem[], request: ExecutionArguments): PipelineItem[] {
+		if (!request.allowedExtensions?.length) return pipelineItems;
+
 		return pipelineItems.filter((item) => request.allowedExtensions?.includes(item.identifier.extension));
 	}
 
