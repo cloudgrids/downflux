@@ -1,20 +1,25 @@
-import { DownloaderService } from '../downloaders/DownloaderService';
+import { DownloaderService } from '../downloaders';
 import { OutputType } from '../enums';
-import { FileService } from '../file/FileService';
+import { FileService } from '../file';
 import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';
-import { DownloadResult, PipelineHook, PipelineItem } from '../types';
+import { PipelineHook, PipelineItem } from '../types';
 import { ExecutionArguments } from '../types/ExecutionArguments';
 import { ExecutionResult } from '../types/ExecutionResult';
-import { JobOptions } from '../types/JobOptions';
+import { BackgroundService } from './BackgroundProcess';
 
 export class JobService {
+	private static readonly DEFAULT_EXTRACT_CONCURRENCY = 3;
+
 	constructor(
 		private readonly transformerService: TransformerService,
-		private readonly downloaderService: DownloaderService,
+		private readonly pipelineService: PipelineService,
+		private readonly backgroundService: BackgroundService,
 		private readonly fileService: FileService,
-		private readonly pipelineService: PipelineService
-	) {}
+		private readonly downloaderService: DownloaderService
+	) {
+		this.backgroundService = new BackgroundService(this.downloaderService, this.fileService);
+	}
 
 	public async execute<T>(request: ExecutionArguments): Promise<ExecutionResult<T>> {
 		const { outputType = OutputType.JSON, targets, ...options } = request;
@@ -23,6 +28,13 @@ export class JobService {
 		const extracted: T[] = [];
 		const errors: Error[] = [];
 		const pipelineItems: PipelineItem[] = [];
+
+		this.backgroundService.emitProgress(options, {
+			status: 'started',
+			totalTargets: targets.length,
+			downloaded: 0,
+			failed: 0
+		});
 
 		extracted.push(...(await this.extractMetadata<T>(targets, request)));
 
@@ -35,20 +47,29 @@ export class JobService {
 			...request,
 			outputType,
 			extracted,
-			targetUrls: [],
+			targetUrls: pipelineItems.map((item) => item.downloadUrl),
 			downloaded: 0,
 			failed: 0,
 			errors,
 			pipelineItems
 		};
 
+		this.backgroundService.emitProgress(options, {
+			status: 'queued',
+			totalTargets: targets.length,
+			totalItems: result.pipelineItems.length,
+			extracted: result.extracted.length,
+			downloaded: result.downloaded,
+			failed: result.failed
+		});
+
 		switch (outputType) {
 			case OutputType.JSON:
-				return this.handleJsonOutput(result, options);
+				return this.backgroundService.handleJsonOutput(result, options);
 
 			case OutputType.BUFFER:
 			case OutputType.DEVICE:
-				this.handleDeviceOutputAsync(result.extracted, options, outputType, request, pipelineHooks, result);
+				this.backgroundService.handleDeviceOutputAsync(options, outputType, request, pipelineHooks, result);
 				return result;
 
 			case OutputType.RETURN:
@@ -59,91 +80,30 @@ export class JobService {
 		}
 	}
 
-	private async handleJsonOutput<T>(result: ExecutionResult<T>, options: JobOptions): Promise<ExecutionResult<T>> {
-		try {
-			this.fileService.saveJson(result, options?.dirConfig?.path);
-			return result;
-		} catch (err) {
-			result.errors.push(err instanceof Error ? err : new Error(String(err)));
-			return result;
-		}
-	}
-
 	private async extractMetadata<T>(targets: string[], request: ExecutionArguments): Promise<T[]> {
-		const extracted: T[] = [];
-		for (const target of targets) {
+		const extractConcurrency = request.extractConcurrency ?? JobService.DEFAULT_EXTRACT_CONCURRENCY;
+		const extractedByIndex: Array<T | undefined> = new Array(targets.length);
+		let extractedCount = 0;
+
+		await this.backgroundService.runWithConcurrency(targets, extractConcurrency, async (target, index) => {
+			this.backgroundService.emitProgress(request, {
+				status: 'extracting',
+				totalTargets: targets.length
+			});
+
 			try {
-				const transformed = await this.transformerService.transform<T>(target, request);
-				extracted.push(transformed);
+				extractedByIndex[index] = await this.transformerService.transform<T>(target, request);
+				extractedCount++;
+				this.backgroundService.emitProgress(request, {
+					status: 'extracted',
+					totalTargets: targets.length,
+					extracted: extractedCount
+				});
 			} catch (err) {
 				console.error(`Error extracting ${target}:`, err);
 			}
-		}
-		return extracted;
-	}
-
-	private handleDeviceOutputAsync<T>(
-		extracted: T[],
-		options: JobOptions,
-		outputType: OutputType,
-		request: ExecutionArguments,
-		pipelineHooks: PipelineHook[],
-		result: ExecutionResult<T>
-	): void {
-		this.processDownloadsInBackground(extracted, options, outputType, request, pipelineHooks, result).catch((err) => {
-			console.error('Background download pipeline error:', err);
 		});
-	}
 
-	private async processDownloadsInBackground<T>(
-		extracted: T[],
-		options: JobOptions,
-		outputType: OutputType,
-		request: ExecutionArguments,
-		pipelineHooks: PipelineHook[],
-		result: ExecutionResult<T>
-	): Promise<void> {
-		try {
-			for (const pipelineItem of result.pipelineItems) {
-				if (options?.signal?.aborted) break;
-				await this.executeHooks(pipelineHooks, 'onExtract', pipelineItem);
-
-				const downloadResult = await this.downloaderService.download(pipelineItem, {
-					...options,
-					outputType,
-					service: request.service
-				});
-
-				if (outputType === OutputType.DEVICE && downloadResult?.buffer) {
-					await this.fileService.saveToDevice(
-						downloadResult.buffer,
-						options?.dirConfig?.path,
-						downloadResult.extendedFilename,
-						pipelineItem.identifier.key
-					);
-				}
-
-				await this.executeDownloadHooks(pipelineHooks, downloadResult);
-			}
-		} catch (err) {
-			console.error('Error downloading item:', err);
-		}
-	}
-
-	private async executeHooks(hooks: PipelineHook[], hookName: 'onExtract', item: PipelineItem): Promise<void> {
-		for (const hook of hooks) {
-			const hookFn = hook[hookName];
-			if (hookFn) {
-				await hookFn(item);
-			}
-		}
-	}
-
-	private async executeDownloadHooks(hooks: PipelineHook[], result: DownloadResult): Promise<void> {
-		for (const hook of hooks) {
-			if (hook.onDownload) {
-				await hook.onDownload(result);
-			}
-		}
+		return extractedByIndex.filter((item): item is T => item !== undefined);
 	}
 }

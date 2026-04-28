@@ -12,13 +12,16 @@ export class OkPornPipeline extends BasePipeline<OkPornOutput> {
 		for (const { mediaType, url } of extracted) {
 			items.push({
 				downloadUrl: url,
-				identifier: { mediaType, key: this.buildIdentifier(mediaType, metadata) },
-				resourceType: this.detectResourceType(url),
-				service: request.service
+				service: request.service,
+				identifier: {
+					mediaType,
+					...this.detectResourceType(url),
+					key: this.buildIdentifier(mediaType, metadata)
+				}
 			});
 		}
 
-		return items;
+		return this.filterByExt(items, request);
 	}
 
 	protected override buildIdentifier(mediaType: MediaType, metadata: OkPornOutput): string {

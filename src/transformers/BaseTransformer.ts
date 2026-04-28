@@ -1,4 +1,3 @@
-import { UrlType } from '../enums';
 import { HttpFetcherService } from '../fetcher/HttpFetcherService';
 import { SITE_EXTRACTORS } from '../helpers/SiteExtractors';
 import { HtmlParserService } from '../parser/HtmlParserService';
@@ -49,30 +48,5 @@ export abstract class BaseTransformer<T = DefaultExtractorResult> {
 			baseUrl,
 			status: 200
 		};
-	}
-
-	public selectUrlsByQuality(result: DefaultExtractorResult, urlType: UrlType): string[] {
-		switch (urlType) {
-			case UrlType.ANCHORS:
-				return result.anchors;
-
-			case UrlType.IMAGES:
-				return result.images;
-
-			case UrlType.SOURCES:
-				return result.sources;
-
-			case UrlType.VIDEO_POSTER:
-				return result.videoPosters ?? [];
-
-			case UrlType.DIV_HREFS:
-				return result.divHrefs ?? [];
-
-			case UrlType.ALL_URLS:
-				return result.allUrls ?? [];
-
-			default:
-				return result.images;
-		}
 	}
 }

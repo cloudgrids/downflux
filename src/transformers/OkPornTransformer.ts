@@ -80,8 +80,8 @@ export class OkPornTransformer extends BaseTransformer<
 			videoScreenshot: metadata.customFields?.videoPoster,
 			modelName: metadata.customFields?.starredBy?.[0],
 			videoAlbumId: metadata.customFields?.videoAlbumId,
-			videoAlbum,
-			videoCreateDate: metadata.customFields?.videoCreateDate
+			videoCreatedAt: metadata.customFields?.videoCreateDate,
+			videoAlbum
 		};
 	}
 

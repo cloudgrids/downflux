@@ -4,6 +4,7 @@ import { createDefaultDependencies, ImporterDependencies } from '../inject-depen
 import { HttpFetchOptions } from '../types';
 import { ExecutionArguments } from '../types/ExecutionArguments';
 import { JobOptions } from '../types/JobOptions';
+import { JobProgressEvent } from '../types/JobProgress';
 
 export abstract class BaseService {
 	protected jobOptions: JobOptions = {};
@@ -34,11 +35,6 @@ export abstract class BaseService {
 		return this;
 	}
 
-	public setBackoff(backoffMs: number): this {
-		this.httpOptions.backoffMs = backoffMs;
-		return this;
-	}
-
 	public setHttpOptions(opts: HttpFetchOptions): this {
 		this.httpOptions = { ...this.httpOptions, ...opts };
 		return this;
@@ -54,8 +50,19 @@ export abstract class BaseService {
 		return this;
 	}
 
-	public setAllowedExtensions(extensions: string[]): this {
-		this.jobOptions.allowedExtensions = extensions;
+	/** Sets the allowed file extensions for the job. eg ['jpg', 'png'] */
+	public setAllowedExtensions(...extensions: string[]): this {
+		this.jobOptions.allowedExtensions = extensions.map((ext) => ext.toLowerCase());
+		return this;
+	}
+
+	public onProgress(handler: (event: JobProgressEvent) => void): this {
+		this.jobOptions.onProgress = handler;
+		return this;
+	}
+
+	public setProgressLogging(enabled = true): this {
+		this.jobOptions.logProgress = enabled;
 		return this;
 	}
 

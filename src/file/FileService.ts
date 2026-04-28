@@ -50,21 +50,6 @@ export class FileService {
 		}
 	}
 
-	public resolveMimeFromExtension(ext: string): string {
-		const map: Record<string, string> = {
-			png: 'image/png',
-			jpg: 'image/jpeg',
-			jpeg: 'image/jpeg',
-			gif: 'image/gif',
-			webp: 'image/webp',
-			mp4: 'video/mp4',
-			webm: 'video/webm',
-			mp3: 'audio/mpeg',
-			wav: 'audio/wav'
-		};
-		return map[ext.toLowerCase()] ?? 'application/octet-stream';
-	}
-
 	public saveJson(result: ExecutionResult, dir: string = this.dir): string {
 		const base = join(process.cwd(), dir);
 		if (!existsSync(base)) mkdirSync(base, { recursive: true });

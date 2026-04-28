@@ -10,13 +10,20 @@ export class BasePipeline<T = DefaultExtractorResult> {
 		for (const { mediaType, url } of extracted) {
 			items.push({
 				downloadUrl: url,
-				identifier: { mediaType, key: this.buildIdentifier(mediaType, metadata) },
-				resourceType: this.detectResourceType(url),
+				identifier: {
+					mediaType,
+					...this.detectResourceType(url),
+					key: this.buildIdentifier(mediaType, metadata)
+				},
 				service: request.service
 			});
 		}
 
-		return items;
+		return this.filterByExt(items, request);
+	}
+
+	protected filterByExt(pipelineItems: PipelineItem[], request: ExecutionArguments): PipelineItem[] {
+		return pipelineItems.filter((item) => request.allowedExtensions?.includes(item.identifier.extension));
 	}
 
 	protected buildIdentifier(mediaType: MediaType, metadata: any): string {
@@ -49,12 +56,14 @@ export class BasePipeline<T = DefaultExtractorResult> {
 		return urls;
 	}
 
-	protected detectResourceType(url: string): 'image' | 'video' | 'audio' {
+	protected detectResourceType(url: string): { mimeType: string; extension: string } {
 		const pathname = extname(url);
+		const extension = pathname.substring(1).toLowerCase();
 
-		if (/\.(mp4|m3u8|webm|mov|mkv)$/.test(pathname)) return 'video';
-		if (/\.(mp3|wav|aac|flac|ogg)$/.test(pathname)) return 'audio';
+		if (/\.(mp4|m3u8|webm|mov|mkv)$/.test(pathname)) return { mimeType: `video/${extension}`, extension };
+		else if (/\.(mp3|wav|aac|flac|ogg)$/.test(pathname)) return { mimeType: `audio/${extension}`, extension };
+		else if (/\.(jpg|jpeg|png|gif|webp)$/.test(pathname)) return { mimeType: `image/${extension}`, extension };
 
-		return 'image';
+		return { mimeType: 'application/octet-stream', extension: '' };
 	}
 }

@@ -1,3 +1,4 @@
+import { MIME_TYPE } from '../common/MimeType';
 import { HttpFetcherService } from '../fetcher/HttpFetcherService';
 import { FileService } from '../file/FileService';
 import { DownloadResult, PipelineItem } from '../types';
@@ -16,7 +17,7 @@ export abstract class BaseDownloader {
 		if (!url) throw new Error('Cannot download pipeline item without a downloadUrl');
 
 		const { originalFilename, extension, extendedFilename } = this.fileService.getFilenameAndExtensionFromUrl(url, dirConfig?.prefix);
-		const mimeType = this.fileService.resolveMimeFromExtension(extension);
+		const mimeType = MIME_TYPE[extension] ?? 'application/octet-stream';
 
 		const buffer = await this.httpFetcherService.fetchBuffer(url, fetchOpts);
 		const result: DownloadResult = {

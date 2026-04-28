@@ -31,7 +31,7 @@ export class HttpFetcherService {
 	}
 
 	public async fetchHtml(url: string, opts: HttpFetchOptions = {}): Promise<FetchResult> {
-		const { headers = {}, timeoutMs = 30_000, retries = 3, backoffMs = 400 } = opts;
+		const { headers = {}, timeoutMs = 30_000, retries = 3 } = opts;
 		const mergedHeaders = { ...this.DEFAULT_HEADERS, ...headers } as Record<string, string>;
 		let lastError: unknown;
 
@@ -72,7 +72,6 @@ export class HttpFetcherService {
 				return { html, finalUrl, status: statusCode, ok, headers: responseHeaders };
 			} catch (err) {
 				lastError = err;
-				if (attempt < retries - 1) await this.sleep(backoffMs * (attempt + 1));
 			}
 		}
 
@@ -80,7 +79,7 @@ export class HttpFetcherService {
 	}
 
 	public async fetchBuffer(url: string, opts: HttpFetchOptions): Promise<Buffer> {
-		const { headers = {}, timeoutMs = 60_000, retries = 3, backoffMs = 400 } = opts;
+		const { headers = {}, retries = 3 } = opts;
 		const mergedHeaders = { ...this.DEFAULT_HEADERS, Accept: '*/*', ...headers } as Record<string, string>;
 		let lastError: unknown;
 
@@ -93,8 +92,7 @@ export class HttpFetcherService {
 					path: parsedUrl.pathname + parsedUrl.search,
 					method: 'GET',
 					headers: mergedHeaders,
-					headersTimeout: timeoutMs,
-					bodyTimeout: timeoutMs
+					bodyTimeout: 0 // Disable body timeout for buffer fetches
 				});
 
 				const ok = statusCode >= 200 && statusCode < 300;
@@ -108,15 +106,10 @@ export class HttpFetcherService {
 			} catch (err) {
 				console.warn(`Fetch attempt ${attempt + 1} for ${url} failed:`, err instanceof Error ? err.message : err);
 				lastError = err;
-				if (attempt < retries - 1) await this.sleep(backoffMs * (attempt + 1));
 			}
 		}
 
 		throw lastError;
-	}
-
-	private sleep(ms: number): Promise<void> {
-		return new Promise((resolve) => setTimeout(resolve, ms));
 	}
 
 	private async readBody(body: AsyncIterable<unknown>): Promise<Buffer> {
