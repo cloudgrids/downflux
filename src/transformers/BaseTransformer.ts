@@ -6,20 +6,20 @@ import { ExecutionArguments } from '../types';
 import { DefaultExtractorResult } from '../types/DefaultExtractorResult';
 import { SiteDescriptor } from '../types/SiteDescriptor';
 
-export abstract class BaseExtractor<T = DefaultExtractorResult> {
+export abstract class BaseTransformer<T = DefaultExtractorResult> {
 	constructor(
 		protected readonly htmlParserService: HtmlParserService,
 		protected readonly httpFetcherService: HttpFetcherService
 	) {}
 
-	public findExtractor(url: string): SiteDescriptor | null {
+	private findTransformer(url: string): SiteDescriptor | null {
 		return SITE_EXTRACTORS.find((d) => d.pattern.test(url)) ?? null;
 	}
 
-	public async extractFromUrl(url: string, _request?: ExecutionArguments): Promise<T> {
+	public async transform(url: string, _request?: ExecutionArguments): Promise<T> {
 		const fetched = await this.httpFetcherService.fetchHtml(url);
 
-		const descriptor = this.findExtractor(url);
+		const descriptor = this.findTransformer(url);
 		const match = descriptor?.pattern.exec(url);
 
 		const base = this.defaultParse(fetched.html, fetched.finalUrl);

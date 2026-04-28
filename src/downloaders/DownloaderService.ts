@@ -1,6 +1,7 @@
 import { OutputType, ServiceType } from '../enums';
 import { HttpFetcherService } from '../fetcher/HttpFetcherService';
 import { FileService } from '../file/FileService';
+import { PipelineItem } from '../types';
 import { HttpFetchOptions } from '../types/HttpFetchOptions';
 import { JobOptions } from '../types/JobOptions';
 import { BaseDownloader } from './BaseDownloader';
@@ -27,7 +28,8 @@ export class DownloaderService {
 		};
 	}
 
-	public getDownloader(service?: ServiceType): BaseDownloader {
-		return (service && this.downloaders[service]) || this.defaultDownloader;
+	public async download(item: PipelineItem, opts: DownloadOptions) {
+		const downloader = this.downloaders[opts.service] || this.defaultDownloader;
+		return await downloader.download(item, opts);
 	}
 }

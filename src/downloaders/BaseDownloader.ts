@@ -9,7 +9,7 @@ export abstract class BaseDownloader {
 		protected readonly httpFetcherService: HttpFetcherService
 	) {}
 
-	public async downloadFile(item: PipelineItem, opts: DownloadOptions): Promise<DownloadResult> {
+	public async download(item: PipelineItem, opts: DownloadOptions): Promise<DownloadResult> {
 		const { dirConfig, service, ...fetchOpts } = opts;
 		const url = item.downloadUrl;
 
