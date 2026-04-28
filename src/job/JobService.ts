@@ -1,8 +1,9 @@
-import { DownloaderService } from '../downloader/DownloaderService';
-import { OutputType, UrlType } from '../enums';
+import { extname } from 'path';
+import { DownloaderService } from '../downloaders/DownloaderService';
+import { OutputType, ServiceType } from '../enums';
 import { ExtractorService } from '../extractors/ExtractorService';
 import { FileService } from '../file/FileService';
-import { DownloadResult, ExtractorResult } from '../types';
+import { DownloadResult, PipelineHook, PipelineItem, PipelineResourceType } from '../types';
 import { ExecutionArguments } from '../types/ExecutionArguments';
 import { ExecutionResult } from '../types/ExecutionResult';
 import { JobOptions } from '../types/JobOptions';
@@ -15,31 +16,24 @@ export class JobService {
 	) {}
 
 	public async execute<T>(request: ExecutionArguments): Promise<ExecutionResult<T>> {
-		const { outputType = OutputType.JSON, targets, urlType, service, ...options } = request;
+		const { outputType = OutputType.JSON, targets, service, ...options } = request;
 
-		const downloads: DownloadResult[] = [];
+		const extractor = this.extractorService.getExtractor(service);
+		const pipelineHooks = (options.pipelineHooks ?? []) as PipelineHook[];
+
+		const extracted: T[] = [];
 		const errors: Error[] = [];
-		const extracted: ExtractorResult<T>[] = [];
-		let targetUrls: string[] = [];
 
-		// Generate metadata and select URLs based on quality
 		for (const url of targets) {
 			if (options?.signal?.aborted) break;
 
 			try {
-				const extractor = this.extractorService.getExtractor(service);
-				const metadata = await extractor.extractFromUrl<T>(url, request);
+				const metadata = (await extractor.extractFromUrl(url, request)) as T;
 				extracted.push(metadata);
-
-				const selected = extractor.selectUrlsByQuality(metadata, urlType ?? metadata.urlType ?? UrlType.IMAGES);
-
-				targetUrls.push(...selected);
 			} catch (err) {
 				errors.push(err instanceof Error ? err : new Error(String(err)));
 			}
 		}
-
-		targetUrls = this.applyFilters(targetUrls, options);
 
 		const result: ExecutionResult<T> = {
 			service: request.service,
@@ -50,44 +44,19 @@ export class JobService {
 			urlType: request.urlType,
 			outputType,
 			extracted,
-			targetUrls,
-			downloads,
+			targetUrls: [],
 			downloaded: 0,
 			failed: 0,
 			errors
 		};
 
 		switch (outputType) {
-			case OutputType.JSON: {
-				result.jsonPath = this.fileService.saveJson(result, options?.dirConfig?.path as string);
-				return result;
-			}
+			case OutputType.JSON:
+				return this.handleJsonOutput(result, options);
 
 			case OutputType.BUFFER:
-			case OutputType.DEVICE: {
-				const target = outputType;
-
-				if (target === OutputType.DEVICE && !options?.dirConfig?.path) {
-					throw new Error('device.path is required');
-				}
-
-				for (const fileUrl of targetUrls) {
-					if (options?.signal?.aborted) break;
-
-					try {
-						const download = await this.downloaderService.downloadFile(fileUrl, {
-							...options,
-							outputType: target
-						});
-
-						downloads.push(download);
-					} catch (err) {
-						errors.push(err instanceof Error ? err : new Error(String(err)));
-					}
-				}
-
-				break;
-			}
+			case OutputType.DEVICE:
+				return this.handleDeviceOutput(result, options, outputType, service, pipelineHooks);
 
 			case OutputType.RETURN:
 				return result;
@@ -95,24 +64,92 @@ export class JobService {
 			default:
 				throw new Error('Invalid output type');
 		}
+	}
+
+	private async handleJsonOutput<T>(result: ExecutionResult<T>, options: JobOptions): Promise<ExecutionResult<T>> {
+		try {
+			this.fileService.saveJson(result as any, options?.dirConfig?.path);
+			return result;
+		} catch (err) {
+			result.errors.push(err instanceof Error ? err : new Error(String(err)));
+			return result;
+		}
+	}
+
+	private async handleDeviceOutput<T>(
+		result: ExecutionResult<T>,
+		options: JobOptions,
+		outputType: OutputType,
+		service: any,
+		pipelineHooks: PipelineHook[]
+	): Promise<ExecutionResult<T>> {
+		const downloads: DownloadResult[] = [];
+		const downloader = this.downloaderService.getDownloader(service);
+
+		for (const extracted of result.extracted) {
+			if (options?.signal?.aborted) break;
+
+			try {
+				const pipelineItem = this.buildPipelineItem(extracted, service);
+
+				await this.executeHooks(pipelineHooks, 'onExtract', pipelineItem);
+
+				const downloadResult = await downloader.downloadFile(pipelineItem, {
+					...options,
+					outputType,
+					service
+				});
+
+				if (outputType === OutputType.DEVICE && downloadResult?.buffer) {
+					await this.fileService.saveToDevice(downloadResult.buffer, options?.dirConfig?.path, downloadResult.extendedFilename);
+				}
+
+				await this.executeDownloadHooks(pipelineHooks, downloadResult);
+
+				if (downloadResult) downloads.push(downloadResult);
+			} catch (err) {
+				result.errors.push(err instanceof Error ? err : new Error(String(err)));
+			}
+		}
 
 		result.downloaded = downloads.length;
-		result.failed = errors.length;
+		result.failed = result.errors.length;
 
 		return result;
 	}
 
-	private applyFilters(urls: string[], options: JobOptions): string[] {
-		let result = urls;
+	private buildPipelineItem(extracted: any, service: ServiceType): PipelineItem {
+		return {
+			sourceUrl: extracted.baseUrl || '',
+			downloadUrl: extracted.baseUrl || '',
+			resourceType: this.detectResourceType(extracted.baseUrl),
+			service
+		};
+	}
 
-		if (options?.allowedExtensions?.length) {
-			result = this.downloaderService.filterUrlsByExtension(result, options.allowedExtensions);
+	private detectResourceType(url: string): PipelineResourceType {
+		const pathname = extname(url);
+
+		if (/\.(mp4|m3u8|webm|mov|mkv)$/.test(pathname)) return 'video';
+		if (/\.(mp3|wav|aac|flac|ogg)$/.test(pathname)) return 'audio';
+
+		return 'image';
+	}
+
+	private async executeHooks(hooks: PipelineHook[], hookName: 'onExtract', item: PipelineItem): Promise<void> {
+		for (const hook of hooks) {
+			const hookFn = hook[hookName];
+			if (hookFn) {
+				await hookFn(item);
+			}
 		}
+	}
 
-		if (typeof options?.maxDownloads === 'number') {
-			result = result.slice(0, options.maxDownloads);
+	private async executeDownloadHooks(hooks: PipelineHook[], result: DownloadResult): Promise<void> {
+		for (const hook of hooks) {
+			if (hook.onDownload) {
+				await hook.onDownload(result);
+			}
 		}
-
-		return result;
 	}
 }

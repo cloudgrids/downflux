@@ -23,7 +23,28 @@ const makeIndex = async (directory: string) => {
 	fs.writeFileSync(indexPath, indexFileContent.concat('\n'), { flag: 'w' });
 };
 
-const paths = ['src/services/coomer', 'src/services/okporn', 'src/services/default', 'src/enums', 'src/types', 'src/extractors'];
+const paths = [
+	'src/downloaders',
+	'src/downloaders/okporn',
+	'src/downloaders/okporn/output',
+	'src/downloaders/default',
+	'src/enums',
+	'src/enums/services',
+	'src/exceptions',
+	'src/extractors',
+	'src/fetcher',
+	'src/file',
+	'src/helpers',
+	'src/job',
+	'src/parser',
+	'src/types',
+	'src/services',
+	'src/services/coomer',
+	'src/services/okporn',
+	'src/services/okporn/output',
+	'src/services/default',
+	'src/common'
+];
 
 (async () => {
 	for (const path of paths) await makeIndex(path);

@@ -6,8 +6,8 @@ import { DefaultExtractor } from './DefaultExtractor';
 import { OkPornExtractor } from './OkPornExtractor';
 
 export class ExtractorService {
-	private readonly defaultExtractor: BaseExtractor;
-	private readonly extractors: Partial<Record<ServiceType, BaseExtractor>>;
+	private readonly defaultExtractor: BaseExtractor<any>;
+	private readonly extractors: Partial<Record<ServiceType, BaseExtractor<any>>>;
 
 	constructor(
 		private readonly htmlParserService: HtmlParserService,
@@ -20,7 +20,7 @@ export class ExtractorService {
 		};
 	}
 
-	public getExtractor(service?: ServiceType): BaseExtractor {
+	public getExtractor(service?: ServiceType): BaseExtractor<any> {
 		return (service && this.extractors[service]) || this.defaultExtractor;
 	}
 }
