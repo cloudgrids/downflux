@@ -4,8 +4,7 @@
 /build
 
 # Output directories
-/downflux_json_output
-/downflux_device_output
+/downflux_
 
 # Logs
 logs

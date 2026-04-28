@@ -1,4 +1,4 @@
-import { OkPornMethods, UrlType } from '../enums';
+import { OkPornMethods, UrlType, VideoQuality } from '../enums';
 import { OkPornChannelOutput, OkPornModelOutput, OkPornTagOutput } from '../services';
 import { OkPornAlbumOutput } from '../services/okporn/output/OkPornAlbumOutput';
 import { OkPornVideoOutput } from '../services/okporn/output/OkPornVideoOutput';
@@ -75,7 +75,7 @@ export class OkPornTransformer extends BaseTransformer<
 			videoKeywords: metadata.keywords,
 			videoDescription: metadata.description,
 			videoId: metadata.baseUrl.split('/').filter(Boolean).pop() ?? '',
-			videoSources: metadata.sources,
+			videoSources: metadata.sources.map((url) => ({ quality: this.detectVideoQuality(url), url })),
 			videoPoster: metadata.customFields?.videoPoster,
 			videoScreenshot: metadata.customFields?.videoPoster,
 			modelName: metadata.customFields?.starredBy?.[0],
@@ -106,5 +106,15 @@ export class OkPornTransformer extends BaseTransformer<
 			channelUrl: metadata.baseUrl,
 			channelThumbnail: metadata.images[0]
 		};
+	}
+
+	private detectVideoQuality(url: string): VideoQuality {
+		if (url.includes('1080')) return VideoQuality.Q1080;
+		if (url.includes('720')) return VideoQuality.Q720;
+		if (url.includes('480')) return VideoQuality.Q480;
+		if (url.includes('360')) return VideoQuality.Q360;
+		if (url.includes('240')) return VideoQuality.Q240;
+		if (url.includes('144')) return VideoQuality.Q144;
+		return VideoQuality.Q480;
 	}
 }

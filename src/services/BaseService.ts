@@ -1,3 +1,4 @@
+import { AllowedExtension } from '../common';
 import { OutputType, ServiceType, UrlType } from '../enums';
 import { ExecutionType } from '../enums/ExecutionType';
 import { createDefaultDependencies, ImporterDependencies } from '../inject-dependency';
@@ -51,8 +52,8 @@ export abstract class BaseService {
 	}
 
 	/** Sets the allowed file extensions for the job. eg ['jpg', 'png'] */
-	public setAllowedExtensions(...extensions: string[]): this {
-		this.jobOptions.allowedExtensions = extensions.map((ext) => ext.toLowerCase());
+	public setAllowedExtensions(...extensions: AllowedExtension[]): this {
+		this.jobOptions.allowedExtensions = extensions.map((ext) => ext.toLowerCase()) as AllowedExtension[];
 		return this;
 	}
 

@@ -59,7 +59,7 @@ export class OkPornPipeline extends BasePipeline<OkPornOutput> {
 		}
 
 		if (metadata.videoSources?.length) {
-			metadata.videoSources.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.VIDEOS, url }));
+			metadata.videoSources.filter(Boolean).forEach(({ url }) => urls.push({ mediaType: MediaType.VIDEOS, url }));
 		}
 
 		if (metadata.videoAlbum?.albumImages.length) {

@@ -1,5 +1,5 @@
 import { Range } from '../../common';
-import { ServiceType, UrlType } from '../../enums';
+import { ServiceType, UrlType, VideoQuality } from '../../enums';
 import { OkPornMethods } from '../../enums/services/OkPornMethods';
 import { InvalidRangeException } from '../../exceptions/InvalidRangeError';
 import { InvalidUrlException } from '../../exceptions/InvalidUrlException';
@@ -82,12 +82,13 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public async getVideo(id: string): Promise<OkPornVideoOutput> {
+	public async getVideo(id: string, quality: VideoQuality[] = [VideoQuality.Q720]): Promise<OkPornVideoOutput> {
 		const [video] = await this.execute<OkPornVideoOutput>({
 			targets: [`${this.VIDEOS_URL}${id}/`],
 			urlType: UrlType.SOURCES,
 			method: OkPornMethods.getVideo,
-			service: ServiceType.OKPORN
+			service: ServiceType.OKPORN,
+			videoQualities: quality
 		});
 
 		return video;

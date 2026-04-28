@@ -19,11 +19,12 @@ export abstract class BaseDownloader {
 		const { originalFilename, extension, extendedFilename } = this.fileService.getFilenameAndExtensionFromUrl(url, dirConfig?.prefix);
 		const mimeType = MIME_TYPE[extension] ?? 'application/octet-stream';
 
-		const buffer = await this.httpFetcherService.fetchBuffer(url, fetchOpts);
+		const { buffer, finalUrl } = await this.httpFetcherService.fetchBuffer(url, fetchOpts);
 		const result: DownloadResult = {
 			service,
 			url,
 			buffer,
+			finalUrl,
 			originalFilename,
 			extendedFilename,
 			extension,

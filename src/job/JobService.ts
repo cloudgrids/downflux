@@ -104,6 +104,6 @@ export class JobService {
 			}
 		});
 
-		return extractedByIndex.filter((item): item is T => item !== undefined);
+		return extractedByIndex.filter(Boolean) as T[];
 	}
 }

@@ -1,3 +1,4 @@
+import { AllowedExtension } from '../common';
 import { MediaType } from '../common/MediaType';
 import { ServiceType } from '../enums';
 import { DownloadResult } from './DownloadResult';
@@ -6,7 +7,7 @@ export interface PipelineIdentifier {
 	key: string;
 	mediaType: MediaType;
 	mimeType: string;
-	extension: string;
+	extension: AllowedExtension;
 }
 
 export interface PipelineItem {

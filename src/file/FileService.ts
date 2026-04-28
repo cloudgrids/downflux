@@ -7,7 +7,7 @@ import { PathBuilderService } from './PathBuilderService';
 
 export class FileService {
 	private readonly pathBuilder = new PathBuilderService();
-	private readonly dir = 'downflux';
+	private readonly dir = 'downflux_';
 
 	public getFilenameAndExtensionFromUrl(
 		url: string,

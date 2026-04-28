@@ -4,4 +4,5 @@ export * from './OutputType';
 export * from './ServiceType';
 export * from './StepType';
 export * from './UrlType';
+export * from './VideoQuality';
 export * from './services';
