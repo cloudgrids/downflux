@@ -12,6 +12,7 @@ async function main() {
 			.setOutput(OutputType.JSON)
 			.getVideo('68664', { videoQualities: [VideoQuality.Q480] });
 	} catch (error) {
+		
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {
 		console.log(`\n\n=== Done testing ===`);
