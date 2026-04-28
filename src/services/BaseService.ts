@@ -15,8 +15,7 @@ export abstract class BaseService {
 		this.deps = createDefaultDependencies();
 		this.jobOptions = {
 			outputType: OutputType.JSON,
-			executionType: ExecutionType.SEQUENTIAL,
-			dirConfig: { path: 'downflux_device_output', prefix: 'imported_' }
+			executionType: ExecutionType.SEQUENTIAL
 		};
 	}
 

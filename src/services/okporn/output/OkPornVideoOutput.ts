@@ -10,7 +10,7 @@ export interface OkPornVideoOutput {
 	videoScreenshot: string;
 	videoSources: string[];
 	videoPoster: string;
-	videoCreateDate?: string;
+	videoCreatedAt?: string;
 	fullVideoSource?: string;
 	videoAlbumId?: string;
 	videoAlbum?: OkPornAlbumOutput;

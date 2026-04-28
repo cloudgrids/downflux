@@ -33,13 +33,15 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getAlbum(id: string): Promise<OkPornAlbumOutput[]> {
-		return this.execute<OkPornAlbumOutput>({
+	public async getAlbum(id: string): Promise<OkPornAlbumOutput> {
+		const [album] = await this.execute<OkPornAlbumOutput>({
 			targets: [`${this.ALBUMS_URL}${id}/`],
 			urlType: UrlType.IMAGES,
 			method: OkPornMethods.getAlbum,
 			service: ServiceType.OKPORN
 		});
+
+		return album;
 	}
 
 	public getModels(range: Range): Promise<OkPornModelOutput[]> {
@@ -80,13 +82,15 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getVideo(id: string): Promise<OkPornVideoOutput[]> {
-		return this.execute<OkPornVideoOutput>({
+	public async getVideo(id: string): Promise<OkPornVideoOutput> {
+		const [video] = await this.execute<OkPornVideoOutput>({
 			targets: [`${this.VIDEOS_URL}${id}/`],
 			urlType: UrlType.SOURCES,
 			method: OkPornMethods.getVideo,
 			service: ServiceType.OKPORN
 		});
+
+		return video;
 	}
 
 	private targets(baseUrl: string, range: Range) {

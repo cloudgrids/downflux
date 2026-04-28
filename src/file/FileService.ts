@@ -3,8 +3,12 @@ import { extname, join } from 'path';
 import { Readable } from 'stream';
 import { pipeline } from 'stream/promises';
 import { ExecutionResult } from '../types/ExecutionResult';
+import { PathBuilderService } from './PathBuilderService';
 
 export class FileService {
+	private readonly pathBuilder = new PathBuilderService();
+	private readonly dir = 'downflux';
+
 	public getFilenameAndExtensionFromUrl(
 		url: string,
 		prefix?: string
@@ -61,7 +65,7 @@ export class FileService {
 		return map[ext.toLowerCase()] ?? 'application/octet-stream';
 	}
 
-	public saveJson(result: ExecutionResult, dir: string = 'downflux_json_output'): string {
+	public saveJson(result: ExecutionResult, dir: string = this.dir): string {
 		const base = join(process.cwd(), dir);
 		if (!existsSync(base)) mkdirSync(base, { recursive: true });
 
@@ -72,7 +76,7 @@ export class FileService {
 		return file;
 	}
 
-	private replacer(key: string, value: any) {
+	private replacer(_: string, value: any) {
 		if (Buffer.isBuffer(value)) return `[Buffer ${value.byteLength} bytes]`;
 		if (value instanceof Error) {
 			return { name: value.name, message: value.message, stack: value.stack };
@@ -80,15 +84,16 @@ export class FileService {
 		return value;
 	}
 
-	public async saveToDevice(buffer: Buffer, outputDir: string = 'downflux_device_output', filename: string): Promise<string> {
-		const path = join(process.cwd(), outputDir);
+	public async saveToDevice(buffer: Buffer, outputDir: string = this.dir, filename: string, identifier?: string): Promise<string> {
+		const dynamicPath = this.pathBuilder.buildOutputPath(outputDir, identifier, filename);
 
-		if (!existsSync(path)) mkdirSync(path, { recursive: true });
+		const dirPath = dynamicPath.substring(0, dynamicPath.lastIndexOf('/'));
+		const finalPath = join(process.cwd(), dynamicPath);
 
-		const localPath = join(path, filename);
+		if (!existsSync(dirPath)) mkdirSync(dirPath, { recursive: true });
 
-		await pipeline(Readable.from(buffer), createWriteStream(localPath));
+		await pipeline(Readable.from(buffer), createWriteStream(finalPath));
 
-		return localPath;
+		return finalPath;
 	}
 }

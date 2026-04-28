@@ -1,51 +1,56 @@
-import { ServiceType } from '../enums';
-import { PipelineItem } from '../types';
+import { extname } from 'node:path';
+import { MediaType } from '../common/MediaType';
+import { DefaultExtractorResult, ExecutionArguments, PipelineItem } from '../types';
 
-export class BasePipeline {
-	public build(metadata: any, service: ServiceType): PipelineItem[] {
+export class BasePipeline<T = DefaultExtractorResult> {
+	public build(metadata: T, request: ExecutionArguments): PipelineItem[] {
 		const items: PipelineItem[] = [];
-		const urls = this.extractUrls(metadata);
+		const extracted = this.extract(metadata);
 
-		for (const url of urls) {
+		for (const { mediaType, url } of extracted) {
 			items.push({
-				sourceUrl: metadata.baseUrl || '',
 				downloadUrl: url,
+				identifier: { mediaType, key: this.buildIdentifier(mediaType, metadata) },
 				resourceType: this.detectResourceType(url),
-				service
+				service: request.service
 			});
 		}
 
 		return items;
 	}
 
-	protected extractUrls(metadata: any): string[] {
-		const urls: string[] = [];
+	protected buildIdentifier(mediaType: MediaType, metadata: any): string {
+		return `${new URL(metadata.baseUrl).hostname}/${mediaType}/${metadata.urlType}/${new URL(metadata.baseUrl).pathname}`;
+	}
 
-		if (metadata.images && Array.isArray(metadata.images)) {
-			urls.push(...metadata.images.filter((img): img is string => typeof img === 'string' && Boolean(img)));
+	protected extract(metadata: any): { mediaType: MediaType; url: string }[] {
+		const urls: { mediaType: MediaType; url: string }[] = [];
+
+		if (metadata.images?.length) {
+			metadata.images.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.IMAGES, url }));
 		}
 
-		if (metadata.sources && Array.isArray(metadata.sources)) {
-			urls.push(...metadata.sources.filter((src): src is string => typeof src === 'string' && Boolean(src)));
+		if (metadata.sources?.length) {
+			metadata.sources.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.VIDEOS, url }));
 		}
 
-		if (metadata.videoPosters && Array.isArray(metadata.videoPosters)) {
-			urls.push(...metadata.videoPosters.filter((poster): poster is string => typeof poster === 'string' && Boolean(poster)));
+		if (metadata.videoPosters?.length) {
+			metadata.videoPosters.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.VIDEO_POSTER, url }));
 		}
 
-		if (metadata.divHrefs && Array.isArray(metadata.divHrefs)) {
-			urls.push(...metadata.divHrefs.filter((href): href is string => typeof href === 'string' && Boolean(href)));
+		if (metadata.divHrefs?.length) {
+			metadata.divHrefs.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.OTHER, url }));
 		}
 
-		if (metadata.allUrls && Array.isArray(metadata.allUrls)) {
-			urls.push(...metadata.allUrls.filter((url): url is string => typeof url === 'string' && Boolean(url)));
+		if (metadata.allUrls?.length) {
+			metadata.allUrls.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.OTHER, url }));
 		}
 
 		return urls;
 	}
 
 	protected detectResourceType(url: string): 'image' | 'video' | 'audio' {
-		const pathname = url.split('?')[0].toLowerCase();
+		const pathname = extname(url);
 
 		if (/\.(mp4|m3u8|webm|mov|mkv)$/.test(pathname)) return 'video';
 		if (/\.(mp3|wav|aac|flac|ogg)$/.test(pathname)) return 'audio';

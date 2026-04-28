@@ -1,41 +1,74 @@
-import { ServiceType } from '../enums';
-import { PipelineItem } from '../types';
+import { MediaType } from '../common/MediaType';
+import { pathBuilder } from '../common/PathBuilder';
+import { OkPornOutput } from '../services';
+import { ExecutionArguments, PipelineItem } from '../types';
 import { BasePipeline } from './BasePipeline';
 
-export class OkPornPipeline extends BasePipeline {
-	public override build(metadata: any, service: ServiceType): PipelineItem[] {
+export class OkPornPipeline extends BasePipeline<OkPornOutput> {
+	public override build(metadata: OkPornOutput, request: ExecutionArguments): PipelineItem[] {
 		const items: PipelineItem[] = [];
-		const urls = this.extract(metadata);
+		const extracted = this.extract(metadata);
 
-		for (const url of urls) {
+		for (const { mediaType, url } of extracted) {
 			items.push({
-				sourceUrl: metadata.baseUrl || '',
 				downloadUrl: url,
+				identifier: { mediaType, key: this.buildIdentifier(mediaType, metadata) },
 				resourceType: this.detectResourceType(url),
-				service
+				service: request.service
 			});
 		}
 
 		return items;
 	}
 
-	private extract(metadata: any): string[] {
-		const urls: string[] = [];
+	protected override buildIdentifier(mediaType: MediaType, metadata: OkPornOutput): string {
+		const prefix = 'okporn';
+		let typeSegment: string;
 
-		if (metadata.albumImages && Array.isArray(metadata.albumImages)) {
-			urls.push(...metadata.albumImages.filter((img): img is string => typeof img === 'string' && Boolean(img)));
+		switch (mediaType) {
+			case MediaType.ALBUMS:
+				typeSegment = `${mediaType}/${metadata.albumId}`;
+				break;
+			case MediaType.VIDEOS:
+				typeSegment = `${mediaType}/${metadata.videoId}`;
+				break;
+			case MediaType.VIDEO_ALBUM:
+				typeSegment = `${MediaType.VIDEOS}/${mediaType}/${metadata.videoAlbum?.albumId}`;
+				break;
+			case MediaType.VIDEO_POSTER:
+				typeSegment = `${MediaType.VIDEOS}/${mediaType}/${metadata.videoId}`;
+				break;
+			case MediaType.ALBUM_PREVIEW:
+				typeSegment = `${MediaType.ALBUMS}/${mediaType}/${metadata.albumId}`;
+				break;
+			default:
+				typeSegment = 'okporn';
 		}
 
-		if (metadata.videoSources && Array.isArray(metadata.videoSources)) {
-			urls.push(...metadata.videoSources.filter((src): src is string => typeof src === 'string' && Boolean(src)));
+		return pathBuilder(prefix, metadata.modelName?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', typeSegment);
+	}
+
+	protected extract(metadata: OkPornOutput): { mediaType: MediaType; url: string }[] {
+		const urls: { mediaType: MediaType; url: string }[] = [];
+
+		if (metadata.albumImages?.length) {
+			metadata.albumImages.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.ALBUMS, url }));
 		}
 
-		if (metadata.modelThumbnail && typeof metadata.modelThumbnail === 'string' && urls.length === 0) {
-			urls.push(metadata.modelThumbnail);
+		if (metadata.videoSources?.length) {
+			metadata.videoSources.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.VIDEOS, url }));
 		}
 
-		if (urls.length === 0 && metadata.sources && Array.isArray(metadata.sources)) {
-			urls.push(...metadata.sources.filter((src): src is string => typeof src === 'string' && Boolean(src)));
+		if (metadata.videoAlbum?.albumImages.length) {
+			metadata.videoAlbum.albumImages.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.VIDEO_ALBUM, url }));
+		}
+
+		if (metadata.videoPoster) {
+			urls.push({ mediaType: MediaType.VIDEO_POSTER, url: metadata.videoPoster });
+		}
+
+		if (metadata.albumThumbnail) {
+			urls.push({ mediaType: MediaType.ALBUM_PREVIEW, url: metadata.albumThumbnail });
 		}
 
 		return urls;

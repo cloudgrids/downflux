@@ -1,5 +1,5 @@
 import { DownloaderService } from '../downloaders/DownloaderService';
-import { OutputType, ServiceType } from '../enums';
+import { OutputType } from '../enums';
 import { FileService } from '../file/FileService';
 import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';
@@ -17,27 +17,29 @@ export class JobService {
 	) {}
 
 	public async execute<T>(request: ExecutionArguments): Promise<ExecutionResult<T>> {
-		const { outputType = OutputType.JSON, targets, service, ...options } = request;
+		const { outputType = OutputType.JSON, targets, ...options } = request;
 
 		const pipelineHooks = (options.pipelineHooks ?? []) as PipelineHook[];
 		const extracted: T[] = [];
 		const errors: Error[] = [];
+		const pipelineItems: PipelineItem[] = [];
 
 		extracted.push(...(await this.extractMetadata<T>(targets, request)));
 
+		for (const metadata of extracted) {
+			const items = this.pipelineService.build(metadata, request);
+			pipelineItems.push(...items);
+		}
+
 		const result: ExecutionResult<T> = {
-			service: request.service,
-			method: request.method,
-			entryUrl: request.entryUrl,
-			targets: request.targets,
-			executionType: request.executionType,
-			urlType: request.urlType,
+			...request,
 			outputType,
 			extracted,
 			targetUrls: [],
 			downloaded: 0,
 			failed: 0,
-			errors
+			errors,
+			pipelineItems
 		};
 
 		switch (outputType) {
@@ -46,7 +48,7 @@ export class JobService {
 
 			case OutputType.BUFFER:
 			case OutputType.DEVICE:
-				this.handleDeviceOutputAsync(result.extracted, options, outputType, service, pipelineHooks);
+				this.handleDeviceOutputAsync(result.extracted, options, outputType, request, pipelineHooks, result);
 				return result;
 
 			case OutputType.RETURN:
@@ -84,10 +86,11 @@ export class JobService {
 		extracted: T[],
 		options: JobOptions,
 		outputType: OutputType,
-		service: ServiceType,
-		pipelineHooks: PipelineHook[]
+		request: ExecutionArguments,
+		pipelineHooks: PipelineHook[],
+		result: ExecutionResult<T>
 	): void {
-		this.processDownloadsInBackground(extracted, options, outputType, service, pipelineHooks).catch((err) => {
+		this.processDownloadsInBackground(extracted, options, outputType, request, pipelineHooks, result).catch((err) => {
 			console.error('Background download pipeline error:', err);
 		});
 	}
@@ -96,37 +99,34 @@ export class JobService {
 		extracted: T[],
 		options: JobOptions,
 		outputType: OutputType,
-		service: ServiceType,
-		pipelineHooks: PipelineHook[]
+		request: ExecutionArguments,
+		pipelineHooks: PipelineHook[],
+		result: ExecutionResult<T>
 	): Promise<void> {
-		for (const metadata of extracted) {
-			if (options?.signal?.aborted) break;
+		try {
+			for (const pipelineItem of result.pipelineItems) {
+				if (options?.signal?.aborted) break;
+				await this.executeHooks(pipelineHooks, 'onExtract', pipelineItem);
 
-			try {
-				const pipelineItems = this.pipelineService.build(metadata, service);
+				const downloadResult = await this.downloaderService.download(pipelineItem, {
+					...options,
+					outputType,
+					service: request.service
+				});
 
-				for (const pipelineItem of pipelineItems) {
-					await this.executeHooks(pipelineHooks, 'onExtract', pipelineItem);
-
-					const downloadResult = await this.downloaderService.download(pipelineItem, {
-						...options,
-						outputType,
-						service
-					});
-
-					if (outputType === OutputType.DEVICE && downloadResult?.buffer) {
-						await this.fileService.saveToDevice(
-							downloadResult.buffer,
-							options?.dirConfig?.path || 'importer_device_output',
-							downloadResult.extendedFilename
-						);
-					}
-
-					await this.executeDownloadHooks(pipelineHooks, downloadResult);
+				if (outputType === OutputType.DEVICE && downloadResult?.buffer) {
+					await this.fileService.saveToDevice(
+						downloadResult.buffer,
+						options?.dirConfig?.path,
+						downloadResult.extendedFilename,
+						pipelineItem.identifier.key
+					);
 				}
-			} catch (err) {
-				console.error('Error downloading item:', err);
+
+				await this.executeDownloadHooks(pipelineHooks, downloadResult);
 			}
+		} catch (err) {
+			console.error('Error downloading item:', err);
 		}
 	}
 

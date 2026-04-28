@@ -5,7 +5,8 @@ async function main() {
 	console.log(`\n\n=== Testing:`);
 
 	try {
-		const d = await new OkPornService(url1).setOutput(OutputType.JSON).getVideo('1300');
+		const data = await new OkPornService(url1).setOutput(OutputType.JSON).getVideo('68664');
+		console.log('Extracted data:', data);
 	} catch (error) {
 		console.error('Error during getVideos:', error instanceof Error ? error.message : String(error));
 	} finally {

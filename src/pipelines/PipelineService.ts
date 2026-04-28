@@ -1,10 +1,10 @@
 import { ServiceType } from '../enums';
-import { PipelineItem } from '../types';
+import { ExecutionArguments, PipelineItem } from '../types';
 import { BasePipeline } from './BasePipeline';
 import { OkPornPipeline } from './OkPornPipeline';
 
 export class PipelineService {
-	private readonly pipelines: Map<ServiceType, BasePipeline>;
+	private readonly pipelines: Map<ServiceType, BasePipeline<any>>;
 
 	constructor() {
 		this.pipelines = new Map([
@@ -13,10 +13,10 @@ export class PipelineService {
 		]);
 	}
 
-	public build(metadata: any, service: ServiceType): PipelineItem[] {
-		const serviceType = service || ServiceType.DEFAULT;
+	public build<T>(metadata: T, request: ExecutionArguments): PipelineItem[] {
+		const serviceType = request.service || ServiceType.DEFAULT;
 		const pipeline = this.pipelines.get(serviceType) || this.pipelines.get(ServiceType.DEFAULT);
 
-		return pipeline?.build(metadata, serviceType) ?? [];
+		return pipeline?.build(metadata, request) ?? [];
 	}
 }
