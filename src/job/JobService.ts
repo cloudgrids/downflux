@@ -92,7 +92,7 @@ export class JobService {
 			});
 
 			try {
-				extractedByIndex[index] = await this.transformerService.transform<T>(target, request);
+				extractedByIndex[index] = await this.transformerService.transform<T>(target, { ...request, entryUrl: target });
 				extractedCount++;
 				this.backgroundService.emitProgress(request, {
 					status: 'extracted',

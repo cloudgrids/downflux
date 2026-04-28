@@ -58,3 +58,7 @@ export const SITE_EXTRACTORS: SiteDescriptor[] = [
 		urlType: UrlType.ANCHORS
 	}
 ];
+
+export function normalizeUrl(url: string): string {
+	return url.replace(/(?<=\.\w+)\/$/, '');
+}

@@ -1,7 +1,7 @@
 import { OkPornService, OutputType, VideoQuality } from '../src';
 
 async function main() {
-	const url1 = 'https://ok.porn/albums/1300/';
+	const url1 = 'https://ok.porn/video/735116/';
 	console.log(`\n\n=== Testing:`);
 
 	try {
@@ -9,10 +9,9 @@ async function main() {
 			.setJobOptions({ logProgress: true })
 			.onProgress((event) => console.log(event))
 			.setAllowedExtensions('mp4')
-			.setOutput(OutputType.JSON)
-			.getVideo('68664', { videoQualities: [VideoQuality.Q480] });
+			.setOutput(OutputType.DEVICE)
+			.getVideo('735116', { videoQualities: [VideoQuality.Q720] });
 	} catch (error) {
-		
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {
 		console.log(`\n\n=== Done testing ===`);

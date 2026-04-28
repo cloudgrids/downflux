@@ -1,6 +1,7 @@
 import { Dispatcher, Pool, interceptors } from 'undici';
 import { IncomingHttpHeaders } from 'undici/types/header';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
+import { DownloadOptions } from '../downloaders';
 import { HttpFetchOptions } from '../types/HttpFetchOptions';
 
 export interface FetchResult {
@@ -32,7 +33,7 @@ export class HttpFetcherService {
 		return this.pools.get(origin)!;
 	}
 
-	public async fetchHtml(url: string, opts: HttpFetchOptions = {}): Promise<FetchResult> {
+	public async fetchHtml(url: string, opts: HttpFetchOptions): Promise<FetchResult> {
 		const { headers = {}, timeoutMs = 30_000, retries = 3 } = opts;
 		const mergedHeaders = { ...this.DEFAULT_HEADERS, ...headers } as Record<string, string>;
 		let lastError: unknown;
@@ -81,54 +82,171 @@ export class HttpFetcherService {
 		throw lastError;
 	}
 
-	public async fetchBuffer(url: string, opts: HttpFetchOptions): Promise<FetchResult> {
-		const { headers = {}, retries = 3 } = opts;
-		const mergedHeaders = { ...this.DEFAULT_HEADERS, Accept: '*/*', ...headers } as Record<string, string>;
-		let lastError: unknown;
+	public async fetchBuffer(url: string, opts: DownloadOptions): Promise<FetchResult> {
+		const { headers = {}, timeoutMs = 30_000 } = opts;
+		const mergedHeaders = { ...this.DEFAULT_HEADERS, Accept: '*/*', Referer: opts.referer, ...headers } as Record<string, string>;
+		const response = await fetch(url, {
+			method: 'GET',
+			headers: mergedHeaders,
+			redirect: 'follow',
+			signal: AbortSignal.timeout(timeoutMs)
+		});
 
-		for (let attempt = 0; attempt < retries; attempt++) {
-			try {
-				const pool = this.getPool(url);
-				const parsedUrl = new URL(url);
-
-				const {
-					statusCode,
-					body,
-					headers: resHeaders,
-					context
-				} = await pool.request({
-					path: parsedUrl.pathname + parsedUrl.search,
-					method: 'GET',
-					headers: mergedHeaders,
-					bodyTimeout: 0
-				});
-
-				const ok = statusCode >= 200 && statusCode < 300;
-				if (!ok) throw new Error(`HTTP ${statusCode} for ${url}`);
-
-				const contextData = context as { history?: URL[] };
-
-				const finalUrl = contextData?.history
-					? contextData.history.length > 0
-						? contextData.history[contextData.history.length - 1].toString()
-						: url
-					: url;
-
-				return {
-					buffer: this.decodeBody(await this.readBody(body), resHeaders),
-					finalUrl,
-					headers: this.headers(resHeaders),
-					html: '',
-					status: statusCode,
-					ok
-				};
-			} catch (err) {
-				console.warn(`Fetch attempt ${attempt + 1} for ${url} failed:`, err instanceof Error ? err.message : err);
-				lastError = err;
-			}
+		if (!response.ok) {
+			throw new Error(`HTTP ${response.status} for ${response.url || url}`);
 		}
 
-		throw lastError;
+		const finalUrl = response.url || url;
+		const responseHeaders = this.fetchHeaders(response.headers);
+		const contentType = responseHeaders['content-type']?.toLowerCase() ?? '';
+
+		if (this.isHlsManifest(contentType, finalUrl)) {
+			const manifest = await response.text();
+			return await this.fetchHlsBuffer(manifest, finalUrl, url, mergedHeaders, timeoutMs);
+		}
+
+		const buffer = Buffer.from(await response.arrayBuffer());
+
+		return {
+			buffer,
+			finalUrl,
+			headers: responseHeaders,
+			html: '',
+			status: response.status,
+			ok: true
+		};
+	}
+
+	private async fetchHlsBuffer(
+		manifest: string,
+		manifestUrl: string,
+		sourceUrl: string,
+		headers: Record<string, string>,
+		timeoutMs: number
+	): Promise<FetchResult> {
+		const variantUrl = this.selectHlsVariant(manifest, manifestUrl, sourceUrl);
+		const mediaPlaylistUrl = variantUrl ?? manifestUrl;
+		const mediaManifest = variantUrl && variantUrl !== manifestUrl ? await this.fetchText(variantUrl, headers, timeoutMs) : manifest;
+		const segmentUrls = this.parseHlsSegmentUrls(mediaManifest, mediaPlaylistUrl);
+
+		if (!segmentUrls.length) {
+			throw new Error(`No HLS segments found for ${mediaPlaylistUrl}`);
+		}
+
+		const chunks: Buffer[] = [];
+		for (const segmentUrl of segmentUrls) {
+			const response = await fetch(segmentUrl, {
+				method: 'GET',
+				headers,
+				redirect: 'follow',
+				signal: AbortSignal.timeout(timeoutMs)
+			});
+
+			if (!response.ok) {
+				throw new Error(`HTTP ${response.status} for ${response.url || segmentUrl}`);
+			}
+
+			chunks.push(Buffer.from(await response.arrayBuffer()));
+		}
+
+		return {
+			buffer: Buffer.concat(chunks),
+			finalUrl: mediaPlaylistUrl,
+			headers: {
+				'content-type': 'video/mp2t'
+			},
+			html: '',
+			status: 200,
+			ok: true
+		};
+	}
+
+	private async fetchText(url: string, headers: Record<string, string>, timeoutMs: number): Promise<string> {
+		const response = await fetch(url, {
+			method: 'GET',
+			headers,
+			redirect: 'follow',
+			signal: AbortSignal.timeout(timeoutMs)
+		});
+
+		if (!response.ok) {
+			throw new Error(`HTTP ${response.status} for ${response.url || url}`);
+		}
+
+		return await response.text();
+	}
+
+	private isHlsManifest(contentType: string, finalUrl: string): boolean {
+		return (
+			contentType.includes('application/vnd.apple.mpegurl') ||
+			contentType.includes('application/x-mpegurl') ||
+			finalUrl.includes('.m3u8')
+		);
+	}
+
+	private selectHlsVariant(manifest: string, manifestUrl: string, sourceUrl: string): string | null {
+		const variants = this.parseHlsVariants(manifest, manifestUrl);
+		if (!variants.length) return null;
+
+		const sourceName = this.extractLastPathPart(sourceUrl);
+		const matchingByName = sourceName ? variants.find((variant) => variant.url.includes(sourceName)) : undefined;
+		if (matchingByName) return matchingByName.url;
+
+		const preferredQuality = this.extractQualityLabel(sourceName);
+		const matchingByQuality = preferredQuality ? variants.find((variant) => variant.url.includes(preferredQuality)) : undefined;
+		if (matchingByQuality) return matchingByQuality.url;
+
+		return variants[variants.length - 1]?.url ?? null;
+	}
+
+	private parseHlsVariants(manifest: string, baseUrl: string): Array<{ url: string }> {
+		const lines = manifest
+			.split(/\r?\n/)
+			.map((line) => line.trim())
+			.filter(Boolean);
+		const variants: Array<{ url: string }> = [];
+
+		for (let i = 0; i < lines.length; i++) {
+			if (!lines[i].startsWith('#EXT-X-STREAM-INF')) continue;
+			const nextLine = lines[i + 1];
+			if (!nextLine || nextLine.startsWith('#')) continue;
+
+			const resolved = this.resolveUrl(nextLine, baseUrl);
+			if (resolved) variants.push({ url: resolved });
+		}
+
+		return variants;
+	}
+
+	private parseHlsSegmentUrls(manifest: string, baseUrl: string): string[] {
+		return manifest
+			.split(/\r?\n/)
+			.map((line) => line.trim())
+			.filter((line) => line && !line.startsWith('#'))
+			.map((line) => this.resolveUrl(line, baseUrl))
+			.filter((line): line is string => Boolean(line));
+	}
+
+	private extractLastPathPart(url: string): string {
+		try {
+			const parts = new URL(url).pathname.split('/').filter(Boolean);
+			return parts[parts.length - 1] ?? '';
+		} catch {
+			return '';
+		}
+	}
+
+	private extractQualityLabel(filename: string): string {
+		const match = filename.match(/(\d{3,4}p)/i);
+		return match?.[1]?.toLowerCase() ?? '';
+	}
+
+	private resolveUrl(raw: string, base: string): string | null {
+		try {
+			return new URL(raw, base).toString();
+		} catch {
+			return null;
+		}
 	}
 
 	private async readBody(body: AsyncIterable<unknown>): Promise<Buffer> {
@@ -159,5 +277,9 @@ export class HttpFetcherService {
 			else if (value) result[key] = value;
 		}
 		return result;
+	}
+
+	private fetchHeaders(headers: Headers): Record<string, string> {
+		return Object.fromEntries(headers.entries());
 	}
 }

@@ -19,6 +19,7 @@ export abstract class BaseService {
 			outputType: OutputType.JSON,
 			executionType: ExecutionType.SEQUENTIAL
 		};
+		this.httpOptions = { referer: url };
 	}
 
 	public setHeaders(headers: Record<string, string>): this {

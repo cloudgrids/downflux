@@ -8,4 +8,5 @@ export interface OkPornAlbumOutput {
 	albumThumbnail: string;
 	albumImages: string[];
 	albumImageCount: number;
+	baseUrl: string;
 }

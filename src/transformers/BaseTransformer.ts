@@ -15,8 +15,8 @@ export abstract class BaseTransformer<T = DefaultExtractorResult> {
 		return SITE_EXTRACTORS.find((d) => d.pattern.test(url)) ?? null;
 	}
 
-	public async transform(url: string, _request?: ExecutionArguments): Promise<T> {
-		const fetched = await this.httpFetcherService.fetchHtml(url);
+	public async transform(url: string, request?: ExecutionArguments): Promise<T> {
+		const fetched = await this.httpFetcherService.fetchHtml(url, { referer: request?.entryUrl });
 
 		const descriptor = this.findTransformer(url);
 		const match = descriptor?.pattern.exec(url);
@@ -31,10 +31,10 @@ export abstract class BaseTransformer<T = DefaultExtractorResult> {
 				match
 			});
 
-			return { ...base, ...transformed, urlType: descriptor.urlType } as T;
+			return { ...base, ...transformed, urlType: descriptor.urlType, baseUrl: request?.entryUrl } as T;
 		}
 
-		return { ...base, urlType: descriptor?.urlType } as T;
+		return { ...base, urlType: descriptor?.urlType, baseUrl: request?.entryUrl } as T;
 	}
 
 	protected defaultParse(html: string, baseUrl: string): DefaultExtractorResult {

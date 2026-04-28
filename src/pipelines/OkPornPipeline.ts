@@ -12,6 +12,7 @@ export class OkPornPipeline extends BasePipeline<OkPornOutput> {
 		for (const { mediaType, url } of extracted) {
 			items.push({
 				downloadUrl: url,
+				baseUrl: metadata.baseUrl,
 				service: request.service,
 				identifier: {
 					mediaType,

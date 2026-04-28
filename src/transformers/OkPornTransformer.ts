@@ -19,7 +19,7 @@ export class OkPornTransformer extends BaseTransformer<
 		switch (request?.method) {
 			case OkPornMethods.getAlbum:
 			case OkPornMethods.getAlbums:
-				return this.toAlbumOutput(metadata);
+				return this.toAlbumOutput(metadata, request);
 
 			case OkPornMethods.getVideo:
 			case OkPornMethods.getVideos: {
@@ -40,7 +40,7 @@ export class OkPornTransformer extends BaseTransformer<
 		}
 	}
 
-	private async getVideoAlbum(metadata: DefaultExtractorResult, request?: ExecutionArguments): Promise<OkPornAlbumOutput | undefined> {
+	private async getVideoAlbum(metadata: DefaultExtractorResult, request: ExecutionArguments): Promise<OkPornAlbumOutput | undefined> {
 		const videoAlbumId = metadata.customFields?.videoAlbumId;
 
 		if (!videoAlbumId) return undefined;
@@ -51,10 +51,10 @@ export class OkPornTransformer extends BaseTransformer<
 			urlType: UrlType.IMAGES
 		} as ExecutionArguments)) as DefaultExtractorResult;
 
-		return this.toAlbumOutput(albumMetadata);
+		return this.toAlbumOutput(albumMetadata, request);
 	}
 
-	private toAlbumOutput(metadata: DefaultExtractorResult): OkPornAlbumOutput {
+	private toAlbumOutput(metadata: DefaultExtractorResult, request: ExecutionArguments): OkPornAlbumOutput {
 		return {
 			albumTitle: metadata.title,
 			albumUrl: metadata.baseUrl,
@@ -64,7 +64,8 @@ export class OkPornTransformer extends BaseTransformer<
 			albumId: metadata.baseUrl.split('/').filter(Boolean).pop() ?? '',
 			albumImages: metadata.images,
 			albumThumbnail: metadata.images[0],
-			albumImageCount: metadata.images.length
+			albumImageCount: metadata.images.length,
+			baseUrl: request?.entryUrl
 		};
 	}
 
@@ -85,7 +86,8 @@ export class OkPornTransformer extends BaseTransformer<
 			modelName: metadata.customFields?.starredBy?.[0],
 			videoAlbumId: metadata.customFields?.videoAlbumId,
 			videoCreatedAt: metadata.customFields?.videoCreateDate,
-			videoAlbum
+			videoAlbum,
+			baseUrl: request?.entryUrl
 		};
 	}
 
@@ -93,14 +95,16 @@ export class OkPornTransformer extends BaseTransformer<
 		return {
 			modelName: metadata.title,
 			modelUrl: metadata.baseUrl,
-			modelThumbnail: metadata.images[0]
+			modelThumbnail: metadata.images[0],
+			baseUrl: metadata.baseUrl
 		};
 	}
 
 	private toTagOutput(metadata: DefaultExtractorResult): OkPornTagOutput {
 		return {
 			tagName: metadata.title,
-			tagUrl: metadata.baseUrl
+			tagUrl: metadata.baseUrl,
+			baseUrl: metadata.baseUrl
 		};
 	}
 
@@ -108,7 +112,8 @@ export class OkPornTransformer extends BaseTransformer<
 		return {
 			channelName: metadata.title,
 			channelUrl: metadata.baseUrl,
-			channelThumbnail: metadata.images[0]
+			channelThumbnail: metadata.images[0],
+			baseUrl: metadata.baseUrl
 		};
 	}
 

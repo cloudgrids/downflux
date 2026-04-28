@@ -11,6 +11,7 @@ export class BasePipeline<T = DefaultExtractorResult> {
 		for (const { mediaType, url } of extracted) {
 			items.push({
 				downloadUrl: url,
+				baseUrl: request.entryUrl,
 				identifier: {
 					mediaType,
 					...this.detectResourceType(url),

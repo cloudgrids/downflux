@@ -47,16 +47,26 @@ export class BackgroundService {
 					const downloadResult = await this.downloaderService.download(pipelineItem, {
 						...options,
 						outputType,
-						service: request.service
+						service: request.service,
+						referer: request.entryUrl
 					});
 
 					if (outputType === OutputType.DEVICE && downloadResult?.buffer) {
-						await this.fileService.saveToDevice(
+						const savedFile = await this.fileService.saveToDevice(
 							downloadResult.buffer,
 							options?.dirConfig?.path,
 							downloadResult.extendedFilename,
-							pipelineItem.identifier.key
+							pipelineItem.identifier.key,
+							{
+								extension: downloadResult.extension,
+								mimeType: downloadResult.mimeType
+							}
 						);
+
+						downloadResult.extendedFilename = savedFile.filename;
+						downloadResult.originalFilename = savedFile.filename;
+						downloadResult.extension = savedFile.extension;
+						downloadResult.mimeType = savedFile.mimeType;
 					}
 
 					result.downloaded++;

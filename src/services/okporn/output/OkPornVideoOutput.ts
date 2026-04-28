@@ -20,4 +20,5 @@ export interface OkPornVideoOutput {
 	fullVideoSource?: string;
 	videoAlbumId?: string;
 	videoAlbum?: OkPornAlbumOutput;
+	baseUrl: string;
 }

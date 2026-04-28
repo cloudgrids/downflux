@@ -20,6 +20,6 @@ export interface JobProgressEvent {
 	downloaded?: number;
 	failed?: number;
 	item?: PipelineItem;
-	result?: DownloadResult;
+	result?: Omit<DownloadResult, 'buffer'>;
 	error?: Error;
 }
