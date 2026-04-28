@@ -3,6 +3,10 @@
 /node_modules
 /build
 
+# Output directories
+/downflux_json_output
+/downflux_device_output
+
 # Logs
 logs
 *.log

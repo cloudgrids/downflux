@@ -5,10 +5,7 @@ async function main() {
 	console.log(`\n\n=== Testing:`);
 
 	try {
-		const d = await new OkPornService(url1)
-			.setOutput(OutputType.JSON)
-			.setJobOptions({ dirConfig: { path: 'okporn_downloads' } })
-			.getVideo('1300');
+		const d = await new OkPornService(url1).setOutput(OutputType.JSON).getVideo('1300');
 	} catch (error) {
 		console.error('Error during getVideos:', error instanceof Error ? error.message : String(error));
 	} finally {

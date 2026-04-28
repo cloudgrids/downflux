@@ -61,7 +61,7 @@ export class FileService {
 		return map[ext.toLowerCase()] ?? 'application/octet-stream';
 	}
 
-	public saveJson(result: ExecutionResult, dir: string = 'importer_json_output'): string {
+	public saveJson(result: ExecutionResult, dir: string = 'downflux_json_output'): string {
 		const base = join(process.cwd(), dir);
 		if (!existsSync(base)) mkdirSync(base, { recursive: true });
 
@@ -80,7 +80,7 @@ export class FileService {
 		return value;
 	}
 
-	public async saveToDevice(buffer: Buffer, outputDir: string = 'importer_device_output', filename: string): Promise<string> {
+	public async saveToDevice(buffer: Buffer, outputDir: string = 'downflux_device_output', filename: string): Promise<string> {
 		const path = join(process.cwd(), outputDir);
 
 		if (!existsSync(path)) mkdirSync(path, { recursive: true });

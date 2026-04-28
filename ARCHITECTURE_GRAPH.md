@@ -451,14 +451,3 @@ ServiceType Enum
 ```
 
 ---
-
-## Key Architectural Principles
-
-1. **Service Abstraction**: All services extend BaseService, implement execute<T>()
-2. **Generic Type System**: T flows through pipeline maintaining type safety
-3. **Async-First**: Metadata returns immediately, downloads fire non-blocking
-4. **Hook System**: Users can inject custom callbacks at extraction and download phases
-5. **Dependency Injection**: All services receive dependencies via constructor
-6. **Service Routing**: Each layer (Transformer, Pipeline, Downloader) routes by ServiceType
-7. **Error Handling**: Errors collected but don't break pipeline execution
-8. **Progressive Updates**: Hooks enable real-time UI updates during background processing
