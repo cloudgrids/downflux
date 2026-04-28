@@ -31,7 +31,7 @@ const paths = [
 	'src/enums',
 	'src/enums/services',
 	'src/exceptions',
-	'src/extractors',
+	'src/transformers',
 	'src/fetcher',
 	'src/file',
 	'src/helpers',

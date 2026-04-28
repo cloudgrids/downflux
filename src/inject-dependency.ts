@@ -1,31 +1,33 @@
 import { DownloaderService } from './downloaders/DownloaderService';
-import { ExtractorService } from './extractors/ExtractorService';
 import { HttpFetcherService } from './fetcher/HttpFetcherService';
 import { FileService } from './file/FileService';
 import { JobService } from './job/JobService';
 import { HtmlParserService } from './parser/HtmlParserService';
+import { PipelineService } from './pipelines';
+import { TransformerService } from './transformers/Transformer';
 
 export interface ImporterDependencies {
-	htmlParser: HtmlParserService;
-	httpFetcher: HttpFetcherService;
-	extractor: ExtractorService;
-	downloader: DownloaderService;
-	job: JobService;
+	htmlParserService: HtmlParserService;
+	httpFetcherService: HttpFetcherService;
+	transformerService: TransformerService;
+	downloaderService: DownloaderService;
+	jobService: JobService;
 }
 export function createDefaultDependencies(): ImporterDependencies {
-	const htmlParser = new HtmlParserService();
-	const httpFetcher = new HttpFetcherService();
+	const htmlParserService = new HtmlParserService();
+	const httpFetcherService = new HttpFetcherService();
 	const fileService = new FileService();
+	const pipelineService = new PipelineService();
 
-	const extractor = new ExtractorService(htmlParser, httpFetcher);
-	const downloader = new DownloaderService(httpFetcher, fileService);
-	const job = new JobService(extractor, downloader, fileService);
+	const transformerService = new TransformerService(htmlParserService, httpFetcherService);
+	const downloaderService = new DownloaderService(httpFetcherService, fileService);
+	const jobService = new JobService(transformerService, downloaderService, fileService, pipelineService);
 
 	return {
-		htmlParser,
-		httpFetcher,
-		extractor,
-		downloader,
-		job
+		htmlParserService,
+		httpFetcherService,
+		transformerService,
+		downloaderService,
+		jobService
 	};
 }

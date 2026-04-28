@@ -3,18 +3,18 @@ import { OkPornChannelOutput, OkPornModelOutput, OkPornTagOutput } from '../serv
 import { OkPornAlbumOutput } from '../services/okporn/output/OkPornAlbumOutput';
 import { OkPornVideoOutput } from '../services/okporn/output/OkPornVideoOutput';
 import { DefaultExtractorResult, ExecutionArguments } from '../types';
-import { BaseExtractor } from './BaseExtractor';
+import { BaseTransformer } from './BaseTransformer';
 
-export class OkPornExtractor extends BaseExtractor<
+export class OkPornTransformer extends BaseTransformer<
 	OkPornAlbumOutput | OkPornVideoOutput | OkPornModelOutput | OkPornTagOutput | OkPornChannelOutput | DefaultExtractorResult
 > {
 	private readonly ALBUMS_URL = 'https://ok.porn/albums/';
 
-	public override async extractFromUrl(
+	public override async transform(
 		url: string,
 		request?: ExecutionArguments
 	): Promise<OkPornAlbumOutput | OkPornVideoOutput | OkPornModelOutput | OkPornTagOutput | OkPornChannelOutput | DefaultExtractorResult> {
-		const metadata = (await super.extractFromUrl(url, request)) as DefaultExtractorResult;
+		const metadata = (await super.transform(url, request)) as DefaultExtractorResult;
 
 		switch (request?.method) {
 			case OkPornMethods.getAlbum:
@@ -45,7 +45,7 @@ export class OkPornExtractor extends BaseExtractor<
 
 		if (!videoAlbumId) return undefined;
 
-		const albumMetadata = (await super.extractFromUrl(`${this.ALBUMS_URL}${videoAlbumId}/`, {
+		const albumMetadata = (await super.transform(`${this.ALBUMS_URL}${videoAlbumId}/`, {
 			...request,
 			method: OkPornMethods.getAlbum,
 			urlType: UrlType.IMAGES

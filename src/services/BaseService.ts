@@ -87,7 +87,9 @@ export abstract class BaseService {
 		};
 	}
 
-	protected async execute<T>(overrides?: Partial<ExecutionArguments>): Promise<T> {
-		return (await this.deps.job.execute<T>(this.buildRequest(overrides))).extracted as T;
+	protected async execute<T>(overrides?: Partial<ExecutionArguments>): Promise<T[]> {
+		const result = await this.deps.jobService.execute<T>(this.buildRequest(overrides));
+
+		return result.extracted;
 	}
 }
