@@ -1,57 +1,60 @@
 import { OkPornMethods, UrlType } from '../enums';
+import { OkPornChannelOutput, OkPornModelOutput, OkPornTagOutput } from '../services';
 import { OkPornAlbumOutput } from '../services/okporn/output/OkPornAlbumOutput';
 import { OkPornVideoOutput } from '../services/okporn/output/OkPornVideoOutput';
-import { ExecutionArguments, ExtractorResult } from '../types';
+import { DefaultExtractorResult, ExecutionArguments } from '../types';
 import { BaseExtractor } from './BaseExtractor';
 
-export class OkPornExtractor extends BaseExtractor {
+export class OkPornExtractor extends BaseExtractor<
+	OkPornAlbumOutput | OkPornVideoOutput | OkPornModelOutput | OkPornTagOutput | OkPornChannelOutput | DefaultExtractorResult
+> {
 	private readonly ALBUMS_URL = 'https://ok.porn/albums/';
 
-	public override async extractFromUrl<T>(url: string, request?: ExecutionArguments): Promise<ExtractorResult<T>> {
-		const metadata = await super.extractFromUrl<T>(url, request);
+	public override async extractFromUrl(
+		url: string,
+		request?: ExecutionArguments
+	): Promise<OkPornAlbumOutput | OkPornVideoOutput | OkPornModelOutput | OkPornTagOutput | OkPornChannelOutput | DefaultExtractorResult> {
+		const metadata = (await super.extractFromUrl(url, request)) as DefaultExtractorResult;
 
-		if (this.isAlbumMethod(request)) {
-			return {
-				...metadata,
-				extra: this.toAlbumOutput(metadata) as T
-			};
+		switch (request?.method) {
+			case OkPornMethods.getAlbum:
+			case OkPornMethods.getAlbums:
+				return this.toAlbumOutput(metadata);
+
+			case OkPornMethods.getVideo:
+			case OkPornMethods.getVideos: {
+				const album = await this.getVideoAlbum(metadata, request);
+				return this.toVideoOutput(metadata, album);
+			}
+
+			case OkPornMethods.getModels:
+				return this.toModelOutput(metadata);
+
+			case OkPornMethods.getTags:
+				return this.toTagOutput(metadata);
+
+			case OkPornMethods.getChannels:
+				return this.toChannelOutput(metadata);
+			default:
+				return metadata;
 		}
-
-		if (this.isVideoMethod(request)) {
-			const album = await this.getVideoAlbum(metadata, request);
-
-			return {
-				...metadata,
-				extra: this.toVideoOutput(metadata, album) as T
-			};
-		}
-
-		return metadata;
 	}
 
-	private async getVideoAlbum(metadata: ExtractorResult, request?: ExecutionArguments): Promise<OkPornAlbumOutput | undefined> {
+	private async getVideoAlbum(metadata: DefaultExtractorResult, request?: ExecutionArguments): Promise<OkPornAlbumOutput | undefined> {
 		const videoAlbumId = metadata.customFields?.videoAlbumId;
 
 		if (!videoAlbumId) return undefined;
 
-		const albumMetadata = await super.extractFromUrl<OkPornAlbumOutput>(`${this.ALBUMS_URL}${videoAlbumId}/`, {
+		const albumMetadata = (await super.extractFromUrl(`${this.ALBUMS_URL}${videoAlbumId}/`, {
 			...request,
 			method: OkPornMethods.getAlbum,
 			urlType: UrlType.IMAGES
-		} as ExecutionArguments);
+		} as ExecutionArguments)) as DefaultExtractorResult;
 
 		return this.toAlbumOutput(albumMetadata);
 	}
 
-	private isAlbumMethod(request?: ExecutionArguments): boolean {
-		return [OkPornMethods.getAlbum, OkPornMethods.getAlbums].includes(request?.method as OkPornMethods);
-	}
-
-	private isVideoMethod(request?: ExecutionArguments): boolean {
-		return [OkPornMethods.getVideo, OkPornMethods.getVideos].includes(request?.method as OkPornMethods);
-	}
-
-	private toAlbumOutput(metadata: ExtractorResult): OkPornAlbumOutput {
+	private toAlbumOutput(metadata: DefaultExtractorResult): OkPornAlbumOutput {
 		return {
 			albumTitle: metadata.title,
 			albumUrl: metadata.baseUrl,
@@ -65,7 +68,7 @@ export class OkPornExtractor extends BaseExtractor {
 		};
 	}
 
-	private toVideoOutput(metadata: ExtractorResult, videoAlbum?: OkPornAlbumOutput): OkPornVideoOutput {
+	private toVideoOutput(metadata: DefaultExtractorResult, videoAlbum?: OkPornAlbumOutput): OkPornVideoOutput {
 		return {
 			videoTitle: metadata.title,
 			videoUrl: metadata.baseUrl,
@@ -79,6 +82,29 @@ export class OkPornExtractor extends BaseExtractor {
 			videoAlbumId: metadata.customFields?.videoAlbumId,
 			videoAlbum,
 			videoCreateDate: metadata.customFields?.videoCreateDate
+		};
+	}
+
+	private toModelOutput(metadata: DefaultExtractorResult): OkPornModelOutput {
+		return {
+			modelName: metadata.title,
+			modelUrl: metadata.baseUrl,
+			modelThumbnail: metadata.images[0]
+		};
+	}
+
+	private toTagOutput(metadata: DefaultExtractorResult): OkPornTagOutput {
+		return {
+			tagName: metadata.title,
+			tagUrl: metadata.baseUrl
+		};
+	}
+
+	private toChannelOutput(metadata: DefaultExtractorResult): OkPornChannelOutput {
+		return {
+			channelName: metadata.title,
+			channelUrl: metadata.baseUrl,
+			channelThumbnail: metadata.images[0]
 		};
 	}
 }

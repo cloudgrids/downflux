@@ -1,24 +1,16 @@
-import type { DownloadResult } from './DownloadResult';
-import type { ExtractorResult } from './ExtractorResult';
+import { ServiceType } from '../enums';
+import { DownloadResult } from './DownloadResult';
 
 export type PipelineResourceType = 'image' | 'video' | 'audio';
 
-export interface PipelineIdentifiers {
-	albumId?: string;
-	videoId?: string;
-	username?: string;
-}
-
-export interface PipelineItem<TExtractedMetadata = unknown, TDownloadMetadata = unknown> {
+export interface PipelineItem {
 	sourceUrl: string;
-	extracted?: ExtractorResult<TExtractedMetadata>;
-	selectedUrl?: string;
-	resourceType?: PipelineResourceType;
-	identifiers?: PipelineIdentifiers;
-	download?: DownloadResult<TDownloadMetadata>;
+	downloadUrl: string;
+	resourceType: PipelineResourceType;
+	service: ServiceType;
 }
 
-export interface PipelineHook<TExtractedMetadata = unknown, TDownloadMetadata = unknown> {
-	onExtract?(item: PipelineItem<TExtractedMetadata, TDownloadMetadata>): Promise<void> | void;
-	onDownload?(item: PipelineItem<TExtractedMetadata, TDownloadMetadata>): Promise<void> | void;
+export interface PipelineHook {
+	onExtract?(item: PipelineItem): Promise<void> | void;
+	onDownload?(item: DownloadResult): Promise<void> | void;
 }

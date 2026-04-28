@@ -3,10 +3,7 @@ import { ExecutionType } from '../enums/ExecutionType';
 import { createDefaultDependencies, ImporterDependencies } from '../inject-dependency';
 import { HttpFetchOptions } from '../types';
 import { ExecutionArguments } from '../types/ExecutionArguments';
-import { ExecutionResult } from '../types/ExecutionResult';
 import { JobOptions } from '../types/JobOptions';
-
-export type ServiceConstructor<T = any> = new (...args: any[]) => T;
 
 export abstract class BaseService {
 	protected jobOptions: JobOptions = {};
@@ -90,7 +87,7 @@ export abstract class BaseService {
 		};
 	}
 
-	protected async execute<T>(overrides?: Partial<ExecutionArguments>): Promise<ExecutionResult<T>> {
-		return await this.deps.job.execute<T>(this.buildRequest(overrides));
+	protected async execute<T>(overrides?: Partial<ExecutionArguments>): Promise<T> {
+		return (await this.deps.job.execute<T>(this.buildRequest(overrides))).extracted as T;
 	}
 }

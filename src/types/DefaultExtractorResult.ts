@@ -1,6 +1,6 @@
 import { UrlType } from '../enums';
 
-export interface ExtractorResult<TExtendedMetadata = any> {
+export interface DefaultExtractorResult {
 	title: string;
 	description: string;
 	keywords: string[];
@@ -14,5 +14,4 @@ export interface ExtractorResult<TExtendedMetadata = any> {
 	allUrls?: string[];
 	urlType?: UrlType;
 	customFields?: Record<string, any>;
-	extra?: TExtendedMetadata;
 }

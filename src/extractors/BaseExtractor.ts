@@ -2,10 +2,11 @@ import { UrlType } from '../enums';
 import { HttpFetcherService } from '../fetcher/HttpFetcherService';
 import { SITE_EXTRACTORS } from '../helpers/SiteExtractors';
 import { HtmlParserService } from '../parser/HtmlParserService';
-import { ExecutionArguments, ExtractorResult } from '../types';
+import { ExecutionArguments } from '../types';
+import { DefaultExtractorResult } from '../types/DefaultExtractorResult';
 import { SiteDescriptor } from '../types/SiteDescriptor';
 
-export abstract class BaseExtractor {
+export abstract class BaseExtractor<T = DefaultExtractorResult> {
 	constructor(
 		protected readonly htmlParserService: HtmlParserService,
 		protected readonly httpFetcherService: HttpFetcherService
@@ -15,7 +16,7 @@ export abstract class BaseExtractor {
 		return SITE_EXTRACTORS.find((d) => d.pattern.test(url)) ?? null;
 	}
 
-	public async extractFromUrl<T>(url: string, _request?: ExecutionArguments): Promise<ExtractorResult<T>> {
+	public async extractFromUrl(url: string, _request?: ExecutionArguments): Promise<T> {
 		const fetched = await this.httpFetcherService.fetchHtml(url);
 
 		const descriptor = this.findExtractor(url);
@@ -31,13 +32,13 @@ export abstract class BaseExtractor {
 				match
 			});
 
-			return { ...base, ...transformed, urlType: descriptor.urlType };
+			return { ...base, ...transformed, urlType: descriptor.urlType } as T;
 		}
 
-		return { ...base, urlType: descriptor?.urlType };
+		return { ...base, urlType: descriptor?.urlType } as T;
 	}
 
-	protected defaultParse(html: string, baseUrl: string): ExtractorResult {
+	protected defaultParse(html: string, baseUrl: string): DefaultExtractorResult {
 		return {
 			anchors: this.htmlParserService.extractAnchors(html, baseUrl),
 			images: this.htmlParserService.extractImageUrls(html),
@@ -50,7 +51,7 @@ export abstract class BaseExtractor {
 		};
 	}
 
-	public selectUrlsByQuality(result: ExtractorResult, urlType: UrlType): string[] {
+	public selectUrlsByQuality(result: DefaultExtractorResult, urlType: UrlType): string[] {
 		switch (urlType) {
 			case UrlType.ANCHORS:
 				return result.anchors;

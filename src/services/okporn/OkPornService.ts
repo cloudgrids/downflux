@@ -3,9 +3,8 @@ import { ServiceType, UrlType } from '../../enums';
 import { OkPornMethods } from '../../enums/services/OkPornMethods';
 import { InvalidRangeException } from '../../exceptions/InvalidRangeError';
 import { InvalidUrlException } from '../../exceptions/InvalidUrlException';
-import { ExecutionResult } from '../../types';
 import { BaseService } from '../BaseService';
-import { OkPornAlbumOutput } from './output/OkPornAlbumOutput';
+import { OkPornAlbumOutput, OkPornChannelOutput, OkPornModelOutput, OkPornTagOutput, OkPornVideoOutput } from './output';
 
 export class OkPornService extends BaseService {
 	private readonly ALBUMS_URL = 'https://ok.porn/albums/';
@@ -25,8 +24,8 @@ export class OkPornService extends BaseService {
 		}
 	}
 
-	public async getAlbums(param: Range): Promise<ExecutionResult<OkPornAlbumOutput>> {
-		return await this.execute<OkPornAlbumOutput>({
+	public async getAlbums(param: Range): Promise<OkPornAlbumOutput[]> {
+		return await this.execute<OkPornAlbumOutput[]>({
 			targets: this.targets(this.ALBUMS_URL, param),
 			method: OkPornMethods.getAlbums,
 			service: ServiceType.OKPORN,
@@ -34,8 +33,8 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getAlbum(id: string) {
-		return this.execute({
+	public getAlbum(id: string): Promise<OkPornAlbumOutput> {
+		return this.execute<OkPornAlbumOutput>({
 			targets: [`${this.ALBUMS_URL}${id}/`],
 			urlType: UrlType.IMAGES,
 			method: OkPornMethods.getAlbum,
@@ -43,8 +42,8 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getModels(range: Range) {
-		return this.execute({
+	public getModels(range: Range): Promise<OkPornModelOutput[]> {
+		return this.execute<OkPornModelOutput[]>({
 			targets: this.targets(this.MODELS_URL, range),
 			urlType: UrlType.ANCHORS,
 			method: OkPornMethods.getModels,
@@ -52,10 +51,10 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getTags(startsWith: string = 'all') {
+	public getTags(startsWith: string = 'all'): Promise<OkPornTagOutput[]> {
 		const tagsUrl = startsWith === 'all' ? this.TAGS_URL : `${this.TAGS_URL}${startsWith}/`;
 
-		return this.execute({
+		return this.execute<OkPornTagOutput[]>({
 			targets: [tagsUrl],
 			urlType: UrlType.ANCHORS,
 			method: OkPornMethods.getTags,
@@ -63,8 +62,8 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getChannels(range: Range) {
-		return this.execute({
+	public getChannels(range: Range): Promise<OkPornChannelOutput[]> {
+		return this.execute<OkPornChannelOutput[]>({
 			targets: this.targets(this.CHANNELS_URL, range),
 			urlType: UrlType.ANCHORS,
 			method: OkPornMethods.getChannels,
@@ -72,8 +71,8 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getVideos(range: Range) {
-		return this.execute({
+	public getVideos(range: Range): Promise<OkPornVideoOutput[]> {
+		return this.execute<OkPornVideoOutput[]>({
 			targets: this.targets(this.VIDEOS_URL, range),
 			urlType: UrlType.ANCHORS,
 			method: OkPornMethods.getVideos,
@@ -81,8 +80,8 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getVideo(id: string) {
-		return this.execute({
+	public getVideo(id: string): Promise<OkPornVideoOutput> {
+		return this.execute<OkPornVideoOutput>({
 			targets: [`${this.VIDEOS_URL}${id}/`],
 			urlType: UrlType.SOURCES,
 			method: OkPornMethods.getVideo,

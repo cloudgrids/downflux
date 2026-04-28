@@ -1,3 +1,4 @@
+import { DefaultExtractorResult } from '../types/DefaultExtractorResult';
 import { BaseExtractor } from './BaseExtractor';
 
-export class DefaultExtractor extends BaseExtractor {}
+export class DefaultExtractor extends BaseExtractor<DefaultExtractorResult> {}

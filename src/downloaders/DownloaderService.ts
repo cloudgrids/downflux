@@ -9,7 +9,7 @@ import { OkPornDownloader } from './okporn/OkPornDownloader';
 
 export interface DownloadOptions extends HttpFetchOptions, JobOptions {
 	outputType: OutputType;
-	service?: ServiceType;
+	service: ServiceType;
 }
 
 export class DownloaderService {
