@@ -1,13 +1,23 @@
-export class PathBuilderService {
-	public buildOutputPath(basePath: string, identifier: string | undefined, filename: string): string {
-		if (identifier) return `${basePath}/${identifier}/${filename}`;
+import { join, normalize } from 'path';
 
-		return `${basePath}/${filename}`;
+export class PathBuilderService {
+	public buildOutputPath(basePath: string, filename: string, identifier?: string): string {
+		const safeBase = normalize(basePath);
+
+		if (identifier) {
+			return join(safeBase, identifier, filename);
+		}
+
+		return join(safeBase, filename);
 	}
 
-	public buildDirectoryPath(basePath: string, identifier: string | undefined): string {
-		if (identifier) return `${basePath}/${identifier}`;
+	public buildDirectoryPath(basePath: string, identifier?: string): string {
+		const safeBase = normalize(basePath);
 
-		return basePath;
+		if (identifier) {
+			return join(safeBase, identifier);
+		}
+
+		return safeBase;
 	}
 }

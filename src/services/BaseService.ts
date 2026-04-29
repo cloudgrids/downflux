@@ -4,7 +4,7 @@ import { ExecutionType } from '../enums/ExecutionType';
 import { createDefaultDependencies, ImporterDependencies } from '../inject-dependency';
 import { HttpFetchOptions } from '../types';
 import { ExecutionArguments } from '../types/ExecutionArguments';
-import { JobOptions } from '../types/JobOptions';
+import { DirectoryOutputOptions, JobOptions } from '../types/JobOptions';
 import { JobProgressEvent } from '../types/JobProgress';
 
 export abstract class BaseService {
@@ -68,12 +68,9 @@ export abstract class BaseService {
 		return this;
 	}
 
-	public setOutput(type: OutputType, path?: string, prefix?: string): this {
+	public setOutput(type: OutputType, config: DirectoryOutputOptions = {}): this {
 		this.jobOptions.outputType = type;
-
-		if (type === OutputType.DEVICE && path) this.jobOptions.dirConfig = { path, prefix };
-		else if (type === OutputType.JSON && path) this.jobOptions.dirConfig = { path, prefix };
-
+		this.jobOptions.dirConfig = config;
 		return this;
 	}
 

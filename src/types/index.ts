@@ -6,4 +6,5 @@ export * from './HttpFetchOptions';
 export * from './JobOptions';
 export * from './JobProgress';
 export * from './PipelineItem';
+export * from './ResolvedFile';
 export * from './SiteDescriptor';

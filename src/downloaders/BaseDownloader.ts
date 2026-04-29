@@ -27,7 +27,7 @@ export abstract class BaseDownloader {
 		console.log({ resolvedFile });
 
 		const { stream, finalize } = this.fileService.createSink(outputType as OutputType, {
-			path: dirConfig?.path,
+			directoryPath: dirConfig?.directoryPath,
 			filename: resolvedFile.originalFilename,
 			identifier: item.identifier.key
 		});

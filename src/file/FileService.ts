@@ -1,7 +1,7 @@
 import { execFile } from 'child_process';
 import ffmpegPath from 'ffmpeg-static';
 import { createWriteStream, existsSync, promises as fs, mkdirSync, writeFileSync, WriteStream } from 'fs';
-import { dirname, extname, join } from 'path';
+import { dirname, extname, isAbsolute, resolve } from 'path';
 import { Readable, Writable } from 'stream';
 import { pipeline } from 'stream/promises';
 import { promisify } from 'util';
@@ -19,12 +19,8 @@ export class FileService {
 	private readonly pathBuilder = new PathBuilderService();
 	private readonly baseDir = 'downflux_';
 
-	public createWriteTarget(outputDir: string, filename: string, identifier?: string): { stream: WriteStream; finalPath: string } {
-		const dynamicPath = this.pathBuilder.buildOutputPath(outputDir, identifier, filename);
-		const finalPath = join(process.cwd(), dynamicPath);
-
-		const dir = dirname(finalPath);
-		if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+	public createWriteTarget(directoryPath: string, filename: string, identifier?: string): { stream: WriteStream; finalPath: string } {
+		const finalPath = this.getFilePath(directoryPath, filename, identifier);
 
 		return {
 			stream: createWriteStream(finalPath),
@@ -47,11 +43,10 @@ export class FileService {
 		};
 	}
 
-	public createSink(type: OutputType, opts: { path?: string; filename: string; identifier?: string }) {
+	public createSink(type: OutputType, opts: { directoryPath?: string; filename: string; identifier?: string }) {
 		if (type === OutputType.DEVICE) {
-			const { stream, finalPath } = this.createWriteTarget(opts.path || this.baseDir, opts.filename, opts.identifier);
+			const { stream, finalPath } = this.createWriteTarget(opts.directoryPath || this.baseDir, opts.filename, opts.identifier);
 
-			console.log({ finalPath });
 			return {
 				stream,
 				finalize: async (resolved: ResolvedFile, headers: Record<string, string>) => {
@@ -100,7 +95,7 @@ export class FileService {
 
 		await pipeline(Readable.from(buffer), stream);
 
-		if (finalPath.endsWith('.ts')) return this.remuxTransportStream(finalPath);
+		if (finalPath.endsWith('.ts')) return this.reMuxTransportStream(finalPath);
 
 		return {
 			path: finalPath,
@@ -118,7 +113,7 @@ export class FileService {
 
 		console.log({ opts, extension, mimeType, isTsFile });
 
-		if (isTsFile) return this.remuxTransportStream(finalPath);
+		if (isTsFile) return this.reMuxTransportStream(finalPath);
 
 		return {
 			path: finalPath,
@@ -128,7 +123,7 @@ export class FileService {
 		};
 	}
 
-	private async remuxTransportStream(inputPath: string) {
+	private async reMuxTransportStream(inputPath: string) {
 		if (!ffmpegPath) throw new Error('ffmpeg-static not found');
 
 		const outputPath = inputPath.endsWith('.ts') ? inputPath.replace(/\.ts$/i, '.mp4') : inputPath + '.remux.mp4';
@@ -167,15 +162,12 @@ export class FileService {
 		}
 	}
 
-	public toJSON(result: ExecutionResult, dir: string = this.baseDir): string {
-		const base = join(process.cwd(), dir);
-		if (!existsSync(base)) mkdirSync(base, { recursive: true });
+	public toJSON(result: ExecutionResult, directoryPath: string = this.baseDir): string {
+		const finalPath = this.getFilePath(directoryPath, `result_${Date.now()}.json`);
 
-		const file = join(base, `${dir}_${Date.now()}.json`);
+		writeFileSync(finalPath, JSON.stringify([result], this.replacer, 2));
 
-		writeFileSync(file, JSON.stringify([result], this.replacer, 2));
-
-		return file;
+		return finalPath;
 	}
 
 	private replacer(_: string, value: any) {
@@ -186,13 +178,15 @@ export class FileService {
 		return value;
 	}
 
-	private isTransportStream(mime: string, extension: string) {
-		return mime === MIME_TYPE['ts'] && extension === 'ts';
-	}
-
-	// fallback => fb_timestamp
-	// path undefined => fud_timestamp
-	public getFileInfo(url: string, prefix?: string) {
+	/**
+	 * Extracts filename and extension from URL.
+	 * @param url - URL to extract filename and extension from
+	 * @param prefix - Optional prefix to add to the filename
+	 * @returns {{originalFilename: string, extension: string, extendedFilename: string}}
+	 * fallback => fb_timestamp
+	 * path undefined => fud_timestamp
+	 */
+	public getFileInfo(url: string, prefix?: string): ResolvedFile {
 		try {
 			const pathname = new URL(url).pathname;
 			const originalFilename = pathname.split('/').filter(Boolean).pop() || `fud_${Date.now()}`;
@@ -212,5 +206,16 @@ export class FileService {
 				extendedFilename: `${prefix ?? ''}${fallback}`
 			};
 		}
+	}
+
+	private getFilePath(directoryPath: string, filename: string, identifier?: string) {
+		const dynamicPath = this.pathBuilder.buildOutputPath(directoryPath, filename, identifier);
+
+		const finalPath = isAbsolute(dynamicPath) ? dynamicPath : resolve(process.cwd(), dynamicPath);
+
+		const dir = dirname(finalPath);
+		if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+
+		return finalPath;
 	}
 }

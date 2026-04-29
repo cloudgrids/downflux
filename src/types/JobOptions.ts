@@ -4,14 +4,16 @@ import { HttpFetchOptions } from './HttpFetchOptions';
 import { JobProgressEvent } from './JobProgress';
 import type { PipelineHook } from './PipelineItem';
 
-export interface DeviceOutputOptions {
-	path: string;
+export interface DirectoryOutputOptions {
+	/** Default process.cwd() */
+	directoryPath?: string;
+	/** Added as prefix to the filename */
 	prefix?: string;
 }
 
 export interface JobOptions extends HttpFetchOptions {
-	/** Configuration for the output directory */
-	dirConfig?: DeviceOutputOptions;
+	/** Directory configuration for the job output */
+	dirConfig?: DirectoryOutputOptions;
 
 	/** List of allowed file extensions to download */
 	allowedExtensions?: AllowedExtension[];
