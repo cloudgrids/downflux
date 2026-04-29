@@ -93,9 +93,9 @@ export class OkPornTransformer extends BaseTransformer<
 
 	private toModelOutput(metadata: DefaultExtractorResult): OkPornModelOutput {
 		return {
-			modelName: metadata.title,
-			modelUrl: metadata.baseUrl,
-			modelThumbnail: metadata.images[0],
+			pageTitle: metadata.title,
+			pageUrl: metadata.baseUrl,
+			modelUrls: metadata.anchors.filter((a) => a.match(/https:\/\/ok\.porn\/models\/([a-z-]{2,})\/$/)),
 			baseUrl: metadata.baseUrl
 		};
 	}

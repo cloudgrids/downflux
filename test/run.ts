@@ -8,9 +8,8 @@ async function main() {
 		await new OkPornService(url1)
 			.setJobOptions({ logProgress: true })
 			.onProgress(console.log)
-			// .setAllowedExtensions('mp4')
-			.setOutput(OutputType.DEVICE, { directoryPath: '/Users/arijit/Downloads' })
-			.getAlbum('1300');
+			.setOutput(OutputType.JSON, { directoryPath: 'downflux_' })
+			.getModels({ type: 'index', start: 1, end: 2 });
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {

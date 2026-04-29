@@ -44,7 +44,8 @@ export class OkPornService extends BaseService {
 		return album;
 	}
 
-	public getModels(range: Range): Promise<OkPornModelOutput[]> {
+	/** Pagination starts from 1 and ends at 555 */
+	public getModels(range: Range = { type: 'index', start: 1, end: 10 }): Promise<OkPornModelOutput[]> {
 		return this.execute<OkPornModelOutput>({
 			targets: this.targets(this.MODELS_URL, range),
 			urlType: UrlType.ANCHORS,

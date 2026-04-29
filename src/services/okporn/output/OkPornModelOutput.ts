@@ -1,6 +1,6 @@
 export interface OkPornModelOutput {
-	modelName: string;
-	modelUrl: string;
-	modelThumbnail?: string;
+	pageTitle: string;
+	pageUrl: string;
+	modelUrls: string[];
 	baseUrl: string;
 }
