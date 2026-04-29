@@ -1,10 +1,11 @@
-import { createWriteStream, existsSync, promises as fs, mkdirSync, writeFileSync, WriteStream } from 'fs';
-import { dirname, extname, isAbsolute, resolve } from 'path';
+import { createWriteStream, promises as fs, mkdirSync, writeFileSync, WriteStream } from 'fs';
+import { dirname, extname, isAbsolute, relative, resolve } from 'path';
 import { Readable, Writable } from 'stream';
 import { pipeline } from 'stream/promises';
 
 import { MIME_TYPE } from '../common/MimeType';
-import { OutputType } from '../enums';
+import { OutputType, ServiceType } from '../enums';
+import { InvalidDestinationException } from '../exceptions';
 import { DownloadResult } from '../types';
 import { ExecutionResult } from '../types/ExecutionResult';
 import { ResolvedFile } from '../types/ResolvedFile';
@@ -16,9 +17,13 @@ export class FileService {
 	private readonly ffmpegService = new FfmpegService();
 	private readonly baseDir = 'downflux_';
 
-	public createWriteTarget(directoryPath: string, filename: string, identifier?: string): { stream: WriteStream; finalPath: string } {
-		const finalPath = this.getFilePath(directoryPath, filename, identifier);
-
+	public createWriteTarget(
+		service: ServiceType,
+		directoryPath: string,
+		filename: string,
+		identifier?: string
+	): { stream: WriteStream; finalPath: string } {
+		const finalPath = this.getFilePath(service, directoryPath, filename, identifier);
 		return {
 			stream: createWriteStream(finalPath),
 			finalPath
@@ -40,9 +45,14 @@ export class FileService {
 		};
 	}
 
-	public createSink(type: OutputType, opts: { directoryPath?: string; filename: string; identifier?: string }) {
+	public createSink(service: ServiceType, type: OutputType, opts: { directoryPath?: string; filename: string; identifier: string }) {
 		if (type === OutputType.DEVICE) {
-			const { stream, finalPath } = this.createWriteTarget(opts.directoryPath || this.baseDir, opts.filename, opts.identifier);
+			const { stream, finalPath } = this.createWriteTarget(
+				service,
+				opts.directoryPath || this.baseDir,
+				opts.filename,
+				opts.identifier
+			);
 
 			return {
 				stream,
@@ -88,7 +98,7 @@ export class FileService {
 	): Promise<{ path: string; filename: string; extension: string; mimeType: string }> {
 		const { buffer, originalFilename, extendedFilename, mimeType, extension } = downloadResult;
 
-		const { stream, finalPath } = this.createWriteTarget(outputDir, originalFilename, identifier);
+		const { stream, finalPath } = this.createWriteTarget(downloadResult.service, outputDir, originalFilename, identifier);
 
 		await pipeline(Readable.from(buffer), stream);
 
@@ -108,8 +118,6 @@ export class FileService {
 
 		const isTsFile = finalPath.endsWith('.ts');
 
-		console.log({ opts, extension, mimeType, isTsFile });
-
 		if (isTsFile) return this.ffmpegService.reMuxTransportStream(finalPath);
 
 		return {
@@ -121,7 +129,7 @@ export class FileService {
 	}
 
 	public toJSON(result: ExecutionResult, directoryPath: string = this.baseDir): string {
-		const finalPath = this.getFilePath(directoryPath, `result_${Date.now()}.json`);
+		const finalPath = this.getFilePath(result.service, directoryPath, `result_${Date.now()}.json`);
 
 		writeFileSync(finalPath, JSON.stringify([result], this.replacer, 2));
 
@@ -155,24 +163,41 @@ export class FileService {
 				extension,
 				extendedFilename: `${prefix ?? ''}${originalFilename}`
 			};
-		} catch (error) {
-			console.error('Failed to get filename and extension from URL:', error);
-			const fallback = `fb_${Date.now()}`;
-			return {
-				originalFilename: fallback,
-				extension: '',
-				extendedFilename: `${prefix ?? ''}${fallback}`
-			};
+		} catch {
+			throw new Error('Unable to parse URL for file info');
 		}
 	}
 
-	private getFilePath(directoryPath: string, filename: string, identifier?: string) {
-		const dynamicPath = this.pathBuilder.buildOutputPath(directoryPath, filename, identifier);
+	private getFilePath(service: ServiceType, directoryPath: string, filename: string, identifier?: string): string {
+		if (!filename || filename.trim() === '') {
+			throw new InvalidDestinationException(directoryPath, service, identifier ?? filename, {
+				reason: 'Invalid filename'
+			});
+		}
 
-		const finalPath = isAbsolute(dynamicPath) ? dynamicPath : resolve(process.cwd(), dynamicPath);
+		const dynamicPath = this.pathBuilder.buildDirectoryPath(filename, identifier);
 
-		const dir = dirname(finalPath);
-		if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+		const baseDir = isAbsolute(directoryPath) ? directoryPath : resolve(process.cwd(), directoryPath);
+
+		const finalPath = resolve(baseDir, dynamicPath);
+
+		const rel = relative(baseDir, finalPath);
+
+		if (rel.startsWith('..') || rel === '..') {
+			throw new InvalidDestinationException(directoryPath, service, identifier ?? filename, {
+				reason: 'Path traversal detected',
+				finalPath
+			});
+		}
+
+		try {
+			mkdirSync(dirname(finalPath), { recursive: true });
+		} catch (err) {
+			throw new InvalidDestinationException(directoryPath, service, identifier ?? filename, {
+				finalPath,
+				cause: err
+			});
+		}
 
 		return finalPath;
 	}

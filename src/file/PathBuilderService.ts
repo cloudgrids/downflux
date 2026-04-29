@@ -4,20 +4,14 @@ export class PathBuilderService {
 	public buildOutputPath(basePath: string, filename: string, identifier?: string): string {
 		const safeBase = normalize(basePath);
 
-		if (identifier) {
-			return join(safeBase, identifier, filename);
-		}
+		if (identifier) return join(safeBase, identifier, filename);
 
 		return join(safeBase, filename);
 	}
 
-	public buildDirectoryPath(basePath: string, identifier?: string): string {
-		const safeBase = normalize(basePath);
+	public buildDirectoryPath(filename: string, identifier?: string): string {
+		if (identifier) return join(identifier, filename);
 
-		if (identifier) {
-			return join(safeBase, identifier);
-		}
-
-		return safeBase;
+		return filename;
 	}
 }
