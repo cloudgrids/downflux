@@ -24,6 +24,7 @@ const makeIndex = async (directory: string) => {
 };
 
 const paths = [
+	'src/common',
 	'src/downloaders',
 	'src/downloaders/okporn',
 	'src/downloaders/okporn/output',
@@ -37,13 +38,14 @@ const paths = [
 	'src/helpers',
 	'src/job',
 	'src/parser',
-	'src/types',
+	'src/pipelines',
 	'src/services',
 	'src/services/coomer',
+	'src/services/default',
 	'src/services/okporn',
 	'src/services/okporn/output',
-	'src/services/default',
-	'src/common'
+	'src/transformers',
+	'src/types'
 ];
 
 (async () => {

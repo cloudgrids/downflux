@@ -1,5 +1,4 @@
 import { execFile } from 'child_process';
-import ffmpegPath from 'ffmpeg-static';
 import { createWriteStream, existsSync, promises as fs, mkdirSync, writeFileSync, WriteStream } from 'fs';
 import { dirname, extname, isAbsolute, resolve } from 'path';
 import { Readable, Writable } from 'stream';
@@ -124,7 +123,7 @@ export class FileService {
 	}
 
 	private async reMuxTransportStream(inputPath: string) {
-		if (!ffmpegPath) throw new Error('ffmpeg-static not found');
+		// if (!ffmpegPath) throw new Error('ffmpeg-static not found');
 
 		const outputPath = inputPath.endsWith('.ts') ? inputPath.replace(/\.ts$/i, '.mp4') : inputPath + '.remux.mp4';
 		const filename = outputPath.split('/').pop()!;

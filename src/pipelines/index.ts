@@ -1,3 +1,3 @@
-export { BasePipeline } from './BasePipeline';
-export { OkPornPipeline } from './OkPornPipeline';
-export { PipelineService } from './PipelineService';
+export * from './BasePipeline';
+export * from './OkPornPipeline';
+export * from './PipelineService';

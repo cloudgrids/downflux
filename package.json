@@ -16,8 +16,9 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsc && gen-esm-wrapper dist/index.js dist/index.mjs",
-		"prepare": "rimraf dist && npm run build",
+		"build": "tsup src/index.ts --format cjs,esm --dts --clean",
+		"dev": "tsup src/index.ts --format cjs,esm --watch --dts",
+		"prepare": "npm run build",
 		"lint:test": "eslint .",
 		"lint:fix": "eslint --fix .",
 		"test": "TZ=UTC jest --setupFiles dotenv/config --config ./jest.config.json",
@@ -49,18 +50,19 @@
 	"packageManager": "pnpm@10.27.0",
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
+		"@swc/core": "^1.15.32",
 		"@types/jest": "^30.0.0",
 		"@types/node": "^25.6.0",
 		"dotenv": "^17.4.2",
 		"eslint": "^10.2.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.5.5",
-		"gen-esm-wrapper": "^1.1.3",
 		"jest": "^30.3.0",
 		"prettier": "^3.8.3",
 		"rimraf": "^6.1.3",
 		"standard-version": "^9.5.0",
 		"ts-jest": "^29.4.9",
+		"tsup": "^8.5.1",
 		"tsx": "^4.21.0",
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.59.0"
