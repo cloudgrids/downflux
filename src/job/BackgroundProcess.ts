@@ -147,13 +147,8 @@ export class BackgroundService {
 	}
 
 	public async handleJsonOutput<T>(result: ExecutionResult<T>, options: JobOptions): Promise<ExecutionResult<T>> {
-		try {
-			this.fileService.toJSON(result, options?.dirConfig?.directoryPath);
-			return result;
-		} catch (err) {
-			result.errors.push(err instanceof Error ? err : new Error(String(err)));
-			return result;
-		}
+		this.fileService.toJSON(result, options?.dirConfig?.directoryPath);
+		return result;
 	}
 
 	public handleDeviceOutputAsync<T>(

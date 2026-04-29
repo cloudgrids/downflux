@@ -22,6 +22,7 @@ export class BaseException<TMeta = any> extends Error {
 		this.errorCode = payload.errorCode;
 		this.context = payload.context || {};
 		this.metadata = payload.metadata;
+		this.stack = undefined; // Stack traces can be misleading for custom exceptions, so we omit them by default
 
 		Object.setPrototypeOf(this, new.target.prototype);
 	}

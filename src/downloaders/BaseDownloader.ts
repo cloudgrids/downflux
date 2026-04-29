@@ -16,17 +16,13 @@ export abstract class BaseDownloader {
 		const { dirConfig, service, outputType } = opts;
 		const url = item.downloadUrl;
 
-		if (!url) throw new Error('Cannot download pipeline item without a downloadUrl');
-
 		const initialFile = this.fileService.getFileInfo(url, dirConfig?.prefix);
 
-		console.log({ item, initialFile });
 		const { finalUrl, headers, start } = await this.httpFetcherService.requestStream(url, opts);
 
 		const resolvedFile = this.resolveFileMetadata(initialFile, finalUrl, headers, dirConfig?.prefix);
-		console.log({ resolvedFile });
 
-		const { stream, finalize } = this.fileService.createSink(outputType as OutputType, {
+		const { stream, finalize } = this.fileService.createSink(service, outputType as OutputType, {
 			directoryPath: dirConfig?.directoryPath,
 			filename: resolvedFile.originalFilename,
 			identifier: item.identifier.key
@@ -38,8 +34,6 @@ export abstract class BaseDownloader {
 		await finished(stream);
 
 		const finalDetails = await finalize(resolvedFile, headers);
-
-		console.log({ finalDetails });
 
 		return {
 			...finalDetails,

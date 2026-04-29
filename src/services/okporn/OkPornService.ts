@@ -1,7 +1,7 @@
 import { Range } from '../../common';
 import { ServiceType, UrlType, VideoQuality } from '../../enums';
 import { OkPornMethods } from '../../enums/services/OkPornMethods';
-import { InvalidRangeException } from '../../exceptions/InvalidRangeError';
+import { InvalidRangeException } from '../../exceptions/InvalidRangeException';
 import { InvalidUrlException } from '../../exceptions/InvalidUrlException';
 import { BaseService } from '../BaseService';
 import { OkPornAlbumOutput, OkPornChannelOutput, OkPornModelOutput, OkPornTagOutput, OkPornVideoOutput } from './output';
