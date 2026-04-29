@@ -1,27 +1,13 @@
 {
-	"compilerOptions": {
-		"target": "ES2023",
-		"module": "commonjs",
-		"ignoreDeprecations": "6.0",
-		"rootDir": "src",
-
-		"declaration": true,
-		"declarationMap": true,
-
-		"strict": true,
-		"skipLibCheck": true,
-
-		"experimentalDecorators": true,
-		"emitDecoratorMetadata": true,
-		"removeComments": true,
-		"allowSyntheticDefaultImports": true,
-		"sourceMap": true,
-		"strictNullChecks": true,
-		"forceConsistentCasingInFileNames": true,
-		"noImplicitAny": false,
-		"strictBindCallApply": false,
-		"noFallthroughCasesInSwitch": false
+	"entry": ["src/index.ts"],
+	"format": ["cjs", "esm"],
+	"dts": {
+		"compilerOptions": {
+			"ignoreDeprecations": "6.0"
+		}
 	},
-	"include": ["src"],
-	"exclude": ["node_modules", "scripts"]
+	"clean": true,
+	"target": "node18",
+	"platform": "node",
+	"sourcemap": true
 }

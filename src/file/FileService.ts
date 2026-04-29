@@ -1,21 +1,19 @@
-import { execFile } from 'child_process';
 import { createWriteStream, existsSync, promises as fs, mkdirSync, writeFileSync, WriteStream } from 'fs';
 import { dirname, extname, isAbsolute, resolve } from 'path';
 import { Readable, Writable } from 'stream';
 import { pipeline } from 'stream/promises';
-import { promisify } from 'util';
 
 import { MIME_TYPE } from '../common/MimeType';
 import { OutputType } from '../enums';
 import { DownloadResult } from '../types';
 import { ExecutionResult } from '../types/ExecutionResult';
 import { ResolvedFile } from '../types/ResolvedFile';
+import { FfmpegService } from './FFmpegService';
 import { PathBuilderService } from './PathBuilderService';
-
-const execFileAsync = promisify(execFile);
 
 export class FileService {
 	private readonly pathBuilder = new PathBuilderService();
+	private readonly ffmpegService = new FfmpegService();
 	private readonly baseDir = 'downflux_';
 
 	public createWriteTarget(directoryPath: string, filename: string, identifier?: string): { stream: WriteStream; finalPath: string } {
@@ -94,7 +92,7 @@ export class FileService {
 
 		await pipeline(Readable.from(buffer), stream);
 
-		if (finalPath.endsWith('.ts')) return this.reMuxTransportStream(finalPath);
+		if (finalPath.endsWith('.ts')) return this.ffmpegService.reMuxTransportStream(finalPath);
 
 		return {
 			path: finalPath,
@@ -112,7 +110,7 @@ export class FileService {
 
 		console.log({ opts, extension, mimeType, isTsFile });
 
-		if (isTsFile) return this.reMuxTransportStream(finalPath);
+		if (isTsFile) return this.ffmpegService.reMuxTransportStream(finalPath);
 
 		return {
 			path: finalPath,
@@ -120,45 +118,6 @@ export class FileService {
 			extension,
 			mimeType
 		};
-	}
-
-	private async reMuxTransportStream(inputPath: string) {
-		// if (!ffmpegPath) throw new Error('ffmpeg-static not found');
-
-		const outputPath = inputPath.endsWith('.ts') ? inputPath.replace(/\.ts$/i, '.mp4') : inputPath + '.remux.mp4';
-		const filename = outputPath.split('/').pop()!;
-
-		try {
-			await execFileAsync('/opt/homebrew/bin/ffmpeg', [
-				'-y',
-				'-loglevel',
-				'error',
-				'-i',
-				inputPath,
-				'-c',
-				'copy',
-				'-movflags',
-				'+faststart',
-				outputPath
-			]);
-
-			await fs.unlink(inputPath);
-
-			return {
-				path: outputPath,
-				filename,
-				extension: 'mp4',
-				mimeType: 'video/mp4'
-			};
-		} catch (error) {
-			console.error(`Failed to remux ${inputPath}:`, error);
-			return {
-				path: inputPath,
-				filename: inputPath.split('/').pop()!,
-				extension: 'ts',
-				mimeType: 'video/mp2t'
-			};
-		}
 	}
 
 	public toJSON(result: ExecutionResult, directoryPath: string = this.baseDir): string {

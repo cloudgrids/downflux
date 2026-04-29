@@ -8,7 +8,8 @@ async function main() {
 		await new OkPornService(url1)
 			.setJobOptions({ logProgress: true })
 			.onProgress((event) => console.log(event))
-			.setOutput(OutputType.DEVICE, { directoryPath: '/Users/arijit/Downloads' })
+			.setAllowedExtensions('mp4')
+			.setOutput(OutputType.DEVICE, { directoryPath: 'downflux_' })
 			.getVideo('733713', { videoQualities: [VideoQuality.Q720] });
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));

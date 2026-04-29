@@ -10,7 +10,7 @@ export default tseslint.config(
 		languageOptions: {
 			parserOptions: {
 				projectService: {
-					allowDefaultProject: ['eslint.config.mjs', 'test-regex.js']
+					allowDefaultProject: ['eslint.config.mjs', 'test-regex.js', 'scripts/make-index.ts']
 				},
 				tsconfigRootDir: import.meta.dirname
 			}
