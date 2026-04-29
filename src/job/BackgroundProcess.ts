@@ -51,24 +51,6 @@ export class BackgroundService {
 						referer: request.entryUrl
 					});
 
-					if (outputType === OutputType.DEVICE && downloadResult?.buffer) {
-						const savedFile = await this.fileService.saveToDevice(
-							downloadResult.buffer,
-							options?.dirConfig?.path,
-							downloadResult.extendedFilename,
-							pipelineItem.identifier.key,
-							{
-								extension: downloadResult.extension,
-								mimeType: downloadResult.mimeType
-							}
-						);
-
-						downloadResult.extendedFilename = savedFile.filename;
-						downloadResult.originalFilename = savedFile.filename;
-						downloadResult.extension = savedFile.extension;
-						downloadResult.mimeType = savedFile.mimeType;
-					}
-
 					result.downloaded++;
 					this.runDownloadHooks(pipelineHooks, pipelineItem, downloadResult);
 					this.emitProgress(options, {
@@ -166,7 +148,7 @@ export class BackgroundService {
 
 	public async handleJsonOutput<T>(result: ExecutionResult<T>, options: JobOptions): Promise<ExecutionResult<T>> {
 		try {
-			this.fileService.saveJson(result, options?.dirConfig?.path);
+			this.fileService.toJSON(result, options?.dirConfig?.path);
 			return result;
 		} catch (err) {
 			result.errors.push(err instanceof Error ? err : new Error(String(err)));

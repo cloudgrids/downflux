@@ -8,8 +8,7 @@ async function main() {
 		await new OkPornService(url1)
 			.setJobOptions({ logProgress: true })
 			.onProgress((event) => console.log(event))
-			.setAllowedExtensions('mp4')
-			.setOutput(OutputType.DEVICE)
+			.setOutput(OutputType.JSON)
 			.getVideo('735116', { videoQualities: [VideoQuality.Q720] });
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));

@@ -1,4 +1,6 @@
-export const MIME_TYPE: Record<string, string> = {
+import { AudioExtension, ImageExtension, VideoExtension } from './Extensions';
+
+export const MIME_TYPE: Partial<Record<ImageExtension | VideoExtension | AudioExtension, string>> = {
 	png: 'image/png',
 	jpg: 'image/jpeg',
 	jpeg: 'image/jpeg',
@@ -10,4 +12,4 @@ export const MIME_TYPE: Record<string, string> = {
 	webm: 'video/webm',
 	mp3: 'audio/mpeg',
 	wav: 'audio/wav'
-};
+} as const;

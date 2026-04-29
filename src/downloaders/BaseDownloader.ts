@@ -1,7 +1,9 @@
-import { MIME_TYPE } from '../common/MimeType';
+import { finished } from 'stream/promises';
+import { OutputType } from '../enums';
 import { HttpFetcherService } from '../fetcher/HttpFetcherService';
 import { FileService } from '../file/FileService';
 import { DownloadResult, PipelineItem } from '../types';
+import { ResolvedFile } from '../types/ResolvedFile';
 import { DownloadOptions } from './DownloaderService';
 
 export abstract class BaseDownloader {
@@ -11,39 +13,46 @@ export abstract class BaseDownloader {
 	) {}
 
 	public async download(item: PipelineItem, opts: DownloadOptions): Promise<DownloadResult> {
-		const { dirConfig, service } = opts;
+		const { dirConfig, service, outputType } = opts;
 		const url = item.downloadUrl;
 
 		if (!url) throw new Error('Cannot download pipeline item without a downloadUrl');
 
-		const initialFile = this.fileService.getFilenameAndExtensionFromUrl(url, dirConfig?.prefix);
-		const { buffer, finalUrl, headers } = await this.httpFetcherService.fetchBuffer(url, opts);
-		const resolvedFile = this.resolveFileMetadata(initialFile, finalUrl, headers, dirConfig?.prefix);
-		const mimeType = MIME_TYPE[resolvedFile.extension] ?? this.mimeTypeFromHeaders(headers) ?? 'application/octet-stream';
-		const result: DownloadResult = {
-			service,
-			url,
-			buffer,
-			finalUrl,
-			originalFilename: resolvedFile.originalFilename,
-			extendedFilename: resolvedFile.extendedFilename,
-			extension: resolvedFile.extension,
-			mimeType,
-			sizeBytes: buffer.byteLength
-		};
+		const initialFile = this.fileService.getFileInfo(url, dirConfig?.prefix);
 
-		return result;
+		console.log({ item, initialFile });
+		const { finalUrl, headers, start } = await this.httpFetcherService.requestStream(url, opts);
+
+		const resolvedFile = this.resolveFileMetadata(initialFile, finalUrl, headers, dirConfig?.prefix);
+		console.log({ resolvedFile });
+
+		const { stream, finalize } = this.fileService.createSink(outputType as OutputType, {
+			path: dirConfig?.path,
+			filename: resolvedFile.originalFilename,
+			identifier: item.identifier.key
+		});
+
+		await start(stream);
+
+		if (!stream.writableEnded) stream.end();
+		await finished(stream);
+
+		const finalDetails = await finalize(resolvedFile, headers);
+
+		console.log({ finalDetails });
+
+		return {
+			...finalDetails,
+			url,
+			finalUrl,
+			service
+		};
 	}
 
-	private resolveFileMetadata(
-		initial: { originalFilename: string; extension: string; extendedFilename: string },
-		finalUrl: string,
-		headers: Record<string, string>,
-		prefix?: string
-	): { originalFilename: string; extension: string; extendedFilename: string } {
-		const contentType = headers['content-type']?.toLowerCase() ?? '';
+	private resolveFileMetadata(initial: ResolvedFile, finalUrl: string, headers: Record<string, string>, prefix?: string): ResolvedFile {
+		const isHls = finalUrl.includes('.m3u8') || headers['content-type']?.includes('mpegurl');
 
-		if (contentType.includes('video/mp2t')) {
+		if (isHls) {
 			const baseName = initial.originalFilename.replace(/\.[^.]+$/, '') || 'video';
 			return {
 				originalFilename: `${baseName}.ts`,
@@ -54,13 +63,9 @@ export abstract class BaseDownloader {
 
 		if (initial.extension) return initial;
 
-		const fallback = this.fileService.getFilenameAndExtensionFromUrl(finalUrl, prefix);
+		const fallback = this.fileService.getFileInfo(finalUrl, prefix);
 		if (fallback.extension) return fallback;
 
 		return initial;
-	}
-
-	private mimeTypeFromHeaders(headers: Record<string, string>): string | undefined {
-		return headers['content-type']?.split(';')[0]?.trim();
 	}
 }

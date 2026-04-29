@@ -1,8 +1,11 @@
+import { createDecipheriv } from 'crypto';
+import { Writable } from 'stream';
+import { pipeline } from 'stream/promises';
 import { Dispatcher, Pool, interceptors } from 'undici';
 import { IncomingHttpHeaders } from 'undici/types/header';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
 import { DownloadOptions } from '../downloaders';
-import { HttpFetchOptions } from '../types/HttpFetchOptions';
+import { HttpFetchOptions } from '../types';
 
 export interface FetchResult {
 	html: string;
@@ -13,11 +16,16 @@ export interface FetchResult {
 	headers: Record<string, string>;
 }
 
+export interface HLSStreamRequest {
+	finalUrl: string;
+	headers: Record<string, string>;
+	start: (stream: Writable) => Promise<void>;
+}
+
 export class HttpFetcherService {
 	private readonly DEFAULT_HEADERS: Record<string, string> = {
-		'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0',
-		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-		'Accept-Language': 'en-US,en;q=0.5',
+		'User-Agent': 'Mozilla/5.0',
+		'Accept': '*/*',
 		'Accept-Encoding': 'gzip, deflate, br',
 		'Connection': 'keep-alive'
 	};
@@ -34,252 +42,241 @@ export class HttpFetcherService {
 	}
 
 	public async fetchHtml(url: string, opts: HttpFetchOptions): Promise<FetchResult> {
-		const { headers = {}, timeoutMs = 30_000, retries = 3 } = opts;
-		const mergedHeaders = { ...this.DEFAULT_HEADERS, ...headers } as Record<string, string>;
-		let lastError: unknown;
-
-		for (let attempt = 0; attempt < retries; attempt++) {
-			try {
-				const pool = this.getPool(url);
-				const parsedUrl = new URL(url);
-
-				const {
-					statusCode,
-					headers: resHeaders,
-					body,
-					context
-				} = await pool.request({
-					path: parsedUrl.pathname + parsedUrl.search,
-					method: 'GET',
-					headers: mergedHeaders,
-					headersTimeout: timeoutMs,
-					bodyTimeout: timeoutMs
-				});
-
-				const contextData = context as { history?: URL[] };
-				const finalUrl = contextData?.history
-					? contextData.history.length > 0
-						? contextData.history[contextData.history.length - 1].toString()
-						: url
-					: url;
-				const ok = statusCode >= 200 && statusCode < 300;
-
-				const html = this.decodeBody(await this.readBody(body), resHeaders).toString('utf8');
-
-				return {
-					html,
-					finalUrl,
-					status: statusCode,
-					ok,
-					headers: this.headers(resHeaders),
-					buffer: Buffer.from(html)
-				};
-			} catch (err) {
-				lastError = err;
-			}
-		}
-
-		throw lastError;
-	}
-
-	public async fetchBuffer(url: string, opts: DownloadOptions): Promise<FetchResult> {
 		const { headers = {}, timeoutMs = 30_000 } = opts;
-		const mergedHeaders = { ...this.DEFAULT_HEADERS, Accept: '*/*', Referer: opts.referer, ...headers } as Record<string, string>;
-		const response = await fetch(url, {
+		const mergedHeaders = { ...this.DEFAULT_HEADERS, Referer: opts.referer, ...headers } as Record<string, string>;
+
+		const pool = this.getPool(url);
+		const parsed = new URL(url);
+
+		const {
+			statusCode,
+			headers: resHeaders,
+			body
+		} = await pool.request({
+			path: parsed.pathname + parsed.search,
 			method: 'GET',
 			headers: mergedHeaders,
-			redirect: 'follow',
+			headersTimeout: timeoutMs,
+			bodyTimeout: timeoutMs
+		});
+
+		const buffer = this.decodeBody(await this.readBody(body), resHeaders);
+
+		return {
+			html: buffer.toString('utf8'),
+			buffer,
+			finalUrl: url,
+			status: statusCode,
+			ok: statusCode >= 200 && statusCode < 300,
+			headers: this.headers(resHeaders)
+		};
+	}
+
+	public async requestStream(url: string, opts: DownloadOptions): Promise<HLSStreamRequest> {
+		const { headers = {}, timeoutMs = 30_000 } = opts;
+		const mergedHeaders = { ...this.DEFAULT_HEADERS, Referer: opts.referer, ...headers } as Record<string, string>;
+
+		const res = await fetch(url, {
+			headers: mergedHeaders,
 			signal: AbortSignal.timeout(timeoutMs)
 		});
 
-		if (!response.ok) {
-			throw new Error(`HTTP ${response.status} for ${response.url || url}`);
-		}
-
-		const finalUrl = response.url || url;
-		const responseHeaders = this.fetchHeaders(response.headers);
-		const contentType = responseHeaders['content-type']?.toLowerCase() ?? '';
+		const finalUrl = res.url || url;
+		const contentType = res.headers.get('content-type') || '';
+		const responseHeaders = Object.fromEntries(res.headers.entries());
 
 		if (this.isHlsManifest(contentType, finalUrl)) {
-			const manifest = await response.text();
-			return await this.fetchHlsBuffer(manifest, finalUrl, url, mergedHeaders, timeoutMs);
+			const manifest = await res.text();
+			return {
+				finalUrl,
+				headers: responseHeaders,
+				start: (stream: Writable) => this.fetchHlsStream(manifest, finalUrl, timeoutMs, stream)
+			};
 		}
 
-		const buffer = Buffer.from(await response.arrayBuffer());
-
 		return {
-			buffer,
 			finalUrl,
 			headers: responseHeaders,
-			html: '',
-			status: response.status,
-			ok: true
+			start: (stream: Writable) => pipeline(res.body as any, stream)
 		};
 	}
 
-	private async fetchHlsBuffer(
-		manifest: string,
-		manifestUrl: string,
-		sourceUrl: string,
-		headers: Record<string, string>,
-		timeoutMs: number
-	): Promise<FetchResult> {
-		const variantUrl = this.selectHlsVariant(manifest, manifestUrl, sourceUrl);
-		const mediaPlaylistUrl = variantUrl ?? manifestUrl;
-		const mediaManifest = variantUrl && variantUrl !== manifestUrl ? await this.fetchText(variantUrl, headers, timeoutMs) : manifest;
-		const segmentUrls = this.parseHlsSegmentUrls(mediaManifest, mediaPlaylistUrl);
+	private async fetchHlsStream(manifest: string, manifestUrl: string, timeoutMs: number, stream: Writable): Promise<void> {
+		const variant = this.selectVariant(manifest, manifestUrl);
+		const playlistUrl = variant ?? manifestUrl;
 
-		if (!segmentUrls.length) {
-			throw new Error(`No HLS segments found for ${mediaPlaylistUrl}`);
-		}
+		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs) : manifest;
 
-		const chunks: Buffer[] = [];
-		for (const segmentUrl of segmentUrls) {
-			const response = await fetch(segmentUrl, {
-				method: 'GET',
-				headers,
-				redirect: 'follow',
-				signal: AbortSignal.timeout(timeoutMs)
-			});
+		const segments = this.parseSegments(mediaManifest, playlistUrl);
+		if (!segments.length) throw new Error('No segments');
 
-			if (!response.ok) {
-				throw new Error(`HTTP ${response.status} for ${response.url || segmentUrl}`);
+		const keyInfo = this.parseKey(mediaManifest, playlistUrl);
+		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
+
+		await this.worker(segments, key, keyInfo, timeoutMs, stream);
+	}
+
+	private async worker(
+		segments: string[],
+		key: Buffer | null,
+		keyInfo: { url: string; iv: Buffer | undefined } | null,
+		timeoutMs: number,
+		stream: Writable
+	) {
+		const concurrency = 8;
+		const results = new Map<number, Buffer>();
+		let nextIndexToWrite = 0;
+		let currentIndex = 0;
+
+		const worker = async () => {
+			while (true) {
+				const i = currentIndex++;
+				if (i >= segments.length) break;
+
+				const segUrl = segments[i];
+				let data = await this.fetchWithRetry(segUrl, timeoutMs);
+
+				if (key) {
+					const iv = keyInfo?.iv
+						? keyInfo.iv
+						: (() => {
+								const b = Buffer.alloc(16, 0);
+								b.writeUInt32BE(i, 12);
+								return b;
+							})();
+
+					data = this.decrypt(data, key, iv);
+				}
+
+				results.set(i, data);
+
+				// Ordered write with backpressure
+				while (results.has(nextIndexToWrite)) {
+					const chunk = results.get(nextIndexToWrite)!;
+					results.delete(nextIndexToWrite);
+
+					if (!stream.write(chunk)) {
+						await new Promise((resolve) => stream.once('drain', resolve));
+					}
+
+					nextIndexToWrite++;
+				}
+			}
+		};
+
+		await Promise.all(Array.from({ length: concurrency }, worker));
+
+		// Ensure everything is written if any workers finished early
+		while (results.has(nextIndexToWrite)) {
+			const chunk = results.get(nextIndexToWrite)!;
+			results.delete(nextIndexToWrite);
+
+			if (!stream.write(chunk)) {
+				await new Promise((resolve) => stream.once('drain', resolve));
 			}
 
-			chunks.push(Buffer.from(await response.arrayBuffer()));
+			nextIndexToWrite++;
+		}
+	}
+
+	private isHlsManifest(contentType: string, url: string) {
+		return contentType.includes('mpegurl') || url.includes('.m3u8');
+	}
+
+	private parseSegments(manifest: string, base: string): string[] {
+		return manifest
+			.split('\n')
+			.map((l) => l.trim())
+			.filter((l) => l && !l.startsWith('#'))
+			.map((l) => new URL(l, base).toString());
+	}
+
+	private selectVariant(manifest: string, base: string): string | null {
+		const lines = manifest.split('\n');
+		const variants: { url: string; bw: number }[] = [];
+
+		for (let i = 0; i < lines.length; i++) {
+			if (!lines[i].includes('STREAM-INF')) continue;
+
+			const bw = parseInt(lines[i].match(/BANDWIDTH=(\d+)/)?.[1] || '0');
+			const next = lines[i + 1];
+
+			if (next && !next.startsWith('#')) {
+				variants.push({
+					url: new URL(next, base).toString(),
+					bw
+				});
+			}
 		}
 
+		variants.sort((a, b) => b.bw - a.bw);
+
+		return variants[0]?.url ?? null;
+	}
+
+	private parseKey(manifest: string, base: string) {
+		const match = manifest.match(/URI="([^"]+)"(?:,IV=0x([0-9a-fA-F]+))?/);
+		if (!match) return null;
+
 		return {
-			buffer: Buffer.concat(chunks),
-			finalUrl: mediaPlaylistUrl,
-			headers: {
-				'content-type': 'video/mp2t'
-			},
-			html: '',
-			status: 200,
-			ok: true
+			url: new URL(match[1], base).toString(),
+			iv: match[2] ? Buffer.from(match[2], 'hex') : undefined
 		};
 	}
 
-	private async fetchText(url: string, headers: Record<string, string>, timeoutMs: number): Promise<string> {
-		const response = await fetch(url, {
-			method: 'GET',
-			headers,
-			redirect: 'follow',
+	private async fetchKey(url: string) {
+		const res = await fetch(url);
+		return Buffer.from(await res.arrayBuffer());
+	}
+
+	private decrypt(data: Buffer, key: Buffer, iv: Buffer) {
+		const d = createDecipheriv('aes-128-cbc', key, iv);
+		return Buffer.concat([d.update(data), d.final()]);
+	}
+
+	private async fetchWithRetry(url: string, timeoutMs: number, retries = 3): Promise<Buffer> {
+		let err: unknown;
+
+		for (let i = 0; i < retries; i++) {
+			try {
+				const res = await fetch(url, {
+					signal: AbortSignal.timeout(timeoutMs)
+				});
+				if (!res.ok) throw new Error();
+				return Buffer.from(await res.arrayBuffer());
+			} catch (e) {
+				err = e;
+			}
+		}
+
+		throw err;
+	}
+
+	private async fetchText(url: string, timeoutMs: number) {
+		const res = await fetch(url, {
 			signal: AbortSignal.timeout(timeoutMs)
 		});
-
-		if (!response.ok) {
-			throw new Error(`HTTP ${response.status} for ${response.url || url}`);
-		}
-
-		return await response.text();
+		return res.text();
 	}
 
-	private isHlsManifest(contentType: string, finalUrl: string): boolean {
-		return (
-			contentType.includes('application/vnd.apple.mpegurl') ||
-			contentType.includes('application/x-mpegurl') ||
-			finalUrl.includes('.m3u8')
-		);
-	}
-
-	private selectHlsVariant(manifest: string, manifestUrl: string, sourceUrl: string): string | null {
-		const variants = this.parseHlsVariants(manifest, manifestUrl);
-		if (!variants.length) return null;
-
-		const sourceName = this.extractLastPathPart(sourceUrl);
-		const matchingByName = sourceName ? variants.find((variant) => variant.url.includes(sourceName)) : undefined;
-		if (matchingByName) return matchingByName.url;
-
-		const preferredQuality = this.extractQualityLabel(sourceName);
-		const matchingByQuality = preferredQuality ? variants.find((variant) => variant.url.includes(preferredQuality)) : undefined;
-		if (matchingByQuality) return matchingByQuality.url;
-
-		return variants[variants.length - 1]?.url ?? null;
-	}
-
-	private parseHlsVariants(manifest: string, baseUrl: string): Array<{ url: string }> {
-		const lines = manifest
-			.split(/\r?\n/)
-			.map((line) => line.trim())
-			.filter(Boolean);
-		const variants: Array<{ url: string }> = [];
-
-		for (let i = 0; i < lines.length; i++) {
-			if (!lines[i].startsWith('#EXT-X-STREAM-INF')) continue;
-			const nextLine = lines[i + 1];
-			if (!nextLine || nextLine.startsWith('#')) continue;
-
-			const resolved = this.resolveUrl(nextLine, baseUrl);
-			if (resolved) variants.push({ url: resolved });
-		}
-
-		return variants;
-	}
-
-	private parseHlsSegmentUrls(manifest: string, baseUrl: string): string[] {
-		return manifest
-			.split(/\r?\n/)
-			.map((line) => line.trim())
-			.filter((line) => line && !line.startsWith('#'))
-			.map((line) => this.resolveUrl(line, baseUrl))
-			.filter((line): line is string => Boolean(line));
-	}
-
-	private extractLastPathPart(url: string): string {
-		try {
-			const parts = new URL(url).pathname.split('/').filter(Boolean);
-			return parts[parts.length - 1] ?? '';
-		} catch {
-			return '';
-		}
-	}
-
-	private extractQualityLabel(filename: string): string {
-		const match = filename.match(/(\d{3,4}p)/i);
-		return match?.[1]?.toLowerCase() ?? '';
-	}
-
-	private resolveUrl(raw: string, base: string): string | null {
-		try {
-			return new URL(raw, base).toString();
-		} catch {
-			return null;
-		}
-	}
-
-	private async readBody(body: AsyncIterable<unknown>): Promise<Buffer> {
+	private async readBody(body: AsyncIterable<any>): Promise<Buffer> {
 		const chunks: Buffer[] = [];
-		for await (const chunk of body) {
-			chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk as ArrayBuffer));
-		}
+		for await (const c of body) chunks.push(Buffer.from(c));
 		return Buffer.concat(chunks);
 	}
 
 	private decodeBody(buffer: Buffer, headers: IncomingHttpHeaders): Buffer {
-		const responseHeaders = this.headers(headers);
+		const enc = headers['content-encoding'];
+		if (!enc) return buffer;
 
-		const encoding = responseHeaders['content-encoding']?.toLowerCase();
-		if (!encoding) return buffer;
-
-		if (encoding.includes('gzip')) return gunzipSync(buffer);
-		if (encoding.includes('deflate')) return inflateSync(buffer);
-		if (encoding.includes('br')) return brotliDecompressSync(buffer);
+		if (enc.includes('gzip')) return gunzipSync(buffer);
+		if (enc.includes('deflate')) return inflateSync(buffer);
+		if (enc.includes('br')) return brotliDecompressSync(buffer);
 
 		return buffer;
 	}
 
 	private headers(headers: IncomingHttpHeaders): Record<string, string> {
-		const result: Record<string, string> = {};
-		for (const [key, value] of Object.entries(headers)) {
-			if (Array.isArray(value)) result[key] = value.join(', ');
-			else if (value) result[key] = value;
-		}
-		return result;
-	}
-
-	private fetchHeaders(headers: Headers): Record<string, string> {
-		return Object.fromEntries(headers.entries());
+		return Object.fromEntries(Object.entries(headers).map(([k, v]) => [k, Array.isArray(v) ? v.join(',') : v || '']));
 	}
 }

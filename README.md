@@ -134,7 +134,7 @@ PipelineService.build<T>()
 DownloaderService.download()
     → OkPornDownloader | DefaultDownloader
     ↓
-FileService.saveToDevice()
+FileService.toDevice()
 ```
 
 ### Type Flow
