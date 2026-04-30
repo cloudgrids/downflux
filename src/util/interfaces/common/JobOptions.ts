@@ -17,7 +17,7 @@ export interface JobOptions extends HttpFetchOptions {
 	videoQualities?: VideoQuality[];
 
 	/** Tag filtering options */
-	tagOptions?: TagFilterOptions;
+	tagFilterOptions?: TagFilterOptions;
 
 	/** Maximum number of concurrent downloads */
 	maxDownloads?: number;

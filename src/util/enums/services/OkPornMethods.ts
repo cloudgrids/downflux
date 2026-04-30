@@ -5,5 +5,6 @@ export enum OkPornMethods {
 	getTags = 'getTags',
 	getChannels = 'getChannels',
 	getVideos = 'getVideos',
-	getVideo = 'getVideo'
+	getVideo = 'getVideo',
+	getModelVideoIds = 'getModelVideoIds'
 }

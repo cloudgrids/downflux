@@ -5,6 +5,8 @@ import {
 	OkPornExecArgs,
 	OkPornMethods,
 	OkPornModelOutput,
+	OkPornModelVideoCard,
+	OkPornModelVideoIdsOutput,
 	OkPornTagOutput,
 	OkPornVideoOutput,
 	TagKeys,
@@ -16,14 +18,28 @@ import { BaseTransformer } from './BaseTransformer';
 
 export class OkPornTransformer extends BaseTransformer<
 	OkPornExecArgs,
-	OkPornAlbumOutput | OkPornVideoOutput | OkPornModelOutput | OkPornTagOutput | OkPornChannelOutput | DefaultExtractorResult
+	| OkPornAlbumOutput
+	| OkPornVideoOutput
+	| OkPornModelOutput
+	| OkPornTagOutput
+	| OkPornChannelOutput
+	| OkPornModelVideoIdsOutput
+	| DefaultExtractorResult
 > {
 	private readonly ALBUMS_URL = 'https://ok.porn/albums/';
 
 	public override async transform(
 		url: string,
 		request?: OkPornExecArgs
-	): Promise<OkPornAlbumOutput | OkPornVideoOutput | OkPornModelOutput | OkPornTagOutput | OkPornChannelOutput | DefaultExtractorResult> {
+	): Promise<
+		| OkPornAlbumOutput
+		| OkPornVideoOutput
+		| OkPornModelOutput
+		| OkPornTagOutput
+		| OkPornChannelOutput
+		| OkPornModelVideoIdsOutput
+		| DefaultExtractorResult
+	> {
 		const metadata = (await super.transform(url, request)) as DefaultExtractorResult;
 
 		switch (request?.method) {
@@ -45,6 +61,10 @@ export class OkPornTransformer extends BaseTransformer<
 
 			case OkPornMethods.getChannels:
 				return this.toChannelOutput(request, metadata);
+
+			case OkPornMethods.getModelVideoIds:
+				return this.toModelVideoIdsOutput(request, metadata);
+
 			default:
 				return metadata;
 		}
@@ -62,6 +82,17 @@ export class OkPornTransformer extends BaseTransformer<
 		})) as DefaultExtractorResult;
 
 		return this.toAlbumOutput(albumMetadata, request);
+	}
+
+	private toModelVideoIdsOutput(request: OkPornExecArgs, metadata: DefaultExtractorResult): OkPornModelVideoIdsOutput {
+		const videoCards = metadata.customFields?.modelVideoCards as OkPornModelVideoCard[];
+		return {
+			modelName: request.targets[0].split('/').filter(Boolean)[3] ?? '',
+			pageTitle: metadata.title,
+			baseUrl: metadata.baseUrl,
+			videoCount: videoCards.length,
+			videoCards
+		};
 	}
 
 	private toAlbumOutput(metadata: DefaultExtractorResult, request: OkPornExecArgs): OkPornAlbumOutput {
@@ -113,7 +144,7 @@ export class OkPornTransformer extends BaseTransformer<
 
 	private toTagOutput(request: OkPornExecArgs, metadata: DefaultExtractorResult): OkPornTagOutput {
 		const baseUrl = metadata.baseUrl;
-		const { format, tagKeys } = request?.tagArgs || { format: 'url', tagKeys: [] };
+		const { format, allowedKeys } = request?.tagArgs || { format: 'url', allowedKeys: [] };
 		const tagUrls = metadata.anchors.filter((a) => a.match(/^https:\/\/ok\.porn\/tags\/([a-zA-Z0-9-]{2,})\/$/)).filter(Boolean);
 
 		return {
@@ -125,8 +156,8 @@ export class OkPornTransformer extends BaseTransformer<
 				const key = isNumeric ? '#' : tag[0].toUpperCase();
 				if (!acc[key]) acc[key] ??= [];
 
-				if (!tagKeys?.length) acc[key].push(format === 'url' ? anchor : tag);
-				else if (tagKeys?.includes(key as TagKeys)) acc[key].push(format === 'url' ? anchor : tag);
+				if (!allowedKeys?.length) acc[key].push(format === 'url' ? anchor : tag);
+				else if (allowedKeys?.includes(key as TagKeys)) acc[key].push(format === 'url' ? anchor : tag);
 				return acc;
 			}, {})
 		};
@@ -155,8 +186,8 @@ export class OkPornTransformer extends BaseTransformer<
 
 	private filterByQuality(request: OkPornExecArgs, sources: string[]) {
 		const extendedSources = sources.map((url) => ({ url, quality: this.detectVideoQuality(url) }));
-		if (!request?.videoArgs?.length) return extendedSources;
+		if (!request?.videoArgs?.allowedQualities?.length) return extendedSources;
 
-		return extendedSources.filter((source) => request.videoArgs?.includes(source.quality));
+		return extendedSources.filter((source) => request.videoArgs?.allowedQualities?.includes(source.quality));
 	}
 }

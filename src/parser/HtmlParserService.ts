@@ -1,3 +1,5 @@
+import { OkPornModelVideoCard } from '../util';
+
 export class HtmlParserService {
 	public extractElementText(html: string, begin: string, end: string, fallback = ''): string {
 		const start = html.indexOf(begin);
@@ -126,6 +128,46 @@ export class HtmlParserService {
 
 	public extractAllUrls(html: string): string[] {
 		return [...html.matchAll(/https?:\/\/[^\s"'<>\\]+/g)].map((m) => m[0]);
+	}
+
+	public extractVideoCards(html: string, baseUrl?: string): OkPornModelVideoCard[] {
+		const anchorRegex = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
+		let match: RegExpExecArray | null;
+		const results: OkPornModelVideoCard[] = [];
+
+		while ((match = anchorRegex.exec(html)) !== null) {
+			const attrs = match[1];
+			const inner = match[2];
+
+			const previewMatch = /data-preview-custom="([^"]+)"/i.exec(attrs);
+			if (!previewMatch) continue;
+
+			const hrefMatch = /href="([^"]+)"/i.exec(attrs);
+			const titleMatch = /title="([^"]+)"/i.exec(attrs);
+
+			const imgMatch = /<img\b([^>]+)>/i.exec(inner);
+			let imgSrc = '';
+			if (imgMatch) {
+				const imgAttrs = imgMatch[1];
+				const dataOriginalMatch = /data-original="([^"]+)"/i.exec(imgAttrs);
+				const srcMatch = /src="([^"]+)"/i.exec(imgAttrs);
+
+				imgSrc = dataOriginalMatch ? dataOriginalMatch[1] : srcMatch ? srcMatch[1] : '';
+			}
+
+			const durationMatch = /<span[^>]*class="[^"]*duration_item[^"]*"[^>]*>\s*([\d:]+)\s*<\/span>/i.exec(inner);
+			let duration = '';
+			if (durationMatch) duration = durationMatch[1];
+			const videoUrl = this.resolveUrl(hrefMatch?.[1] ?? '', baseUrl) ?? hrefMatch?.[1] ?? '';
+			results.push({
+				videoId: videoUrl.split('/').filter(Boolean).pop() ?? '',
+				customTitle: titleMatch ? this.decodeHtmlEntities(titleMatch[1]) : '',
+				preview: this.resolveUrl(previewMatch[1], baseUrl) ?? previewMatch[1],
+				screenShot: this.resolveUrl(imgSrc, baseUrl) ?? imgSrc,
+				duration
+			});
+		}
+		return results;
 	}
 
 	public extractMetaDescription(html: string): string {
