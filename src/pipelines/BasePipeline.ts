@@ -1,8 +1,8 @@
 import { extname } from 'node:path';
 import { AllowedExtension, DefaultExtractorResult, ExecutionArguments, MediaType, PipelineItem } from '../util';
 
-export class BasePipeline<T = DefaultExtractorResult> {
-	public build(metadata: T, request: ExecutionArguments): PipelineItem[] {
+export class BasePipeline<TExec extends ExecutionArguments, TResult = DefaultExtractorResult> {
+	public build(metadata: TResult, request: TExec): PipelineItem[] {
 		const items: PipelineItem[] = [];
 		const extracted = this.extract(metadata);
 
@@ -22,7 +22,7 @@ export class BasePipeline<T = DefaultExtractorResult> {
 		return this.filterByExt(items, request);
 	}
 
-	protected filterByExt(pipelineItems: PipelineItem[], request: ExecutionArguments): PipelineItem[] {
+	protected filterByExt(pipelineItems: PipelineItem[], request: TExec): PipelineItem[] {
 		if (!request.allowedExtensions?.length) return pipelineItems;
 
 		return pipelineItems.filter((item) => request.allowedExtensions?.includes(item.identifier.extension));

@@ -1,10 +1,10 @@
 import { pathBuilder } from '../helpers/PathBuilder';
-import { ExecutionArguments, OkPornOutput, PipelineItem } from '../util';
+import { OkPornExecArgs, OkPornOutput, PipelineItem } from '../util';
 import { MediaType } from '../util/enums/common/MediaType';
 import { BasePipeline } from './BasePipeline';
 
-export class OkPornPipeline extends BasePipeline<OkPornOutput> {
-	public override build(metadata: OkPornOutput, request: ExecutionArguments): PipelineItem[] {
+export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
+	public override build(metadata: OkPornOutput, request: OkPornExecArgs): PipelineItem[] {
 		const items: PipelineItem[] = [];
 		const extracted = this.extract(metadata);
 

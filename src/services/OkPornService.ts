@@ -1,19 +1,22 @@
 import { InvalidRangeException, InvalidUrlException } from '../exceptions';
 import {
 	OkPornAlbumOutput,
+	OkPornChannelArgs,
 	OkPornChannelOutput,
+	OkPornExecArgs,
 	OkPornMethods,
 	OkPornModelOutput,
 	OkPornTagOutput,
 	OkPornVideoOutput,
 	Range,
 	ServiceType,
+	TagFilterOptions,
 	UrlType,
 	VideoQuality
 } from '../util';
 import { BaseService } from './BaseService';
 
-export class OkPornService extends BaseService {
+export class OkPornService extends BaseService<OkPornExecArgs> {
 	private readonly ALBUMS_URL = 'https://ok.porn/albums/';
 	private readonly VIDEOS_URL = 'https://ok.porn/video/';
 	private readonly MODELS_URL = 'https://ok.porn/models/';
@@ -61,43 +64,44 @@ export class OkPornService extends BaseService {
 		});
 	}
 
-	public getTags(startsWith: string = 'all'): Promise<OkPornTagOutput[]> {
-		const tagsUrl = startsWith === 'all' ? this.TAGS_URL : `${this.TAGS_URL}${startsWith}/`;
-
+	public getTags(args: TagFilterOptions): Promise<OkPornTagOutput[]> {
 		return this.execute<OkPornTagOutput>({
-			targets: [tagsUrl],
+			targets: [this.TAGS_URL],
 			urlType: UrlType.ANCHORS,
 			method: OkPornMethods.getTags,
-			service: ServiceType.OKPORN
+			service: ServiceType.OKPORN,
+			tagArgs: args
 		});
 	}
 
-	public getChannels(range: Range): Promise<OkPornChannelOutput[]> {
+	/** Pagination starts from 1 and ends at 21 */
+	public getChannels(range: Range, args?: OkPornChannelArgs): Promise<OkPornChannelOutput[]> {
 		return this.execute<OkPornChannelOutput>({
 			targets: this.targets(this.CHANNELS_URL, range),
 			urlType: UrlType.ANCHORS,
 			method: OkPornMethods.getChannels,
-			service: ServiceType.OKPORN
+			service: ServiceType.OKPORN,
+			channelArgs: args
 		});
 	}
 
-	public getVideos(range: Range, options: { videoQualities?: VideoQuality[] }): Promise<OkPornVideoOutput[]> {
+	public getVideos(range: Range, args?: VideoQuality[]): Promise<OkPornVideoOutput[]> {
 		return this.execute<OkPornVideoOutput>({
 			targets: this.targets(this.VIDEOS_URL, range),
 			urlType: UrlType.SOURCES,
 			method: OkPornMethods.getVideos,
 			service: ServiceType.OKPORN,
-			videoQualities: options.videoQualities
+			videoArgs: args
 		});
 	}
 
-	public async getVideo(id: string, options: { videoQualities?: VideoQuality[] }): Promise<OkPornVideoOutput> {
+	public async getVideo(id: string, args?: VideoQuality[]): Promise<OkPornVideoOutput> {
 		const [video] = await this.execute<OkPornVideoOutput>({
 			targets: [`${this.VIDEOS_URL}${id}/`],
 			urlType: UrlType.SOURCES,
 			method: OkPornMethods.getVideo,
 			service: ServiceType.OKPORN,
-			videoQualities: options.videoQualities
+			videoArgs: args
 		});
 
 		return video;

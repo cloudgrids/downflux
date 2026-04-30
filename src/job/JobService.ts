@@ -18,11 +18,11 @@ export class JobService {
 		this.backgroundService = new BackgroundService(this.downloaderService, this.fileService);
 	}
 
-	public async execute<T>(request: ExecutionArguments): Promise<ExecutionResult<T>> {
+	public async execute<TResult, TArgs extends ExecutionArguments>(request: TArgs): Promise<ExecutionResult<TResult>> {
 		const { outputType = OutputType.JSON, targets, ...options } = request;
 
 		const pipelineHooks = (options.pipelineHooks ?? []) as PipelineHook[];
-		const extracted: T[] = [];
+		const extracted: TResult[] = [];
 		const errors: Error[] = [];
 		const pipelineItems: PipelineItem[] = [];
 
@@ -33,14 +33,14 @@ export class JobService {
 			failed: 0
 		});
 
-		extracted.push(...(await this.extractMetadata<T>(targets, request)));
+		extracted.push(...(await this.extractMetadata<TResult, TArgs>(targets, request)));
 
 		for (const metadata of extracted) {
 			const items = this.pipelineService.build(metadata, request);
 			pipelineItems.push(...items);
 		}
 
-		const result: ExecutionResult<T> = {
+		const result: ExecutionResult<TResult> = {
 			...request,
 			outputType,
 			extracted,
@@ -77,9 +77,9 @@ export class JobService {
 		}
 	}
 
-	private async extractMetadata<T>(targets: string[], request: ExecutionArguments): Promise<T[]> {
+	private async extractMetadata<TResult, TArgs extends ExecutionArguments>(targets: string[], request: TArgs): Promise<TResult[]> {
 		const extractConcurrency = request.extractConcurrency ?? JobService.DEFAULT_EXTRACT_CONCURRENCY;
-		const extractedByIndex: Array<T | undefined> = new Array(targets.length);
+		const extractedByIndex: Array<TResult | undefined> = new Array(targets.length);
 		let extractedCount = 0;
 
 		await this.backgroundService.runWithConcurrency(targets, extractConcurrency, async (target, index) => {
@@ -89,7 +89,7 @@ export class JobService {
 			});
 
 			try {
-				extractedByIndex[index] = await this.transformerService.transform<T>(target, { ...request, entryUrl: target });
+				extractedByIndex[index] = await this.transformerService.transform<TResult, TArgs>(target, { ...request, entryUrl: target });
 				extractedCount++;
 				this.backgroundService.emitProgress(request, {
 					status: 'extracted',
@@ -101,6 +101,6 @@ export class JobService {
 			}
 		});
 
-		return extractedByIndex.filter(Boolean) as T[];
+		return extractedByIndex.filter(Boolean) as TResult[];
 	}
 }

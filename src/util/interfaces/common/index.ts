@@ -1,4 +1,5 @@
 export * from './DefaultExtractorResult';
+export * from './DirectoryOutputOptions';
 export * from './DownloadResult';
 export * from './ExecutionArguments';
 export * from './ExecutionResult';
@@ -9,3 +10,4 @@ export * from './PipelineItem';
 export * from './ResolvedFile';
 export * from './ServiceDependency';
 export * from './SiteDescriptor';
+export * from './TagFilterOptions';
