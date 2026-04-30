@@ -13,7 +13,7 @@ import {
 } from '../util';
 import { createDefaultDependencies } from './dependency';
 
-export abstract class BaseService {
+export abstract class BaseService<TExec extends ExecutionArguments> {
 	protected jobOptions: JobOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
 	protected readonly deps: ServiceDependencies;
@@ -85,7 +85,7 @@ export abstract class BaseService {
 		return this;
 	}
 
-	protected buildRequest(overrides?: Partial<ExecutionArguments>): ExecutionArguments {
+	protected buildRequest(overrides?: Partial<TExec>): TExec {
 		return {
 			service: overrides?.service as ServiceType,
 			method: overrides?.method as string,
@@ -95,11 +95,11 @@ export abstract class BaseService {
 			executionType: ExecutionType.SEQUENTIAL,
 			...this.jobOptions,
 			...overrides
-		};
+		} as TExec;
 	}
 
-	protected async execute<T>(overrides?: Partial<ExecutionArguments>): Promise<T[]> {
-		const result = await this.deps.jobService.execute<T>(this.buildRequest(overrides));
+	protected async execute<TRes>(overrides?: Partial<TExec>): Promise<TRes[]> {
+		const result = await this.deps.jobService.execute<TRes, TExec>(this.buildRequest(overrides));
 
 		return result.extracted;
 	}

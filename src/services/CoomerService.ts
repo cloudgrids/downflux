@@ -2,7 +2,7 @@ import { InvalidUrlException } from '../exceptions';
 import { ServiceType, UrlType } from '../util';
 import { BaseService } from './BaseService';
 
-export class CoomerService extends BaseService {
+export class CoomerService extends BaseService<any> {
 	constructor(url: string) {
 		super(url);
 		this.validateUrl(url);

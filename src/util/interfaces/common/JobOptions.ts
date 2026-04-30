@@ -1,15 +1,10 @@
 import { ExecutionType, OutputType, VideoQuality } from '../../enums';
 import { AllowedExtension } from '../../types';
+import { DirectoryOutputOptions } from './DirectoryOutputOptions';
 import { HttpFetchOptions } from './HttpFetchOptions';
 import { JobProgressEvent } from './JobProgress';
 import { PipelineHook } from './PipelineItem';
-
-export interface DirectoryOutputOptions {
-	/** Default process.cwd() */
-	directoryPath?: string;
-	/** Added as prefix to the filename */
-	prefix?: string;
-}
+import { TagFilterOptions } from './TagFilterOptions';
 
 export interface JobOptions extends HttpFetchOptions {
 	/** Directory configuration for the job output */
@@ -20,6 +15,9 @@ export interface JobOptions extends HttpFetchOptions {
 
 	/** Allowed video qualities */
 	videoQualities?: VideoQuality[];
+
+	/** Tag filtering options */
+	tagOptions?: TagFilterOptions;
 
 	/** Maximum number of concurrent downloads */
 	maxDownloads?: number;

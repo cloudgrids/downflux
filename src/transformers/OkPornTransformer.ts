@@ -1,25 +1,28 @@
 import {
 	DefaultExtractorResult,
-	ExecutionArguments,
 	OkPornAlbumOutput,
 	OkPornChannelOutput,
+	OkPornExecArgs,
 	OkPornMethods,
 	OkPornModelOutput,
 	OkPornTagOutput,
 	OkPornVideoOutput,
+	TagKeys,
+	TagsOutput,
 	UrlType,
 	VideoQuality
 } from '../util';
 import { BaseTransformer } from './BaseTransformer';
 
 export class OkPornTransformer extends BaseTransformer<
+	OkPornExecArgs,
 	OkPornAlbumOutput | OkPornVideoOutput | OkPornModelOutput | OkPornTagOutput | OkPornChannelOutput | DefaultExtractorResult
 > {
 	private readonly ALBUMS_URL = 'https://ok.porn/albums/';
 
 	public override async transform(
 		url: string,
-		request?: ExecutionArguments
+		request?: OkPornExecArgs
 	): Promise<OkPornAlbumOutput | OkPornVideoOutput | OkPornModelOutput | OkPornTagOutput | OkPornChannelOutput | DefaultExtractorResult> {
 		const metadata = (await super.transform(url, request)) as DefaultExtractorResult;
 
@@ -38,7 +41,7 @@ export class OkPornTransformer extends BaseTransformer<
 				return this.toModelOutput(metadata);
 
 			case OkPornMethods.getTags:
-				return this.toTagOutput(metadata);
+				return this.toTagOutput(request, metadata);
 
 			case OkPornMethods.getChannels:
 				return this.toChannelOutput(metadata);
@@ -47,7 +50,7 @@ export class OkPornTransformer extends BaseTransformer<
 		}
 	}
 
-	private async getVideoAlbum(metadata: DefaultExtractorResult, request: ExecutionArguments): Promise<OkPornAlbumOutput | undefined> {
+	private async getVideoAlbum(metadata: DefaultExtractorResult, request: OkPornExecArgs): Promise<OkPornAlbumOutput | undefined> {
 		const videoAlbumId = metadata.customFields?.videoAlbumId;
 
 		if (!videoAlbumId) return undefined;
@@ -56,12 +59,12 @@ export class OkPornTransformer extends BaseTransformer<
 			...request,
 			method: OkPornMethods.getAlbum,
 			urlType: UrlType.IMAGES
-		} as ExecutionArguments)) as DefaultExtractorResult;
+		})) as DefaultExtractorResult;
 
 		return this.toAlbumOutput(albumMetadata, request);
 	}
 
-	private toAlbumOutput(metadata: DefaultExtractorResult, request: ExecutionArguments): OkPornAlbumOutput {
+	private toAlbumOutput(metadata: DefaultExtractorResult, request: OkPornExecArgs): OkPornAlbumOutput {
 		return {
 			albumTitle: metadata.title,
 			albumUrl: metadata.baseUrl,
@@ -76,11 +79,7 @@ export class OkPornTransformer extends BaseTransformer<
 		};
 	}
 
-	private toVideoOutput(
-		metadata: DefaultExtractorResult,
-		request: ExecutionArguments,
-		videoAlbum?: OkPornAlbumOutput
-	): OkPornVideoOutput {
+	private toVideoOutput(metadata: DefaultExtractorResult, request: OkPornExecArgs, videoAlbum?: OkPornAlbumOutput): OkPornVideoOutput {
 		return {
 			videoTitle: metadata.title,
 			videoUrl: metadata.baseUrl,
@@ -99,19 +98,34 @@ export class OkPornTransformer extends BaseTransformer<
 	}
 
 	private toModelOutput(metadata: DefaultExtractorResult): OkPornModelOutput {
+		const modelUrls = metadata.anchors.filter((a) => a.match(/https:\/\/ok\.porn\/models\/([a-z-]{2,})\/$/)).filter(Boolean);
 		return {
 			pageTitle: metadata.title,
 			pageUrl: metadata.baseUrl,
-			modelUrls: metadata.anchors.filter((a) => a.match(/https:\/\/ok\.porn\/models\/([a-z-]{2,})\/$/)),
-			baseUrl: metadata.baseUrl
+			baseUrl: metadata.baseUrl,
+			modelCount: modelUrls.length,
+			modelUrls
 		};
 	}
 
-	private toTagOutput(metadata: DefaultExtractorResult): OkPornTagOutput {
+	private toTagOutput(request: OkPornExecArgs, metadata: DefaultExtractorResult): OkPornTagOutput {
+		const baseUrl = metadata.baseUrl;
+		const { format, tagKeys } = request?.tagArgs || { format: 'url', tagKeys: [] };
+		const tagUrls = metadata.anchors.filter((a) => a.match(/https:\/\/ok\.porn\/tags\/([a-zA-Z0-9-]{2,})\/$/)).filter(Boolean);
+
 		return {
-			tagName: metadata.title,
-			tagUrl: metadata.baseUrl,
-			baseUrl: metadata.baseUrl
+			baseUrl,
+			tags: tagUrls.reduce<TagsOutput>((acc, anchor) => {
+				const tag = anchor.split('/').filter(Boolean).pop() ?? '';
+				const isNumeric = /^\d+$/.test(tag[0]);
+
+				const key = isNumeric ? '#' : tag[0].toUpperCase();
+				if (!acc[key]) acc[key] ??= [];
+
+				if (!tagKeys?.length) acc[key].push(format === 'url' ? anchor : tag);
+				else if (tagKeys?.includes(key as TagKeys)) acc[key].push(format === 'url' ? anchor : tag);
+				return acc;
+			}, {})
 		};
 	}
 
@@ -134,10 +148,10 @@ export class OkPornTransformer extends BaseTransformer<
 		return VideoQuality.Q480;
 	}
 
-	private filterByQuality(request: ExecutionArguments, sources: string[]) {
+	private filterByQuality(request: OkPornExecArgs, sources: string[]) {
 		const extendedSources = sources.map((url) => ({ url, quality: this.detectVideoQuality(url) }));
-		if (!request?.videoQualities?.length) return extendedSources;
+		if (!request?.videoArgs?.length) return extendedSources;
 
-		return extendedSources.filter((source) => request.videoQualities?.includes(source.quality));
+		return extendedSources.filter((source) => request.videoArgs?.includes(source.quality));
 	}
 }

@@ -5,11 +5,23 @@ async function main() {
 	console.log(`\n\n=== Testing:`);
 
 	try {
+		// await new OkPornService(url1)
+		// 	.setJobOptions({ logProgress: true })
+		// 	.onProgress(console.log)
+		// 	.setOutput(OutputType.JSON, { directoryPath: 'downflux_' })
+		// 	.getModels({ type: 'index', start: 1, end: 2 });
+
+		// await new OkPornService(url1)
+		// 	.setJobOptions({ logProgress: true })
+		// 	.onProgress(console.log)
+		// 	.setOutput(OutputType.JSON, { directoryPath: 'downflux_' })
+		// 	.getVideos({ type: 'index', start: 100, end: 105 });
+
 		await new OkPornService(url1)
 			.setJobOptions({ logProgress: true })
 			.onProgress(console.log)
 			.setOutput(OutputType.JSON, { directoryPath: 'downflux_' })
-			.getModels({ type: 'index', start: 1, end: 2 });
+			.getTags({});
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {
