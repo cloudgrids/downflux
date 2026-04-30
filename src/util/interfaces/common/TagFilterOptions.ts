@@ -3,7 +3,7 @@ import { OkPornIdType } from '../services';
 
 export interface TagFilterOptions {
 	/** List of tags for filtering*/
-	tagKeys?: TagKeys[];
+	allowedKeys?: TagKeys[];
 
 	/** Format of the tags output*/
 	format?: OkPornIdType;

@@ -8,7 +8,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 		const items: PipelineItem[] = [];
 		const extracted = this.extract(metadata);
 
-		for (const { mediaType, url } of extracted) {
+		for (const { mediaType, url, id } of extracted) {
 			items.push({
 				downloadUrl: url,
 				baseUrl: metadata.baseUrl,
@@ -16,43 +16,56 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 				identifier: {
 					mediaType,
 					...this.detectResourceType(url),
-					key: this.buildIdentifier(mediaType, metadata)
+					key: this.buildIdentifier(mediaType, metadata, id)
 				}
 			});
 		}
 
-		return this.filterByExt(items, request);
+		return this.sliceByMaxDownloads(this.filterByExt(items, request), request);
 	}
 
-	protected override buildIdentifier(mediaType: MediaType, metadata: OkPornOutput): string {
+	protected override buildIdentifier(mediaType: MediaType, metadata: OkPornOutput, id?: string): string {
 		const prefix = 'okporn';
-		let typeSegment: string;
+		let mediaSegment: string;
 
 		switch (mediaType) {
 			case MediaType.ALBUMS:
-				typeSegment = `${mediaType}/${metadata.albumId}`;
+				mediaSegment = `${MediaType.ALBUMS}/${metadata.albumId}`;
 				break;
+
 			case MediaType.VIDEOS:
-				typeSegment = `${mediaType}/${metadata.videoId}`;
+				mediaSegment = `${MediaType.VIDEOS}/${metadata.videoId}`;
 				break;
+
 			case MediaType.VIDEO_ALBUM:
-				typeSegment = `${MediaType.VIDEOS}/${mediaType}/${metadata.videoAlbum?.albumId}`;
+				mediaSegment = `${MediaType.VIDEOS}/${metadata.videoId}/${mediaType}/${metadata.videoAlbum?.albumId}`;
 				break;
+
+			case MediaType.VIDEO_PREVIEW:
+				mediaSegment = `${MediaType.VIDEOS}/${metadata?.videoId ?? id}/${mediaType}`;
+				break;
+
+			case MediaType.VIDEO_SCREENSHOT:
+				mediaSegment = `${MediaType.VIDEOS}/${metadata?.videoId ?? id}/${mediaType}`;
+				break;
+
 			case MediaType.VIDEO_POSTER:
-				typeSegment = `${MediaType.VIDEOS}/${mediaType}/${metadata.videoId}`;
+				mediaSegment = `${MediaType.VIDEOS}/${metadata?.videoId}/${mediaType}`;
 				break;
+
 			case MediaType.ALBUM_PREVIEW:
-				typeSegment = `${MediaType.ALBUMS}/${mediaType}/${metadata.albumId}`;
+				mediaSegment = `${MediaType.ALBUMS}/${metadata.albumId}/${mediaType}`;
 				break;
+
 			default:
-				typeSegment = 'okporn';
+				mediaSegment = 'misc';
 		}
 
-		return pathBuilder(prefix, metadata.modelName?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', typeSegment);
+		return pathBuilder(prefix, metadata.modelName?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', mediaSegment);
 	}
 
-	protected extract(metadata: OkPornOutput): { mediaType: MediaType; url: string }[] {
-		const urls: { mediaType: MediaType; url: string }[] = [];
+	protected extract(metadata: OkPornOutput): { mediaType: MediaType; url: string; id?: string }[] {
+		const urls: { mediaType: MediaType; url: string; id?: string }[] = [];
 
 		if (metadata.albumImages?.length) {
 			metadata.albumImages.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.ALBUMS, url }));
@@ -66,12 +79,20 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 			metadata.videoAlbum.albumImages.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.VIDEO_ALBUM, url }));
 		}
 
-		if (metadata.videoPoster) {
-			urls.push({ mediaType: MediaType.VIDEO_POSTER, url: metadata.videoPoster });
+		if (metadata.videoPoster) urls.push({ mediaType: MediaType.VIDEO_POSTER, url: metadata.videoPoster });
+
+		if (metadata.albumThumbnail) urls.push({ mediaType: MediaType.ALBUM_PREVIEW, url: metadata.albumThumbnail });
+
+		if (metadata.videoCards?.length) {
+			metadata.videoCards
+				.filter(Boolean)
+				.forEach((card) => urls.push({ mediaType: MediaType.VIDEO_PREVIEW, url: card.preview, id: card.videoId }));
 		}
 
-		if (metadata.albumThumbnail) {
-			urls.push({ mediaType: MediaType.ALBUM_PREVIEW, url: metadata.albumThumbnail });
+		if (metadata.videoCards?.length) {
+			metadata.videoCards
+				.filter(Boolean)
+				.forEach((card) => urls.push({ mediaType: MediaType.VIDEO_SCREENSHOT, url: card.screenShot, id: card.videoId }));
 		}
 
 		return urls;

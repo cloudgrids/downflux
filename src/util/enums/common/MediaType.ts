@@ -8,6 +8,7 @@ export enum MediaType {
 	VIDEO_POSTER = 'video_poster',
 	ALBUM_PREVIEW = 'album_preview',
 	VIDEO_ALBUM = 'video_album',
+	VIDEO_PREVIEW = 'video_preview',
 	AVATAR = 'avatar',
 	COVER = 'cover',
 	OTHER = 'other'

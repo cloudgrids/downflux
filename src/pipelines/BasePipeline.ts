@@ -28,6 +28,10 @@ export class BasePipeline<TExec extends ExecutionArguments, TResult = DefaultExt
 		return pipelineItems.filter((item) => request.allowedExtensions?.includes(item.identifier.extension));
 	}
 
+	protected sliceByMaxDownloads(items: PipelineItem[], request: TExec): PipelineItem[] {
+		return request.maxDownloads ? items.slice(0, request.maxDownloads) : items;
+	}
+
 	protected buildIdentifier(mediaType: MediaType, metadata: any): string {
 		return `${new URL(metadata.baseUrl).hostname}/${mediaType}/${metadata.urlType}/${new URL(metadata.baseUrl).pathname}`;
 	}

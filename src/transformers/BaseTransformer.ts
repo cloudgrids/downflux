@@ -18,9 +18,12 @@ export abstract class BaseTransformer<TExec extends ExecutionArguments, TResult 
 		const descriptor = this.findTransformer(url);
 		const match = descriptor?.pattern.exec(url);
 
+		console.log({ match, url });
+
 		const base = this.defaultParse(fetched.html, fetched.finalUrl);
 
 		if (descriptor?.transform && match) {
+			console.log('Transformed');
 			const transformed = descriptor.transform({
 				html: fetched.html,
 				finalUrl: fetched.finalUrl,

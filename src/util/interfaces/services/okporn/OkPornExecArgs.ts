@@ -1,11 +1,15 @@
-import { ExecutionArguments } from '../..';
 import { VideoQuality } from '../../../enums';
-import { TagFilterOptions } from '../../common';
+import { ExecutionArguments, TagFilterOptions } from '../../common';
 
 export type OkPornIdType = 'url' | 'path';
 
+export interface OkPornVideoExecArgs {
+	allowedQualities?: VideoQuality[];
+	format?: OkPornIdType;
+}
+
 export interface OkPornExecArgs extends ExecutionArguments {
-	videoArgs?: VideoQuality[];
+	videoArgs?: OkPornVideoExecArgs;
 	tagArgs?: TagFilterOptions;
 	channelArgs?: OkPornIdType;
 	modelArgs?: OkPornIdType;

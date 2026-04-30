@@ -28,64 +28,59 @@ export class BackgroundService {
 	): Promise<void> {
 		const downloadConcurrency = options.concurrency ?? BackgroundService.DEFAULT_DOWNLOAD_CONCURRENCY;
 
-		await this.runWithConcurrency(
-			result.pipelineItems,
-			downloadConcurrency,
-			async (pipelineItem) => {
-				if (options?.signal?.aborted) {
-					this.emitProgress(options, {
-						status: 'aborted',
-						totalItems: result.pipelineItems.length,
-						downloaded: result.downloaded,
-						failed: result.failed
-					});
-					return;
-				}
-
-				this.runExtractHooks(pipelineHooks, pipelineItem);
+		await this.runWithConcurrency(result.pipelineItems, downloadConcurrency, async (pipelineItem) => {
+			if (options?.signal?.aborted) {
 				this.emitProgress(options, {
-					status: 'downloading',
+					status: 'aborted',
+					totalItems: result.pipelineItems.length,
+					downloaded: result.downloaded,
+					failed: result.failed
+				});
+				return;
+			}
+
+			this.runExtractHooks(pipelineHooks, pipelineItem);
+			this.emitProgress(options, {
+				status: 'downloading',
+				totalItems: result.pipelineItems.length,
+				downloaded: result.downloaded,
+				failed: result.failed,
+				item: pipelineItem
+			});
+
+			try {
+				const downloadResult = await this.downloaderService.download(pipelineItem, {
+					...options,
+					outputType,
+					service: request.service,
+					referer: request.entryUrl
+				});
+
+				result.downloaded++;
+				this.runDownloadHooks(pipelineHooks, pipelineItem, downloadResult);
+				this.emitProgress(options, {
+					status: 'downloaded',
 					totalItems: result.pipelineItems.length,
 					downloaded: result.downloaded,
 					failed: result.failed,
-					item: pipelineItem
+					item: pipelineItem,
+					result: downloadResult
 				});
-
-				try {
-					const downloadResult = await this.downloaderService.download(pipelineItem, {
-						...options,
-						outputType,
-						service: request.service,
-						referer: request.entryUrl
-					});
-
-					result.downloaded++;
-					this.runDownloadHooks(pipelineHooks, pipelineItem, downloadResult);
-					this.emitProgress(options, {
-						status: 'downloaded',
-						totalItems: result.pipelineItems.length,
-						downloaded: result.downloaded,
-						failed: result.failed,
-						item: pipelineItem,
-						result: downloadResult
-					});
-				} catch (err) {
-					result.failed++;
-					const normalizedError = err instanceof Error ? err : new Error(String(err));
-					result.errors.push(normalizedError);
-					console.error(`Error downloading ${pipelineItem.downloadUrl}:`, err);
-					this.emitProgress(options, {
-						status: 'failed',
-						totalItems: result.pipelineItems.length,
-						downloaded: result.downloaded,
-						failed: result.failed,
-						item: pipelineItem,
-						error: normalizedError
-					});
-				}
-			},
-			request.maxDownloads
-		);
+			} catch (err) {
+				result.failed++;
+				const normalizedError = err instanceof Error ? err : new Error(String(err));
+				result.errors.push(normalizedError);
+				console.error(`Error downloading ${pipelineItem.downloadUrl}:`, err);
+				this.emitProgress(options, {
+					status: 'failed',
+					totalItems: result.pipelineItems.length,
+					downloaded: result.downloaded,
+					failed: result.failed,
+					item: pipelineItem,
+					error: normalizedError
+				});
+			}
+		});
 
 		this.emitProgress(options, {
 			status: 'completed',
@@ -130,24 +125,17 @@ export class BackgroundService {
 		console.log(`[job:${event.status}]${totals ? ` ${totals}` : ''}`);
 	}
 
-	public async runWithConcurrency<T>(
-		items: T[],
-		concurrency: number,
-		worker: (item: T, index: number) => Promise<void>,
-		maxDownloads?: number
-	): Promise<void> {
+	public async runWithConcurrency<T>(items: T[], concurrency: number, worker: (item: T, index: number) => Promise<void>): Promise<void> {
 		if (!items.length) return;
 
-		const finalItems = items.slice(0, maxDownloads || items.length);
-
-		const workerCount = Math.max(1, Math.min(concurrency, finalItems.length));
+		const workerCount = Math.max(1, Math.min(concurrency, items.length));
 		let currentIndex = 0;
 
 		const runners = Array.from({ length: workerCount }, async () => {
 			while (true) {
 				const index = currentIndex++;
-				if (index >= finalItems.length) return;
-				await worker(finalItems[index], index);
+				if (index >= items.length) return;
+				await worker(items[index], index);
 			}
 		});
 

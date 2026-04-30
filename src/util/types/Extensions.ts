@@ -1,4 +1,6 @@
-export type Range = { type: 'index'; start: number; end: number } | { type: 'page'; page: number; limit: number };
+export type IndexRange = { start: number; end: number };
+export type PageRange = { page: number; limit: number };
+export type Range = IndexRange | PageRange;
 
 export const EXTENSION_MAP = {
 	image: ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'tiff', 'tif', 'svg', 'ico', 'avif', 'heic', 'heif'],
