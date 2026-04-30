@@ -1,10 +1,7 @@
 import { finished } from 'stream/promises';
-import { OutputType } from '../enums';
-import { HttpFetcherService } from '../fetcher/HttpFetcherService';
-import { FileService } from '../file/FileService';
-import { DownloadResult, PipelineItem } from '../types';
-import { ResolvedFile } from '../types/ResolvedFile';
-import { DownloadOptions } from './DownloaderService';
+import { HttpFetcherService } from '../fetcher';
+import { FileService } from '../file';
+import { DownloadOptions, DownloadResult, OutputType, PipelineItem, ResolvedFile } from '../util';
 
 export abstract class BaseDownloader {
 	constructor(

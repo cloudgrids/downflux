@@ -39,13 +39,7 @@ export class FfmpegService {
 				mimeType: 'video/mp4'
 			};
 		} catch (error) {
-			console.error(`Failed to remux ${inputPath}:`, error);
-			return {
-				path: inputPath,
-				filename: inputPath.split('/').pop()!,
-				extension: 'ts',
-				mimeType: 'video/mp2t'
-			};
+			throw new Error(`Failed to re-mux transport stream: ${(error as Error).message}`, { cause: error });
 		}
 	}
 }

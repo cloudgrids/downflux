@@ -1,5 +1,4 @@
-import { ServiceType } from '../enums';
-import { ErrorCodes } from '../enums/ErrorCodes';
+import { ErrorCodes, ServiceType } from '../util';
 import { BaseException } from './BaseException';
 
 export class InvalidDestinationException extends BaseException {

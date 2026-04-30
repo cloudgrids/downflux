@@ -1,11 +1,8 @@
 import { DownloaderService } from '../downloaders';
-import { OutputType } from '../enums';
 import { FileService } from '../file';
 import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';
-import { PipelineHook, PipelineItem } from '../types';
-import { ExecutionArguments } from '../types/ExecutionArguments';
-import { ExecutionResult } from '../types/ExecutionResult';
+import { ExecutionArguments, ExecutionResult, OutputType, PipelineHook, PipelineItem } from '../util';
 import { BackgroundService } from './BackgroundProcess';
 
 export class JobService {

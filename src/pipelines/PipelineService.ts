@@ -1,5 +1,4 @@
-import { ServiceType } from '../enums';
-import { ExecutionArguments, PipelineItem } from '../types';
+import { ExecutionArguments, PipelineItem, ServiceType } from '../util';
 import { BasePipeline } from './BasePipeline';
 import { OkPornPipeline } from './OkPornPipeline';
 

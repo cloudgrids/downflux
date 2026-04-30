@@ -1,7 +1,6 @@
-import { ServiceType } from '../enums';
-import { HttpFetcherService } from '../fetcher/HttpFetcherService';
-import { HtmlParserService } from '../parser/HtmlParserService';
-import { ExecutionArguments } from '../types';
+import { HttpFetcherService } from '../fetcher';
+import { HtmlParserService } from '../parser';
+import { ExecutionArguments, ServiceType } from '../util';
 import { BaseTransformer } from './BaseTransformer';
 import { DefaultTransformer } from './DefaultTransformer';
 import { OkPornTransformer } from './OkPornTransformer';

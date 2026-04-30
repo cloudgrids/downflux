@@ -1,7 +1,5 @@
 import { extname } from 'node:path';
-import { AllowedExtension } from '../common';
-import { MediaType } from '../common/MediaType';
-import { DefaultExtractorResult, ExecutionArguments, PipelineItem } from '../types';
+import { AllowedExtension, DefaultExtractorResult, ExecutionArguments, MediaType, PipelineItem } from '../util';
 
 export class BasePipeline<T = DefaultExtractorResult> {
 	public build(metadata: T, request: ExecutionArguments): PipelineItem[] {

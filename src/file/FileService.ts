@@ -2,13 +2,8 @@ import { createWriteStream, promises as fs, mkdirSync, writeFileSync, WriteStrea
 import { dirname, extname, isAbsolute, relative, resolve } from 'path';
 import { Readable, Writable } from 'stream';
 import { pipeline } from 'stream/promises';
-
-import { MIME_TYPE } from '../common/MimeType';
-import { OutputType, ServiceType } from '../enums';
 import { InvalidDestinationException } from '../exceptions';
-import { DownloadResult } from '../types';
-import { ExecutionResult } from '../types/ExecutionResult';
-import { ResolvedFile } from '../types/ResolvedFile';
+import { DownloadResult, ExecutionResult, MIME_TYPE, OutputType, ResolvedFile, ServiceType } from '../util';
 import { FfmpegService } from './FFmpegService';
 import { PathBuilderService } from './PathBuilderService';
 

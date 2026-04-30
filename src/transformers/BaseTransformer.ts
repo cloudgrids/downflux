@@ -1,9 +1,6 @@
-import { HttpFetcherService } from '../fetcher/HttpFetcherService';
-import { SITE_EXTRACTORS } from '../helpers/SiteExtractors';
-import { HtmlParserService } from '../parser/HtmlParserService';
-import { ExecutionArguments } from '../types';
-import { DefaultExtractorResult } from '../types/DefaultExtractorResult';
-import { SiteDescriptor } from '../types/SiteDescriptor';
+import { HttpFetcherService } from '../fetcher';
+import { HtmlParserService } from '../parser';
+import { DefaultExtractorResult, ExecutionArguments, SITE_EXTRACTORS, SiteDescriptor } from '../util';
 
 export abstract class BaseTransformer<T = DefaultExtractorResult> {
 	constructor(
