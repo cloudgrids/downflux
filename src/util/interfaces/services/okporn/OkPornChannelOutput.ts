@@ -1,6 +1,5 @@
 export interface OkPornChannelOutput {
-	channelName: string;
-	channelUrl: string;
-	channelThumbnail?: string;
+	channelUrls: string[];
+	channelCount?: number;
 	baseUrl: string;
 }

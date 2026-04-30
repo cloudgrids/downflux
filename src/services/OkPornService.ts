@@ -1,9 +1,9 @@
 import { InvalidRangeException, InvalidUrlException } from '../exceptions';
 import {
 	OkPornAlbumOutput,
-	OkPornChannelArgs,
 	OkPornChannelOutput,
 	OkPornExecArgs,
+	OkPornIdType,
 	OkPornMethods,
 	OkPornModelOutput,
 	OkPornTagOutput,
@@ -29,9 +29,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	}
 
 	protected override validateUrl(url: string): void {
-		if (!url.startsWith('https://ok.porn/')) {
-			throw new InvalidUrlException(url, ServiceType.OKPORN);
-		}
+		if (!url.startsWith('https://ok.porn/')) throw new InvalidUrlException(url, ServiceType.OKPORN);
 	}
 
 	public async getAlbums(param: Range): Promise<OkPornAlbumOutput[]> {
@@ -55,12 +53,13 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	}
 
 	/** Pagination starts from 1 and ends at 555 */
-	public getModels(range: Range = { type: 'index', start: 1, end: 10 }): Promise<OkPornModelOutput[]> {
+	public getModels(range: Range, args?: OkPornIdType): Promise<OkPornModelOutput[]> {
 		return this.execute<OkPornModelOutput>({
 			targets: this.targets(this.MODELS_URL, range),
 			urlType: UrlType.ANCHORS,
 			method: OkPornMethods.getModels,
-			service: ServiceType.OKPORN
+			service: ServiceType.OKPORN,
+			modelArgs: args
 		});
 	}
 
@@ -75,7 +74,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	}
 
 	/** Pagination starts from 1 and ends at 21 */
-	public getChannels(range: Range, args?: OkPornChannelArgs): Promise<OkPornChannelOutput[]> {
+	public getChannels(range: Range, args?: OkPornIdType): Promise<OkPornChannelOutput[]> {
 		return this.execute<OkPornChannelOutput>({
 			targets: this.targets(this.CHANNELS_URL, range),
 			urlType: UrlType.ANCHORS,

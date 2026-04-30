@@ -34,17 +34,17 @@ export class OkPornTransformer extends BaseTransformer<
 			case OkPornMethods.getVideo:
 			case OkPornMethods.getVideos: {
 				const album = await this.getVideoAlbum(metadata, request);
-				return this.toVideoOutput(metadata, request, album);
+				return this.toVideoOutput(request, metadata, album);
 			}
 
 			case OkPornMethods.getModels:
-				return this.toModelOutput(metadata);
+				return this.toModelOutput(request, metadata);
 
 			case OkPornMethods.getTags:
 				return this.toTagOutput(request, metadata);
 
 			case OkPornMethods.getChannels:
-				return this.toChannelOutput(metadata);
+				return this.toChannelOutput(request, metadata);
 			default:
 				return metadata;
 		}
@@ -79,7 +79,7 @@ export class OkPornTransformer extends BaseTransformer<
 		};
 	}
 
-	private toVideoOutput(metadata: DefaultExtractorResult, request: OkPornExecArgs, videoAlbum?: OkPornAlbumOutput): OkPornVideoOutput {
+	private toVideoOutput(request: OkPornExecArgs, metadata: DefaultExtractorResult, videoAlbum?: OkPornAlbumOutput): OkPornVideoOutput {
 		return {
 			videoTitle: metadata.title,
 			videoUrl: metadata.baseUrl,
@@ -97,8 +97,11 @@ export class OkPornTransformer extends BaseTransformer<
 		};
 	}
 
-	private toModelOutput(metadata: DefaultExtractorResult): OkPornModelOutput {
-		const modelUrls = metadata.anchors.filter((a) => a.match(/https:\/\/ok\.porn\/models\/([a-z-]{2,})\/$/)).filter(Boolean);
+	private toModelOutput(request: OkPornExecArgs, metadata: DefaultExtractorResult): OkPornModelOutput {
+		let modelUrls = metadata.anchors.filter((a) => a.match(/https:\/\/ok\.porn\/models\/([a-z-]{2,})\/$/)).filter(Boolean);
+
+		if (request.modelArgs === 'path') modelUrls = modelUrls.map((url) => url.split('/').filter(Boolean).pop() ?? '');
+
 		return {
 			pageTitle: metadata.title,
 			pageUrl: metadata.baseUrl,
@@ -111,7 +114,7 @@ export class OkPornTransformer extends BaseTransformer<
 	private toTagOutput(request: OkPornExecArgs, metadata: DefaultExtractorResult): OkPornTagOutput {
 		const baseUrl = metadata.baseUrl;
 		const { format, tagKeys } = request?.tagArgs || { format: 'url', tagKeys: [] };
-		const tagUrls = metadata.anchors.filter((a) => a.match(/https:\/\/ok\.porn\/tags\/([a-zA-Z0-9-]{2,})\/$/)).filter(Boolean);
+		const tagUrls = metadata.anchors.filter((a) => a.match(/^https:\/\/ok\.porn\/tags\/([a-zA-Z0-9-]{2,})\/$/)).filter(Boolean);
 
 		return {
 			baseUrl,
@@ -129,12 +132,14 @@ export class OkPornTransformer extends BaseTransformer<
 		};
 	}
 
-	private toChannelOutput(metadata: DefaultExtractorResult): OkPornChannelOutput {
+	private toChannelOutput(request: OkPornExecArgs, metadata: DefaultExtractorResult): OkPornChannelOutput {
+		let channelUrls = metadata.anchors.filter((a) => a.match(/^https:\/\/ok\.porn\/sites\/([a-z-]{2,})\/$/)).filter(Boolean);
+		if (request.channelArgs === 'path') channelUrls = channelUrls.map((url) => url.split('/').filter(Boolean).pop() ?? '');
+
 		return {
-			channelName: metadata.title,
-			channelUrl: metadata.baseUrl,
-			channelThumbnail: metadata.images[0],
-			baseUrl: metadata.baseUrl
+			channelUrls,
+			baseUrl: metadata.baseUrl,
+			channelCount: metadata.anchors.length
 		};
 	}
 
