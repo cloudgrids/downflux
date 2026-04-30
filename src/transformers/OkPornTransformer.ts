@@ -1,8 +1,15 @@
-import { OkPornMethods, UrlType, VideoQuality } from '../enums';
-import { OkPornChannelOutput, OkPornModelOutput, OkPornTagOutput } from '../services';
-import { OkPornAlbumOutput } from '../services/okporn/output/OkPornAlbumOutput';
-import { OkPornVideoOutput } from '../services/okporn/output/OkPornVideoOutput';
-import { DefaultExtractorResult, ExecutionArguments } from '../types';
+import {
+	DefaultExtractorResult,
+	ExecutionArguments,
+	OkPornAlbumOutput,
+	OkPornChannelOutput,
+	OkPornMethods,
+	OkPornModelOutput,
+	OkPornTagOutput,
+	OkPornVideoOutput,
+	UrlType,
+	VideoQuality
+} from '../util';
 import { BaseTransformer } from './BaseTransformer';
 
 export class OkPornTransformer extends BaseTransformer<

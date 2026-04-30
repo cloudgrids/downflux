@@ -1,7 +1,15 @@
 import { DownloaderService } from '../downloaders';
-import { OutputType } from '../enums';
 import { FileService } from '../file';
-import { DownloadResult, ExecutionArguments, ExecutionResult, JobOptions, JobProgressEvent, PipelineHook, PipelineItem } from '../types';
+import {
+	DownloadResult,
+	ExecutionArguments,
+	ExecutionResult,
+	JobOptions,
+	JobProgressEvent,
+	OutputType,
+	PipelineHook,
+	PipelineItem
+} from '../util';
 
 export class BackgroundService {
 	private static readonly DEFAULT_DOWNLOAD_CONCURRENCY = 5;

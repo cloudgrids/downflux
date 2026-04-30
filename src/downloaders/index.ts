@@ -1,4 +1,4 @@
 export * from './BaseDownloader';
+export * from './DefaultDownloader';
 export * from './DownloaderService';
-export * from './default';
-export * from './okporn';
+export * from './OkPornDownloader';

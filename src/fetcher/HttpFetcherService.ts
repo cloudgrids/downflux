@@ -4,23 +4,7 @@ import { pipeline } from 'stream/promises';
 import { Dispatcher, Pool, interceptors } from 'undici';
 import { IncomingHttpHeaders } from 'undici/types/header';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
-import { DownloadOptions } from '../downloaders';
-import { HttpFetchOptions } from '../types';
-
-export interface FetchResult {
-	html: string;
-	buffer: Buffer;
-	finalUrl: string;
-	status: number;
-	ok: boolean;
-	headers: Record<string, string>;
-}
-
-export interface HLSStreamRequest {
-	finalUrl: string;
-	headers: Record<string, string>;
-	start: (stream: Writable) => Promise<void>;
-}
+import { DownloadOptions, FetchResult, HLSStreamRequest, HttpFetchOptions } from '../util';
 
 export class HttpFetcherService {
 	private readonly DEFAULT_HEADERS: Record<string, string> = {

@@ -1,16 +1,22 @@
-import { AllowedExtension } from '../common';
-import { OutputType, ServiceType, UrlType } from '../enums';
-import { ExecutionType } from '../enums/ExecutionType';
-import { createDefaultDependencies, ImporterDependencies } from '../inject-dependency';
-import { HttpFetchOptions } from '../types';
-import { ExecutionArguments } from '../types/ExecutionArguments';
-import { DirectoryOutputOptions, JobOptions } from '../types/JobOptions';
-import { JobProgressEvent } from '../types/JobProgress';
+import {
+	AllowedExtension,
+	DirectoryOutputOptions,
+	ExecutionArguments,
+	ExecutionType,
+	HttpFetchOptions,
+	JobOptions,
+	JobProgressEvent,
+	OutputType,
+	ServiceDependencies,
+	ServiceType,
+	UrlType
+} from '../util';
+import { createDefaultDependencies } from './dependency';
 
 export abstract class BaseService {
 	protected jobOptions: JobOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
-	protected readonly deps: ImporterDependencies;
+	protected readonly deps: ServiceDependencies;
 	protected abstract validateUrl(url: string): void;
 
 	constructor(public readonly url: string) {

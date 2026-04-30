@@ -1,5 +1,4 @@
-import { ServiceType } from '../enums';
-import { ErrorCodes } from '../enums/ErrorCodes';
+import { ErrorCodes, ServiceType } from '../util';
 
 export interface ExceptionPayload<TMeta = any> {
 	errorCode: ErrorCodes;

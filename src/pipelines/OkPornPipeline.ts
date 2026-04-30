@@ -1,7 +1,6 @@
-import { MediaType } from '../common/MediaType';
-import { pathBuilder } from '../common/PathBuilder';
-import { OkPornOutput } from '../services';
-import { ExecutionArguments, PipelineItem } from '../types';
+import { pathBuilder } from '../helpers/PathBuilder';
+import { ExecutionArguments, OkPornOutput, PipelineItem } from '../util';
+import { MediaType } from '../util/enums/common/MediaType';
 import { BasePipeline } from './BasePipeline';
 
 export class OkPornPipeline extends BasePipeline<OkPornOutput> {

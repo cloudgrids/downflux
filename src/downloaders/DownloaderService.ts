@@ -1,17 +1,9 @@
-import { OutputType, ServiceType } from '../enums';
-import { HttpFetcherService } from '../fetcher/HttpFetcherService';
-import { FileService } from '../file/FileService';
-import { PipelineItem } from '../types';
-import { HttpFetchOptions } from '../types/HttpFetchOptions';
-import { JobOptions } from '../types/JobOptions';
+import { HttpFetcherService } from '../fetcher';
+import { FileService } from '../file';
+import { DownloadOptions, PipelineItem, ServiceType } from '../util';
 import { BaseDownloader } from './BaseDownloader';
-import { DefaultDownloader } from './default/DefaultDownloader';
-import { OkPornDownloader } from './okporn/OkPornDownloader';
-
-export interface DownloadOptions extends HttpFetchOptions, JobOptions {
-	outputType?: OutputType;
-	service: ServiceType;
-}
+import { DefaultDownloader } from './DefaultDownloader';
+import { OkPornDownloader } from './OkPornDownloader';
 
 export class DownloaderService {
 	private readonly defaultDownloader: BaseDownloader;
