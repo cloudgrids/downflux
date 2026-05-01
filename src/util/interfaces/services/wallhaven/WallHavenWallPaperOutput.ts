@@ -33,8 +33,6 @@ export interface WallHavenWallPaperOutput {
 	createdAt: string;
 	/** The date and time when the wall paper was last updated */
 	updatedAt: string;
-	/** The URL of the wall paper on the site */
-	baseUrl: string;
 	/** The thumbnails of the wall paper */
 	thumbnails: WallHavenThumbnail[];
 }

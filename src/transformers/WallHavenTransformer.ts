@@ -39,15 +39,19 @@ export class WallHavenTransformer extends BaseTransformer<
 	}
 
 	private toWallPaperOutput(request: WallHavenExecArgs, metadata: DefaultExtractorResult): WallHavenWallPaperOutput {
-		const partial = metadata.customFields as WallHavenWallPaperOutput;
+		const partial = metadata.customFields as WallHavenWallPaperOutput & { totalContents?: number };
+		delete partial?.totalContents;
 
 		const id = metadata.baseUrl?.split('/')?.filter(Boolean)?.pop() ?? '';
-		const thumbnails = metadata.images.map((image) => ({
-			id,
-			quality: WallHavenThumbnailQuality.HIGH,
-			url: image,
-			siteUrl: metadata.baseUrl
-		})) as WallHavenThumbnail[];
+		const thumbnails = metadata.images
+			?.filter((img) => img.startsWith('https://w.wallhaven.cc'))
+			.map((image) => ({
+				id,
+				quality: WallHavenThumbnailQuality.HIGH,
+				url: image,
+				siteUrl: metadata.baseUrl
+			})) as WallHavenThumbnail[];
+
 		thumbnails.push({
 			id,
 			quality: WallHavenThumbnailQuality.LOW,
@@ -59,7 +63,6 @@ export class WallHavenTransformer extends BaseTransformer<
 			...partial,
 			id,
 			title: metadata.title,
-			baseUrl: metadata.baseUrl,
 			uploader: partial.uploader.split(' ')[0],
 			description: metadata.description,
 			thumbnails
@@ -72,6 +75,8 @@ export class WallHavenTransformer extends BaseTransformer<
 		for (const thumbnail of thumbnails) {
 			const wallPaper = (await super.transform(thumbnail.siteUrl, {
 				...request,
+				entryUrl: thumbnail.siteUrl,
+				referer: thumbnail.siteUrl,
 				method: WallHavenMethods.getWallPaper,
 				urlType: UrlType.IMAGES
 			})) as DefaultExtractorResult;
@@ -97,9 +102,8 @@ export class WallHavenTransformer extends BaseTransformer<
 			}) as WallHavenThumbnail[];
 
 		return {
-			baseUrl: metadata.baseUrl,
 			uploader: metadata.customFields?.uploader,
-			totalContents: partial.totalContents,
+			totalContents: Number(partial.totalContents ?? 0),
 			totalPages: Math.ceil(Number(partial.totalContents) / 24),
 			currentPage: Number(metadata.baseUrl.split('=').pop() ?? '1'),
 			thumbnails

@@ -5,20 +5,21 @@ import {
 	PipelineExtractedItem,
 	PipelineItem,
 	WallHavenExecArgs,
+	WallHavenOutput,
 	WallHavenThumbnailQuality,
 	WallHavenWallPaperOutput
 } from '../util';
 import { BasePipeline } from './BasePipeline';
 
-export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHavenWallPaperOutput> {
-	public override build(metadata: WallHavenWallPaperOutput, request: WallHavenExecArgs): PipelineItem[] {
+export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHavenOutput> {
+	public override build(metadata: WallHavenOutput, request: WallHavenExecArgs): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,
 			this.filterByExt(
 				request,
 				this.extract(request, metadata).map((item) => ({
 					downloadUrl: item.url,
-					baseUrl: metadata.baseUrl,
+					baseUrl: request.entryUrl,
 					service: request.service,
 					identifier: {
 						mediaType: item.mediaType,
@@ -52,7 +53,7 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 		return pathBuilder(prefix, metadata.uploader?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', mediaSegment);
 	}
 
-	protected override extract(request: WallHavenExecArgs, metadata: WallHavenWallPaperOutput): PipelineExtractedItem[] {
+	protected override extract(request: WallHavenExecArgs, metadata: WallHavenOutput): PipelineExtractedItem[] {
 		const urls: PipelineExtractedItem[] = [];
 
 		if (metadata.thumbnails?.length) {
@@ -61,6 +62,16 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 				getQuality: (thumb) => thumb.quality
 			}).forEach((thumb) => urls.push({ mediaType: MediaType.IMAGES, url: thumb.url, id: thumb.id }));
 		}
+
+		if (metadata.wallPapers?.length) {
+			metadata.wallPapers.forEach((wp) => {
+				this.filterByQuality(wp.thumbnails, {
+					allowedQualities: request.thumbQualities as WallHavenThumbnailQuality[],
+					getQuality: (wallpaper) => wallpaper.quality
+				}).forEach((thumb) => urls.push({ mediaType: MediaType.IMAGES, url: thumb.url, id: thumb.id }));
+			});
+		}
+
 		return urls;
 	}
 }

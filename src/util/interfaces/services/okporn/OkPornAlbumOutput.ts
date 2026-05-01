@@ -17,6 +17,4 @@ export interface OkPornAlbumOutput {
 	albumImages: string[];
 	/** The number of images in the album eg: 10 */
 	albumImageCount: number;
-	/** The base URL denotes the input URL */
-	baseUrl: string;
 }

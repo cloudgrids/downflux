@@ -7,6 +7,4 @@ export interface OkPornModelOutput {
 	modelUrls: string[];
 	/** The number of models in the page */
 	modelCount: number;
-	/** The base URL denotes the input URL */
-	baseUrl: string;
 }

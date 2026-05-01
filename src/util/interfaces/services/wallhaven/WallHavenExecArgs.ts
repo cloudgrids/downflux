@@ -13,8 +13,10 @@ export interface WallHavenExecArgs extends ExecutionArgs {
 export interface WallHavenUserUploadsExecArgs {
 	/** The username of the user whose uploads to fetch */
 	username: string;
-	/** For SFW use purity 100 and for NSFW use 110. Default purity is 110. */
-	purity?: 100 | 110;
-	/** Whether to include metadata for each wall paper */
+	/** For SFW use purity true and for NSFW use false. Default purity is false. */
+	purity?: boolean;
+	/** Whether to include metadata for each wall paper e.g WallHavenWallPaperOutput,
+	 *  Default is false
+	 */
 	includeMetadata?: boolean;
 }

@@ -3,6 +3,4 @@ export interface OkPornChannelOutput {
 	channelUrls: string[];
 	/** The number of channels in the page */
 	channelCount?: number;
-	/** The base URL denotes the input URL */
-	baseUrl: string;
 }

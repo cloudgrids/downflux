@@ -1,12 +1,13 @@
-import { createDecipheriv } from 'crypto';
 import { Writable } from 'stream';
 import { pipeline } from 'stream/promises';
 import { Dispatcher, Pool, interceptors } from 'undici';
 import { IncomingHttpHeaders } from 'undici/types/header';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
 import { DownloadOptions, FetchResult, HLSStreamRequest, HttpFetchOptions } from '../util';
+import { HLSFetchService } from './HLSFetchService';
 
 export class HttpFetcherService {
+	private readonly hlsFetchService = new HLSFetchService();
 	private readonly DEFAULT_HEADERS: Record<string, string> = {
 		'User-Agent': 'Mozilla/5.0',
 		'Accept': '*/*',
@@ -15,6 +16,13 @@ export class HttpFetcherService {
 	};
 
 	private readonly pools = new Map<string, Dispatcher>();
+
+	private fakeIP() {
+		return Array(4)
+			.fill(0)
+			.map(() => Math.floor(Math.random() * 255))
+			.join('.');
+	}
 
 	private getPool(url: string): Dispatcher {
 		const origin = new URL(url).origin;
@@ -26,221 +34,120 @@ export class HttpFetcherService {
 	}
 
 	public async fetchHtml(url: string, opts: HttpFetchOptions): Promise<FetchResult> {
-		const { headers = {}, timeoutMs = 30_000 } = opts;
-		const mergedHeaders = { ...this.DEFAULT_HEADERS, Referer: opts.referer, ...headers } as Record<string, string>;
+		const { headers = {}, timeoutMs = 30_000, retries = 3 } = opts;
+		const mergedHeaders = { ...this.DEFAULT_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.fakeIP() };
 
-		const pool = this.getPool(url);
 		const parsed = new URL(url);
+		let lastError: Error | null = null;
 
-		const {
-			statusCode,
-			headers: resHeaders,
-			body
-		} = await pool.request({
-			path: parsed.pathname + parsed.search,
-			method: 'GET',
-			headers: mergedHeaders,
-			headersTimeout: timeoutMs,
-			bodyTimeout: timeoutMs
-		});
+		for (let attempt = 0; attempt <= retries; attempt++) {
+			const pool = this.getPool(url);
 
-		const buffer = this.decodeBody(await this.readBody(body), resHeaders);
+			try {
+				const {
+					statusCode,
+					headers: resHeaders,
+					body
+				} = await pool.request({
+					path: parsed.pathname + parsed.search,
+					method: 'GET',
+					headers: { ...mergedHeaders, 'X-Forwarded-For': this.fakeIP() },
+					headersTimeout: timeoutMs,
+					bodyTimeout: timeoutMs
+				});
 
-		return {
-			html: buffer.toString('utf8'),
-			buffer,
-			finalUrl: url,
-			status: statusCode,
-			ok: statusCode >= 200 && statusCode < 300,
-			headers: this.headers(resHeaders)
-		};
+				if (statusCode === 404) {
+					return {
+						html: '',
+						buffer: Buffer.alloc(0),
+						finalUrl: url,
+						status: statusCode,
+						ok: false,
+						headers: this.headers(resHeaders)
+					};
+				}
+
+				if (statusCode === 429 || statusCode >= 500) {
+					await this.delay(attempt);
+					continue;
+				}
+
+				const buffer = this.decodeBody(await this.readBody(body), resHeaders);
+
+				return {
+					html: buffer.toString('utf8'),
+					buffer,
+					finalUrl: url,
+					status: statusCode,
+					ok: statusCode >= 200 && statusCode < 300,
+					headers: this.headers(resHeaders)
+				};
+			} catch (error) {
+				lastError = error instanceof Error ? error : new Error(String(error));
+
+				if (attempt < retries) {
+					await this.delay(attempt);
+					continue;
+				}
+			}
+		}
+		throw new Error(`Failed to fetch ${url} after ${retries + 1} attempts: ${lastError?.message}`);
+	}
+
+	private async delay(attempt: number) {
+		const base = 300; // ms
+		const jitter = Math.random() * 200;
+		const delay = base * 2 ** attempt + jitter;
+		return new Promise((res) => setTimeout(res, delay));
 	}
 
 	public async requestStream(url: string, opts: DownloadOptions): Promise<HLSStreamRequest> {
-		const { headers = {}, timeoutMs = 30_000 } = opts;
-		const mergedHeaders = { ...this.DEFAULT_HEADERS, Referer: opts.referer, ...headers } as Record<string, string>;
+		const { headers = {}, timeoutMs = 30_000, retries = 3 } = opts;
+		const mergedHeaders = { ...this.DEFAULT_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.fakeIP() };
 
-		const res = await fetch(url, {
-			headers: mergedHeaders,
-			signal: AbortSignal.timeout(timeoutMs)
-		});
+		let lastError: Error | null = null;
 
-		const finalUrl = res.url || url;
-		const contentType = res.headers.get('content-type') || '';
-		const responseHeaders = Object.fromEntries(res.headers.entries());
-
-		if (this.isHlsManifest(contentType, finalUrl)) {
-			const manifest = await res.text();
-			return {
-				finalUrl,
-				headers: responseHeaders,
-				start: (stream: Writable) => this.fetchHlsStream(manifest, finalUrl, timeoutMs, stream)
-			};
-		}
-
-		return {
-			finalUrl,
-			headers: responseHeaders,
-			start: (stream: Writable) => pipeline(res.body as any, stream)
-		};
-	}
-
-	private async fetchHlsStream(manifest: string, manifestUrl: string, timeoutMs: number, stream: Writable): Promise<void> {
-		const variant = this.selectVariant(manifest, manifestUrl);
-		const playlistUrl = variant ?? manifestUrl;
-
-		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs) : manifest;
-
-		const segments = this.parseSegments(mediaManifest, playlistUrl);
-		if (!segments.length) throw new Error('No segments');
-
-		const keyInfo = this.parseKey(mediaManifest, playlistUrl);
-		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
-
-		await this.worker(segments, key, keyInfo, timeoutMs, stream);
-	}
-
-	private async worker(
-		segments: string[],
-		key: Buffer | null,
-		keyInfo: { url: string; iv: Buffer | undefined } | null,
-		timeoutMs: number,
-		stream: Writable
-	) {
-		const concurrency = 8;
-		const results = new Map<number, Buffer>();
-		let nextIndexToWrite = 0;
-		let currentIndex = 0;
-
-		const worker = async () => {
-			while (true) {
-				const i = currentIndex++;
-				if (i >= segments.length) break;
-
-				const segUrl = segments[i];
-				let data = await this.fetchWithRetry(segUrl, timeoutMs);
-
-				if (key) {
-					const iv = keyInfo?.iv
-						? keyInfo.iv
-						: (() => {
-								const b = Buffer.alloc(16, 0);
-								b.writeUInt32BE(i, 12);
-								return b;
-							})();
-
-					data = this.decrypt(data, key, iv);
-				}
-
-				results.set(i, data);
-
-				// Ordered write with backpressure
-				while (results.has(nextIndexToWrite)) {
-					const chunk = results.get(nextIndexToWrite)!;
-					results.delete(nextIndexToWrite);
-
-					if (!stream.write(chunk)) {
-						await new Promise((resolve) => stream.once('drain', resolve));
-					}
-
-					nextIndexToWrite++;
-				}
-			}
-		};
-
-		await Promise.all(Array.from({ length: concurrency }, worker));
-
-		// Ensure everything is written if any workers finished early
-		while (results.has(nextIndexToWrite)) {
-			const chunk = results.get(nextIndexToWrite)!;
-			results.delete(nextIndexToWrite);
-
-			if (!stream.write(chunk)) {
-				await new Promise((resolve) => stream.once('drain', resolve));
-			}
-
-			nextIndexToWrite++;
-		}
-	}
-
-	private isHlsManifest(contentType: string, url: string) {
-		return contentType.includes('mpegurl') || url.includes('.m3u8');
-	}
-
-	private parseSegments(manifest: string, base: string): string[] {
-		return manifest
-			.split('\n')
-			.map((l) => l.trim())
-			.filter((l) => l && !l.startsWith('#'))
-			.map((l) => new URL(l, base).toString());
-	}
-
-	private selectVariant(manifest: string, base: string): string | null {
-		const lines = manifest.split('\n');
-		const variants: { url: string; bw: number }[] = [];
-
-		for (let i = 0; i < lines.length; i++) {
-			if (!lines[i].includes('STREAM-INF')) continue;
-
-			const bw = parseInt(lines[i].match(/BANDWIDTH=(\d+)/)?.[1] || '0');
-			const next = lines[i + 1];
-
-			if (next && !next.startsWith('#')) {
-				variants.push({
-					url: new URL(next, base).toString(),
-					bw
-				});
-			}
-		}
-
-		variants.sort((a, b) => b.bw - a.bw);
-
-		return variants[0]?.url ?? null;
-	}
-
-	private parseKey(manifest: string, base: string) {
-		const match = manifest.match(/URI="([^"]+)"(?:,IV=0x([0-9a-fA-F]+))?/);
-		if (!match) return null;
-
-		return {
-			url: new URL(match[1], base).toString(),
-			iv: match[2] ? Buffer.from(match[2], 'hex') : undefined
-		};
-	}
-
-	private async fetchKey(url: string) {
-		const res = await fetch(url);
-		return Buffer.from(await res.arrayBuffer());
-	}
-
-	private decrypt(data: Buffer, key: Buffer, iv: Buffer) {
-		const d = createDecipheriv('aes-128-cbc', key, iv);
-		return Buffer.concat([d.update(data), d.final()]);
-	}
-
-	private async fetchWithRetry(url: string, timeoutMs: number, retries = 3): Promise<Buffer> {
-		let err: unknown;
-
-		for (let i = 0; i < retries; i++) {
+		for (let attempt = 0; attempt <= retries; attempt++) {
 			try {
 				const res = await fetch(url, {
+					headers: { ...mergedHeaders, 'X-Forwarded-For': this.fakeIP() } as Record<string, string>,
 					signal: AbortSignal.timeout(timeoutMs)
 				});
-				if (!res.ok) throw new Error();
-				return Buffer.from(await res.arrayBuffer());
-			} catch (e) {
-				err = e;
+
+				const finalUrl = res.url || url;
+				const contentType = res.headers.get('content-type') || '';
+				const responseHeaders = Object.fromEntries(res.headers.entries());
+
+				if (res.status === 404) throw new Error(`Resource not found: ${url}`);
+				if (res.status === 429 || res.status >= 500) {
+					await this.delay(attempt);
+					continue;
+				}
+
+				if (this.hlsFetchService.isHlsManifest(contentType, finalUrl)) {
+					const manifest = await res.text();
+					return {
+						finalUrl,
+						headers: responseHeaders,
+						start: (stream: Writable) => this.hlsFetchService.fetchHlsStream(manifest, finalUrl, timeoutMs, stream)
+					};
+				}
+
+				return {
+					finalUrl,
+					headers: responseHeaders,
+					start: (stream: Writable) => pipeline(res.body as any, stream)
+				};
+			} catch (error) {
+				lastError = error instanceof Error ? error : new Error(String(error));
+
+				if (attempt < retries) {
+					await this.delay(attempt);
+					continue;
+				}
 			}
 		}
-
-		throw err;
-	}
-
-	private async fetchText(url: string, timeoutMs: number) {
-		const res = await fetch(url, {
-			signal: AbortSignal.timeout(timeoutMs)
-		});
-		return res.text();
+		throw new Error(`Failed to fetch ${url} after ${retries + 1} attempts: ${lastError?.message}`);
 	}
 
 	private async readBody(body: AsyncIterable<any>): Promise<Buffer> {
