@@ -43,7 +43,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 		args: WallHavenUserUploadsExecArgs,
 		range: IndexRange = this.DEFAULT_INDEX_RANGE
 	): Promise<WallHavenUserUploadsOutput> {
-		const purity = args?.purity ? 110 : 100;
+		const purity = args?.purity ? 100 : 110;
 		const [result] = await this.execute<WallHavenUserUploadsOutput>({
 			...this.makeTargets(
 				`${this.USER_URL}/${args.username}/uploads?purity=${purity}&page=`,

@@ -46,4 +46,12 @@ export abstract class BaseTransformer<TExec extends ExecutionArgs, TResult = Def
 			status: 200
 		};
 	}
+
+	protected emitExtractProgress(request: TExec | undefined, status: 'extracting' | 'extracted', target: string): void {
+		request?.onExtractProgress?.({
+			status,
+			target,
+			countTarget: status === 'extracting'
+		});
+	}
 }

@@ -75,11 +75,20 @@ export class OkPornTransformer extends BaseTransformer<
 
 		if (!videoAlbumId) return undefined;
 
-		const albumMetadata = (await super.transform(`${this.ALBUMS_URL}${videoAlbumId}/`, {
+		const albumUrl = `${this.ALBUMS_URL}${videoAlbumId}/`;
+		const albumRequest = {
 			...request,
+			entryUrl: albumUrl,
+			referer: albumUrl,
 			method: OkPornMethods.getAlbum,
 			urlType: UrlType.IMAGES
-		})) as DefaultExtractorResult;
+		};
+
+		this.emitExtractProgress(albumRequest, 'extracting', albumUrl);
+
+		const albumMetadata = (await super.transform(albumUrl, albumRequest)) as DefaultExtractorResult;
+
+		this.emitExtractProgress(albumRequest, 'extracted', albumUrl);
 
 		return this.toAlbumOutput(albumMetadata);
 	}
