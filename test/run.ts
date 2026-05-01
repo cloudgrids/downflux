@@ -9,7 +9,8 @@ async function main() {
 			.setJobOptions({ logProgress: true })
 			.onProgress(console.log)
 			.setOutput(OutputType.JSON)
-			.getUserUploads('whimsicalmango');
+			// .getWallPaper('k8kmj1')
+			.getUserUploads({ username: 'whimsicalmango', includeMetadata: true });
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {

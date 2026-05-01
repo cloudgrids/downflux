@@ -1,6 +1,4 @@
 export interface OkPornTagOutput {
-	/** The title of the page eg: Tags */
-	baseUrl: string;
 	/** The URLs of the tags in the page */
 	tags: TagsOutput;
 }

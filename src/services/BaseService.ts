@@ -30,31 +30,37 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 		this.httpOptions = { referer: url };
 	}
 
+	/** Sets the headers for the HTTP requests, default is managed by DownFlux */
 	public setHeaders(headers: Record<string, string>): this {
 		this.httpOptions.headers = headers;
 		return this;
 	}
 
+	/** Sets the timeout for HTTP requests in milliseconds, default is none */
 	public setTimeout(timeoutMs: number): this {
 		this.httpOptions.timeoutMs = timeoutMs;
 		return this;
 	}
 
+	/** Sets the number of retries for failed HTTP requests, default is 3 */
 	public setRetries(retries: number): this {
 		this.httpOptions.retries = retries;
 		return this;
 	}
 
+	/** Sets the HTTP options for the service */
 	public setHttpOptions(opts: HttpFetchOptions): this {
 		this.httpOptions = { ...this.httpOptions, ...opts };
 		return this;
 	}
 
+	/** Sets options for the job execution, common for all jobs */
 	public setJobOptions(opts: JobOptions): this {
 		this.jobOptions = { ...this.jobOptions, ...opts };
 		return this;
 	}
 
+	/** Sets the maximum number of downloads for the job */
 	public setMaxDownloads(maxDownloads: number): this {
 		this.jobOptions.maxDownloads = maxDownloads;
 		return this;
@@ -66,22 +72,26 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 		return this;
 	}
 
+	/** Sets a progress handler for the job, which will be called with progress updates during execution */
 	public onProgress(handler: (event: JobProgressEvent) => void): this {
 		this.jobOptions.onProgress = handler;
 		return this;
 	}
 
+	/** Enables or disables progress logging to the console, default is true */
 	public setProgressLogging(enabled = true): this {
 		this.jobOptions.logProgress = enabled;
 		return this;
 	}
 
+	/** Sets the output type for the job, default is JSON. If set to DIRECTORY, files will be downloaded to the specified directory in config. */
 	public setOutput(type: OutputType, config: DirectoryOutputOptions = {}): this {
 		this.jobOptions.outputType = type;
 		this.jobOptions.dirConfig = config;
 		return this;
 	}
 
+	/** Sets the execution type for the job, default is PARALLEL */
 	public setExecutionType(type: ExecutionType): this {
 		this.jobOptions.executionType = type;
 		return this;

@@ -1,4 +1,4 @@
-import { DownloaderService } from '../downloaders';
+import { DownloaderService } from '../downloaders/DownloaderService';
 import { FileService } from '../file';
 import {
 	DownloadResult,
@@ -52,8 +52,7 @@ export class BackgroundService {
 				const downloadResult = await this.downloaderService.download(pipelineItem, {
 					...options,
 					outputType,
-					service: request.service,
-					referer: request.entryUrl
+					service: request.service
 				});
 
 				result.downloaded++;

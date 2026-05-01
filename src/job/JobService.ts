@@ -1,4 +1,4 @@
-import { DownloaderService } from '../downloaders';
+import { DownloaderService } from '../downloaders/DownloaderService';
 import { FileService } from '../file';
 import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';
@@ -89,7 +89,11 @@ export class JobService {
 			});
 
 			try {
-				extractedByIndex[index] = await this.transformerService.transform<TResult, TArgs>(target, { ...request, entryUrl: target });
+				extractedByIndex[index] = await this.transformerService.transform<TResult, TArgs>(target, {
+					...request,
+					entryUrl: target,
+					referer: target
+				});
 				extractedCount++;
 				this.backgroundService.emitProgress(request, {
 					status: 'extracted',

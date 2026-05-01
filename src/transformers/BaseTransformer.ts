@@ -1,6 +1,6 @@
 import { HttpFetcherService } from '../fetcher';
 import { HtmlParserService } from '../parser';
-import { DefaultExtractorResult, ExecutionArgs, SITE_EXTRACTORS, SiteDescriptor } from '../util';
+import { DefaultExtractorResult, ExecutionArgs, HttpFetchOptions, SITE_EXTRACTORS, SiteDescriptor } from '../util';
 
 export abstract class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
 	constructor(
@@ -13,7 +13,7 @@ export abstract class BaseTransformer<TExec extends ExecutionArgs, TResult = Def
 	}
 
 	public async transform(url: string, request?: TExec): Promise<TResult> {
-		const fetched = await this.httpFetcherService.fetchHtml(url, { referer: request?.entryUrl });
+		const fetched = await this.httpFetcherService.fetchHtml(url, request as HttpFetchOptions);
 
 		const descriptor = this.findTransformer(url);
 		const match = descriptor?.pattern.exec(url);
@@ -28,10 +28,10 @@ export abstract class BaseTransformer<TExec extends ExecutionArgs, TResult = Def
 				match
 			});
 
-			return { ...base, ...transformed, urlType: descriptor.urlType, baseUrl: request?.entryUrl } as TResult;
+			return { ...base, ...transformed, urlType: descriptor.urlType } as TResult;
 		}
 
-		return { ...base, urlType: descriptor?.urlType, baseUrl: request?.entryUrl } as TResult;
+		return { ...base, urlType: descriptor?.urlType } as TResult;
 	}
 
 	protected defaultParse(html: string, baseUrl: string): DefaultExtractorResult {

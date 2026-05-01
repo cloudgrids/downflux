@@ -13,8 +13,6 @@ export interface OkPornModelVideoCard {
 }
 
 export interface OkPornModelVideoIdsOutput {
-	/** The base URL denotes the input URL */
-	baseUrl: string;
 	/** The title of the page eg: Videos */
 	pageTitle: string;
 	/** The number of videos in the page eg: 10 */

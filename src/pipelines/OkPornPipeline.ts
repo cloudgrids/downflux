@@ -10,7 +10,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 				request,
 				this.extract(request, metadata).map((item) => ({
 					downloadUrl: item.url,
-					baseUrl: metadata.baseUrl,
+					baseUrl: request.entryUrl,
 					service: request.service,
 					identifier: {
 						mediaType: item.mediaType,

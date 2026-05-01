@@ -1,27 +1,62 @@
+import { finished } from 'stream/promises';
 import { HttpFetcherService } from '../fetcher';
 import { FileService } from '../file';
-import { DownloadOptions, PipelineItem, ServiceType } from '../util';
-import { BaseDownloader } from './BaseDownloader';
-import { DefaultDownloader } from './DefaultDownloader';
-import { OkPornDownloader } from './OkPornDownloader';
+import { DownloadOptions, DownloadResult, OutputType, PipelineItem, ResolvedFile } from '../util';
 
 export class DownloaderService {
-	private readonly defaultDownloader: BaseDownloader;
-	private readonly downloaders: Partial<Record<ServiceType, BaseDownloader>>;
-
 	constructor(
-		private readonly httpFetcherService: HttpFetcherService,
-		private readonly fileService: FileService
-	) {
-		this.defaultDownloader = new DefaultDownloader(this.fileService, this.httpFetcherService);
-		this.downloaders = {
-			[ServiceType.DEFAULT]: this.defaultDownloader,
-			[ServiceType.OKPORN]: new OkPornDownloader(this.fileService, this.httpFetcherService)
+		protected readonly fileService: FileService,
+		protected readonly httpFetcherService: HttpFetcherService
+	) {}
+
+	public async download(item: PipelineItem, opts: DownloadOptions): Promise<DownloadResult> {
+		const { dirConfig, service, outputType } = opts;
+		const url = item.downloadUrl;
+
+		const initialFile = this.fileService.getFileInfo(url, dirConfig?.prefix);
+
+		const { finalUrl, headers, start } = await this.httpFetcherService.requestStream(url, opts);
+
+		const resolvedFile = this.resolveFileMetadata(initialFile, finalUrl, headers, dirConfig?.prefix);
+
+		const { stream, finalize } = this.fileService.createSink(service, outputType as OutputType, {
+			directoryPath: dirConfig?.directoryPath,
+			filename: resolvedFile.originalFilename,
+			identifier: item.identifier.key
+		});
+
+		await start(stream);
+
+		if (!stream.writableEnded) stream.end();
+		await finished(stream);
+
+		const finalDetails = await finalize(resolvedFile, headers);
+
+		return {
+			...finalDetails,
+			url,
+			finalUrl,
+			service
 		};
 	}
 
-	public async download(item: PipelineItem, opts: DownloadOptions) {
-		const downloader = this.downloaders[opts.service] || this.defaultDownloader;
-		return await downloader.download(item, opts);
+	private resolveFileMetadata(initial: ResolvedFile, finalUrl: string, headers: Record<string, string>, prefix?: string): ResolvedFile {
+		const isHls = finalUrl.includes('.m3u8') || headers['content-type']?.includes('mpegurl');
+
+		if (isHls) {
+			const baseName = initial.originalFilename.replace(/\.[^.]+$/, '') || 'video';
+			return {
+				originalFilename: `${baseName}.ts`,
+				extension: 'ts',
+				extendedFilename: `${prefix ? prefix : ''}${baseName}.ts`
+			};
+		}
+
+		if (initial.extension) return initial;
+
+		const fallback = this.fileService.getFileInfo(finalUrl, prefix);
+		if (fallback.extension) return fallback;
+
+		return initial;
 	}
 }

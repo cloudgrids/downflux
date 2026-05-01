@@ -12,8 +12,6 @@ export interface WallHavenUserUploadsOutput {
 	currentPage: number;
 	/** The thumbnails of the user's uploads */
 	thumbnails: WallHavenThumbnail[];
-	/** The base URL of the user's uploads */
-	baseUrl: string;
 	/** The wall papers of the user's uploads, only included if includeMetadata is true in the exec args */
 	wallPapers?: WallHavenWallPaperOutput[];
 }

@@ -1,4 +1,4 @@
-import { DownloaderService } from '../downloaders';
+import { DownloaderService } from '../downloaders/DownloaderService';
 import { HttpFetcherService } from '../fetcher';
 import { FileService } from '../file';
 import { BackgroundService, JobService } from '../job';
@@ -14,7 +14,7 @@ export function createDefaultDependencies(): ServiceDependencies {
 	const pipelineService = new PipelineService();
 
 	const transformerService = new TransformerService(htmlParserService, httpFetcherService);
-	const downloaderService = new DownloaderService(httpFetcherService, fileService);
+	const downloaderService = new DownloaderService(fileService, httpFetcherService);
 	const backgroundService = new BackgroundService(downloaderService, fileService);
 	const jobService = new JobService(transformerService, pipelineService, backgroundService, fileService, downloaderService);
 	return {
