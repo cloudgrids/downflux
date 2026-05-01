@@ -104,12 +104,14 @@ export class OkPornTransformer extends BaseTransformer<
 	}
 
 	private toAlbumOutput(metadata: DefaultExtractorResult): OkPornAlbumOutput {
+		const customFields = metadata.customFields as { modelName?: string } | undefined;
+
 		return {
 			albumTitle: metadata.title,
 			albumUrl: metadata.baseUrl,
 			albumKeywords: metadata.keywords,
 			albumDescription: metadata.description,
-			modelName: metadata.customFields?.modelName,
+			modelName: customFields?.modelName ?? '',
 			albumId: metadata.baseUrl.split('/').filter(Boolean).pop() ?? '',
 			albumImages: metadata.images,
 			albumThumbnail: metadata.images[0],
@@ -118,6 +120,15 @@ export class OkPornTransformer extends BaseTransformer<
 	}
 
 	private toVideoOutput(request: OkPornExecArgs, metadata: DefaultExtractorResult, videoAlbum?: OkPornAlbumOutput): OkPornVideoOutput {
+		const customFields = metadata.customFields as
+			| {
+					starredBy?: string[];
+					videoAlbumId?: string;
+					videoCreateDate?: string;
+					videoPoster?: string;
+			  }
+			| undefined;
+
 		return {
 			videoTitle: metadata.title,
 			videoUrl: metadata.baseUrl,
@@ -125,11 +136,11 @@ export class OkPornTransformer extends BaseTransformer<
 			videoDescription: metadata.description,
 			videoId: metadata.baseUrl.split('/').filter(Boolean).pop() ?? '',
 			videoSources: metadata.sources.map((url) => ({ url, quality: detectVideoQuality(url) })),
-			videoPoster: metadata.customFields?.videoPoster,
-			videoScreenshot: metadata.customFields?.videoPoster,
-			modelName: metadata.customFields?.starredBy?.[0],
-			videoAlbumId: metadata.customFields?.videoAlbumId,
-			videoCreatedAt: metadata.customFields?.videoCreateDate,
+			videoPoster: customFields?.videoPoster ?? '',
+			videoScreenshot: customFields?.videoPoster ?? '',
+			modelName: customFields?.starredBy?.[0] ?? '',
+			videoAlbumId: customFields?.videoAlbumId,
+			videoCreatedAt: customFields?.videoCreateDate,
 			videoAlbum
 		};
 	}

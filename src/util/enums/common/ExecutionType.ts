@@ -1,6 +1,8 @@
+/** Job execution strategy */
 export enum ExecutionType {
-	/** Executes tasks one after another, waiting for each to complete before starting the next. */
+	/** Sequential task execution */
 	SEQUENTIAL = 'SEQUENTIAL',
-	/** Executes tasks concurrently, without waiting for each to complete before starting the next. */
+
+	/** Concurrent task execution */
 	PARALLEL = 'PARALLEL'
 }

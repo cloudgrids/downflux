@@ -1,14 +1,20 @@
+/** URL category for extraction and pipeline routing */
 export enum UrlType {
-	/** <a href> anchor links — highest quality, direct source */
+	/** Anchor href URLs */
 	ANCHORS = 'ANCHORS',
-	/** <img src / data-src / data-lazy / data-original> */
+
+	/** Image URLs */
 	IMAGES = 'IMAGES',
-	/** <div href="..."> — some boards embed hrefs on divs */
+
+	/** Div href URLs */
 	DIV_HREFS = 'DIV_HREFS',
-	/** <source src="..."> — audio/video embeds */
+
+	/** Media source URLs */
 	SOURCES = 'SOURCES',
-	/** <video poster="..."> — thumbnail previews */
+
+	/** Video poster URLs */
 	VIDEO_POSTER = 'VIDEO_POSTER',
-	/** All https?:// URLs found anywhere in the HTML */
+
+	/** All discovered URLs */
 	ALL_URLS = 'ALL_URLS'
 }

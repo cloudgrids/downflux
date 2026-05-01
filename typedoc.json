@@ -1,0 +1,13 @@
+{
+	"entryPoints": ["src"],
+	"tsconfig": "tsconfig.json",
+	"exclude": ["**/*.test.ts", "tests"],
+	"excludePrivate": true,
+	"excludeProtected": false,
+	"excludeInternal": true,
+	"readme": "none",
+	"categorizeByGroup": true,
+	"categoryOrder": ["downloaders", "fetcher", "pipelines", "services", "transformers", "parser", "util"],
+	"sort": ["source-order"],
+	"out": "docs"
+}

@@ -1,17 +1,26 @@
 import { WallHavenThumbnail } from './WallHavenThumbnail';
 import { WallHavenWallPaperOutput } from './WallHavenWallPaperOutput';
 
+/**
+ * Output structure for WallHaven user upload operations.
+ * Contains uploader pagination and thumbnail results.
+ */
 export interface WallHavenUserUploadsOutput {
-	/** The username of the uploader */
+	/** Uploader username */
 	uploader: string;
-	/** The total number of contents uploaded by the user */
+
+	/** Total uploaded content count */
 	totalContents: number;
-	/** The total number of pages of uploads */
+
+	/** Total upload pages */
 	totalPages: number;
-	/** The current page of uploads */
+
+	/** Current upload page */
 	currentPage: number;
-	/** The thumbnails of the user's uploads */
+
+	/** Thumbnails found on the upload page */
 	thumbnails: WallHavenThumbnail[];
-	/** The wall papers of the user's uploads, only included if includeMetadata is true in the exec args */
+
+	/** Wallpaper metadata when requested */
 	wallPapers?: WallHavenWallPaperOutput[];
 }

@@ -1,25 +1,35 @@
 import { VideoQuality } from '../../../enums';
 import { ExecutionArgs, TagFilterOptions } from '../../common';
 
-/** The type of ID to use for channels and models, either the URL or the path segment */
+/** Output format for OkPorn identifiers */
 export type OkPornIdType = 'url' | 'path';
 
-/** Execution arguments for fetching videos from OkPorn specially for video-related operations */
+/**
+ * Video execution arguments for OkPorn operations.
+ * Controls quality filtering and identifier format.
+ */
 export interface OkPornVideoExecArgs {
-	/** The video qualities allowed for download, default is all */
+	/** Allowed video qualities */
 	allowedQualities?: VideoQuality[];
-	/** The format of the ID to use for channels and models */
+
+	/** Video identifier output format */
 	format?: OkPornIdType;
 }
 
-/** Execution arguments for fetching videos from OkPorn, including tag and channel/model filtering */
+/**
+ * Execution arguments for OkPorn operations.
+ * Extends the shared execution request with service-specific filters.
+ */
 export interface OkPornExecArgs extends ExecutionArgs {
-	/** The execution arguments for video-related operations */
+	/** Video operation arguments */
 	videoArgs?: OkPornVideoExecArgs;
-	/** The execution arguments for tag filtering */
+
+	/** Tag filtering arguments */
 	tagArgs?: TagFilterOptions;
-	/** The execution arguments for channel filtering */
+
+	/** Channel identifier output format */
 	channelArgs?: OkPornIdType;
-	/** The execution arguments for model filtering */
+
+	/** Model identifier output format */
 	modelArgs?: OkPornIdType;
 }

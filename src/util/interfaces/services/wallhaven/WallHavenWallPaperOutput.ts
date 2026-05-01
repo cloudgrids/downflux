@@ -1,38 +1,58 @@
 import { WallHavenThumbnail } from './WallHavenThumbnail';
 
+/**
+ * Output structure for WallHaven wallpaper operations.
+ * Contains wallpaper metadata, dimensions, uploader, and thumbnails.
+ */
 export interface WallHavenWallPaperOutput {
-	/** The ID of the wall paper */
+	/** Wallpaper identifier */
 	id: string;
-	/** The title of the wall paper */
+
+	/** Wallpaper title */
 	title: string;
-	/** The description of the wall paper */
+
+	/** Wallpaper description */
 	description: string;
-	/** The tags associated with the wall paper */
+
+	/** Wallpaper tags */
 	tags: string[];
-	/** The number of views for the wall paper */
+
+	/** View count */
 	views: number;
-	/** The number of favorites for the wall paper */
+
+	/** Favorite count */
 	favorites: number;
-	/** The purity of the wall paper */
+
+	/** Purity label */
 	purity: string;
-	/** The category of the wall paper */
+
+	/** Category label */
 	category: string;
-	/** The width of the wall paper */
+
+	/** Wallpaper width in pixels */
 	dimensionX: number;
-	/** The height of the wall paper */
+
+	/** Wallpaper height in pixels */
 	dimensionY: number;
-	/** The resolution of the wall paper */
+
+	/** Resolution text */
 	resolution: string;
-	/** The aspect ratio of the wall paper */
+
+	/** Aspect ratio text */
 	ratio: string;
-	/** The size of the wall paper */
+
+	/** File size in bytes */
 	size: number;
-	/** The username of the uploader */
+
+	/** Uploader username */
 	uploader: string;
-	/** The date and time when the wall paper was created */
+
+	/** Creation date text */
 	createdAt: string;
-	/** The date and time when the wall paper was last updated */
+
+	/** Update date text */
 	updatedAt: string;
-	/** The thumbnails of the wall paper */
+
+	/** Wallpaper thumbnails */
 	thumbnails: WallHavenThumbnail[];
 }

@@ -1,6 +1,11 @@
+/**
+ * Output structure for OkPorn channel operations.
+ * Contains channel links and count metadata.
+ */
 export interface OkPornChannelOutput {
-	/** The URLs of the videos in the channel */
+	/** Channel URLs or path values */
 	channelUrls: string[];
-	/** The number of channels in the page */
+
+	/** Number of channels found */
 	channelCount?: number;
 }

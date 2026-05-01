@@ -1,10 +1,17 @@
 import { TagKeys } from '../../types';
 import { OkPornIdType } from '../services';
 
+/**
+ * Options for filtering tag output.
+ * Used by tag-based service operations.
+ */
 export interface TagFilterOptions {
-	/** List of tags for filtering*/
+	/** Allowed tag keys */
 	allowedKeys?: TagKeys[];
 
-	/** Format of the tags output*/
+	/**
+	 * Output format for tag values
+	 * @defaultValue 'url'
+	 */
 	format?: OkPornIdType;
 }

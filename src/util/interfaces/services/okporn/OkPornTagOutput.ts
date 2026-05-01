@@ -1,7 +1,11 @@
+/**
+ * Output structure for OkPorn tag operations.
+ * Contains tags grouped by key.
+ */
 export interface OkPornTagOutput {
-	/** The URLs of the tags in the page */
+	/** Tags grouped by tag key */
 	tags: TagsOutput;
 }
 
-/** A mapping of tag categories to their respective tag names */
+/** Mapping of tag keys to tag values */
 export type TagsOutput = Record<string, string[]>;

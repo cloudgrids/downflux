@@ -1,7 +1,14 @@
-/** Configuration options for directory output */
+/**
+ * Directory output options.
+ * Controls where downloaded files are written.
+ */
 export interface DirectoryOutputOptions {
-	/** Default process.cwd() */
+	/**
+	 * Directory path for written files
+	 * @defaultValue process.cwd()
+	 */
 	directoryPath?: string;
-	/** Added as prefix to the filename */
+
+	/** Filename prefix */
 	prefix?: string;
 }

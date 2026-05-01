@@ -1,31 +1,46 @@
 import { UrlType } from '../../enums';
 
-/** The default result structure for an extractor, containing common fields extracted from a webpage */
+/**
+ * Default output structure for extractor operations.
+ * Represents normalized metadata and extracted resources.
+ */
 export interface DefaultExtractorResult {
-	/** The title of the page eg: My Awesome Page */
+	/** Page title */
 	title: string;
-	/** The description of the page eg: This is an awesome page about cool stuff */
+
+	/** Page description */
 	description: string;
-	/** The keywords associated with the page eg: keyword1, keyword2 */
+
+	/** SEO keywords */
 	keywords: string[];
-	/** The HTTP status code of the page eg: 200 */
+
+	/** HTTP status code */
 	status: number;
-	/** The base URL denotes the input URL */
+
+	/** Final resolved URL */
 	baseUrl: string;
-	/** The list of anchor tags in the page */
+
+	/** Anchor links */
 	anchors: string[];
-	/** The list of images in the page */
+
+	/** Image URLs */
 	images: string[];
-	/** The list of sources in the page */
+
+	/** Media source URLs */
 	sources: string[];
-	/** The list of video posters in the page */
+
+	/** Video poster URLs */
 	videoPosters?: string[];
-	/** The list of hrefs in the page */
+
+	/** URLs extracted from div href attributes */
 	divHrefs?: string[];
-	/** The list of all URLs in the page */
+
+	/** All discovered URLs */
 	allUrls?: string[];
-	/** The type of the URL to download */
+
+	/** URL category for pipeline routing */
 	urlType?: UrlType;
-	/** Custom fields for additional data */
-	customFields?: Record<string, any>;
+
+	/** Extensible service-specific fields */
+	customFields?: Record<string, unknown>;
 }

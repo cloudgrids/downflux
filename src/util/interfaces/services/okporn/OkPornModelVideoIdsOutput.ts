@@ -1,24 +1,38 @@
-/** Output interface for fetching video IDs from a model page on OkPorn */
+/**
+ * Video card from an OkPorn model page.
+ * Contains preview metadata for a model video.
+ */
 export interface OkPornModelVideoCard {
-	/** The ID of the video eg: 12345 */
+	/** Video identifier */
 	videoId: string;
-	/** The custom title of the video eg: My Awesome Video */
+
+	/** Video card title */
 	customTitle: string;
-	/** The URL of the video preview eg: https://okporn.com/video/12345/preview.mp4, usually in HLS format */
+
+	/** Preview video URL */
 	preview: string;
-	/** The URL of the video screenshot eg: https://okporn.com/video/12345/screenshot.jpg */
+
+	/** Screenshot image URL */
 	screenShot: string;
-	/** The duration of the video eg: 10:00 */
+
+	/** Video duration text */
 	duration: string;
 }
 
+/**
+ * Output structure for OkPorn model video card operations.
+ * Contains model context and video cards.
+ */
 export interface OkPornModelVideoIdsOutput {
-	/** The title of the page eg: Videos */
+	/** Model video page title */
 	pageTitle: string;
-	/** The number of videos in the page eg: 10 */
+
+	/** Number of video cards found */
 	videoCount: number;
-	/** The name of the model associated with the videos, if any eg: John-Doe */
-	modelName?: string;
-	/** An array of video cards */
+
+	/** Model name associated with the videos */
+	modelName: string;
+
+	/** Video cards found on the page */
 	videoCards: OkPornModelVideoCard[];
 }
