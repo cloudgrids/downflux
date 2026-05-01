@@ -1,5 +1,5 @@
 import { UrlType } from '../enums';
-import { OkPornModelVideoCard, SiteDescriptor } from '../interfaces';
+import { OkPornModelVideoCard, SiteDescriptor, WallHavenWallPaperOutput } from '../interfaces';
 
 export const SITE_EXTRACTORS: SiteDescriptor[] = [
 	{
@@ -37,11 +37,30 @@ export const SITE_EXTRACTORS: SiteDescriptor[] = [
 
 	{
 		category: 'wallhaven',
-		pattern: /https?:\/\/wallhaven\.cc\/w\/([a-zA-Z0-9]+)/,
+		pattern: /https?:\/\/wallhaven\.cc\/(?:w|user|tag|search)\/([a-zA-Z0-9]+)/,
 		urlType: UrlType.IMAGES,
-		transform: ({ html, parser }) => ({
-			images: parser.extractImageUrls(html).filter((u) => u.includes('w.wallhaven.cc'))
-		})
+		transform: ({ html, parser }) => {
+			const descriptionParts = parser.extractMetaDescription(html)?.split('|');
+			const description = descriptionParts?.[0]?.trim();
+			const tags = description?.split(',').map((s) => s?.trim()) ?? [];
+			const resolution = descriptionParts?.[1]?.trim()?.split(' ')[0];
+			const [dimensionX, dimensionY] = resolution?.split('x')?.map((a) => Number(a)) ?? [];
+			const uploader = description.split("'")[0];
+
+			return {
+				description,
+				customFields: {
+					resolution,
+					tags,
+					uploader,
+					totalContents: parser.extractElementText(html, 'class="far fa-fw fa-gap fa-images"></i>', '</'),
+					dimensionX,
+					dimensionY,
+					ratio: dimensionX && dimensionY ? (dimensionY / dimensionX).toFixed(2) : '0.00',
+					...parser.extractDefinitionList(html)
+				} as Partial<WallHavenWallPaperOutput>
+			};
+		}
 	},
 
 	{

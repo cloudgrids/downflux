@@ -3,5 +3,6 @@ export enum ServiceType {
 	COOMER = 'CoomerService',
 	SPANKWIRE = 'SpankWireService',
 	EROPICS = 'EropicsService',
+	WALLHAVEN = 'WallHavenService',
 	DEFAULT = 'DefaultService'
 }

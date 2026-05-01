@@ -1,43 +1,48 @@
-import { extname } from 'node:path';
-import { AllowedExtension, DefaultExtractorResult, ExecutionArguments, MediaType, PipelineItem } from '../util';
+import { detectResourceType } from '../helpers';
+import { DefaultExtractorResult, ExecutionArgs, IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem } from '../util';
 
-export class BasePipeline<TExec extends ExecutionArguments, TResult = DefaultExtractorResult> {
+export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
 	public build(metadata: TResult, request: TExec): PipelineItem[] {
-		const items: PipelineItem[] = [];
-		const extracted = this.extract(metadata);
-
-		for (const { mediaType, url } of extracted) {
-			items.push({
-				downloadUrl: url,
-				baseUrl: request.entryUrl,
-				identifier: {
-					mediaType,
-					...this.detectResourceType(url),
-					key: this.buildIdentifier(mediaType, metadata)
-				},
-				service: request.service
-			});
-		}
-
-		return this.filterByExt(items, request);
+		return this.sliceByMaxDownloads(
+			request,
+			this.filterByExt(
+				request,
+				this.extract(request, metadata).map(({ mediaType, url }) => ({
+					downloadUrl: url,
+					baseUrl: request.entryUrl,
+					identifier: {
+						mediaType,
+						...detectResourceType(url),
+						key: this.buildIdentifier({
+							mediaType,
+							metadata,
+							url
+						})
+					},
+					service: request.service
+				}))
+			)
+		);
 	}
 
-	protected filterByExt(pipelineItems: PipelineItem[], request: TExec): PipelineItem[] {
+	protected filterByExt(request: TExec, pipelineItems: PipelineItem[]): PipelineItem[] {
 		if (!request.allowedExtensions?.length) return pipelineItems;
 
 		return pipelineItems.filter((item) => request.allowedExtensions?.includes(item.identifier.extension));
 	}
 
-	protected sliceByMaxDownloads(items: PipelineItem[], request: TExec): PipelineItem[] {
+	protected sliceByMaxDownloads(request: TExec, items: PipelineItem[]): PipelineItem[] {
 		return request.maxDownloads ? items.slice(0, request.maxDownloads) : items;
 	}
 
-	protected buildIdentifier(mediaType: MediaType, metadata: any): string {
-		return `${new URL(metadata.baseUrl).hostname}/${mediaType}/${metadata.urlType}/${new URL(metadata.baseUrl).pathname}`;
+	protected buildIdentifier(ctx: IdentifierContext<TResult>): string {
+		const metadata = ctx.metadata as DefaultExtractorResult;
+
+		return `${new URL(metadata.baseUrl).hostname}/${ctx.mediaType}/${new URL(metadata.baseUrl).pathname.substring(1)}`;
 	}
 
-	protected extract(metadata: any): { mediaType: MediaType; url: string }[] {
-		const urls: { mediaType: MediaType; url: string }[] = [];
+	protected extract(request: TExec, metadata: any): PipelineExtractedItem[] {
+		const urls: PipelineExtractedItem[] = [];
 
 		if (metadata.images?.length) {
 			metadata.images.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.IMAGES, url }));
@@ -62,14 +67,20 @@ export class BasePipeline<TExec extends ExecutionArguments, TResult = DefaultExt
 		return urls;
 	}
 
-	protected detectResourceType(url: string): { mimeType: string; extension: AllowedExtension } {
-		const pathname = extname(url);
-		const extension = pathname.substring(1).toLowerCase() as AllowedExtension;
+	protected filterByQuality<T, TEnum = string | number>(
+		items: T[],
+		options: {
+			allowedQualities: TEnum[];
+			getQuality: (item: T) => TEnum | undefined;
+		}
+	): T[] {
+		const { allowedQualities, getQuality } = options;
 
-		if (/\.(mp4|m3u8|webm|mov|mkv)$/.test(pathname)) return { mimeType: `video/${extension}`, extension };
-		else if (/\.(mp3|wav|aac|flac|ogg)$/.test(pathname)) return { mimeType: `audio/${extension}`, extension };
-		else if (/\.(jpg|jpeg|png|gif|webp)$/.test(pathname)) return { mimeType: `image/${extension}`, extension };
+		if (!allowedQualities?.length || !getQuality) return items;
 
-		return { mimeType: 'application/octet-stream', extension: 'bin' };
+		return items.filter((item) => {
+			const quality = getQuality(item);
+			return quality !== undefined && allowedQualities.includes(quality);
+		});
 	}
 }

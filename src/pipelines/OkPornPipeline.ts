@@ -1,30 +1,34 @@
-import { pathBuilder } from '../helpers/PathBuilder';
-import { OkPornExecArgs, OkPornOutput, PipelineItem } from '../util';
-import { MediaType } from '../util/enums/common/MediaType';
+import { detectResourceType, detectVideoQuality, pathBuilder } from '../helpers';
+import { IdentifierContext, MediaType, OkPornExecArgs, OkPornOutput, PipelineExtractedItem, PipelineItem, VideoQuality } from '../util';
 import { BasePipeline } from './BasePipeline';
 
 export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 	public override build(metadata: OkPornOutput, request: OkPornExecArgs): PipelineItem[] {
-		const items: PipelineItem[] = [];
-		const extracted = this.extract(metadata);
-
-		for (const { mediaType, url, id } of extracted) {
-			items.push({
-				downloadUrl: url,
-				baseUrl: metadata.baseUrl,
-				service: request.service,
-				identifier: {
-					mediaType,
-					...this.detectResourceType(url),
-					key: this.buildIdentifier(mediaType, metadata, id)
-				}
-			});
-		}
-
-		return this.sliceByMaxDownloads(this.filterByExt(items, request), request);
+		return this.sliceByMaxDownloads(
+			request,
+			this.filterByExt(
+				request,
+				this.extract(request, metadata).map((item) => ({
+					downloadUrl: item.url,
+					baseUrl: metadata.baseUrl,
+					service: request.service,
+					identifier: {
+						mediaType: item.mediaType,
+						...detectResourceType(item.url),
+						key: this.buildIdentifier({
+							mediaType: item.mediaType,
+							metadata,
+							url: item.url,
+							id: item.id
+						})
+					}
+				}))
+			)
+		);
 	}
 
-	protected override buildIdentifier(mediaType: MediaType, metadata: OkPornOutput, id?: string): string {
+	protected override buildIdentifier(ctx: IdentifierContext<OkPornOutput>): string {
+		const { mediaType, metadata, id } = ctx;
 		const prefix = 'okporn';
 		let mediaSegment: string;
 
@@ -64,15 +68,18 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 		return pathBuilder(prefix, metadata.modelName?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', mediaSegment);
 	}
 
-	protected extract(metadata: OkPornOutput): { mediaType: MediaType; url: string; id?: string }[] {
-		const urls: { mediaType: MediaType; url: string; id?: string }[] = [];
+	protected extract(request: OkPornExecArgs, metadata: OkPornOutput): PipelineExtractedItem[] {
+		const urls: PipelineExtractedItem[] = [];
 
 		if (metadata.albumImages?.length) {
 			metadata.albumImages.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.ALBUMS, url }));
 		}
 
 		if (metadata.videoSources?.length) {
-			metadata.videoSources.filter(Boolean).forEach(({ url }) => urls.push({ mediaType: MediaType.VIDEOS, url }));
+			this.filterByQuality(metadata.videoSources.filter(Boolean), {
+				allowedQualities: request.videoArgs?.allowedQualities as VideoQuality[],
+				getQuality: (source) => source.quality
+			}).forEach(({ url }) => urls.push({ mediaType: MediaType.VIDEOS, url }));
 		}
 
 		if (metadata.videoAlbum?.albumImages.length) {
@@ -84,9 +91,20 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 		if (metadata.albumThumbnail) urls.push({ mediaType: MediaType.ALBUM_PREVIEW, url: metadata.albumThumbnail });
 
 		if (metadata.videoCards?.length) {
-			metadata.videoCards
-				.filter(Boolean)
-				.forEach((card) => urls.push({ mediaType: MediaType.VIDEO_PREVIEW, url: card.preview, id: card.videoId }));
+			urls.push(
+				...this.filterByQuality(
+					metadata.videoCards.filter(Boolean).map((u) => ({
+						url: u.preview,
+						quality: detectVideoQuality(u.preview),
+						mediaType: MediaType.VIDEO_PREVIEW,
+						id: u.videoId
+					})),
+					{
+						allowedQualities: request.videoArgs?.allowedQualities as VideoQuality[],
+						getQuality: (source) => source.quality
+					}
+				)
+			);
 		}
 
 		if (metadata.videoCards?.length) {

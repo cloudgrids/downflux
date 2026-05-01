@@ -2,7 +2,7 @@ import { DownloaderService } from '../downloaders';
 import { FileService } from '../file';
 import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';
-import { ExecutionArguments, ExecutionResult, OutputType, PipelineHook, PipelineItem } from '../util';
+import { ExecutionArgs, ExecutionResult, OutputType, PipelineHook, PipelineItem } from '../util';
 import { BackgroundService } from './BackgroundProcess';
 
 export class JobService {
@@ -18,7 +18,7 @@ export class JobService {
 		this.backgroundService = new BackgroundService(this.downloaderService, this.fileService);
 	}
 
-	public async execute<TResult, TArgs extends ExecutionArguments>(request: TArgs): Promise<ExecutionResult<TResult>> {
+	public async execute<TResult, TArgs extends ExecutionArgs>(request: TArgs): Promise<ExecutionResult<TResult>> {
 		const { outputType = OutputType.JSON, targets, ...options } = request;
 
 		const pipelineHooks = (options.pipelineHooks ?? []) as PipelineHook[];
@@ -77,7 +77,7 @@ export class JobService {
 		}
 	}
 
-	private async extractMetadata<TResult, TArgs extends ExecutionArguments>(targets: string[], request: TArgs): Promise<TResult[]> {
+	private async extractMetadata<TResult, TArgs extends ExecutionArgs>(targets: string[], request: TArgs): Promise<TResult[]> {
 		const extractConcurrency = request.extractConcurrency ?? JobService.DEFAULT_EXTRACT_CONCURRENCY;
 		const extractedByIndex: Array<TResult | undefined> = new Array(targets.length);
 		let extractedCount = 0;

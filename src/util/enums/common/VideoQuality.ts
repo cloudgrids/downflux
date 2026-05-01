@@ -7,5 +7,6 @@ export enum VideoQuality {
 	Q1080 = '1080p',
 	Q1440 = '1440p',
 	Q2160 = '2160p',
-	Q4320 = '4320p'
+	Q4320 = '4320p',
+	QUnknown = 'unknown'
 }

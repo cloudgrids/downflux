@@ -1,7 +1,7 @@
-import { ExecutionArguments } from './ExecutionArguments';
+import { ExecutionArgs } from './ExecutionArgs';
 import { PipelineItem } from './PipelineItem';
 
-export interface ExecutionResult<TExtracted = unknown> extends ExecutionArguments {
+export interface ExecutionResult<TExtracted = unknown> extends ExecutionArgs {
 	extracted: TExtracted[];
 	targetUrls: string[];
 	downloaded: number;

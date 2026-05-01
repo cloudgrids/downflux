@@ -6,6 +6,7 @@ import { JobProgressEvent } from './JobProgress';
 import { PipelineHook } from './PipelineItem';
 import { TagFilterOptions } from './TagFilterOptions';
 
+/** Configuration options for a download job, common to all download jobs */
 export interface JobOptions extends HttpFetchOptions {
 	/** Directory configuration for the job output */
 	dirConfig?: DirectoryOutputOptions;

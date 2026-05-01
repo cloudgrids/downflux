@@ -11,7 +11,6 @@ import {
 	OkPornTagOutput,
 	OkPornVideoOutput,
 	PageRange,
-	Range,
 	ServiceType,
 	TagFilterOptions,
 	UrlType,
@@ -41,9 +40,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 
 	public async getAlbums(param: PageRange = this.DEFAULT_PAGE_RANGE): Promise<OkPornAlbumOutput[]> {
 		return await this.execute<OkPornAlbumOutput>({
-			targets: this.targets(this.ALBUMS_URL, param),
-			method: OkPornMethods.getAlbums,
-			service: ServiceType.OKPORN,
+			...this.makeTargets(this.ALBUMS_URL, param, ServiceType.OKPORN, OkPornMethods.getAlbums),
 			urlType: UrlType.IMAGES
 		});
 	}
@@ -66,20 +63,16 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 		}
 
 		return this.execute<OkPornModelOutput>({
-			targets: this.targets(this.MODELS_URL, range),
+			...this.makeTargets(this.MODELS_URL, range, ServiceType.OKPORN, OkPornMethods.getModels),
 			urlType: UrlType.ANCHORS,
-			method: OkPornMethods.getModels,
-			service: ServiceType.OKPORN,
 			modelArgs: args
 		});
 	}
 
 	public async getModelVideoIds(modelName: string, range: PageRange = this.DEFAULT_PAGE_RANGE): Promise<OkPornModelVideoIdsOutput> {
 		const [modelVideos] = await this.execute<OkPornModelVideoIdsOutput>({
-			targets: this.targets(`${this.MODELS_URL}${modelName}/`, range),
-			urlType: UrlType.ANCHORS,
-			method: OkPornMethods.getModelVideoIds,
-			service: ServiceType.OKPORN
+			...this.makeTargets(`${this.MODELS_URL}${modelName}/`, range, ServiceType.OKPORN, OkPornMethods.getModelVideoIds),
+			urlType: UrlType.ANCHORS
 		});
 
 		return modelVideos;
@@ -101,20 +94,16 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 			throw new InvalidRangeException(range.page, range.limit, ServiceType.OKPORN, OkPornMethods.getChannels);
 		}
 		return this.execute<OkPornChannelOutput>({
-			targets: this.targets(this.CHANNELS_URL, range),
+			...this.makeTargets(this.CHANNELS_URL, range, ServiceType.OKPORN, OkPornMethods.getChannels),
 			urlType: UrlType.ANCHORS,
-			method: OkPornMethods.getChannels,
-			service: ServiceType.OKPORN,
 			channelArgs: args
 		});
 	}
 
 	public getVideos(range: IndexRange = this.DEFAULT_INDEX_RANGE, args?: VideoQuality[]): Promise<OkPornVideoOutput[]> {
 		return this.execute<OkPornVideoOutput>({
-			targets: this.targets(this.VIDEOS_URL, range),
+			...this.makeTargets(this.VIDEOS_URL, range, ServiceType.OKPORN, OkPornMethods.getVideos),
 			urlType: UrlType.SOURCES,
-			method: OkPornMethods.getVideos,
-			service: ServiceType.OKPORN,
 			videoArgs: { allowedQualities: args }
 		});
 	}
@@ -129,20 +118,5 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 		});
 
 		return video;
-	}
-
-	private targets(baseUrl: string, range: Range) {
-		const isIndexRange = 'start' in range;
-
-		if (isIndexRange) {
-			const { start, end } = range;
-			if (start < 0 || end < 0 || start > end)
-				throw new InvalidRangeException(start, end, ServiceType.OKPORN, OkPornMethods.getAlbums);
-			return Array.from({ length: end + 1 - start }, (_, i) => `${baseUrl}${start + i}/`);
-		} else {
-			const { page, limit } = range;
-			if (page < 1 || limit < 1) throw new InvalidRangeException(page, page + limit, ServiceType.OKPORN, OkPornMethods.getAlbums);
-			return Array.from({ length: limit }, (_, i) => `${baseUrl}${page + i}/`);
-		}
 	}
 }

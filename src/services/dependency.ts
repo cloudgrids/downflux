@@ -1,11 +1,10 @@
-import { DownloaderService } from '../downloaders/DownloaderService';
-import { HttpFetcherService } from '../fetcher/HttpFetcherService';
-import { FileService } from '../file/FileService';
-import { BackgroundService } from '../job/BackgroundProcess';
-import { JobService } from '../job/JobService';
-import { HtmlParserService } from '../parser/HtmlParserService';
+import { DownloaderService } from '../downloaders';
+import { HttpFetcherService } from '../fetcher';
+import { FileService } from '../file';
+import { BackgroundService, JobService } from '../job';
+import { HtmlParserService } from '../parser';
 import { PipelineService } from '../pipelines';
-import { TransformerService } from '../transformers/Transformer';
+import { TransformerService } from '../transformers';
 import { ServiceDependencies } from '../util';
 
 export function createDefaultDependencies(): ServiceDependencies {

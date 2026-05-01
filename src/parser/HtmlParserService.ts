@@ -170,6 +170,40 @@ export class HtmlParserService {
 		return results;
 	}
 
+	public extractDefinitionList(html: string): Record<string, string> {
+		const result: Record<string, string> = {};
+		const dlStart = html.toLowerCase().indexOf('<dl');
+		if (dlStart === -1) return result;
+		const dlEnd = html.toLowerCase().indexOf('</dl>', dlStart);
+		if (dlEnd === -1) return result;
+
+		const dlContent = html.slice(dlStart, dlEnd); // <dl> ... </dl>
+		const tagRegex = /<(dt|dd)\b[^>]*>([\s\S]*?)<\/\1>/gi;
+		let match;
+		let currentKey: string | null = null;
+
+		while ((match = tagRegex.exec(dlContent)) !== null) {
+			const tag = match[1].toLowerCase();
+			const innerHTML = match[2];
+			const text = this.decodeHtmlEntities(
+				innerHTML
+					.replace(/<br\s*\/?>/gi, ' ')
+					.replace(/<[^>]*>/g, '')
+					.replace(/\s+/g, ' ')
+					.trim()
+			).toLowerCase();
+
+			if (tag === 'dt') {
+				currentKey = text;
+			} else if (tag === 'dd' && currentKey) {
+				result[currentKey] = text;
+				currentKey = null;
+			}
+		}
+
+		return result;
+	}
+
 	public extractMetaDescription(html: string): string {
 		return this.decodeHtmlEntities(
 			this.extractElementText(html, 'name="description" content="', '"') ||
