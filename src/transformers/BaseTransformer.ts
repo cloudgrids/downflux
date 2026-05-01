@@ -1,8 +1,8 @@
 import { HttpFetcherService } from '../fetcher';
 import { HtmlParserService } from '../parser';
-import { DefaultExtractorResult, ExecutionArguments, SITE_EXTRACTORS, SiteDescriptor } from '../util';
+import { DefaultExtractorResult, ExecutionArgs, SITE_EXTRACTORS, SiteDescriptor } from '../util';
 
-export abstract class BaseTransformer<TExec extends ExecutionArguments, TResult = DefaultExtractorResult> {
+export abstract class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
 	constructor(
 		protected readonly htmlParserService: HtmlParserService,
 		protected readonly httpFetcherService: HttpFetcherService
@@ -18,12 +18,9 @@ export abstract class BaseTransformer<TExec extends ExecutionArguments, TResult 
 		const descriptor = this.findTransformer(url);
 		const match = descriptor?.pattern.exec(url);
 
-		console.log({ match, url });
-
 		const base = this.defaultParse(fetched.html, fetched.finalUrl);
 
 		if (descriptor?.transform && match) {
-			console.log('Transformed');
 			const transformed = descriptor.transform({
 				html: fetched.html,
 				finalUrl: fetched.finalUrl,

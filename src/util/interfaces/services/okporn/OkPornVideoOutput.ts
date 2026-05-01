@@ -1,10 +1,5 @@
-import { VideoQuality } from '../../../enums';
+import { VideoSourceOutput } from '../../common/VideoSourceOutput';
 import { OkPornAlbumOutput } from './OkPornAlbumOutput';
-
-export interface OkPornVideoOutputItem {
-	quality: VideoQuality;
-	url: string;
-}
 
 export interface OkPornVideoOutput {
 	modelName?: string;
@@ -14,7 +9,7 @@ export interface OkPornVideoOutput {
 	videoKeywords: string[];
 	videoDescription: string;
 	videoScreenshot: string;
-	videoSources: OkPornVideoOutputItem[];
+	videoSources: VideoSourceOutput[];
 	videoPoster: string;
 	videoCreatedAt?: string;
 	fullVideoSource?: string;

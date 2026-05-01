@@ -1,19 +1,21 @@
+import { InvalidRangeException } from '../exceptions';
 import {
 	AllowedExtension,
 	DirectoryOutputOptions,
-	ExecutionArguments,
+	ExecutionArgs,
 	ExecutionType,
 	HttpFetchOptions,
 	JobOptions,
 	JobProgressEvent,
 	OutputType,
+	Range,
 	ServiceDependencies,
 	ServiceType,
 	UrlType
 } from '../util';
 import { createDefaultDependencies } from './dependency';
 
-export abstract class BaseService<TExec extends ExecutionArguments> {
+export abstract class BaseService<TExec extends ExecutionArgs> {
 	protected jobOptions: JobOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
 	protected readonly deps: ServiceDependencies;
@@ -102,5 +104,27 @@ export abstract class BaseService<TExec extends ExecutionArguments> {
 		const result = await this.deps.jobService.execute<TRes, TExec>(this.buildRequest(overrides));
 
 		return result.extracted;
+	}
+
+	protected makeTargets(baseUrl: string, range: Range, service: ServiceType, method: string, addTrailingSlash: boolean = true) {
+		const isIndexRange = 'start' in range;
+
+		if (isIndexRange) {
+			const { start, end } = range;
+			if (start < 0 || end < 0 || start > end) throw new InvalidRangeException(start, end, service, method);
+			return {
+				targets: Array.from({ length: end + 1 - start }, (_, i) => `${baseUrl}${start + i}${addTrailingSlash ? '/' : ''}`),
+				service,
+				method
+			};
+		} else {
+			const { page, limit } = range;
+			if (page < 1 || limit < 1) throw new InvalidRangeException(page, page + limit, service, method);
+			return {
+				targets: Array.from({ length: limit }, (_, i) => `${baseUrl}${page + i}${addTrailingSlash ? '/' : ''}`),
+				service,
+				method
+			};
+		}
 	}
 }

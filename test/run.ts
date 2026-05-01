@@ -1,41 +1,15 @@
-import { OkPornService, OutputType } from '../src';
+import { OutputType, WallHavenService } from '../src';
 
 async function main() {
-	const url1 = 'https://ok.porn/videos';
+	const url1 = 'https://wallhaven.cc/w';
 	console.log(`\n\n=== Testing:`);
 
 	try {
-		// await new OkPornService(url1)
-		// 	.setJobOptions({ logProgress: true })
-		// 	.onProgress(console.log)
-		// 	.setOutput(OutputType.JSON, { directoryPath: 'downflux_' })
-		// 	.getModels({ type: 'index', start: 1, end: 2 });
-
-		await new OkPornService(url1)
+		await new WallHavenService(url1)
 			.setJobOptions({ logProgress: true })
-			.setMaxDownloads(10)
-			.setAllowedExtensions('mp4')
 			.onProgress(console.log)
-			.setOutput(OutputType.DEVICE, { directoryPath: 'downflux_' })
-			.getModelVideoIds('sara-jay');
-
-		// await new OkPornService(url1)
-		// 	.setJobOptions({ logProgress: true })
-		// 	.onProgress(console.log)
-		// 	.setOutput(OutputType.JSON, { directoryPath: 'downflux_' })
-		// 	.getVideo('1300');
-
-		// await new OkPornService(url1)
-		// 	.setJobOptions({ logProgress: true })
-		// 	.onProgress(console.log)
-		// 	.setOutput(OutputType.JSON, { directoryPath: 'downflux_' })
-		// 	.getVideo('1300');
-
-		// await new OkPornService(url1)
-		// 	.setJobOptions({ logProgress: true })
-		// 	.onProgress(console.log)
-		// 	.setOutput(OutputType.JSON, { directoryPath: 'downflux_' })
-		// 	.getTags({});
+			.setOutput(OutputType.JSON)
+			.getUserUploads('whimsicalmango');
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {

@@ -136,7 +136,7 @@ Public service method
   -> FileService.createSink()
 ```
 
-- **Request building:** `BaseService` merges defaults, fluent options, and method overrides into `ExecutionArguments`.
+- **Request building:** `BaseService` merges defaults, fluent options, and method overrides into `ExecutionArgs`.
 - **Progress start:** `JobService` emits `started`.
 - **Metadata extraction:** `JobService.extractMetadata` processes `targets` with `extractConcurrency` or the default value `3`.
 - **Transformation:** `TransformerService` picks a transformer by `request.service`; if no match exists, it falls back to `DefaultTransformer`.
@@ -147,7 +147,7 @@ Public service method
 
 ## Class Reference
 
-- **`BaseService`** - Abstract base for public services. Stores job and HTTP options, provides fluent setters, builds `ExecutionArguments`, and delegates execution to `JobService`.
+- **`BaseService`** - Abstract base for public services. Stores job and HTTP options, provides fluent setters, builds `ExecutionArgs`, and delegates execution to `JobService`.
 - **`OkPornService`** - Public OkPorn API. Validates OkPorn URLs, builds album/video/model/tag/channel target URLs, applies OkPorn method names, and validates ranges.
 - **`DefaultService`** - Public generic API. Validates that a URL can be parsed by `URL` and runs default extraction.
 - **`CoomerService`** - Public Coomer/Kemono API. Validates supported hosts and exposes generic post/attachment extraction methods.
@@ -202,7 +202,7 @@ Public service method
 
 ## Important Types
 
-- **`ExecutionArguments`** - Internal request object used by `JobService`. Includes `service`, `method`, `entryUrl`, `targets`, `executionType`, `urlType`, and `JobOptions`.
+- **`ExecutionArgs`** - Internal request object used by `JobService`. Includes `service`, `method`, `entryUrl`, `targets`, `executionType`, `urlType`, and `JobOptions`.
 - **`ExecutionResult<T>`** - Final job object. Includes extracted metadata, target download URLs, pipeline items, download counts, failures, and errors.
 - **`JobOptions`** - Shared options for output directory, allowed extensions, video qualities, max downloads, extraction/download concurrency, hooks, progress events, logging, output type, execution type, and abort signal.
 - **`PipelineItem`** - One downloadable item with `downloadUrl`, `baseUrl`, `service`, and an identifier containing media type, MIME type, extension, and path key.

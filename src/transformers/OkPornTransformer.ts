@@ -1,3 +1,4 @@
+import { detectVideoQuality } from '../helpers';
 import {
 	DefaultExtractorResult,
 	OkPornAlbumOutput,
@@ -11,8 +12,7 @@ import {
 	OkPornVideoOutput,
 	TagKeys,
 	TagsOutput,
-	UrlType,
-	VideoQuality
+	UrlType
 } from '../util';
 import { BaseTransformer } from './BaseTransformer';
 
@@ -117,14 +117,14 @@ export class OkPornTransformer extends BaseTransformer<
 			videoKeywords: metadata.keywords,
 			videoDescription: metadata.description,
 			videoId: metadata.baseUrl.split('/').filter(Boolean).pop() ?? '',
-			videoSources: this.filterByQuality(request, metadata.sources),
+			videoSources: metadata.sources.map((url) => ({ url, quality: detectVideoQuality(url) })),
 			videoPoster: metadata.customFields?.videoPoster,
 			videoScreenshot: metadata.customFields?.videoPoster,
 			modelName: metadata.customFields?.starredBy?.[0],
 			videoAlbumId: metadata.customFields?.videoAlbumId,
 			videoCreatedAt: metadata.customFields?.videoCreateDate,
-			videoAlbum,
-			baseUrl: request?.entryUrl
+			baseUrl: request?.entryUrl,
+			videoAlbum
 		};
 	}
 
@@ -172,22 +172,5 @@ export class OkPornTransformer extends BaseTransformer<
 			baseUrl: metadata.baseUrl,
 			channelCount: metadata.anchors.length
 		};
-	}
-
-	private detectVideoQuality(url: string): VideoQuality {
-		if (url.includes('1080')) return VideoQuality.Q1080;
-		if (url.includes('720')) return VideoQuality.Q720;
-		if (url.includes('480')) return VideoQuality.Q480;
-		if (url.includes('360')) return VideoQuality.Q360;
-		if (url.includes('240')) return VideoQuality.Q240;
-		if (url.includes('144')) return VideoQuality.Q144;
-		return VideoQuality.Q480;
-	}
-
-	private filterByQuality(request: OkPornExecArgs, sources: string[]) {
-		const extendedSources = sources.map((url) => ({ url, quality: this.detectVideoQuality(url) }));
-		if (!request?.videoArgs?.allowedQualities?.length) return extendedSources;
-
-		return extendedSources.filter((source) => request.videoArgs?.allowedQualities?.includes(source.quality));
 	}
 }

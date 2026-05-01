@@ -2,7 +2,7 @@ import { DownloaderService } from '../downloaders';
 import { FileService } from '../file';
 import {
 	DownloadResult,
-	ExecutionArguments,
+	ExecutionArgs,
 	ExecutionResult,
 	JobOptions,
 	JobProgressEvent,
@@ -22,7 +22,7 @@ export class BackgroundService {
 	private async processDownloadsInBackground<T>(
 		options: JobOptions,
 		outputType: OutputType,
-		request: ExecutionArguments,
+		request: ExecutionArgs,
 		pipelineHooks: PipelineHook[],
 		result: ExecutionResult<T>
 	): Promise<void> {
@@ -150,7 +150,7 @@ export class BackgroundService {
 	public handleDeviceOutputAsync<T>(
 		options: JobOptions,
 		outputType: OutputType,
-		request: ExecutionArguments,
+		request: ExecutionArgs,
 		pipelineHooks: PipelineHook[],
 		result: ExecutionResult<T>
 	): void {
