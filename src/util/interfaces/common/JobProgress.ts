@@ -14,6 +14,7 @@ export type JobProgressStatus =
 
 export interface JobProgressEvent {
 	status: JobProgressStatus;
+	target?: string;
 	totalTargets?: number;
 	totalItems?: number;
 	extracted?: number;

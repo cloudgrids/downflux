@@ -69,50 +69,48 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 	}
 
 	protected extract(request: OkPornExecArgs, metadata: OkPornOutput): PipelineExtractedItem[] {
-		const urls: PipelineExtractedItem[] = [];
+		const urls: Set<PipelineExtractedItem> = new Set();
 
 		if (metadata.albumImages?.length) {
-			metadata.albumImages.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.ALBUMS, url }));
+			metadata.albumImages.filter(Boolean).forEach((url) => urls.add({ mediaType: MediaType.ALBUMS, url }));
 		}
 
 		if (metadata.videoSources?.length) {
 			this.filterByQuality(metadata.videoSources.filter(Boolean), {
 				allowedQualities: request.videoArgs?.allowedQualities as VideoQuality[],
 				getQuality: (source) => source.quality
-			}).forEach(({ url }) => urls.push({ mediaType: MediaType.VIDEOS, url }));
+			}).forEach(({ url }) => urls.add({ mediaType: MediaType.VIDEOS, url }));
 		}
 
 		if (metadata.videoAlbum?.albumImages.length) {
-			metadata.videoAlbum.albumImages.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.VIDEO_ALBUM, url }));
+			metadata.videoAlbum.albumImages.filter(Boolean).forEach((url) => urls.add({ mediaType: MediaType.VIDEO_ALBUM, url }));
 		}
 
-		if (metadata.videoPoster) urls.push({ mediaType: MediaType.VIDEO_POSTER, url: metadata.videoPoster });
+		if (metadata.videoPoster) urls.add({ mediaType: MediaType.VIDEO_POSTER, url: metadata.videoPoster });
 
-		if (metadata.albumThumbnail) urls.push({ mediaType: MediaType.ALBUM_PREVIEW, url: metadata.albumThumbnail });
+		if (metadata.albumThumbnail) urls.add({ mediaType: MediaType.ALBUM_PREVIEW, url: metadata.albumThumbnail });
 
 		if (metadata.videoCards?.length) {
-			urls.push(
-				...this.filterByQuality(
-					metadata.videoCards.filter(Boolean).map((u) => ({
-						url: u.preview,
-						quality: detectVideoQuality(u.preview),
-						mediaType: MediaType.VIDEO_PREVIEW,
-						id: u.videoId
-					})),
-					{
-						allowedQualities: request.videoArgs?.allowedQualities as VideoQuality[],
-						getQuality: (source) => source.quality
-					}
-				)
-			);
+			this.filterByQuality(
+				metadata.videoCards.filter(Boolean).map((u) => ({
+					url: u.preview,
+					quality: detectVideoQuality(u.preview),
+					mediaType: MediaType.VIDEO_PREVIEW,
+					id: u.videoId
+				})),
+				{
+					allowedQualities: request.videoArgs?.allowedQualities as VideoQuality[],
+					getQuality: (source) => source.quality
+				}
+			).forEach((item) => urls.add({ mediaType: item.mediaType, url: item.url, id: item.id }));
 		}
 
 		if (metadata.videoCards?.length) {
 			metadata.videoCards
 				.filter(Boolean)
-				.forEach((card) => urls.push({ mediaType: MediaType.VIDEO_SCREENSHOT, url: card.screenShot, id: card.videoId }));
+				.forEach((card) => urls.add({ mediaType: MediaType.VIDEO_SCREENSHOT, url: card.screenShot, id: card.videoId }));
 		}
 
-		return urls;
+		return Array.from(urls);
 	}
 }

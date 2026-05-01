@@ -54,13 +54,13 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 	}
 
 	protected override extract(request: WallHavenExecArgs, metadata: WallHavenOutput): PipelineExtractedItem[] {
-		const urls: PipelineExtractedItem[] = [];
+		const urls: Set<PipelineExtractedItem> = new Set();
 
 		if (metadata.thumbnails?.length) {
 			this.filterByQuality(metadata.thumbnails, {
 				allowedQualities: request.thumbQualities as WallHavenThumbnailQuality[],
 				getQuality: (thumb) => thumb.quality
-			}).forEach((thumb) => urls.push({ mediaType: MediaType.IMAGES, url: thumb.url, id: thumb.id }));
+			}).forEach((thumb) => urls.add({ mediaType: MediaType.IMAGES, url: thumb.url, id: thumb.id }));
 		}
 
 		if (metadata.wallPapers?.length) {
@@ -68,10 +68,10 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 				this.filterByQuality(wp.thumbnails, {
 					allowedQualities: request.thumbQualities as WallHavenThumbnailQuality[],
 					getQuality: (wallpaper) => wallpaper.quality
-				}).forEach((thumb) => urls.push({ mediaType: MediaType.IMAGES, url: thumb.url, id: thumb.id }));
+				}).forEach((thumb) => urls.add({ mediaType: MediaType.IMAGES, url: thumb.url, id: thumb.id }));
 			});
 		}
 
-		return urls;
+		return Array.from(urls);
 	}
 }

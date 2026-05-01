@@ -73,13 +73,19 @@ export class WallHavenTransformer extends BaseTransformer<
 		const wallPapers: WallHavenWallPaperOutput[] = [];
 
 		for (const thumbnail of thumbnails) {
-			const wallPaper = (await super.transform(thumbnail.siteUrl, {
+			const wallPaperRequest = {
 				...request,
 				entryUrl: thumbnail.siteUrl,
 				referer: thumbnail.siteUrl,
 				method: WallHavenMethods.getWallPaper,
 				urlType: UrlType.IMAGES
-			})) as DefaultExtractorResult;
+			};
+
+			this.emitExtractProgress(wallPaperRequest, 'extracting', thumbnail.siteUrl);
+
+			const wallPaper = (await super.transform(thumbnail.siteUrl, wallPaperRequest)) as DefaultExtractorResult;
+
+			this.emitExtractProgress(wallPaperRequest, 'extracted', thumbnail.siteUrl);
 
 			wallPapers.push(this.toWallPaperOutput(request, wallPaper));
 		}
