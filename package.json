@@ -16,6 +16,8 @@
 		"dist"
 	],
 	"scripts": {
+		"docs": "typedoc",
+		"docs:md": "typedoc --options typedoc-md.json",
 		"build": "tsup",
 		"dev": "tsup --watch",
 		"prepare": "npm run build",
@@ -64,6 +66,8 @@
 		"ts-jest": "^29.4.9",
 		"tsup": "^8.5.1",
 		"tsx": "^4.21.0",
+		"typedoc": "^0.28.19",
+		"typedoc-plugin-markdown": "^4.11.0",
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.59.0"
 	},

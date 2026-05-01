@@ -7,6 +7,10 @@ import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';
 import { ServiceDependencies } from '../util';
 
+/**
+ * Creates the default service dependency graph.
+ * @returns Default service dependencies
+ */
 export function createDefaultDependencies(): ServiceDependencies {
 	const htmlParserService = new HtmlParserService();
 	const httpFetcherService = new HttpFetcherService();

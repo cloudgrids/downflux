@@ -1,10 +1,17 @@
+/**
+ * HTTP fetch options.
+ * Controls request headers, retries, timeout, and referer.
+ */
 export interface HttpFetchOptions {
-	/** Custom headers to be sent with the HTTP request */
+	/** Custom request headers */
 	headers?: Record<string, string>;
-	/** The maximum time in milliseconds to wait for a response before timing out, defaults to none */
+
+	/** Request timeout in milliseconds */
 	timeoutMs?: number;
-	/** The number of times to retry the request in case of failure, defaults to 3 times */
+
+	/** Failed request retry count */
 	retries?: number;
-	/** The referer URL to be sent with the HTTP request, usually managed by this library */
+
+	/** Request referer URL */
 	referer?: string;
 }

@@ -2,7 +2,16 @@ import { InvalidUrlException } from '../exceptions';
 import { ServiceType, UrlType } from '../util';
 import { BaseService } from './BaseService';
 
+/**
+ * Coomer service.
+ * Supports Coomer and Kemono URLs.
+ */
 export class CoomerService extends BaseService<any> {
+	/**
+	 * Creates a Coomer/Kemono service.
+	 * @param url Coomer or Kemono URL
+	 * @throws InvalidUrlException When the host is unsupported
+	 */
 	constructor(url: string) {
 		super(url);
 		this.validateUrl(url);
@@ -22,10 +31,18 @@ export class CoomerService extends BaseService<any> {
 		if (!isSupportedHost) throw new InvalidUrlException(url, ServiceType.COOMER);
 	}
 
+	/**
+	 * Gets post links.
+	 * @returns Extracted post link results
+	 */
 	public getPosts() {
 		return this.execute({ urlType: UrlType.ANCHORS });
 	}
 
+	/**
+	 * Gets attachment URLs.
+	 * @returns Extracted attachment URL results
+	 */
 	public getAttachments() {
 		return this.execute({ urlType: UrlType.ALL_URLS });
 	}

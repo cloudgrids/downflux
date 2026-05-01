@@ -1,10 +1,17 @@
+/**
+ * Output structure for OkPorn model operations.
+ * Contains model page metadata and model links.
+ */
 export interface OkPornModelOutput {
-	/** The title of the page eg: Models */
+	/** Model listing page title */
 	pageTitle: string;
-	/** The URL of the page eg: https://okporn.com/models */
+
+	/** Model listing page URL */
 	pageUrl: string;
-	/** The URLs of the models in the page */
+
+	/** Model URLs or path values */
 	modelUrls: string[];
-	/** The number of models in the page */
+
+	/** Number of models found */
 	modelCount: number;
 }

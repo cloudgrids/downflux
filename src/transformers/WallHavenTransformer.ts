@@ -39,7 +39,7 @@ export class WallHavenTransformer extends BaseTransformer<
 	}
 
 	private toWallPaperOutput(request: WallHavenExecArgs, metadata: DefaultExtractorResult): WallHavenWallPaperOutput {
-		const partial = metadata.customFields as WallHavenWallPaperOutput & { totalContents?: number };
+		const partial = metadata.customFields as unknown as WallHavenWallPaperOutput & { totalContents?: number };
 		delete partial?.totalContents;
 
 		const id = metadata.baseUrl?.split('/')?.filter(Boolean)?.pop() ?? '';
@@ -93,7 +93,7 @@ export class WallHavenTransformer extends BaseTransformer<
 	}
 
 	private toUserUploads(request: WallHavenExecArgs, metadata: DefaultExtractorResult): WallHavenUserUploadsOutput {
-		const partial = metadata.customFields as WallHavenUserUploadsOutput;
+		const partial = metadata.customFields as unknown as WallHavenUserUploadsOutput;
 
 		const thumbnails = metadata.images
 			?.filter((img) => img.startsWith('https://th.wallhaven.cc'))
@@ -108,7 +108,7 @@ export class WallHavenTransformer extends BaseTransformer<
 			}) as WallHavenThumbnail[];
 
 		return {
-			uploader: metadata.customFields?.uploader,
+			uploader: partial.uploader,
 			totalContents: Number(partial.totalContents ?? 0),
 			totalPages: Math.ceil(Number(partial.totalContents) / 24),
 			currentPage: Number(metadata.baseUrl.split('=').pop() ?? '1'),

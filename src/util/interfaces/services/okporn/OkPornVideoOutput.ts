@@ -1,32 +1,47 @@
 import { VideoSourceOutput } from '../../common/VideoSourceOutput';
 import { OkPornAlbumOutput } from './OkPornAlbumOutput';
 
-/** The output structure for a video extracted from OkPorn */
+/**
+ * Output structure for OkPorn video operations.
+ * Contains video metadata, sources, poster, and album context.
+ */
 export interface OkPornVideoOutput {
-	/** The ID of the video eg: 12345 */
+	/** Video identifier */
 	videoId: string;
-	/** The title of the video eg: My Awesome Video */
+
+	/** Video title */
 	videoTitle: string;
-	/** The URL of the video eg: https://okporn.com/video/12345 */
+
+	/** Video page URL */
 	videoUrl: string;
-	/** The keywords associated with the video eg: keyword1, keyword2 */
+
+	/** Video keywords */
 	videoKeywords: string[];
-	/** The description of the video eg: A collection of my favorite photos */
+
+	/** Video description */
 	videoDescription: string;
-	/** The URL of the video screenshot eg: https://okporn.com/video/12345/screenshot.jpg */
+
+	/** Screenshot image URL */
 	videoScreenshot: string;
-	/** The URL of the video poster eg: https://okporn.com/video/12345/poster.jpg */
+
+	/** Video source URLs with detected quality */
 	videoSources: VideoSourceOutput[];
-	/** The URL of the video poster eg: https://okporn.com/video/12345/poster.jpg */
+
+	/** Poster image URL */
 	videoPoster: string;
-	/** The date when the video was created eg: 2024-01-01T00:00:00Z */
+
+	/** Video creation date text */
 	videoCreatedAt?: string;
-	/** The name of the model associated with the video, if any eg: John-Doe */
-	modelName?: string;
-	/** The full source URL of the video, if available */
+
+	/** Model name associated with the video */
+	modelName: string;
+
+	/** Full source URL when available */
 	fullVideoSource?: string;
-	/** The ID of the album to which the video belongs, if any eg: 54321 */
+
+	/** Album identifier linked to the video */
 	videoAlbumId?: string;
-	/** The album to which the video belongs, if any */
+
+	/** Album metadata linked to the video */
 	videoAlbum?: OkPornAlbumOutput;
 }

@@ -15,12 +15,20 @@ import {
 } from '../util';
 import { createDefaultDependencies } from './dependency';
 
+/**
+ * Base service API.
+ * Shared fluent configuration and execution helpers.
+ */
 export abstract class BaseService<TExec extends ExecutionArgs> {
 	protected jobOptions: JobOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
 	protected readonly deps: ServiceDependencies;
 	protected abstract validateUrl(url: string): void;
 
+	/**
+	 * Creates a service instance.
+	 * @param url Source URL
+	 */
 	constructor(public readonly url: string) {
 		this.deps = createDefaultDependencies();
 		this.jobOptions = {
@@ -30,68 +38,105 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 		this.httpOptions = { referer: url };
 	}
 
-	/** Sets the headers for the HTTP requests, default is managed by DownFlux */
+	/**
+	 * Sets custom HTTP headers.
+	 * @param headers Request header map
+	 */
 	public setHeaders(headers: Record<string, string>): this {
 		this.httpOptions.headers = headers;
 		return this;
 	}
 
-	/** Sets the timeout for HTTP requests in milliseconds, default is none */
+	/**
+	 * Sets HTTP timeout.
+	 * @param timeoutMs Timeout in milliseconds
+	 */
 	public setTimeout(timeoutMs: number): this {
 		this.httpOptions.timeoutMs = timeoutMs;
 		return this;
 	}
 
-	/** Sets the number of retries for failed HTTP requests, default is 3 */
+	/**
+	 * Sets fetch retry count.
+	 * @param retries Retry attempt count
+	 */
 	public setRetries(retries: number): this {
 		this.httpOptions.retries = retries;
 		return this;
 	}
 
-	/** Sets the HTTP options for the service */
+	/**
+	 * Sets HTTP fetch options.
+	 * @param opts HTTP options to merge
+	 */
 	public setHttpOptions(opts: HttpFetchOptions): this {
 		this.httpOptions = { ...this.httpOptions, ...opts };
 		return this;
 	}
 
-	/** Sets options for the job execution, common for all jobs */
+	/**
+	 * Sets job options.
+	 * @param opts Job options to merge
+	 */
 	public setJobOptions(opts: JobOptions): this {
 		this.jobOptions = { ...this.jobOptions, ...opts };
 		return this;
 	}
 
-	/** Sets the maximum number of downloads for the job */
+	/**
+	 * Sets maximum downloads.
+	 * @param maxDownloads Download limit
+	 */
 	public setMaxDownloads(maxDownloads: number): this {
 		this.jobOptions.maxDownloads = maxDownloads;
 		return this;
 	}
 
-	/** Sets the allowed file extensions for the job. eg ['jpg', 'png'] */
+	/**
+	 * Sets allowed file extensions.
+	 * @param extensions File extensions such as `jpg` or `png`
+	 */
 	public setAllowedExtensions(...extensions: AllowedExtension[]): this {
 		this.jobOptions.allowedExtensions = extensions.map((ext) => ext.toLowerCase()) as AllowedExtension[];
 		return this;
 	}
 
-	/** Sets a progress handler for the job, which will be called with progress updates during execution */
+	/**
+	 * Sets progress handler.
+	 * @param handler Progress event callback
+	 */
 	public onProgress(handler: (event: JobProgressEvent) => void): this {
 		this.jobOptions.onProgress = handler;
 		return this;
 	}
 
-	/** Enables or disables progress logging to the console, default is true */
+	/**
+	 * Enables console progress logging.
+	 * @param enabled Console logging flag
+	 * @defaultValue true
+	 */
 	public setProgressLogging(enabled = true): this {
 		this.jobOptions.logProgress = enabled;
 		return this;
 	}
 
-	/** Sets the output type for the job, default is JSON. If set to DIRECTORY, files will be downloaded to the specified directory in config. */
+	/**
+	 * Sets output type.
+	 * @param type Job output mode
+	 * @param config Directory output configuration
+	 * @defaultValue OutputType.JSON
+	 */
 	public setOutput(type: OutputType, config: DirectoryOutputOptions = {}): this {
 		this.jobOptions.outputType = type;
 		this.jobOptions.dirConfig = config;
 		return this;
 	}
 
-	/** Sets the execution type for the job, default is PARALLEL */
+	/**
+	 * Sets execution strategy.
+	 * @param type Execution mode
+	 * @defaultValue ExecutionType.SEQUENTIAL
+	 */
 	public setExecutionType(type: ExecutionType): this {
 		this.jobOptions.executionType = type;
 		return this;

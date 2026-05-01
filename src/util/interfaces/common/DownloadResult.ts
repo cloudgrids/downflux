@@ -1,22 +1,34 @@
 import { ServiceType } from '../../enums';
 
+/**
+ * Result of a download operation.
+ * Contains file metadata and the downloaded buffer.
+ */
 export interface DownloadResult {
-	/** The URL from which the file was downloaded */
+	/** Requested download URL */
 	url: string;
-	/** The buffer containing the downloaded file */
+
+	/** Downloaded file buffer */
 	buffer: Buffer;
-	/** The final URL after any redirects */
+
+	/** Final URL after redirects */
 	finalUrl: string;
-	/** The extended filename with additional information */
+
+	/** Generated filename with metadata */
 	extendedFilename: string;
-	/** The original filename before any modifications */
+
+	/** Original filename from URL or response */
 	originalFilename: string;
-	/** The file extension */
+
+	/** File extension */
 	extension: string;
-	/** The MIME type of the downloaded file */
+
+	/** MIME type */
 	mimeType: string;
-	/** The size of the downloaded file in bytes */
+
+	/** File size in bytes */
 	sizeBytes: number;
-	/** The service type used for downloading */
+
+	/** Service used for the download */
 	service: ServiceType;
 }

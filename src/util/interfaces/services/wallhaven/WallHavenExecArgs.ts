@@ -1,22 +1,29 @@
 import { WallHavenThumbnailQuality } from '../../../enums';
 import { ExecutionArgs } from '../../common';
 
+/**
+ * Execution arguments for WallHaven operations.
+ * Adds thumbnail and user upload options.
+ */
 export interface WallHavenExecArgs extends ExecutionArgs {
-	/** Allowed thumbnail qualities, default is fetched quality */
+	/** Allowed thumbnail qualities */
 	thumbQualities?: WallHavenThumbnailQuality[];
 
-	/** Arguments for fetching user uploads */
+	/** User upload execution arguments */
 	userUploadsArgs?: WallHavenUserUploadsExecArgs;
 }
 
-/** The props used for fetching user uploads */
+/**
+ * Execution arguments for WallHaven user uploads.
+ * Controls uploader, purity, and metadata expansion.
+ */
 export interface WallHavenUserUploadsExecArgs {
-	/** The username of the user whose uploads to fetch */
+	/** Uploader username */
 	username: string;
-	/** For SFW use purity true and for NSFW use false. Default purity is false. */
+
+	/** Purity-safe upload listing flag */
 	purity?: boolean;
-	/** Whether to include metadata for each wall paper e.g WallHavenWallPaperOutput,
-	 *  Default is false
-	 */
+
+	/** Includes full wallpaper metadata for each thumbnail */
 	includeMetadata?: boolean;
 }

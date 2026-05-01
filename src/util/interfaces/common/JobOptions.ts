@@ -6,12 +6,15 @@ import { JobProgressEvent } from './JobProgress';
 import { PipelineHook } from './PipelineItem';
 import { TagFilterOptions } from './TagFilterOptions';
 
-/** Configuration options for a download job, common to all download jobs */
+/**
+ * Configuration options for a DownFlux job.
+ * Combines fetch, extraction, pipeline, and output settings.
+ */
 export interface JobOptions extends HttpFetchOptions {
-	/** Directory configuration for the job output */
+	/** Directory output configuration */
 	dirConfig?: DirectoryOutputOptions;
 
-	/** List of allowed file extensions to download */
+	/** Allowed file extensions */
 	allowedExtensions?: AllowedExtension[];
 
 	/** Allowed video qualities */
@@ -20,36 +23,36 @@ export interface JobOptions extends HttpFetchOptions {
 	/** Tag filtering options */
 	tagFilterOptions?: TagFilterOptions;
 
-	/** Maximum number of concurrent downloads */
+	/** Maximum number of items to download */
 	maxDownloads?: number;
 
-	/** Concurrency level for download phase */
+	/** Download phase concurrency */
 	concurrency?: number;
 
-	/** Concurrency level for extraction phase */
+	/** Extraction phase concurrency */
 	extractConcurrency?: number;
 
-	/** Number of times to retry a failed download before giving up */
+	/** Download retry count */
 	downloadRetries?: number;
 
-	/** Delay in milliseconds between retry attempts */
+	/** Delay between download retries in milliseconds */
 	retryDelayMs?: number;
 
-	/** List of hooks to be executed during the pipeline execution */
+	/** Pipeline lifecycle hooks */
 	pipelineHooks?: PipelineHook[];
 
 	/** Progress event handler */
 	onProgress?: (event: JobProgressEvent) => void;
 
-	/** Whether to log progress to the console */
+	/** Enables console progress logging */
 	logProgress?: boolean;
 
-	/** Output format for the job results */
+	/** Output format for job results */
 	outputType?: OutputType;
 
-	/** Execution strategy for the job */
+	/** Job execution strategy */
 	executionType?: ExecutionType;
 
-	/** Optional AbortSignal to cancel the job */
+	/** Abort signal for cancelling the job */
 	signal?: AbortSignal;
 }
