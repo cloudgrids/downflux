@@ -1,5 +1,5 @@
 import { HttpFetcherService } from '../fetcher';
-import { HtmlParserService } from '../parser';
+import { HtmlParserService } from '../parsers';
 import { DefaultExtractorResult, ExecutionArgs, HttpFetchOptions, ServiceType } from '../util';
 
 export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {

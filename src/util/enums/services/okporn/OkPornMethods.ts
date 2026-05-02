@@ -1,4 +1,6 @@
-/** OkPorn service methods */
+/**
+ * @enum
+ * OkPorn service methods */
 export enum OkPornMethods {
 	/** Album page extraction */
 	getAlbums = 'getAlbums',

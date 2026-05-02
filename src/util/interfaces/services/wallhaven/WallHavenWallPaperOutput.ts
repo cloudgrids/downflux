@@ -1,7 +1,8 @@
 import { WallHavenThumbnail } from './WallHavenThumbnail';
 
 /**
- * Output structure for WallHaven wallpaper operations.
+ * @interface
+ * Interface representing the output structure for WallHaven wallpaper operations.
  * Contains wallpaper metadata, dimensions, uploader, and thumbnails.
  */
 export interface WallHavenWallPaperOutput {

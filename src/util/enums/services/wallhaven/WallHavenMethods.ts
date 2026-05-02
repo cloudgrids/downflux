@@ -1,4 +1,6 @@
-/** WallHaven service methods */
+/**
+ * @enum
+ * WallHaven service methods */
 export enum WallHavenMethods {
 	/** Wallpaper page extraction */
 	getWallPapers = 'getWallPapers',

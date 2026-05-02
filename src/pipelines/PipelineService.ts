@@ -19,13 +19,13 @@ export class PipelineService {
 		[ServiceType.DEFAULT, BasePipeline]
 	]);
 
-	public static build<TExec extends ExecutionArgs>(metadata: unknown, request: TExec): PipelineItem[] {
+	public static build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): PipelineItem[] {
 		const serviceType = request.service ?? ServiceType.DEFAULT;
 
 		const PipelineClass = this.pipelines.get(serviceType) ?? this.pipelines.get(ServiceType.DEFAULT)!;
 
 		const pipeline = new PipelineClass();
 
-		return pipeline.build(metadata as any, request);
+		return pipeline.build(metadata, request);
 	}
 }

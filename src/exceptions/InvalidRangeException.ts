@@ -1,6 +1,11 @@
 import { ErrorCodes, ServiceType } from '../util';
 import { BaseException } from './BaseException';
 
+/**
+ * @class InvalidRangeException
+ * @notes Exception thrown when an invalid range is provided for operations that require a start and end value
+ * @notes Provides a consistent error structure for range related issues across services.
+ */
 export class InvalidRangeException extends BaseException {
 	constructor(
 		public readonly start: number,

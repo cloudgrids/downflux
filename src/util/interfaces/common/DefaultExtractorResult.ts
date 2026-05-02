@@ -4,7 +4,7 @@ import { UrlType } from '../../enums';
  * Default output structure for extractor operations.
  * Represents normalized metadata and extracted resources.
  */
-export interface DefaultExtractorResult {
+export interface DefaultExtractorResult<TCustomFields = unknown> {
 	/** Page title */
 	title: string;
 
@@ -42,5 +42,5 @@ export interface DefaultExtractorResult {
 	urlType?: UrlType;
 
 	/** Extensible service-specific fields */
-	customFields?: Record<string, unknown>;
+	customFields?: TCustomFields;
 }

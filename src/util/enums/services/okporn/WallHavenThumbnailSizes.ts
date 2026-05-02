@@ -1,4 +1,6 @@
-/** WallHaven thumbnail quality levels */
+/**
+ * @enum
+ *  WallHaven thumbnail quality levels */
 export enum WallHavenThumbnailQuality {
 	/** High quality thumbnail */
 	HIGH = 'high',

@@ -9,6 +9,11 @@ export interface ExceptionPayload<TMeta = any> {
 	metadata?: TMeta;
 }
 
+/**
+ * @class BaseException
+ * @notes The base exception class for all custom exceptions in the application.
+ * @notes Provides a consistent structure for error information, including error codes, context, and metadata.
+ */
 export class BaseException<TMeta = any> extends Error {
 	public readonly errorCode: ErrorCodes;
 	public readonly context: Record<string, any>;

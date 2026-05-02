@@ -164,10 +164,10 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 		} as TExec;
 	}
 
-	protected async execute<TRes>(overrides?: Partial<TExec>): Promise<TRes[]> {
-		const result = await this.deps.jobService.execute<TRes, TExec>(this.buildRequest(overrides));
+	protected async execute<TResult>(overrides?: Partial<TExec>): Promise<TResult> {
+		const result = await this.deps.jobService.execute<TResult, TExec>(this.buildRequest(overrides));
 
-		return result.extracted;
+		return result.extracted as TResult;
 	}
 
 	protected makeTargets(sourceUrl: string, range: Range, service: ServiceType, method: string, addTrailingSlash: boolean = true) {

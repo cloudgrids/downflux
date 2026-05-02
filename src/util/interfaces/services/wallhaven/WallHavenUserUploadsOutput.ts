@@ -3,7 +3,8 @@ import { WallHavenUserInfo } from './WallHavenUserInfo';
 import { WallHavenWallPaperOutput } from './WallHavenWallPaperOutput';
 
 /**
- * Output structure for WallHaven user upload operations.
+ * @interface
+ * Interface representing the output structure for WallHaven user upload operations.
  * Contains uploader pagination and thumbnail results.
  */
 export interface WallHavenUserUploadsOutput extends WallHavenUserInfo {

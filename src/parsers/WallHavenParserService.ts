@@ -1,20 +1,9 @@
-import { DefaultExtractorResult, WallHavenWallPaperOutput } from '../util';
+import path from 'path';
+import { DefaultExtractorResult, WallHavenOutput, WallHavenThumbnailQuality, WallHavenUserFavoriteCollection } from '../util';
 import { BaseParserService } from './BaseParserService';
 
-type CollectionData = {
-	href?: string;
-	label?: string;
-	thumbnails: string[];
-	backgroundImage?: string;
-	stats: {
-		images?: number;
-		views?: number;
-		subscribers?: number;
-	};
-};
-
 export class WallHavenParserService extends BaseParserService {
-	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult> {
+	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<WallHavenOutput>>> {
 		const descriptionParts = this.extractMetaDescription(html)?.split('|');
 		const description = descriptionParts?.[0]?.trim();
 		const tags = description?.split(',').map((s) => s?.trim()) ?? [];
@@ -34,13 +23,13 @@ export class WallHavenParserService extends BaseParserService {
 				dimensionY,
 				ratio,
 				collection: this.extractCollectionData(html),
-				totalContents: this.extractElementText(html, 'class="far fa-fw fa-gap fa-images"></i>', '</'),
+				totalContents: Number(this.extractElementText(html, 'class="far fa-fw fa-gap fa-images"></i>', '</') ?? 0),
 				...this.extractDefinitionList(html)
-			} as Partial<WallHavenWallPaperOutput>
+			} as Partial<WallHavenOutput>
 		};
 	}
 
-	public extractCollectionData(html: string): CollectionData[] {
+	public extractCollectionData(html: string): WallHavenUserFavoriteCollection[] {
 		const blocks = this.collectByClassNames(html, 'collection-inner', {
 			includeInnerHTML: true,
 			attributes: ['href']
@@ -48,23 +37,28 @@ export class WallHavenParserService extends BaseParserService {
 
 		return blocks.map((item) => {
 			const block = item.innerHTML || '';
+			const siteUrl = item.attributes?.href?.trim() as string;
+			const siteUrlParts = siteUrl?.split('/').filter(Boolean) ?? [];
 
 			return {
-				href: item.attributes?.href?.trim(),
+				url: siteUrl,
+				name: this.extractByClass(block, 'collection-label')[0] ?? 'unknown',
+				id: siteUrlParts.pop(),
+				uploader: siteUrlParts[3] ?? 'unknown',
 
-				label: this.extractByClass(block, 'collection-label')[0],
+				thumbnails: this.extractAttributes(block, 'img', 'src')?.map((src) => ({
+					url: src,
+					siteUrl,
+					id: path.parse(src).name,
+					quality: src.includes('/small/') ? WallHavenThumbnailQuality.LOW : WallHavenThumbnailQuality.HIGH
+				})),
 
-				thumbnails: this.extractAttributes(block, 'img', 'src'),
-
-				backgroundImage: /background-image:\s*url\(([^)]+)\)/i.exec(block)?.[1]?.replace(/['"]/g, '')?.trim(),
-
-				stats: {
-					images: Number(/fa-images[\s\S]*?>\s*(\d+)/i.exec(block)?.[1]),
-					views: Number(/fa-eye[\s\S]*?>\s*(\d+)/i.exec(block)?.[1]),
-					subscribers: Number(/fa-bookmark[\s\S]*?>\s*(\d+)/i.exec(block)?.[1])
-				}
-			};
-		});
+				backgroundUrl: /background-image:\s*url\(([^)]+)\)/i.exec(block)?.[1]?.replace(/['"]/g, '')?.trim() ?? null,
+				wallPaperCount: Number(/fa-images[\s\S]*?>\s*(\d+)/i.exec(block)?.[1] ?? 0),
+				viewCount: Number(/fa-eye[\s\S]*?>\s*(\d+)/i.exec(block)?.[1] ?? 0),
+				subscriberCount: Number(/fa-bookmark[\s\S]*?>\s*(\d+)/i.exec(block)?.[1] ?? 0)
+			} as WallHavenUserFavoriteCollection;
+		}) as WallHavenUserFavoriteCollection[];
 	}
 
 	public extractDefinitionList(html: string): Record<string, string> {
