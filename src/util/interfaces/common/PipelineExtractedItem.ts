@@ -5,4 +5,5 @@ export interface PipelineExtractedItem {
 	url: string;
 	id?: string;
 	username?: string;
+	secondaryId?: string;
 }

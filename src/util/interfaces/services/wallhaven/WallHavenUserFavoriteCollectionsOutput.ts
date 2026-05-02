@@ -4,7 +4,7 @@ import { WallHavenThumbnail } from './WallHavenThumbnail';
  * @interface
  * Interface for WallHaven user favorite collection metadata and thumbnails.
  */
-export interface WallHavenUserFavoriteCollection {
+export interface WallHavenUserFavoriteCollectionsOutput {
 	/** Collection name */
 	name: string;
 

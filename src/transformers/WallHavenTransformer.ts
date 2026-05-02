@@ -6,8 +6,9 @@ import {
 	WallHavenOutput,
 	WallHavenThumbnail,
 	WallHavenThumbnailQuality,
-	WallHavenUserFavoriteCollection,
-	WallHavenUserInfo,
+	WallHavenUserFavoriteCollectionOutput,
+	WallHavenUserFavoriteCollectionsOutput,
+	WallHavenUserInfoOutput,
 	WallHavenUserUploadsOutput,
 	WallHavenWallPaperOutput
 } from '../util';
@@ -15,7 +16,11 @@ import { BaseTransformer } from './BaseTransformer';
 
 export class WallHavenTransformer extends BaseTransformer<
 	WallHavenExecArgs,
-	WallHavenWallPaperOutput | WallHavenUserUploadsOutput | WallHavenUserInfo | WallHavenUserFavoriteCollection[] | DefaultExtractorResult
+	| WallHavenWallPaperOutput
+	| WallHavenUserUploadsOutput
+	| WallHavenUserInfoOutput
+	| WallHavenUserFavoriteCollectionsOutput[]
+	| DefaultExtractorResult
 > {
 	public async transform(
 		url: string,
@@ -23,8 +28,8 @@ export class WallHavenTransformer extends BaseTransformer<
 	): Promise<
 		| WallHavenWallPaperOutput
 		| WallHavenUserUploadsOutput
-		| WallHavenUserInfo
-		| WallHavenUserFavoriteCollection[]
+		| WallHavenUserInfoOutput
+		| WallHavenUserFavoriteCollectionsOutput[]
 		| DefaultExtractorResult
 	> {
 		const metadata = (await super.transform(url, request)) as DefaultExtractorResult<Partial<WallHavenOutput>>;
@@ -50,6 +55,17 @@ export class WallHavenTransformer extends BaseTransformer<
 
 			case WallHavenMethods.getUserFavoriteCollections:
 				return this.toUserFavoriteCollections(request, metadata);
+
+			case WallHavenMethods.getUserFavoriteCollection: {
+				const userFavoriteCollection = this.toUserFavoriteCollection(request, metadata);
+
+				if (request?.collectionArgs?.includeMetadata) {
+					const wallPapers = await this.getWallPaper(request, userFavoriteCollection.thumbnails);
+
+					return { ...userFavoriteCollection, wallPapers };
+				}
+				return userFavoriteCollection;
+			}
 
 			default:
 				return metadata;
@@ -139,14 +155,39 @@ export class WallHavenTransformer extends BaseTransformer<
 		};
 	}
 
+	private toUserFavoriteCollection(request: WallHavenExecArgs, metadata: DefaultExtractorResult): WallHavenUserFavoriteCollectionOutput {
+		const partial = metadata.customFields as unknown as WallHavenUserUploadsOutput;
+
+		const thumbnails = metadata.images
+			?.filter((img) => img.startsWith('https://th.wallhaven.cc'))
+			.map((image) => {
+				const id = image.split('/').pop()?.split('.')?.[0] ?? '';
+				return {
+					id,
+					quality: WallHavenThumbnailQuality.LOW,
+					url: image,
+					siteUrl: `https://wallhaven.cc/w/${id}`
+				};
+			}) as WallHavenThumbnail[];
+
+		return {
+			collectionId: request?.collectionArgs?.collectionId as string,
+			uploader: partial.uploader,
+			totalContents: Number(partial.totalContents ?? 0),
+			totalPages: Math.ceil(Number(partial.totalContents) / 24),
+			currentPage: Number(metadata.sourceUrl.split('=').pop() ?? '1'),
+			thumbnails
+		};
+	}
+
 	private toUserFavoriteCollections(
 		request: WallHavenExecArgs,
 		metadata: DefaultExtractorResult<Partial<WallHavenOutput>>
-	): WallHavenUserFavoriteCollection[] {
-		return metadata.customFields?.collection ?? [];
+	): WallHavenUserFavoriteCollectionsOutput[] {
+		return metadata.customFields?.collections ?? [];
 	}
 
-	private toUserInfo(request: WallHavenExecArgs, metadata: DefaultExtractorResult<Partial<WallHavenOutput>>): WallHavenUserInfo {
+	private toUserInfo(request: WallHavenExecArgs, metadata: DefaultExtractorResult<Partial<WallHavenOutput>>): WallHavenUserInfoOutput {
 		const totalContents = Number(metadata.customFields?.totalContents ?? 0);
 		return {
 			uploader: request?.userArgs?.username as string,
