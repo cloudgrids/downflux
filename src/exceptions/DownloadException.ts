@@ -3,7 +3,7 @@ import { BaseException } from './BaseException';
 
 /**
  * @class DownloadException
- * @notes Exception throw when a download operation fails due to an invalid url or network issues.
+ * @throws Exception throw when a download operation fails due to an invalid url or network issues.
  * @notes Provides a consistent error structure for download related issues across services.
  */
 export class DownloadException extends BaseException {

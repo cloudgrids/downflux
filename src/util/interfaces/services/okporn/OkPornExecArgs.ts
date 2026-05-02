@@ -13,9 +13,9 @@ export type OkPornIdType = 'url' | 'path';
  */
 export interface OkPornVideoExecArgs {
 	/**
-	 * @defaultValue all qualities allowed if not specified
-	 *  Allowed video qualities */
-	allowedQualities?: VideoQuality[];
+	 * @defaultValue all quality allowed if not specified
+	 *  Allowed video quality */
+	quality?: VideoQuality;
 
 	/**
 	 * @defaultValue `url` if not specified

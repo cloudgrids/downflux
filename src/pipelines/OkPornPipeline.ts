@@ -77,7 +77,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 
 		if (metadata.videoSources?.length) {
 			this.filterByQuality(metadata.videoSources.filter(Boolean), {
-				allowedQualities: request.videoArgs?.allowedQualities as VideoQuality[],
+				allowedQualities: [request.videoArgs?.quality] as VideoQuality[],
 				getQuality: (source) => source.quality
 			}).forEach(({ url }) => urls.add({ mediaType: MediaType.VIDEOS, url }));
 		}
@@ -99,7 +99,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 					id: u.videoId
 				})),
 				{
-					allowedQualities: request.videoArgs?.allowedQualities as VideoQuality[],
+					allowedQualities: [request.videoArgs?.quality] as VideoQuality[],
 					getQuality: (source) => source.quality
 				}
 			).forEach((item) => urls.add({ mediaType: item.mediaType, url: item.url, id: item.id }));

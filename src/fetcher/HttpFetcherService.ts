@@ -111,7 +111,9 @@ export class HttpFetcherService {
 			try {
 				const res = await fetch(url, {
 					headers: { ...mergedHeaders, 'X-Forwarded-For': this.fakeIP() } as Record<string, string>,
-					signal: AbortSignal.timeout(timeoutMs)
+					signal: AbortSignal.timeout(timeoutMs),
+					redirect: 'follow',
+					referrer: opts.referer
 				});
 
 				const finalUrl = res.url || url;
@@ -125,11 +127,15 @@ export class HttpFetcherService {
 				}
 
 				if (this.hlsFetchService.isHlsManifest(contentType, finalUrl)) {
+					/**
+					 * references file with extensions .m3u or content-type containing 'mpegurl'
+					 * For more reference check the HLSManifest.m3u file in the src/fetcher directory
+					 */
 					const manifest = await res.text();
 					return {
 						finalUrl,
 						headers: responseHeaders,
-						start: (stream: Writable) => this.hlsFetchService.fetchHlsStream(manifest, finalUrl, timeoutMs, stream)
+						start: (stream: Writable) => this.hlsFetchService.fetchHlsStream(manifest, finalUrl, timeoutMs, stream, opts)
 					};
 				}
 

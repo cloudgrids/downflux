@@ -15,7 +15,7 @@ export class DownloaderService {
 
 		const initialFile = this.fileService.getFileInfo(url, dirConfig?.prefix);
 
-		const { finalUrl, headers, start } = await this.httpFetcherService.requestStream(url, opts);
+		const { finalUrl, headers, start } = await this.httpFetcherService.requestStream(url, { ...opts, referer: url });
 
 		const resolvedFile = this.resolveFileMetadata(initialFile, finalUrl, headers, dirConfig?.prefix);
 

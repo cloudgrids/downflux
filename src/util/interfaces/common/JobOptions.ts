@@ -17,8 +17,8 @@ export interface JobOptions extends HttpFetchOptions {
 	/** Allowed file extensions */
 	allowedExtensions?: AllowedExtension[];
 
-	/** Allowed video qualities */
-	videoQualities?: VideoQuality[];
+	/** Allowed video quality */
+	allowedVideoQuality?: VideoQuality;
 
 	/** Tag filtering options */
 	tagFilterOptions?: TagFilterOptions;

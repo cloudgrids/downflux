@@ -51,6 +51,7 @@ export class BackgroundService {
 			try {
 				const downloadResult = await this.downloaderService.download(pipelineItem, {
 					...options,
+					avq: request?.allowedVideoQuality,
 					outputType,
 					service: request.service
 				});

@@ -21,7 +21,6 @@ import { BaseService } from './BaseService';
 /**
  * OkPorn service.
  * Provides album, video, model, tag, and channel operations.
- *
  * @remarks Model pages are limited to 555 pages. Channel pages are limited to 21 pages.
  */
 export class OkPornService extends BaseService<OkPornExecArgs> {
@@ -163,15 +162,16 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	/**
 	 * Gets videos by index range.
 	 * @param range Index range
-	 * @param args Allowed video qualities
+	 * @param quality Allowed video quality
 	 * @returns `OkPornVideoOutput[]` list
 	 * @throws InvalidRangeException When the index range is invalid
 	 */
-	public async getVideos(range: IndexRange = this.DEFAULT_INDEX_RANGE, args?: VideoQuality[]): Promise<OkPornVideoOutput[]> {
+	public async getVideos(range: IndexRange = this.DEFAULT_INDEX_RANGE, quality?: VideoQuality): Promise<OkPornVideoOutput[]> {
 		return await this.execute<OkPornVideoOutput[]>({
 			...this.makeTargets(this.VIDEOS_URL, range, ServiceType.OKPORN, OkPornMethods.getVideos),
 			urlType: UrlType.SOURCES,
-			videoArgs: { allowedQualities: args },
+			videoArgs: { quality },
+			allowedVideoQuality: quality,
 			returnType: 'array'
 		});
 	}
@@ -179,12 +179,12 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	/**
 	 * Gets a single video.
 	 * @param id Video identifier
-	 * @param args Allowed video qualities
+	 * @param quality Allowed video quality
 	 * @returns `OkPornVideoOutput`
 	 * @remarks The video identifier can be found in the video URL (e.g., https://ok.porn/video/12345/ has the identifier "12345")
 	 * @throws GenericException When the video ID is not provided
 	 */
-	public async getVideo(id: string, args?: VideoQuality[]): Promise<OkPornVideoOutput> {
+	public async getVideo(id: string, quality?: VideoQuality): Promise<OkPornVideoOutput> {
 		if (!id) throw new GenericException('Video ID is required', ServiceType.OKPORN, OkPornMethods.getVideo);
 
 		return await this.execute<OkPornVideoOutput>({
@@ -192,7 +192,8 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 			urlType: UrlType.SOURCES,
 			method: OkPornMethods.getVideo,
 			service: ServiceType.OKPORN,
-			videoArgs: { allowedQualities: args },
+			videoArgs: { quality },
+			allowedVideoQuality: quality,
 			returnType: 'object'
 		});
 	}

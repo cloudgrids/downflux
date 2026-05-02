@@ -3,7 +3,7 @@ import { BaseException } from './BaseException';
 
 /**
  * @class InvalidUrlException
- * @notes Exception thrown when an invalid URL is encountered during download or API requests.
+ * @throws Exception thrown when an invalid URL is encountered during download or API requests.
  * @notes Provides a consistent error structure for URL related issues across services.
  */
 export class InvalidUrlException extends BaseException {
