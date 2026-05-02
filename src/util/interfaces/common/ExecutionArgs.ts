@@ -14,6 +14,7 @@ export interface ExecutionArgs extends JobOptions {
 	method: string;
 	entryUrl: string;
 	targets: string[];
+	returnType: 'array' | 'object';
 	executionType: ExecutionType;
 	urlType: UrlType;
 	/** @internal Allows nested transformer extractions to update the active job progress state. */

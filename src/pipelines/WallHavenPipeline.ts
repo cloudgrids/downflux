@@ -7,7 +7,7 @@ import {
 	WallHavenExecArgs,
 	WallHavenOutput,
 	WallHavenThumbnailQuality,
-	WallHavenWallPaperOutput
+	WallHavenUserFavoriteCollection
 } from '../util';
 import { BasePipeline } from './BasePipeline';
 
@@ -28,7 +28,8 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 							mediaType: item.mediaType,
 							metadata,
 							url: item.url,
-							id: item.id
+							id: item.id,
+							username: item.username
 						})
 					}
 				}))
@@ -36,25 +37,33 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 		);
 	}
 
-	protected override buildIdentifier(ctx: IdentifierContext<WallHavenWallPaperOutput>): string {
-		const { mediaType, metadata, id } = ctx;
+	protected override buildIdentifier(ctx: IdentifierContext<WallHavenOutput>): string {
+		const { mediaType, metadata, id, username } = ctx;
 		const prefix = 'wallhaven';
 		let mediaSegment: string;
 
 		switch (mediaType) {
 			case MediaType.IMAGES:
-				mediaSegment = `${MediaType.IMAGES}/${metadata?.id ?? id}`;
+				mediaSegment = `${mediaType}/${metadata?.id ?? id}`;
+				break;
+			case MediaType.FAVORITES:
+				mediaSegment = `${mediaType}/${metadata?.id ?? id}/${MediaType.THUMBNAILS}`;
+				break;
+
+			case MediaType.COVER:
+				mediaSegment = `${MediaType.FAVORITES}/${metadata?.id ?? id}/${mediaType}`;
 				break;
 
 			default:
 				mediaSegment = 'misc';
 		}
 
-		return pathBuilder(prefix, metadata.uploader?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', mediaSegment);
+		return pathBuilder(prefix, username ?? metadata.uploader?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', mediaSegment);
 	}
 
 	protected override extract(request: WallHavenExecArgs, metadata: WallHavenOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
+		const collections = Array.isArray(metadata) ? (metadata as WallHavenUserFavoriteCollection[]) : [];
 
 		if (metadata.thumbnails?.length) {
 			this.filterByQuality(metadata.thumbnails, {
@@ -69,6 +78,33 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 					allowedQualities: request.thumbQualities as WallHavenThumbnailQuality[],
 					getQuality: (wallpaper) => wallpaper.quality
 				}).forEach((thumb) => urls.add({ mediaType: MediaType.IMAGES, url: thumb.url, id: thumb.id }));
+			});
+		}
+
+		if (collections?.length) {
+			collections.forEach((collection) => {
+				this.filterByQuality(collection.thumbnails, {
+					allowedQualities: request.thumbQualities as WallHavenThumbnailQuality[],
+					getQuality: (thumb) => thumb.quality
+				}).forEach((thumb) =>
+					urls.add({
+						url: thumb.url,
+						id: collection.id,
+						username: collection.uploader,
+						mediaType: MediaType.FAVORITES
+					})
+				);
+			});
+
+			collections.forEach((collection) => {
+				if (collection.backgroundUrl) {
+					urls.add({
+						id: collection.id,
+						mediaType: MediaType.COVER,
+						username: collection.uploader,
+						url: collection.backgroundUrl
+					});
+				}
 			});
 		}
 

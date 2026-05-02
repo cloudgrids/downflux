@@ -21,9 +21,9 @@ export class JobService {
 		const { outputType = OutputType.JSON, targets, ...options } = request;
 
 		const pipelineHooks = (options.pipelineHooks ?? []) as PipelineHook[];
-		const extracted: TResult[] = [];
 		const errors: Error[] = [];
 		const pipelineItems: PipelineItem[] = [];
+		const iterables: TResult[] = [];
 
 		this.backgroundService.emitProgress(options, {
 			status: 'started',
@@ -32,18 +32,19 @@ export class JobService {
 			failed: 0
 		});
 
-		const extractionResult = await this.extractMetadata<TResult, TArgs>(targets, request);
-		extracted.push(...extractionResult.metadata);
+		const { extractedCount, totalTargets, transformed } = await this.extractMetadataFromTargets<TResult, TArgs>(targets, request);
 
-		extracted.forEach((metadata) => {
-			const items = PipelineService.build(metadata, request);
+		iterables.push(...transformed);
+
+		iterables.forEach((item) => {
+			const items = PipelineService.build<TResult, TArgs>(item, request);
 			pipelineItems.push(...items);
 		});
 
 		const result: ExecutionResult<TResult> = {
 			...request,
 			outputType,
-			extracted,
+			extracted: request.returnType === 'object' ? iterables[0] : iterables,
 			downloaded: 0,
 			failed: 0,
 			errors,
@@ -52,9 +53,9 @@ export class JobService {
 
 		this.backgroundService.emitProgress(options, {
 			status: 'queued',
-			totalTargets: extractionResult.totalTargets,
+			totalTargets: totalTargets,
 			totalItems: result.pipelineItems.length,
-			extracted: extractionResult.extractedCount,
+			extracted: extractedCount,
 			downloaded: result.downloaded,
 			failed: result.failed
 		});
@@ -76,12 +77,13 @@ export class JobService {
 		}
 	}
 
-	private async extractMetadata<TResult, TArgs extends ExecutionArgs>(
+	private async extractMetadataFromTargets<TResult, TArgs extends ExecutionArgs>(
 		targets: string[],
 		request: TArgs
-	): Promise<{ metadata: TResult[]; totalTargets: number; extractedCount: number }> {
+	): Promise<{ transformed: TResult[]; totalTargets: number; extractedCount: number }> {
 		const extractConcurrency = request.extractConcurrency ?? JobService.DEFAULT_EXTRACT_CONCURRENCY;
-		const extractedByIndex: Array<TResult | undefined> = new Array(targets.length);
+
+		const extractedChunks: TResult[][] = new Array(targets.length);
 		let totalExtractTargets = targets.length;
 		let extractedCount = 0;
 
@@ -98,29 +100,26 @@ export class JobService {
 		};
 
 		await this.backgroundService.runWithConcurrency(targets, extractConcurrency, async (target, index) => {
-			emitExtractProgress({
-				status: 'extracting',
-				target
-			});
+			emitExtractProgress({ status: 'extracting', target });
 
 			try {
-				extractedByIndex[index] = await this.transformerService.transform<TResult, TArgs>(target, {
+				const result = await this.transformerService.transform<TArgs, TResult>(target, {
 					...request,
 					entryUrl: target,
 					referer: target,
 					onExtractProgress: emitExtractProgress
 				});
-				emitExtractProgress({
-					status: 'extracted',
-					target
-				});
+
+				extractedChunks[index] = Array.isArray(result) ? result : [result];
+
+				emitExtractProgress({ status: 'extracted', target });
 			} catch (err) {
 				console.error(`Error extracting ${target}:`, err);
 			}
 		});
 
 		return {
-			metadata: extractedByIndex.filter(Boolean) as TResult[],
+			transformed: extractedChunks.flat() as TResult[],
 			totalTargets: totalExtractTargets,
 			extractedCount
 		};

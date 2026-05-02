@@ -1,4 +1,4 @@
-import { BaseParserService } from '../../../parser/BaseParserService';
+import { BaseParserService } from '../../../parsers/BaseParserService';
 import { UrlType } from '../../enums';
 import { DefaultExtractorResult } from './DefaultExtractorResult';
 

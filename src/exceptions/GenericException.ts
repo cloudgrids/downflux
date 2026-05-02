@@ -1,7 +1,11 @@
 import { BaseException } from './BaseException';
 
 import { ErrorCodes, ServiceType } from '../util';
-
+/**
+ * @class GenericException
+ * @notes A generic exception for invalid arguments or missing parameters in service methods.
+ * @notes Provides a consistent error structure for argument-related issues across services.
+ */
 export class GenericException extends BaseException {
 	constructor(
 		public readonly message: string,

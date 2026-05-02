@@ -6,11 +6,15 @@ async function main() {
 	// 736213
 
 	try {
-		await new WallHavenService(url1)
+		const data = await new WallHavenService(url1)
 			.setJobOptions({ logProgress: true })
 			.onProgress(console.log)
 			.setTransformOutput(true)
-			.setOutput(OutputType.JSON);
+			.setOutput(OutputType.JSON)
+			// .getUserUploadsInfo('daike12123');
+		.getUserFavoriteCollections({ username: 'daike12123' });
+
+		console.log({ data });
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {

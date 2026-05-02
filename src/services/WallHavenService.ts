@@ -28,13 +28,16 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	/**
 	 * Creates a WallHaven service.
 	 * @param url WallHaven URL
-	 * @throws InvalidUrlException When the URL is not WallHaven
+	 * @throws InvalidUrlException When the URL is not from WallHaven
 	 */
 	constructor(url: string) {
 		super(url);
 		this.validateUrl(url);
 	}
 
+	/**
+	 * @override Validates that the URL is from WallHaven.
+	 */
 	protected override validateUrl(url: string): void {
 		if (!url.includes('wallhaven.cc')) throw new InvalidUrlException(url, ServiceType.WALLHAVEN);
 	}
@@ -42,29 +45,28 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	/**
 	 * Gets a single wallpaper.
 	 * @param id WallHaven wallpaper identifier
-	 * @param thumbQualities Thumbnail qualities to include
-	 * @returns Wallpaper metadata and thumbnails
-	 * @throws GenericException When the ID is missing
+	 * @param thumbQualities Thumbnail qualities to include in the response (defaults to all qualities)
+	 * @returns `WallHavenWallPaperOutput` Wallpaper metadata and thumbnails
+	 * @throws `GenericException` When the ID is missing
 	 */
 	public async getWallPaper(id: string, thumbQualities?: WallHavenThumbnailQuality[]): Promise<WallHavenWallPaperOutput> {
 		if (!id) throw new GenericException('Wallpaper ID is required', ServiceType.WALLHAVEN, WallHavenMethods.getWallPaper);
 
-		const [wallPaper] = await this.execute<WallHavenWallPaperOutput>({
+		return await this.execute<WallHavenWallPaperOutput>({
 			targets: [`${this.WALLPAPER_URL}/${id}`],
 			method: WallHavenMethods.getWallPaper,
 			service: ServiceType.WALLHAVEN,
 			urlType: UrlType.IMAGES,
-			thumbQualities
+			thumbQualities,
+			returnType: 'object'
 		});
-
-		return wallPaper;
 	}
 
 	/**
 	 * Gets uploads for a WallHaven user.
 	 * @param args User upload options WallHavenUserExecArgs
 	 * @param range Page index range or 'all' to get all pages (defaults to first page)
-	 * @returns User upload metadata and thumbnails
+	 * @returns `WallHavenUserUploadsOutput` User upload metadata and thumbnails
 	 */
 	public async getUserUploads(
 		args: WallHavenUserExecArgs,
@@ -72,7 +74,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	): Promise<WallHavenUserUploadsOutput> {
 		const existingOptions = this.jobOptions;
 
-		const [result] = await this.execute<WallHavenUserUploadsOutput>({
+		return await this.execute<WallHavenUserUploadsOutput>({
 			...this.makeTargets(
 				`${this.USER_URL}/${args.username}/uploads?purity=${this.purity(args)}&page=`,
 				await this.range(range, async () => (await this.setOutput(OutputType.RETURN).getUserUploadsInfo(args.username)).totalPages),
@@ -80,37 +82,35 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 				WallHavenMethods.getUserUploads,
 				false
 			),
+			returnType: 'object',
 			...existingOptions,
 			userArgs: args,
 			urlType: UrlType.IMAGES
 		});
-
-		return result;
 	}
 
 	/**
 	 * Gets the upload info for a WallHaven user.
 	 * @param username WallHaven username
-	 * @returns Total upload images count
-	 * @throws GenericException When the username is missing
+	 * @returns `WallHavenUserInfo` Total upload images count
+	 * @throws `GenericException` When the username is missing
 	 */
 	public async getUserUploadsInfo(username: string): Promise<WallHavenUserInfo> {
 		if (!username) throw new GenericException('Username is required', ServiceType.WALLHAVEN, WallHavenMethods.getUserUploadsInfo);
 
-		const [uploadsCount] = await this.execute<WallHavenUserInfo>({
+		return await this.execute<WallHavenUserInfo>({
 			targets: [`${this.USER_URL}/${username}/uploads`],
 			method: WallHavenMethods.getUserUploadsInfo,
 			service: ServiceType.WALLHAVEN,
-			userArgs: { username }
+			userArgs: { username },
+			returnType: 'object'
 		});
-
-		return uploadsCount;
 	}
 
 	/**
 	 * Gets the favorite collections for a WallHaven user.
-	 * @returns User favorite collections metadata and thumbnails
-	 * @throws GenericException When the username is missing
+	 * @returns `WallHavenUserFavoriteCollection[]` User favorite collections metadata and thumbnails
+	 * @throws `GenericException` When the username is missing
 	 */
 	public async getUserFavoriteCollections(
 		args: WallHavenUserExecArgs,
@@ -120,7 +120,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 			throw new GenericException('Username is required', ServiceType.WALLHAVEN, WallHavenMethods.getUserFavoriteCollections);
 		}
 
-		return await this.execute<WallHavenUserFavoriteCollection>({
+		return await this.execute<WallHavenUserFavoriteCollection[]>({
 			...this.makeTargets(
 				`${this.USER_URL}/${args.username}/favorites?purity=${this.purity(args)}&page=`,
 				await this.range(range),
@@ -129,6 +129,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 				false
 			),
 			urlType: UrlType.IMAGES,
+			returnType: 'array',
 			userArgs: args
 		});
 	}

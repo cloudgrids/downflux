@@ -1,6 +1,11 @@
 import { ErrorCodes, ServiceType } from '../util';
 import { BaseException } from './BaseException';
 
+/**
+ * @class ServiceMismatchException
+ * @notes Exception thrown when a URL does not match the expected service pattern.
+ * @notes Provides a consistent error structure for service mismatch issues across services.
+ */
 export class ServiceMismatchException extends BaseException {
 	constructor(
 		public readonly url: string,

@@ -1,6 +1,11 @@
 import { ErrorCodes, ServiceType } from '../util';
 import { BaseException } from './BaseException';
 
+/**
+ * @class InvalidDestinationException
+ * @notes Exception thrown when a invalid destination is provided by the user.
+ * @notes Provides a consistent error structure for disk write related issues across services.
+ */
 export class InvalidDestinationException extends BaseException {
 	constructor(
 		public readonly url: string,

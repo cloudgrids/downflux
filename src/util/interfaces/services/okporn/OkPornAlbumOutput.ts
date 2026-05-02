@@ -1,5 +1,6 @@
 /**
- * Output structure for OkPorn album operations.
+ * @interface
+ * Interface representing the output structure for OkPorn album operations.
  * Contains album metadata, images, and model context.
  */
 export interface OkPornAlbumOutput {

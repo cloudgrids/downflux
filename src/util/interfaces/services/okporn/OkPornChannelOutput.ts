@@ -1,5 +1,6 @@
 /**
- * Output structure for OkPorn channel operations.
+ * @interface
+ * Interface representing the output structure for OkPorn channel operations.
  * Contains channel links and count metadata.
  */
 export interface OkPornChannelOutput {

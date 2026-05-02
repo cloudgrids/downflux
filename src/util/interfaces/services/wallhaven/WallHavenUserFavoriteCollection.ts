@@ -1,6 +1,7 @@
 import { WallHavenThumbnail } from './WallHavenThumbnail';
 
 /**
+ * @interface
  * Interface for WallHaven user favorite collection metadata and thumbnails.
  */
 export interface WallHavenUserFavoriteCollection {
@@ -10,18 +11,24 @@ export interface WallHavenUserFavoriteCollection {
 	/** Collection URL */
 	url: string;
 
+	/** Collection ID */
+	id: string;
+
+	/** Collection uploader username */
+	uploader: string;
+
 	/** Background image URL */
-	backgroundUrl: string;
+	backgroundUrl: string | null;
 
 	/** Collection thumbnail URLs (up to 3) */
 	thumbnails: WallHavenThumbnail[];
 
 	/** Total wallpapers in the collection */
-	wallpapersCount: number;
+	wallPaperCount: number;
 
 	/** Total views for the collection */
-	viewsCount: number;
+	viewCount: number;
 
 	/** Total subscribers for the collection */
-	subscribersCount: number;
+	subscriberCount: number;
 }

@@ -30,7 +30,7 @@ const paths = [
 	'src/file',
 	'src/helpers',
 	'src/job',
-	'src/parser',
+	'src/parsers',
 	'src/pipelines',
 	'src/services',
 	'src/transformers',

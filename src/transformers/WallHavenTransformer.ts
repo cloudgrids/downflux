@@ -3,8 +3,10 @@ import {
 	UrlType,
 	WallHavenExecArgs,
 	WallHavenMethods,
+	WallHavenOutput,
 	WallHavenThumbnail,
 	WallHavenThumbnailQuality,
+	WallHavenUserFavoriteCollection,
 	WallHavenUserInfo,
 	WallHavenUserUploadsOutput,
 	WallHavenWallPaperOutput
@@ -13,13 +15,21 @@ import { BaseTransformer } from './BaseTransformer';
 
 export class WallHavenTransformer extends BaseTransformer<
 	WallHavenExecArgs,
-	WallHavenWallPaperOutput | WallHavenUserUploadsOutput | WallHavenUserInfo | DefaultExtractorResult
+	WallHavenWallPaperOutput | WallHavenUserUploadsOutput | WallHavenUserInfo | WallHavenUserFavoriteCollection[] | DefaultExtractorResult
 > {
 	public async transform(
 		url: string,
 		request?: WallHavenExecArgs
-	): Promise<WallHavenWallPaperOutput | WallHavenUserUploadsOutput | WallHavenUserInfo | DefaultExtractorResult> {
-		const metadata = (await super.transform(url, request)) as DefaultExtractorResult;
+	): Promise<
+		| WallHavenWallPaperOutput
+		| WallHavenUserUploadsOutput
+		| WallHavenUserInfo
+		| WallHavenUserFavoriteCollection[]
+		| DefaultExtractorResult
+	> {
+		const metadata = (await super.transform(url, request)) as DefaultExtractorResult<Partial<WallHavenOutput>>;
+
+		if (!request?.transformOutput) return metadata;
 
 		switch (request?.method) {
 			case WallHavenMethods.getWallPaper:
@@ -39,16 +49,19 @@ export class WallHavenTransformer extends BaseTransformer<
 				return this.toUserInfo(request, metadata);
 
 			case WallHavenMethods.getUserFavoriteCollections:
-				return metadata;
+				return this.toUserFavoriteCollections(request, metadata);
 
 			default:
 				return metadata;
 		}
 	}
 
-	private toWallPaperOutput(request: WallHavenExecArgs, metadata: DefaultExtractorResult): WallHavenWallPaperOutput {
-		const partial = metadata.customFields as unknown as WallHavenWallPaperOutput & { totalContents?: number };
-		delete partial?.totalContents;
+	private toWallPaperOutput(
+		request: WallHavenExecArgs,
+		metadata: DefaultExtractorResult<Partial<WallHavenOutput>>
+	): WallHavenWallPaperOutput {
+		const partial = metadata.customFields as WallHavenOutput;
+		delete metadata.customFields?.totalContents;
 
 		const id = metadata.sourceUrl?.split('/')?.filter(Boolean)?.pop() ?? '';
 		const thumbnails = metadata.images
@@ -71,7 +84,7 @@ export class WallHavenTransformer extends BaseTransformer<
 			...partial,
 			id,
 			title: metadata.title,
-			uploader: partial.uploader.split(' ')[0],
+			uploader: partial?.uploader?.split(' ')[0] ?? 'unknown',
 			description: metadata.description,
 			thumbnails
 		};
@@ -91,7 +104,9 @@ export class WallHavenTransformer extends BaseTransformer<
 
 			this.emitExtractProgress(wallPaperRequest, 'extracting', thumbnail.siteUrl);
 
-			const wallPaper = (await super.transform(thumbnail.siteUrl, wallPaperRequest)) as DefaultExtractorResult;
+			const wallPaper = (await super.transform(thumbnail.siteUrl, wallPaperRequest)) as DefaultExtractorResult<
+				Partial<WallHavenOutput>
+			>;
 
 			this.emitExtractProgress(wallPaperRequest, 'extracted', thumbnail.siteUrl);
 
@@ -124,11 +139,14 @@ export class WallHavenTransformer extends BaseTransformer<
 		};
 	}
 
-	// private toUserFavoriteCollections(request: WallHavenExecArgs, metadata: DefaultExtractorResult): WallHavenUserFavoriteCollection[] {
-	// 	return {};
-	// }
+	private toUserFavoriteCollections(
+		request: WallHavenExecArgs,
+		metadata: DefaultExtractorResult<Partial<WallHavenOutput>>
+	): WallHavenUserFavoriteCollection[] {
+		return metadata.customFields?.collection ?? [];
+	}
 
-	private toUserInfo(request: WallHavenExecArgs, metadata: DefaultExtractorResult): WallHavenUserInfo {
+	private toUserInfo(request: WallHavenExecArgs, metadata: DefaultExtractorResult<Partial<WallHavenOutput>>): WallHavenUserInfo {
 		const totalContents = Number(metadata.customFields?.totalContents ?? 0);
 		return {
 			uploader: request?.userArgs?.username as string,

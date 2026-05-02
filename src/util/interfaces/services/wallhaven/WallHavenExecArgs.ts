@@ -2,6 +2,7 @@ import { WallHavenThumbnailQuality } from '../../../enums';
 import { ExecutionArgs } from '../../common';
 
 /**
+ * @interface
  * Execution arguments for WallHaven operations.
  * Adds thumbnail and user upload options.
  */
@@ -14,6 +15,7 @@ export interface WallHavenExecArgs extends ExecutionArgs {
 }
 
 /**
+ * @interface
  * Execution arguments for WallHaven user uploads.
  * Controls uploader, purity, and metadata expansion.
  */

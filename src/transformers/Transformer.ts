@@ -16,7 +16,7 @@ export class TransformerService {
 
 	constructor(private readonly httpFetcherService: HttpFetcherService) {}
 
-	public async transform<TResult, TArgs extends ExecutionArgs>(url: string, request: TArgs): Promise<TResult> {
+	public async transform<TArgs extends ExecutionArgs, TResult>(url: string, request: TArgs): Promise<TResult> {
 		const serviceType = request.service ?? ServiceType.DEFAULT;
 
 		const TransformerClass = this.transformers[serviceType] ?? this.transformers[ServiceType.DEFAULT];

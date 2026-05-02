@@ -1,4 +1,4 @@
-import { OkPornParserService } from '../../parser/OkPornParserService';
+import { OkPornParserService } from '../../parsers/OkPornParserService';
 import { UrlType } from '../enums';
 import { OkPornModelVideoCard, SiteDescriptor } from '../interfaces';
 

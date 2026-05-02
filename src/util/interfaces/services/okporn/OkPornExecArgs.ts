@@ -1,18 +1,25 @@
 import { VideoQuality } from '../../../enums';
 import { ExecutionArgs, TagFilterOptions } from '../../common';
 
-/** Output format for OkPorn identifiers */
+/**
+ * @type
+ *  Output format for OkPorn identifiers */
 export type OkPornIdType = 'url' | 'path';
 
 /**
- * Video execution arguments for OkPorn operations.
+ * @interface
+ * Interface representing video execution arguments for OkPorn operations.
  * Controls quality filtering and identifier format.
  */
 export interface OkPornVideoExecArgs {
-	/** Allowed video qualities */
+	/**
+	 * @defaultValue all qualities allowed if not specified
+	 *  Allowed video qualities */
 	allowedQualities?: VideoQuality[];
 
-	/** Video identifier output format */
+	/**
+	 * @defaultValue `url` if not specified
+	 *  Video identifier output format */
 	format?: OkPornIdType;
 }
 

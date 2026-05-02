@@ -1,4 +1,4 @@
-import { DefaultExtractorResult, OkPornModelVideoCard } from '../util';
+import { DefaultExtractorResult, OkPornModelVideoCard, OkPornOutput } from '../util';
 import { BaseParserService } from './BaseParserService';
 
 export class OkPornParserService extends BaseParserService {
@@ -6,10 +6,9 @@ export class OkPornParserService extends BaseParserService {
 		super();
 	}
 
-	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult> {
+	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<OkPornOutput>>> {
 		return {
 			images: this.extractAttributes(html, 'img', 'data-original'),
-			// anchors: this.extractAttributes(html, 'a', 'href'),
 			title: this.decodeHtmlEntities(this.extractTitle(html)),
 			customFields: {
 				modelName: this.extractCustomTitle(html).split('/').filter(Boolean).pop()?.trim() || 'unknown',
@@ -19,15 +18,13 @@ export class OkPornParserService extends BaseParserService {
 					.find((h) => /\/albums\/\d+\//.test(h))
 					?.match(/\/albums\/(\d+)\//)?.[1],
 
-				videoCreateDate: this.extractSpans(html, 'date')[0],
+				videoCreatedAt: this.extractSpans(html, 'date')[0],
 
-				starredBy: this.extractAnchorTextsByHref(html, /^(?:https?:\/\/(?:www\.)?ok\.porn)?\/models\/[^/?#]+\/?$/i),
+				starredBy: this.extractAnchorTextsByHref(html, /^(?:https?:\/\/(?:www\.)?ok\.porn)?\/models\/[^/?#]+\/?$/i) ?? [],
 
 				videoPoster: this.extractVideoPosters(html)[0],
 
-				modelVideoCards: this.extractVideoCards(html),
-
-				keywords: this.extractMetaKeywords(html)
+				videoCards: this.extractVideoCards(html) ?? []
 			},
 			videoPosters: this.extractVideoPosters(html),
 			description: this.extractMetaDescription(html),
