@@ -1,9 +1,16 @@
 import { createDecipheriv } from 'crypto';
 import { Writable } from 'stream';
+import { DownloadOptions, VideoQuality } from '../util';
 
 export class HLSFetchService {
-	public async fetchHlsStream(manifest: string, manifestUrl: string, timeoutMs: number, stream: Writable): Promise<void> {
-		const variant = this.selectVariant(manifest, manifestUrl);
+	public async fetchHlsStream(
+		manifest: string,
+		manifestUrl: string,
+		timeoutMs: number,
+		stream: Writable,
+		opts?: DownloadOptions
+	): Promise<void> {
+		const variant = this.selectVariant(manifest, manifestUrl, opts?.avq);
 		const playlistUrl = variant ?? manifestUrl;
 
 		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs) : manifest;
@@ -15,6 +22,31 @@ export class HLSFetchService {
 		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
 
 		await this.worker(segments, key, keyInfo, timeoutMs, stream);
+	}
+
+	private mapQualityToHeight(q: VideoQuality): number {
+		switch (q) {
+			case VideoQuality.Q144:
+				return 144;
+			case VideoQuality.Q240:
+				return 240;
+			case VideoQuality.Q360:
+				return 360;
+			case VideoQuality.Q480:
+				return 480;
+			case VideoQuality.Q720:
+				return 720;
+			case VideoQuality.Q1080:
+				return 1080;
+			case VideoQuality.Q1440:
+				return 1440;
+			case VideoQuality.Q2160:
+				return 2160;
+			case VideoQuality.Q4320:
+				return 4320;
+			default:
+				return 0;
+		}
 	}
 
 	private async worker(
@@ -92,27 +124,66 @@ export class HLSFetchService {
 			.map((l) => new URL(l, base).toString());
 	}
 
-	private selectVariant(manifest: string, base: string): string | null {
+	private selectVariant(manifest: string, base: string, preferred?: VideoQuality): string | null {
 		const lines = manifest.split('\n');
-		const variants: { url: string; bw: number }[] = [];
+
+		const variants: {
+			url: string;
+			width: number;
+			height: number;
+			bw: number;
+		}[] = [];
 
 		for (let i = 0; i < lines.length; i++) {
-			if (!lines[i].includes('STREAM-INF')) continue;
+			const line = lines[i];
 
-			const bw = parseInt(lines[i].match(/BANDWIDTH=(\d+)/)?.[1] || '0');
+			if (!line.includes('#EXT-X-STREAM-INF')) continue;
+
+			const bw = parseInt(line.match(/BANDWIDTH=(\d+)/)?.[1] || '0', 10);
+
+			const resMatch = line.match(/RESOLUTION=(\d+)x(\d+)/);
+			const width = resMatch ? parseInt(resMatch[1], 10) : 0;
+			const height = resMatch ? parseInt(resMatch[2], 10) : 0;
+
 			const next = lines[i + 1];
 
 			if (next && !next.startsWith('#')) {
 				variants.push({
 					url: new URL(next, base).toString(),
+					width,
+					height,
 					bw
 				});
 			}
 		}
 
-		variants.sort((a, b) => b.bw - a.bw);
+		if (!variants.length) return null;
 
-		return variants[0]?.url ?? null;
+		// Sort by resolution first, fallback to bandwidth
+		variants.sort((a, b) => {
+			if (b.height !== a.height) return b.height - a.height;
+			if (b.width !== a.width) return b.width - a.width;
+			return b.bw - a.bw;
+		});
+
+		// If no preference, return best
+		if (!preferred || preferred === VideoQuality.QUnknown) return variants[0].url;
+
+		const targetHeight = this.mapQualityToHeight(preferred);
+
+		// 1. Best match <= target
+		const belowOrEqual = variants.find((v) => v.height <= targetHeight && v.height > 0);
+		if (belowOrEqual) return belowOrEqual.url;
+
+		// 2. Smallest above target
+		const above = [...variants]
+			.reverse() // smallest first
+			.find((v) => v.height > targetHeight);
+
+		if (above) return above.url;
+
+		// 3. Final fallback
+		return variants[0].url;
 	}
 
 	private parseKey(manifest: string, base: string) {
