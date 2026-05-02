@@ -10,7 +10,7 @@ export class DownloadException extends BaseException {
 		public readonly metadata?: any
 	) {
 		super({
-			errorCode: ErrorCodes.INVALID_URL,
+			errorCode: ErrorCodes.DOWNLOAD_FAILED,
 			message: DownloadException.buildMessage(url, service, method),
 			method: method,
 			service,
@@ -20,7 +20,13 @@ export class DownloadException extends BaseException {
 	}
 
 	private static buildMessage(path: string, service?: ServiceType, method?: string): string {
-		return [`Invalid Destination encountered`, `path=${path}`, service && `service=${service}`, method && `method=${method}`]
+		return [
+			`Invalid Destination encountered`,
+			`ERROR_CODE=${ErrorCodes.DOWNLOAD_FAILED}`,
+			`path=${path}`,
+			service && `service=${service}`,
+			method && `method=${method}`
+		]
 			.filter(Boolean)
 			.join(' | ');
 	}

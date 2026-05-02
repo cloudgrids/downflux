@@ -44,4 +44,7 @@ export interface OkPornVideoOutput {
 
 	/** Album metadata linked to the video */
 	videoAlbum?: OkPornAlbumOutput;
+
+	/** Starred by list */
+	starredBy: string[];
 }

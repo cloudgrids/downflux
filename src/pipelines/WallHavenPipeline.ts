@@ -19,8 +19,8 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 				request,
 				this.extract(request, metadata).map((item) => ({
 					downloadUrl: item.url,
-					baseUrl: request.entryUrl,
 					service: request.service,
+					sourceUrl: request.entryUrl,
 					identifier: {
 						mediaType: item.mediaType,
 						...detectResourceType(item.url),

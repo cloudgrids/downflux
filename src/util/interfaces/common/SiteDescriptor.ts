@@ -1,4 +1,4 @@
-import { HtmlParserService } from '../../../parser';
+import { BaseParserService } from '../../../parser/BaseParserService';
 import { UrlType } from '../../enums';
 import { DefaultExtractorResult } from './DefaultExtractorResult';
 
@@ -9,7 +9,7 @@ export interface SiteDescriptor {
 	transform?: (ctx: {
 		html: string;
 		finalUrl: string;
-		parser: HtmlParserService;
+		parser: BaseParserService;
 		match: RegExpMatchArray;
 	}) => Partial<DefaultExtractorResult>;
 }

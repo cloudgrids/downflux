@@ -66,6 +66,15 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 	}
 
 	/**
+	 * Transform output to service-specific result type.
+	 * @param transform Default is true, which applies the default transformation. Set to false to return raw extracted data.
+	 */
+	public setTransformOutput(transform: boolean = true): this {
+		this.jobOptions.transformOutput = transform;
+		return this;
+	}
+
+	/**
 	 * Sets HTTP fetch options.
 	 * @param opts HTTP options to merge
 	 */
@@ -161,14 +170,14 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 		return result.extracted;
 	}
 
-	protected makeTargets(baseUrl: string, range: Range, service: ServiceType, method: string, addTrailingSlash: boolean = true) {
+	protected makeTargets(sourceUrl: string, range: Range, service: ServiceType, method: string, addTrailingSlash: boolean = true) {
 		const isIndexRange = 'start' in range;
 
 		if (isIndexRange) {
 			const { start, end } = range;
 			if (start < 0 || end < 0 || start > end) throw new InvalidRangeException(start, end, service, method);
 			return {
-				targets: Array.from({ length: end + 1 - start }, (_, i) => `${baseUrl}${start + i}${addTrailingSlash ? '/' : ''}`),
+				targets: Array.from({ length: end + 1 - start }, (_, i) => `${sourceUrl}${start + i}${addTrailingSlash ? '/' : ''}`),
 				service,
 				method
 			};
@@ -176,7 +185,7 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 			const { page, limit } = range;
 			if (page < 1 || limit < 1) throw new InvalidRangeException(page, page + limit, service, method);
 			return {
-				targets: Array.from({ length: limit }, (_, i) => `${baseUrl}${page + i}${addTrailingSlash ? '/' : ''}`),
+				targets: Array.from({ length: limit }, (_, i) => `${sourceUrl}${page + i}${addTrailingSlash ? '/' : ''}`),
 				service,
 				method
 			};

@@ -10,18 +10,18 @@ export interface WallHavenExecArgs extends ExecutionArgs {
 	thumbQualities?: WallHavenThumbnailQuality[];
 
 	/** User upload execution arguments */
-	userUploadsArgs?: WallHavenUserUploadsExecArgs;
+	userArgs?: WallHavenUserExecArgs;
 }
 
 /**
  * Execution arguments for WallHaven user uploads.
  * Controls uploader, purity, and metadata expansion.
  */
-export interface WallHavenUserUploadsExecArgs {
+export interface WallHavenUserExecArgs {
 	/** Uploader username */
 	username: string;
 
-	/** Purity-safe upload listing flag */
+	/** Purity-safe upload listing flag, default is false */
 	purity?: boolean;
 
 	/** Includes full wallpaper metadata for each thumbnail */

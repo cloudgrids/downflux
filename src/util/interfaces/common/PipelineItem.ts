@@ -11,7 +11,7 @@ export interface PipelineIdentifier {
 
 export interface PipelineItem {
 	downloadUrl: string;
-	baseUrl: string;
+	sourceUrl: string;
 	identifier: PipelineIdentifier;
 	service: ServiceType;
 }

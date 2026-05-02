@@ -1,50 +1,21 @@
 import { HttpFetcherService } from '../fetcher';
 import { HtmlParserService } from '../parser';
-import { DefaultExtractorResult, ExecutionArgs, HttpFetchOptions, SITE_EXTRACTORS, SiteDescriptor } from '../util';
+import { DefaultExtractorResult, ExecutionArgs, HttpFetchOptions, ServiceType } from '../util';
 
-export abstract class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
-	constructor(
-		protected readonly htmlParserService: HtmlParserService,
-		protected readonly httpFetcherService: HttpFetcherService
-	) {}
-
-	private findTransformer(url: string): SiteDescriptor | null {
-		return SITE_EXTRACTORS.find((d) => d.pattern.test(url)) ?? null;
-	}
+export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
+	constructor(protected readonly httpFetcherService: HttpFetcherService) {}
 
 	public async transform(url: string, request?: TExec): Promise<TResult> {
 		const fetched = await this.httpFetcherService.fetchHtml(url, request as HttpFetchOptions);
 
-		const descriptor = this.findTransformer(url);
-		const match = descriptor?.pattern.exec(url);
+		const base = HtmlParserService.getParser(ServiceType.DEFAULT).transform(fetched.html, fetched.finalUrl);
 
-		const base = this.defaultParse(fetched.html, fetched.finalUrl);
-
-		if (descriptor?.transform && match) {
-			const transformed = descriptor.transform({
-				html: fetched.html,
-				finalUrl: fetched.finalUrl,
-				parser: this.htmlParserService,
-				match
-			});
-
-			return { ...base, ...transformed, urlType: descriptor.urlType } as TResult;
+		if (request?.service !== ServiceType.DEFAULT) {
+			const transformed = HtmlParserService.getParser(request?.service as ServiceType).transform(fetched.html, fetched.finalUrl);
+			return { ...base, ...transformed } as TResult;
 		}
 
-		return { ...base, urlType: descriptor?.urlType } as TResult;
-	}
-
-	protected defaultParse(html: string, baseUrl: string): DefaultExtractorResult {
-		return {
-			anchors: this.htmlParserService.extractAnchors(html, baseUrl),
-			images: this.htmlParserService.extractImageUrls(html),
-			sources: this.htmlParserService.extractSourceUrls(html),
-			title: this.htmlParserService.extractTitle(html),
-			description: this.htmlParserService.extractMetaDescription(html),
-			keywords: this.htmlParserService.extractMetaKeywords(html),
-			baseUrl,
-			status: 200
-		};
+		return base as TResult;
 	}
 
 	protected emitExtractProgress(request: TExec | undefined, status: 'extracting' | 'extracted', target: string): void {

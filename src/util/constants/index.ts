@@ -1,2 +1,2 @@
 export * from './Domains';
-export * from './SiteExtractors';
+export * from './SiteDescriptions';

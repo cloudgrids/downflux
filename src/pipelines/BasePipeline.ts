@@ -9,7 +9,7 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtracto
 				request,
 				this.extract(request, metadata).map(({ mediaType, url }) => ({
 					downloadUrl: url,
-					baseUrl: request.entryUrl,
+					sourceUrl: request.entryUrl,
 					identifier: {
 						mediaType,
 						...detectResourceType(url),
@@ -38,7 +38,7 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtracto
 	protected buildIdentifier(ctx: IdentifierContext<TResult>): string {
 		const metadata = ctx.metadata as DefaultExtractorResult;
 
-		return `${new URL(metadata.baseUrl).hostname}/${ctx.mediaType}/${new URL(metadata.baseUrl).pathname.substring(1)}`;
+		return `${new URL(metadata.sourceUrl).hostname}/${ctx.mediaType}/${new URL(metadata.sourceUrl).pathname.substring(1)}`;
 	}
 
 	protected extract(request: TExec, metadata: any): PipelineExtractedItem[] {

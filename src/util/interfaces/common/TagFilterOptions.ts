@@ -11,7 +11,7 @@ export interface TagFilterOptions {
 
 	/**
 	 * Output format for tag values
-	 * @defaultValue 'url'
+	 * @defaultValue 'path'
 	 */
 	format?: OkPornIdType;
 }
