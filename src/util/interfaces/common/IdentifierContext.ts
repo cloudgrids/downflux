@@ -5,5 +5,6 @@ export interface IdentifierContext<TMetadata> {
 	metadata: TMetadata;
 	url: string;
 	id?: string;
+	secondaryId?: string;
 	username?: string;
 }

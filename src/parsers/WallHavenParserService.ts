@@ -1,5 +1,5 @@
 import path from 'path';
-import { DefaultExtractorResult, WallHavenOutput, WallHavenThumbnailQuality, WallHavenUserFavoriteCollection } from '../util';
+import { DefaultExtractorResult, WallHavenOutput, WallHavenThumbnailQuality, WallHavenUserFavoriteCollectionsOutput } from '../util';
 import { BaseParserService } from './BaseParserService';
 
 export class WallHavenParserService extends BaseParserService {
@@ -22,14 +22,14 @@ export class WallHavenParserService extends BaseParserService {
 				dimensionX,
 				dimensionY,
 				ratio,
-				collection: this.extractCollectionData(html),
+				collections: this.extractCollectionData(html),
 				totalContents: Number(this.extractElementText(html, 'class="far fa-fw fa-gap fa-images"></i>', '</') ?? 0),
 				...this.extractDefinitionList(html)
 			} as Partial<WallHavenOutput>
 		};
 	}
 
-	public extractCollectionData(html: string): WallHavenUserFavoriteCollection[] {
+	public extractCollectionData(html: string): WallHavenUserFavoriteCollectionsOutput[] {
 		const blocks = this.collectByClassNames(html, 'collection-inner', {
 			includeInnerHTML: true,
 			attributes: ['href']
@@ -57,8 +57,8 @@ export class WallHavenParserService extends BaseParserService {
 				wallPaperCount: Number(/fa-images[\s\S]*?>\s*(\d+)/i.exec(block)?.[1] ?? 0),
 				viewCount: Number(/fa-eye[\s\S]*?>\s*(\d+)/i.exec(block)?.[1] ?? 0),
 				subscriberCount: Number(/fa-bookmark[\s\S]*?>\s*(\d+)/i.exec(block)?.[1] ?? 0)
-			} as WallHavenUserFavoriteCollection;
-		}) as WallHavenUserFavoriteCollection[];
+			} as WallHavenUserFavoriteCollectionsOutput;
+		}) as WallHavenUserFavoriteCollectionsOutput[];
 	}
 
 	public extractDefinitionList(html: string): Record<string, string> {

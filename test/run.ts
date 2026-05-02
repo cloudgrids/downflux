@@ -11,10 +11,7 @@ async function main() {
 			.onProgress(console.log)
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON)
-			// .getUserUploadsInfo('daike12123');
-		.getUserFavoriteCollections({ username: 'daike12123' });
-
-		console.log({ data });
+			.getUserFavoritesCollection({ username: 'daike12123', collectionId: '1484663', includeMetadata: true });
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {

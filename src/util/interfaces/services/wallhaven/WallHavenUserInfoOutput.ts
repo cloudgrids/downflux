@@ -3,7 +3,7 @@
  * Interface representing the structure of user information retrieved from WallHaven.
  * Contains uploader username, total uploaded content count, and total upload pages.
  */
-export interface WallHavenUserInfo {
+export interface WallHavenUserInfoOutput {
 	/** Uploader username */
 	uploader: string;
 

@@ -1,3 +1,4 @@
+import path from 'path';
 import { detectResourceType, pathBuilder } from '../helpers';
 import {
 	IdentifierContext,
@@ -5,9 +6,10 @@ import {
 	PipelineExtractedItem,
 	PipelineItem,
 	WallHavenExecArgs,
+	WallHavenMethods,
 	WallHavenOutput,
 	WallHavenThumbnailQuality,
-	WallHavenUserFavoriteCollection
+	WallHavenUserFavoriteCollectionsOutput
 } from '../util';
 import { BasePipeline } from './BasePipeline';
 
@@ -38,20 +40,24 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 	}
 
 	protected override buildIdentifier(ctx: IdentifierContext<WallHavenOutput>): string {
-		const { mediaType, metadata, id, username } = ctx;
+		const { mediaType, metadata, id, username, secondaryId } = ctx;
 		const prefix = 'wallhaven';
 		let mediaSegment: string;
 
 		switch (mediaType) {
-			case MediaType.IMAGES:
-				mediaSegment = `${mediaType}/${metadata?.id ?? id}`;
+			case MediaType.UPLOADS:
+				mediaSegment = `${MediaType.UPLOADS}/${metadata?.id ?? id}`;
 				break;
 			case MediaType.FAVORITES:
-				mediaSegment = `${mediaType}/${metadata?.id ?? id}/${MediaType.THUMBNAILS}`;
+				mediaSegment = `${MediaType.FAVORITES}/${metadata?.id ?? id}/${MediaType.THUMBNAILS}`;
+				break;
+
+			case MediaType.COLLECTION:
+				mediaSegment = `${MediaType.FAVORITES}/${metadata?.collectionId ?? secondaryId}/${MediaType.COLLECTION}/${id}`;
 				break;
 
 			case MediaType.COVER:
-				mediaSegment = `${MediaType.FAVORITES}/${metadata?.id ?? id}/${mediaType}`;
+				mediaSegment = `${MediaType.FAVORITES}/${metadata?.collectionId ?? secondaryId}/${MediaType.COVER}/${id}`;
 				break;
 
 			default:
@@ -63,13 +69,21 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 
 	protected override extract(request: WallHavenExecArgs, metadata: WallHavenOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
-		const collections = Array.isArray(metadata) ? (metadata as WallHavenUserFavoriteCollection[]) : [];
+		const collections = Array.isArray(metadata) ? (metadata as WallHavenUserFavoriteCollectionsOutput[]) : [];
+		const isFavCollection = request.method === WallHavenMethods.getUserFavoriteCollection;
 
 		if (metadata.thumbnails?.length) {
 			this.filterByQuality(metadata.thumbnails, {
 				allowedQualities: request.thumbQualities as WallHavenThumbnailQuality[],
 				getQuality: (thumb) => thumb.quality
-			}).forEach((thumb) => urls.add({ mediaType: MediaType.IMAGES, url: thumb.url, id: thumb.id }));
+			}).forEach((thumb) =>
+				urls.add({
+					mediaType: isFavCollection ? MediaType.COLLECTION : MediaType.UPLOADS,
+					secondaryId: metadata?.collectionId,
+					url: thumb.url,
+					id: thumb.id
+				})
+			);
 		}
 
 		if (metadata.wallPapers?.length) {
@@ -77,7 +91,14 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 				this.filterByQuality(wp.thumbnails, {
 					allowedQualities: request.thumbQualities as WallHavenThumbnailQuality[],
 					getQuality: (wallpaper) => wallpaper.quality
-				}).forEach((thumb) => urls.add({ mediaType: MediaType.IMAGES, url: thumb.url, id: thumb.id }));
+				}).forEach((thumb) =>
+					urls.add({
+						mediaType: isFavCollection ? MediaType.COLLECTION : MediaType.UPLOADS,
+						url: thumb.url,
+						id: thumb.id,
+						secondaryId: metadata?.collectionId
+					})
+				);
 			});
 		}
 
@@ -89,9 +110,10 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 				}).forEach((thumb) =>
 					urls.add({
 						url: thumb.url,
-						id: collection.id,
+						id: thumb.id,
 						username: collection.uploader,
-						mediaType: MediaType.FAVORITES
+						mediaType: MediaType.FAVORITES,
+						secondaryId: collection.id
 					})
 				);
 			});
@@ -99,10 +121,11 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 			collections.forEach((collection) => {
 				if (collection.backgroundUrl) {
 					urls.add({
-						id: collection.id,
+						id: path.parse(collection.backgroundUrl).name,
 						mediaType: MediaType.COVER,
 						username: collection.uploader,
-						url: collection.backgroundUrl
+						url: collection.backgroundUrl,
+						secondaryId: collection.id
 					});
 				}
 			});

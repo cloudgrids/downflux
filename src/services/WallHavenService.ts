@@ -8,8 +8,10 @@ import {
 	WallHavenMethods,
 	WallHavenThumbnailQuality,
 	WallHavenUserExecArgs,
-	WallHavenUserFavoriteCollection,
-	WallHavenUserInfo,
+	WallHavenUserFavoriteCollectionOutput,
+	WallHavenUserFavoriteCollectionsOutput,
+	WallHavenUserFavoritesExecArgs,
+	WallHavenUserInfoOutput,
 	WallHavenUserUploadsOutput,
 	WallHavenWallPaperOutput
 } from '../util';
@@ -95,10 +97,10 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * @returns `WallHavenUserInfo` Total upload images count
 	 * @throws `GenericException` When the username is missing
 	 */
-	public async getUserUploadsInfo(username: string): Promise<WallHavenUserInfo> {
+	public async getUserUploadsInfo(username: string): Promise<WallHavenUserInfoOutput> {
 		if (!username) throw new GenericException('Username is required', ServiceType.WALLHAVEN, WallHavenMethods.getUserUploadsInfo);
 
-		return await this.execute<WallHavenUserInfo>({
+		return await this.execute<WallHavenUserInfoOutput>({
 			targets: [`${this.USER_URL}/${username}/uploads`],
 			method: WallHavenMethods.getUserUploadsInfo,
 			service: ServiceType.WALLHAVEN,
@@ -115,12 +117,12 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	public async getUserFavoriteCollections(
 		args: WallHavenUserExecArgs,
 		range: 'all' | IndexRange = this.DEFAULT_INDEX_RANGE
-	): Promise<WallHavenUserFavoriteCollection[]> {
+	): Promise<WallHavenUserFavoriteCollectionsOutput[]> {
 		if (!args?.username) {
 			throw new GenericException('Username is required', ServiceType.WALLHAVEN, WallHavenMethods.getUserFavoriteCollections);
 		}
 
-		return await this.execute<WallHavenUserFavoriteCollection[]>({
+		return await this.execute<WallHavenUserFavoriteCollectionsOutput[]>({
 			...this.makeTargets(
 				`${this.USER_URL}/${args.username}/favorites?purity=${this.purity(args)}&page=`,
 				await this.range(range),
@@ -134,8 +136,31 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 		});
 	}
 
-	public async getUserFavorites(): Promise<void> {
-		throw new Error('Method not implemented yet');
+	/**
+	 * Gets favorite collection of a WallHaven user.
+	 * @param args User upload options WallHavenUserExecArgs
+	 * @param range Page index range or 'all' to get all pages (defaults to first page)
+	 * @returns `WallHavenUserUploadsOutput` User upload metadata and thumbnails
+	 */
+	public async getUserFavoritesCollection(
+		args: WallHavenUserFavoritesExecArgs,
+		range: 'all' | IndexRange = this.DEFAULT_INDEX_RANGE
+	): Promise<WallHavenUserFavoriteCollectionOutput> {
+		const existingOptions = this.jobOptions;
+
+		return await this.execute<WallHavenUserFavoriteCollectionOutput>({
+			...this.makeTargets(
+				`${this.USER_URL}/${args.username}/favorites/${args.collectionId}?purity=${this.purity(args)}&page=`,
+				await this.range(range, async () => (await this.setOutput(OutputType.RETURN).getUserUploadsInfo(args.username)).totalPages),
+				ServiceType.WALLHAVEN,
+				WallHavenMethods.getUserFavoriteCollection,
+				false
+			),
+			returnType: 'object',
+			...existingOptions,
+			collectionArgs: args,
+			urlType: UrlType.IMAGES
+		});
 	}
 
 	public async getWallPapers(): Promise<void> {

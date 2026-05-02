@@ -11,6 +11,8 @@ export enum MediaType {
 	VIDEO_PREVIEW = 'video_preview',
 	THUMBNAILS = 'thumbnails',
 	FAVORITES = 'favorites',
+	COLLECTION = 'collection',
+	UPLOADS = 'uploads',
 	AVATAR = 'avatar',
 	COVER = 'cover',
 	OTHER = 'other'

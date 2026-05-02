@@ -7,9 +7,12 @@ import { WallHavenWallPaperOutput } from './WallHavenWallPaperOutput';
  * Interface representing the output structure for WallHaven user upload operations.
  * Contains uploader pagination and thumbnail results.
  */
-export interface WallHavenUserUploadsOutput extends WallHavenUserInfoOutput {
+export interface WallHavenUserFavoriteCollectionOutput extends WallHavenUserInfoOutput {
 	/** Current upload page */
 	currentPage: number;
+
+	/** The ID of the favorite collection */
+	collectionId: string;
 
 	/** Thumbnails found on the upload page */
 	thumbnails: WallHavenThumbnail[];

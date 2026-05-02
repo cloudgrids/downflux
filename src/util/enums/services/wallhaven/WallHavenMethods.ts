@@ -18,5 +18,8 @@ export enum WallHavenMethods {
 	getUserFavorites = 'getUserFavorites',
 
 	/** User favorite collections extraction */
-	getUserFavoriteCollections = 'getUserFavoriteCollections'
+	getUserFavoriteCollections = 'getUserFavoriteCollections',
+
+	/** User favorite collections extraction */
+	getUserFavoriteCollection = 'getUserFavoriteCollection'
 }
