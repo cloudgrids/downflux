@@ -7,5 +7,14 @@ export enum WallHavenMethods {
 	getWallPaper = 'getWallPaper',
 
 	/** User upload extraction */
-	getUserUploads = 'getUserUploads'
+	getUserUploads = 'getUserUploads',
+
+	/** User uploads info extraction */
+	getUserUploadsInfo = 'getUserUploadsInfo',
+
+	/** User favorites extraction */
+	getUserFavorites = 'getUserFavorites',
+
+	/** User favorite collections extraction */
+	getUserFavoriteCollections = 'getUserFavoriteCollections'
 }

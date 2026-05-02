@@ -10,7 +10,7 @@ export class InvalidDestinationException extends BaseException {
 		public readonly metadata?: any
 	) {
 		super({
-			errorCode: ErrorCodes.INVALID_URL,
+			errorCode: ErrorCodes.ENOENT,
 			message: InvalidDestinationException.buildMessage(url, service, method),
 			method: method,
 			service,
@@ -20,7 +20,13 @@ export class InvalidDestinationException extends BaseException {
 	}
 
 	private static buildMessage(path: string, service?: ServiceType, method?: string): string {
-		return [`ENOENT: Invalid destination`, `path=${path}`, service && `service=${service}`, method && `identifier=${method}`]
+		return [
+			`ENOENT: Invalid destination`,
+			`ERROR_CODE=${ErrorCodes.ENOENT}`,
+			`path=${path}`,
+			service && `service=${service}`,
+			method && `identifier=${method}`
+		]
 			.filter(Boolean)
 			.join(' | ');
 	}

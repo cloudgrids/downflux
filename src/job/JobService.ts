@@ -10,7 +10,6 @@ export class JobService {
 
 	constructor(
 		private readonly transformerService: TransformerService,
-		private readonly pipelineService: PipelineService,
 		private readonly backgroundService: BackgroundService,
 		private readonly fileService: FileService,
 		private readonly downloaderService: DownloaderService
@@ -36,16 +35,15 @@ export class JobService {
 		const extractionResult = await this.extractMetadata<TResult, TArgs>(targets, request);
 		extracted.push(...extractionResult.metadata);
 
-		for (const metadata of extracted) {
-			const items = this.pipelineService.build(metadata, request);
+		extracted.forEach((metadata) => {
+			const items = PipelineService.build(metadata, request);
 			pipelineItems.push(...items);
-		}
+		});
 
 		const result: ExecutionResult<TResult> = {
 			...request,
 			outputType,
 			extracted,
-			targetUrls: pipelineItems.map((item) => item.downloadUrl),
 			downloaded: 0,
 			failed: 0,
 			errors,

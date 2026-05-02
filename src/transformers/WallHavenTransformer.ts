@@ -5,6 +5,7 @@ import {
 	WallHavenMethods,
 	WallHavenThumbnail,
 	WallHavenThumbnailQuality,
+	WallHavenUserInfo,
 	WallHavenUserUploadsOutput,
 	WallHavenWallPaperOutput
 } from '../util';
@@ -12,12 +13,12 @@ import { BaseTransformer } from './BaseTransformer';
 
 export class WallHavenTransformer extends BaseTransformer<
 	WallHavenExecArgs,
-	WallHavenWallPaperOutput | WallHavenUserUploadsOutput | DefaultExtractorResult
+	WallHavenWallPaperOutput | WallHavenUserUploadsOutput | WallHavenUserInfo | DefaultExtractorResult
 > {
 	public async transform(
 		url: string,
 		request?: WallHavenExecArgs
-	): Promise<WallHavenWallPaperOutput | WallHavenUserUploadsOutput | DefaultExtractorResult> {
+	): Promise<WallHavenWallPaperOutput | WallHavenUserUploadsOutput | WallHavenUserInfo | DefaultExtractorResult> {
 		const metadata = (await super.transform(url, request)) as DefaultExtractorResult;
 
 		switch (request?.method) {
@@ -27,12 +28,19 @@ export class WallHavenTransformer extends BaseTransformer<
 
 			case WallHavenMethods.getUserUploads: {
 				const userUploads = this.toUserUploads(request, metadata);
-				if (request?.userUploadsArgs?.includeMetadata) {
+				if (request?.userArgs?.includeMetadata) {
 					const wallPapers = await this.getWallPaper(request, userUploads.thumbnails);
 					return { ...userUploads, wallPapers };
 				}
 				return userUploads;
 			}
+
+			case WallHavenMethods.getUserUploadsInfo:
+				return this.toUserInfo(request, metadata);
+
+			case WallHavenMethods.getUserFavoriteCollections:
+				return metadata;
+
 			default:
 				return metadata;
 		}
@@ -42,21 +50,21 @@ export class WallHavenTransformer extends BaseTransformer<
 		const partial = metadata.customFields as unknown as WallHavenWallPaperOutput & { totalContents?: number };
 		delete partial?.totalContents;
 
-		const id = metadata.baseUrl?.split('/')?.filter(Boolean)?.pop() ?? '';
+		const id = metadata.sourceUrl?.split('/')?.filter(Boolean)?.pop() ?? '';
 		const thumbnails = metadata.images
 			?.filter((img) => img.startsWith('https://w.wallhaven.cc'))
 			.map((image) => ({
 				id,
 				quality: WallHavenThumbnailQuality.HIGH,
 				url: image,
-				siteUrl: metadata.baseUrl
+				siteUrl: metadata.sourceUrl
 			})) as WallHavenThumbnail[];
 
 		thumbnails.push({
 			id,
 			quality: WallHavenThumbnailQuality.LOW,
 			url: `https://th.wallhaven.cc/small/${id.substring(0, 2)}/${id}.jpg`,
-			siteUrl: metadata.baseUrl
+			siteUrl: metadata.sourceUrl
 		});
 
 		return {
@@ -111,8 +119,21 @@ export class WallHavenTransformer extends BaseTransformer<
 			uploader: partial.uploader,
 			totalContents: Number(partial.totalContents ?? 0),
 			totalPages: Math.ceil(Number(partial.totalContents) / 24),
-			currentPage: Number(metadata.baseUrl.split('=').pop() ?? '1'),
+			currentPage: Number(metadata.sourceUrl.split('=').pop() ?? '1'),
 			thumbnails
+		};
+	}
+
+	// private toUserFavoriteCollections(request: WallHavenExecArgs, metadata: DefaultExtractorResult): WallHavenUserFavoriteCollection[] {
+	// 	return {};
+	// }
+
+	private toUserInfo(request: WallHavenExecArgs, metadata: DefaultExtractorResult): WallHavenUserInfo {
+		const totalContents = Number(metadata.customFields?.totalContents ?? 0);
+		return {
+			uploader: request?.userArgs?.username as string,
+			totalContents,
+			totalPages: Math.ceil(Number(totalContents) / 24)
 		};
 	}
 }

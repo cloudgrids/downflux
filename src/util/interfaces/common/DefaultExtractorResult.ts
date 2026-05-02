@@ -18,7 +18,7 @@ export interface DefaultExtractorResult {
 	status: number;
 
 	/** Final resolved URL */
-	baseUrl: string;
+	sourceUrl: string;
 
 	/** Anchor links */
 	anchors: string[];

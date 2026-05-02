@@ -6,6 +6,9 @@ export interface OkPornAlbumOutput {
 	/** Model name associated with the album */
 	modelName: string;
 
+	/** Starred models associated with the album */
+	starredModels: string[];
+
 	/** Album identifier */
 	albumId: string;
 

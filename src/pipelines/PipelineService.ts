@@ -3,21 +3,29 @@ import { BasePipeline } from './BasePipeline';
 import { OkPornPipeline } from './OkPornPipeline';
 import { WallHavenPipeline } from './WallHavenPipeline';
 
+/**
+ * Pipelines are stateless and purely functional, so we can maintain a single instance for each service type.
+ * The PipelineService acts as a factory to retrieve the appropriate pipeline based on the service type.
+ * No per-request instantiation is needed, which optimizes performance and resource usage.
+ * No dependency injection is required
+ */
+
+type PipelineCtor = new () => BasePipeline<any, any>;
+
 export class PipelineService {
-	private readonly pipelines: Map<ServiceType, BasePipeline<any, any>>;
+	private static readonly pipelines: Map<ServiceType, PipelineCtor> = new Map<ServiceType, PipelineCtor>([
+		[ServiceType.OKPORN, OkPornPipeline],
+		[ServiceType.WALLHAVEN, WallHavenPipeline],
+		[ServiceType.DEFAULT, BasePipeline]
+	]);
 
-	constructor() {
-		this.pipelines = new Map([
-			[ServiceType.OKPORN, new OkPornPipeline()],
-			[ServiceType.DEFAULT, new BasePipeline()],
-			[ServiceType.WALLHAVEN, new WallHavenPipeline()]
-		]);
-	}
+	public static build<TExec extends ExecutionArgs>(metadata: unknown, request: TExec): PipelineItem[] {
+		const serviceType = request.service ?? ServiceType.DEFAULT;
 
-	public build<TExec extends ExecutionArgs>(metadata: any, request: TExec): PipelineItem[] {
-		const serviceType = request.service || ServiceType.DEFAULT;
-		const pipeline = this.pipelines.get(serviceType) || this.pipelines.get(ServiceType.DEFAULT);
+		const PipelineClass = this.pipelines.get(serviceType) ?? this.pipelines.get(ServiceType.DEFAULT)!;
 
-		return pipeline?.build(metadata, request) ?? [];
+		const pipeline = new PipelineClass();
+
+		return pipeline.build(metadata as any, request);
 	}
 }

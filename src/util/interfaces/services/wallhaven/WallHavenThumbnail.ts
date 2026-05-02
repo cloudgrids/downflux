@@ -1,7 +1,7 @@
 import { WallHavenThumbnailQuality } from '../../../enums';
 
 /**
- * Structure of a WallHaven thumbnail.
+ * Interface representing a WallHaven thumbnail.
  * Contains thumbnail URL, wallpaper ID, page URL, and quality.
  */
 export interface WallHavenThumbnail {

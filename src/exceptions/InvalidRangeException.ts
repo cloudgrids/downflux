@@ -21,7 +21,14 @@ export class InvalidRangeException extends BaseException {
 	}
 
 	private static buildMessage(start: number, end: number, service?: ServiceType, method?: string): string {
-		return [`Invalid range encountered`, `start=${start}`, `end=${end}`, service && `service=${service}`, method && `method=${method}`]
+		return [
+			`Invalid range encountered`,
+			`ERROR_CODE=${ErrorCodes.INVALID_RANGE}`,
+			`start=${start}`,
+			`end=${end}`,
+			service && `service=${service}`,
+			method && `method=${method}`
+		]
 			.filter(Boolean)
 			.join(' | ');
 	}

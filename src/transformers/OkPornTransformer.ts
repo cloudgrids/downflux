@@ -12,7 +12,8 @@ import {
 	OkPornVideoOutput,
 	TagKeys,
 	TagsOutput,
-	UrlType
+	UrlType,
+	VideoQuality
 } from '../util';
 import { BaseTransformer } from './BaseTransformer';
 
@@ -41,6 +42,8 @@ export class OkPornTransformer extends BaseTransformer<
 		| DefaultExtractorResult
 	> {
 		const metadata = (await super.transform(url, request)) as DefaultExtractorResult;
+
+		if (!request?.transformOutput) return metadata;
 
 		switch (request?.method) {
 			case OkPornMethods.getAlbum:
@@ -104,18 +107,19 @@ export class OkPornTransformer extends BaseTransformer<
 	}
 
 	private toAlbumOutput(metadata: DefaultExtractorResult): OkPornAlbumOutput {
-		const customFields = metadata.customFields as { modelName?: string } | undefined;
+		const customFields = metadata.customFields as { modelName?: string; starredModels?: string[] } | undefined;
 
 		return {
 			albumTitle: metadata.title,
-			albumUrl: metadata.baseUrl,
+			albumUrl: metadata.sourceUrl,
 			albumKeywords: metadata.keywords,
 			albumDescription: metadata.description,
 			modelName: customFields?.modelName ?? '',
-			albumId: metadata.baseUrl.split('/').filter(Boolean).pop() ?? '',
+			albumId: metadata.sourceUrl.split('/').filter(Boolean).pop() ?? '',
 			albumImages: metadata.images,
 			albumThumbnail: metadata.images[0],
-			albumImageCount: metadata.images.length
+			albumImageCount: metadata.images.length,
+			starredModels: (customFields?.starredModels as string[]) ?? []
 		};
 	}
 
@@ -131,17 +135,18 @@ export class OkPornTransformer extends BaseTransformer<
 
 		return {
 			videoTitle: metadata.title,
-			videoUrl: metadata.baseUrl,
+			videoUrl: metadata.sourceUrl,
 			videoKeywords: metadata.keywords,
 			videoDescription: metadata.description,
-			videoId: metadata.baseUrl.split('/').filter(Boolean).pop() ?? '',
-			videoSources: metadata.sources.map((url) => ({ url, quality: detectVideoQuality(url) })),
+			videoId: metadata.sourceUrl.split('/').filter(Boolean).pop() ?? '',
+			videoSources: metadata.sources.map((url) => ({ url, quality: detectVideoQuality(url, VideoQuality.Q480) })),
 			videoPoster: customFields?.videoPoster ?? '',
 			videoScreenshot: customFields?.videoPoster ?? '',
 			modelName: customFields?.starredBy?.[0] ?? '',
 			videoAlbumId: customFields?.videoAlbumId,
 			videoCreatedAt: customFields?.videoCreateDate,
-			videoAlbum
+			videoAlbum,
+			starredBy: customFields?.starredBy ?? []
 		};
 	}
 
@@ -152,7 +157,7 @@ export class OkPornTransformer extends BaseTransformer<
 
 		return {
 			pageTitle: metadata.title,
-			pageUrl: metadata.baseUrl,
+			pageUrl: metadata.sourceUrl,
 			modelCount: modelUrls.length,
 			modelUrls
 		};
@@ -178,12 +183,12 @@ export class OkPornTransformer extends BaseTransformer<
 	}
 
 	private toChannelOutput(request: OkPornExecArgs, metadata: DefaultExtractorResult): OkPornChannelOutput {
-		let channelUrls = metadata.anchors.filter((a) => a.match(/^https:\/\/ok\.porn\/sites\/([a-z-]{2,})\/$/)).filter(Boolean);
+		let channelUrls = metadata.anchors?.filter((a) => a.match(/^https:\/\/ok\.porn\/sites\/([a-z-0-9]{2,})\/$/)).filter(Boolean);
 		if (request.channelArgs === 'path') channelUrls = channelUrls.map((url) => url.split('/').filter(Boolean).pop() ?? '');
 
 		return {
 			channelUrls,
-			channelCount: metadata.anchors.length
+			channelCount: channelUrls?.length
 		};
 	}
 }

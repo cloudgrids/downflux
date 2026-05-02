@@ -26,6 +26,9 @@ export interface JobOptions extends HttpFetchOptions {
 	/** Maximum number of items to download */
 	maxDownloads?: number;
 
+	/** Transform output to service-specific result type */
+	transformOutput?: boolean;
+
 	/** Download phase concurrency */
 	concurrency?: number;
 

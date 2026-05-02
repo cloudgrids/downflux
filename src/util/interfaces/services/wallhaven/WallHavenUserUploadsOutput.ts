@@ -1,20 +1,12 @@
 import { WallHavenThumbnail } from './WallHavenThumbnail';
+import { WallHavenUserInfo } from './WallHavenUserInfo';
 import { WallHavenWallPaperOutput } from './WallHavenWallPaperOutput';
 
 /**
  * Output structure for WallHaven user upload operations.
  * Contains uploader pagination and thumbnail results.
  */
-export interface WallHavenUserUploadsOutput {
-	/** Uploader username */
-	uploader: string;
-
-	/** Total uploaded content count */
-	totalContents: number;
-
-	/** Total upload pages */
-	totalPages: number;
-
+export interface WallHavenUserUploadsOutput extends WallHavenUserInfo {
 	/** Current upload page */
 	currentPage: number;
 
