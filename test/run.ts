@@ -1,9 +1,11 @@
-import { OkPornService, OutputType, PornHubService, VideoQuality } from '../src';
+import { OutputType, PornHubService, VideoQuality } from '../src';
 
 async function main() {
-	const pornHubUrl = 'https://www.pornhub.org/view_video.php?viewkey=69d0e70eabacd';
+	const pornHubUrl = 'https://www.pornhub.org/view_video.php?viewkey=69f0e18103589';
 	const okPornUrl = 'https://ok.porn/video/736213/';
 	console.log(`\n\n=== Testing:`);
+	const dir = 'downflux_';
+	// const dir = '/Users/arijit/Downloads/';
 	// 736213
 
 	try {
@@ -11,7 +13,8 @@ async function main() {
 			.setJobOptions({ logProgress: true })
 			.onProgress(console.log)
 			.setTransformOutput(true)
-			.setOutput(OutputType.DEVICE)
+			.setAllowedExtensions('mp4')
+			.setOutput(OutputType.DEVICE, { directoryPath: dir })
 			.getVideo(VideoQuality.Q720);
 
 		// const data = await new OkPornService(okPornUrl)

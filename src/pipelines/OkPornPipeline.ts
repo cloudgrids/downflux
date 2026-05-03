@@ -99,7 +99,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 					id: u.videoId
 				})),
 				{
-					allowedQualities: [request.videoArgs?.quality] as VideoQuality[],
+					allowedQualities: request.videoArgs?.quality ? ([request.videoArgs?.quality] as VideoQuality[]) : [],
 					getQuality: (source) => source.quality
 				}
 			).forEach((item) => urls.add({ mediaType: item.mediaType, url: item.url, id: item.id }));

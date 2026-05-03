@@ -37,17 +37,14 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 	 * @returns `PornHubVideoOutput` containing video metadata and source URLs
 	 * @throws `GenericException` When the view key is missing or invalid
 	 */
-	public async getVideo(viewKey?: string, quality?: VideoQuality): Promise<PornHubVideoOutput> {
-		let viewKeyFromUrl: string | undefined;
-		try {
-			const urlObj = new URL(this.url);
-			viewKeyFromUrl = urlObj.searchParams.get('viewkey') ?? viewKey;
-		} catch {
-			if (!viewKeyFromUrl) throw new GenericException('View key not found', ServiceType.PORNHUB, PornHubMethods.getVideo);
-		}
+	public async getVideo(quality?: VideoQuality): Promise<PornHubVideoOutput> {
+		const urlObj = new URL(this.url);
+		const viewKeyFromUrl = urlObj.searchParams.get('viewkey');
+
+		if (!viewKeyFromUrl) throw new GenericException('View key not found', ServiceType.PORNHUB, PornHubMethods.getVideo);
 
 		return await this.execute<PornHubVideoOutput>({
-			targets: [`${this.BASE_URL}/view_video.php?viewkey=${viewKeyFromUrl || viewKey}`],
+			targets: [this.url],
 			method: PornHubMethods.getVideo,
 			service: ServiceType.PORNHUB,
 			urlType: UrlType.SOURCES,
