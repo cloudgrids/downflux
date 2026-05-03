@@ -1,6 +1,7 @@
 import { ExecutionArgs, PipelineItem, ServiceType } from '../util';
 import { BasePipeline } from './BasePipeline';
 import { OkPornPipeline } from './OkPornPipeline';
+import { PornHubPipeline } from './PornHubPipeline';
 import { WallHavenPipeline } from './WallHavenPipeline';
 
 /**
@@ -16,7 +17,9 @@ export class PipelineService {
 	private static readonly pipelines: Map<ServiceType, PipelineCtor> = new Map<ServiceType, PipelineCtor>([
 		[ServiceType.OKPORN, OkPornPipeline],
 		[ServiceType.WALLHAVEN, WallHavenPipeline],
-		[ServiceType.DEFAULT, BasePipeline]
+		[ServiceType.DEFAULT, BasePipeline],
+		[ServiceType.COOMER, BasePipeline],
+		[ServiceType.PORNHUB, PornHubPipeline]
 	]);
 
 	public static build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): PipelineItem[] {

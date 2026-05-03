@@ -41,7 +41,12 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * @override Validates that the URL is from WallHaven.
 	 */
 	protected override validateUrl(url: string): void {
-		if (!url.includes('wallhaven.cc')) throw new InvalidUrlException(url, ServiceType.WALLHAVEN);
+		try {
+			new URL(url);
+		} catch {
+			throw new InvalidUrlException(url, ServiceType.WALLHAVEN);
+		}
+		if (!url.startsWith('https://wallhaven.cc/')) throw new InvalidUrlException(url, ServiceType.WALLHAVEN);
 	}
 
 	/**

@@ -151,6 +151,22 @@ export class BaseParserService {
 		);
 	}
 
+	public extractMetaNameContent(html: string, value: string): string {
+		return this.decodeHtmlEntities(
+			this.extractElementText(html, `name="${value}" content="`, '"') ||
+				this.extractElementText(html, `name='${value}' content='`, "'") ||
+				this.extractElementText(html, `name=${value} content="`, '"')
+		);
+	}
+
+	public extractMetaPropertyContent(html: string, value: string): string {
+		return this.decodeHtmlEntities(
+			this.extractElementText(html, `property="${value}" content="`, '"') ||
+				this.extractElementText(html, `property='${value}' content='`, "'") ||
+				this.extractElementText(html, `property=${value} content="`, '"')
+		);
+	}
+
 	public collectAnchors(
 		html: string,
 		options?: {
@@ -165,9 +181,6 @@ export class BaseParserService {
 			title?: string;
 		}[] = [];
 
-		// ✅ Match BOTH:
-		// <a ...>...</a>
-		// <a ...>
 		const regex = /<a\b([^>]*)>(?:([\s\S]*?)<\/a>)?/gi;
 
 		let match: RegExpExecArray | null;
@@ -181,10 +194,8 @@ export class BaseParserService {
 
 			let href = hrefMatch[1].trim();
 
-			// filter by href pattern
 			if (options?.hrefPattern && !options.hrefPattern.test(href)) continue;
 
-			// filter by class
 			if (options?.className) {
 				const classMatch = /class=["']([^"']+)["']/.exec(attrs);
 				const classes = classMatch?.[1] ?? '';
@@ -303,11 +314,19 @@ export class BaseParserService {
 		return this.extractByTag(html, 'span', { className });
 	}
 
-	public extractH2(html: string, className?: string) {
+	public extractDivs(html: string, className?: string) {
+		return this.extractByTag(html, 'div', { className });
+	}
+
+	public extractAnchorsContent(html: string, className?: string) {
+		return this.extractByTag(html, 'a', { className });
+	}
+
+	public extractH2s(html: string, className?: string) {
 		return this.extractByTag(html, 'h2', { className });
 	}
 
-	public extractH3(html: string, className?: string) {
+	public extractH3s(html: string, className?: string) {
 		return this.extractByTag(html, 'h3', { className });
 	}
 

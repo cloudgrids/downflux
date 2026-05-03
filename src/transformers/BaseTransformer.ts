@@ -12,7 +12,7 @@ export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExtra
 
 		if (request?.service !== ServiceType.DEFAULT) {
 			const transformed = HtmlParserService.getParser(request?.service as ServiceType).transform(fetched.html, fetched.finalUrl);
-			return { ...base, ...transformed } as TResult;
+			return { ...base, ...transformed, request } as TResult;
 		}
 
 		return base as TResult;

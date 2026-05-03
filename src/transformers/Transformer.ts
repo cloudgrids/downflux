@@ -2,6 +2,7 @@ import { HttpFetcherService } from '../fetcher';
 import { ExecutionArgs, ServiceType } from '../util';
 import { BaseTransformer } from './BaseTransformer';
 import { OkPornTransformer } from './OkPornTransformer';
+import { PornHubTransformer } from './PornHubTransformer';
 import { WallHavenTransformer } from './WallHavenTransformer';
 
 type TransformerCtor = new (http: HttpFetcherService) => BaseTransformer<any, any>;
@@ -11,7 +12,8 @@ export class TransformerService {
 		[ServiceType.OKPORN]: OkPornTransformer,
 		[ServiceType.WALLHAVEN]: WallHavenTransformer,
 		[ServiceType.DEFAULT]: BaseTransformer,
-		[ServiceType.COOMER]: BaseTransformer
+		[ServiceType.COOMER]: BaseTransformer,
+		[ServiceType.PORNHUB]: PornHubTransformer
 	};
 
 	constructor(private readonly httpFetcherService: HttpFetcherService) {}

@@ -15,7 +15,7 @@ export class DownloaderService {
 
 		const initialFile = this.fileService.getFileInfo(url, dirConfig?.prefix);
 
-		const { finalUrl, headers, start } = await this.httpFetcherService.requestStream(url, { ...opts, referer: url });
+		const { finalUrl, headers, start } = await this.httpFetcherService.requestStream(url, { ...opts, referer: item.sourceUrl });
 
 		const resolvedFile = this.resolveFileMetadata(initialFile, finalUrl, headers, dirConfig?.prefix);
 
@@ -44,7 +44,7 @@ export class DownloaderService {
 		const isHls = finalUrl.includes('.m3u8') || headers['content-type']?.includes('mpegurl');
 
 		if (isHls) {
-			const baseName = initial.originalFilename.replace(/\.[^.]+$/, '') || 'video';
+			const baseName = this.fileService.sanitizeFilename(initial.originalFilename.replace(/\.[^.]+$/, '') || 'video');
 			return {
 				originalFilename: `${baseName}.ts`,
 				extension: 'ts',

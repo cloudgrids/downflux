@@ -13,7 +13,9 @@ export class HLSFetchService {
 		const variant = this.selectVariant(manifest, manifestUrl, opts?.avq);
 		const playlistUrl = variant ?? manifestUrl;
 
-		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs) : manifest;
+		const requestHeaders = this.buildHeaders(opts);
+
+		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs, requestHeaders) : manifest;
 
 		const segments = this.parseSegments(mediaManifest, playlistUrl);
 		if (!segments.length) throw new Error('No segments');
@@ -21,7 +23,16 @@ export class HLSFetchService {
 		const keyInfo = this.parseKey(mediaManifest, playlistUrl);
 		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
 
-		await this.worker(segments, key, keyInfo, timeoutMs, stream);
+		await this.worker(segments, key, keyInfo, timeoutMs, stream, requestHeaders);
+	}
+
+	private buildHeaders(opts?: DownloadOptions) {
+		return {
+			'User-Agent': 'Mozilla/5.0',
+			'Accept': '*/*',
+			'Referer': opts?.referer || '',
+			'Origin': opts?.referer ? new URL(opts.referer).origin : ''
+		};
 	}
 
 	private mapQualityToHeight(q: VideoQuality): number {
@@ -54,7 +65,8 @@ export class HLSFetchService {
 		key: Buffer | null,
 		keyInfo: { url: string; iv: Buffer | undefined } | null,
 		timeoutMs: number,
-		stream: Writable
+		stream: Writable,
+		headers: Record<string, any>
 	) {
 		const concurrency = 8;
 		const results = new Map<number, Buffer>();
@@ -67,7 +79,7 @@ export class HLSFetchService {
 				if (i >= segments.length) break;
 
 				const segUrl = segments[i];
-				let data = await this.fetchWithRetry(segUrl, timeoutMs);
+				let data = await this.fetchWithRetry(segUrl, timeoutMs, headers);
 
 				if (key) {
 					const iv = keyInfo?.iv
@@ -206,22 +218,19 @@ export class HLSFetchService {
 		return Buffer.concat([d.update(data), d.final()]);
 	}
 
-	private async fetchText(url: string, timeoutMs: number) {
-		const res = await fetch(url, {
-			signal: AbortSignal.timeout(timeoutMs)
-		});
-		return res.text();
+	private async fetchText(url: string, timeoutMs: number, headers: Record<string, any>) {
+		return (await fetch(url, { signal: AbortSignal.timeout(timeoutMs), headers })).text();
 	}
 
-	private async fetchWithRetry(url: string, timeoutMs: number, retries = 3): Promise<Buffer> {
+	private async fetchWithRetry(url: string, timeoutMs: number, headers: Record<string, any>, retries = 3): Promise<Buffer> {
 		let err: unknown;
 
 		for (let i = 0; i < retries; i++) {
 			try {
-				const res = await fetch(url, {
-					signal: AbortSignal.timeout(timeoutMs)
-				});
+				const res = await fetch(url, { signal: AbortSignal.timeout(timeoutMs), headers });
+
 				if (!res.ok) throw new Error();
+
 				return Buffer.from(await res.arrayBuffer());
 			} catch (e) {
 				err = e;
