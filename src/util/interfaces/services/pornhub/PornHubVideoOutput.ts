@@ -16,13 +16,13 @@ export interface PornHubVideoOutput {
 	videos: PornHubVideo[];
 
 	/** The duration of the video in seconds */
-	duration: number;
+	duration: string;
 
 	/** The number of views the video has */
-	views: number;
+	views: string;
 
 	/** The number of likes the video has */
-	likes: number;
+	likes: string;
 
 	/** The tags associated with the video */
 	tags?: string[];

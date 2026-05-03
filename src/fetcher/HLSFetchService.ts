@@ -8,25 +8,29 @@ export class HLSFetchService {
 		manifestUrl: string,
 		timeoutMs: number,
 		stream: Writable,
-		opts?: DownloadOptions
+		opts: DownloadOptions
 	): Promise<void> {
 		const variant = this.selectVariant(manifest, manifestUrl, opts?.avq);
 		const playlistUrl = variant ?? manifestUrl;
 
 		const requestHeaders = this.buildHeaders(opts);
 
+		// refers to the segment list if master manifest, otherwise the original manifest
 		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs, requestHeaders) : manifest;
 
+		// parsing segments and key info from the media manifest, as the master manifest won't have segment info
 		const segments = this.parseSegments(mediaManifest, playlistUrl);
 		if (!segments.length) throw new Error('No segments');
 
 		const keyInfo = this.parseKey(mediaManifest, playlistUrl);
 		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
 
-		await this.worker(segments, key, keyInfo, timeoutMs, stream, requestHeaders);
+		console.log({ variant, playlistUrl, segmentsCount: segments.length, key, keyInfo });
+
+		await this.stitchSegments(segments, key, keyInfo, timeoutMs, stream, requestHeaders);
 	}
 
-	private buildHeaders(opts?: DownloadOptions) {
+	private buildHeaders(opts: DownloadOptions) {
 		return {
 			'User-Agent': 'Mozilla/5.0',
 			'Accept': '*/*',
@@ -60,7 +64,7 @@ export class HLSFetchService {
 		}
 	}
 
-	private async worker(
+	private async stitchSegments(
 		segments: string[],
 		key: Buffer | null,
 		keyInfo: { url: string; iv: Buffer | undefined } | null,
@@ -82,6 +86,7 @@ export class HLSFetchService {
 				let data = await this.fetchWithRetry(segUrl, timeoutMs, headers);
 
 				if (key) {
+					console.log({ decryptingSegment: segUrl, keyUrl: keyInfo?.url, iv: keyInfo?.iv?.toString('hex') });
 					const iv = keyInfo?.iv
 						? keyInfo.iv
 						: (() => {
@@ -218,7 +223,7 @@ export class HLSFetchService {
 		return Buffer.concat([d.update(data), d.final()]);
 	}
 
-	private async fetchText(url: string, timeoutMs: number, headers: Record<string, any>) {
+	private async fetchText(url: string, timeoutMs: number, headers: Record<string, any>): Promise<string> {
 		return (await fetch(url, { signal: AbortSignal.timeout(timeoutMs), headers })).text();
 	}
 

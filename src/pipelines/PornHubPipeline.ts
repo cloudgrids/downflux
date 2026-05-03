@@ -34,11 +34,12 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 
 		switch (mediaType) {
 			case MediaType.VIDEOS:
+			case MediaType.VIDEO_PREVIEW:
 				mediaSegment = `${MediaType.VIDEOS}/${id}`;
 				break;
 
-			case MediaType.VIDEO_PREVIEW:
-				mediaSegment = `${MediaType.VIDEOS}/${id}/${mediaType}`;
+			case MediaType.AVATAR:
+				mediaSegment = `${MediaType.AVATAR}`;
 				break;
 
 			default:
@@ -53,7 +54,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 
 		if (metadata.videos?.length) {
 			this.filterByQuality(metadata.videos, {
-				allowedQualities: [request.allowedVideoQuality],
+				allowedQualities: request.allowedVideoQuality ? [request.allowedVideoQuality] : [],
 				getQuality: (video) => `${video.quality}p`
 			}).forEach((video) => {
 				urls.add({
@@ -66,6 +67,13 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 							.find((url) => url.endsWith('.mp4'))
 							?.split('.')[0] ?? video.videoUrl
 				});
+			});
+		}
+
+		if (metadata?.userAvatar) {
+			urls.add({
+				url: metadata.userAvatar,
+				mediaType: MediaType.AVATAR
 			});
 		}
 

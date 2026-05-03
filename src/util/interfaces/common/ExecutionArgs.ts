@@ -19,4 +19,5 @@ export interface ExecutionArgs extends JobOptions {
 	urlType: UrlType;
 	/** @internal Allows nested transformer extractions to update the active job progress state. */
 	onExtractProgress?: (event: ExtractProgressEvent) => void;
+	onDownloadProgress?: (event: ExtractProgressEvent) => void;
 }

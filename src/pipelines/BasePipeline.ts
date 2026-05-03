@@ -76,7 +76,7 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtracto
 	): T[] {
 		const { allowedQualities, getQuality } = options;
 
-		if (!allowedQualities?.length || !getQuality) return items;
+		if (!allowedQualities?.length) return items;
 
 		return items.filter((item) => {
 			const quality = getQuality(item);
