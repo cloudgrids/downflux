@@ -2,10 +2,6 @@ import { DefaultExtractorResult, OkPornModelVideoCard, OkPornOutput } from '../u
 import { BaseParserService } from './BaseParserService';
 
 export class OkPornParserService extends BaseParserService {
-	constructor() {
-		super();
-	}
-
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<OkPornOutput>>> {
 		return {
 			images: this.extractAttributes(html, 'img', 'data-original'),

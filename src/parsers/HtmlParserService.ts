@@ -1,6 +1,7 @@
 import { ServiceType } from '../util';
 import { BaseParserService } from './BaseParserService';
 import { OkPornParserService } from './OkPornParserService';
+import { PornHubParserService } from './PornHubParserService';
 import { WallHavenParserService } from './WallHavenParserService';
 
 export class HtmlParserService {
@@ -8,7 +9,8 @@ export class HtmlParserService {
 		[ServiceType.OKPORN]: new OkPornParserService(),
 		[ServiceType.WALLHAVEN]: new WallHavenParserService(),
 		[ServiceType.DEFAULT]: new BaseParserService(),
-		[ServiceType.COOMER]: new BaseParserService()
+		[ServiceType.COOMER]: new BaseParserService(),
+		[ServiceType.PORNHUB]: new PornHubParserService()
 	};
 
 	public static getParser(service: ServiceType): BaseParserService {

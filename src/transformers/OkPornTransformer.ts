@@ -31,7 +31,7 @@ export class OkPornTransformer extends BaseTransformer<
 
 	public override async transform(
 		url: string,
-		request?: OkPornExecArgs
+		request: OkPornExecArgs
 	): Promise<
 		| OkPornAlbumOutput
 		| OkPornVideoOutput
@@ -76,10 +76,8 @@ export class OkPornTransformer extends BaseTransformer<
 	private async getVideoAlbum(
 		metadata: DefaultExtractorResult<Partial<OkPornOutput>>,
 		request: OkPornExecArgs
-	): Promise<OkPornAlbumOutput | undefined> {
+	): Promise<OkPornAlbumOutput> {
 		const videoAlbumId = metadata.customFields?.videoAlbumId;
-
-		if (!videoAlbumId) return undefined;
 
 		const albumUrl = `${this.ALBUMS_URL}${videoAlbumId}/`;
 		const albumRequest = {

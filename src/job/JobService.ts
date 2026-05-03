@@ -106,6 +106,7 @@ export class JobService {
 				const result = await this.transformerService.transform<TArgs, TResult>(target, {
 					...request,
 					entryUrl: target,
+					// This target only serves as a referer for the extraction phase
 					referer: target,
 					onExtractProgress: emitExtractProgress
 				});

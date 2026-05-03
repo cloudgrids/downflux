@@ -43,6 +43,7 @@ const paths = [
 	'src/util/enums/services',
 	'src/util/enums/services/okporn',
 	'src/util/enums/services/wallhaven',
+	'src/util/enums/services/pornhub',
 
 	'src/util/interfaces',
 	'src/util/interfaces/common',
@@ -51,6 +52,7 @@ const paths = [
 	'src/util/interfaces/services',
 	'src/util/interfaces/services/okporn',
 	'src/util/interfaces/services/wallhaven',
+	'src/util/interfaces/services/pornhub',
 
 	'src/util/maps',
 

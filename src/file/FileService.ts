@@ -144,23 +144,33 @@ export class FileService {
 	 * @param url - URL to extract filename and extension from
 	 * @param prefix - Optional prefix to add to the filename
 	 * @returns {{originalFilename: string, extension: string, extendedFilename: string}}
-	 * fallback => fb_timestamp
 	 * path undefined => fud_timestamp
 	 */
 	public getFileInfo(url: string, prefix?: string): ResolvedFile {
 		try {
 			const pathname = new URL(url).pathname;
-			const originalFilename = pathname.split('/').filter(Boolean).pop() || `fud_${Date.now()}`;
+			const segments = pathname.split('/').filter(Boolean);
+
+			const fileSegment = segments.find((seg) => /\.[a-z0-9]+$/i.test(seg));
+
+			const originalFilename = fileSegment || segments.pop() || `fud_${Date.now()}`;
+
 			const extension = extname(originalFilename).substring(1).toLowerCase();
 
 			return {
-				originalFilename,
 				extension,
+				originalFilename,
 				extendedFilename: `${prefix ?? ''}${originalFilename}`
 			};
 		} catch {
-			throw new Error('Unable to parse URL for file info');
+			throw new Error(`Unable to parse URL for file info: ${url}`);
 		}
+	}
+
+	// Sanitize filename by replacing invalid characters with underscores mostly for
+	// Windows OS which has a lot of reserved characters for filenames such as < > : " / \ | ? *
+	public sanitizeFilename(name: string): string {
+		return name.replace(/[^a-z0-9._-]/gi, '_');
 	}
 
 	private getFilePath(service: ServiceType, directoryPath: string, filename: string, identifier?: string): string {

@@ -45,6 +45,11 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	}
 
 	protected override validateUrl(url: string): void {
+		try {
+			new URL(url);
+		} catch {
+			throw new InvalidUrlException(url, ServiceType.OKPORN);
+		}
 		if (!url.startsWith('https://ok.porn/')) throw new InvalidUrlException(url, ServiceType.OKPORN);
 	}
 

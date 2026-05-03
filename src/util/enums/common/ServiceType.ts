@@ -2,5 +2,6 @@ export enum ServiceType {
 	OKPORN = 'OkPornService',
 	COOMER = 'CoomerService',
 	WALLHAVEN = 'WallHavenService',
-	DEFAULT = 'DefaultService'
+	DEFAULT = 'DefaultService',
+	PORNHUB = 'PornHubService'
 }
