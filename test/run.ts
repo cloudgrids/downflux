@@ -1,7 +1,7 @@
 import { OutputType, PornHubService, VideoQuality } from '../src';
 
 async function main() {
-	const pornHubUrl = 'https://www.pornhub.org/view_video.php?viewkey=69ce890a195c7';
+	const pornHubUrl = 'https://www.pornhub.org/view_video.php?viewkey=69e37154ee7e2';
 	const okPornUrl = 'https://ok.porn/video/253305/';
 	console.log(`\n\n=== Testing:`);
 	// const dir = 'downflux_';
@@ -16,13 +16,13 @@ async function main() {
 		// 	.setOutput(OutputType.JSON, { directoryPath: dir })
 		// 	.getModelVideos({ username: 'comatozze', format: 'path' });
 
-		await new PornHubService(pornHubUrl)
+		await new PornHubService('https://www.pornhub.org/view_video.php?viewkey=ph5f5abd54845f0')
 			.setJobOptions({ logProgress: true })
 			.onProgress(console.log)
 			.setTransformOutput(true)
 			.setAllowedExtensions('mp4')
 			.setOutput(OutputType.DEVICE, { directoryPath: dir })
-			.getVideo({ viewKey: '6746dddd9fb52', quality: VideoQuality.Q1080 });
+			.getVideo({ quality: VideoQuality.Q1080 });
 
 		// await new OkPornService(okPornUrl)
 		// 	.setJobOptions({ logProgress: true })

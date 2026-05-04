@@ -18,11 +18,11 @@ export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExtra
 		return base as TResult;
 	}
 
-	protected emitExtractProgress(request: TExec | undefined, status: 'extracting' | 'extracted', target: string): void {
+	protected emitExtractProgress(request: TExec | undefined, status: 'EXTRACTING' | 'EXTRACTED', target: string): void {
 		request?.onExtractProgress?.({
 			status,
 			target,
-			countTarget: status === 'extracting'
+			countTarget: status === 'EXTRACTING'
 		});
 	}
 }

@@ -13,11 +13,9 @@ export class PornHubParserService extends BaseParserService {
 				duration: this.extractMetaPropertyContent(html, 'video:duration') ?? '0',
 				thumbnailUrl: this.extractMetaNameContent(html, 'twitter:image') ?? this.extractMetaNameContent(html, 'og:image'),
 				user:
-					this.collectByClassNames(html, 'userInfoBlock', { includeInnerHTML: true }).map((ht) => {
-						const innerText = ht.innerHTML;
-						const match = innerText.match(/href="\/model\/([^"]+)"/);
-						return match ? match[1] : null;
-					})[0] ?? 'pornhub_user',
+					this.collectByClassNames(html, 'userInfoBlock', { includeInnerHTML: true })[0].innerHTML?.match(
+						/href="\/(?:model|channel|pornstar|users)\/([^"]+)"/
+					)?.[1] ?? 'pornhub_user',
 				totalVideos: this.extractUserStat(html, 'Videos'),
 				totalSubscribers: this.extractUserStat(html, 'Subscribers'),
 

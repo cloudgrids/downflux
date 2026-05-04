@@ -62,11 +62,11 @@ export class PornHubTransformer extends BaseTransformer<
 				referer: url,
 				method: PornHubMethods.getVideo
 			};
-			this.emitExtractProgress(chunkRequest, 'extracting', url);
+			this.emitExtractProgress(chunkRequest, 'EXTRACTING', url);
 
 			const metadata = (await super.transform(url, chunkRequest)) as DefaultExtractorResult<Partial<PornHubOutput>>;
 
-			this.emitExtractProgress(chunkRequest, 'extracted', url);
+			this.emitExtractProgress(chunkRequest, 'EXTRACTED', url);
 
 			videos.push({ ...this.toVideoOutput(chunkRequest, metadata), user: request.modelVideosArgs?.username as string });
 		}

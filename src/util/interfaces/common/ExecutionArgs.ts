@@ -3,7 +3,7 @@ import { JobOptions } from './JobOptions';
 import { JobProgressStatus } from './JobProgress';
 
 export interface ExtractProgressEvent {
-	status: Extract<JobProgressStatus, 'extracting' | 'extracted'>;
+	status: Extract<JobProgressStatus, 'EXTRACTING' | 'EXTRACTED'>;
 	target: string;
 	countTarget?: boolean;
 }

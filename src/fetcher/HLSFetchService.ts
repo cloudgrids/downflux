@@ -163,7 +163,7 @@ export class HLSFetchService {
 			await this.pipeOne(readable, stream);
 
 			// progress callback (segment-level)
-			opts?.onSegmentProgress?.({ segment: i + 1, totalSegments: total, status: 'segment-progress' });
+			opts?.onSegmentProgress?.({ segment: i + 1, totalSegments: total, status: 'HLS-SEGMENTING' });
 		}
 	}
 

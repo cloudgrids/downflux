@@ -2,16 +2,17 @@ import { DownloadResult } from './DownloadResult';
 import { PipelineItem } from './PipelineItem';
 
 export type JobProgressStatus =
-	| 'started'
-	| 'extracting'
-	| 'extracted'
-	| 'queued'
-	| 'downloading'
-	| 'downloaded'
-	| 'failed'
-	| 'aborted'
-	| 'completed'
-	| 'segment-progress';
+	| 'STARTED'
+	| 'EXTRACTING'
+	| 'EXTRACTED'
+	| 'QUEUED'
+	| 'DOWNLOADING'
+	| 'DOWNLOADED'
+	| 'COMPLETED'
+	| 'FAILED'
+	| 'ABORTED'
+	| 'COMPLETED'
+	| 'HLS-SEGMENTING';
 
 export interface JobProgressEvent {
 	status: JobProgressStatus;
@@ -27,4 +28,7 @@ export interface JobProgressEvent {
 	item?: PipelineItem;
 	result?: Omit<DownloadResult, 'buffer'>;
 	error?: Error;
+	downloadedBytes?: number;
+	totalBytes?: number;
+	percent?: number;
 }
