@@ -24,16 +24,16 @@ export const PornHubFetchStrategy: ServiceFetchStrategy = {
 	},
 
 	getDirectVideoUrlFromText: (body, preferredQuality) => {
-		console.log('Attempting to resolve direct video URL from text response with preferred quality:', { preferredQuality, body });
+		console.log('Attempting to resolve direct video URL from text response with preferred quality:', preferredQuality);
 
 		const normalized = body.replace(/\\\//g, '/').replace(/&amp;/g, '&');
 
-		console.log('Normalized text response for URL extraction:', normalized);
+		console.log('Normalized text response for URL resolution');
 
 		try {
 			const definitions = JSON.parse(normalized) as PornHubMediaDefinition[];
 			if (Array.isArray(definitions)) {
-				console.log('Parsed media definitions from text response:', definitions);
+				console.log('Parsed media definitions from text response:', definitions.length, 'definitions found');
 
 				const mp4Definitions = definitions.filter((definition) => definition.format === 'mp4' && definition.videoUrl);
 				const preferred = preferredQuality
@@ -48,7 +48,7 @@ export const PornHubFetchStrategy: ServiceFetchStrategy = {
 				);
 			}
 		} catch {
-			// Fall back to extracting a URL from non-JSON text responses.
+			// Fall back to EXTRACTING a URL from non-JSON text responses.
 		}
 
 		const match = normalized.match(/https?:\/\/[^\s"'<>\\]+\.mp4(?:\?[^\s"'<>\\]*)?/i);

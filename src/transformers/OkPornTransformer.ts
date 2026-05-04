@@ -88,11 +88,11 @@ export class OkPornTransformer extends BaseTransformer<
 			urlType: UrlType.IMAGES
 		};
 
-		this.emitExtractProgress(albumRequest, 'extracting', albumUrl);
+		this.emitExtractProgress(albumRequest, 'EXTRACTING', albumUrl);
 
 		const albumMetadata = (await super.transform(albumUrl, albumRequest)) as DefaultExtractorResult<Partial<OkPornOutput>>;
 
-		this.emitExtractProgress(albumRequest, 'extracted', albumUrl);
+		this.emitExtractProgress(albumRequest, 'EXTRACTED', albumUrl);
 
 		return this.toAlbumOutput(albumMetadata);
 	}

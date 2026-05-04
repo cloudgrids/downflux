@@ -166,29 +166,29 @@ export class HttpFetcherService {
 
 		for (let attempt = 0; attempt <= retries; attempt++) {
 			try {
-				const res = await fetch(url, {
+				const response = await fetch(url, {
 					headers: { ...mergedHeaders, 'X-Forwarded-For': this.fakeIP() } as Record<string, string>,
 					redirect: 'follow',
 					referrer: opts.referer
 				});
 
-				const finalUrl = res.url || url;
-				const contentType = res.headers.get('content-type') || '';
-				const responseHeaders = Object.fromEntries(res.headers.entries());
+				const finalUrl = response.url || url;
+				const contentType = response.headers.get('content-type') || '';
+				const responseHeaders = Object.fromEntries(response.headers.entries());
 
-				if (res.status === 404) {
+				if (response.status === 404) {
 					const serviceResult = await this.handleServiceAware404(url, opts);
 					if (serviceResult) return serviceResult;
 
 					throw new NotFoundException(opts.service, url);
 				}
 
-				if (res.status === 429 || res.status >= 500) {
+				if (response.status === 429 || response.status >= 500) {
 					await this.delay(attempt);
 					continue;
 				}
 
-				const resolvedTextResponse = await this.resolveServiceTextResponse(url, contentType, res, opts);
+				const resolvedTextResponse = await this.resolveServiceTextResponse(url, contentType, response, opts);
 				if (resolvedTextResponse) return resolvedTextResponse;
 
 				if (this.hlsFetchService.isHlsManifest(contentType, finalUrl)) {
@@ -196,7 +196,7 @@ export class HttpFetcherService {
 					 * references file with extensions .m3u or content-type containing 'mpegurl'
 					 * For more reference check the HLSManifest.m3u file in the src/fetcher directory
 					 */
-					const manifest = await res.text();
+					const manifest = await response.text();
 					const type = detectHlsContainer(manifest);
 					return {
 						finalUrl,
@@ -212,7 +212,9 @@ export class HttpFetcherService {
 				return {
 					finalUrl,
 					headers: responseHeaders,
-					start: (stream: Writable) => pipeline(Readable.fromWeb(res.body as any), stream)
+					start: async (stream: Writable, onProgress?: (event: JobProgressEvent) => void) => {
+						await this.readAndShowProgress(stream, response, onProgress);
+					}
 				};
 			} catch (error) {
 				lastError = error instanceof Error ? error : new Error(String(error));
@@ -224,6 +226,41 @@ export class HttpFetcherService {
 			}
 		}
 		throw new DownloadException(url, opts.service, '', { cause: lastError ?? new Error('Unknown error') });
+	}
+
+	private async readAndShowProgress(stream: Writable, res: Response, onProgress?: (event: JobProgressEvent) => void): Promise<void> {
+		const readable = Readable.fromWeb(res.body as any);
+
+		const totalBytes = Number(res.headers.get('content-length') || 0);
+		let downloaded = 0;
+		let lastEmit = 0;
+
+		readable.on('data', (chunk: Buffer) => {
+			downloaded += chunk.length;
+
+			const now = Date.now();
+			if (now - lastEmit > 2000) {
+				lastEmit = now;
+
+				const percent = totalBytes ? Number(((downloaded / totalBytes) * 100).toFixed(2)) : undefined;
+
+				onProgress?.({
+					status: 'DOWNLOADING',
+					downloadedBytes: downloaded,
+					totalBytes,
+					percent
+				});
+			}
+		});
+
+		await pipeline(readable, stream);
+
+		onProgress?.({
+			status: 'COMPLETED',
+			downloadedBytes: downloaded,
+			totalBytes,
+			percent: 100
+		});
 	}
 
 	private async readBody(body: AsyncIterable<any>): Promise<Buffer> {

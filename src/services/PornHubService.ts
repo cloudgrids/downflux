@@ -72,7 +72,7 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 	 */
 	public async getVideo(args: PornHubVideoExecArgs): Promise<PornHubVideoOutput> {
 		const urlObj = new URL(this.url);
-		const _viewKey = args.viewKey ?? urlObj.searchParams.get('viewkey');
+		const _viewKey = args.viewKey || urlObj.searchParams.get('viewkey');
 
 		if (!_viewKey) throw new GenericException('View key not found', ServiceType.PornHub, PornHubMethods.getVideo);
 

@@ -35,7 +35,7 @@ export class BackgroundService {
 		await this.runWithConcurrency(result.pipelineItems, downloadConcurrency, async (pipelineItem) => {
 			if (options?.signal?.aborted) {
 				this.emitProgress(options, {
-					status: 'aborted',
+					status: 'ABORTED',
 					totalItems: result.pipelineItems.length,
 					downloaded: result.downloaded,
 					failed: result.failed
@@ -46,7 +46,7 @@ export class BackgroundService {
 			this.runExtractHooks(pipelineHooks, pipelineItem);
 
 			this.emitProgress(options, {
-				status: 'downloading',
+				status: 'DOWNLOADING',
 				totalItems: result.pipelineItems.length,
 				downloaded: result.downloaded,
 				failed: result.failed,
@@ -74,7 +74,7 @@ export class BackgroundService {
 				this.runDownloadHooks(pipelineHooks, pipelineItem, downloadResult);
 
 				this.emitProgress(options, {
-					status: 'downloaded',
+					status: 'DOWNLOADED',
 					totalItems: result.pipelineItems.length,
 					downloaded: result.downloaded,
 					failed: result.failed,
@@ -88,9 +88,9 @@ export class BackgroundService {
 
 				result.errors.push(normalizedError);
 
-				console.error(`Error downloading ${pipelineItem.downloadUrl}:`, err);
+				console.error(`Error DOWNLOADING ${pipelineItem.downloadUrl}:`, err);
 				this.emitProgress(options, {
-					status: 'failed',
+					status: 'FAILED',
 					totalItems: result.pipelineItems.length,
 					downloaded: result.downloaded,
 					failed: result.failed,
@@ -101,7 +101,7 @@ export class BackgroundService {
 		});
 
 		this.emitProgress(options, {
-			status: 'completed',
+			status: 'COMPLETED',
 			totalItems: result.pipelineItems.length,
 			downloaded: result.downloaded,
 			failed: result.failed
@@ -133,14 +133,18 @@ export class BackgroundService {
 		if (!options.logProgress) return;
 
 		const totals = [
-			event.target && `target=${event.target}`,
-			event.segment && `segment=${event.segment}`,
-			event.totalSegments && `totalSegments=${event.totalSegments}`
+			event.target && `TARGET = ${event.target}`,
+			event.downloadedBytes && `DOWNLOADED_BYTES = ${event.downloadedBytes}`,
+			event.totalBytes && `TOTAL_BYTES = ${event.totalBytes}`,
+			event.percent && `PROGRESS = ${event.percent}%`,
+			event.segment && `SEGMENT = ${event.segment}`,
+			event.totalSegments && `TOTAL_SEGMENTS = ${event.totalSegments}`,
+			event.segment && event.totalSegments && `SEGMENTED = ${event.segment}/${event.totalSegments}`
 		]
 			.filter(Boolean)
-			.join(' ');
+			.join('\n');
 
-		console.log(`[HLS Stream:${event.status}]${totals ?? ''}`);
+		console.log(`\n[Downloading:${event.status}]\n${totals ?? ''}\n`);
 	}
 
 	public emitProgress(options: JobOptions, event: JobProgressEvent): void {
@@ -148,14 +152,14 @@ export class BackgroundService {
 		if (!options.logProgress) return;
 
 		const totals = [
-			event.downloaded && `downloaded=${event.downloaded}`,
-			event.failed && `failed=${event.failed}`,
-			event.totalItems && `total=${event.totalItems}`
+			event.downloaded && `DOWNLOADED = ${event.downloaded}`,
+			event.failed && `FAILED = ${event.failed}`,
+			event.totalItems && `TOTAL = ${event.totalItems}`
 		]
 			.filter(Boolean)
 			.join(' ');
 
-		console.log(`[job:${event.status}]${totals ? ` ${totals}` : ''}`);
+		console.log(`\n[JOB:${event.status}]\n${totals ? ` ${totals}` : ''}\n`);
 	}
 
 	public async runWithConcurrency<T>(items: T[], concurrency: number, worker: (item: T, index: number) => Promise<void>): Promise<void> {

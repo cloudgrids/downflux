@@ -12,7 +12,7 @@ export interface PornHubExecArgs extends ExecutionArgs {
 }
 
 export interface PornHubVideoExecArgs {
-	viewKey: string;
+	viewKey?: string;
 
 	quality?: VideoQuality;
 }

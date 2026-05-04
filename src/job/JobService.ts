@@ -20,7 +20,7 @@ export class JobService {
 		const iterables: TResult[] = [];
 
 		this.backgroundService.emitProgress(options, {
-			status: 'started',
+			status: 'STARTED',
 			totalTargets: targets.length,
 			downloaded: 0,
 			failed: 0
@@ -46,7 +46,7 @@ export class JobService {
 		};
 
 		this.backgroundService.emitProgress(options, {
-			status: 'queued',
+			status: 'QUEUED',
 			totalTargets: totalTargets,
 			totalItems: result.pipelineItems.length,
 			extracted: extractedCount,
@@ -82,19 +82,19 @@ export class JobService {
 		let extractedCount = 0;
 
 		const emitExtractProgress: ExecutionArgs['onExtractProgress'] = ({ status, target, countTarget }) => {
-			if (status === 'extracting' && countTarget) totalExtractTargets++;
-			if (status === 'extracted') extractedCount++;
+			if (status === 'EXTRACTING' && countTarget) totalExtractTargets++;
+			if (status === 'EXTRACTED') extractedCount++;
 
 			this.backgroundService.emitProgress(request, {
 				status,
 				target,
 				totalTargets: totalExtractTargets,
-				...(status === 'extracted' ? { extracted: extractedCount } : {})
+				...(status === 'EXTRACTED' ? { extracted: extractedCount } : {})
 			});
 		};
 
 		await this.backgroundService.runWithConcurrency(targets, extractConcurrency, async (target, index) => {
-			emitExtractProgress({ status: 'extracting', target });
+			emitExtractProgress({ status: 'EXTRACTING', target });
 
 			try {
 				const result = await this.transformerService.transform<TArgs, TResult>(target, {
@@ -106,9 +106,9 @@ export class JobService {
 
 				extractedChunks[index] = Array.isArray(result) ? result : [result];
 
-				emitExtractProgress({ status: 'extracted', target });
+				emitExtractProgress({ status: 'EXTRACTED', target });
 			} catch (err) {
-				console.error(`Error extracting ${target}:`, err);
+				console.error(`Error EXTRACTING ${target}:`, err);
 			}
 		});
 
