@@ -9,19 +9,19 @@ type TransformerCtor = new (http: HttpFetcherService) => BaseTransformer<any, an
 
 export class TransformerService {
 	private readonly transformers: Record<ServiceType, TransformerCtor> = {
-		[ServiceType.OKPORN]: OkPornTransformer,
-		[ServiceType.WALLHAVEN]: WallHavenTransformer,
-		[ServiceType.DEFAULT]: BaseTransformer,
-		[ServiceType.COOMER]: BaseTransformer,
-		[ServiceType.PORNHUB]: PornHubTransformer
+		[ServiceType.OkPorn]: OkPornTransformer,
+		[ServiceType.WallHaven]: WallHavenTransformer,
+		[ServiceType.Default]: BaseTransformer,
+		[ServiceType.Coomer]: BaseTransformer,
+		[ServiceType.PornHub]: PornHubTransformer
 	};
 
 	constructor(private readonly httpFetcherService: HttpFetcherService) {}
 
 	public async transform<TArgs extends ExecutionArgs, TResult>(url: string, request: TArgs): Promise<TResult> {
-		const serviceType = request.service ?? ServiceType.DEFAULT;
+		const serviceType = request.service ?? ServiceType.Default;
 
-		const TransformerClass = this.transformers[serviceType] ?? this.transformers[ServiceType.DEFAULT];
+		const TransformerClass = this.transformers[serviceType] ?? this.transformers[ServiceType.Default];
 
 		const transformer = new TransformerClass(this.httpFetcherService);
 

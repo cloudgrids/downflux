@@ -28,7 +28,7 @@ export class PornHubTransformer extends BaseTransformer<PornHubExecArgs, PornHub
 			views: pornHubFields?.views,
 			likes: pornHubFields?.likes,
 			tags: pornHubFields?.tags,
-			videos: pornHubFields?.videos.filter((v) => v.format === 'hls'),
+			videos: pornHubFields.videos.filter((video) => video.format === 'mp4'),
 			user: pornHubFields?.user,
 			userAvatar: pornHubFields?.userAvatar,
 			totalVideos: pornHubFields?.totalVideos,

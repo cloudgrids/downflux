@@ -29,6 +29,9 @@ export interface DownloadResult {
 	/** File size in bytes */
 	sizeBytes: number;
 
+	/** Path of the downloaded file */
+	path: string;
+
 	/** Service used for the download */
 	service: ServiceType;
 }

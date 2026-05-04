@@ -15,20 +15,28 @@ export class DownloaderService {
 
 		const initialFile = this.fileService.getFileInfo(url, dirConfig?.prefix);
 
-		const { finalUrl, headers, start } = await this.httpFetcherService.requestStream(url, { ...opts, referer: item.sourceUrl });
+		const { finalUrl, headers, start } = await this.httpFetcherService.requestStream(url, {
+			...opts,
+			referer: item.sourceUrl,
+			pipelineItem: item
+		});
 
 		const resolvedFile = this.resolveFileMetadata(initialFile, finalUrl, headers, dirConfig?.prefix);
 
-		const { stream, finalize } = this.fileService.createSink(service, outputType as OutputType, {
+		const { stream, finalize } = this.fileService.createSink({
+			service,
+			type: outputType as OutputType,
 			directoryPath: dirConfig?.directoryPath,
 			filename: resolvedFile.originalFilename,
 			identifier: item.identifier.key
 		});
 
 		try {
-			await start(stream);
+			await start(stream, (event) => {
+				opts.onSegmentProgress?.({ ...event, target: url });
+			});
 
-			if (!stream.writableEnded) stream.end();
+			if (!stream.destroyed && !stream.writableEnded) stream.end();
 			await finished(stream);
 		} catch (err) {
 			stream.destroy(err instanceof Error ? err : new Error(String(err)));

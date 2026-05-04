@@ -1,3 +1,5 @@
+export * from './CreateSinkInput';
+export * from './CreateSinkOutput';
 export * from './DefaultExtractorResult';
 export * from './DirectoryOutputOptions';
 export * from './DownloadResult';

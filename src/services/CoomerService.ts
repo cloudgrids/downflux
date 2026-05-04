@@ -23,12 +23,12 @@ export class CoomerService extends BaseService<any> {
 		try {
 			hostname = new URL(url).hostname;
 		} catch {
-			throw new InvalidUrlException(url, ServiceType.COOMER);
+			throw new InvalidUrlException(url, ServiceType.Coomer);
 		}
 
 		const isSupportedHost = /^(?:www\.)?(?:coomer\.(?:st|party)|kemono\.(?:su|party))$/i.test(hostname);
 
-		if (!isSupportedHost) throw new InvalidUrlException(url, ServiceType.COOMER);
+		if (!isSupportedHost) throw new InvalidUrlException(url, ServiceType.Coomer);
 	}
 
 	/**

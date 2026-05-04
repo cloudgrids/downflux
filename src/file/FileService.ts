@@ -1,9 +1,8 @@
-import { createWriteStream, promises as fs, mkdirSync, writeFileSync, WriteStream } from 'fs';
+import { createWriteStream, promises as fs, mkdirSync, writeFileSync } from 'fs';
 import { dirname, extname, isAbsolute, relative, resolve } from 'path';
-import { Readable, Writable } from 'stream';
-import { pipeline } from 'stream/promises';
+import { Writable } from 'stream';
 import { InvalidDestinationException } from '../exceptions';
-import { DownloadResult, ExecutionResult, MIME_TYPE, OutputType, ResolvedFile, ServiceType } from '../util';
+import { CreateSinkInput, CreateSinkOutput, ExecutionResult, MIME_TYPE, OutputType, ResolvedFile, ServiceType } from '../util';
 import { FfmpegService } from './FFmpegService';
 import { PathBuilderService } from './PathBuilderService';
 
@@ -12,98 +11,77 @@ export class FileService {
 	private readonly ffmpegService = new FfmpegService();
 	private readonly baseDir = 'downflux_';
 
-	public createWriteTarget(
-		service: ServiceType,
-		directoryPath: string,
-		filename: string,
-		identifier?: string
-	): { stream: WriteStream; finalPath: string } {
-		const finalPath = this.getFilePath(service, directoryPath, filename, identifier);
-		return {
-			stream: createWriteStream(finalPath),
-			finalPath
-		};
+	public createSink(sinkInput: CreateSinkInput) {
+		switch (sinkInput.type) {
+			case OutputType.DEVICE:
+				return this.createDeviceSink(sinkInput);
+
+			case OutputType.BUFFER:
+				return this.createBufferSink(sinkInput);
+
+			default:
+				throw new Error('Unsupported output type');
+		}
 	}
 
-	public createMemoryTarget() {
+	private createBufferSink(sinkInput: CreateSinkInput) {
 		const chunks: Buffer[] = [];
+
 		const stream = new Writable({
-			write(chunk, encoding, callback) {
-				chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
-				callback();
+			write(chunk, _, cb) {
+				chunks.push(chunk);
+				cb();
 			}
 		});
 
 		return {
 			stream,
-			getBuffer: () => Buffer.concat(chunks)
-		};
-	}
+			finalize: async (resolved: ResolvedFile, headers: Record<string, string>): Promise<CreateSinkOutput> => {
+				const buffer = Buffer.concat(chunks);
 
-	public createSink(service: ServiceType, type: OutputType, opts: { directoryPath?: string; filename: string; identifier: string }) {
-		if (type === OutputType.DEVICE) {
-			const { stream, finalPath } = this.createWriteTarget(
-				service,
-				opts.directoryPath || this.baseDir,
-				opts.filename,
-				opts.identifier
-			);
-
-			return {
-				stream,
-				finalize: async (resolved: ResolvedFile, headers: Record<string, string>) => {
-					const finalized = await this.finalizeStream(finalPath, {
-						extension: resolved.extension,
-						mimeType: MIME_TYPE[resolved.extension] ?? headers['content-type']?.split(';')[0]?.trim()
-					});
-					const stats = await fs.stat(finalized.path);
-					return {
-						originalFilename: finalized.filename,
-						extendedFilename: finalized.filename,
-						extension: finalized.extension,
-						mimeType: finalized.mimeType,
-						sizeBytes: stats.size,
-						buffer: Buffer.alloc(0)
-					};
-				}
-			};
-		}
-
-		const { stream, getBuffer } = this.createMemoryTarget();
-		return {
-			stream,
-			finalize: async (resolved: ResolvedFile, headers: Record<string, string>) => {
-				const buffer = getBuffer();
 				return {
+					buffer,
+					sizeBytes: buffer.length,
 					originalFilename: resolved.originalFilename,
 					extendedFilename: resolved.extendedFilename,
 					extension: resolved.extension,
-					mimeType: MIME_TYPE[resolved.extension] ?? headers['content-type']?.split(';')[0]?.trim() ?? 'application/octet-stream',
-					sizeBytes: buffer.byteLength,
-					buffer
+					path: sinkInput.identifier, // No actual path, using identifier as reference to send buffer back to caller
+					mimeType: MIME_TYPE[resolved.extension] ?? headers['content-type']?.split(';')[0]?.trim() ?? 'application/octet-stream'
 				};
 			}
 		};
 	}
 
-	public async toDevice(
-		downloadResult: DownloadResult,
-		outputDir: string = this.baseDir,
-		identifier?: string
-	): Promise<{ path: string; filename: string; extension: string; mimeType: string }> {
-		const { buffer, originalFilename, extendedFilename, mimeType, extension } = downloadResult;
+	private createDeviceSink(sinkInput: CreateSinkInput) {
+		const finalPath = this.getFilePath(
+			sinkInput.service,
+			sinkInput.directoryPath ?? this.baseDir,
+			sinkInput.filename,
+			sinkInput.identifier
+		);
 
-		const { stream, finalPath } = this.createWriteTarget(downloadResult.service, outputDir, originalFilename, identifier);
-
-		await pipeline(Readable.from(buffer), stream);
-
-		if (finalPath.endsWith('.ts')) return this.ffmpegService.reMuxTransportStream(finalPath);
+		const stream = createWriteStream(finalPath);
 
 		return {
-			path: finalPath,
-			filename: extendedFilename || originalFilename,
-			extension,
-			mimeType
+			stream,
+			finalize: async (resolved: ResolvedFile, headers: Record<string, string>): Promise<CreateSinkOutput> => {
+				const finalized = await this.finalizeStream(finalPath, {
+					extension: resolved.extension,
+					mimeType: MIME_TYPE[resolved.extension] ?? headers['content-type']?.split(';')[0]?.trim()
+				});
+
+				const stats = await fs.stat(finalized.path);
+
+				return {
+					path: finalized.path,
+					originalFilename: finalized.filename,
+					extendedFilename: finalized.filename,
+					mimeType: finalized.mimeType,
+					extension: finalized.extension,
+					sizeBytes: stats.size,
+					buffer: Buffer.alloc(0)
+				};
+			}
 		};
 	}
 
@@ -175,9 +153,7 @@ export class FileService {
 
 	private getFilePath(service: ServiceType, directoryPath: string, filename: string, identifier?: string): string {
 		if (!filename || filename.trim() === '') {
-			throw new InvalidDestinationException(directoryPath, service, identifier ?? filename, {
-				reason: 'Invalid filename'
-			});
+			throw new InvalidDestinationException(directoryPath, service, identifier ?? filename, { reason: 'Invalid filename' });
 		}
 
 		const dynamicPath = this.pathBuilder.buildDirectoryPath(filename, identifier);

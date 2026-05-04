@@ -26,7 +26,7 @@ export class DownloadException extends BaseException {
 
 	private static buildMessage(path: string, service?: ServiceType, method?: string): string {
 		return [
-			`Invalid Destination encountered`,
+			`Unable to download resource`,
 			`ERROR_CODE=${ErrorCodes.DOWNLOAD_FAILED}`,
 			`path=${path}`,
 			service && `service=${service}`,

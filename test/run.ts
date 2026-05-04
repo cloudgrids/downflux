@@ -1,4 +1,4 @@
-import { OkPornService, OutputType, PornHubService, VideoQuality } from '../src';
+import { OutputType, PornHubService, VideoQuality } from '../src';
 
 async function main() {
 	const pornHubUrl = 'https://www.pornhub.org/view_video.php?viewkey=6907e342aa256';
@@ -9,20 +9,20 @@ async function main() {
 	// 736213
 
 	try {
-		// const data = await new PornHubService(pornHubUrl)
-		// 	.setJobOptions({ logProgress: true })
-		// 	.onProgress(console.log)
-		// 	.setTransformOutput(true)
-		// 	.setAllowedExtensions('mp4')
-		// 	.setOutput(OutputType.DEVICE, { directoryPath: dir })
-		// 	.getVideo(VideoQuality.Q1080);
-
-		const data = await new OkPornService(okPornUrl)
+		const data = await new PornHubService(pornHubUrl)
 			.setJobOptions({ logProgress: true })
 			.onProgress(console.log)
 			.setTransformOutput(true)
-			.setOutput(OutputType.JSON)
-			.getVideo('253305', VideoQuality.Q720);
+			// .setAllowedExtensions('mp4')
+			.setOutput(OutputType.JSON, { directoryPath: dir })
+			.getVideo(VideoQuality.Q1080);
+
+		// const data = await new OkPornService(okPornUrl)
+		// 	.setJobOptions({ logProgress: true })
+		// 	.onProgress(console.log)
+		// 	.setTransformOutput(true)
+		// 	.setOutput(OutputType.DEVICE, { directoryPath: dir })
+		// 	.getVideo('253305', VideoQuality.Q720);
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {

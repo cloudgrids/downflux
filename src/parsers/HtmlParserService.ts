@@ -6,14 +6,14 @@ import { WallHavenParserService } from './WallHavenParserService';
 
 export class HtmlParserService {
 	private static readonly parsers: Record<ServiceType, BaseParserService> = {
-		[ServiceType.OKPORN]: new OkPornParserService(),
-		[ServiceType.WALLHAVEN]: new WallHavenParserService(),
-		[ServiceType.DEFAULT]: new BaseParserService(),
-		[ServiceType.COOMER]: new BaseParserService(),
-		[ServiceType.PORNHUB]: new PornHubParserService()
+		[ServiceType.OkPorn]: new OkPornParserService(),
+		[ServiceType.WallHaven]: new WallHavenParserService(),
+		[ServiceType.Default]: new BaseParserService(),
+		[ServiceType.Coomer]: new BaseParserService(),
+		[ServiceType.PornHub]: new PornHubParserService()
 	};
 
 	public static getParser(service: ServiceType): BaseParserService {
-		return this.parsers[service] ?? this.parsers[ServiceType.DEFAULT];
+		return this.parsers[service] ?? this.parsers[ServiceType.Default];
 	}
 }

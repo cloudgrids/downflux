@@ -21,7 +21,7 @@ export class DefaultService extends BaseService<any> {
 		try {
 			new URL(url);
 		} catch {
-			throw new InvalidUrlException(url, ServiceType.DEFAULT);
+			throw new InvalidUrlException(url, ServiceType.Default);
 		}
 	}
 

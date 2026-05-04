@@ -1,21 +1,15 @@
-import { DownloaderService } from '../downloaders';
-import { FileService } from '../file';
 import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';
 import { ExecutionArgs, ExecutionResult, OutputType, PipelineHook, PipelineItem } from '../util';
 import { BackgroundService } from './BackgroundProcess';
 
 export class JobService {
-	private static readonly DEFAULT_EXTRACT_CONCURRENCY = 3;
+	private static readonly Default_EXTRACT_CONCURRENCY = 3;
 
 	constructor(
 		private readonly transformerService: TransformerService,
-		private readonly backgroundService: BackgroundService,
-		private readonly fileService: FileService,
-		private readonly downloaderService: DownloaderService
-	) {
-		this.backgroundService = new BackgroundService(this.downloaderService, this.fileService);
-	}
+		private readonly backgroundService: BackgroundService
+	) {}
 
 	public async execute<TResult, TArgs extends ExecutionArgs>(request: TArgs): Promise<ExecutionResult<TResult>> {
 		const { outputType = OutputType.JSON, targets, ...options } = request;
@@ -81,7 +75,7 @@ export class JobService {
 		targets: string[],
 		request: TArgs
 	): Promise<{ transformed: TResult[]; totalTargets: number; extractedCount: number }> {
-		const extractConcurrency = request.extractConcurrency ?? JobService.DEFAULT_EXTRACT_CONCURRENCY;
+		const extractConcurrency = request.extractConcurrency ?? JobService.Default_EXTRACT_CONCURRENCY;
 
 		const extractedChunks: TResult[][] = new Array(targets.length);
 		let totalExtractTargets = targets.length;
@@ -106,7 +100,6 @@ export class JobService {
 				const result = await this.transformerService.transform<TArgs, TResult>(target, {
 					...request,
 					entryUrl: target,
-					// This target only serves as a referer for the extraction phase
 					referer: target,
 					onExtractProgress: emitExtractProgress
 				});

@@ -1,5 +1,6 @@
 import { createDecipheriv } from 'crypto';
-import { Writable } from 'stream';
+import { Readable, Writable } from 'stream';
+import { pipeline } from 'stream/promises';
 import { DownloadOptions, M3U8Variant, VideoQuality } from '../util';
 
 export interface ParseKey {
@@ -33,14 +34,14 @@ export class HLSFetchService {
 		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
 
 		if (initUrl) {
-			const initData = await this.fetchWithRetry(initUrl, timeoutMs, requestHeaders);
+			const fetchInit = await this.fetchStream(initUrl, requestHeaders, timeoutMs);
 
-			if (!stream.write(initData)) {
-				await new Promise((res) => stream.once('drain', res));
-			}
+			if (!fetchInit) throw new Error('Failed to fetch init segment');
+
+			await pipeline(fetchInit, stream, { end: false });
 		}
 
-		await this.stitchSegments(segments, key, keyInfo, timeoutMs, stream, requestHeaders);
+		await this.stitchSegments(segments, key, keyInfo, timeoutMs, stream, requestHeaders, opts);
 	}
 
 	private buildHeaders(opts: DownloadOptions) {
@@ -84,84 +85,85 @@ export class HLSFetchService {
 		return new URL(match[1], base).toString();
 	}
 
-	// do not collect everything, stream progressively.
+	private async fetchStream(url: string, headers: Record<string, string>, timeoutMs: number): Promise<NodeJS.ReadableStream> {
+		const res = await fetch(url, { headers, signal: AbortSignal.timeout(timeoutMs) });
+
+		if (!res.ok || !res.body) throw new Error(`Failed segment: ${url} (${res.status})`);
+
+		return Readable.fromWeb(res.body as any);
+	}
+
+	private withDecrypt(readable: NodeJS.ReadableStream, i: number, key: Buffer | null, keyInfo: ParseKey | null): NodeJS.ReadableStream {
+		if (!key) return readable;
+
+		const iv = keyInfo?.iv
+			? keyInfo.iv
+			: (() => {
+					const b = Buffer.alloc(16, 0);
+					b.writeUInt32BE(i, 12);
+					return b;
+				})();
+
+		const decipher = createDecipheriv('aes-128-cbc', key, iv);
+		return readable.pipe(decipher);
+	}
+
+	// Helper: pipe ONE segment into the destination stream (no listener leak)
+	private pipeOne(readable: NodeJS.ReadableStream, stream: Writable): Promise<void> {
+		return new Promise<void>((resolve, reject) => {
+			const onError = (err: Error) => {
+				cleanup();
+				reject(err);
+			};
+			const onEnd = () => {
+				cleanup();
+				resolve();
+			};
+			const cleanup = () => {
+				readable.removeListener('error', onError);
+				readable.removeListener('end', onEnd);
+			};
+
+			readable.once('error', onError);
+			readable.once('end', onEnd);
+
+			// Important: do NOT end the destination stream here
+			readable.pipe(stream, { end: false });
+		});
+	}
+
 	private async stitchSegments(
 		segments: string[],
 		key: Buffer | null,
 		keyInfo: ParseKey | null,
 		timeoutMs: number,
 		stream: Writable,
-		headers: Record<string, any>
-	) {
-		const concurrency = 4;
-
-		let nextToWrite = 0;
-		let nextToFetch = 0;
-
-		const buffer = new Map<number, Buffer>();
-		const inFlight = new Set<Promise<void>>();
-
-		while (nextToWrite < segments.length) {
-			// fill concurrency window
-			while (inFlight.size < concurrency && nextToFetch < segments.length) {
-				const p = this.fetchAndStore(nextToFetch++, buffer, segments, key, keyInfo, timeoutMs, headers, stream);
-				inFlight.add(p);
-				p.finally(() => inFlight.delete(p));
-			}
-
-			// ordered writing
-			if (buffer.has(nextToWrite)) {
-				const chunk = buffer.get(nextToWrite)!;
-				buffer.delete(nextToWrite);
-
-				if (!stream.write(chunk)) {
-					await new Promise((r) => stream.once('drain', r));
-				}
-
-				nextToWrite++;
-				continue;
-			}
-
-			// do not await inside the loop except for drain, to allow concurrent fetching
-			await Promise.race([Promise.allSettled(inFlight), new Promise((r) => setTimeout(r, 10))]);
-		}
-	}
-
-	// fetches and stores in buffer, does not wait for turn to write
-	private async fetchAndStore(
-		i: number,
-		buffer: Map<number, Buffer>,
-		segments: string[],
-		key: Buffer | null,
-		keyInfo: ParseKey | null,
-		timeoutMs: number,
 		headers: Record<string, any>,
-		stream: Writable
+		opts: DownloadOptions
 	) {
-		try {
-			const segUrl = segments[i];
-			let data = await this.fetchWithRetry(segUrl, timeoutMs, headers);
+		if (!segments.length) return;
 
-			if (key) {
-				const iv = keyInfo?.iv
-					? keyInfo.iv
-					: (() => {
-							const b = Buffer.alloc(16, 0);
-							b.writeUInt32BE(i, 12);
-							return b;
-						})();
+		const total = segments.length;
 
-				try {
-					data = this.decrypt(data, key, iv);
-				} catch {
-					console.warn('Decrypt failed, using raw segment', { segUrl });
-				}
-			}
+		// --- Prefetch 1 ahead ---
+		let nextPromise: Promise<NodeJS.ReadableStream> | null = this.fetchStream(segments[0], headers, timeoutMs);
 
-			buffer.set(i, data);
-		} catch (err) {
-			stream.destroy(err instanceof Error ? err : new Error(String(err)));
-			throw err;
+		for (let i = 0; i < total; i++) {
+			// current segment stream
+			const currentReadable = await nextPromise!;
+
+			// kick off prefetch for next segment (if any)
+			if (i + 1 < total) nextPromise = this.fetchStream(segments[i + 1], headers, timeoutMs);
+			else nextPromise = null;
+
+			// optional decrypt
+			const readable = this.withDecrypt(currentReadable, i, key, keyInfo);
+
+			// write this segment fully before moving on
+			await this.pipeOne(readable, stream);
+
+			// progress callback (segment-level)
+			opts?.onSegmentProgress?.({ segment: i + 1, totalSegments: total, status: 'segment-progress' });
 		}
 	}
 
@@ -256,32 +258,7 @@ export class HLSFetchService {
 		return Buffer.from(await res.arrayBuffer());
 	}
 
-	private decrypt(data: Buffer, key: Buffer, iv: Buffer) {
-		const d = createDecipheriv('aes-128-cbc', key, iv);
-		return Buffer.concat([d.update(data), d.final()]);
-	}
-
 	private async fetchText(url: string, timeoutMs: number, headers: Record<string, any>): Promise<string> {
 		return (await fetch(url, { signal: AbortSignal.timeout(timeoutMs), headers })).text();
-	}
-
-	private async fetchWithRetry(url: string, timeoutMs: number, headers: Record<string, any>, retries = 3): Promise<Buffer> {
-		let err: unknown;
-
-		for (let i = 0; i < retries; i++) {
-			try {
-				const res = await fetch(url, { signal: AbortSignal.timeout(timeoutMs), headers });
-
-				if (!res.ok) throw new Error();
-
-				console.log(`Fetched segment: ${url} (status: ${res.status})`);
-
-				return Buffer.from(await res.arrayBuffer());
-			} catch (e) {
-				err = e;
-			}
-		}
-
-		throw err;
 	}
 }

@@ -15,8 +15,8 @@ export function createDefaultDependencies(): ServiceDependencies {
 
 	const transformerService = new TransformerService(httpFetcherService);
 	const downloaderService = new DownloaderService(fileService, httpFetcherService);
-	const backgroundService = new BackgroundService(downloaderService, fileService);
-	const jobService = new JobService(transformerService, backgroundService, fileService, downloaderService);
+	const backgroundService = new BackgroundService(downloaderService, fileService, transformerService);
+	const jobService = new JobService(transformerService, backgroundService);
 	return {
 		httpFetcherService,
 		transformerService,
