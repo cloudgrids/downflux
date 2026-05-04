@@ -29,9 +29,9 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 		try {
 			new URL(url);
 		} catch {
-			throw new InvalidUrlException(url, ServiceType.PORNHUB);
+			throw new InvalidUrlException(url, ServiceType.PornHub);
 		}
-		if (!url.includes('pornhub')) throw new InvalidUrlException(url, ServiceType.PORNHUB);
+		if (!url.includes('pornhub')) throw new InvalidUrlException(url, ServiceType.PornHub);
 		this.BASE_URL = new URL(url).origin;
 	}
 
@@ -47,12 +47,12 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 		const urlObj = new URL(this.url);
 		const viewKey = urlObj.searchParams.get('viewkey');
 
-		if (!viewKey) throw new GenericException('View key not found', ServiceType.PORNHUB, PornHubMethods.getVideo);
+		if (!viewKey) throw new GenericException('View key not found', ServiceType.PornHub, PornHubMethods.getVideo);
 
 		return await this.execute<PornHubVideoOutput>({
 			targets: [this.url],
 			method: PornHubMethods.getVideo,
-			service: ServiceType.PORNHUB,
+			service: ServiceType.PornHub,
 			urlType: UrlType.SOURCES,
 			allowedVideoQuality: quality,
 			returnType: 'object',

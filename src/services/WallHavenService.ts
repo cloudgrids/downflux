@@ -25,7 +25,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	private readonly BASE_URL = 'https://wallhaven.cc';
 	private readonly WALLPAPER_URL = `${this.BASE_URL}/w`;
 	private readonly USER_URL = `${this.BASE_URL}/user`;
-	private readonly DEFAULT_INDEX_RANGE: IndexRange = { start: 1, end: 1 };
+	private readonly Default_INDEX_RANGE: IndexRange = { start: 1, end: 1 };
 
 	/**
 	 * Creates a WallHaven service.
@@ -44,9 +44,9 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 		try {
 			new URL(url);
 		} catch {
-			throw new InvalidUrlException(url, ServiceType.WALLHAVEN);
+			throw new InvalidUrlException(url, ServiceType.WallHaven);
 		}
-		if (!url.startsWith('https://wallhaven.cc/')) throw new InvalidUrlException(url, ServiceType.WALLHAVEN);
+		if (!url.startsWith('https://wallhaven.cc/')) throw new InvalidUrlException(url, ServiceType.WallHaven);
 	}
 
 	/**
@@ -57,12 +57,12 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * @throws `GenericException` When the ID is missing
 	 */
 	public async getWallPaper(id: string, thumbQualities?: WallHavenThumbnailQuality[]): Promise<WallHavenWallPaperOutput> {
-		if (!id) throw new GenericException('Wallpaper ID is required', ServiceType.WALLHAVEN, WallHavenMethods.getWallPaper);
+		if (!id) throw new GenericException('Wallpaper ID is required', ServiceType.WallHaven, WallHavenMethods.getWallPaper);
 
 		return await this.execute<WallHavenWallPaperOutput>({
 			targets: [`${this.WALLPAPER_URL}/${id}`],
 			method: WallHavenMethods.getWallPaper,
-			service: ServiceType.WALLHAVEN,
+			service: ServiceType.WallHaven,
 			urlType: UrlType.IMAGES,
 			thumbQualities,
 			returnType: 'object'
@@ -77,7 +77,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 */
 	public async getUserUploads(
 		args: WallHavenUserExecArgs,
-		range: 'all' | IndexRange = this.DEFAULT_INDEX_RANGE
+		range: 'all' | IndexRange = this.Default_INDEX_RANGE
 	): Promise<WallHavenUserUploadsOutput> {
 		const existingOptions = this.jobOptions;
 
@@ -85,7 +85,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 			...this.makeTargets(
 				`${this.USER_URL}/${args.username}/uploads?purity=${this.purity(args)}&page=`,
 				await this.range(range, async () => (await this.setOutput(OutputType.RETURN).getUserUploadsInfo(args.username)).totalPages),
-				ServiceType.WALLHAVEN,
+				ServiceType.WallHaven,
 				WallHavenMethods.getUserUploads,
 				false
 			),
@@ -103,12 +103,12 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * @throws `GenericException` When the username is missing
 	 */
 	public async getUserUploadsInfo(username: string): Promise<WallHavenUserInfoOutput> {
-		if (!username) throw new GenericException('Username is required', ServiceType.WALLHAVEN, WallHavenMethods.getUserUploadsInfo);
+		if (!username) throw new GenericException('Username is required', ServiceType.WallHaven, WallHavenMethods.getUserUploadsInfo);
 
 		return await this.execute<WallHavenUserInfoOutput>({
 			targets: [`${this.USER_URL}/${username}/uploads`],
 			method: WallHavenMethods.getUserUploadsInfo,
-			service: ServiceType.WALLHAVEN,
+			service: ServiceType.WallHaven,
 			userArgs: { username },
 			returnType: 'object'
 		});
@@ -121,17 +121,17 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 */
 	public async getUserFavoriteCollections(
 		args: WallHavenUserExecArgs,
-		range: 'all' | IndexRange = this.DEFAULT_INDEX_RANGE
+		range: 'all' | IndexRange = this.Default_INDEX_RANGE
 	): Promise<WallHavenUserFavoriteCollectionsOutput[]> {
 		if (!args?.username) {
-			throw new GenericException('Username is required', ServiceType.WALLHAVEN, WallHavenMethods.getUserFavoriteCollections);
+			throw new GenericException('Username is required', ServiceType.WallHaven, WallHavenMethods.getUserFavoriteCollections);
 		}
 
 		return await this.execute<WallHavenUserFavoriteCollectionsOutput[]>({
 			...this.makeTargets(
 				`${this.USER_URL}/${args.username}/favorites?purity=${this.purity(args)}&page=`,
 				await this.range(range),
-				ServiceType.WALLHAVEN,
+				ServiceType.WallHaven,
 				WallHavenMethods.getUserFavoriteCollections,
 				false
 			),
@@ -149,7 +149,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 */
 	public async getUserFavoritesCollection(
 		args: WallHavenUserFavoritesExecArgs,
-		range: 'all' | IndexRange = this.DEFAULT_INDEX_RANGE
+		range: 'all' | IndexRange = this.Default_INDEX_RANGE
 	): Promise<WallHavenUserFavoriteCollectionOutput> {
 		const existingOptions = this.jobOptions;
 
@@ -157,7 +157,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 			...this.makeTargets(
 				`${this.USER_URL}/${args.username}/favorites/${args.collectionId}?purity=${this.purity(args)}&page=`,
 				await this.range(range, async () => (await this.setOutput(OutputType.RETURN).getUserUploadsInfo(args.username)).totalPages),
-				ServiceType.WALLHAVEN,
+				ServiceType.WallHaven,
 				WallHavenMethods.getUserFavoriteCollection,
 				false
 			),
@@ -172,7 +172,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 		throw new Error('Method not implemented yet');
 	}
 
-	private async range(range: 'all' | IndexRange = this.DEFAULT_INDEX_RANGE, func?: () => Promise<number>): Promise<IndexRange> {
+	private async range(range: 'all' | IndexRange = this.Default_INDEX_RANGE, func?: () => Promise<number>): Promise<IndexRange> {
 		return range === 'all' ? { start: 1, end: (await func?.()) as number } : range;
 	}
 

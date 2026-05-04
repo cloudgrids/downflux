@@ -1,15 +1,19 @@
-import { Writable } from 'stream';
+import { Readable, Writable } from 'stream';
 import { pipeline } from 'stream/promises';
 import { Dispatcher, Pool, interceptors } from 'undici';
 import { IncomingHttpHeaders } from 'undici/types/header';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
+import { DownloadException, NotFoundException } from '../exceptions';
 import { detectHlsContainer } from '../helpers/DetectHlsContainer';
-import { DownloadOptions, FetchResult, HLSStreamRequest, HttpFetchOptions } from '../util';
+import { getFetchStrategy } from '../strategies/Strategies';
+import { DownloadOptions, FetchResult, HLSStreamRequest, HttpFetchOptions, JobProgressEvent } from '../util';
 import { HLSFetchService } from './HLSFetchService';
 
 export class HttpFetcherService {
 	private readonly hlsFetchService = new HLSFetchService();
-	private readonly DEFAULT_HEADERS: Record<string, string> = {
+	private readonly MAX_CDN_FALLBACK = 1;
+	private readonly MAX_RE_EXTRACT = 1;
+	private readonly Default_HEADERS: Record<string, string> = {
 		'User-Agent': 'Mozilla/5.0',
 		'Accept': '*/*',
 		'Accept-Encoding': 'gzip, deflate, br',
@@ -36,7 +40,7 @@ export class HttpFetcherService {
 
 	public async fetchHtml(url: string, opts: HttpFetchOptions): Promise<FetchResult> {
 		const { headers = {}, timeoutMs = 30_000, retries = 3 } = opts;
-		const mergedHeaders = { ...this.DEFAULT_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.fakeIP() };
+		const mergedHeaders = { ...this.Default_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.fakeIP() };
 
 		const parsed = new URL(url);
 		let lastError: Error | null = null;
@@ -102,9 +106,63 @@ export class HttpFetcherService {
 		return new Promise((res) => setTimeout(res, delay));
 	}
 
+	private async handleServiceAware404(url: string, opts: DownloadOptions): Promise<HLSStreamRequest | null> {
+		const strategy = getFetchStrategy(opts.service);
+
+		if (!strategy) return null;
+
+		if (strategy.shouldFallback404?.(url) && (opts.cdnFallbackCount ?? 0) < this.MAX_CDN_FALLBACK) {
+			const fallback = strategy.getFallbackUrl?.(url);
+
+			if (fallback && fallback !== url) {
+				console.warn(`[${opts.service}] CDN fallback:`, fallback);
+
+				return this.requestStream(fallback, { ...opts, cdnFallbackCount: (opts.cdnFallbackCount ?? 0) + 1 });
+			}
+		}
+
+		if (strategy.shouldReExtract?.(url) && opts.reExtract && opts.pipelineItem && (opts.reExtractCount ?? 0) < this.MAX_RE_EXTRACT) {
+			console.warn(`[${opts.service}] HLS expired -> re-extracting`);
+
+			const freshItem = await opts.reExtract(opts.pipelineItem);
+			const freshUrl = freshItem?.downloadUrl;
+
+			if (freshItem && freshUrl && freshUrl !== url) {
+				return this.requestStream(freshUrl, {
+					...opts,
+					pipelineItem: freshItem,
+					referer: freshItem.sourceUrl,
+					reExtractCount: (opts.reExtractCount ?? 0) + 1,
+					cdnFallbackCount: 0
+				});
+			}
+		}
+
+		return null;
+	}
+
+	private async resolveServiceTextResponse(
+		url: string,
+		contentType: string,
+		body: Response,
+		opts: DownloadOptions
+	): Promise<HLSStreamRequest | null> {
+		const strategy = getFetchStrategy(opts.service);
+
+		if (!strategy?.shouldResolveTextResponse?.(url, contentType)) return null;
+
+		const directUrl = strategy.getDirectVideoUrlFromText?.(await body.text(), opts.avq);
+
+		if (!directUrl || directUrl === url) throw new Error(`Unable to resolve direct video URL from ${url}`);
+
+		console.warn(`[${opts.service}] Direct MP4 resolved:`, directUrl);
+
+		return this.requestStream(directUrl, opts);
+	}
+
 	public async requestStream(url: string, opts: DownloadOptions): Promise<HLSStreamRequest> {
 		const { headers = {}, timeoutMs = 30_000, retries = 3 } = opts;
-		const mergedHeaders = { ...this.DEFAULT_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.fakeIP() };
+		const mergedHeaders = { ...this.Default_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.fakeIP() };
 
 		let lastError: Error | null = null;
 
@@ -112,7 +170,6 @@ export class HttpFetcherService {
 			try {
 				const res = await fetch(url, {
 					headers: { ...mergedHeaders, 'X-Forwarded-For': this.fakeIP() } as Record<string, string>,
-					signal: AbortSignal.timeout(timeoutMs),
 					redirect: 'follow',
 					referrer: opts.referer
 				});
@@ -121,11 +178,20 @@ export class HttpFetcherService {
 				const contentType = res.headers.get('content-type') || '';
 				const responseHeaders = Object.fromEntries(res.headers.entries());
 
-				if (res.status === 404) throw new Error(`Resource not found: ${url}`);
+				if (res.status === 404) {
+					const serviceResult = await this.handleServiceAware404(url, opts);
+					if (serviceResult) return serviceResult;
+
+					throw new NotFoundException(opts.service, url);
+				}
+
 				if (res.status === 429 || res.status >= 500) {
 					await this.delay(attempt);
 					continue;
 				}
+
+				const resolvedTextResponse = await this.resolveServiceTextResponse(url, contentType, res, opts);
+				if (resolvedTextResponse) return resolvedTextResponse;
 
 				if (this.hlsFetchService.isHlsManifest(contentType, finalUrl)) {
 					/**
@@ -137,14 +203,18 @@ export class HttpFetcherService {
 					return {
 						finalUrl,
 						headers: { ...responseHeaders, 'x-hls-container': type },
-						start: (stream: Writable) => this.hlsFetchService.fetchHlsStream(manifest, finalUrl, timeoutMs, stream, opts)
+						start: (stream: Writable, onProgress?: (event: JobProgressEvent) => void) =>
+							this.hlsFetchService.fetchHlsStream(manifest, finalUrl, timeoutMs, stream, {
+								...opts,
+								onSegmentProgress: onProgress
+							})
 					};
 				}
 
 				return {
 					finalUrl,
 					headers: responseHeaders,
-					start: (stream: Writable) => pipeline(res.body as any, stream)
+					start: (stream: Writable) => pipeline(Readable.fromWeb(res.body as any), stream)
 				};
 			} catch (error) {
 				lastError = error instanceof Error ? error : new Error(String(error));
@@ -155,7 +225,7 @@ export class HttpFetcherService {
 				}
 			}
 		}
-		throw new Error(`Failed to fetch ${url} after ${retries + 1} attempts: ${lastError?.message}`);
+		throw new DownloadException(url, opts.service, '', { cause: lastError ?? new Error('Unknown error') });
 	}
 
 	private async readBody(body: AsyncIterable<any>): Promise<Buffer> {

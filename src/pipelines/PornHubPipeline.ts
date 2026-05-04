@@ -1,5 +1,5 @@
 import { detectResourceType, pathBuilder } from '../helpers';
-import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, PornHubExecArgs, PornHubOutput } from '../util';
+import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, PornHubExecArgs, PornHubOutput, ServiceType } from '../util';
 import { BasePipeline } from './BasePipeline';
 
 export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput> {
@@ -14,7 +14,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 					service: request.service,
 					identifier: {
 						mediaType: item.mediaType,
-						...detectResourceType(item.url),
+						...detectResourceType(item.url, ServiceType.PornHub),
 						key: this.buildIdentifier({
 							mediaType: item.mediaType,
 							metadata,
@@ -53,10 +53,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 		const urls: Set<PipelineExtractedItem> = new Set();
 
 		if (metadata.videos?.length) {
-			this.filterByQuality(metadata.videos, {
-				allowedQualities: request.allowedVideoQuality ? [request.allowedVideoQuality] : [],
-				getQuality: (video) => `${video.quality}p`
-			}).forEach((video) => {
+			metadata.videos.forEach((video) => {
 				urls.add({
 					url: video.videoUrl,
 					mediaType: MediaType.VIDEOS,

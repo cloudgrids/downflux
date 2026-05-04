@@ -1,6 +1,9 @@
 import { DownloaderService } from '../downloaders';
 import { FileService } from '../file';
+import { PipelineService } from '../pipelines';
+import { TransformerService } from '../transformers';
 import {
+	DownloadOptions,
 	DownloadResult,
 	ExecutionArgs,
 	ExecutionResult,
@@ -12,11 +15,12 @@ import {
 } from '../util';
 
 export class BackgroundService {
-	private static readonly DEFAULT_DOWNLOAD_CONCURRENCY = 5;
+	private static readonly Default_DOWNLOAD_CONCURRENCY = 5;
 
 	constructor(
 		private readonly downloaderService: DownloaderService,
-		private readonly fileService: FileService
+		private readonly fileService: FileService,
+		private readonly transformerService: TransformerService
 	) {}
 
 	private async processDownloadsInBackground<T>(
@@ -26,7 +30,7 @@ export class BackgroundService {
 		pipelineHooks: PipelineHook[],
 		result: ExecutionResult<T>
 	): Promise<void> {
-		const downloadConcurrency = options.concurrency ?? BackgroundService.DEFAULT_DOWNLOAD_CONCURRENCY;
+		const downloadConcurrency = options.concurrency ?? BackgroundService.Default_DOWNLOAD_CONCURRENCY;
 
 		await this.runWithConcurrency(result.pipelineItems, downloadConcurrency, async (pipelineItem) => {
 			if (options?.signal?.aborted) {
@@ -54,7 +58,15 @@ export class BackgroundService {
 					...options,
 					avq: request?.allowedVideoQuality,
 					outputType,
-					service: request.service
+					service: request.service,
+					onSegmentProgress: this.emitSegmentProgress.bind(this, options),
+					reExtract: async (item) => {
+						const result = await this.transformerService.transform(item.sourceUrl, { ...request, entryUrl: item.sourceUrl });
+
+						const newItems = PipelineService.build(result, request);
+
+						return newItems[0] ?? null;
+					}
 				});
 
 				result.downloaded++;
@@ -114,6 +126,21 @@ export class BackgroundService {
 				}
 			}
 		});
+	}
+
+	public emitSegmentProgress(options: DownloadOptions, event: JobProgressEvent): void {
+		options.onSegmentProgress?.(event);
+		if (!options.logProgress) return;
+
+		const totals = [
+			event.target && `target=${event.target}`,
+			event.segment && `segment=${event.segment}`,
+			event.totalSegments && `totalSegments=${event.totalSegments}`
+		]
+			.filter(Boolean)
+			.join(' ');
+
+		console.log(`[HLS Stream:${event.status}]${totals ?? ''}`);
 	}
 
 	public emitProgress(options: JobOptions, event: JobProgressEvent): void {

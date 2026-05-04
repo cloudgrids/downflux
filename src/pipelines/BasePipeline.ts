@@ -1,5 +1,13 @@
 import { detectResourceType } from '../helpers';
-import { DefaultExtractorResult, ExecutionArgs, IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem } from '../util';
+import {
+	DefaultExtractorResult,
+	ExecutionArgs,
+	IdentifierContext,
+	MediaType,
+	PipelineExtractedItem,
+	PipelineItem,
+	ServiceType
+} from '../util';
 
 export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
 	public build(metadata: TResult, request: TExec): PipelineItem[] {
@@ -12,7 +20,7 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtracto
 					sourceUrl: request.entryUrl,
 					identifier: {
 						mediaType,
-						...detectResourceType(url),
+						...detectResourceType(url, ServiceType.Default),
 						key: this.buildIdentifier({
 							mediaType,
 							metadata,
@@ -56,8 +64,8 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtracto
 			metadata.videoPosters.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.VIDEO_POSTER, url }));
 		}
 
-		if (metadata.divHrefs?.length) {
-			metadata.divHrefs.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.OTHER, url }));
+		if (metadata.divHREFs?.length) {
+			metadata.divHREFs.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.OTHER, url }));
 		}
 
 		if (metadata.allUrls?.length) {

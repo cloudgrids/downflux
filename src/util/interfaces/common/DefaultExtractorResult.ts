@@ -33,7 +33,7 @@ export interface DefaultExtractorResult<TCustomFields = unknown> {
 	videoPosters?: string[];
 
 	/** URLs extracted from div href attributes */
-	divHrefs?: string[];
+	divHREFs?: string[];
 
 	/** All discovered URLs */
 	allUrls?: string[];

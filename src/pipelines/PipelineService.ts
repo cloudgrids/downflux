@@ -15,17 +15,17 @@ type PipelineCtor = new () => BasePipeline<any, any>;
 
 export class PipelineService {
 	private static readonly pipelines: Map<ServiceType, PipelineCtor> = new Map<ServiceType, PipelineCtor>([
-		[ServiceType.OKPORN, OkPornPipeline],
-		[ServiceType.WALLHAVEN, WallHavenPipeline],
-		[ServiceType.DEFAULT, BasePipeline],
-		[ServiceType.COOMER, BasePipeline],
-		[ServiceType.PORNHUB, PornHubPipeline]
+		[ServiceType.OkPorn, OkPornPipeline],
+		[ServiceType.WallHaven, WallHavenPipeline],
+		[ServiceType.Default, BasePipeline],
+		[ServiceType.Coomer, BasePipeline],
+		[ServiceType.PornHub, PornHubPipeline]
 	]);
 
 	public static build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): PipelineItem[] {
-		const serviceType = request.service ?? ServiceType.DEFAULT;
+		const serviceType = request.service ?? ServiceType.Default;
 
-		const PipelineClass = this.pipelines.get(serviceType) ?? this.pipelines.get(ServiceType.DEFAULT)!;
+		const PipelineClass = this.pipelines.get(serviceType) ?? this.pipelines.get(ServiceType.Default)!;
 
 		const pipeline = new PipelineClass();
 
