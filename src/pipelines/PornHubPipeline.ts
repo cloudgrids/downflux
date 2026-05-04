@@ -52,13 +52,11 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 	protected override extract(request: PornHubExecArgs, metadata: PornHubOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
-		if (metadata.videos?.length) {
-			metadata.videos.forEach((video) => {
-				urls.add({
-					url: video.videoUrl,
-					mediaType: MediaType.VIDEOS,
-					id: request.viewKey
-				});
+		if (metadata.videoMetadata) {
+			urls.add({
+				url: metadata?.videoMetadata?.videoUrl,
+				mediaType: MediaType.VIDEOS,
+				id: request.videoArgs?.viewKey
 			});
 		}
 

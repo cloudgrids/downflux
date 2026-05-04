@@ -6,7 +6,7 @@ export class PornHubParserService extends BaseParserService {
 		return {
 			customFields: {
 				videoUrl: sourceUrl,
-				videos: this.extractVideoUrlsFromFlashVars(html),
+				videoMetadata: this.extractVideoUrlsFromFlashVars(html)?.find((video) => video.format === 'mp4'),
 				title: this.extractSpans(html, 'inlineFree')[0] ?? this.extractTitle(html),
 				views: this.extractSpans(html, 'count')[0]?.match(/(\d+(?:\.\d+)?)([KMB]?)/g)?.[0] ?? '0',
 				likes: this.extractSpans(html, 'votesUp')[0]?.match(/(\d+(?:\.\d+)?)([KMB]?)/g)?.[0] ?? '0',
