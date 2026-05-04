@@ -4,8 +4,8 @@ async function main() {
 	const pornHubUrl = 'https://www.pornhub.org/view_video.php?viewkey=6907e342aa256';
 	const okPornUrl = 'https://ok.porn/video/253305/';
 	console.log(`\n\n=== Testing:`);
-	const dir = 'downflux_';
-	// const dir = '/Users/arijit/Downloads/';
+	// const dir = 'downflux_';
+	const dir = '/Users/arijit/Downloads/';
 	// 736213
 
 	try {
@@ -13,8 +13,8 @@ async function main() {
 			.setJobOptions({ logProgress: true })
 			.onProgress(console.log)
 			.setTransformOutput(true)
-			// .setAllowedExtensions('mp4')
-			.setOutput(OutputType.JSON, { directoryPath: dir })
+			.setAllowedExtensions('mp4')
+			.setOutput(OutputType.DEVICE, { directoryPath: dir })
 			.getVideo(VideoQuality.Q1080);
 
 		// const data = await new OkPornService(okPornUrl)
