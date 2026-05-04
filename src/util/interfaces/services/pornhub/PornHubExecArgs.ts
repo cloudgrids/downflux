@@ -6,4 +6,5 @@ import { ExecutionArgs } from '../../common';
  */
 export interface PornHubExecArgs extends ExecutionArgs {
 	/** Method to execute for PornHub */
+	viewKey: string;
 }

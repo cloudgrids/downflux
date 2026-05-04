@@ -1,4 +1,4 @@
-import { DownloaderService } from '../downloaders/DownloaderService';
+import { DownloaderService } from '../downloaders';
 import { HttpFetcherService } from '../fetcher';
 import { FileService } from '../file';
 import { BackgroundService, JobService } from '../job';

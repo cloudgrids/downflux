@@ -60,12 +60,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 				urls.add({
 					url: video.videoUrl,
 					mediaType: MediaType.VIDEOS,
-					id:
-						video.videoUrl
-							.split('/')
-							.filter(Boolean)
-							.find((url) => url.endsWith('.mp4'))
-							?.split('.')[0] ?? video.videoUrl
+					id: request.viewKey
 				});
 			});
 		}

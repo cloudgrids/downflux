@@ -1,4 +1,4 @@
-import { DownloaderService } from '../downloaders/DownloaderService';
+import { DownloaderService } from '../downloaders';
 import { FileService } from '../file';
 import {
 	DownloadResult,
@@ -40,6 +40,7 @@ export class BackgroundService {
 			}
 
 			this.runExtractHooks(pipelineHooks, pipelineItem);
+
 			this.emitProgress(options, {
 				status: 'downloading',
 				totalItems: result.pipelineItems.length,
@@ -57,7 +58,9 @@ export class BackgroundService {
 				});
 
 				result.downloaded++;
+
 				this.runDownloadHooks(pipelineHooks, pipelineItem, downloadResult);
+
 				this.emitProgress(options, {
 					status: 'downloaded',
 					totalItems: result.pipelineItems.length,
@@ -68,8 +71,11 @@ export class BackgroundService {
 				});
 			} catch (err) {
 				result.failed++;
+
 				const normalizedError = err instanceof Error ? err : new Error(String(err));
+
 				result.errors.push(normalizedError);
+
 				console.error(`Error downloading ${pipelineItem.downloadUrl}:`, err);
 				this.emitProgress(options, {
 					status: 'failed',

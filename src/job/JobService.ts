@@ -1,4 +1,4 @@
-import { DownloaderService } from '../downloaders/DownloaderService';
+import { DownloaderService } from '../downloaders';
 import { FileService } from '../file';
 import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';

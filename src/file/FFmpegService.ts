@@ -1,6 +1,7 @@
 import { execFile } from 'child_process';
 import ffmpegPath from 'ffmpeg-static';
 import { promises as fs } from 'fs';
+import path from 'path';
 import { promisify } from 'util';
 
 const execFileAsync = promisify(execFile);
@@ -13,8 +14,13 @@ export class FfmpegService {
 	public async reMuxTransportStream(inputPath: string) {
 		if (!ffmpegPath) throw new Error('ffmpeg-static not found');
 
-		const outputPath = inputPath.endsWith('.ts') ? inputPath.replace(/\.ts$/i, '.mp4') : inputPath + '.remux.mp4';
-		const filename = outputPath.split('/').pop()!;
+		const dir = path.dirname(inputPath);
+		const base = path.basename(inputPath, path.extname(inputPath));
+
+		const outputPath = path.join(dir, `${base}.mp4`);
+		const filename = `${base}.mp4`;
+
+		console.log(`Re-muxing ${inputPath} to ${outputPath} using ffmpeg...`);
 
 		try {
 			await execFileAsync(ffmpegPath, [

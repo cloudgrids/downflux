@@ -3,6 +3,7 @@ import { pipeline } from 'stream/promises';
 import { Dispatcher, Pool, interceptors } from 'undici';
 import { IncomingHttpHeaders } from 'undici/types/header';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
+import { detectHlsContainer } from '../helpers/DetectHlsContainer';
 import { DownloadOptions, FetchResult, HLSStreamRequest, HttpFetchOptions } from '../util';
 import { HLSFetchService } from './HLSFetchService';
 
@@ -132,9 +133,10 @@ export class HttpFetcherService {
 					 * For more reference check the HLSManifest.m3u file in the src/fetcher directory
 					 */
 					const manifest = await res.text();
+					const type = detectHlsContainer(manifest);
 					return {
 						finalUrl,
-						headers: responseHeaders,
+						headers: { ...responseHeaders, 'x-hls-container': type },
 						start: (stream: Writable) => this.hlsFetchService.fetchHlsStream(manifest, finalUrl, timeoutMs, stream, opts)
 					};
 				}
