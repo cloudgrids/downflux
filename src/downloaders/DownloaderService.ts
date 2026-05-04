@@ -25,10 +25,15 @@ export class DownloaderService {
 			identifier: item.identifier.key
 		});
 
-		await start(stream);
+		try {
+			await start(stream);
 
-		if (!stream.writableEnded) stream.end();
-		await finished(stream);
+			if (!stream.writableEnded) stream.end();
+			await finished(stream);
+		} catch (err) {
+			stream.destroy(err instanceof Error ? err : new Error(String(err)));
+			throw err;
+		}
 
 		const finalDetails = await finalize(resolvedFile, headers);
 
@@ -44,11 +49,16 @@ export class DownloaderService {
 		const isHls = finalUrl.includes('.m3u8') || headers['content-type']?.includes('mpegurl');
 
 		if (isHls) {
+			const container = headers['x-hls-container'];
+
+			const extension = container === 'fmp4' ? 'mp4' : 'ts';
+
 			const baseName = this.fileService.sanitizeFilename(initial.originalFilename.replace(/\.[^.]+$/, '') || 'video');
+
 			return {
-				originalFilename: `${baseName}.ts`,
-				extension: 'ts',
-				extendedFilename: `${prefix ? prefix : ''}${baseName}.ts`
+				originalFilename: `${baseName}.${extension}`,
+				extension,
+				extendedFilename: `${prefix ?? ''}${baseName}.${extension}`
 			};
 		}
 

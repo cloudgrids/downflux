@@ -1,6 +1,11 @@
 import { createDecipheriv } from 'crypto';
 import { Writable } from 'stream';
-import { DownloadOptions, VideoQuality } from '../util';
+import { DownloadOptions, M3U8Variant, VideoQuality } from '../util';
+
+export interface ParseKey {
+	url: string;
+	iv?: Buffer;
+}
 
 export class HLSFetchService {
 	public async fetchHlsStream(
@@ -15,17 +20,25 @@ export class HLSFetchService {
 
 		const requestHeaders = this.buildHeaders(opts);
 
-		// refers to the segment list if master manifest, otherwise the original manifest
 		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs, requestHeaders) : manifest;
 
-		// parsing segments and key info from the media manifest, as the master manifest won't have segment info
 		const segments = this.parseSegments(mediaManifest, playlistUrl);
 		if (!segments.length) throw new Error('No segments');
 
-		const keyInfo = this.parseKey(mediaManifest, playlistUrl);
+		const initUrl = this.parseInitSegment(mediaManifest, playlistUrl);
+		const isFmp4 = !!initUrl;
+
+		// disable decrypt for fMP4
+		const keyInfo = isFmp4 ? null : this.parseKey(mediaManifest, playlistUrl);
 		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
 
-		console.log({ variant, playlistUrl, segmentsCount: segments.length, key, keyInfo });
+		if (initUrl) {
+			const initData = await this.fetchWithRetry(initUrl, timeoutMs, requestHeaders);
+
+			if (!stream.write(initData)) {
+				await new Promise((res) => stream.once('drain', res));
+			}
+		}
 
 		await this.stitchSegments(segments, key, keyInfo, timeoutMs, stream, requestHeaders);
 	}
@@ -64,72 +77,95 @@ export class HLSFetchService {
 		}
 	}
 
+	private parseInitSegment(manifest: string, base: string): string | null {
+		const match = manifest.match(/#EXT-X-MAP:URI="([^"]+)"/);
+		if (!match) return null;
+
+		return new URL(match[1], base).toString();
+	}
+
+	// do not collect everything, stream progressively.
 	private async stitchSegments(
 		segments: string[],
 		key: Buffer | null,
-		keyInfo: { url: string; iv: Buffer | undefined } | null,
+		keyInfo: ParseKey | null,
 		timeoutMs: number,
 		stream: Writable,
 		headers: Record<string, any>
 	) {
-		const concurrency = 8;
-		const results = new Map<number, Buffer>();
-		let nextIndexToWrite = 0;
-		let currentIndex = 0;
+		const concurrency = 4;
 
-		const worker = async () => {
-			while (true) {
-				const i = currentIndex++;
-				if (i >= segments.length) break;
+		let nextToWrite = 0;
+		let nextToFetch = 0;
 
-				const segUrl = segments[i];
-				let data = await this.fetchWithRetry(segUrl, timeoutMs, headers);
+		const buffer = new Map<number, Buffer>();
+		const inFlight = new Set<Promise<void>>();
 
-				if (key) {
-					console.log({ decryptingSegment: segUrl, keyUrl: keyInfo?.url, iv: keyInfo?.iv?.toString('hex') });
-					const iv = keyInfo?.iv
-						? keyInfo.iv
-						: (() => {
-								const b = Buffer.alloc(16, 0);
-								b.writeUInt32BE(i, 12);
-								return b;
-							})();
-
-					data = this.decrypt(data, key, iv);
-				}
-
-				results.set(i, data);
-
-				// Ordered write with backpressure
-				while (results.has(nextIndexToWrite)) {
-					const chunk = results.get(nextIndexToWrite)!;
-					results.delete(nextIndexToWrite);
-
-					if (!stream.write(chunk)) {
-						await new Promise((resolve) => stream.once('drain', resolve));
-					}
-
-					nextIndexToWrite++;
-				}
-			}
-		};
-
-		await Promise.all(Array.from({ length: concurrency }, worker));
-
-		// Ensure everything is written if any workers finished early
-		while (results.has(nextIndexToWrite)) {
-			const chunk = results.get(nextIndexToWrite)!;
-			results.delete(nextIndexToWrite);
-
-			if (!stream.write(chunk)) {
-				await new Promise((resolve) => stream.once('drain', resolve));
+		while (nextToWrite < segments.length) {
+			// fill concurrency window
+			while (inFlight.size < concurrency && nextToFetch < segments.length) {
+				const p = this.fetchAndStore(nextToFetch++, buffer, segments, key, keyInfo, timeoutMs, headers, stream);
+				inFlight.add(p);
+				p.finally(() => inFlight.delete(p));
 			}
 
-			nextIndexToWrite++;
+			// ordered writing
+			if (buffer.has(nextToWrite)) {
+				const chunk = buffer.get(nextToWrite)!;
+				buffer.delete(nextToWrite);
+
+				if (!stream.write(chunk)) {
+					await new Promise((r) => stream.once('drain', r));
+				}
+
+				nextToWrite++;
+				continue;
+			}
+
+			// do not await inside the loop except for drain, to allow concurrent fetching
+			await Promise.race([Promise.allSettled(inFlight), new Promise((r) => setTimeout(r, 10))]);
 		}
 	}
 
-	public isHlsManifest(contentType: string, url: string) {
+	// fetches and stores in buffer, does not wait for turn to write
+	private async fetchAndStore(
+		i: number,
+		buffer: Map<number, Buffer>,
+		segments: string[],
+		key: Buffer | null,
+		keyInfo: ParseKey | null,
+		timeoutMs: number,
+		headers: Record<string, any>,
+		stream: Writable
+	) {
+		try {
+			const segUrl = segments[i];
+			let data = await this.fetchWithRetry(segUrl, timeoutMs, headers);
+
+			if (key) {
+				const iv = keyInfo?.iv
+					? keyInfo.iv
+					: (() => {
+							const b = Buffer.alloc(16, 0);
+							b.writeUInt32BE(i, 12);
+							return b;
+						})();
+
+				try {
+					data = this.decrypt(data, key, iv);
+				} catch {
+					console.warn('Decrypt failed, using raw segment', { segUrl });
+				}
+			}
+
+			buffer.set(i, data);
+		} catch (err) {
+			stream.destroy(err instanceof Error ? err : new Error(String(err)));
+			throw err;
+		}
+	}
+
+	public isHlsManifest(contentType: string, url: string): boolean {
 		return contentType.includes('mpegurl') || url.includes('.m3u8');
 	}
 
@@ -141,15 +177,9 @@ export class HLSFetchService {
 			.map((l) => new URL(l, base).toString());
 	}
 
-	private selectVariant(manifest: string, base: string, preferred?: VideoQuality): string | null {
+	private getVariants(manifest: string, base: string): M3U8Variant[] {
 		const lines = manifest.split('\n');
-
-		const variants: {
-			url: string;
-			width: number;
-			height: number;
-			bw: number;
-		}[] = [];
+		const variants: M3U8Variant[] = [];
 
 		for (let i = 0; i < lines.length; i++) {
 			const line = lines[i];
@@ -173,6 +203,12 @@ export class HLSFetchService {
 				});
 			}
 		}
+
+		return variants;
+	}
+
+	private selectVariant(manifest: string, base: string, preferred?: VideoQuality): string | null {
+		const variants = this.getVariants(manifest, base);
 
 		if (!variants.length) return null;
 
@@ -203,13 +239,15 @@ export class HLSFetchService {
 		return variants[0].url;
 	}
 
-	private parseKey(manifest: string, base: string) {
-		const match = manifest.match(/URI="([^"]+)"(?:,IV=0x([0-9a-fA-F]+))?/);
+	private parseKey(manifest: string, base: string): ParseKey | null {
+		console.log('Parsing key from manifest...');
+		const match = manifest.match(/#EXT-X-KEY:METHOD=AES-128,URI="([^"]+)"/);
+
 		if (!match) return null;
 
 		return {
 			url: new URL(match[1], base).toString(),
-			iv: match[2] ? Buffer.from(match[2], 'hex') : undefined
+			iv: undefined
 		};
 	}
 
@@ -235,6 +273,8 @@ export class HLSFetchService {
 				const res = await fetch(url, { signal: AbortSignal.timeout(timeoutMs), headers });
 
 				if (!res.ok) throw new Error();
+
+				console.log(`Fetched segment: ${url} (status: ${res.status})`);
 
 				return Buffer.from(await res.arrayBuffer());
 			} catch (e) {

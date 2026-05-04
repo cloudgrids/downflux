@@ -7,6 +7,7 @@ export * from './HttpFetchOptions';
 export * from './IdentifierContext';
 export * from './JobOptions';
 export * from './JobProgress';
+export * from './M3U8Variant';
 export * from './PipelineExtractedItem';
 export * from './PipelineItem';
 export * from './ResolvedFile';
