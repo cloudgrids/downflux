@@ -9,5 +9,8 @@ export enum PornHubMethods {
 	getChannel = 'getChannel',
 
 	/** Tag page extraction */
-	getTag = 'getTag'
+	getTag = 'getTag',
+
+	/** Model videos extraction */
+	getModelVideos = 'getModelVideos'
 }

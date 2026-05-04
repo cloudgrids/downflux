@@ -4,5 +4,6 @@ export * from './MediaType';
 export * from './OutputType';
 export * from './ServiceType';
 export * from './StepType';
+export * from './UrlFormat';
 export * from './UrlType';
 export * from './VideoQuality';

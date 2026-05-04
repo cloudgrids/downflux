@@ -13,7 +13,7 @@ export interface PornHubVideoOutput {
 	thumbnailUrl: string;
 
 	/** Associated .m3u8 files and metadata */
-	videos: PornHubVideo[];
+	videoMetadata: PornHubVideo;
 
 	/** The duration of the video in seconds */
 	duration: string;

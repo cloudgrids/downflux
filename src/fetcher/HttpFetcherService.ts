@@ -39,7 +39,7 @@ export class HttpFetcherService {
 	}
 
 	public async fetchHtml(url: string, opts: HttpFetchOptions): Promise<FetchResult> {
-		const { headers = {}, timeoutMs = 30_000, retries = 3 } = opts;
+		const { headers = {}, retries = 3 } = opts;
 		const mergedHeaders = { ...this.Default_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.fakeIP() };
 
 		const parsed = new URL(url);
@@ -56,9 +56,7 @@ export class HttpFetcherService {
 				} = await pool.request({
 					path: parsed.pathname + parsed.search,
 					method: 'GET',
-					headers: { ...mergedHeaders, 'X-Forwarded-For': this.fakeIP() },
-					headersTimeout: timeoutMs,
-					bodyTimeout: timeoutMs
+					headers: { ...mergedHeaders, 'X-Forwarded-For': this.fakeIP() }
 				});
 
 				if (statusCode === 404) {
