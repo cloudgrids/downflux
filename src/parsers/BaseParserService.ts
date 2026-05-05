@@ -1,17 +1,22 @@
-import { DefaultExtractorResult } from '../util';
+import { GenericException } from '../exceptions';
+import { DefaultExtractorResult, ServiceType } from '../util';
 
 export class BaseParserService {
 	public transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult> {
-		return {
-			anchors: this.extractAnchors(html, sourceUrl),
-			images: this.extractImageUrls(html),
-			sources: this.extractSourceUrls(html),
-			title: this.extractTitle(html),
-			description: this.extractMetaDescription(html),
-			keywords: this.extractMetaKeywords(html),
-			sourceUrl,
-			status: 200
-		};
+		try {
+			return {
+				anchors: this.extractAnchors(html, sourceUrl),
+				images: this.extractImageUrls(html),
+				sources: this.extractSourceUrls(html),
+				title: this.extractTitle(html),
+				description: this.extractMetaDescription(html),
+				keywords: this.extractMetaKeywords(html),
+				sourceUrl,
+				status: 200
+			};
+		} catch (error) {
+			throw new GenericException('Unable to parse some fields:', ServiceType.Default, 'BaseParserService', { cause: error });
+		}
 	}
 
 	public extractElementText(html: string, begin: string, end: string, fallback = ''): string {

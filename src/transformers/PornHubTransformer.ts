@@ -1,21 +1,14 @@
-import {
-	DefaultExtractorResult,
-	PornHubExecArgs,
-	PornHubMethods,
-	PornHubModelVideosOutput,
-	PornHubOutput,
-	PornHubVideoOutput
-} from '../util';
+import { DefaultExtractorResult, PornHubExecArgs, PornHubMethods, PornHubOutput, PornHubVideoOutput, PornHubVideosOutput } from '../util';
 import { BaseTransformer } from './BaseTransformer';
 
 export class PornHubTransformer extends BaseTransformer<
 	PornHubExecArgs,
-	PornHubVideoOutput | PornHubModelVideosOutput | DefaultExtractorResult
+	PornHubVideoOutput | PornHubVideosOutput | DefaultExtractorResult
 > {
 	public async transform(
 		url: string,
 		request: PornHubExecArgs
-	): Promise<PornHubVideoOutput | PornHubModelVideosOutput | DefaultExtractorResult<unknown>> {
+	): Promise<PornHubVideoOutput | PornHubVideosOutput | DefaultExtractorResult<unknown>> {
 		const metadata = (await super.transform(url, request)) as DefaultExtractorResult<Partial<PornHubOutput>>;
 
 		if (!request?.transformOutput) return metadata;
@@ -24,8 +17,8 @@ export class PornHubTransformer extends BaseTransformer<
 			case PornHubMethods.getVideo:
 				return this.toVideoOutput(request, metadata);
 
-			case PornHubMethods.getModelVideos:
-				return this.toModelVideosOutput(request, metadata);
+			case PornHubMethods.getVideos:
+				return this.toVideosOutput(request, metadata);
 
 			default:
 				return metadata;
@@ -68,24 +61,21 @@ export class PornHubTransformer extends BaseTransformer<
 
 			this.emitExtractProgress(chunkRequest, 'EXTRACTED', url);
 
-			videos.push({ ...this.toVideoOutput(chunkRequest, metadata), user: request.modelVideosArgs?.username as string });
+			videos.push({ ...this.toVideoOutput(chunkRequest, metadata), user: request.videosArgs?.username as string });
 		}
 
 		return videos.filter((v) => Boolean(v?.videoMetadata?.videoUrl));
 	}
 
-	private toModelVideosOutput(
-		request: PornHubExecArgs,
-		metadata: DefaultExtractorResult<Partial<PornHubOutput>>
-	): PornHubModelVideosOutput {
+	private toVideosOutput(request: PornHubExecArgs, metadata: DefaultExtractorResult<Partial<PornHubOutput>>): PornHubVideosOutput {
 		const pornHubFields = metadata?.customFields as PornHubOutput;
 		let videoUrls = Array.from(new Set(metadata.anchors.filter((v) => v.match(/view_video\.php\?viewkey=([a-zA-Z0-9]{13})$/))));
-		if (request?.modelVideosArgs?.format === 'path') videoUrls = videoUrls.map((url) => url.split('=').pop() ?? url);
+		if (request?.videosArgs?.format === 'path') videoUrls = videoUrls.map((url) => url.split('=').pop() ?? url);
 
 		return {
 			videoUrls,
-			username: request.modelVideosArgs?.username as string,
-			currentPage: pornHubFields?.currentPage ?? '0',
+			username: request.videosArgs?.username as string,
+			currentPage: pornHubFields?.currentPage ?? '1',
 			fetchedVideos: videoUrls?.length?.toString() ?? '0'
 		};
 	}

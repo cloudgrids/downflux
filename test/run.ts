@@ -1,4 +1,4 @@
-import { OutputType, PornHubService, VideoQuality } from '../src';
+import { OutputType, PornHubService } from '../src';
 
 async function main() {
 	const pornHubUrl = 'https://www.pornhub.org/view_video.php?viewkey=69e37154ee7e2';
@@ -15,13 +15,13 @@ async function main() {
 		// 	.setOutput(OutputType.JSON, { directoryPath: dir })
 		// 	.getModelVideos({ username: 'comatozze', format: 'path' });
 
-		await new PornHubService('https://www.pornhub.org/view_video.php?viewkey=67aef08fd7499')
+		await new PornHubService('https://www.pornhub.org/pornstar/josephine-jackson/videos')
 			.setJobOptions({ logProgress: true })
 			.onProgress(console.log)
 			.setTransformOutput(true)
-			.setAllowedExtensions('mp4')
-			.setOutput(OutputType.DEVICE, { directoryPath: dir })
-			.getVideo({ quality: VideoQuality.Q1080 });
+			// .setAllowedExtensions('mp4')
+			.setOutput(OutputType.JSON)
+			.getVideos();
 
 		// await new OkPornService(okPornUrl)
 		// 	.setJobOptions({ logProgress: true })

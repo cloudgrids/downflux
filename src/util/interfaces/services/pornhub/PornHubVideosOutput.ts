@@ -2,7 +2,7 @@
  * @interface
  * Interface representing the output structure for a PornHub model's videos.
  */
-export interface PornHubModelVideosOutput {
+export interface PornHubVideosOutput {
 	/** The username of the model */
 	username: string;
 

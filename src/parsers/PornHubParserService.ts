@@ -1,28 +1,34 @@
-import { DefaultExtractorResult, PornHubOutput, PornHubVideo } from '../util';
+import { GenericException } from '../exceptions';
+import { DefaultExtractorResult, PornHubOutput, PornHubVideo, ServiceType } from '../util';
 import { BaseParserService } from './BaseParserService';
 
 export class PornHubParserService extends BaseParserService {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<PornHubOutput>>> {
-		return {
-			customFields: {
-				videoUrl: sourceUrl,
-				videoMetadata: this.extractVideoUrlsFromFlashVars(html)?.find((video) => video.format === 'mp4'),
-				title: this.extractSpans(html, 'inlineFree')[0] ?? this.extractTitle(html),
-				views: this.extractSpans(html, 'count')[0]?.match(/(\d+(?:\.\d+)?)([KMB]?)/g)?.[0] ?? '0',
-				likes: this.extractSpans(html, 'votesUp')[0]?.match(/(\d+(?:\.\d+)?)([KMB]?)/g)?.[0] ?? '0',
-				duration: this.extractMetaPropertyContent(html, 'video:duration') ?? '0',
-				thumbnailUrl: this.extractMetaNameContent(html, 'twitter:image') ?? this.extractMetaNameContent(html, 'og:image'),
-				user:
-					this.collectByClassNames(html, 'userInfoBlock', { includeInnerHTML: true })[0].innerHTML?.match(
-						/href="\/(?:model|channel|pornstar|users)\/([^"]+)"/
-					)?.[1] ?? 'pornhub_user',
-				totalVideos: this.extractUserStat(html, 'Videos'),
-				totalSubscribers: this.extractUserStat(html, 'Subscribers'),
+		try {
+			return {
+				customFields: {
+					videoUrl: sourceUrl,
+					videoMetadata: this.extractVideoUrlsFromFlashVars(html)?.find((video) => video.format === 'mp4'),
+					title: this.extractSpans(html, 'inlineFree')[0] ?? this.extractTitle(html),
+					views: this.extractSpans(html, 'count')[0]?.match(/(\d+(?:\.\d+)?)([KMB]?)/g)?.[0] ?? '0',
+					likes: this.extractSpans(html, 'votesUp')[0]?.match(/(\d+(?:\.\d+)?)([KMB]?)/g)?.[0] ?? '0',
+					duration: this.extractMetaPropertyContent(html, 'video:duration') ?? '0',
+					thumbnailUrl: this.extractMetaNameContent(html, 'twitter:image') ?? this.extractMetaNameContent(html, 'og:image'),
+					user:
+						this.collectByClassNames(html, 'userInfoBlock', { includeInnerHTML: true })[0]?.innerHTML?.match(
+							/href="\/(?:model|channel|pornstar|users)\/([^"]+)"/
+						)?.[1] ?? 'pornhub_user',
+					totalVideos: this.extractUserStat(html, 'Videos'),
+					totalSubscribers: this.extractUserStat(html, 'Subscribers'),
 
-				uploadDate: this.extractDivs(html, 'videoInfo')[0],
-				userAvatar: this.extractUserAvatar(html)
-			}
-		};
+					uploadDate: this.extractDivs(html, 'videoInfo')[0],
+					userAvatar: this.extractUserAvatar(html),
+					currentPage: new URL(sourceUrl)?.searchParams?.get('page') ?? '1'
+				}
+			};
+		} catch (error) {
+			throw new GenericException('Unable to parse some fields:', ServiceType.PornHub, 'PornHubParserService', { cause: error });
+		}
 	}
 
 	private extractVideoUrlsFromFlashVars(html: string): PornHubVideo[] {

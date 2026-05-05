@@ -1,32 +1,37 @@
-import { DefaultExtractorResult, OkPornModelVideoCard, OkPornOutput } from '../util';
+import { GenericException } from '../exceptions';
+import { DefaultExtractorResult, OkPornModelVideoCard, OkPornOutput, ServiceType } from '../util';
 import { BaseParserService } from './BaseParserService';
 
 export class OkPornParserService extends BaseParserService {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<OkPornOutput>>> {
-		return {
-			images: this.extractAttributes(html, 'img', 'data-original'),
-			title: this.decodeHtmlEntities(this.extractTitle(html)),
-			customFields: {
-				modelName: this.extractCustomTitle(html).split('/').filter(Boolean).pop()?.trim() || 'unknown',
-				starredModels: this.extractStarredModels(html).map((m) => m.name) ?? [],
+		try {
+			return {
+				images: this.extractAttributes(html, 'img', 'data-original'),
+				title: this.decodeHtmlEntities(this.extractTitle(html)),
+				customFields: {
+					modelName: this.extractCustomTitle(html).split('/').filter(Boolean).pop()?.trim() || 'unknown',
+					starredModels: this.extractStarredModels(html).map((m) => m.name) ?? [],
 
-				videoAlbumId: this.extractAttributes(html, 'a', 'href')
-					.find((h) => /\/albums\/\d+\//.test(h))
-					?.match(/\/albums\/(\d+)\//)?.[1],
+					videoAlbumId: this.extractAttributes(html, 'a', 'href')
+						.find((h) => /\/albums\/\d+\//.test(h))
+						?.match(/\/albums\/(\d+)\//)?.[1],
 
-				videoCreatedAt: this.extractSpans(html, 'date')[0],
+					videoCreatedAt: this.extractSpans(html, 'date')[0],
 
-				starredBy: this.extractAnchorTextsByHref(html, /^(?:https?:\/\/(?:www\.)?ok\.porn)?\/models\/[^/?#]+\/?$/i) ?? [],
+					starredBy: this.extractAnchorTextsByHref(html, /^(?:https?:\/\/(?:www\.)?ok\.porn)?\/models\/[^/?#]+\/?$/i) ?? [],
 
-				videoPoster: this.extractVideoPosters(html)[0],
+					videoPoster: this.extractVideoPosters(html)[0],
 
-				videoCards: this.extractVideoCards(html) ?? []
-			},
-			videoPosters: this.extractVideoPosters(html),
-			description: this.extractMetaDescription(html),
-			keywords: this.extractMetaKeywords(html),
-			sourceUrl
-		};
+					videoCards: this.extractVideoCards(html) ?? []
+				},
+				videoPosters: this.extractVideoPosters(html),
+				description: this.extractMetaDescription(html),
+				keywords: this.extractMetaKeywords(html),
+				sourceUrl
+			};
+		} catch (error) {
+			throw new GenericException('Unable to parse some fields:', ServiceType.OkPorn, 'OkPornParserService', { cause: error });
+		}
 	}
 
 	public extractVideoCards(html: string, sourceUrl?: string): OkPornModelVideoCard[] {
