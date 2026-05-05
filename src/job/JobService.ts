@@ -1,3 +1,4 @@
+import { emitProgress } from '../helpers/Emitter';
 import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';
 import { ExecutionArgs, ExecutionResult, OutputType, PipelineHook, PipelineItem } from '../util';
@@ -19,7 +20,7 @@ export class JobService {
 		const pipelineItems: PipelineItem[] = [];
 		const iterables: TResult[] = [];
 
-		this.backgroundService.emitProgress(options, {
+		emitProgress(options, {
 			status: 'STARTED',
 			totalTargets: targets.length,
 			downloaded: 0,
@@ -45,7 +46,7 @@ export class JobService {
 			pipelineItems
 		};
 
-		this.backgroundService.emitProgress(options, {
+		emitProgress(options, {
 			status: 'QUEUED',
 			totalTargets: totalTargets,
 			totalItems: result.pipelineItems.length,
@@ -85,7 +86,7 @@ export class JobService {
 			if (status === 'EXTRACTING' && countTarget) totalExtractTargets++;
 			if (status === 'EXTRACTED') extractedCount++;
 
-			this.backgroundService.emitProgress(request, {
+			emitProgress(request, {
 				status,
 				target,
 				totalTargets: totalExtractTargets,

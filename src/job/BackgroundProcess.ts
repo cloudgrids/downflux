@@ -1,18 +1,9 @@
 import { DownloaderService } from '../downloaders';
 import { FileService } from '../file';
+import { emitProgress, emitSegmentProgress } from '../helpers/Emitter';
 import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';
-import {
-	DownloadOptions,
-	DownloadResult,
-	ExecutionArgs,
-	ExecutionResult,
-	JobOptions,
-	JobProgressEvent,
-	OutputType,
-	PipelineHook,
-	PipelineItem
-} from '../util';
+import { DownloadResult, ExecutionArgs, ExecutionResult, JobOptions, OutputType, PipelineHook, PipelineItem } from '../util';
 
 export class BackgroundService {
 	private static readonly Default_DOWNLOAD_CONCURRENCY = 5;
@@ -34,7 +25,7 @@ export class BackgroundService {
 
 		await this.runWithConcurrency(result.pipelineItems, downloadConcurrency, async (pipelineItem) => {
 			if (options?.signal?.aborted) {
-				this.emitProgress(options, {
+				emitProgress(options, {
 					status: 'ABORTED',
 					totalItems: result.pipelineItems.length,
 					downloaded: result.downloaded,
@@ -45,7 +36,7 @@ export class BackgroundService {
 
 			this.runExtractHooks(pipelineHooks, pipelineItem);
 
-			this.emitProgress(options, {
+			emitProgress(options, {
 				status: 'DOWNLOADING',
 				totalItems: result.pipelineItems.length,
 				downloaded: result.downloaded,
@@ -59,7 +50,7 @@ export class BackgroundService {
 					avq: request?.allowedVideoQuality,
 					outputType,
 					service: request.service,
-					onSegmentProgress: this.emitSegmentProgress.bind(this, options),
+					onSegmentProgress: emitSegmentProgress.bind(this, options),
 					reExtract: async (item) => {
 						const result = await this.transformerService.transform(item.sourceUrl, { ...request, entryUrl: item.sourceUrl });
 
@@ -73,7 +64,7 @@ export class BackgroundService {
 
 				this.runDownloadHooks(pipelineHooks, pipelineItem, downloadResult);
 
-				this.emitProgress(options, {
+				emitProgress(options, {
 					status: 'DOWNLOADED',
 					totalItems: result.pipelineItems.length,
 					downloaded: result.downloaded,
@@ -89,7 +80,7 @@ export class BackgroundService {
 				result.errors.push(normalizedError);
 
 				console.error(`Error DOWNLOADING ${pipelineItem.downloadUrl}:`, err);
-				this.emitProgress(options, {
+				emitProgress(options, {
 					status: 'FAILED',
 					totalItems: result.pipelineItems.length,
 					downloaded: result.downloaded,
@@ -100,7 +91,7 @@ export class BackgroundService {
 			}
 		});
 
-		this.emitProgress(options, {
+		emitProgress(options, {
 			status: 'COMPLETED',
 			totalItems: result.pipelineItems.length,
 			downloaded: result.downloaded,
@@ -126,40 +117,6 @@ export class BackgroundService {
 				}
 			}
 		});
-	}
-
-	public emitSegmentProgress(options: DownloadOptions, event: JobProgressEvent): void {
-		options.onSegmentProgress?.(event);
-		if (!options.logProgress) return;
-
-		const totals = [
-			event.target && `TARGET = ${event.target}`,
-			event.downloadedBytes && `DOWNLOADED_BYTES = ${event.downloadedBytes}`,
-			event.totalBytes && `TOTAL_BYTES = ${event.totalBytes}`,
-			event.percent && `PROGRESS = ${event.percent}%`,
-			event.segment && `SEGMENT = ${event.segment}`,
-			event.totalSegments && `TOTAL_SEGMENTS = ${event.totalSegments}`,
-			event.segment && event.totalSegments && `SEGMENTED = ${event.segment}/${event.totalSegments}`
-		]
-			.filter(Boolean)
-			.join('\n');
-
-		console.log(`\n[Downloading:${event.status}]\n${totals ?? ''}\n`);
-	}
-
-	public emitProgress(options: JobOptions, event: JobProgressEvent): void {
-		options.onProgress?.(event);
-		if (!options.logProgress) return;
-
-		const totals = [
-			event.downloaded && `DOWNLOADED = ${event.downloaded}`,
-			event.failed && `FAILED = ${event.failed}`,
-			event.totalItems && `TOTAL = ${event.totalItems}`
-		]
-			.filter(Boolean)
-			.join(' ');
-
-		console.log(`\n[JOB:${event.status}]\n${totals ? ` ${totals}` : ''}\n`);
 	}
 
 	public async runWithConcurrency<T>(items: T[], concurrency: number, worker: (item: T, index: number) => Promise<void>): Promise<void> {

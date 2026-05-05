@@ -24,7 +24,7 @@ export class HLSFetchService {
 		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs, requestHeaders) : manifest;
 
 		const segments = this.parseSegments(mediaManifest, playlistUrl);
-		if (!segments.length) throw new Error('No segments');
+		if (!segments.length) throw new Error('NO SEGMENTS FOUND IN MANIFEST');
 
 		const initUrl = this.parseInitSegment(mediaManifest, playlistUrl);
 		const isFmp4 = !!initUrl;

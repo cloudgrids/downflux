@@ -4,6 +4,7 @@ import { Dispatcher, Pool, interceptors } from 'undici';
 import { IncomingHttpHeaders } from 'undici/types/header';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
 import { DownloadException, NotFoundException } from '../exceptions';
+import { progressMapper } from '../helpers/BytesMapper';
 import { detectHlsContainer } from '../helpers/DetectHlsContainer';
 import { getFetchStrategy } from '../strategies/Strategies';
 import { DownloadOptions, FetchResult, HLSStreamRequest, HttpFetchOptions, JobProgressEvent } from '../util';
@@ -22,7 +23,7 @@ export class HttpFetcherService {
 
 	private readonly pools = new Map<string, Dispatcher>();
 
-	private fakeIP() {
+	private makeIP() {
 		return Array(4)
 			.fill(0)
 			.map(() => Math.floor(Math.random() * 255))
@@ -38,37 +39,84 @@ export class HttpFetcherService {
 		return this.pools.get(origin)!;
 	}
 
-	public async fetchHtml(url: string, opts: HttpFetchOptions): Promise<FetchResult> {
-		const { headers = {}, retries = 3 } = opts;
-		const mergedHeaders = { ...this.Default_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.fakeIP() };
+	private async createPoolRequest(
+		url: string,
+		dOpts: HttpFetchOptions,
+		rOptions: Dispatcher.RequestOptions<null> = { method: 'GET', path: '' }
+	): Promise<Dispatcher.ResponseData<null>> {
+		const pool = this.getPool(url);
 
 		const parsed = new URL(url);
+
+		return await pool.request({
+			...rOptions,
+			path: parsed.pathname + parsed.search,
+			headers: { ...this.Default_HEADERS, 'Referer': dOpts.referer, ...dOpts.headers, 'X-Forwarded-For': this.makeIP() },
+			bodyTimeout: dOpts.timeoutMs,
+			headersTimeout: dOpts.timeoutMs,
+			idempotent: true
+		});
+	}
+
+	private async delay(attempt: number) {
+		const base = 300; // ms
+		const jitter = Math.random() * 200;
+		const delay = base * 2 ** attempt + jitter;
+		return new Promise((res) => setTimeout(res, delay));
+	}
+
+	private async readBody(body: AsyncIterable<any>): Promise<Buffer> {
+		const chunks: Buffer[] = [];
+		for await (const c of body) chunks.push(Buffer.from(c));
+		return Buffer.concat(chunks);
+	}
+
+	private decodeBody(buffer: Buffer, headers: IncomingHttpHeaders): Buffer {
+		const enc = headers['content-encoding'];
+		if (!enc) return buffer;
+
+		if (enc.includes('gzip')) return gunzipSync(buffer);
+		if (enc.includes('deflate')) return inflateSync(buffer);
+		if (enc.includes('br')) return brotliDecompressSync(buffer);
+
+		return buffer;
+	}
+
+	private headers(headers: IncomingHttpHeaders): Record<string, string> {
+		return Object.fromEntries(Object.entries(headers).map(([k, v]) => [k, Array.isArray(v) ? v.join(',') : v || '']));
+	}
+
+	private fetchOutput(finalUrl: string, status: number, headers: IncomingHttpHeaders, buffer: Buffer): FetchResult {
+		if (status === 404) {
+			return {
+				html: '',
+				buffer,
+				finalUrl,
+				status,
+				ok: false,
+				headers: this.headers(headers)
+			};
+		}
+		return {
+			html: buffer.toString('utf8'),
+			buffer,
+			finalUrl,
+			status,
+			ok: status >= 200 && status < 300,
+			headers: this.headers(headers)
+		};
+	}
+
+	public async fetchHtml(url: string, opts: HttpFetchOptions): Promise<FetchResult> {
+		const { retries = 3 } = opts;
+
 		let lastError: Error | null = null;
 
 		for (let attempt = 0; attempt <= retries; attempt++) {
-			const pool = this.getPool(url);
-
 			try {
-				const {
-					statusCode,
-					headers: resHeaders,
-					body
-				} = await pool.request({
-					path: parsed.pathname + parsed.search,
-					method: 'GET',
-					headers: { ...mergedHeaders, 'X-Forwarded-For': this.fakeIP() }
-				});
+				const { statusCode, headers: resHeaders, body } = await this.createPoolRequest(url, opts);
 
-				if (statusCode === 404) {
-					return {
-						html: '',
-						buffer: Buffer.alloc(0),
-						finalUrl: url,
-						status: statusCode,
-						ok: false,
-						headers: this.headers(resHeaders)
-					};
-				}
+				if (statusCode === 404) return this.fetchOutput(url, statusCode, resHeaders, Buffer.alloc(0));
 
 				if (statusCode === 429 || statusCode >= 500) {
 					await this.delay(attempt);
@@ -77,14 +125,7 @@ export class HttpFetcherService {
 
 				const buffer = this.decodeBody(await this.readBody(body), resHeaders);
 
-				return {
-					html: buffer.toString('utf8'),
-					buffer,
-					finalUrl: url,
-					status: statusCode,
-					ok: statusCode >= 200 && statusCode < 300,
-					headers: this.headers(resHeaders)
-				};
+				return this.fetchOutput(url, statusCode, resHeaders, buffer);
 			} catch (error) {
 				lastError = error instanceof Error ? error : new Error(String(error));
 
@@ -94,14 +135,7 @@ export class HttpFetcherService {
 				}
 			}
 		}
-		throw new Error(`Failed to fetch ${url} after ${retries + 1} attempts: ${lastError?.message}`);
-	}
-
-	private async delay(attempt: number) {
-		const base = 300; // ms
-		const jitter = Math.random() * 200;
-		const delay = base * 2 ** attempt + jitter;
-		return new Promise((res) => setTimeout(res, delay));
+		throw new Error(`FAILED TO FETCH ${url} AFTER ${retries + 1} ATTEMPTS: ${lastError?.message}`);
 	}
 
 	private async handleServiceAware404(url: string, opts: DownloadOptions): Promise<HLSStreamRequest | null> {
@@ -113,14 +147,14 @@ export class HttpFetcherService {
 			const fallback = strategy.getFallbackUrl?.(url);
 
 			if (fallback && fallback !== url) {
-				console.warn(`[${opts.service}] CDN fallback:`, fallback);
+				console.warn(`\n[${opts.service}]\n CDN FALLBACK:`, fallback);
 
 				return this.requestStream(fallback, { ...opts, cdnFallbackCount: (opts.cdnFallbackCount ?? 0) + 1 });
 			}
 		}
 
 		if (strategy.shouldReExtract?.(url) && opts.reExtract && opts.pipelineItem && (opts.reExtractCount ?? 0) < this.MAX_RE_EXTRACT) {
-			console.warn(`[${opts.service}] HLS expired -> re-extracting`);
+			console.warn(`[${opts.service}] HLS EXPIRED -> RE-EXTRACTING...`);
 
 			const freshItem = await opts.reExtract(opts.pipelineItem);
 			const freshUrl = freshItem?.downloadUrl;
@@ -151,23 +185,23 @@ export class HttpFetcherService {
 
 		const directUrl = strategy.getDirectVideoUrlFromText?.(await body.text(), opts.avq);
 
-		if (!directUrl || directUrl === url) throw new Error(`Unable to resolve direct video URL from ${url}`);
+		if (!directUrl || directUrl === url) throw new Error(`UNABLE TO RESOLVE DIRECT VIDEO URL FROM ${url}`);
 
-		console.warn(`[${opts.service}] Direct MP4 resolved:`, directUrl);
+		console.warn(`\n[${opts.service}]\n DIRECT MP4 RESOLVED:`, directUrl);
 
 		return this.requestStream(directUrl, opts);
 	}
 
 	public async requestStream(url: string, opts: DownloadOptions): Promise<HLSStreamRequest> {
 		const { headers = {}, timeoutMs = 30_000, retries = 3 } = opts;
-		const mergedHeaders = { ...this.Default_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.fakeIP() };
+		const mergedHeaders = { ...this.Default_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.makeIP() };
 
 		let lastError: Error | null = null;
 
 		for (let attempt = 0; attempt <= retries; attempt++) {
 			try {
 				const response = await fetch(url, {
-					headers: { ...mergedHeaders, 'X-Forwarded-For': this.fakeIP() } as Record<string, string>,
+					headers: { ...mergedHeaders, 'X-Forwarded-For': this.makeIP() } as Record<string, string>,
 					redirect: 'follow',
 					referrer: opts.referer
 				});
@@ -225,13 +259,13 @@ export class HttpFetcherService {
 				}
 			}
 		}
-		throw new DownloadException(url, opts.service, '', { cause: lastError ?? new Error('Unknown error') });
+		throw new DownloadException(url, opts.service, '', { cause: lastError ?? new Error('UNKNOWN ERROR') });
 	}
 
 	private async readAndShowProgress(stream: Writable, res: Response, onProgress?: (event: JobProgressEvent) => void): Promise<void> {
 		const readable = Readable.fromWeb(res.body as any);
 
-		const totalBytes = Number(res.headers.get('content-length') || 0);
+		const size = Number(res.headers.get('content-length') || 0);
 		let downloaded = 0;
 		let lastEmit = 0;
 
@@ -242,45 +276,12 @@ export class HttpFetcherService {
 			if (now - lastEmit > 2000) {
 				lastEmit = now;
 
-				const percent = totalBytes ? Number(((downloaded / totalBytes) * 100).toFixed(2)) : undefined;
-
-				onProgress?.({
-					status: 'DOWNLOADING',
-					downloadedBytes: downloaded,
-					totalBytes,
-					percent
-				});
+				onProgress?.({ status: 'DOWNLOADING', progress: progressMapper(downloaded, size) });
 			}
 		});
 
 		await pipeline(readable, stream);
 
-		onProgress?.({
-			status: 'COMPLETED',
-			downloadedBytes: downloaded,
-			totalBytes,
-			percent: 100
-		});
-	}
-
-	private async readBody(body: AsyncIterable<any>): Promise<Buffer> {
-		const chunks: Buffer[] = [];
-		for await (const c of body) chunks.push(Buffer.from(c));
-		return Buffer.concat(chunks);
-	}
-
-	private decodeBody(buffer: Buffer, headers: IncomingHttpHeaders): Buffer {
-		const enc = headers['content-encoding'];
-		if (!enc) return buffer;
-
-		if (enc.includes('gzip')) return gunzipSync(buffer);
-		if (enc.includes('deflate')) return inflateSync(buffer);
-		if (enc.includes('br')) return brotliDecompressSync(buffer);
-
-		return buffer;
-	}
-
-	private headers(headers: IncomingHttpHeaders): Record<string, string> {
-		return Object.fromEntries(Object.entries(headers).map(([k, v]) => [k, Array.isArray(v) ? v.join(',') : v || '']));
+		onProgress?.({ status: 'COMPLETED', progress: progressMapper(downloaded, size) });
 	}
 }
