@@ -2,7 +2,7 @@ import { emitProgress } from '../helpers/Emitter';
 import { PipelineService } from '../pipelines';
 import { TransformerService } from '../transformers';
 import { ExecutionArgs, ExecutionResult, OutputType, PipelineHook, PipelineItem } from '../util';
-import { BackgroundService } from './BackgroundProcess';
+import { BackgroundService } from './BackgroundService';
 
 export class JobService {
 	private static readonly Default_EXTRACT_CONCURRENCY = 3;
@@ -90,7 +90,7 @@ export class JobService {
 				status,
 				target,
 				totalTargets: totalExtractTargets,
-				...(status === 'EXTRACTED' ? { extracted: extractedCount } : {})
+				extracted: extractedCount
 			});
 		};
 

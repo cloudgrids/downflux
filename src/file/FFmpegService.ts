@@ -3,6 +3,8 @@ import ffmpegPath from 'ffmpeg-static';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { promisify } from 'util';
+import { emitSegmentProgress } from '../helpers';
+import { DownloadOptions } from '../util';
 
 const execFileAsync = promisify(execFile);
 
@@ -11,7 +13,7 @@ export class FfmpegService {
 		return ffmpegPath ?? 'ffmpeg';
 	}
 
-	public async reMuxTransportStream(inputPath: string) {
+	public async reMuxTransportStream(inputPath: string, dOptions: DownloadOptions) {
 		if (!ffmpegPath) throw new Error('ffmpeg-static not found');
 
 		const dir = path.dirname(inputPath);
@@ -20,7 +22,7 @@ export class FfmpegService {
 		const outputPath = path.join(dir, `${base}.mp4`);
 		const filename = `${base}.mp4`;
 
-		console.log(`Re-muxing ${inputPath} to ${outputPath} using ffmpeg...`);
+		emitSegmentProgress(dOptions, { status: 'RE_MUX', message: `Re-muxing ${inputPath} to ${outputPath} using ffmpeg...` });
 
 		try {
 			await execFileAsync(ffmpegPath, [

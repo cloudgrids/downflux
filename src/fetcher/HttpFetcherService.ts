@@ -4,7 +4,6 @@ import { Dispatcher, Pool, interceptors } from 'undici';
 import { IncomingHttpHeaders } from 'undici/types/header';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
 import { DownloadException, NotFoundException } from '../exceptions';
-import { progressMapper } from '../helpers/BytesMapper';
 import { detectHlsContainer } from '../helpers/DetectHlsContainer';
 import { getFetchStrategy } from '../strategies/Strategies';
 import { DownloadOptions, FetchResult, HLSStreamRequest, HttpFetchOptions, JobProgressEvent } from '../util';
@@ -143,18 +142,23 @@ export class HttpFetcherService {
 
 		if (!strategy) return null;
 
-		if (strategy.shouldFallback404?.(url) && (opts.cdnFallbackCount ?? 0) < this.MAX_CDN_FALLBACK) {
-			const fallback = strategy.getFallbackUrl?.(url);
+		if (strategy.shouldFallback404?.(url, opts) && (opts.cdnFallbackCount ?? 0) < this.MAX_CDN_FALLBACK) {
+			const fallback = strategy.getFallbackUrl?.(url, opts);
 
 			if (fallback && fallback !== url) {
-				console.warn(`\n[${opts.service}]\n CDN FALLBACK:`, fallback);
+				opts.onProgress?.({ status: 'DOWNLOADING', message: `[${opts.service}] CDN FALLBACK: ${fallback}` });
 
 				return this.requestStream(fallback, { ...opts, cdnFallbackCount: (opts.cdnFallbackCount ?? 0) + 1 });
 			}
 		}
 
-		if (strategy.shouldReExtract?.(url) && opts.reExtract && opts.pipelineItem && (opts.reExtractCount ?? 0) < this.MAX_RE_EXTRACT) {
-			console.warn(`[${opts.service}] HLS EXPIRED -> RE-EXTRACTING...`);
+		if (
+			strategy.shouldReExtract?.(url, opts) &&
+			opts.reExtract &&
+			opts.pipelineItem &&
+			(opts.reExtractCount ?? 0) < this.MAX_RE_EXTRACT
+		) {
+			opts.onProgress?.({ status: 'DOWNLOADING', message: `[${opts.service}] HLS EXPIRED -> RE-EXTRACTING...` });
 
 			const freshItem = await opts.reExtract(opts.pipelineItem);
 			const freshUrl = freshItem?.downloadUrl;
@@ -181,13 +185,19 @@ export class HttpFetcherService {
 	): Promise<HLSStreamRequest | null> {
 		const strategy = getFetchStrategy(opts.service);
 
-		if (!strategy?.shouldResolveTextResponse?.(url, contentType)) return null;
+		const shouldResolve = strategy?.shouldResolveTextResponse?.(url, contentType, opts);
+		if (!shouldResolve) return null;
 
-		const directUrl = strategy.getDirectVideoUrlFromText?.(await body.text(), opts.avq);
+		opts.onProgress?.({
+			status: 'DOWNLOADING',
+			message: `${shouldResolve ? 'TEXT RESPONSE IS NEEDED TO BE RESOLVED' : 'NO NEED TO RESOLVE TEXT RESPONSE'} FOR ${url} WITH CONTENT TYPE ${contentType}`
+		});
+
+		const directUrl = strategy?.getDirectVideoUrlFromText?.(await body.text(), opts);
 
 		if (!directUrl || directUrl === url) throw new Error(`UNABLE TO RESOLVE DIRECT VIDEO URL FROM ${url}`);
 
-		console.warn(`\n[${opts.service}]\n DIRECT MP4 RESOLVED:`, directUrl);
+		opts.onProgress?.({ status: 'DOWNLOADING', message: `\n[${opts.service}]\n DIRECT MP4 RESOLVED: ${directUrl}` });
 
 		return this.requestStream(directUrl, opts);
 	}
@@ -211,6 +221,8 @@ export class HttpFetcherService {
 				const responseHeaders = Object.fromEntries(response.headers.entries());
 
 				if (response.status === 404) {
+					opts.onProgress?.({ status: 'DOWNLOADING', message: `GOT A 404 STATUS FROM ${url}\n SWITCHING TO SERVICE AWARE 404` });
+
 					const serviceResult = await this.handleServiceAware404(url, opts);
 					if (serviceResult) return serviceResult;
 
@@ -226,8 +238,9 @@ export class HttpFetcherService {
 				if (resolvedTextResponse) return resolvedTextResponse;
 
 				if (this.hlsFetchService.isHlsManifest(contentType, finalUrl)) {
+					opts?.onProgress?.({ status: 'DOWNLOADING', message: 'FOUND HLS MANIFEST, SWITCHING TO HLS STREAM' });
 					/**
-					 * references file with extensions .m3u or content-type containing 'mpegurl'
+					 * References file with extensions .m3u or content-type containing 'mpegurl'
 					 * For more reference check the HLSManifest.m3u file in the src/fetcher directory
 					 */
 					const manifest = await response.text();
@@ -276,12 +289,22 @@ export class HttpFetcherService {
 			if (now - lastEmit > 2000) {
 				lastEmit = now;
 
-				onProgress?.({ status: 'DOWNLOADING', progress: progressMapper(downloaded, size) });
+				onProgress?.({
+					status: 'DOWNLOADING',
+					progress: size ? (downloaded / size) * 100 : 0,
+					downloadedBytes: downloaded,
+					totalBytes: size
+				});
 			}
 		});
 
 		await pipeline(readable, stream);
 
-		onProgress?.({ status: 'COMPLETED', progress: progressMapper(downloaded, size) });
+		onProgress?.({
+			status: 'COMPLETED',
+			progress: 100,
+			downloadedBytes: downloaded,
+			totalBytes: size
+		});
 	}
 }

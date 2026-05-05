@@ -2,7 +2,16 @@ import { createWriteStream, promises as fs, mkdirSync, writeFileSync } from 'fs'
 import { dirname, extname, isAbsolute, relative, resolve } from 'path';
 import { Writable } from 'stream';
 import { InvalidDestinationException } from '../exceptions';
-import { CreateSinkInput, CreateSinkOutput, ExecutionResult, MIME_TYPE, OutputType, ResolvedFile, ServiceType } from '../util';
+import {
+	CreateSinkInput,
+	CreateSinkOutput,
+	DownloadOptions,
+	ExecutionResult,
+	MIME_TYPE,
+	OutputType,
+	ResolvedFile,
+	ServiceType
+} from '../util';
 import { FfmpegService } from './FFmpegService';
 import { PathBuilderService } from './PathBuilderService';
 
@@ -65,7 +74,7 @@ export class FileService {
 		return {
 			stream,
 			finalize: async (resolved: ResolvedFile, headers: Record<string, string>): Promise<CreateSinkOutput> => {
-				const finalized = await this.finalizeStream(finalPath, {
+				const finalized = await this.finalizeStream(finalPath, sinkInput.dOptions, {
 					extension: resolved.extension,
 					mimeType: MIME_TYPE[resolved.extension] ?? headers['content-type']?.split(';')[0]?.trim()
 				});
@@ -85,13 +94,13 @@ export class FileService {
 		};
 	}
 
-	public async finalizeStream(finalPath: string, opts?: { extension?: string; mimeType?: string }) {
+	public async finalizeStream(finalPath: string, dOptions: DownloadOptions, opts?: { extension?: string; mimeType?: string }) {
 		const extension = opts?.extension ?? extname(finalPath).substring(1).toLowerCase();
 		const mimeType = opts?.mimeType ?? MIME_TYPE[extension] ?? 'video/mp2t';
 
 		const isTsFile = finalPath.endsWith('.ts');
 
-		if (isTsFile) return this.ffmpegService.reMuxTransportStream(finalPath);
+		if (isTsFile) return this.ffmpegService.reMuxTransportStream(finalPath, dOptions);
 
 		return {
 			path: finalPath,

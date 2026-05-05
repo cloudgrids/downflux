@@ -5,7 +5,6 @@ import {
 	MediaType,
 	PipelineExtractedItem,
 	PipelineItem,
-	ServiceType,
 	WallHavenExecArgs,
 	WallHavenMethods,
 	WallHavenOutput,
@@ -26,7 +25,7 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 					sourceUrl: request.entryUrl,
 					identifier: {
 						mediaType: item.mediaType,
-						...detectResourceType(item.url, ServiceType.WallHaven),
+						...detectResourceType(item.url, request),
 						key: this.buildIdentifier({
 							mediaType: item.mediaType,
 							metadata,

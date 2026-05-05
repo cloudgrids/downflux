@@ -4,7 +4,7 @@
  */
 export interface PornHubVideosOutput {
 	/** The username of the model */
-	username: string;
+	username?: string;
 
 	/** Fetched videos */
 	fetchedVideos: string;

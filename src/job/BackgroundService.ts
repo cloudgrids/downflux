@@ -34,7 +34,7 @@ export class BackgroundService {
 				return;
 			}
 
-			this.runExtractHooks(pipelineHooks, pipelineItem);
+			this.runExtractHooks(pipelineHooks, pipelineItem, options);
 
 			emitProgress(options, {
 				status: 'DOWNLOADING',
@@ -47,7 +47,7 @@ export class BackgroundService {
 			try {
 				const downloadResult = await this.downloaderService.download(pipelineItem, {
 					...options,
-					avq: request?.allowedVideoQuality,
+					allowedVideoQuality: request?.allowedVideoQuality,
 					outputType,
 					service: request.service,
 					onSegmentProgress: emitSegmentProgress.bind(this, options),
@@ -62,7 +62,7 @@ export class BackgroundService {
 
 				result.downloaded++;
 
-				this.runDownloadHooks(pipelineHooks, pipelineItem, downloadResult);
+				this.runDownloadHooks(pipelineHooks, pipelineItem, downloadResult, options);
 
 				emitProgress(options, {
 					status: 'DOWNLOADED',
@@ -79,7 +79,6 @@ export class BackgroundService {
 
 				result.errors.push(normalizedError);
 
-				console.error(`Error DOWNLOADING ${pipelineItem.downloadUrl}:`, err);
 				emitProgress(options, {
 					status: 'FAILED',
 					totalItems: result.pipelineItems.length,
@@ -99,21 +98,21 @@ export class BackgroundService {
 		});
 	}
 
-	private runExtractHooks(hooks: PipelineHook[], item: PipelineItem): void {
+	private runExtractHooks(hooks: PipelineHook[], item: PipelineItem, options: JobOptions): void {
 		void Promise.allSettled(hooks.map((hook) => hook.onExtract?.(item))).then((results) => {
 			for (const hookResult of results) {
 				if (hookResult.status === 'rejected') {
-					console.error('onExtract hook failed:', hookResult.reason);
+					emitProgress(options, { status: 'EXTRACTION-HOOK', error: hookResult.reason });
 				}
 			}
 		});
 	}
 
-	private runDownloadHooks(hooks: PipelineHook[], item: PipelineItem, result: DownloadResult): void {
+	private runDownloadHooks(hooks: PipelineHook[], item: PipelineItem, result: DownloadResult, options: JobOptions): void {
 		void Promise.allSettled(hooks.map((hook) => hook.onDownload?.({ item, result }))).then((results) => {
 			for (const hookResult of results) {
 				if (hookResult.status === 'rejected') {
-					console.error('onDownload hook failed:', hookResult.reason);
+					emitProgress(options, { status: 'DOWNLOAD-HOOK', error: hookResult.reason });
 				}
 			}
 		});
@@ -149,7 +148,10 @@ export class BackgroundService {
 		result: ExecutionResult<T>
 	): void {
 		this.processDownloadsInBackground(options, outputType, request, pipelineHooks, result).catch((err) => {
-			console.error('Background download pipeline error:', err);
+			emitProgress(options, {
+				status: 'FAILED',
+				error: { name: 'BackgroundProgress', cause: err, message: 'Background download pipeline error:' }
+			});
 		});
 	}
 }

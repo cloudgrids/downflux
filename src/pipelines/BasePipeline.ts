@@ -1,13 +1,5 @@
 import { detectResourceType } from '../helpers';
-import {
-	DefaultExtractorResult,
-	ExecutionArgs,
-	IdentifierContext,
-	MediaType,
-	PipelineExtractedItem,
-	PipelineItem,
-	ServiceType
-} from '../util';
+import { DefaultExtractorResult, ExecutionArgs, IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem } from '../util';
 
 export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
 	public build(metadata: TResult, request: TExec): PipelineItem[] {
@@ -20,7 +12,7 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtracto
 					sourceUrl: request.entryUrl,
 					identifier: {
 						mediaType,
-						...detectResourceType(url, ServiceType.Default),
+						...detectResourceType(url, request),
 						key: this.buildIdentifier({
 							mediaType,
 							metadata,

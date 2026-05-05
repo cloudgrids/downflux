@@ -1,54 +1,64 @@
-import { PornHubMediaDefinition, ServiceFetchStrategy } from '../util';
+import { PornHubMediaDefinition, ServiceFetchStrategy, VideoQuality } from '../util';
 
 export const PornHubFetchStrategy: ServiceFetchStrategy = {
 	shouldFallback404: (url) => url.includes('phncdn.com'),
 
-	getFallbackUrl: (url) => {
-		console.log('Checking if fallback URL is needed for URL[Switching CDN]:', url);
+	getFallbackUrl: (url, opts) => {
+		opts.onProgress?.({ message: `\nCHECKING IF FALLBACK URL IS NEEDED FOR URL[Switching CDN]:${url}`, status: 'DOWNLOADING' });
+
 		if (url.includes('iv-h')) return url.replace('iv-h', 'ev-h');
 		if (url.includes('ev-h')) return url.replace('ev-h', 'iv-h');
 		return null;
 	},
 
-	shouldReExtract: (url) => {
-		console.log('Checking if re-extraction is needed for URL:', url);
+	shouldReExtract: (url, opts) => {
+		opts.onProgress?.({ message: `\nCHECKING IF RE-EXTRACTION IS NEEDED FOR URL::${url}`, status: 'DOWNLOADING' });
+
 		return url.includes('phncdn.com') && url.includes('.m3u8');
 	},
 
 	shouldResolveTextResponse: (url, contentType) => {
-		console.log('Checking if text response is needed to be resolved for URL:', url, 'with content type:', contentType);
 		return (
 			(url.includes('/get_file/') || url.includes('/get_media')) &&
 			(contentType.includes('text/') || contentType.includes('application/json'))
 		);
 	},
 
-	getDirectVideoUrlFromText: (body, preferredQuality) => {
-		console.log('Attempting to resolve direct video URL from text response with preferred quality:', preferredQuality);
+	getDirectVideoUrlFromText: (body, opts) => {
+		opts.onProgress?.({
+			status: 'DOWNLOADING',
+			message: `GET DIRECT VIDEO URL FROM TEXT RESPONSE FOR PREFERRED QUALITY, ${opts?.allowedVideoQuality}`
+		});
 
 		const normalized = body.replace(/\\\//g, '/').replace(/&amp;/g, '&');
 
-		console.log('Normalized text response for URL resolution');
-
+		opts.onProgress?.({
+			status: 'DOWNLOADING',
+			message: 'NORMALIZE TEXT RESPONSE FOR URL RESOLUTION'
+		});
 		try {
 			const definitions = JSON.parse(normalized) as PornHubMediaDefinition[];
 			if (Array.isArray(definitions)) {
-				console.log('Parsed media definitions from text response:', definitions.length, 'definitions found');
+				opts.onProgress?.({
+					status: 'DOWNLOADING',
+					message: `PARSED MEDIA DEFINITIONS LENGTH FROM TEXT RESPONSE:, ${definitions.length}`
+				});
 
-				const mp4Definitions = definitions.filter((definition) => definition.format === 'mp4' && definition.videoUrl);
-				const preferred = preferredQuality
-					? mp4Definitions.find((definition) => normalizeQuality(definition) === preferredQuality)
-					: undefined;
+				const mp4Definitions = definitions
+					.filter((definition) => definition.format === 'mp4' && definition.videoUrl)
+					.sort((a, b) => (b?.height || 0) - (a?.height || 0));
 
-				return (
-					preferred?.videoUrl ??
-					mp4Definitions.find((definition) => definition.defaultQuality)?.videoUrl ??
-					mp4Definitions[0]?.videoUrl ??
-					null
-				);
+				const preferred = opts?.allowedVideoQuality
+					? mp4Definitions?.find((definition) => !!normalizeQuality(definition, opts?.allowedVideoQuality))?.videoUrl
+					: mp4Definitions[0]?.videoUrl;
+
+				return preferred ?? null;
 			}
 		} catch {
-			// Fall back to EXTRACTING a URL from non-JSON text responses.
+			opts.onProgress?.({
+				status: 'DOWNLOADING',
+				message: 'Fall back to extracting a URL from non-JSON text responses.'
+			});
 		}
 
 		const match = normalized.match(/https?:\/\/[^\s"'<>\\]+\.mp4(?:\?[^\s"'<>\\]*)?/i);
@@ -56,10 +66,6 @@ export const PornHubFetchStrategy: ServiceFetchStrategy = {
 	}
 };
 
-function normalizeQuality(definition: PornHubMediaDefinition): string | undefined {
-	const quality = Array.isArray(definition.quality) ? definition.quality[0] : definition.quality;
-	if (quality) return quality.endsWith('p') ? quality : `${quality}p`;
-	if (definition.height) return `${definition.height}p`;
-
-	return undefined;
+function normalizeQuality(definition: PornHubMediaDefinition, preferred?: VideoQuality): boolean | undefined {
+	if (definition.height && preferred) return `${definition.height}p` === preferred;
 }

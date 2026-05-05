@@ -25,6 +25,7 @@ export class DownloaderService {
 
 		const { stream, finalize } = this.fileService.createSink({
 			service,
+			dOptions: opts,
 			type: outputType as OutputType,
 			directoryPath: dirConfig?.directoryPath,
 			filename: resolvedFile.originalFilename,
