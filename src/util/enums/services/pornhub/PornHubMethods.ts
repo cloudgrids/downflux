@@ -12,5 +12,5 @@ export enum PornHubMethods {
 	getTag = 'getTag',
 
 	/** Model videos extraction */
-	getModelVideos = 'getModelVideos'
+	getVideos = 'getVideos'
 }

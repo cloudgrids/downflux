@@ -5,6 +5,7 @@
 
 # Output directories
 /downflux_
+/DownFlux
 /test
 /test/
 # Logs

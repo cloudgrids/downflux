@@ -1,15 +1,16 @@
 import { GenericException, InvalidUrlException } from '../exceptions';
 import {
-	IndexRange,
+	PageRange,
 	PornHubExecArgs,
 	PornHubMethods,
-	PornHubModelVideosExecArgs,
 	PornHubVideoExecArgs,
 	PornHubVideoOutput,
+	PornHubVideosExecArgs,
+	PornHubVideosFormat,
 	ServiceType,
 	UrlType
 } from '../util';
-import { PornHubModelVideosOutput } from '../util/interfaces/services/pornhub/PornHubModelVideosOutput';
+import { PornHubVideosOutput } from '../util/interfaces/services/pornhub/PornHubVideosOutput';
 import { BaseService } from './BaseService';
 
 /**
@@ -21,13 +22,10 @@ import { BaseService } from './BaseService';
  */
 export class PornHubService extends BaseService<PornHubExecArgs> {
 	private BASE_URL = 'https://www.pornhub.com';
-	private readonly Default_INDEX_RANGE: IndexRange = { start: 1, end: 1 };
+	private readonly Default_PAGE_RANGE: PageRange = { page: 1, limit: 1 };
+	private readonly PORN_HUB_FORMATS = ['pornstar', 'model', 'channel'] as const;
+	private readonly FORMAT_SET = new Set<string>(this.PORN_HUB_FORMATS);
 
-	/**
-	 * Creates a PornHub service instance.
-	 * @param url PornHub URL (e.g., video URL or model URL)
-	 * @throws InvalidUrlException When the URL is not a valid PornHub video URL
-	 */
 	constructor(url: string) {
 		super(url);
 		this.validateUrl(url);
@@ -51,16 +49,37 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 		return `${this.BASE_URL}/model`;
 	}
 
-	private getModelUrl(username: string): string {
-		return `${this.MODEL_URL}/${username}`;
+	get CHANNEL_URL() {
+		return `${this.BASE_URL}/channel`;
 	}
 
-	private getModelVideosUrl(username: string): string {
-		return `${this.getModelUrl(username)}/videos?page=`;
+	get PORN_STAR_URL() {
+		return `${this.BASE_URL}/pornstar`;
 	}
 
-	private getVideoUrl(viewKey: string): string {
-		return `${this.VIDEO_URL}${viewKey}`;
+	private getUrl(key: string, addPage: boolean = false, type: PornHubVideosFormat | 'video' = 'video'): string {
+		let url: string;
+		switch (type) {
+			case 'channel':
+				url = `${this.CHANNEL_URL}/${key}`;
+				break;
+			case 'model':
+				url = `${this.MODEL_URL}/${key}`;
+				break;
+			case 'video':
+				url = `${this.VIDEO_URL}${key}`;
+				break;
+			case 'pornstar':
+				url = `${this.PORN_STAR_URL}/${key}`;
+				break;
+			default:
+				url = '';
+		}
+		return addPage ? url.concat('/videos?page=') : url;
+	}
+
+	private isVideosFormat(value: string): value is PornHubVideosFormat {
+		return this.FORMAT_SET.has(value);
 	}
 
 	/**
@@ -72,32 +91,55 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 	 */
 	public async getVideo(args: PornHubVideoExecArgs): Promise<PornHubVideoOutput> {
 		const urlObj = new URL(this.url);
-		const _viewKey = args.viewKey || urlObj.searchParams.get('viewkey');
+		const viewKey = args.viewKey || urlObj.searchParams.get('viewkey');
 
-		if (!_viewKey) throw new GenericException('View key not found', ServiceType.PornHub, PornHubMethods.getVideo);
+		if (!viewKey) throw new GenericException('View key not found', ServiceType.PornHub, PornHubMethods.getVideo);
 
 		return await this.execute<PornHubVideoOutput>({
-			targets: [this.getVideoUrl(_viewKey)],
+			targets: [this.getUrl(viewKey)],
 			method: PornHubMethods.getVideo,
 			service: ServiceType.PornHub,
 			urlType: UrlType.SOURCES,
 			allowedVideoQuality: args.quality,
 			returnType: 'object',
-			videoArgs: { viewKey: _viewKey, quality: args.quality }
+			videoArgs: { viewKey, quality: args.quality }
 		});
 	}
 
-	public async getModelVideos(
-		args: PornHubModelVideosExecArgs,
-		range: IndexRange = this.Default_INDEX_RANGE
-	): Promise<PornHubModelVideosOutput[]> {
-		if (!args.username) throw new GenericException('Username is required', ServiceType.PornHub, PornHubMethods.getModelVideos);
+	/**
+	 * @returns `PornHubVideosOutput[]` containing video urls
+	 * @throws `GenericException` when the username or type is missing, usually derived from URL if exists
+	 */
+	public async getVideos(args: PornHubVideosExecArgs = {}, range: PageRange = this.Default_PAGE_RANGE): Promise<PornHubVideosOutput[]> {
+		let type = args.type;
 
-		return await this.execute<PornHubModelVideosOutput[]>({
-			...this.makeTargets(this.getModelVideosUrl(args.username), range, ServiceType.PornHub, PornHubMethods.getModelVideos, false),
+		const url = new URL(this.url);
+		const pathParts = url.pathname.split('/').filter(Boolean);
+
+		const username = args.username || pathParts[1];
+		const currentPage = Number(url.searchParams.get('page') ?? 1);
+
+		if (!username) throw new GenericException('Username is required', ServiceType.PornHub, PornHubMethods.getVideos);
+
+		if (pathParts?.length) {
+			if (!this.isVideosFormat(pathParts[0])) {
+				throw new GenericException('Invalid format', ServiceType.PornHub, PornHubMethods.getVideos);
+			}
+
+			type = pathParts[0];
+		}
+
+		return await this.execute<PornHubVideosOutput[]>({
+			...this.makeTargets(
+				this.getUrl(username, true, type),
+				{ page: currentPage, limit: range.limit },
+				ServiceType.PornHub,
+				PornHubMethods.getVideos,
+				false
+			),
 			returnType: 'array',
 			urlType: UrlType.ANCHORS,
-			modelVideosArgs: args
+			videosArgs: { ...args, username, type }
 		});
 	}
 }

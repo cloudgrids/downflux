@@ -16,6 +16,3 @@ export const progressMapper = (downloadedBytes: number, totalBytes?: number): st
 	const percentage = totalBytes ? ((downloadedBytes / totalBytes) * 100).toFixed(2) : 'Unknown';
 	return `${bytesMapper(downloadedBytes, totalBytes)} (${percentage}%)`;
 };
-
-console.log(bytesMapper(123456789));
-console.log(bytesMapper(123456789, 987654321));

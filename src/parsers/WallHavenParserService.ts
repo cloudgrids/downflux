@@ -1,5 +1,12 @@
 import path from 'path';
-import { DefaultExtractorResult, WallHavenOutput, WallHavenThumbnailQuality, WallHavenUserFavoriteCollectionsOutput } from '../util';
+import { GenericException } from '../exceptions';
+import {
+	DefaultExtractorResult,
+	ServiceType,
+	WallHavenOutput,
+	WallHavenThumbnailQuality,
+	WallHavenUserFavoriteCollectionsOutput
+} from '../util';
 import { BaseParserService } from './BaseParserService';
 
 export class WallHavenParserService extends BaseParserService {
@@ -11,22 +18,25 @@ export class WallHavenParserService extends BaseParserService {
 		const [dimensionX, dimensionY] = resolution?.split('x')?.map((a) => Number(a)) ?? [];
 		const uploader = description.split("'")[0];
 		const ratio = dimensionX && dimensionY ? (dimensionY / dimensionX).toFixed(2) : '0.00';
-
-		return {
-			description,
-			sourceUrl,
-			customFields: {
-				resolution,
-				tags,
-				uploader,
-				dimensionX,
-				dimensionY,
-				ratio,
-				collections: this.extractCollectionData(html),
-				totalContents: Number(this.extractElementText(html, 'class="far fa-fw fa-gap fa-images"></i>', '</') ?? 0),
-				...this.extractDefinitionList(html)
-			} as Partial<WallHavenOutput>
-		};
+		try {
+			return {
+				description,
+				sourceUrl,
+				customFields: {
+					resolution,
+					tags,
+					uploader,
+					dimensionX,
+					dimensionY,
+					ratio,
+					collections: this.extractCollectionData(html),
+					totalContents: Number(this.extractElementText(html, 'class="far fa-fw fa-gap fa-images"></i>', '</') ?? 0),
+					...this.extractDefinitionList(html)
+				} as Partial<WallHavenOutput>
+			};
+		} catch (error) {
+			throw new GenericException('Unable to parse some fields:', ServiceType.WallHaven, 'WallHavenParserService', { cause: error });
+		}
 	}
 
 	public extractCollectionData(html: string): WallHavenUserFavoriteCollectionsOutput[] {
