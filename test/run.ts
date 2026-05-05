@@ -4,7 +4,6 @@ async function main() {
 	const pornHubUrl = 'https://www.pornhub.org/view_video.php?viewkey=69e37154ee7e2';
 	const okPornUrl = 'https://ok.porn/video/253305/';
 	console.log(`\n\n=== Testing:`);
-	// const dir = 'downflux_';
 	const dir = '/Users/arijit/Downloads/';
 	// 736213
 
@@ -16,7 +15,7 @@ async function main() {
 		// 	.setOutput(OutputType.JSON, { directoryPath: dir })
 		// 	.getModelVideos({ username: 'comatozze', format: 'path' });
 
-		await new PornHubService('https://www.pornhub.org/view_video.php?viewkey=ph5f5abd54845f0')
+		await new PornHubService('https://www.pornhub.org/view_video.php?viewkey=67aef08fd7499')
 			.setJobOptions({ logProgress: true })
 			.onProgress(console.log)
 			.setTransformOutput(true)

@@ -9,7 +9,7 @@ import { PathBuilderService } from './PathBuilderService';
 export class FileService {
 	private readonly pathBuilder = new PathBuilderService();
 	private readonly ffmpegService = new FfmpegService();
-	private readonly baseDir = 'downflux_';
+	private readonly baseDir = 'DownFlux';
 
 	public createSink(sinkInput: CreateSinkInput) {
 		switch (sinkInput.type) {

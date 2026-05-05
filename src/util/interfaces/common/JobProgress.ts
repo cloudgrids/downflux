@@ -28,7 +28,5 @@ export interface JobProgressEvent {
 	item?: PipelineItem;
 	result?: Omit<DownloadResult, 'buffer'>;
 	error?: Error;
-	downloadedBytes?: number;
-	totalBytes?: number;
-	percent?: number;
+	progress?: string;
 }
