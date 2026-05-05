@@ -1,4 +1,4 @@
-import { OutputType, ServiceType, VideoQuality } from '../../enums';
+import { OutputType, ServiceType } from '../../enums';
 import { HttpFetchOptions, JobOptions, JobProgressEvent, PipelineItem } from '../common';
 
 export interface DownloadOptions extends HttpFetchOptions, JobOptions {
@@ -9,6 +9,4 @@ export interface DownloadOptions extends HttpFetchOptions, JobOptions {
 	pipelineItem?: PipelineItem;
 	reExtractCount?: number;
 	cdnFallbackCount?: number;
-	/** Allowed video quality */
-	avq?: VideoQuality;
 }

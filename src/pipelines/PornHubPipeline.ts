@@ -1,5 +1,5 @@
 import { detectResourceType, pathBuilder } from '../helpers';
-import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, PornHubExecArgs, PornHubOutput, ServiceType } from '../util';
+import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, PornHubExecArgs, PornHubOutput } from '../util';
 import { BasePipeline } from './BasePipeline';
 
 export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput> {
@@ -14,7 +14,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 					service: request.service,
 					identifier: {
 						mediaType: item.mediaType,
-						...detectResourceType(item.url, ServiceType.PornHub),
+						...detectResourceType(item.url, request),
 						key: this.buildIdentifier({
 							mediaType: item.mediaType,
 							metadata,

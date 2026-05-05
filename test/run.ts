@@ -15,13 +15,12 @@ async function main() {
 		// 	.setOutput(OutputType.JSON, { directoryPath: dir })
 		// 	.getModelVideos({ username: 'comatozze', format: 'path' });
 
-		await new PornHubService('https://www.pornhub.org/pornstar/josephine-jackson/videos')
+		await new PornHubService('https://www.pornhub.org/view_video.php?viewkey=67b91db8e4801')
 			.setJobOptions({ logProgress: true })
-			.onProgress(console.log)
 			.setTransformOutput(true)
-			// .setAllowedExtensions('mp4')
-			.setOutput(OutputType.JSON)
-			.getVideos();
+			.setAllowedExtensions('mp4')
+			.setOutput(OutputType.DEVICE, { directoryPath: dir })
+			.getVideo();
 
 		// await new OkPornService(okPornUrl)
 		// 	.setJobOptions({ logProgress: true })

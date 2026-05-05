@@ -16,7 +16,7 @@ export class HLSFetchService {
 		stream: Writable,
 		opts: DownloadOptions
 	): Promise<void> {
-		const variant = this.selectVariant(manifest, manifestUrl, opts?.avq);
+		const variant = this.selectVariant(manifest, manifestUrl, opts);
 		const playlistUrl = variant ?? manifestUrl;
 
 		const requestHeaders = this.buildHeaders(opts);
@@ -30,7 +30,7 @@ export class HLSFetchService {
 		const isFmp4 = !!initUrl;
 
 		// disable decrypt for fMP4
-		const keyInfo = isFmp4 ? null : this.parseKey(mediaManifest, playlistUrl);
+		const keyInfo = isFmp4 ? null : this.parseKey(mediaManifest, playlistUrl, opts);
 		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
 
 		if (initUrl) {
@@ -209,8 +209,9 @@ export class HLSFetchService {
 		return variants;
 	}
 
-	private selectVariant(manifest: string, base: string, preferred?: VideoQuality): string | null {
+	private selectVariant(manifest: string, base: string, opts: DownloadOptions): string | null {
 		const variants = this.getVariants(manifest, base);
+		const { allowedVideoQuality, onSegmentProgress } = opts;
 
 		if (!variants.length) return null;
 
@@ -221,10 +222,15 @@ export class HLSFetchService {
 			return b.bw - a.bw;
 		});
 
-		// If no preference, return best
-		if (!preferred || preferred === VideoQuality.QUnknown) return variants[0].url;
+		onSegmentProgress?.({
+			status: 'HLS-SEGMENTING',
+			message: `Preferred Quality: ${allowedVideoQuality ?? 'unknown'}\nFetched Variants length:${variants.length}}`
+		});
 
-		const targetHeight = this.mapQualityToHeight(preferred);
+		// If no preference, return best
+		if (!allowedVideoQuality || allowedVideoQuality === VideoQuality.QUnknown) return variants[0].url;
+
+		const targetHeight = this.mapQualityToHeight(allowedVideoQuality);
 
 		// 1. Best match <= target
 		const belowOrEqual = variants.find((v) => v.height <= targetHeight && v.height > 0);
@@ -241,8 +247,9 @@ export class HLSFetchService {
 		return variants[0].url;
 	}
 
-	private parseKey(manifest: string, base: string): ParseKey | null {
-		console.log('Parsing key from manifest...');
+	private parseKey(manifest: string, base: string, opts: DownloadOptions): ParseKey | null {
+		opts.onSegmentProgress?.({ status: 'HLS-SEGMENTING', message: 'Parsing key from manifest...' });
+
 		const match = manifest.match(/#EXT-X-KEY:METHOD=AES-128,URI="([^"]+)"/);
 
 		if (!match) return null;

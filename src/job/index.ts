@@ -1,2 +1,2 @@
-export * from './BackgroundProcess';
+export * from './BackgroundService';
 export * from './JobService';

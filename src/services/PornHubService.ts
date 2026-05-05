@@ -8,6 +8,7 @@ import {
 	PornHubVideosExecArgs,
 	PornHubVideosFormat,
 	ServiceType,
+	UrlFormat,
 	UrlType
 } from '../util';
 import { PornHubVideosOutput } from '../util/interfaces/services/pornhub/PornHubVideosOutput';
@@ -21,7 +22,6 @@ import { BaseService } from './BaseService';
  * @notes Please report any issues you encounter to help improve the service.
  */
 export class PornHubService extends BaseService<PornHubExecArgs> {
-	private BASE_URL = 'https://www.pornhub.com';
 	private readonly Default_PAGE_RANGE: PageRange = { page: 1, limit: 1 };
 	private readonly PORN_HUB_FORMATS = ['pornstar', 'model', 'channel'] as const;
 	private readonly FORMAT_SET = new Set<string>(this.PORN_HUB_FORMATS);
@@ -38,7 +38,10 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 			throw new InvalidUrlException(url, ServiceType.PornHub);
 		}
 		if (!url.includes('pornhub')) throw new InvalidUrlException(url, ServiceType.PornHub);
-		this.BASE_URL = new URL(url).origin;
+	}
+
+	get BASE_URL() {
+		return new URL(this.url).origin;
 	}
 
 	get VIDEO_URL() {
@@ -85,11 +88,11 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 	/**
 	 * @param viewKey refers to the ID https://pornhub.com/view_video.php?viewkey=ph5b2c8e1cbb9d `ph5b2c8e1cbb9d`
 	 * @defaultValue `viewKey` is collected from the entry URL query param if exists
-	 * @param quality allowed video quality (e.g., 720p, 1080p). If not specified, all available quality will be returned.
+	 * @param quality allowed video quality (e.g., 720p, 1080p). If not specified, highest quality will be returned.
 	 * @returns `PornHubVideoOutput` containing video metadata and source URLs
 	 * @throws `GenericException` When the view key is missing or invalid
 	 */
-	public async getVideo(args: PornHubVideoExecArgs): Promise<PornHubVideoOutput> {
+	public async getVideo(args: PornHubVideoExecArgs = {}): Promise<PornHubVideoOutput> {
 		const urlObj = new URL(this.url);
 		const viewKey = args.viewKey || urlObj.searchParams.get('viewkey');
 
@@ -140,6 +143,17 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 			returnType: 'array',
 			urlType: UrlType.ANCHORS,
 			videosArgs: { ...args, username, type }
+		});
+	}
+
+	public async getVideosFromAnyUrl(format?: UrlFormat): Promise<PornHubVideosOutput[]> {
+		return await this.execute<PornHubVideosOutput[]>({
+			targets: [this.url],
+			service: ServiceType.PornHub,
+			method: PornHubMethods.getVideos,
+			returnType: 'array',
+			urlType: UrlType.ANCHORS,
+			videosArgs: { format }
 		});
 	}
 }
