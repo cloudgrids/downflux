@@ -2,6 +2,7 @@ import { DownloaderService } from '../../../downloader';
 import { HttpFetcherService } from '../../../fetcher';
 import { JobService } from '../../../job';
 import { ProgressService } from '../../../progress/ProgressService';
+import { CliRenderer } from '../../../renderer/CliRenderer';
 import { StrategyService } from '../../../strategies';
 import { TransformerService } from '../../../transformers';
 
@@ -12,4 +13,5 @@ export interface ServiceDependencies {
 	jobService: JobService;
 	strategyService: StrategyService;
 	progressService: ProgressService;
+	cliRenderer: CliRenderer;
 }
