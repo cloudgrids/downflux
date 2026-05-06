@@ -45,7 +45,7 @@ const appendUniqueJsonToPaths = <T extends Record<string, string[]>>(file: strin
 	const jsonPath = join(process.cwd(), 'paths.json');
 
 	if (!names.length) {
-		console.error('Please provide at least one file name append in registry');
+		console.error('Please provide at least one file name to append in registry');
 		process.exit(1);
 	}
 

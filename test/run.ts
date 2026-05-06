@@ -15,7 +15,7 @@ async function main() {
 		// 	.setOutput(OutputType.JSON, { directoryPath: dir })
 		// 	.getModelVideos({ username: 'comatozze', format: 'path' });
 
-		await new PornHubService('https://www.pornhub.org/view_video.php?viewkey=69c2ef082e7a6')
+		await new PornHubService('https://www.pornhub.org/view_video.php?viewkey=69ebd428a19a2')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setAllowedExtensions('mp4')
