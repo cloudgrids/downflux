@@ -1,5 +1,5 @@
-import { emitProgress } from '../helpers/Emitter';
 import { PipelineService } from '../pipelines';
+import { ProgressService } from '../progress';
 import { TransformerService } from '../transformers';
 import { ExecutionArgs, ExecutionResult, OutputType, PipelineHook, PipelineItem } from '../util';
 import { BackgroundService } from './BackgroundService';
@@ -9,7 +9,9 @@ export class JobService {
 
 	constructor(
 		private readonly transformerService: TransformerService,
-		private readonly backgroundService: BackgroundService
+		private readonly backgroundService: BackgroundService,
+		private readonly progressService: ProgressService,
+		private readonly pipelineService: PipelineService
 	) {}
 
 	public async execute<TResult, TArgs extends ExecutionArgs>(request: TArgs): Promise<ExecutionResult<TResult>> {
@@ -20,19 +22,14 @@ export class JobService {
 		const pipelineItems: PipelineItem[] = [];
 		const iterables: TResult[] = [];
 
-		emitProgress(options, {
-			status: 'STARTED',
-			totalTargets: targets.length,
-			downloaded: 0,
-			failed: 0
-		});
+		this.progressService.update({ status: 'STARTED', totalTargets: targets.length });
 
-		const { extractedCount, totalTargets, transformed } = await this.extractMetadataFromTargets<TResult, TArgs>(targets, request);
+		const transformed = await this.extractMetadataFromTargets<TResult, TArgs>(targets, request);
 
 		iterables.push(...transformed);
 
 		iterables.forEach((item) => {
-			const items = PipelineService.build<TResult, TArgs>(item, request);
+			const items = this.pipelineService.build<TResult, TArgs>(item, request);
 			pipelineItems.push(...items);
 		});
 
@@ -46,14 +43,7 @@ export class JobService {
 			pipelineItems
 		};
 
-		emitProgress(options, {
-			status: 'QUEUED',
-			totalTargets: totalTargets,
-			totalItems: result.pipelineItems.length,
-			extracted: extractedCount,
-			downloaded: result.downloaded,
-			failed: result.failed
-		});
+		this.progressService.update({ status: 'QUEUED', totalItems: result.pipelineItems.length });
 
 		switch (outputType) {
 			case OutputType.JSON:
@@ -72,51 +62,25 @@ export class JobService {
 		}
 	}
 
-	private async extractMetadataFromTargets<TResult, TArgs extends ExecutionArgs>(
-		targets: string[],
-		request: TArgs
-	): Promise<{ transformed: TResult[]; totalTargets: number; extractedCount: number }> {
+	private async extractMetadataFromTargets<TResult, TArgs extends ExecutionArgs>(targets: string[], request: TArgs): Promise<TResult[]> {
 		const extractConcurrency = request.extractConcurrency ?? JobService.Default_EXTRACT_CONCURRENCY;
 
 		const extractedChunks: TResult[][] = new Array(targets.length);
-		let totalExtractTargets = targets.length;
-		let extractedCount = 0;
-
-		const emitExtractProgress: ExecutionArgs['onExtractProgress'] = ({ status, target, countTarget }) => {
-			if (status === 'EXTRACTING' && countTarget) totalExtractTargets++;
-			if (status === 'EXTRACTED') extractedCount++;
-
-			emitProgress(request, {
-				status,
-				target,
-				totalTargets: totalExtractTargets,
-				extracted: extractedCount
-			});
-		};
 
 		await this.backgroundService.runWithConcurrency(targets, extractConcurrency, async (target, index) => {
-			emitExtractProgress({ status: 'EXTRACTING', target });
-
 			try {
 				const result = await this.transformerService.transform<TArgs, TResult>(target, {
 					...request,
 					entryUrl: target,
-					referer: target,
-					onExtractProgress: emitExtractProgress
+					referer: target
 				});
 
 				extractedChunks[index] = Array.isArray(result) ? result : [result];
-
-				emitExtractProgress({ status: 'EXTRACTED', target });
 			} catch (err) {
-				console.error(`Error EXTRACTING ${target}:`, err);
+				this.progressService.update({ error: { cause: err, name: 'Extraction Error', message: `Error EXTRACTING ${target}` } });
 			}
 		});
 
-		return {
-			transformed: extractedChunks.flat() as TResult[],
-			totalTargets: totalExtractTargets,
-			extractedCount
-		};
+		return extractedChunks.flat() as TResult[];
 	}
 }

@@ -2,6 +2,6 @@ export interface PornHubMediaDefinition {
 	defaultQuality?: boolean;
 	format?: string;
 	height?: number;
-	quality?: string[] | string;
+	quality?: string;
 	videoUrl?: string;
 }

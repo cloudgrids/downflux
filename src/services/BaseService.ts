@@ -165,7 +165,10 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 	}
 
 	protected async execute<TResult>(overrides?: Partial<TExec>): Promise<TResult> {
-		const result = await this.deps.jobService.execute<TResult, TExec>(this.buildRequest(overrides));
+		const request = this.buildRequest(overrides);
+		this.deps.progressService.init(request);
+
+		const result = await this.deps.jobService.execute<TResult, TExec>(request);
 
 		return result.extracted as TResult;
 	}

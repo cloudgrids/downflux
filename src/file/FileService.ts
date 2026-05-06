@@ -2,10 +2,12 @@ import { createWriteStream, promises as fs, mkdirSync, writeFileSync } from 'fs'
 import { dirname, extname, isAbsolute, relative, resolve } from 'path';
 import { Writable } from 'stream';
 import { InvalidDestinationException } from '../exceptions';
+import { ProgressService } from '../progress';
 import {
+	AllowedExtension,
 	CreateSinkInput,
 	CreateSinkOutput,
-	DownloadOptions,
+	ExecutionArgs,
 	ExecutionResult,
 	MIME_TYPE,
 	OutputType,
@@ -17,8 +19,13 @@ import { PathBuilderService } from './PathBuilderService';
 
 export class FileService {
 	private readonly pathBuilder = new PathBuilderService();
-	private readonly ffmpegService = new FfmpegService();
+
 	private readonly baseDir = 'DownFlux';
+
+	constructor(
+		private readonly ffmpegService: FfmpegService,
+		private readonly progressService: ProgressService
+	) {}
 
 	public createSink(sinkInput: CreateSinkInput) {
 		switch (sinkInput.type) {
@@ -74,7 +81,7 @@ export class FileService {
 		return {
 			stream,
 			finalize: async (resolved: ResolvedFile, headers: Record<string, string>): Promise<CreateSinkOutput> => {
-				const finalized = await this.finalizeStream(finalPath, sinkInput.dOptions, {
+				const finalized = await this.finalizeStream(finalPath, {
 					extension: resolved.extension,
 					mimeType: MIME_TYPE[resolved.extension] ?? headers['content-type']?.split(';')[0]?.trim()
 				});
@@ -94,13 +101,13 @@ export class FileService {
 		};
 	}
 
-	public async finalizeStream(finalPath: string, dOptions: DownloadOptions, opts?: { extension?: string; mimeType?: string }) {
+	public async finalizeStream(finalPath: string, opts?: { extension?: string; mimeType?: string }) {
 		const extension = opts?.extension ?? extname(finalPath).substring(1).toLowerCase();
 		const mimeType = opts?.mimeType ?? MIME_TYPE[extension] ?? 'video/mp2t';
 
 		const isTsFile = finalPath.endsWith('.ts');
 
-		if (isTsFile) return this.ffmpegService.reMuxTransportStream(finalPath, dOptions);
+		if (isTsFile) return this.ffmpegService.reMuxTransportStream(finalPath);
 
 		return {
 			path: finalPath,
@@ -190,5 +197,26 @@ export class FileService {
 		}
 
 		return finalPath;
+	}
+
+	public detectResourceType(url: string, request: ExecutionArgs): { mimeType: string; extension: AllowedExtension } {
+		const extension = this.getFileInfo(url).extension as AllowedExtension;
+
+		if (/(mp4|m3u8|webm|mov|mkv)$/.test(extension)) return { mimeType: `video/${extension}`, extension };
+		else if (/(mp3|wav|aac|flac|ogg)$/.test(extension)) return { mimeType: `audio/${extension}`, extension };
+		else if (/(jpg|jpeg|png|gif|webp)$/.test(extension)) return { mimeType: `image/${extension}`, extension };
+
+		switch (request.service) {
+			case ServiceType.PornHub: {
+				this.progressService.update({ message: `[${request.service}]Resolving resource type to default: ${url}` });
+
+				return { mimeType: 'video/mp4', extension: 'mp4' };
+			}
+			default: {
+				this.progressService.update({ message: `[${request.service}]Resolving resource type to default: ${url}` });
+
+				return { mimeType: 'application/octet-stream', extension: 'bin' };
+			}
+		}
 	}
 }

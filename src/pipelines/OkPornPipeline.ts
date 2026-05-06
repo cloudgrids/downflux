@@ -1,4 +1,4 @@
-import { detectResourceType, detectVideoQuality, pathBuilder } from '../helpers';
+import { detectVideoQuality, pathBuilder } from '../helpers';
 import { IdentifierContext, MediaType, OkPornExecArgs, OkPornOutput, PipelineExtractedItem, PipelineItem, VideoQuality } from '../util';
 import { BasePipeline } from './BasePipeline';
 
@@ -14,7 +14,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 					service: request.service,
 					identifier: {
 						mediaType: item.mediaType,
-						...detectResourceType(item.url, request),
+						...this.fileService.detectResourceType(item.url, request),
 						key: this.buildIdentifier({
 							mediaType: item.mediaType,
 							metadata,

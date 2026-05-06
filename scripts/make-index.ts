@@ -24,14 +24,16 @@ const makeIndex = async (directory: string) => {
 };
 
 const paths = [
-	'src/downloaders',
+	'src/downloader',
 	'src/exceptions',
 	'src/fetcher',
 	'src/file',
 	'src/helpers',
 	'src/job',
+	'src/logger',
 	'src/parsers',
 	'src/pipelines',
+	'src/progress',
 	'src/services',
 	'src/strategies',
 	'src/transformers',

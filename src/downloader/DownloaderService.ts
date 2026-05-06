@@ -1,12 +1,14 @@
 import { finished } from 'stream/promises';
 import { HttpFetcherService } from '../fetcher';
 import { FileService } from '../file';
+import { ProgressService } from '../progress';
 import { DownloadOptions, DownloadResult, OutputType, PipelineItem, ResolvedFile } from '../util';
 
 export class DownloaderService {
 	constructor(
 		protected readonly fileService: FileService,
-		protected readonly httpFetcherService: HttpFetcherService
+		protected readonly httpFetcherService: HttpFetcherService,
+		protected readonly progressService: ProgressService
 	) {}
 
 	public async download(item: PipelineItem, opts: DownloadOptions): Promise<DownloadResult> {
@@ -25,7 +27,6 @@ export class DownloaderService {
 
 		const { stream, finalize } = this.fileService.createSink({
 			service,
-			dOptions: opts,
 			type: outputType as OutputType,
 			directoryPath: dirConfig?.directoryPath,
 			filename: resolvedFile.originalFilename,
@@ -33,9 +34,7 @@ export class DownloaderService {
 		});
 
 		try {
-			await start(stream, (event) => {
-				opts.onSegmentProgress?.({ ...event, target: url });
-			});
+			await start(stream);
 
 			if (!stream.destroyed && !stream.writableEnded) stream.end();
 			await finished(stream);

@@ -118,13 +118,9 @@ export class WallHavenTransformer extends BaseTransformer<
 				urlType: UrlType.IMAGES
 			};
 
-			this.emitExtractProgress(wallPaperRequest, 'EXTRACTING', thumbnail.siteUrl);
-
 			const wallPaper = (await super.transform(thumbnail.siteUrl, wallPaperRequest)) as DefaultExtractorResult<
 				Partial<WallHavenOutput>
 			>;
-
-			this.emitExtractProgress(wallPaperRequest, 'EXTRACTED', thumbnail.siteUrl);
 
 			wallPapers.push(this.toWallPaperOutput(request, wallPaper));
 		}

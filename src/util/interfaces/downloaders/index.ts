@@ -1,2 +1,2 @@
 export * from './DownloadOptions';
-export * from './ServiceFetchStrategy';
+export * from './ServiceStrategy';

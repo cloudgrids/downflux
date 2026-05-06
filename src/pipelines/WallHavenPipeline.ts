@@ -1,5 +1,5 @@
 import path from 'path';
-import { detectResourceType, pathBuilder } from '../helpers';
+import { pathBuilder } from '../helpers';
 import {
 	IdentifierContext,
 	MediaType,
@@ -25,7 +25,7 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 					sourceUrl: request.entryUrl,
 					identifier: {
 						mediaType: item.mediaType,
-						...detectResourceType(item.url, request),
+						...this.fileService.detectResourceType(item.url, request),
 						key: this.buildIdentifier({
 							mediaType: item.mediaType,
 							metadata,

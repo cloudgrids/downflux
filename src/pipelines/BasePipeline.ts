@@ -1,7 +1,9 @@
-import { detectResourceType } from '../helpers';
+import { FileService } from '../file';
 import { DefaultExtractorResult, ExecutionArgs, IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem } from '../util';
 
 export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
+	constructor(protected fileService: FileService) {}
+
 	public build(metadata: TResult, request: TExec): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,
@@ -12,7 +14,7 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtracto
 					sourceUrl: request.entryUrl,
 					identifier: {
 						mediaType,
-						...detectResourceType(url, request),
+						...this.fileService.detectResourceType(url, request),
 						key: this.buildIdentifier({
 							mediaType,
 							metadata,
