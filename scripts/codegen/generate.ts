@@ -102,13 +102,13 @@ for (const svc of registry.services) {
 const members = registry.services.map((s) => `\t${s.name} = '${s.name}Service',`).join('\n');
 write('src/util/enums/common/ServiceType.ts', render(loadTemplate('enum.hbs'), { members }));
 
-// Generate Strategies
-const strategies = registry.services.filter((s) => s.strategy);
-const sImports = strategies.map((s) => `import { ${s.name}Strategy } from './${s.name}Strategy';`).join('\n');
+// Generate StrategyService registry (Strategies)
+const strategyServices = registry.services.filter((s) => s.strategy);
+const sImports = strategyServices.map((s) => `import { ${s.name}Strategy } from './${s.name}Strategy';`).join('\n');
 const sEntries = registry.services
 	.map((s) => `\t\t[ServiceType.${s.name}]: ${s.strategy ? `${s.name}Strategy` : 'BaseStrategy'}`)
 	.join(',\n');
-write('src/strategies/Strategies.ts', render(loadTemplate('strategies.hbs'), { imports: sImports, entries: sEntries }));
+write('src/strategies/Strategy.ts', render(loadTemplate('strategyService.hbs'), { imports: sImports, entries: sEntries }));
 
 // Generate HtmlParserService
 const parserServices = registry.services.filter((s) => s.parser);

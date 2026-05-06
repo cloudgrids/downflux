@@ -13,12 +13,13 @@ export class StrategyService {
 	) {}
 
 	private readonly strategies: Record<ServiceType, StrategyCtor> = {
-		[ServiceType.Coomer]: BaseStrategy,
-		[ServiceType.Default]: BaseStrategy,
 		[ServiceType.OkPorn]: BaseStrategy,
 		[ServiceType.PornHub]: PornHubStrategy,
 		[ServiceType.WallHaven]: BaseStrategy,
-		[ServiceType.XHamster]: BaseStrategy
+		[ServiceType.Coomer]: BaseStrategy,
+		[ServiceType.Default]: BaseStrategy,
+		[ServiceType.XHamster]: BaseStrategy,
+		[ServiceType.TnAFlix]: BaseStrategy
 	};
 
 	public getStrategy(service: ServiceType): BaseStrategy {

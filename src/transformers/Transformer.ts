@@ -6,6 +6,7 @@ import { OkPornTransformer } from './OkPornTransformer';
 import { PornHubTransformer } from './PornHubTransformer';
 import { WallHavenTransformer } from './WallHavenTransformer';
 import { XHamsterTransformer } from './XHamsterTransformer';
+import { TnAFlixTransformer } from './TnAFlixTransformer';
 
 type TransformerCtor = new (http: HttpFetcherService, progress: ProgressService) => BaseTransformer<any, any>;
 
@@ -16,7 +17,8 @@ export class TransformerService {
 		[ServiceType.WallHaven]: WallHavenTransformer,
 		[ServiceType.Coomer]: BaseTransformer,
 		[ServiceType.Default]: BaseTransformer,
-		[ServiceType.XHamster]: XHamsterTransformer
+		[ServiceType.XHamster]: XHamsterTransformer,
+		[ServiceType.TnAFlix]: TnAFlixTransformer
 	};
 
 	constructor(

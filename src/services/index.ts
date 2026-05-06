@@ -3,6 +3,7 @@ export * from './CoomerService';
 export * from './DefaultService';
 export * from './OkPornService';
 export * from './PornHubService';
+export * from './TnAFlixService';
 export * from './WallHavenService';
 export * from './XHamsterService';
 export * from './dependency';

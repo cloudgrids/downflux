@@ -4,5 +4,6 @@ export enum ServiceType {
 	WallHaven = 'WallHavenService',
 	Coomer = 'CoomerService',
 	Default = 'DefaultService',
-	XHamster = 'XHamsterService'
+	XHamster = 'XHamsterService',
+	TnAFlix = 'TnAFlixService'
 }
