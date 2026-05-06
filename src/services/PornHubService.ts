@@ -91,6 +91,7 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 	 * @param quality allowed video quality (e.g., 720p, 1080p). If not specified, highest quality will be returned.
 	 * @returns `PornHubVideoOutput` containing video metadata and source URLs
 	 * @throws `GenericException` When the view key is missing or invalid
+	 * @canDownload true
 	 */
 	public async getVideo(args: PornHubVideoExecArgs = {}): Promise<PornHubVideoOutput> {
 		const urlObj = new URL(this.url);
@@ -111,7 +112,10 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 
 	/**
 	 * @returns `PornHubVideosOutput[]` containing video urls
+	 * @notes This method does not download videos only returns array or urls
 	 * @throws `GenericException` when the username or type is missing, usually derived from URL if exists
+	 * @param args options parameter to specify username, type of videos and quality
+	 * @canDownload false
 	 */
 	public async getVideos(args: PornHubVideosExecArgs = {}, range: PageRange = this.Default_PAGE_RANGE): Promise<PornHubVideosOutput[]> {
 		let type = args.type;
@@ -146,6 +150,16 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 		});
 	}
 
+	/**
+	 * Fetches videos from any URL based on its format (model, channel, pornstar) and extracts video URLs without downloading them.
+	 * This method is useful for quickly retrieving video links from various page types without needing to specify the format explicitly.
+	 * @throws `GenericException` when the URL format is invalid or unsupported
+	 * @param format options parameter to specify format of the videos
+	 * @returns `PornHubVideosOutput[]` containing video urls
+	 * @notes This method does not download videos only returns array or urls
+	 * @notes The method will attempt to determine the format based on the URL structure and extract videos accordingly.
+	 * @canDownload false
+	 */
 	public async getVideosFromAnyUrl(format?: UrlFormat): Promise<PornHubVideosOutput[]> {
 		return await this.execute<PornHubVideosOutput[]>({
 			targets: [this.url],

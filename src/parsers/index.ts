@@ -3,3 +3,4 @@ export * from './HtmlParserService';
 export * from './OkPornParserService';
 export * from './PornHubParserService';
 export * from './WallHavenParserService';
+export * from './XHamsterParserService';

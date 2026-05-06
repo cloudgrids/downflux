@@ -3,14 +3,16 @@ import { BaseParserService } from './BaseParserService';
 import { OkPornParserService } from './OkPornParserService';
 import { PornHubParserService } from './PornHubParserService';
 import { WallHavenParserService } from './WallHavenParserService';
+import { XHamsterParserService } from './XHamsterParserService';
 
 export class HtmlParserService {
 	private static readonly parsers: Record<ServiceType, BaseParserService> = {
 		[ServiceType.OkPorn]: new OkPornParserService(),
+		[ServiceType.PornHub]: new PornHubParserService(),
 		[ServiceType.WallHaven]: new WallHavenParserService(),
-		[ServiceType.Default]: new BaseParserService(),
 		[ServiceType.Coomer]: new BaseParserService(),
-		[ServiceType.PornHub]: new PornHubParserService()
+		[ServiceType.Default]: new BaseParserService(),
+		[ServiceType.XHamster]: new XHamsterParserService()
 	};
 
 	public static getParser(service: ServiceType): BaseParserService {

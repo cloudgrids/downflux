@@ -1,8 +1,9 @@
 import eslint from '@eslint/js';
 import prettier from 'eslint-plugin-prettier/recommended';
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
+export default defineConfig(
 	eslint.configs.recommended,
 	...tseslint.configs.recommended,
 	prettier,
@@ -10,7 +11,15 @@ export default tseslint.config(
 		languageOptions: {
 			parserOptions: {
 				projectService: {
-					allowDefaultProject: ['eslint.config.mjs', 'test-regex.js', 'scripts/make-index.ts']
+					allowDefaultProject: [
+						'eslint.config.mjs',
+						'test-regex.js',
+						'scripts/codegen/*.ts',
+						'scripts/codegen/templates/*.ts',
+						'scripts/make-registry.ts',
+						'scripts/make-index.ts',
+						'scripts/generate.ts'
+					]
 				},
 				tsconfigRootDir: import.meta.dirname
 			}

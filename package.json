@@ -27,8 +27,9 @@
 		"test:watch": "npm run test -- --watch",
 		"test:run": "tsx test/run.ts",
 		"format": "prettier --write \"src/**/*.ts\"",
-		"release": "standard-version",
-		"make:index": "tsx scripts/make-index.ts"
+		"generate": "tsx scripts/codegen/generate.ts",
+		"make:index": "tsx scripts/make-index.ts",
+		"make:registry": "tsx scripts/make-registry.ts"
 	},
 	"repository": {
 		"type": "git",
@@ -68,13 +69,13 @@
 		"tsx": "^4.21.0",
 		"typedoc": "^0.28.19",
 		"typedoc-plugin-markdown": "^4.11.0",
-		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.59.0"
+		"typescript": "^6.0.3"
 	},
 	"dependencies": {
 		"execa": "^9.6.1",
 		"ffmpeg-static": "^5.3.0",
 		"radash": "^12.1.1",
+		"typescript-eslint": "^8.59.2",
 		"undici": "^8.1.0"
 	}
 }

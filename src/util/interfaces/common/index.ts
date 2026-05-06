@@ -12,6 +12,7 @@ export * from './M3U8Variant';
 export * from './PipelineExtractedItem';
 export * from './PipelineItem';
 export * from './Progress';
+export * from './RegistryService';
 export * from './ResolvedFile';
 export * from './ServiceDependency';
 export * from './SiteDescriptor';

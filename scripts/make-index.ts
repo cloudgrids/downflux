@@ -1,9 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { paths } from '../paths.json';
 
 const INDEX_FILE_NAME = 'index.ts';
 
-const makeIndex = async (directory: string) => {
+export const makeIndex = async (directory: string) => {
 	const dirPath = path.join(__dirname, '..', directory);
 	console.log(`Making index file in ${directory}`);
 
@@ -22,46 +23,6 @@ const makeIndex = async (directory: string) => {
 
 	fs.writeFileSync(indexPath, indexFileContent.concat('\n'), { flag: 'w' });
 };
-
-const paths = [
-	'src/downloader',
-	'src/exceptions',
-	'src/fetcher',
-	'src/file',
-	'src/helpers',
-	'src/job',
-	'src/logger',
-	'src/parsers',
-	'src/pipelines',
-	'src/progress',
-	'src/renderer',
-	'src/services',
-	'src/strategies',
-	'src/transformers',
-
-	'src/util',
-	'src/util/constants',
-
-	'src/util/enums',
-	'src/util/enums/common',
-	'src/util/enums/services',
-	'src/util/enums/services/okporn',
-	'src/util/enums/services/wallhaven',
-	'src/util/enums/services/pornhub',
-
-	'src/util/interfaces',
-	'src/util/interfaces/common',
-	'src/util/interfaces/downloaders',
-	'src/util/interfaces/fetcher',
-	'src/util/interfaces/services',
-	'src/util/interfaces/services/okporn',
-	'src/util/interfaces/services/wallhaven',
-	'src/util/interfaces/services/pornhub',
-
-	'src/util/maps',
-
-	'src/util/types'
-];
 
 (async () => {
 	for (const path of paths) await makeIndex(path);

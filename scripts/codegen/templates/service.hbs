@@ -1,0 +1,22 @@
+import { BaseService } from './BaseService';
+import { {{ArgsName}}, ServiceType } from '../util';
+import { InvalidUrlException } from '../exceptions';
+
+export class {{ServiceName}}Service extends BaseService<{{ArgsName}}> {
+	constructor(url: string) {
+		super(url);
+		this.validateUrl(url);
+	}
+
+	protected override validateUrl(url: string): void {
+		try {
+			new URL(url);
+		} catch {
+			throw new InvalidUrlException(url, ServiceType.{{ServiceName}});
+		}
+		if (!url.startsWith('https://...')) throw new InvalidUrlException(url, ServiceType.{{ServiceName}});
+	}
+}
+
+
+

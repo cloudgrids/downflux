@@ -1,10 +1,7 @@
 import { FileService } from '../file';
 import { ExecutionArgs, PipelineItem, ServiceType } from '../util';
 import { BasePipeline } from './BasePipeline';
-import { OkPornPipeline } from './OkPornPipeline';
-import { PornHubPipeline } from './PornHubPipeline';
-import { WallHavenPipeline } from './WallHavenPipeline';
-import { XHamsterPipeline } from './XHamsterPipeline';
+{{imports}}
 
 type PipelineCtor = new (fileService: FileService) => BasePipeline<any, any>;
 
@@ -12,12 +9,7 @@ export class PipelineService {
 	constructor(protected fileService: FileService) {}
 
 	private readonly pipelines: Map<ServiceType, PipelineCtor> = new Map<ServiceType, PipelineCtor>([
-		[ServiceType.OkPorn, OkPornPipeline],
-		[ServiceType.PornHub, PornHubPipeline],
-		[ServiceType.WallHaven, WallHavenPipeline],
-		[ServiceType.Coomer, BasePipeline],
-		[ServiceType.Default, BasePipeline],
-		[ServiceType.XHamster, XHamsterPipeline]
+{{entries}}
 	]);
 
 	public build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): PipelineItem[] {

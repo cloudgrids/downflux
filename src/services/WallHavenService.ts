@@ -25,7 +25,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	private readonly BASE_URL = 'https://wallhaven.cc';
 	private readonly WALLPAPER_URL = `${this.BASE_URL}/w`;
 	private readonly USER_URL = `${this.BASE_URL}/user`;
-	private readonly Default_INDEX_RANGE: IndexRange = { start: 1, end: 1 };
+	private readonly DefaultIndexRange: IndexRange = { start: 1, end: 1 };
 
 	/**
 	 * Creates a WallHaven service.
@@ -55,6 +55,8 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * @param thumbQualities Thumbnail qualities to include in the response (defaults to all qualities)
 	 * @returns `WallHavenWallPaperOutput` Wallpaper metadata and thumbnails
 	 * @throws `GenericException` When the ID is missing
+	 * @notes This method downloads the found urls and returns the metadata and thumbnail URLs without downloading the full wallpaper image.
+	 * @canDownload true
 	 */
 	public async getWallPaper(id: string, thumbQualities?: WallHavenThumbnailQuality[]): Promise<WallHavenWallPaperOutput> {
 		if (!id) throw new GenericException('Wallpaper ID is required', ServiceType.WallHaven, WallHavenMethods.getWallPaper);
@@ -74,10 +76,14 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * @param args User upload options WallHavenUserExecArgs
 	 * @param range Page index range or 'all' to get all pages (defaults to first page)
 	 * @returns `WallHavenUserUploadsOutput` User upload metadata and thumbnails
+	 * @throws `GenericException` When the username is missing
+	 * @notes This method downloads the images and metadata for a user's uploads
+	 * @notes The method will fetch the total number of pages for the user's uploads and iterate through them based on the specified range to retrieve all relevant metadata and thumbnail URLs.
+	 * @canDownload true
 	 */
 	public async getUserUploads(
 		args: WallHavenUserExecArgs,
-		range: 'all' | IndexRange = this.Default_INDEX_RANGE
+		range: 'all' | IndexRange = this.DefaultIndexRange
 	): Promise<WallHavenUserUploadsOutput> {
 		const existingOptions = this.jobOptions;
 
@@ -101,6 +107,9 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * @param username WallHaven username
 	 * @returns `WallHavenUserInfo` Total upload images count
 	 * @throws `GenericException` When the username is missing
+	 * @notes This method only fetches the total upload count and total pages for a user, it does not download any images or thumbnails.
+	 * @notes This method is used internally to determine the number of pages to fetch when retrieving user uploads.
+	 * @canDownload false
 	 */
 	public async getUserUploadsInfo(username: string): Promise<WallHavenUserInfoOutput> {
 		if (!username) throw new GenericException('Username is required', ServiceType.WallHaven, WallHavenMethods.getUserUploadsInfo);
@@ -118,10 +127,12 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * Gets the favorite collections for a WallHaven user.
 	 * @returns `WallHavenUserFavoriteCollection[]` User favorite collections metadata and thumbnails
 	 * @throws `GenericException` When the username is missing
+	 * @notes This method downloads and fetches the favorite collection metadata and thumbnail URLs
+	 * @canDownload true
 	 */
 	public async getUserFavoriteCollections(
 		args: WallHavenUserExecArgs,
-		range: 'all' | IndexRange = this.Default_INDEX_RANGE
+		range: 'all' | IndexRange = this.DefaultIndexRange
 	): Promise<WallHavenUserFavoriteCollectionsOutput[]> {
 		if (!args?.username) {
 			throw new GenericException('Username is required', ServiceType.WallHaven, WallHavenMethods.getUserFavoriteCollections);
@@ -146,10 +157,13 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * @param args User upload options WallHavenUserExecArgs
 	 * @param range Page index range or 'all' to get all pages (defaults to first page)
 	 * @returns `WallHavenUserUploadsOutput` User upload metadata and thumbnails
+	 * @throws `GenericException` When the username or collection ID is missing
+	 * @notes This method downloads the images and metadata for a specific favorite collection, it does not download any images.
+	 * @canDownload true
 	 */
 	public async getUserFavoritesCollection(
 		args: WallHavenUserFavoritesExecArgs,
-		range: 'all' | IndexRange = this.Default_INDEX_RANGE
+		range: 'all' | IndexRange = this.DefaultIndexRange
 	): Promise<WallHavenUserFavoriteCollectionOutput> {
 		const existingOptions = this.jobOptions;
 
@@ -172,7 +186,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 		throw new Error('Method not implemented yet');
 	}
 
-	private async range(range: 'all' | IndexRange = this.Default_INDEX_RANGE, func?: () => Promise<number>): Promise<IndexRange> {
+	private async range(range: 'all' | IndexRange = this.DefaultIndexRange, func?: () => Promise<number>): Promise<IndexRange> {
 		return range === 'all' ? { start: 1, end: (await func?.()) as number } : range;
 	}
 

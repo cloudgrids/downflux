@@ -4,4 +4,5 @@ export * from './DefaultService';
 export * from './OkPornService';
 export * from './PornHubService';
 export * from './WallHavenService';
+export * from './XHamsterService';
 export * from './dependency';
