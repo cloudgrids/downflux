@@ -1,7 +1,10 @@
-import { DownloaderService } from '../downloaders';
-import { HttpFetcherService } from '../fetcher';
-import { FileService } from '../file';
+import { DownloaderService } from '../downloader';
+import { HLSFetchService, HttpFetcherService } from '../fetcher';
+import { FfmpegService, FileService } from '../file';
 import { BackgroundService, JobService } from '../job';
+import { PipelineService } from '../pipelines';
+import { ProgressService } from '../progress/ProgressService';
+import { StrategyService } from '../strategies';
 import { TransformerService } from '../transformers';
 import { ServiceDependencies } from '../util';
 
@@ -10,17 +13,26 @@ import { ServiceDependencies } from '../util';
  * @returns Default service dependencies
  */
 export function createDefaultDependencies(): ServiceDependencies {
-	const httpFetcherService = new HttpFetcherService();
-	const fileService = new FileService();
+	const progressService = new ProgressService();
 
-	const transformerService = new TransformerService(httpFetcherService);
-	const downloaderService = new DownloaderService(fileService, httpFetcherService);
-	const backgroundService = new BackgroundService(downloaderService, fileService, transformerService);
-	const jobService = new JobService(transformerService, backgroundService);
+	const hlsFetchService = new HLSFetchService(progressService);
+
+	const ffmpegService = new FfmpegService(progressService);
+	const fileService = new FileService(ffmpegService, progressService);
+	const strategyService = new StrategyService(progressService, fileService);
+	const pipelineService = new PipelineService(fileService);
+	const httpFetcherService = new HttpFetcherService(hlsFetchService, progressService, strategyService);
+
+	const transformerService = new TransformerService(httpFetcherService, progressService);
+	const downloaderService = new DownloaderService(fileService, httpFetcherService, progressService);
+	const backgroundService = new BackgroundService(downloaderService, fileService, transformerService, progressService, pipelineService);
+	const jobService = new JobService(transformerService, backgroundService, progressService, pipelineService);
 	return {
 		httpFetcherService,
 		transformerService,
 		downloaderService,
-		jobService
+		strategyService,
+		jobService,
+		progressService
 	};
 }

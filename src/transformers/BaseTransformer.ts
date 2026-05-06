@@ -1,9 +1,13 @@
 import { HttpFetcherService } from '../fetcher';
 import { HtmlParserService } from '../parsers';
+import { ProgressService } from '../progress/ProgressService';
 import { DefaultExtractorResult, ExecutionArgs, HttpFetchOptions, ServiceType } from '../util';
 
 export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
-	constructor(protected readonly httpFetcherService: HttpFetcherService) {}
+	constructor(
+		protected readonly httpFetcherService: HttpFetcherService,
+		protected readonly progressService: ProgressService
+	) {}
 
 	public async transform(url: string, request?: TExec): Promise<TResult> {
 		const fetched = await this.httpFetcherService.fetchHtml(url, request as HttpFetchOptions);
@@ -16,13 +20,5 @@ export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExtra
 		}
 
 		return base as TResult;
-	}
-
-	protected emitExtractProgress(request: TExec | undefined, status: 'EXTRACTING' | 'EXTRACTED', target: string): void {
-		request?.onExtractProgress?.({
-			status,
-			target,
-			countTarget: status === 'EXTRACTING'
-		});
 	}
 }

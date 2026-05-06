@@ -4,21 +4,29 @@ import { Dispatcher, Pool, interceptors } from 'undici';
 import { IncomingHttpHeaders } from 'undici/types/header';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
 import { DownloadException, NotFoundException } from '../exceptions';
-import { detectHlsContainer } from '../helpers/DetectHlsContainer';
-import { getFetchStrategy } from '../strategies/Strategies';
-import { DownloadOptions, FetchResult, HLSStreamRequest, HttpFetchOptions, JobProgressEvent } from '../util';
+import { detectHlsContainer } from '../helpers';
+import { ProgressService } from '../progress';
+import { StrategyService } from '../strategies';
+import { DownloadOptions, FetchResult, HLSStreamRequest, HttpFetchOptions } from '../util';
 import { HLSFetchService } from './HLSFetchService';
 
 export class HttpFetcherService {
-	private readonly hlsFetchService = new HLSFetchService();
 	private readonly MAX_CDN_FALLBACK = 1;
 	private readonly MAX_RE_EXTRACT = 1;
+	private CDN_FALLBACK_COUNT = 0;
+	private RE_EXTRACT_COUNT = 0;
 	private readonly Default_HEADERS: Record<string, string> = {
 		'User-Agent': 'Mozilla/5.0',
 		'Accept': '*/*',
 		'Accept-Encoding': 'gzip, deflate, br',
 		'Connection': 'keep-alive'
 	};
+
+	constructor(
+		private readonly hlsFetchService: HLSFetchService,
+		private readonly progressService: ProgressService,
+		private readonly strategyService: StrategyService
+	) {}
 
 	private readonly pools = new Map<string, Dispatcher>();
 
@@ -138,27 +146,22 @@ export class HttpFetcherService {
 	}
 
 	private async handleServiceAware404(url: string, opts: DownloadOptions): Promise<HLSStreamRequest | null> {
-		const strategy = getFetchStrategy(opts.service);
+		const strategy = this.strategyService.getStrategy(opts.service);
 
 		if (!strategy) return null;
 
-		if (strategy.shouldFallback404?.(url, opts) && (opts.cdnFallbackCount ?? 0) < this.MAX_CDN_FALLBACK) {
-			const fallback = strategy.getFallbackUrl?.(url, opts);
+		if (strategy.shouldFallback404?.(url) && this.CDN_FALLBACK_COUNT < this.MAX_CDN_FALLBACK) {
+			const fallback = strategy.getFallbackUrl?.(url);
 
 			if (fallback && fallback !== url) {
-				opts.onProgress?.({ status: 'DOWNLOADING', message: `[${opts.service}] CDN FALLBACK: ${fallback}` });
+				this.progressService.update({ message: `CDN fallback: ${fallback}` });
 
-				return this.requestStream(fallback, { ...opts, cdnFallbackCount: (opts.cdnFallbackCount ?? 0) + 1 });
+				return this.requestStream(fallback, opts);
 			}
 		}
 
-		if (
-			strategy.shouldReExtract?.(url, opts) &&
-			opts.reExtract &&
-			opts.pipelineItem &&
-			(opts.reExtractCount ?? 0) < this.MAX_RE_EXTRACT
-		) {
-			opts.onProgress?.({ status: 'DOWNLOADING', message: `[${opts.service}] HLS EXPIRED -> RE-EXTRACTING...` });
+		if (strategy.shouldReExtract?.(url) && opts.reExtract && opts.pipelineItem && this.RE_EXTRACT_COUNT < this.MAX_RE_EXTRACT) {
+			this.progressService.update({ message: `HLS expired, re extracting...` });
 
 			const freshItem = await opts.reExtract(opts.pipelineItem);
 			const freshUrl = freshItem?.downloadUrl;
@@ -167,9 +170,7 @@ export class HttpFetcherService {
 				return this.requestStream(freshUrl, {
 					...opts,
 					pipelineItem: freshItem,
-					referer: freshItem.sourceUrl,
-					reExtractCount: (opts.reExtractCount ?? 0) + 1,
-					cdnFallbackCount: 0
+					referer: freshItem.sourceUrl
 				});
 			}
 		}
@@ -183,21 +184,18 @@ export class HttpFetcherService {
 		body: Response,
 		opts: DownloadOptions
 	): Promise<HLSStreamRequest | null> {
-		const strategy = getFetchStrategy(opts.service);
+		const strategy = this.strategyService.getStrategy(opts.service);
 
-		const shouldResolve = strategy?.shouldResolveTextResponse?.(url, contentType, opts);
+		const shouldResolve = strategy?.shouldResolveTextResponse?.(url, contentType);
 		if (!shouldResolve) return null;
 
-		opts.onProgress?.({
-			status: 'DOWNLOADING',
-			message: `${shouldResolve ? 'TEXT RESPONSE IS NEEDED TO BE RESOLVED' : 'NO NEED TO RESOLVE TEXT RESPONSE'} FOR ${url} WITH CONTENT TYPE ${contentType}`
-		});
+		this.progressService.update({ message: `${shouldResolve ? 'Resolved text response' : 'Discarded text response'}` });
 
 		const directUrl = strategy?.getDirectVideoUrlFromText?.(await body.text(), opts);
 
-		if (!directUrl || directUrl === url) throw new Error(`UNABLE TO RESOLVE DIRECT VIDEO URL FROM ${url}`);
+		if (!directUrl || directUrl === url) throw new Error(`Unable to resolve direct video url from ${url}`);
 
-		opts.onProgress?.({ status: 'DOWNLOADING', message: `\n[${opts.service}]\n DIRECT MP4 RESOLVED: ${directUrl}` });
+		this.progressService.update({ message: 'Direct mp4 resolved', redirectedUrl: directUrl });
 
 		return this.requestStream(directUrl, opts);
 	}
@@ -221,7 +219,7 @@ export class HttpFetcherService {
 				const responseHeaders = Object.fromEntries(response.headers.entries());
 
 				if (response.status === 404) {
-					opts.onProgress?.({ status: 'DOWNLOADING', message: `GOT A 404 STATUS FROM ${url}\n SWITCHING TO SERVICE AWARE 404` });
+					this.progressService.update({ message: `Statuscode 404: ${url}` });
 
 					const serviceResult = await this.handleServiceAware404(url, opts);
 					if (serviceResult) return serviceResult;
@@ -238,7 +236,7 @@ export class HttpFetcherService {
 				if (resolvedTextResponse) return resolvedTextResponse;
 
 				if (this.hlsFetchService.isHlsManifest(contentType, finalUrl)) {
-					opts?.onProgress?.({ status: 'DOWNLOADING', message: 'FOUND HLS MANIFEST, SWITCHING TO HLS STREAM' });
+					this.progressService.update({ message: 'Found HLS manifest switching to hls stream', hlsSegmentUrl: finalUrl });
 					/**
 					 * References file with extensions .m3u or content-type containing 'mpegurl'
 					 * For more reference check the HLSManifest.m3u file in the src/fetcher directory
@@ -248,19 +246,15 @@ export class HttpFetcherService {
 					return {
 						finalUrl,
 						headers: { ...responseHeaders, 'x-hls-container': type },
-						start: (stream: Writable, onProgress?: (event: JobProgressEvent) => void) =>
-							this.hlsFetchService.fetchHlsStream(manifest, finalUrl, timeoutMs, stream, {
-								...opts,
-								onSegmentProgress: onProgress
-							})
+						start: (stream: Writable) => this.hlsFetchService.fetchHlsStream(manifest, finalUrl, timeoutMs, stream, opts)
 					};
 				}
 
 				return {
 					finalUrl,
 					headers: responseHeaders,
-					start: async (stream: Writable, onProgress?: (event: JobProgressEvent) => void) => {
-						await this.readAndShowProgress(stream, response, onProgress);
+					start: async (stream: Writable) => {
+						await this.readAndShowProgress(stream, response);
 					}
 				};
 			} catch (error) {
@@ -272,10 +266,10 @@ export class HttpFetcherService {
 				}
 			}
 		}
-		throw new DownloadException(url, opts.service, '', { cause: lastError ?? new Error('UNKNOWN ERROR') });
+		throw new DownloadException(url, opts.service, '', { cause: lastError ?? new Error('Unknown error') });
 	}
 
-	private async readAndShowProgress(stream: Writable, res: Response, onProgress?: (event: JobProgressEvent) => void): Promise<void> {
+	private async readAndShowProgress(stream: Writable, res: Response): Promise<void> {
 		const readable = Readable.fromWeb(res.body as any);
 
 		const size = Number(res.headers.get('content-length') || 0);
@@ -289,22 +283,12 @@ export class HttpFetcherService {
 			if (now - lastEmit > 2000) {
 				lastEmit = now;
 
-				onProgress?.({
-					status: 'DOWNLOADING',
-					progress: size ? (downloaded / size) * 100 : 0,
-					downloadedBytes: downloaded,
-					totalBytes: size
-				});
+				this.progressService.update({ downloadedBytes: downloaded, totalBytes: size });
 			}
 		});
 
 		await pipeline(readable, stream);
 
-		onProgress?.({
-			status: 'COMPLETED',
-			progress: 100,
-			downloadedBytes: downloaded,
-			totalBytes: size
-		});
+		this.progressService.update({ status: 'COMPLETED', downloadedBytes: downloaded });
 	}
 }

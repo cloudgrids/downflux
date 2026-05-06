@@ -1,12 +1,9 @@
 import { OutputType, ServiceType } from '../../enums';
-import { HttpFetchOptions, JobOptions, JobProgressEvent, PipelineItem } from '../common';
+import { JobOptions, PipelineItem } from '../common';
 
-export interface DownloadOptions extends HttpFetchOptions, JobOptions {
-	outputType?: OutputType;
+export interface DownloadOptions extends JobOptions {
+	outputType: OutputType;
 	service: ServiceType;
-	onSegmentProgress?: (event: JobProgressEvent) => void;
 	reExtract?: (item: PipelineItem) => Promise<PipelineItem | null>;
 	pipelineItem?: PipelineItem;
-	reExtractCount?: number;
-	cdnFallbackCount?: number;
 }

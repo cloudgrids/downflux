@@ -2,8 +2,8 @@ import { ExecutionType, OutputType, VideoQuality } from '../../enums';
 import { AllowedExtension } from '../../types';
 import { DirectoryOutputOptions } from './DirectoryOutputOptions';
 import { HttpFetchOptions } from './HttpFetchOptions';
-import { JobProgressEvent } from './JobProgress';
 import { PipelineHook } from './PipelineItem';
+import { JobProgressEvent } from './Progress';
 import { TagFilterOptions } from './TagFilterOptions';
 
 /**

@@ -1,6 +1,7 @@
 import { createDecipheriv } from 'crypto';
 import { Readable, Writable } from 'stream';
 import { pipeline } from 'stream/promises';
+import { ProgressService } from '../progress';
 import { DownloadOptions, M3U8Variant, VideoQuality } from '../util';
 
 export interface ParseKey {
@@ -9,6 +10,8 @@ export interface ParseKey {
 }
 
 export class HLSFetchService {
+	constructor(private readonly progressService: ProgressService) {}
+
 	public async fetchHlsStream(
 		manifest: string,
 		manifestUrl: string,
@@ -24,13 +27,13 @@ export class HLSFetchService {
 		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs, requestHeaders) : manifest;
 
 		const segments = this.parseSegments(mediaManifest, playlistUrl);
-		if (!segments.length) throw new Error('NO SEGMENTS FOUND IN MANIFEST');
+		if (!segments.length) throw new Error('No segments found to manifest');
 
 		const initUrl = this.parseInitSegment(mediaManifest, playlistUrl);
 		const isFmp4 = !!initUrl;
 
 		// disable decrypt for fMP4
-		const keyInfo = isFmp4 ? null : this.parseKey(mediaManifest, playlistUrl, opts);
+		const keyInfo = isFmp4 ? null : this.parseKey(mediaManifest, playlistUrl);
 		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
 
 		if (initUrl) {
@@ -41,7 +44,7 @@ export class HLSFetchService {
 			await pipeline(fetchInit, stream, { end: false });
 		}
 
-		await this.stitchSegments(segments, key, keyInfo, timeoutMs, stream, requestHeaders, opts);
+		await this.stitchSegments(segments, key, keyInfo, timeoutMs, stream, requestHeaders);
 	}
 
 	private buildHeaders(opts: DownloadOptions) {
@@ -138,8 +141,7 @@ export class HLSFetchService {
 		keyInfo: ParseKey | null,
 		timeoutMs: number,
 		stream: Writable,
-		headers: Record<string, any>,
-		opts: DownloadOptions
+		headers: Record<string, any>
 	) {
 		if (!segments.length) return;
 
@@ -163,7 +165,7 @@ export class HLSFetchService {
 			await this.pipeOne(readable, stream);
 
 			// progress callback (segment-level)
-			opts?.onSegmentProgress?.({ segment: i + 1, totalSegments: total, status: 'HLS-SEGMENTING' });
+			this.progressService.update({ resolvedSegments: i + 1, totalSegments: total, currentSegment: segments[i] });
 		}
 	}
 
@@ -211,7 +213,7 @@ export class HLSFetchService {
 
 	private selectVariant(manifest: string, base: string, opts: DownloadOptions): string | null {
 		const variants = this.getVariants(manifest, base);
-		const { allowedVideoQuality, onSegmentProgress } = opts;
+		const { allowedVideoQuality } = opts;
 
 		if (!variants.length) return null;
 
@@ -222,10 +224,7 @@ export class HLSFetchService {
 			return b.bw - a.bw;
 		});
 
-		onSegmentProgress?.({
-			status: 'HLS-SEGMENTING',
-			message: `Preferred Quality: ${allowedVideoQuality ?? 'unknown'}\nFetched Variants length:${variants.length}}`
-		});
+		this.progressService.update({ message: 'Selecting variants from manifest' });
 
 		// If no preference, return best
 		if (!allowedVideoQuality || allowedVideoQuality === VideoQuality.QUnknown) return variants[0].url;
@@ -247,10 +246,10 @@ export class HLSFetchService {
 		return variants[0].url;
 	}
 
-	private parseKey(manifest: string, base: string, opts: DownloadOptions): ParseKey | null {
-		opts.onSegmentProgress?.({ status: 'HLS-SEGMENTING', message: 'Parsing key from manifest...' });
-
+	private parseKey(manifest: string, base: string): ParseKey | null {
 		const match = manifest.match(/#EXT-X-KEY:METHOD=AES-128,URI="([^"]+)"/);
+
+		this.progressService.update({ message: `Parsing key from manifest... ${!!match}` });
 
 		if (!match) return null;
 

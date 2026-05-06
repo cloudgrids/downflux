@@ -1,7 +1,7 @@
-import { DownloaderService } from '../downloaders';
+import { DownloaderService } from '../downloader';
 import { FileService } from '../file';
-import { emitProgress, emitSegmentProgress } from '../helpers/Emitter';
 import { PipelineService } from '../pipelines';
+import { ProgressService } from '../progress';
 import { TransformerService } from '../transformers';
 import { DownloadResult, ExecutionArgs, ExecutionResult, JobOptions, OutputType, PipelineHook, PipelineItem } from '../util';
 
@@ -11,7 +11,9 @@ export class BackgroundService {
 	constructor(
 		private readonly downloaderService: DownloaderService,
 		private readonly fileService: FileService,
-		private readonly transformerService: TransformerService
+		private readonly transformerService: TransformerService,
+		private readonly progressService: ProgressService,
+		private readonly pipelineService: PipelineService
 	) {}
 
 	private async processDownloadsInBackground<T>(
@@ -25,23 +27,29 @@ export class BackgroundService {
 
 		await this.runWithConcurrency(result.pipelineItems, downloadConcurrency, async (pipelineItem) => {
 			if (options?.signal?.aborted) {
-				emitProgress(options, {
+				this.progressService.update({
 					status: 'ABORTED',
+					currentTarget: pipelineItem.sourceUrl,
+					currentItem: pipelineItem.downloadUrl,
 					totalItems: result.pipelineItems.length,
-					downloaded: result.downloaded,
+					resolvedItems: result.downloaded,
+					resolvedTargets: result.targets.indexOf(pipelineItem.sourceUrl),
 					failed: result.failed
 				});
 				return;
 			}
 
-			this.runExtractHooks(pipelineHooks, pipelineItem, options);
+			this.runExtractHooks(pipelineHooks, pipelineItem);
 
-			emitProgress(options, {
+			this.progressService.update({
 				status: 'DOWNLOADING',
+				currentTarget: pipelineItem.sourceUrl,
+				currentItem: pipelineItem.downloadUrl,
 				totalItems: result.pipelineItems.length,
-				downloaded: result.downloaded,
+				resolvedItems: result.downloaded,
 				failed: result.failed,
-				item: pipelineItem
+				item: pipelineItem,
+				resolvedTargets: result.targets.indexOf(pipelineItem.sourceUrl)
 			});
 
 			try {
@@ -50,69 +58,68 @@ export class BackgroundService {
 					allowedVideoQuality: request?.allowedVideoQuality,
 					outputType,
 					service: request.service,
-					onSegmentProgress: emitSegmentProgress.bind(this, options),
 					reExtract: async (item) => {
 						const result = await this.transformerService.transform(item.sourceUrl, { ...request, entryUrl: item.sourceUrl });
 
-						const newItems = PipelineService.build(result, request);
+						const newItems = this.pipelineService.build(result, request);
 
 						return newItems[0] ?? null;
 					}
 				});
 
-				result.downloaded++;
+				this.runDownloadHooks(pipelineHooks, pipelineItem, downloadResult);
 
-				this.runDownloadHooks(pipelineHooks, pipelineItem, downloadResult, options);
-
-				emitProgress(options, {
+				this.progressService.update({
 					status: 'DOWNLOADED',
 					totalItems: result.pipelineItems.length,
-					downloaded: result.downloaded,
+					resolvedItems: result.downloaded++,
 					failed: result.failed,
 					item: pipelineItem,
+					resolvedTargets: result.targets.indexOf(pipelineItem.sourceUrl) + 1,
 					result: downloadResult
 				});
 			} catch (err) {
-				result.failed++;
-
 				const normalizedError = err instanceof Error ? err : new Error(String(err));
 
 				result.errors.push(normalizedError);
 
-				emitProgress(options, {
+				this.progressService.update({
 					status: 'FAILED',
+					currentItem: pipelineItem.downloadUrl,
+					currentTarget: pipelineItem.sourceUrl,
 					totalItems: result.pipelineItems.length,
-					downloaded: result.downloaded,
-					failed: result.failed,
+					resolvedItems: result.downloaded,
+					failed: result.failed++,
 					item: pipelineItem,
+					resolvedTargets: result.targets.indexOf(pipelineItem.sourceUrl),
 					error: normalizedError
 				});
 			}
 		});
 
-		emitProgress(options, {
+		this.progressService.update({
 			status: 'COMPLETED',
 			totalItems: result.pipelineItems.length,
-			downloaded: result.downloaded,
+			resolvedItems: result.downloaded,
 			failed: result.failed
 		});
 	}
 
-	private runExtractHooks(hooks: PipelineHook[], item: PipelineItem, options: JobOptions): void {
+	private runExtractHooks(hooks: PipelineHook[], item: PipelineItem): void {
 		void Promise.allSettled(hooks.map((hook) => hook.onExtract?.(item))).then((results) => {
 			for (const hookResult of results) {
 				if (hookResult.status === 'rejected') {
-					emitProgress(options, { status: 'EXTRACTION-HOOK', error: hookResult.reason });
+					this.progressService.update({ status: 'EXTRACTION-HOOK', error: hookResult.reason });
 				}
 			}
 		});
 	}
 
-	private runDownloadHooks(hooks: PipelineHook[], item: PipelineItem, result: DownloadResult, options: JobOptions): void {
+	private runDownloadHooks(hooks: PipelineHook[], item: PipelineItem, result: DownloadResult): void {
 		void Promise.allSettled(hooks.map((hook) => hook.onDownload?.({ item, result }))).then((results) => {
 			for (const hookResult of results) {
 				if (hookResult.status === 'rejected') {
-					emitProgress(options, { status: 'DOWNLOAD-HOOK', error: hookResult.reason });
+					this.progressService.update({ status: 'DOWNLOADING-HOOK', error: hookResult.reason });
 				}
 			}
 		});
@@ -148,7 +155,7 @@ export class BackgroundService {
 		result: ExecutionResult<T>
 	): void {
 		this.processDownloadsInBackground(options, outputType, request, pipelineHooks, result).catch((err) => {
-			emitProgress(options, {
+			this.progressService.update({
 				status: 'FAILED',
 				error: { name: 'BackgroundProgress', cause: err, message: 'Background download pipeline error:' }
 			});

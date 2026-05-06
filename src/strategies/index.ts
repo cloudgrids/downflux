@@ -1,2 +1,3 @@
-export * from './PornHubFetchStrategy';
-export * from './Strategies';
+export * from './BaseStrategy';
+export * from './PornHubStrategy';
+export * from './Strategy';

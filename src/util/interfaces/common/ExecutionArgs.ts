@@ -1,6 +1,6 @@
 import { ExecutionType, ServiceType, UrlType } from '../../enums';
 import { JobOptions } from './JobOptions';
-import { JobProgressStatus } from './JobProgress';
+import { JobProgressStatus } from './Progress';
 
 export interface ExtractProgressEvent {
 	status: Extract<JobProgressStatus, 'EXTRACTING' | 'EXTRACTED'>;
@@ -17,6 +17,4 @@ export interface ExecutionArgs extends JobOptions {
 	returnType: 'array' | 'object';
 	executionType: ExecutionType;
 	urlType: UrlType;
-	/** @internal Allows nested transformer extractions to update the active job progress state. */
-	onExtractProgress?: (event: ExtractProgressEvent) => void;
 }
