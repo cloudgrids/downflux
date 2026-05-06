@@ -34,6 +34,7 @@ const paths = [
 	'src/parsers',
 	'src/pipelines',
 	'src/progress',
+	'src/renderer',
 	'src/services',
 	'src/strategies',
 	'src/transformers',

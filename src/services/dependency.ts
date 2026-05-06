@@ -3,7 +3,8 @@ import { HLSFetchService, HttpFetcherService } from '../fetcher';
 import { FfmpegService, FileService } from '../file';
 import { BackgroundService, JobService } from '../job';
 import { PipelineService } from '../pipelines';
-import { ProgressService } from '../progress/ProgressService';
+import { ProgressService } from '../progress';
+import { CliRenderer } from '../renderer';
 import { StrategyService } from '../strategies';
 import { TransformerService } from '../transformers';
 import { ServiceDependencies } from '../util';
@@ -14,6 +15,8 @@ import { ServiceDependencies } from '../util';
  */
 export function createDefaultDependencies(): ServiceDependencies {
 	const progressService = new ProgressService();
+
+	const cliRenderer = new CliRenderer(progressService);
 
 	const hlsFetchService = new HLSFetchService(progressService);
 
@@ -33,6 +36,7 @@ export function createDefaultDependencies(): ServiceDependencies {
 		downloaderService,
 		strategyService,
 		jobService,
-		progressService
+		progressService,
+		cliRenderer
 	};
 }
