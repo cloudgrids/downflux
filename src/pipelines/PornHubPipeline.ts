@@ -44,7 +44,6 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 
 			default:
 				mediaSegment = `${mediaType}/${id}`;
-				break;
 		}
 		return pathBuilder(prefix, metadata.user?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', mediaSegment);
 	}

@@ -1,13 +1,14 @@
+import crypto from 'crypto';
 import { Readable, Writable } from 'stream';
 import { pipeline } from 'stream/promises';
-import { Dispatcher, Pool, interceptors } from 'undici';
-import { IncomingHttpHeaders } from 'undici/types/header';
+import { Agent, Headers, fetch as UFetch } from 'undici';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
 import { DownloadException, NotFoundException } from '../exceptions';
 import { detectHlsContainer } from '../helpers';
 import { ProgressService } from '../progress';
 import { StrategyService } from '../strategies';
 import { DownloadOptions, FetchResult, HLSStreamRequest, HttpFetchOptions } from '../util';
+import { HEADER_PRESETS } from '../util/constants';
 import { HLSFetchService } from './HLSFetchService';
 
 export class HttpFetcherService {
@@ -15,12 +16,33 @@ export class HttpFetcherService {
 	private readonly MAX_RE_EXTRACT = 1;
 	private CDN_FALLBACK_COUNT = 0;
 	private RE_EXTRACT_COUNT = 0;
-	private readonly Default_HEADERS: Record<string, string> = {
-		'User-Agent': 'Mozilla/5.0',
-		'Accept': '*/*',
-		'Accept-Encoding': 'gzip, deflate, br',
-		'Connection': 'keep-alive'
-	};
+	private readonly CHROME_CIPHERS = [
+		'TLS_AES_128_GCM_SHA256',
+		'TLS_AES_256_GCM_SHA384',
+		'TLS_CHACHA20_POLY1305_SHA256',
+		'ECDHE-ECDSA-AES128-GCM-SHA256',
+		'ECDHE-RSA-AES128-GCM-SHA256',
+		'ECDHE-ECDSA-AES256-GCM-SHA384',
+		'ECDHE-RSA-AES256-GCM-SHA384',
+		'ECDHE-ECDSA-CHACHA20-POLY1305',
+		'ECDHE-RSA-CHACHA20-POLY1305',
+		'ECDHE-RSA-AES128-SHA',
+		'ECDHE-RSA-AES256-SHA',
+		'AES128-GCM-SHA256',
+		'AES256-GCM-SHA384',
+		'AES128-SHA',
+		'AES256-SHA'
+	].join(':');
+
+	private readonly agent = new Agent({
+		connect: {
+			ciphers: this.CHROME_CIPHERS,
+			honorCipherOrder: true,
+			minVersion: 'TLSv1.2',
+			maxVersion: 'TLSv1.3',
+			ALPNProtocols: ['h2', 'http/1.1']
+		}
+	});
 
 	constructor(
 		private readonly hlsFetchService: HLSFetchService,
@@ -28,41 +50,22 @@ export class HttpFetcherService {
 		private readonly strategyService: StrategyService
 	) {}
 
-	private readonly pools = new Map<string, Dispatcher>();
-
-	private makeIP() {
-		return Array(4)
-			.fill(0)
-			.map(() => Math.floor(Math.random() * 255))
-			.join('.');
+	private get secureOptions() {
+		return (
+			crypto.constants.SSL_OP_NO_SSLv2 |
+			crypto.constants.SSL_OP_NO_SSLv3 |
+			crypto.constants.SSL_OP_NO_TLSv1 |
+			crypto.constants.SSL_OP_NO_TLSv1_1
+		);
 	}
 
-	private getPool(url: string): Dispatcher {
-		const origin = new URL(url).origin;
-		if (!this.pools.has(origin)) {
-			const pool = new Pool(origin).compose(interceptors.redirect({ maxRedirections: 10 }));
-			this.pools.set(origin, pool);
-		}
-		return this.pools.get(origin)!;
-	}
+	private randomHeaders(extra: Record<string, string> = {}) {
+		const preset = HEADER_PRESETS[Math.floor(Math.random() * HEADER_PRESETS.length)];
 
-	private async createPoolRequest(
-		url: string,
-		dOpts: HttpFetchOptions,
-		rOptions: Dispatcher.RequestOptions<null> = { method: 'GET', path: '' }
-	): Promise<Dispatcher.ResponseData<null>> {
-		const pool = this.getPool(url);
-
-		const parsed = new URL(url);
-
-		return await pool.request({
-			...rOptions,
-			path: parsed.pathname + parsed.search,
-			headers: { ...this.Default_HEADERS, 'Referer': dOpts.referer, ...dOpts.headers, 'X-Forwarded-For': this.makeIP() },
-			bodyTimeout: dOpts.timeoutMs,
-			headersTimeout: dOpts.timeoutMs,
-			idempotent: true
-		});
+		return {
+			...preset,
+			...extra
+		};
 	}
 
 	private async delay(attempt: number) {
@@ -72,14 +75,26 @@ export class HttpFetcherService {
 		return new Promise((res) => setTimeout(res, delay));
 	}
 
-	private async readBody(body: AsyncIterable<any>): Promise<Buffer> {
+	private async readBody(body: ReadableStream<Uint8Array> | null): Promise<Buffer> {
+		if (!body) return Buffer.alloc(0);
+
+		const reader = body.getReader();
 		const chunks: Buffer[] = [];
-		for await (const c of body) chunks.push(Buffer.from(c));
+
+		while (true) {
+			const { done, value } = await reader.read();
+
+			if (done) break;
+
+			chunks.push(Buffer.from(value));
+		}
+
 		return Buffer.concat(chunks);
 	}
 
-	private decodeBody(buffer: Buffer, headers: IncomingHttpHeaders): Buffer {
+	private decodeBody(buffer: Buffer, headers: Headers): Buffer {
 		const enc = headers['content-encoding'];
+
 		if (!enc) return buffer;
 
 		if (enc.includes('gzip')) return gunzipSync(buffer);
@@ -89,11 +104,11 @@ export class HttpFetcherService {
 		return buffer;
 	}
 
-	private headers(headers: IncomingHttpHeaders): Record<string, string> {
-		return Object.fromEntries(Object.entries(headers).map(([k, v]) => [k, Array.isArray(v) ? v.join(',') : v || '']));
+	private headers(headers: Headers): Record<string, string> {
+		return Object.fromEntries(headers.entries());
 	}
 
-	private fetchOutput(finalUrl: string, status: number, headers: IncomingHttpHeaders, buffer: Buffer): FetchResult {
+	private fetchOutput(finalUrl: string, status: number, headers: Headers, buffer: Buffer): FetchResult {
 		if (status === 404) {
 			return {
 				html: '',
@@ -116,12 +131,21 @@ export class HttpFetcherService {
 
 	public async fetchHtml(url: string, opts: HttpFetchOptions): Promise<FetchResult> {
 		const { retries = 3 } = opts;
+		const headers = this.randomHeaders({ Referer: opts?.referer ?? url, ...opts.headers });
 
 		let lastError: Error | null = null;
 
 		for (let attempt = 0; attempt <= retries; attempt++) {
 			try {
-				const { statusCode, headers: resHeaders, body } = await this.createPoolRequest(url, opts);
+				const {
+					status: statusCode,
+					headers: resHeaders,
+					body
+				} = await UFetch(url, {
+					headers,
+					redirect: 'follow',
+					dispatcher: this.agent
+				});
 
 				if (statusCode === 404) return this.fetchOutput(url, statusCode, resHeaders, Buffer.alloc(0));
 
@@ -130,11 +154,15 @@ export class HttpFetcherService {
 					continue;
 				}
 
-				const buffer = this.decodeBody(await this.readBody(body), resHeaders);
+				console.log({ resHeaders });
+
+				const buffer = this.decodeBody(await this.readBody(body as ReadableStream<Uint8Array> | null), resHeaders);
 
 				return this.fetchOutput(url, statusCode, resHeaders, buffer);
 			} catch (error) {
 				lastError = error instanceof Error ? error : new Error(String(error));
+
+				console.log({ lastError });
 
 				if (attempt < retries) {
 					await this.delay(attempt);
@@ -142,7 +170,7 @@ export class HttpFetcherService {
 				}
 			}
 		}
-		throw new Error(`FAILED TO FETCH ${url} AFTER ${retries + 1} ATTEMPTS: ${lastError?.message}`);
+		throw new Error(`FAILED TO FETCH ${url} AFTER ${retries + 1} ATTEMPTS: ${lastError}`);
 	}
 
 	private async handleServiceAware404(url: string, opts: DownloadOptions): Promise<HLSStreamRequest | null> {
@@ -201,15 +229,15 @@ export class HttpFetcherService {
 	}
 
 	public async requestStream(url: string, opts: DownloadOptions): Promise<HLSStreamRequest> {
-		const { headers = {}, timeoutMs = 30_000, retries = 3 } = opts;
-		const mergedHeaders = { ...this.Default_HEADERS, 'Referer': opts.referer, ...headers, 'X-Forwarded-For': this.makeIP() };
+		const { timeoutMs = 30_000, retries = 3 } = opts;
 
+		const headers = this.randomHeaders({ Referer: opts.referer ?? url, ...opts?.headers });
 		let lastError: Error | null = null;
 
 		for (let attempt = 0; attempt <= retries; attempt++) {
 			try {
 				const response = await fetch(url, {
-					headers: { ...mergedHeaders, 'X-Forwarded-For': this.makeIP() } as Record<string, string>,
+					headers,
 					redirect: 'follow',
 					referrer: opts.referer
 				});

@@ -1,33 +1,24 @@
-import { OutputType, PornHubService } from '../src';
+import { OutputType, XHamsterService } from '../src';
 
 async function main() {
 	const pornHubUrl = 'https://www.pornhub.org/view_video.php?viewkey=69e37154ee7e2';
 	const okPornUrl = 'https://ok.porn/video/253305/';
 	console.log(`\n\n=== Testing:`);
-	const dir = '/Users/arijit/Downloads/';
+	const directoryPath = '/Users/arijit/Downloads/';
 	// 736213
 
 	try {
-		// await new PornHubService(pornHubUrl)
-		// 	.setJobOptions({ logProgress: true })
-		// 	.onProgress(console.log)
-		// 	.setTransformOutput(true)
-		// 	.setOutput(OutputType.JSON, { directoryPath: dir })
-		// 	.getModelVideos({ username: 'comatozze', format: 'path' });
-
-		await new PornHubService('https://www.pornhub.org/view_video.php?viewkey=69ebd428a19a2')
+		await new XHamsterService('https://xhamster.desi/videos/i-just-asked-my-stepbrother-to-give-me-a-massage-xhnZhEo')
 			.setJobOptions({ logProgress: true })
-			.setTransformOutput(true)
-			.setAllowedExtensions('mp4')
-			.setOutput(OutputType.DEVICE, { directoryPath: dir })
+			.setTransformOutput(false)
+			.setOutput(OutputType.JSON)
 			.getVideo();
 
-		// await new OkPornService(okPornUrl)
+		// await new PornHubService('https://www.pornhub.org/view_video.php?viewkey=684ca4dec8893')
 		// 	.setJobOptions({ logProgress: true })
-		// 	.onProgress(console.log)
 		// 	.setTransformOutput(true)
-		// 	.setOutput(OutputType.JSON, { directoryPath: dir })
-		// 	.getVideo('253305', VideoQuality.Q720);
+		// 	.setOutput(OutputType.DEVICE, { directoryPath })
+		// 	.getVideo();
 	} catch (error) {
 		console.error('Error during getAlbum:', error instanceof Error ? error.message : String(error));
 	} finally {

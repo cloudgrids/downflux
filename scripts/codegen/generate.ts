@@ -1,13 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
-
-interface RegistryService {
-	name: string;
-	parser?: boolean;
-	pipeline?: boolean;
-	transformer?: boolean;
-	strategy?: boolean;
-}
+import { RegistryService } from '../../src/util';
 
 interface Registry {
 	services: RegistryService[];
@@ -43,6 +36,7 @@ for (const svc of registry.services) {
 	const nameLower = name.toLowerCase();
 	const execArgsName = `${name}ExecArgs`;
 	const outputName = `${name}Output`;
+	const methodName = `${name}Methods`;
 
 	// Interface: ExecArgs
 	const execPath = `src/util/interfaces/services/${nameLower}/${execArgsName}.ts`;
@@ -54,6 +48,14 @@ for (const svc of registry.services) {
 	const outPath = `src/util/interfaces/services/${nameLower}/${outputName}.ts`;
 	if (!existsSync(join(root, outPath))) {
 		write(outPath, render(loadTemplate('output.hbs'), { OutputName: outputName }));
+	}
+
+	// Enum: Method
+	if (svc.method) {
+		const methodPath = `src/util/enums/services/${nameLower}/${methodName}.ts`;
+		if (!existsSync(join(root, methodPath))) {
+			write(methodPath, render(loadTemplate('method.hbs'), { MethodName: methodName }));
+		}
 	}
 
 	// Parser
@@ -85,7 +87,15 @@ for (const svc of registry.services) {
 	if (svc.transformer) {
 		const transformerPath = `src/transformers/${name}Transformer.ts`;
 		if (!existsSync(join(root, transformerPath))) {
-			write(transformerPath, render(loadTemplate('transformer.hbs'), { ServiceName: name, ArgsName: execArgsName }));
+			write(
+				transformerPath,
+				render(loadTemplate('transformer.hbs'), {
+					ServiceName: name,
+					ArgsName: execArgsName,
+					OutputName: outputName,
+					MethodName: methodName
+				})
+			);
 		}
 	}
 

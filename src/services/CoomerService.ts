@@ -7,6 +7,7 @@ import { BaseService } from './BaseService';
  * Supports Coomer and Kemono URLs.
  */
 export class CoomerService extends BaseService<any> {
+	private readonly service = ServiceType.Coomer;
 	/**
 	 * Creates a Coomer/Kemono service.
 	 * @param url Coomer or Kemono URL
@@ -14,21 +15,21 @@ export class CoomerService extends BaseService<any> {
 	 */
 	constructor(url: string) {
 		super(url);
-		this.validateUrl(url);
+		this.validate(url);
 	}
 
-	protected override validateUrl(url: string): void {
+	protected override validate(url: string): void {
 		let hostname: string;
 
 		try {
 			hostname = new URL(url).hostname;
 		} catch {
-			throw new InvalidUrlException(url, ServiceType.Coomer);
+			throw new InvalidUrlException(url, this.service);
 		}
 
 		const isSupportedHost = /^(?:www\.)?(?:coomer\.(?:st|party)|kemono\.(?:su|party))$/i.test(hostname);
 
-		if (!isSupportedHost) throw new InvalidUrlException(url, ServiceType.Coomer);
+		if (!isSupportedHost) throw new InvalidUrlException(url, this.service);
 	}
 
 	/**

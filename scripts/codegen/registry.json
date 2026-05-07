@@ -5,49 +5,56 @@
 			"parser": true,
 			"pipeline": true,
 			"transformer": true,
-			"strategy": false
+			"strategy": false,
+			"method": true
 		},
 		{
 			"name": "PornHub",
 			"parser": true,
 			"pipeline": true,
 			"transformer": true,
-			"strategy": true
+			"strategy": true,
+			"method": true
 		},
 		{
 			"name": "WallHaven",
 			"parser": true,
 			"pipeline": true,
 			"transformer": true,
-			"strategy": false
+			"strategy": false,
+			"method": true
 		},
 		{
 			"name": "Coomer",
 			"parser": false,
 			"pipeline": false,
 			"transformer": false,
-			"strategy": false
+			"strategy": false,
+			"method": true
 		},
 		{
 			"name": "Default",
 			"parser": false,
 			"pipeline": false,
 			"transformer": false,
-			"strategy": false
+			"strategy": false,
+			"method": false
 		},
 		{
 			"name": "XHamster",
 			"parser": true,
 			"pipeline": true,
 			"transformer": true,
-			"strategy": false
+			"strategy": false,
+			"method": true
 		},
 		{
 			"name": "TnAFlix",
 			"parser": true,
 			"pipeline": true,
 			"transformer": true,
-			"strategy": false
+			"strategy": false,
+			"method": true
 		}
 	]
 }

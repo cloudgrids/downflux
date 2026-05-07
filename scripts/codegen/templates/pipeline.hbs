@@ -1,4 +1,52 @@
+import { pathBuilder } from '../helpers';
 import { BasePipeline } from './BasePipeline';
-import { {{ArgsName}}, {{OutputName}} } from '../util';
+import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, {{ArgsName}}, {{OutputName}}  } from '../util';
 
-export class {{ServiceName}}Pipeline extends BasePipeline<{{ArgsName}}, {{OutputName}}> {}
+export class {{ServiceName}}Pipeline extends BasePipeline<{{ArgsName}}, {{OutputName}}> {
+	public override build(metadata: {{OutputName}}, request: {{ArgsName}}): PipelineItem[] {
+		return this.sliceByMaxDownloads(
+			request,
+			this.filterByExt(
+				request,
+				this.extract(request, metadata).map((item) => ({
+					downloadUrl: item.url,
+					sourceUrl: request.entryUrl,
+					service: request.service,
+					identifier: {
+						mediaType: item.mediaType,
+						...this.fileService.detectResourceType(item.url, request),
+						key: this.buildIdentifier({
+							mediaType: item.mediaType,
+							metadata,
+							url: item.url,
+							id: item.id
+						})
+					}
+				}))
+			)
+		);
+	}
+
+	protected override buildIdentifier(ctx: IdentifierContext<{{OutputName}}>): string {
+		const { mediaType, id } = ctx;
+		const prefix = '{{ServiceName}}';
+		let mediaSegment: string;
+
+		switch (mediaType) {
+			case MediaType.VIDEOS:
+				mediaSegment = `${MediaType.VIDEOS}/${id}`;
+				break;
+			default:
+				mediaSegment = `${mediaType}/${id}`;
+		}
+
+		return pathBuilder(prefix, '//implement username', mediaSegment);
+	}
+
+	protected override extract(request: {{ArgsName}}, metadata: {{OutputName}}): PipelineExtractedItem[] {
+		const urls: Set<PipelineExtractedItem> = new Set();
+
+		return Array.from(urls);
+	}
+
+}

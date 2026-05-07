@@ -4,4 +4,5 @@ export interface RegistryService {
 	pipeline?: boolean;
 	transformer?: boolean;
 	strategy?: boolean;
+	method?: boolean;
 }

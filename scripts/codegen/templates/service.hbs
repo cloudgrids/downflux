@@ -3,6 +3,7 @@ import { {{ArgsName}}, ServiceType } from '../util';
 import { InvalidUrlException } from '../exceptions';
 
 export class {{ServiceName}}Service extends BaseService<{{ArgsName}}> {
+	private readonly service = ServiceType.{{ServiceName}}
 	constructor(url: string) {
 		super(url);
 		this.validateUrl(url);
@@ -12,9 +13,9 @@ export class {{ServiceName}}Service extends BaseService<{{ArgsName}}> {
 		try {
 			new URL(url);
 		} catch {
-			throw new InvalidUrlException(url, ServiceType.{{ServiceName}});
+			throw new InvalidUrlException(url, this.service);
 		}
-		if (!url.startsWith('https://...')) throw new InvalidUrlException(url, ServiceType.{{ServiceName}});
+		if (!url.startsWith('https://...')) throw new InvalidUrlException(url, this.service);
 	}
 }
 
