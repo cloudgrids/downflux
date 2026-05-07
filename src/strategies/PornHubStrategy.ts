@@ -20,7 +20,7 @@ export class PornHubStrategy extends BaseStrategy {
 		return url.includes('phncdn.com') && url.includes('.m3u8');
 	}
 
-	public shouldResolveTextResponse(url, contentType) {
+	public shouldResolveTextResponse(url: string, contentType: string) {
 		return (
 			(url.includes('/get_file/') || url.includes('/get_media')) &&
 			(contentType.includes('text/') || contentType.includes('application/json'))

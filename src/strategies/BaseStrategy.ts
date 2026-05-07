@@ -17,6 +17,10 @@ export class BaseStrategy {
 		return '';
 	}
 
+	public getHostFallbackUrls(url: string): string[] {
+		return [url];
+	}
+
 	public getFallbackUrl(url: string): string | null {
 		return url;
 	}

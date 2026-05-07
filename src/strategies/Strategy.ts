@@ -3,6 +3,7 @@ import { ProgressService } from '../progress/ProgressService';
 import { ServiceType } from '../util';
 import { BaseStrategy } from './BaseStrategy';
 import { PornHubStrategy } from './PornHubStrategy';
+import { XHamsterStrategy } from './XHamsterStrategy';
 
 type StrategyCtor = new (progress: ProgressService, fileService: FileService) => BaseStrategy;
 
@@ -18,7 +19,7 @@ export class StrategyService {
 		[ServiceType.WallHaven]: BaseStrategy,
 		[ServiceType.Coomer]: BaseStrategy,
 		[ServiceType.Default]: BaseStrategy,
-		[ServiceType.XHamster]: BaseStrategy,
+		[ServiceType.XHamster]: XHamsterStrategy,
 		[ServiceType.TnAFlix]: BaseStrategy
 	};
 

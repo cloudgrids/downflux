@@ -22,45 +22,42 @@ import { BaseService } from './BaseService';
  * @notes Please report any issues you encounter to help improve the service.
  */
 export class PornHubService extends BaseService<PornHubExecArgs> {
+	private readonly service = ServiceType.PornHub;
 	private readonly Default_PAGE_RANGE: PageRange = { page: 1, limit: 1 };
 	private readonly PORN_HUB_FORMATS = ['pornstar', 'model', 'channel'] as const;
 	private readonly FORMAT_SET = new Set<string>(this.PORN_HUB_FORMATS);
 
 	constructor(url: string) {
 		super(url);
-		this.validateUrl(url);
+		this.validate(url);
 	}
 
-	protected override validateUrl(url: string): void {
+	protected override validate(url: string): void {
 		try {
 			new URL(url);
 		} catch {
-			throw new InvalidUrlException(url, ServiceType.PornHub);
+			throw new InvalidUrlException(url, this.service);
 		}
-		if (!url.includes('pornhub')) throw new InvalidUrlException(url, ServiceType.PornHub);
+		if (!url.includes('pornhub')) throw new InvalidUrlException(url, this.service);
 	}
 
-	get BASE_URL() {
-		return new URL(this.url).origin;
+	private get VIDEO_URL() {
+		return `${this.ORIGIN}/view_video.php?viewkey=`;
 	}
 
-	get VIDEO_URL() {
-		return `${this.BASE_URL}/view_video.php?viewkey=`;
+	private get MODEL_URL() {
+		return `${this.ORIGIN}/model`;
 	}
 
-	get MODEL_URL() {
-		return `${this.BASE_URL}/model`;
+	private get CHANNEL_URL() {
+		return `${this.ORIGIN}/channel`;
 	}
 
-	get CHANNEL_URL() {
-		return `${this.BASE_URL}/channel`;
+	private get PORN_STAR_URL() {
+		return `${this.ORIGIN}/pornstar`;
 	}
 
-	get PORN_STAR_URL() {
-		return `${this.BASE_URL}/pornstar`;
-	}
-
-	private getUrl(key: string, addPage: boolean = false, type: PornHubVideosFormat | 'video' = 'video'): string {
+	private resolveUrl(key: string, type: PornHubVideosFormat | 'video' = 'video', addPage: boolean = false): string {
 		let url: string;
 		switch (type) {
 			case 'channel':
@@ -97,12 +94,12 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 		const urlObj = new URL(this.url);
 		const viewKey = args.viewKey || urlObj.searchParams.get('viewkey');
 
-		if (!viewKey) throw new GenericException('View key not found', ServiceType.PornHub, PornHubMethods.getVideo);
+		if (!viewKey) throw new GenericException('View key not found', this.service, PornHubMethods.getVideo);
 
 		return await this.execute<PornHubVideoOutput>({
-			targets: [this.getUrl(viewKey)],
+			targets: [this.resolveUrl(viewKey)],
 			method: PornHubMethods.getVideo,
-			service: ServiceType.PornHub,
+			service: this.service,
 			urlType: UrlType.SOURCES,
 			allowedVideoQuality: args.quality,
 			returnType: 'object',
@@ -126,11 +123,11 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 		const username = args.username || pathParts[1];
 		const currentPage = Number(url.searchParams.get('page') ?? 1);
 
-		if (!username) throw new GenericException('Username is required', ServiceType.PornHub, PornHubMethods.getVideos);
+		if (!username) throw new GenericException('Username is required', this.service, PornHubMethods.getVideos);
 
 		if (pathParts?.length) {
 			if (!this.isVideosFormat(pathParts[0])) {
-				throw new GenericException('Invalid format', ServiceType.PornHub, PornHubMethods.getVideos);
+				throw new GenericException('Invalid format', this.service, PornHubMethods.getVideos);
 			}
 
 			type = pathParts[0];
@@ -138,9 +135,9 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 
 		return await this.execute<PornHubVideosOutput[]>({
 			...this.makeTargets(
-				this.getUrl(username, true, type),
+				this.resolveUrl(username, type, true),
 				{ page: currentPage, limit: range.limit },
-				ServiceType.PornHub,
+				this.service,
 				PornHubMethods.getVideos,
 				false
 			),
@@ -163,7 +160,7 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 	public async getVideosFromAnyUrl(format?: UrlFormat): Promise<PornHubVideosOutput[]> {
 		return await this.execute<PornHubVideosOutput[]>({
 			targets: [this.url],
-			service: ServiceType.PornHub,
+			service: this.service,
 			method: PornHubMethods.getVideos,
 			returnType: 'array',
 			urlType: UrlType.ANCHORS,

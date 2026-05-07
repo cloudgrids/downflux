@@ -7,6 +7,7 @@ import { BaseService } from './BaseService';
  * Supports generic URL extraction.
  */
 export class DefaultService extends BaseService<any> {
+	private readonly service = ServiceType.Default;
 	/**
 	 * Creates a default extraction service.
 	 * @param url Any valid URL
@@ -14,14 +15,14 @@ export class DefaultService extends BaseService<any> {
 	 */
 	constructor(url: string) {
 		super(url);
-		this.validateUrl(url);
+		this.validate(url);
 	}
 
-	protected override validateUrl(url: string): void {
+	protected override validate(url: string): void {
 		try {
 			new URL(url);
 		} catch {
-			throw new InvalidUrlException(url, ServiceType.Default);
+			throw new InvalidUrlException(url, this.service);
 		}
 	}
 

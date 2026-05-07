@@ -6,4 +6,5 @@ export interface ServiceStrategy {
 	shouldReExtract?(url: string): boolean;
 	shouldResolveTextResponse?(url: string, contentType: string): boolean;
 	getDirectVideoUrlFromText?(body: string, opts: DownloadOptions): string | null;
+	getHostFallbackUrls?(url: string): string[];
 }

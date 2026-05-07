@@ -1,5 +1,5 @@
 import { DownloaderService } from '../downloader';
-import { HLSFetchService, HttpFetcherService } from '../fetcher';
+import { HLSFetchService, HtmlFetcherService, StreamFetcherService } from '../fetcher';
 import { FfmpegService, FileService } from '../file';
 import { BackgroundService, JobService } from '../job';
 import { PipelineService } from '../pipelines';
@@ -18,20 +18,27 @@ export function createDefaultDependencies(): ServiceDependencies {
 
 	const cliRenderer = new CliRenderer(progressService);
 
-	const hlsFetchService = new HLSFetchService(progressService);
-
 	const ffmpegService = new FfmpegService(progressService);
 	const fileService = new FileService(ffmpegService, progressService);
-	const strategyService = new StrategyService(progressService, fileService);
-	const pipelineService = new PipelineService(fileService);
-	const httpFetcherService = new HttpFetcherService(hlsFetchService, progressService, strategyService);
 
-	const transformerService = new TransformerService(httpFetcherService, progressService);
-	const downloaderService = new DownloaderService(fileService, httpFetcherService, progressService);
+	const strategyService = new StrategyService(progressService, fileService);
+
+	const htmlFetcherService = new HtmlFetcherService(strategyService, progressService);
+	const hlsFetchService = new HLSFetchService(progressService);
+	const streamFetcherService = new StreamFetcherService(hlsFetchService, strategyService, progressService);
+
+	const pipelineService = new PipelineService(fileService);
+
+	const transformerService = new TransformerService(htmlFetcherService, progressService);
+
+	const downloaderService = new DownloaderService(fileService, streamFetcherService, progressService);
+
 	const backgroundService = new BackgroundService(downloaderService, fileService, transformerService, progressService, pipelineService);
 	const jobService = new JobService(transformerService, backgroundService, progressService, pipelineService);
+
 	return {
-		httpFetcherService,
+		htmlFetcherService,
+		streamFetcherService,
 		transformerService,
 		downloaderService,
 		strategyService,

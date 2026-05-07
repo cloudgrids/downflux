@@ -1,4 +1,17 @@
 import { BaseTransformer } from './BaseTransformer';
-import { {{ArgsName}}, DefaultExtractorResult } from '../util';
+import { {{ArgsName}}, DefaultExtractorResult, {{OutputName}}, {{MethodName}} } from '../util';
 
-export class {{ServiceName}}Transformer extends BaseTransformer<{{ArgsName}}, DefaultExtractorResult> {}
+export class {{ServiceName}}Transformer extends BaseTransformer<{{ArgsName}}, DefaultExtractorResult> {
+	public async transform(url: string, request?: {{ArgsName}}): Promise<DefaultExtractorResult> {
+		const metadata = (await super.transform(url, request)) as DefaultExtractorResult<Partial<{{OutputName}}>>;
+
+		if (!request?.transformOutput) return metadata;
+
+		switch (request?.method) {
+			case {{MethodName}}.getVideo:
+				return metadata;
+			default:
+				return metadata;
+		}
+	}
+}

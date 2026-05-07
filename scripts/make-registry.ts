@@ -8,12 +8,13 @@ const appendUniqueJsonToRegistry = <T extends Record<string, RegistryService[]>>
 	const parsed = JSON.parse(raw) as T;
 
 	if (!parsed[key].find((s) => s.name === value)) {
-		const newService = {
+		const newService: RegistryService = {
 			name: value,
 			parser: true,
 			pipeline: true,
 			transformer: true,
-			strategy: false
+			strategy: false,
+			method: true
 		};
 
 		parsed[key].push(newService);
@@ -52,6 +53,7 @@ const appendUniqueJsonToPaths = <T extends Record<string, string[]>>(file: strin
 	for (const name of names) {
 		appendUniqueJsonToRegistry(registryPath, 'services', name);
 		appendUniqueJsonToPaths(jsonPath, 'paths', `src/util/interfaces/services/${name.toLowerCase()}`);
+		appendUniqueJsonToPaths(jsonPath, 'paths', `src/util/enums/services/${name.toLowerCase()}`);
 	}
 })();
 

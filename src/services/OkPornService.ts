@@ -24,6 +24,7 @@ import { BaseService } from './BaseService';
  * @remarks Model pages are limited to 555 pages. Channel pages are limited to 21 pages.
  */
 export class OkPornService extends BaseService<OkPornExecArgs> {
+	private readonly service = ServiceType.OkPorn;
 	private readonly ALBUMS_URL = 'https://ok.porn/albums/';
 	private readonly VIDEOS_URL = 'https://ok.porn/video/';
 	private readonly MODELS_URL = 'https://ok.porn/models/';
@@ -41,16 +42,16 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	 */
 	constructor(url: string) {
 		super(url);
-		this.validateUrl(url);
+		this.validate(url);
 	}
 
-	protected override validateUrl(url: string): void {
+	protected override validate(url: string): void {
 		try {
 			new URL(url);
 		} catch {
-			throw new InvalidUrlException(url, ServiceType.OkPorn);
+			throw new InvalidUrlException(url, this.service);
 		}
-		if (!url.startsWith('https://ok.porn/')) throw new InvalidUrlException(url, ServiceType.OkPorn);
+		if (!url.startsWith('https://ok.porn/')) throw new InvalidUrlException(url, this.service);
 	}
 
 	/**
@@ -63,7 +64,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	 */
 	public async getAlbums(param: PageRange = this.Default_PAGE_RANGE): Promise<OkPornAlbumOutput[]> {
 		return await this.execute<OkPornAlbumOutput[]>({
-			...this.makeTargets(this.ALBUMS_URL, param, ServiceType.OkPorn, OkPornMethods.getAlbums),
+			...this.makeTargets(this.ALBUMS_URL, param, this.service, OkPornMethods.getAlbums),
 			urlType: UrlType.IMAGES,
 			returnType: 'array'
 		});
@@ -79,12 +80,12 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	 * @notes The method will retrieve the album metadata and thumbnail URLs based on the specified album ID.
 	 */
 	public async getAlbum(id: string): Promise<OkPornAlbumOutput> {
-		if (!id) throw new GenericException('Album ID is required', ServiceType.OkPorn, OkPornMethods.getAlbum);
+		if (!id) throw new GenericException('Album ID is required', this.service, OkPornMethods.getAlbum);
 		return await this.execute<OkPornAlbumOutput>({
 			targets: [`${this.ALBUMS_URL}${id}/`],
 			urlType: UrlType.IMAGES,
 			method: OkPornMethods.getAlbum,
-			service: ServiceType.OkPorn,
+			service: this.service,
 			returnType: 'object'
 		});
 	}
@@ -102,11 +103,11 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	 */
 	public getModels(range: PageRange = this.Default_PAGE_RANGE, args?: OkPornIdType): Promise<OkPornModelOutput[]> {
 		if (range.limit > this.MODEL_VIDEO_PAGE_LIMIT) {
-			throw new InvalidRangeException(range.page, range.limit, ServiceType.OkPorn, OkPornMethods.getModels);
+			throw new InvalidRangeException(range.page, range.limit, this.service, OkPornMethods.getModels);
 		}
 
 		return this.execute<OkPornModelOutput[]>({
-			...this.makeTargets(this.MODELS_URL, range, ServiceType.OkPorn, OkPornMethods.getModels),
+			...this.makeTargets(this.MODELS_URL, range, this.service, OkPornMethods.getModels),
 			urlType: UrlType.ANCHORS,
 			modelArgs: args,
 			returnType: 'array'
@@ -124,10 +125,10 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	 * @notes The method will fetch the total number of pages for the model's videos and iterate through them based on the specified range to retrieve all relevant video identifiers and metadata.
 	 */
 	public async getModelVideoIds(username: string, range: PageRange = this.Default_PAGE_RANGE): Promise<OkPornModelVideoIdsOutput> {
-		if (!username) throw new GenericException('Model username is required', ServiceType.OkPorn, OkPornMethods.getModelVideoIds);
+		if (!username) throw new GenericException('Model username is required', this.service, OkPornMethods.getModelVideoIds);
 
 		return await this.execute<OkPornModelVideoIdsOutput>({
-			...this.makeTargets(`${this.MODELS_URL}${username}/`, range, ServiceType.OkPorn, OkPornMethods.getModelVideoIds),
+			...this.makeTargets(`${this.MODELS_URL}${username}/`, range, this.service, OkPornMethods.getModelVideoIds),
 			urlType: UrlType.ANCHORS,
 			returnType: 'object'
 		});
@@ -148,7 +149,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 			targets: [this.TAGS_URL],
 			urlType: UrlType.ANCHORS,
 			method: OkPornMethods.getTags,
-			service: ServiceType.OkPorn,
+			service: this.service,
 			tagArgs: args,
 			returnType: 'array'
 		});
@@ -167,10 +168,10 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	 */
 	public async getChannels(range: PageRange = this.Default_PAGE_RANGE, args?: OkPornIdType): Promise<OkPornChannelOutput[]> {
 		if (range.limit > this.CHANNEL_PAGE_LIMIT) {
-			throw new InvalidRangeException(range.page, range.limit, ServiceType.OkPorn, OkPornMethods.getChannels);
+			throw new InvalidRangeException(range.page, range.limit, this.service, OkPornMethods.getChannels);
 		}
 		return await this.execute<OkPornChannelOutput[]>({
-			...this.makeTargets(this.CHANNELS_URL, range, ServiceType.OkPorn, OkPornMethods.getChannels),
+			...this.makeTargets(this.CHANNELS_URL, range, this.service, OkPornMethods.getChannels),
 			urlType: UrlType.ANCHORS,
 			channelArgs: args,
 			returnType: 'array'
@@ -187,7 +188,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	 */
 	public async getVideos(range: IndexRange = this.Default_INDEX_RANGE, quality?: VideoQuality): Promise<OkPornVideoOutput[]> {
 		return await this.execute<OkPornVideoOutput[]>({
-			...this.makeTargets(this.VIDEOS_URL, range, ServiceType.OkPorn, OkPornMethods.getVideos),
+			...this.makeTargets(this.VIDEOS_URL, range, this.service, OkPornMethods.getVideos),
 			urlType: UrlType.SOURCES,
 			videoArgs: { quality },
 			allowedVideoQuality: quality,
@@ -206,13 +207,13 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	 * @notes The method will retrieve the video metadata and source URLs based on the specified video ID and quality.
 	 */
 	public async getVideo(id: string, quality?: VideoQuality): Promise<OkPornVideoOutput> {
-		if (!id) throw new GenericException('Video ID is required', ServiceType.OkPorn, OkPornMethods.getVideo);
+		if (!id) throw new GenericException('Video ID is required', this.service, OkPornMethods.getVideo);
 
 		return await this.execute<OkPornVideoOutput>({
 			targets: [`${this.VIDEOS_URL}${id}/`],
 			urlType: UrlType.SOURCES,
 			method: OkPornMethods.getVideo,
-			service: ServiceType.OkPorn,
+			service: this.service,
 			videoArgs: { quality },
 			allowedVideoQuality: quality,
 			returnType: 'object'

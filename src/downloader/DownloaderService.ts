@@ -1,5 +1,5 @@
 import { finished } from 'stream/promises';
-import { HttpFetcherService } from '../fetcher';
+import { StreamFetcherService } from '../fetcher';
 import { FileService } from '../file';
 import { ProgressService } from '../progress';
 import { DownloadOptions, DownloadResult, OutputType, PipelineItem, ResolvedFile } from '../util';
@@ -7,7 +7,7 @@ import { DownloadOptions, DownloadResult, OutputType, PipelineItem, ResolvedFile
 export class DownloaderService {
 	constructor(
 		protected readonly fileService: FileService,
-		protected readonly httpFetcherService: HttpFetcherService,
+		protected readonly streamFetcherService: StreamFetcherService,
 		protected readonly progressService: ProgressService
 	) {}
 
@@ -17,7 +17,7 @@ export class DownloaderService {
 
 		const initialFile = this.fileService.getFileInfo(url, dirConfig?.prefix);
 
-		const { finalUrl, headers, start } = await this.httpFetcherService.requestStream(url, {
+		const { finalUrl, headers, start } = await this.streamFetcherService.requestStream(url, {
 			...opts,
 			referer: item.sourceUrl,
 			pipelineItem: item

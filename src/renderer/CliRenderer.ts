@@ -26,12 +26,12 @@ export class CliRenderer {
 			CURRENT_SEGMENT: s.currentSegment,
 			REDIRECTED_URL: s.redirectedUrl,
 			HLS_URL: s.hlsSegmentUrl,
-			TARGETS: ProgressFormatter.createTrack('items', s.resolvedTargets ?? 0, s.totalTargets),
-			PROGRESS: ProgressFormatter.createTrack('item', s.downloadedBytes ?? 0, s.totalBytes),
-			ITEMS: ProgressFormatter.createTrack('items', s.resolvedItems ?? 0, s.totalItems),
-			SEGMENTS: ProgressFormatter.createTrack('items', s.resolvedSegments ?? 0, s.totalSegments),
+			TARGETS: ProgressFormatter.createTrack('items', s.resolvedTargets, s.totalTargets),
+			PROGRESS: ProgressFormatter.createTrack('item', s.downloadedBytes, s.totalBytes),
+			ITEMS: ProgressFormatter.createTrack('items', s.resolvedItems, s.totalItems),
+			SEGMENTS: ProgressFormatter.createTrack('items', s.resolvedSegments, s.totalSegments),
 			FAILED: s.failed,
-			ERROR: s.error,
+			ERROR: s.error?.cause,
 			MESSAGE: s.message
 		};
 

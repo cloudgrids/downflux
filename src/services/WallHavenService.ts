@@ -22,6 +22,7 @@ import { BaseService } from './BaseService';
  * Provides wallpaper and user upload operations.
  */
 export class WallHavenService extends BaseService<WallHavenExecArgs> {
+	private readonly service = ServiceType.WallHaven;
 	private readonly BASE_URL = 'https://wallhaven.cc';
 	private readonly WALLPAPER_URL = `${this.BASE_URL}/w`;
 	private readonly USER_URL = `${this.BASE_URL}/user`;
@@ -34,19 +35,19 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 */
 	constructor(url: string) {
 		super(url);
-		this.validateUrl(url);
+		this.validate(url);
 	}
 
 	/**
 	 * @override Validates that the URL is from WallHaven.
 	 */
-	protected override validateUrl(url: string): void {
+	protected override validate(url: string): void {
 		try {
 			new URL(url);
 		} catch {
-			throw new InvalidUrlException(url, ServiceType.WallHaven);
+			throw new InvalidUrlException(url, this.service);
 		}
-		if (!url.startsWith('https://wallhaven.cc/')) throw new InvalidUrlException(url, ServiceType.WallHaven);
+		if (!url.startsWith('https://wallhaven.cc/')) throw new InvalidUrlException(url, this.service);
 	}
 
 	/**
@@ -59,12 +60,12 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * @canDownload true
 	 */
 	public async getWallPaper(id: string, thumbQualities?: WallHavenThumbnailQuality[]): Promise<WallHavenWallPaperOutput> {
-		if (!id) throw new GenericException('Wallpaper ID is required', ServiceType.WallHaven, WallHavenMethods.getWallPaper);
+		if (!id) throw new GenericException('Wallpaper ID is required', this.service, WallHavenMethods.getWallPaper);
 
 		return await this.execute<WallHavenWallPaperOutput>({
 			targets: [`${this.WALLPAPER_URL}/${id}`],
 			method: WallHavenMethods.getWallPaper,
-			service: ServiceType.WallHaven,
+			service: this.service,
 			urlType: UrlType.IMAGES,
 			thumbQualities,
 			returnType: 'object'
@@ -91,7 +92,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 			...this.makeTargets(
 				`${this.USER_URL}/${args.username}/uploads?purity=${this.purity(args)}&page=`,
 				await this.range(range, async () => (await this.setOutput(OutputType.RETURN).getUserUploadsInfo(args.username)).totalPages),
-				ServiceType.WallHaven,
+				this.service,
 				WallHavenMethods.getUserUploads,
 				false
 			),
@@ -112,12 +113,12 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	 * @canDownload false
 	 */
 	public async getUserUploadsInfo(username: string): Promise<WallHavenUserInfoOutput> {
-		if (!username) throw new GenericException('Username is required', ServiceType.WallHaven, WallHavenMethods.getUserUploadsInfo);
+		if (!username) throw new GenericException('Username is required', this.service, WallHavenMethods.getUserUploadsInfo);
 
 		return await this.execute<WallHavenUserInfoOutput>({
 			targets: [`${this.USER_URL}/${username}/uploads`],
 			method: WallHavenMethods.getUserUploadsInfo,
-			service: ServiceType.WallHaven,
+			service: this.service,
 			userArgs: { username },
 			returnType: 'object'
 		});
@@ -135,14 +136,14 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 		range: 'all' | IndexRange = this.DefaultIndexRange
 	): Promise<WallHavenUserFavoriteCollectionsOutput[]> {
 		if (!args?.username) {
-			throw new GenericException('Username is required', ServiceType.WallHaven, WallHavenMethods.getUserFavoriteCollections);
+			throw new GenericException('Username is required', this.service, WallHavenMethods.getUserFavoriteCollections);
 		}
 
 		return await this.execute<WallHavenUserFavoriteCollectionsOutput[]>({
 			...this.makeTargets(
 				`${this.USER_URL}/${args.username}/favorites?purity=${this.purity(args)}&page=`,
 				await this.range(range),
-				ServiceType.WallHaven,
+				this.service,
 				WallHavenMethods.getUserFavoriteCollections,
 				false
 			),
@@ -171,7 +172,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 			...this.makeTargets(
 				`${this.USER_URL}/${args.username}/favorites/${args.collectionId}?purity=${this.purity(args)}&page=`,
 				await this.range(range, async () => (await this.setOutput(OutputType.RETURN).getUserUploadsInfo(args.username)).totalPages),
-				ServiceType.WallHaven,
+				this.service,
 				WallHavenMethods.getUserFavoriteCollection,
 				false
 			),

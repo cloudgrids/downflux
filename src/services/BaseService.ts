@@ -23,7 +23,7 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 	protected jobOptions: JobOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
 	protected readonly deps: ServiceDependencies;
-	protected abstract validateUrl(url: string): void;
+	protected abstract validate(url: string): void;
 
 	/**
 	 * Creates a service instance.
@@ -36,6 +36,10 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 			executionType: ExecutionType.SEQUENTIAL
 		};
 		this.httpOptions = { referer: url };
+	}
+
+	protected get ORIGIN() {
+		return new URL(this.url).origin;
 	}
 
 	/**

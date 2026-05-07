@@ -10,7 +10,7 @@ export class ProgressFormatter {
 
 	private static bytesMapper(downloadedBytes: number, totalBytes?: number): string {
 		const downloaded = this.formatBytes(downloadedBytes);
-		const total = totalBytes ? this.formatBytes(totalBytes) : 'Unknown';
+		const total = totalBytes ? this.formatBytes(totalBytes) : '0 Bytes';
 		return `${downloaded} / ${total}`;
 	}
 
@@ -26,7 +26,7 @@ export class ProgressFormatter {
 		return `[${'#'.repeat(filled)}${'-'.repeat(width - filled)}] (${percentage.toFixed(2)}%)`;
 	}
 
-	public static createTrack(type: 'items' | 'item', downloaded: number, total?: number): string {
+	public static createTrack(type: 'items' | 'item', downloaded: number = 0, total: number = 0): string {
 		const progress = this.progressTrack(downloaded, total);
 
 		return type === 'item' ? `${this.bytesMapper(downloaded, total)} ${progress}` : `(${downloaded}/${total ?? 0}) ${progress}`;
