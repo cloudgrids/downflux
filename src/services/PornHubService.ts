@@ -1,6 +1,8 @@
 import { GenericException, InvalidUrlException } from '../exceptions';
 import {
 	PageRange,
+	PornHubChannelsOutput,
+	PornHubChannelsQueryArgsType,
 	PornHubExecArgs,
 	PornHubMethods,
 	PornHubVideoExecArgs,
@@ -23,9 +25,18 @@ import { BaseService } from './BaseService';
  */
 export class PornHubService extends BaseService<PornHubExecArgs> {
 	private readonly service = ServiceType.PornHub;
+	private readonly HOST_REGEX = /^(?:www\.)?pornhub\.(?:com|net|org)$/i;
+	private readonly CHANNELS_PATH_REGEX = /^https:\/\/(?:www\.)?pornhub\.(?:com|net|org)\/channels(?:\?.*)?$/i;
 	private readonly Default_PAGE_RANGE: PageRange = { page: 1, limit: 1 };
-	private readonly PORN_HUB_FORMATS = ['pornstar', 'model', 'channel'] as const;
+	private readonly PORN_HUB_FORMATS = ['pornstar', 'model', 'channels'] as const;
 	private readonly FORMAT_SET = new Set<string>(this.PORN_HUB_FORMATS);
+	private readonly CHANNEL_QUERY_MAP: Record<PornHubChannelsQueryArgsType, string> = {
+		all: '',
+		most_popular: 'o=rk',
+		trending: 'o=tr',
+		most_recent: 'o=mr',
+		alphabetical: 'o=al'
+	};
 
 	constructor(url: string) {
 		super(url);
@@ -38,7 +49,9 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 		} catch {
 			throw new InvalidUrlException(url, this.service);
 		}
-		if (!url.includes('pornhub')) throw new InvalidUrlException(url, this.service);
+		const isSupportedHost = this.HOST_REGEX.test(new URL(url).hostname);
+
+		if (!isSupportedHost) throw new InvalidUrlException(url, this.service);
 	}
 
 	private get VIDEO_URL() {
@@ -60,7 +73,7 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 	private resolveUrl(key: string, type: PornHubVideosFormat | 'video' = 'video', addPage: boolean = false): string {
 		let url: string;
 		switch (type) {
-			case 'channel':
+			case 'channels':
 				url = `${this.CHANNEL_URL}/${key}`;
 				break;
 			case 'model':
@@ -112,6 +125,7 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 	 * @notes This method does not download videos only returns array or urls
 	 * @throws `GenericException` when the username or type is missing, usually derived from URL if exists
 	 * @param args options parameter to specify username, type of videos and quality
+	 * @notes This method is specially designed for fetching videos from `channel` or `model` or `pornstar` pages where the videos are listed in a paginated format.
 	 * @canDownload false
 	 */
 	public async getVideos(args: PornHubVideosExecArgs = {}, range: PageRange = this.Default_PAGE_RANGE): Promise<PornHubVideosOutput[]> {
@@ -165,6 +179,27 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 			returnType: 'array',
 			urlType: UrlType.ANCHORS,
 			videosArgs: { format }
+		});
+	}
+
+	public async getChannels(
+		type: PornHubChannelsQueryArgsType = 'most_popular',
+		range: PageRange = this.Default_PAGE_RANGE
+	): Promise<PornHubChannelsOutput[]> {
+		const hasMatched = this.CHANNELS_PATH_REGEX.test(this.url);
+		let channelUrl = hasMatched ? this.url : `${this.CHANNEL_URL}s?${this.CHANNEL_QUERY_MAP[type]}&page=`;
+
+		const hasPageQuery = new URL(this.url).searchParams.get('page');
+		const hasChannelQuery = new URL(this.url).searchParams.get('o');
+
+		if (!hasChannelQuery || !hasPageQuery) {
+			channelUrl = `${this.CHANNEL_URL}s?${this.CHANNEL_QUERY_MAP[type]}&page=`;
+		}
+
+		return await this.execute<PornHubChannelsOutput[]>({
+			...this.makeTargets(channelUrl, range, this.service, PornHubMethods.getChannels, false),
+			returnType: 'array',
+			urlType: UrlType.ANCHORS
 		});
 	}
 }

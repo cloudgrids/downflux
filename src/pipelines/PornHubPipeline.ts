@@ -42,10 +42,14 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 				mediaSegment = `${MediaType.AVATAR}`;
 				break;
 
+			case MediaType.CHANNELS:
+				mediaSegment = `${mediaType}/${MediaType.COVER}`;
+				break;
+
 			default:
 				mediaSegment = `${mediaType}/${id}`;
 		}
-		return pathBuilder(prefix, spaceNormalizer(metadata.user), mediaSegment);
+		return pathBuilder(prefix, spaceNormalizer(metadata.user ?? id), mediaSegment);
 	}
 
 	protected override extract(request: PornHubExecArgs, metadata: PornHubOutput): PipelineExtractedItem[] {
@@ -71,6 +75,14 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 				url: metadata.thumbnailUrl,
 				mediaType: MediaType.VIDEO_PREVIEW,
 				id: request.entryUrl.split('=').pop() ?? 'unknown'
+			});
+		}
+
+		if (metadata?.channelThumbnail) {
+			urls.add({
+				url: metadata.channelThumbnail,
+				mediaType: MediaType.CHANNELS,
+				id: metadata.channelName.replace(/\s+/g, '_').toLowerCase()
 			});
 		}
 

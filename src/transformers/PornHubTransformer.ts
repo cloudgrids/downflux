@@ -1,14 +1,22 @@
-import { DefaultExtractorResult, PornHubExecArgs, PornHubMethods, PornHubOutput, PornHubVideoOutput, PornHubVideosOutput } from '../util';
+import {
+	DefaultExtractorResult,
+	PornHubChannelsOutput,
+	PornHubExecArgs,
+	PornHubMethods,
+	PornHubOutput,
+	PornHubVideoOutput,
+	PornHubVideosOutput
+} from '../util';
 import { BaseTransformer } from './BaseTransformer';
 
 export class PornHubTransformer extends BaseTransformer<
 	PornHubExecArgs,
-	PornHubVideoOutput | PornHubVideosOutput | DefaultExtractorResult
+	PornHubVideoOutput | PornHubVideosOutput | DefaultExtractorResult | PornHubChannelsOutput[]
 > {
 	public async transform(
 		url: string,
 		request: PornHubExecArgs
-	): Promise<PornHubVideoOutput | PornHubVideosOutput | DefaultExtractorResult<unknown>> {
+	): Promise<PornHubVideoOutput | PornHubVideosOutput | PornHubChannelsOutput[] | DefaultExtractorResult<unknown>> {
 		const metadata = (await super.transform(url, request)) as DefaultExtractorResult<Partial<PornHubOutput>>;
 
 		if (!request?.transformOutput) return metadata;
@@ -19,6 +27,9 @@ export class PornHubTransformer extends BaseTransformer<
 
 			case PornHubMethods.getVideos:
 				return this.toVideosOutput(request, metadata);
+
+			case PornHubMethods.getChannels:
+				return this.toChannelsOutput(request, metadata);
 
 			default:
 				return metadata;
@@ -75,5 +86,9 @@ export class PornHubTransformer extends BaseTransformer<
 			currentPage: pornHubFields?.currentPage ?? '1',
 			fetchedVideos: videoUrls?.length?.toString() ?? '0'
 		};
+	}
+
+	private toChannelsOutput(request: PornHubExecArgs, metadata: DefaultExtractorResult<Partial<PornHubOutput>>): PornHubChannelsOutput[] {
+		return (metadata.customFields?.channels as PornHubChannelsOutput[]) ?? [];
 	}
 }
