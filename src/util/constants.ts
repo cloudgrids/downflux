@@ -40,3 +40,11 @@ export const HEADER_PRESETS: Record<string, string>[] = [
 		'TE': 'trailers'
 	}
 ];
+
+export const cleanBase = ''
+	.replace(/\.m3u8$/i, '')
+	.replace(/\.mp4$/i, '')
+	.replace(/_TPL_/gi, '')
+	.replace(/\.+/g, '_')
+	.replace(/_+/g, '_')
+	.replace(/^_|_$/g, '');

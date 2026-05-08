@@ -2,6 +2,8 @@ import { DefaultExtractorResult, XHamsterExecArgs, XHamsterMethods, XHamsterOutp
 import { BaseTransformer } from './BaseTransformer';
 
 export class XHamsterTransformer extends BaseTransformer<XHamsterExecArgs, DefaultExtractorResult | XHamsterVideoOutput> {
+	private readonly DIRECT_MP4_REGEX = /^https:\/\/video5\.xhpingcdn\.com\/.*\.mp4$/;
+
 	public async transform(url: string, request?: XHamsterExecArgs): Promise<DefaultExtractorResult | XHamsterVideoOutput> {
 		const metadata = (await super.transform(url, request)) as DefaultExtractorResult<Partial<XHamsterOutput>>;
 
@@ -17,15 +19,15 @@ export class XHamsterTransformer extends BaseTransformer<XHamsterExecArgs, Defau
 
 	private toVideoOutput(request: XHamsterExecArgs, metadata: DefaultExtractorResult<Partial<XHamsterVideoOutput>>): XHamsterVideoOutput {
 		const xHamsterFields = metadata.customFields as XHamsterOutput;
+
 		return {
 			description: metadata.description,
 			title: metadata.title,
 			pageUrl: xHamsterFields.pageUrl,
 			thumbnailUrl: xHamsterFields.thumbnailUrl,
 			username: xHamsterFields.username,
-			videoUrl: metadata.links?.find((link) =>
-				link.match(/^https:\/\/video-(?:nss|cf)\.xhpingcdn\.com\/.*\.m3u8(?:\?.*)?$/)
-			) as string
+			masterPlaylistUrl: xHamsterFields.masterPlaylistUrl,
+			defaultVideoUrl: metadata.videos?.find((video) => this.DIRECT_MP4_REGEX.test(video)) ?? metadata.videos?.[0]
 		};
 	}
 }

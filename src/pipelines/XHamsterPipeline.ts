@@ -1,5 +1,5 @@
 import { pathBuilder, spaceNormalizer } from '../helpers';
-import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, XHamsterExecArgs, XHamsterOutput } from '../util';
+import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, VideoQuality, XHamsterExecArgs, XHamsterOutput } from '../util';
 import { BasePipeline } from './BasePipeline';
 
 export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOutput> {
@@ -55,10 +55,10 @@ export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOut
 			});
 		}
 
-		if (metadata?.videoUrl) {
+		if (metadata?.defaultVideoUrl || metadata.masterPlaylistUrl) {
 			urls.add({
 				mediaType: MediaType.VIDEOS,
-				url: metadata.videoUrl,
+				url: request.allowedVideoQuality === VideoQuality.Q480 ? metadata.defaultVideoUrl : metadata.masterPlaylistUrl,
 				username: metadata.username,
 				id: spaceNormalizer(metadata.title)
 			});
