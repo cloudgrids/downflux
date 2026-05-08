@@ -25,7 +25,7 @@ export interface PornHubVideoExecArgs {
 	quality?: VideoQuality;
 }
 
-export type PornHubVideosFormat = 'model' | 'channel' | 'pornstar';
+export type PornHubVideosFormat = 'model' | 'channels' | 'pornstar';
 /**
  * @interface
  * Interface representing the output structure for getting videos
@@ -42,3 +42,5 @@ export interface PornHubVideosExecArgs {
 	 */
 	format?: UrlFormat;
 }
+
+export type PornHubChannelsQueryArgsType = 'all' | 'most_popular' | 'trending' | 'most_recent' | 'alphabetical';

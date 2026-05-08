@@ -15,5 +15,6 @@ export enum MediaType {
 	UPLOADS = 'uploads',
 	AVATAR = 'avatar',
 	COVER = 'cover',
+	CHANNELS = 'channels',
 	OTHER = 'other'
 }

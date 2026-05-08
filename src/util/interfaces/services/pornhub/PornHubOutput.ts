@@ -1,3 +1,4 @@
+import { PornHubChannelsOutput } from './PornHubChannelsOutput';
 import { PornHubVideoOutput } from './PornHubVideoOutput';
 import { PornHubVideosOutput } from './PornHubVideosOutput';
 
@@ -5,4 +6,6 @@ import { PornHubVideosOutput } from './PornHubVideosOutput';
  * @interface
  * @internal type used for internal transformations,
  */
-export interface PornHubOutput extends PornHubVideoOutput, PornHubVideosOutput {}
+export interface PornHubOutput extends PornHubVideoOutput, PornHubVideosOutput, PornHubChannelsOutput {
+	channels: PornHubChannelsOutput[];
+}
