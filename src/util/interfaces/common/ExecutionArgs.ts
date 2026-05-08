@@ -1,20 +1,23 @@
+// util/interfaces/ExecutionArgs.ts
+
 import { ExecutionType, ServiceType, UrlType } from '../../enums';
+import { ExecutionShape } from '../../types';
 import { JobOptions } from './JobOptions';
-import { JobProgressStatus } from './Progress';
 
-export interface ExtractProgressEvent {
-	status: Extract<JobProgressStatus, 'EXTRACTING' | 'EXTRACTED'>;
-	target: string;
-	countTarget?: boolean;
-}
-
-// Internal type used for execution
-export interface ExecutionArgs extends JobOptions {
+export interface ExecutionArgs<S extends ExecutionShape = ExecutionShape> extends JobOptions {
 	service: ServiceType;
 	method: string;
 	entryUrl: string;
 	targets: string[];
-	returnType: 'array' | 'object';
+	/**
+	 * Internal runtime metadata describing
+	 * the structural shape of extracted output.
+	 *
+	 * single   -> TResult
+	 * multiple -> TResult[]
+	 */
+	executionShape: S;
+
 	executionType: ExecutionType;
 	urlType: UrlType;
 }

@@ -3,8 +3,10 @@ import {
 	AllowedExtension,
 	DirectoryOutputOptions,
 	ExecutionArgs,
+	ExecutionShape,
 	ExecutionType,
 	HttpFetchOptions,
+	InferExecutionShape,
 	JobOptions,
 	JobProgressEvent,
 	OutputType,
@@ -20,7 +22,7 @@ import { createDefaultDependencies } from './dependency';
  * Base service API.
  * Shared fluent configuration and execution helpers.
  */
-export abstract class BaseService<TExec extends ExecutionArgs> {
+export abstract class BaseService<TExec extends ExecutionArgs<ExecutionShape>> {
 	protected jobOptions: JobOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
 	protected readonly deps: ServiceDependencies;
@@ -190,11 +192,19 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 		} as TExec;
 	}
 
-	protected async execute<TResult>(overrides?: Partial<TExec>): Promise<TResult> {
-		const request = this.buildRequest(overrides);
+	protected async execute<TResult>(overrides?: Partial<TExec & { executionShape: InferExecutionShape<TResult> }>): Promise<TResult> {
+		type TItem = TResult extends Array<infer U> ? U : TResult;
+
+		type TShape = InferExecutionShape<TResult>;
+
+		type TRequest = TExec & { executionShape: TShape };
+
+		const request = this.buildRequest(overrides) as TRequest;
+
+		// without this the ProgressService will not emit events
 		this.deps.progressService.init(request);
 
-		const result = await this.deps.jobService.execute<TResult, TExec>(request);
+		const result = await this.deps.jobService.execute<TItem, TShape, TRequest>(request);
 
 		return result.extracted as TResult;
 	}

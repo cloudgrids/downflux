@@ -9,6 +9,7 @@ import {
 	CreateSinkOutput,
 	ExecutionArgs,
 	ExecutionResult,
+	ExecutionShape,
 	MIME_TYPE,
 	OutputType,
 	ResolvedFile,
@@ -153,7 +154,7 @@ export class FileService {
 		};
 	}
 
-	public toJSON(result: ExecutionResult, directoryPath: string = this.baseDir): string {
+	public toJSON<T, S extends ExecutionShape>(result: ExecutionResult<T, S>, directoryPath: string = this.baseDir): string {
 		const finalPath = this.getFilePath(result.service, directoryPath, `result_${Date.now()}.json`);
 
 		writeFileSync(finalPath, JSON.stringify([result], this.replacer, 2));

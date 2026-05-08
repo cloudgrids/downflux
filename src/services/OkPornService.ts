@@ -66,7 +66,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 		return await this.execute<OkPornAlbumOutput[]>({
 			...this.makeTargets(this.ALBUMS_URL, param, this.service, OkPornMethods.getAlbums),
 			urlType: UrlType.IMAGES,
-			returnType: 'array'
+			executionShape: 'multiple'
 		});
 	}
 
@@ -86,7 +86,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 			urlType: UrlType.IMAGES,
 			method: OkPornMethods.getAlbum,
 			service: this.service,
-			returnType: 'object'
+			executionShape: 'single'
 		});
 	}
 
@@ -110,7 +110,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 			...this.makeTargets(this.MODELS_URL, range, this.service, OkPornMethods.getModels),
 			urlType: UrlType.ANCHORS,
 			modelArgs: args,
-			returnType: 'array'
+			executionShape: 'multiple'
 		});
 	}
 
@@ -130,7 +130,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 		return await this.execute<OkPornModelVideoIdsOutput>({
 			...this.makeTargets(`${this.MODELS_URL}${username}/`, range, this.service, OkPornMethods.getModelVideoIds),
 			urlType: UrlType.ANCHORS,
-			returnType: 'object'
+			executionShape: 'single'
 		});
 	}
 
@@ -151,7 +151,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 			method: OkPornMethods.getTags,
 			service: this.service,
 			tagArgs: args,
-			returnType: 'array'
+			executionShape: 'multiple'
 		});
 	}
 
@@ -174,7 +174,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 			...this.makeTargets(this.CHANNELS_URL, range, this.service, OkPornMethods.getChannels),
 			urlType: UrlType.ANCHORS,
 			channelArgs: args,
-			returnType: 'array'
+			executionShape: 'multiple'
 		});
 	}
 
@@ -192,7 +192,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 			urlType: UrlType.SOURCES,
 			videoArgs: { quality },
 			allowedVideoQuality: quality,
-			returnType: 'array'
+			executionShape: 'multiple'
 		});
 	}
 
@@ -216,7 +216,7 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 			service: this.service,
 			videoArgs: { quality },
 			allowedVideoQuality: quality,
-			returnType: 'object'
+			executionShape: 'single'
 		});
 	}
 }

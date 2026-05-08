@@ -68,7 +68,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 			service: this.service,
 			urlType: UrlType.IMAGES,
 			thumbQualities,
-			returnType: 'object'
+			executionShape: 'single'
 		});
 	}
 
@@ -96,7 +96,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 				WallHavenMethods.getUserUploads,
 				false
 			),
-			returnType: 'object',
+			executionShape: 'single',
 			...existingOptions,
 			userArgs: args,
 			urlType: UrlType.IMAGES
@@ -120,7 +120,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 			method: WallHavenMethods.getUserUploadsInfo,
 			service: this.service,
 			userArgs: { username },
-			returnType: 'object'
+			executionShape: 'single'
 		});
 	}
 
@@ -148,7 +148,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 				false
 			),
 			urlType: UrlType.IMAGES,
-			returnType: 'array',
+			executionShape: 'multiple',
 			userArgs: args
 		});
 	}
@@ -176,7 +176,7 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 				WallHavenMethods.getUserFavoriteCollection,
 				false
 			),
-			returnType: 'object',
+			executionShape: 'single',
 			...existingOptions,
 			collectionArgs: args,
 			urlType: UrlType.IMAGES

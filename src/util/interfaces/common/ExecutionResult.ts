@@ -1,8 +1,9 @@
+import { ExecutionShape, ShapeOutput } from '../../types';
 import { ExecutionArgs } from './ExecutionArgs';
 import { PipelineItem } from './PipelineItem';
 
-export interface ExecutionResult<TResult = unknown> extends ExecutionArgs {
-	extracted: TResult | TResult[];
+export interface ExecutionResult<TResult, S extends ExecutionShape> extends ExecutionArgs {
+	extracted: ShapeOutput<TResult, S>;
 	downloaded: number;
 	failed: number;
 	errors: Error[];
