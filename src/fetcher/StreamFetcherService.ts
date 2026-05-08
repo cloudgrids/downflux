@@ -2,10 +2,9 @@ import { Readable, Writable } from 'stream';
 import { pipeline } from 'stream/promises';
 import { Response as UResponse } from 'undici';
 import { DownloadException, NotFoundException } from '../exceptions';
-import { detectHlsContainer } from '../helpers';
 import { ProgressService } from '../progress';
 import { StrategyService } from '../strategies';
-import { DownloadOptions, HLSStreamRequest } from '../util';
+import { DownloadOptions, HLSStreamRequest, PipelineItem } from '../util';
 import { FetcherService } from './FetcherService';
 import { HLSFetchService } from './HLSFetchService';
 
@@ -26,10 +25,16 @@ export class StreamFetcherService extends FetcherService {
 	private async handleServiceAware404(url: string, opts: DownloadOptions): Promise<HLSStreamRequest | null> {
 		const strategy = this.strategyService.getStrategy(opts.service);
 
+		console.log({ url, service: opts.service, strategy404: strategy?.shouldFallback404?.(url) });
+
 		if (!strategy) return null;
 
-		if (strategy.shouldFallback404?.(url) && this.CDN_FALLBACK_COUNT < this.MAX_CDN_FALLBACK) {
+		const shouldFallback = strategy.shouldFallback404?.(url) && this.CDN_FALLBACK_COUNT < this.MAX_CDN_FALLBACK;
+
+		if (shouldFallback) {
 			const fallback = strategy.getFallbackUrl?.(url);
+
+			console.log({ fallback, strategyFallbackUrl: strategy.getFallbackUrl?.(url) });
 
 			if (fallback && fallback !== url) {
 				this.progressService.update({ message: `CDN fallback: ${fallback}` });
@@ -37,10 +42,13 @@ export class StreamFetcherService extends FetcherService {
 			}
 		}
 
-		if (strategy.shouldReExtract?.(url) && opts.reExtract && opts.pipelineItem && this.RE_EXTRACT_COUNT < this.MAX_RE_EXTRACT) {
+		const shouldReExtract =
+			strategy.shouldReExtract?.(url) && opts.reExtract && opts.pipelineItem && this.RE_EXTRACT_COUNT < this.MAX_RE_EXTRACT;
+
+		if (shouldReExtract) {
 			this.progressService.update({ message: `HLS expired, re extracting...` });
 
-			const freshItem = await opts.reExtract(opts.pipelineItem);
+			const freshItem = await opts.reExtract?.(opts?.pipelineItem as PipelineItem);
 			const freshUrl = freshItem?.downloadUrl;
 
 			if (freshItem && freshUrl && freshUrl !== url) {
@@ -63,6 +71,9 @@ export class StreamFetcherService extends FetcherService {
 	): Promise<HLSStreamRequest | null> {
 		const strategy = this.strategyService.getStrategy(opts.service);
 		const shouldResolve = strategy?.shouldResolveTextResponse?.(url, contentType);
+
+		this.progressService.update({ message: `Resolving text response...${url} should resolve ${shouldResolve}` });
+
 		if (!shouldResolve) return null;
 
 		const directUrl = strategy?.getDirectVideoUrlFromText?.(await body.text(), opts);
@@ -121,18 +132,25 @@ export class StreamFetcherService extends FetcherService {
 
 				if (this.hlsFetchService.isHlsManifest(contentType, finalUrl)) {
 					const manifest = await response.text();
-					const type = detectHlsContainer(manifest);
+
 					return {
 						finalUrl,
-						headers: { ...responseHeaders, 'x-hls-container': type },
-						start: (stream: Writable) => this.hlsFetchService.fetchHlsStream(manifest, finalUrl, timeoutMs, stream, opts)
+						isFmp4: await this.hlsFetchService.isFmp4(manifest, finalUrl, opts),
+						headers: responseHeaders,
+						start: (stream: Writable, noDownload?: boolean) =>
+							this.hlsFetchService.fetchHlsStream(manifest, finalUrl, timeoutMs, stream, { ...opts, noDownload })
 					};
 				}
 
 				return {
 					finalUrl,
 					headers: responseHeaders,
-					start: async (stream: Writable) => {
+					start: async (stream: Writable, noDownload?: boolean) => {
+						if (noDownload) {
+							this.progressService.update({ message: `Stream debug mode - skipping download for ${finalUrl}` });
+							return;
+						}
+
 						await this.readAndShowProgress(stream, response);
 					}
 				};

@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FileService } from '../file';
 import { ProgressService } from '../progress';
-import { DownloadOptions } from '../util';
+import { DownloadOptions, ServiceStrategy } from '../util';
 
-export class BaseStrategy {
-	constructor(
-		protected readonly progressService: ProgressService,
-		protected fileService: FileService
-	) {}
+export class BaseStrategy implements ServiceStrategy {
+	constructor(protected readonly progressService: ProgressService) {}
 
 	public shouldFallback404(url: string): boolean {
 		return false;

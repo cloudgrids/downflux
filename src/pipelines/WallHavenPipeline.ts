@@ -1,5 +1,5 @@
 import path from 'path';
-import { pathBuilder } from '../helpers';
+import { pathBuilder, spaceNormalizer } from '../helpers';
 import {
 	IdentifierContext,
 	MediaType,
@@ -64,7 +64,7 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 				mediaSegment = 'misc';
 		}
 
-		return pathBuilder(prefix, username ?? metadata.uploader?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', mediaSegment);
+		return pathBuilder(prefix, username ?? spaceNormalizer(metadata.uploader), mediaSegment);
 	}
 
 	protected override extract(request: WallHavenExecArgs, metadata: WallHavenOutput): PipelineExtractedItem[] {

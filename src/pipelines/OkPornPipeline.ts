@@ -1,4 +1,4 @@
-import { detectVideoQuality, pathBuilder } from '../helpers';
+import { detectVideoQuality, pathBuilder, spaceNormalizer } from '../helpers';
 import { IdentifierContext, MediaType, OkPornExecArgs, OkPornOutput, PipelineExtractedItem, PipelineItem, VideoQuality } from '../util';
 import { BasePipeline } from './BasePipeline';
 
@@ -65,7 +65,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 				mediaSegment = 'misc';
 		}
 
-		return pathBuilder(prefix, metadata.modelName?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', mediaSegment);
+		return pathBuilder(prefix, spaceNormalizer(metadata.modelName), mediaSegment);
 	}
 
 	protected extract(request: OkPornExecArgs, metadata: OkPornOutput): PipelineExtractedItem[] {
@@ -77,7 +77,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 
 		if (metadata.videoSources?.length) {
 			this.filterByQuality(metadata.videoSources.filter(Boolean), {
-				allowedQualities: [request.videoArgs?.quality] as VideoQuality[],
+				allowedQualities: request.videoArgs?.quality ? ([request.videoArgs?.quality] as VideoQuality[]) : [],
 				getQuality: (source) => source.quality
 			}).forEach(({ url }) => urls.add({ mediaType: MediaType.VIDEOS, url }));
 		}

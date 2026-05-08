@@ -4,6 +4,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 import { ProgressService } from '../progress';
+import { TranscodeOptions } from '../util';
 
 const execFileAsync = promisify(execFile);
 
@@ -14,41 +15,66 @@ export class FfmpegService {
 		return ffmpegPath ?? 'ffmpeg';
 	}
 
-	public async reMuxTransportStream(inputPath: string) {
+	public async finalizeMedia(options: TranscodeOptions) {
 		if (!ffmpegPath) throw new Error('ffmpeg-static not found');
 
+		if (!options.inputPath) throw new Error('Input path is required for finalizing media');
+
+		const { inputPath, outputExtension = 'mp4', deleteInput = true, ffmpegArgs = [], videoCodec, audioCodec, crf, preset } = options;
+
 		const dir = path.dirname(inputPath);
+
 		const base = path.basename(inputPath, path.extname(inputPath));
 
-		const outputPath = path.join(dir, `${base}.mp4`);
-		const filename = `${base}.mp4`;
+		const outputFilename = `${base}_final.${outputExtension}`;
 
-		this.progressService.update({ message: `Re-muxing ${inputPath} to ${outputPath} using ffmpeg...` });
+		const outputPath = path.join(dir, outputFilename);
+
+		this.progressService.update({
+			message: `Finalizing media ${inputPath} with options ${JSON.stringify(options)} ` + `to ${outputPath} using ffmpeg...`
+		});
+
+		let args: string[];
+
+		// fully custom ffmpeg args
+		if (ffmpegArgs.length) args = ffmpegArgs;
+		else {
+			const codecArgs: string[] = [];
+
+			if (videoCodec) {
+				codecArgs.push('-c:v', videoCodec);
+				if (videoCodec === 'libx264') codecArgs.push('-pix_fmt', 'yuv420p', '-profile:v', 'high', '-level', '4.2');
+			} else codecArgs.push('-c:v', 'copy');
+
+			if (audioCodec) codecArgs.push('-c:a', audioCodec);
+			else codecArgs.push('-c:a', 'copy');
+
+			if (crf !== undefined && videoCodec && videoCodec !== 'copy') codecArgs.push('-crf', String(crf));
+			if (preset && videoCodec && videoCodec !== 'copy') codecArgs.push('-preset', preset);
+
+			args = ['-y', '-loglevel', 'error', '-i', inputPath, ...codecArgs, '-movflags', '+faststart', outputPath];
+		}
+
+		console.log(`Running ffmpeg with args: ${args}`);
 
 		try {
-			await execFileAsync(ffmpegPath, [
-				'-y',
-				'-loglevel',
-				'error',
-				'-i',
-				inputPath,
-				'-c',
-				'copy',
-				'-movflags',
-				'+faststart',
-				outputPath
-			]);
+			await execFileAsync(ffmpegPath, args);
 
-			await fs.unlink(inputPath);
+			if (deleteInput) {
+				await fs.unlink(inputPath);
+			}
 
 			return {
 				path: outputPath,
-				filename,
-				extension: 'mp4',
-				mimeType: 'video/mp4'
+
+				filename: outputFilename,
+
+				extension: outputExtension,
+
+				mimeType: `video/${outputExtension}`
 			};
 		} catch (error) {
-			throw new Error(`Failed to re-mux transport stream: ${(error as Error).message}`, { cause: error });
+			throw new Error(`Failed to finalize media: ${(error as Error).message}`, { cause: error });
 		}
 	}
 }

@@ -1,6 +1,6 @@
 import { createDecipheriv } from 'crypto';
+import { once } from 'events';
 import { Readable, Writable } from 'stream';
-import { pipeline } from 'stream/promises';
 import { ProgressService } from '../progress';
 import { DownloadOptions, M3U8Variant, VideoQuality } from '../util';
 
@@ -26,25 +26,34 @@ export class HLSFetchService {
 
 		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs, requestHeaders) : manifest;
 
-		const segments = this.parseSegments(mediaManifest, playlistUrl);
-		if (!segments.length) throw new Error('No segments found to manifest');
-
 		const initUrl = this.parseInitSegment(mediaManifest, playlistUrl);
 		const isFmp4 = !!initUrl;
+
+		let segments = this.parseSegments(mediaManifest, playlistUrl);
+		if (!segments.length) throw new Error('No segments found to manifest');
+
+		console.log({ playlistUrl, initUrl, isFmp4 });
 
 		// disable decrypt for fMP4
 		const keyInfo = isFmp4 ? null : this.parseKey(mediaManifest, playlistUrl);
 		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
 
-		if (initUrl) {
-			const fetchInit = await this.fetchStream(initUrl, requestHeaders, timeoutMs);
-
-			if (!fetchInit) throw new Error('Failed to fetch init segment');
-
-			await pipeline(fetchInit, stream, { end: false });
-		}
+		if (initUrl) segments = [initUrl, ...segments];
 
 		await this.stitchSegments(segments, key, keyInfo, timeoutMs, stream, requestHeaders);
+	}
+
+	public async isFmp4(manifest: string, manifestUrl: string, opts: DownloadOptions): Promise<boolean> {
+		const variant = this.selectVariant(manifest, manifestUrl, opts);
+		const playlistUrl = variant ?? manifestUrl;
+
+		const requestHeaders = this.buildHeaders(opts);
+
+		const mediaManifest =
+			variant && variant !== manifestUrl ? await this.fetchText(variant, opts?.timeoutMs ?? 30_0000, requestHeaders) : manifest;
+
+		const initUrl = this.parseInitSegment(mediaManifest, playlistUrl);
+		return !!initUrl;
 	}
 
 	private buildHeaders(opts: DownloadOptions) {
@@ -89,15 +98,35 @@ export class HLSFetchService {
 	}
 
 	private async fetchStream(url: string, headers: Record<string, string>, timeoutMs: number): Promise<NodeJS.ReadableStream> {
-		const res = await fetch(url, { headers, signal: AbortSignal.timeout(timeoutMs) });
+		const retries = 3;
 
-		if (!res.ok || !res.body) throw new Error(`Failed segment: ${url} (${res.status})`);
+		let lastError: Error | null = null;
 
-		return Readable.fromWeb(res.body as any);
+		for (let attempt = 0; attempt <= retries; attempt++) {
+			try {
+				const res = await fetch(url, { headers, signal: AbortSignal.timeout(timeoutMs) });
+
+				if (!res.ok || !res.body) throw new Error(`Failed segment: ${url} (${res.status})`);
+
+				return Readable.fromWeb(res.body as any);
+			} catch (error) {
+				lastError = error instanceof Error ? error : new Error(String(error));
+				if (attempt < retries) {
+					this.progressService.update({
+						message: `Error fetching segment ${url}: ${(error as Error).message}. Retrying... (${attempt + 1}/${retries})`
+					});
+					await new Promise((res) => setTimeout(res, 1000 * (attempt + 1)));
+					continue;
+				}
+			}
+		}
+		throw lastError;
 	}
 
 	private withDecrypt(readable: NodeJS.ReadableStream, i: number, key: Buffer | null, keyInfo: ParseKey | null): NodeJS.ReadableStream {
 		if (!key) return readable;
+
+		console.log(`Decrypting segment ${i + 1} with key ${keyInfo?.url} and IV ${keyInfo?.iv?.toString('hex')}`);
 
 		const iv = keyInfo?.iv
 			? keyInfo.iv
@@ -112,27 +141,13 @@ export class HLSFetchService {
 	}
 
 	// Helper: pipe ONE segment into the destination stream (no listener leak)
-	private pipeOne(readable: NodeJS.ReadableStream, stream: Writable): Promise<void> {
-		return new Promise<void>((resolve, reject) => {
-			const onError = (err: Error) => {
-				cleanup();
-				reject(err);
-			};
-			const onEnd = () => {
-				cleanup();
-				resolve();
-			};
-			const cleanup = () => {
-				readable.removeListener('error', onError);
-				readable.removeListener('end', onEnd);
-			};
 
-			readable.once('error', onError);
-			readable.once('end', onEnd);
-
-			// Important: do NOT end the destination stream here
-			readable.pipe(stream, { end: false });
-		});
+	private async pipeOne(readable: NodeJS.ReadableStream, stream: Writable): Promise<void> {
+		for await (const chunk of readable) {
+			if (!stream.write(chunk)) {
+				await once(stream, 'drain');
+			}
+		}
 	}
 
 	private async stitchSegments(
@@ -142,10 +157,12 @@ export class HLSFetchService {
 		timeoutMs: number,
 		stream: Writable,
 		headers: Record<string, any>
-	) {
+	): Promise<void> {
 		if (!segments.length) return;
 
 		const total = segments.length;
+
+		this.progressService.update({ totalSegments: total, message: 'Starting to stream segments...' });
 
 		// --- Prefetch 1 ahead ---
 		let nextPromise: Promise<NodeJS.ReadableStream> | null = this.fetchStream(segments[0], headers, timeoutMs);
@@ -165,12 +182,12 @@ export class HLSFetchService {
 			await this.pipeOne(readable, stream);
 
 			// progress callback (segment-level)
-			this.progressService.update({ resolvedSegments: i + 1, totalSegments: total, currentSegment: segments[i] });
+			this.progressService.update({ resolvedSegments: i + 1, currentSegment: segments[i] });
 		}
 	}
 
 	public isHlsManifest(contentType: string, url: string): boolean {
-		return contentType.includes('mpegurl') || url.includes('.m3u8');
+		return contentType.includes('application/vnd.apple.mpegurl') || url.includes('.m3u8');
 	}
 
 	private parseSegments(manifest: string, base: string): string[] {
@@ -259,7 +276,7 @@ export class HLSFetchService {
 		};
 	}
 
-	private async fetchKey(url: string) {
+	private async fetchKey(url: string): Promise<Buffer<ArrayBuffer>> {
 		const res = await fetch(url);
 		return Buffer.from(await res.arrayBuffer());
 	}

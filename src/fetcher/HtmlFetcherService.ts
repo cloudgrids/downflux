@@ -1,17 +1,15 @@
 import { ProgressService } from '../progress';
 import { StrategyService } from '../strategies';
-import { FetchResult, HttpFetchOptions, ServiceType } from '../util';
+import { DownloadOptions, FetchResult, ServiceType } from '../util';
 import { FetcherService } from './FetcherService';
 
 export class HtmlFetcherService extends FetcherService {
-	constructor(
-		private readonly strategyService: StrategyService,
-		progressService: ProgressService
-	) {
+	constructor(progressService: ProgressService) {
 		super(progressService);
 	}
+	private readonly strategyService = new StrategyService(this.progressService);
 
-	public async fetchHtml(url: string, opts: HttpFetchOptions & { service?: ServiceType }): Promise<FetchResult> {
+	public async fetchHtml(url: string, opts: DownloadOptions): Promise<FetchResult> {
 		const { retries = 3 } = opts;
 		const timeoutMs = opts.timeoutMs ?? 30_000;
 		const strategy = this.strategyService.getStrategy(opts.service ?? ServiceType.Default);

@@ -25,7 +25,7 @@ export class CliRenderer {
 			CURRENT_ITEM: s.currentItem,
 			CURRENT_SEGMENT: s.currentSegment,
 			REDIRECTED_URL: s.redirectedUrl,
-			HLS_URL: s.hlsSegmentUrl,
+			HLS_PLAYLIST_URL: s.hlsPlaylistUrl,
 			TARGETS: ProgressFormatter.createTrack('items', s.resolvedTargets, s.totalTargets),
 			PROGRESS: ProgressFormatter.createTrack('item', s.downloadedBytes, s.totalBytes),
 			ITEMS: ProgressFormatter.createTrack('items', s.resolvedItems, s.totalItems),

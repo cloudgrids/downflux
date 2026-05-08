@@ -1,4 +1,4 @@
-import { pathBuilder } from '../helpers';
+import { pathBuilder, spaceNormalizer } from '../helpers';
 import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, PornHubExecArgs, PornHubOutput } from '../util';
 import { BasePipeline } from './BasePipeline';
 
@@ -45,7 +45,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 			default:
 				mediaSegment = `${mediaType}/${id}`;
 		}
-		return pathBuilder(prefix, metadata.user?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', mediaSegment);
+		return pathBuilder(prefix, spaceNormalizer(metadata.user), mediaSegment);
 	}
 
 	protected override extract(request: PornHubExecArgs, metadata: PornHubOutput): PipelineExtractedItem[] {

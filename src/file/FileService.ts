@@ -12,7 +12,8 @@ import {
 	MIME_TYPE,
 	OutputType,
 	ResolvedFile,
-	ServiceType
+	ServiceType,
+	TranscodeOptions
 } from '../util';
 import { FfmpegService } from './FFmpegService';
 import { PathBuilderService } from './PathBuilderService';
@@ -28,6 +29,8 @@ export class FileService {
 	) {}
 
 	public createSink(sinkInput: CreateSinkInput) {
+		if (sinkInput.noDownload) return this.createNoDownloadSink(sinkInput);
+
 		switch (sinkInput.type) {
 			case OutputType.DEVICE:
 				return this.createDeviceSink(sinkInput);
@@ -38,6 +41,31 @@ export class FileService {
 			default:
 				throw new Error('Unsupported output type');
 		}
+	}
+
+	private createNoDownloadSink(sinkInput: CreateSinkInput) {
+		let bytes = 0;
+
+		const stream = new Writable({
+			write(chunk, _, cb) {
+				bytes += chunk.length;
+				cb();
+			}
+		});
+
+		return {
+			stream,
+			finalize: async (resolved: ResolvedFile, headers: Record<string, string>, isFmp4?: boolean): Promise<CreateSinkOutput> => ({
+				path: sinkInput.identifier,
+				originalFilename: resolved.originalFilename,
+				extendedFilename: resolved.extendedFilename,
+				extension: resolved.extension,
+				mimeType: MIME_TYPE[resolved.extension] ?? headers['content-type']?.split(';')[0]?.trim() ?? 'application/octet-stream',
+				sizeBytes: bytes,
+				buffer: Buffer.alloc(0),
+				isFmp4
+			})
+		};
 	}
 
 	private createBufferSink(sinkInput: CreateSinkInput) {
@@ -52,8 +80,9 @@ export class FileService {
 
 		return {
 			stream,
-			finalize: async (resolved: ResolvedFile, headers: Record<string, string>): Promise<CreateSinkOutput> => {
+			finalize: async (resolved: ResolvedFile, headers: Record<string, string>, isFmp4?: boolean): Promise<CreateSinkOutput> => {
 				const buffer = Buffer.concat(chunks);
+				console.log({ bufferLength: buffer.length, expectedSize: headers['content-length'], isFmp4 });
 
 				return {
 					buffer,
@@ -62,7 +91,8 @@ export class FileService {
 					extendedFilename: resolved.extendedFilename,
 					extension: resolved.extension,
 					path: sinkInput.identifier, // No actual path, using identifier as reference to send buffer back to caller
-					mimeType: MIME_TYPE[resolved.extension] ?? headers['content-type']?.split(';')[0]?.trim() ?? 'application/octet-stream'
+					mimeType: MIME_TYPE[resolved.extension] ?? headers['content-type']?.split(';')[0]?.trim() ?? 'application/octet-stream',
+					isFmp4
 				};
 			}
 		};
@@ -80,8 +110,8 @@ export class FileService {
 
 		return {
 			stream,
-			finalize: async (resolved: ResolvedFile, headers: Record<string, string>): Promise<CreateSinkOutput> => {
-				const finalized = await this.finalizeStream(finalPath, {
+			finalize: async (resolved: ResolvedFile, headers: Record<string, string>, isFmp4?: boolean): Promise<CreateSinkOutput> => {
+				const finalized = await this.finalizeStream(finalPath, sinkInput.transCodeOptions, isFmp4, {
 					extension: resolved.extension,
 					mimeType: MIME_TYPE[resolved.extension] ?? headers['content-type']?.split(';')[0]?.trim()
 				});
@@ -95,19 +125,25 @@ export class FileService {
 					mimeType: finalized.mimeType,
 					extension: finalized.extension,
 					sizeBytes: stats.size,
-					buffer: Buffer.alloc(0)
+					buffer: Buffer.alloc(0),
+					isFmp4
 				};
 			}
 		};
 	}
 
-	public async finalizeStream(finalPath: string, opts?: { extension?: string; mimeType?: string }) {
+	public async finalizeStream(
+		finalPath: string,
+		tOptions?: TranscodeOptions,
+		isFmp4?: boolean,
+		opts?: { extension?: string; mimeType?: string }
+	) {
 		const extension = opts?.extension ?? extname(finalPath).substring(1).toLowerCase();
 		const mimeType = opts?.mimeType ?? MIME_TYPE[extension] ?? 'video/mp2t';
 
 		const isTsFile = finalPath.endsWith('.ts');
 
-		if (isTsFile) return this.ffmpegService.reMuxTransportStream(finalPath);
+		if (isTsFile || isFmp4) return this.ffmpegService.finalizeMedia({ ...tOptions, inputPath: finalPath });
 
 		return {
 			path: finalPath,
@@ -148,13 +184,14 @@ export class FileService {
 			const fileSegment = segments.find((seg) => /\.[a-z0-9]+$/i.test(seg));
 
 			const originalFilename = fileSegment || segments.pop() || `fud_${Date.now()}`;
+			const normalizedFilename = originalFilename.replace(/\./g, '_');
 
 			const extension = extname(originalFilename).substring(1).toLowerCase();
 
 			return {
 				extension,
-				originalFilename,
-				extendedFilename: `${prefix ?? ''}${originalFilename}`
+				originalFilename: normalizedFilename,
+				extendedFilename: `${prefix ?? ''}${normalizedFilename}`
 			};
 		} catch {
 			throw new Error(`Unable to parse URL for file info: ${url}`);
@@ -202,7 +239,7 @@ export class FileService {
 	public detectResourceType(url: string, request: ExecutionArgs): { mimeType: string; extension: AllowedExtension } {
 		const extension = this.getFileInfo(url).extension as AllowedExtension;
 
-		if (/(mp4|m3u8|webm|mov|mkv)$/.test(extension)) return { mimeType: `video/${extension}`, extension };
+		if (/(mp4|webm|mov|mkv)$/.test(extension)) return { mimeType: `video/${extension}`, extension };
 		else if (/(mp3|wav|aac|flac|ogg)$/.test(extension)) return { mimeType: `audio/${extension}`, extension };
 		else if (/(jpg|jpeg|png|gif|webp)$/.test(extension)) return { mimeType: `image/${extension}`, extension };
 
@@ -212,6 +249,13 @@ export class FileService {
 
 				return { mimeType: 'video/mp4', extension: 'mp4' };
 			}
+
+			case ServiceType.XHamster: {
+				this.progressService.update({ message: `[${request.service}]Resolving resource type to default: ${url}` });
+
+				return { mimeType: 'video/mp4', extension: 'mp4' };
+			}
+
 			default: {
 				this.progressService.update({ message: `[${request.service}]Resolving resource type to default: ${url}` });
 

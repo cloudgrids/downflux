@@ -19,11 +19,13 @@ export class XHamsterTransformer extends BaseTransformer<XHamsterExecArgs, Defau
 		const xHamsterFields = metadata.customFields as XHamsterOutput;
 		return {
 			description: metadata.description,
-			pageUrl: xHamsterFields.pageUrl,
 			title: metadata.title,
+			pageUrl: xHamsterFields.pageUrl,
 			thumbnailUrl: xHamsterFields.thumbnailUrl,
 			username: xHamsterFields.username,
-			videoUrl: xHamsterFields.videoUrl
+			videoUrl: metadata.links?.find((link) =>
+				link.match(/^https:\/\/video-(?:nss|cf)\.xhpingcdn\.com\/.*\.m3u8(?:\?.*)?$/)
+			) as string
 		};
 	}
 }

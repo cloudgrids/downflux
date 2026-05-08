@@ -1,4 +1,4 @@
-import { pathBuilder } from '../helpers';
+import { pathBuilder, spaceNormalizer } from '../helpers';
 import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, XHamsterExecArgs, XHamsterOutput } from '../util';
 import { BasePipeline } from './BasePipeline';
 
@@ -40,7 +40,7 @@ export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOut
 				mediaSegment = `${mediaType}/${id}`;
 		}
 
-		return pathBuilder(prefix, metadata.username?.replace(/\s+/g, '-')?.toLowerCase() ?? 'unknown', mediaSegment);
+		return pathBuilder(prefix, spaceNormalizer(metadata.username), mediaSegment);
 	}
 
 	protected override extract(request: XHamsterExecArgs, metadata: XHamsterOutput): PipelineExtractedItem[] {
@@ -51,7 +51,16 @@ export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOut
 				mediaType: MediaType.VIDEO_POSTER,
 				url: metadata.thumbnailUrl,
 				username: metadata.username,
-				id: metadata.title
+				id: spaceNormalizer(metadata.title)
+			});
+		}
+
+		if (metadata?.videoUrl) {
+			urls.add({
+				mediaType: MediaType.VIDEOS,
+				url: metadata.videoUrl,
+				username: metadata.username,
+				id: spaceNormalizer(metadata.title)
 			});
 		}
 

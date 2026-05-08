@@ -11,6 +11,7 @@ import {
 	Range,
 	ServiceDependencies,
 	ServiceType,
+	TranscodeOptions,
 	UrlType
 } from '../util';
 import { createDefaultDependencies } from './dependency';
@@ -84,6 +85,27 @@ export abstract class BaseService<TExec extends ExecutionArgs> {
 	 */
 	public setHttpOptions(opts: HttpFetchOptions): this {
 		this.httpOptions = { ...this.httpOptions, ...opts };
+		return this;
+	}
+
+	/**
+	 * Sets no download flag.
+	 * @param noDownload No download flag
+	 * @defaultValue false - set to true to skip the download phase and only perform extraction (useful for debugging or when you only need metadata)
+	 */
+	public setNoDownload(noDownload: boolean = false): this {
+		this.jobOptions.noDownload = noDownload;
+		return this;
+	}
+
+	/**
+	 * Sets transcode options.
+	 * @param opts Transcode configuration
+	 * @notes Sometimes due to nature of the OS, the video might not play after download.
+	 * In such cases, you can set transcodeOptions to re-encode the video using ffmpeg which should resolve most compatibility issues.
+	 */
+	public setTranscodeOptions(opts: TranscodeOptions): this {
+		this.jobOptions.transcodeOptions = { ...this.jobOptions.transcodeOptions, ...opts };
 		return this;
 	}
 

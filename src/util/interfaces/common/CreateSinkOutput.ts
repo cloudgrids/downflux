@@ -6,4 +6,5 @@ export interface CreateSinkOutput {
 	sizeBytes: number;
 	path: string;
 	buffer: Buffer;
+	isFmp4?: boolean;
 }

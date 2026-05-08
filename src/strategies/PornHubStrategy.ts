@@ -45,6 +45,12 @@ export class PornHubStrategy extends BaseStrategy {
 					? mp4Definitions?.find((definition) => !!this.normalizeQuality(definition, opts?.allowedVideoQuality))?.videoUrl
 					: mp4Definitions[0]?.videoUrl;
 
+				if (opts.noDownload) {
+					this.progressService.update({
+						message: `NO DOWNLOAD MODE - SELECTED VIDEO URL: ${preferred} DEFINITION: ${mp4Definitions}`
+					});
+				}
+
 				return preferred ?? null;
 			}
 		} catch {

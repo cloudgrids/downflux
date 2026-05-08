@@ -4,6 +4,8 @@ import { ProgressService } from '../progress';
 import { HEADER_PRESETS } from '../util/constants';
 
 export abstract class FetcherService {
+	constructor(protected readonly progressService: ProgressService) {}
+
 	protected readonly cookieJar = new Map<string, Map<string, string>>();
 	protected readonly CHROME_CIPHERS = [
 		'TLS_AES_128_GCM_SHA256',
@@ -32,8 +34,6 @@ export abstract class FetcherService {
 			ALPNProtocols: ['h2', 'http/1.1']
 		}
 	});
-
-	constructor(protected readonly progressService: ProgressService) {}
 
 	protected randomHeaders(extra: Record<string, string> = {}) {
 		const preset = HEADER_PRESETS[Math.floor(Math.random() * HEADER_PRESETS.length)];
