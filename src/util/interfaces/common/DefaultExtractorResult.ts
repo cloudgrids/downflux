@@ -29,6 +29,9 @@ export interface DefaultExtractorResult<TCustomFields = unknown> {
 	/** Media source URLs */
 	sources: string[];
 
+	/** Video URLs */
+	videos: string[];
+
 	/** Hyper links */
 	links: string[];
 

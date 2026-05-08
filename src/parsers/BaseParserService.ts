@@ -12,6 +12,7 @@ export class BaseParserService {
 				description: this.extractMetaDescription(html) || this.extractMetaPropertyContent(html, 'og:description'),
 				keywords: this.extractMetaKeywords(html),
 				links: this.extractLinks(html),
+				videos: this.extractVideoUrls(html),
 				sourceUrl,
 				status: 200
 			};
