@@ -21,9 +21,9 @@ export function createDefaultDependencies(): ServiceDependencies {
 	const ffmpegService = new FfmpegService(progressService);
 	const fileService = new FileService(ffmpegService, progressService);
 
-	const strategyService = new StrategyService(progressService, fileService);
+	const strategyService = new StrategyService(progressService);
 
-	const htmlFetcherService = new HtmlFetcherService(strategyService, progressService);
+	const htmlFetcherService = new HtmlFetcherService(progressService);
 	const hlsFetchService = new HLSFetchService(progressService);
 	const streamFetcherService = new StreamFetcherService(hlsFetchService, strategyService, progressService);
 

@@ -17,4 +17,5 @@ export * from './ResolvedFile';
 export * from './ServiceDependency';
 export * from './SiteDescriptor';
 export * from './TagFilterOptions';
+export * from './TranscodeOptions';
 export * from './VideoSourceOutput';

@@ -1,0 +1,12 @@
+
+-y                   === overwrite output files automatically
+-loglevel error      === only show actual errors suppress warnings, informational logs and progress spam
+-i input.mp4         === input media source
+-c:v libx264         === encode video using H264 codec, this converts AV1 -> H264
+-pix_fmt yuv420p     === forces 4:2:0 chroma subsampling, without it FFmpeg may want to omit yuv444p, yuv422p, unsupported pixel formats
+-profile:v high      === sets H264 profile. Profiles define: encoding features, decoder requirements
+-level 4.2           === limits bitrate, frame-size, decoder-complexity
+-crf 23              === Constant Rate Factor controls visual quality vs filesize, Lower CRF: higher quality, larger file | Higher CRF: lower quality, smaller file
+-preset fast         === encoder optimization effort, not quality directly
+-c:a copy            === copy audio stream directly, no re-encoding
+-movflags +faststart === moves: moov atom to the beginning of the file Without faststart: many players: wait for full download, cannot seek early, stream poorly

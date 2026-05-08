@@ -5,6 +5,11 @@ interface ProgressEvents {
 	progress: (state: Partial<JobProgressEvent>) => void;
 }
 
+/** For managing progress updates during job execution
+ * Emits 'progress' events with the current state of the job, which can be used for rendering progress in the UI or CLI.
+ * The `update` method is used to update the current state of the job and emit progress events at a controlled interval to avoid excessive updates.
+ * @requires must call `init` with JobOptions before use to set up callbacks and options
+ */
 export class ProgressService extends EventEmitter {
 	private lastRender = 0;
 	private readonly RENDER_INTERVAL = 500;

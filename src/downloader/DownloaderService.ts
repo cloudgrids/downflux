@@ -17,24 +17,30 @@ export class DownloaderService {
 
 		const initialFile = this.fileService.getFileInfo(url, dirConfig?.prefix);
 
-		const { finalUrl, headers, start } = await this.streamFetcherService.requestStream(url, {
+		const { finalUrl, headers, start, isFmp4 } = await this.streamFetcherService.requestStream(url, {
 			...opts,
 			referer: item.sourceUrl,
 			pipelineItem: item
 		});
 
-		const resolvedFile = this.resolveFileMetadata(initialFile, finalUrl, headers, dirConfig?.prefix);
+		const resolvedFile = this.resolveFileMetadata(initialFile, finalUrl, headers, isFmp4, dirConfig?.prefix);
+
+		console.log({ resolvedFile });
+
+		this.progressService.update({ message: `Extracting metadata for: ${resolvedFile.extendedFilename}` });
 
 		const { stream, finalize } = this.fileService.createSink({
 			service,
 			type: outputType as OutputType,
 			directoryPath: dirConfig?.directoryPath,
 			filename: resolvedFile.originalFilename,
-			identifier: item.identifier.key
+			identifier: item.identifier.key,
+			noDownload: opts.noDownload,
+			transCodeOptions: opts.transcodeOptions
 		});
 
 		try {
-			await start(stream);
+			await start(stream, opts.noDownload);
 
 			if (!stream.destroyed && !stream.writableEnded) stream.end();
 			await finished(stream);
@@ -43,7 +49,7 @@ export class DownloaderService {
 			throw err;
 		}
 
-		const finalDetails = await finalize(resolvedFile, headers);
+		const finalDetails = await finalize(resolvedFile, headers, isFmp4);
 
 		return {
 			...finalDetails,
@@ -53,24 +59,32 @@ export class DownloaderService {
 		};
 	}
 
-	private resolveFileMetadata(initial: ResolvedFile, finalUrl: string, headers: Record<string, string>, prefix?: string): ResolvedFile {
-		const isHls = finalUrl.includes('.m3u8') || headers['content-type']?.includes('mpegurl');
+	private resolveFileMetadata(
+		initial: ResolvedFile,
+		finalUrl: string,
+		headers: Record<string, string>,
+		isFmp4?: boolean,
+		prefix?: string
+	): ResolvedFile {
+		const isHls = finalUrl.includes('.m3u8') || headers['content-type']?.includes('application/vnd.apple.mpegurl');
+
+		console.log({ initial, finalUrl, isHls, isFmp4 }); // Debug log for metadata resolution
 
 		if (isHls) {
-			const container = headers['x-hls-container'];
+			// const container = headers['x-hls-container']; --- IGNORE ---
 
-			const extension = container === 'fmp4' ? 'mp4' : 'ts';
+			const extension = isFmp4 ? 'mp4' : 'ts';
 
-			const baseName = this.fileService.sanitizeFilename(initial.originalFilename.replace(/\.[^.]+$/, '') || 'video');
+			const baseName = this.fileService
+				.sanitizeFilename(initial.originalFilename.replace(/\.[^.]+$/, '') || 'video')
+				.replace(/\./g, '_');
 
 			return {
 				originalFilename: `${baseName}.${extension}`,
 				extension,
 				extendedFilename: `${prefix ?? ''}${baseName}.${extension}`
 			};
-		}
-
-		if (initial.extension) return initial;
+		} else if (initial.extension) return initial;
 
 		const fallback = this.fileService.getFileInfo(finalUrl, prefix);
 		if (fallback.extension) return fallback;

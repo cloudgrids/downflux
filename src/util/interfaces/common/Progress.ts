@@ -48,7 +48,7 @@ export interface JobProgressEvent {
 	redirectedUrl: string;
 
 	// HLS segments
-	hlsSegmentUrl: string;
+	hlsPlaylistUrl: string;
 	currentSegment: string;
 	totalSegments: number;
 	resolvedSegments: number;

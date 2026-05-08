@@ -8,9 +8,10 @@ export class BaseParserService {
 				anchors: this.extractAnchors(html, sourceUrl),
 				images: this.extractImageUrls(html),
 				sources: this.extractSourceUrls(html),
-				title: this.extractTitle(html),
-				description: this.extractMetaDescription(html),
+				title: this.extractTitle(html) || this.extractMetaPropertyContent(html, 'og:title'),
+				description: this.extractMetaDescription(html) || this.extractMetaPropertyContent(html, 'og:description'),
 				keywords: this.extractMetaKeywords(html),
+				links: this.extractLinks(html),
 				sourceUrl,
 				status: 200
 			};
@@ -146,6 +147,18 @@ export class BaseParserService {
 
 	public extractAllUrls(html: string): string[] {
 		return [...html.matchAll(/https?:\/\/[^\s"'<>\\]+/g)].map((m) => m[0]);
+	}
+
+	public extractLinks(html: string): string[] {
+		const urls: string[] = [];
+		const re = /<link\b[^>]*\brel=(['"])(?:preload|preload\s+stylesheet|stylesheet\s+preload)\1[^>]*\bhref=(['"])([^'"]+)\2[^>]*>/gi;
+		let match: RegExpExecArray | null;
+
+		while ((match = re.exec(html)) !== null) {
+			if (match[3]) urls.push(match[3]);
+		}
+
+		return [...new Set(urls)];
 	}
 
 	public extractMetaDescription(html: string): string {

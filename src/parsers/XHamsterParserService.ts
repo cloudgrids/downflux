@@ -6,11 +6,10 @@ export class XHamsterParserService extends BaseParserService {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<XHamsterOutput>>> {
 		try {
 			return {
-				title: this.extractMetaPropertyContent(html, 'og:title'),
 				customFields: {
 					pageUrl: this.extractMetaPropertyContent(html, 'og:url') ?? sourceUrl,
 					thumbnailUrl: this.extractMetaPropertyContent(html, 'og:image'),
-					username: this.extractSpans(html, 'body-bold-8643e label-5984a label-96c3e')[0] ?? 'unknown'
+					username: this.extractSpans(html, 'body-bold-8643e label-5984a label-96c3e')?.[0]?.trim() ?? 'unknown'
 				} as Partial<XHamsterOutput>
 			};
 		} catch (error) {
