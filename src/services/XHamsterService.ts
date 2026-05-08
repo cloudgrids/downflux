@@ -45,7 +45,7 @@ export class XHamsterService extends BaseService<XHamsterExecArgs> {
 			service: this.service,
 			urlType: UrlType.ANCHORS,
 			method: XHamsterMethods.getVideo,
-			returnType: 'object',
+			executionShape: 'single',
 			targets: [this.url]
 		});
 	}

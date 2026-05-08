@@ -1,7 +1,7 @@
 import { PipelineService } from '../pipelines';
 import { ProgressService } from '../progress';
 import { TransformerService } from '../transformers';
-import { ExecutionArgs, ExecutionResult, OutputType, PipelineHook, PipelineItem } from '../util';
+import { ExecutionArgs, ExecutionResult, ExecutionShape, OutputType, PipelineHook, PipelineItem, ShapeOutput } from '../util';
 import { BackgroundService } from './BackgroundService';
 
 export class JobService {
@@ -14,7 +14,9 @@ export class JobService {
 		private readonly pipelineService: PipelineService
 	) {}
 
-	public async execute<TResult, TArgs extends ExecutionArgs>(request: TArgs): Promise<ExecutionResult<TResult>> {
+	public async execute<TResult, TShape extends ExecutionShape, TExec extends ExecutionArgs<TShape>>(
+		request: TExec
+	): Promise<ExecutionResult<TResult, TShape>> {
 		const { outputType = OutputType.JSON, targets, ...options } = request;
 
 		const pipelineHooks = (options.pipelineHooks ?? []) as PipelineHook[];
@@ -24,19 +26,19 @@ export class JobService {
 
 		this.progressService.update({ status: 'STARTED', totalTargets: targets.length });
 
-		const transformed = await this.extractMetadataFromTargets<TResult, TArgs>(targets, request);
+		const transformed = await this.extractMetadataFromTargets<TResult, TExec>(targets, request);
 
 		iterables.push(...transformed);
 
 		iterables.forEach((item) => {
-			const items = this.pipelineService.build<TResult, TArgs>(item, request);
+			const items = this.pipelineService.build<TResult, TExec>(item, request);
 			pipelineItems.push(...items);
 		});
 
-		const result: ExecutionResult<TResult> = {
+		const result: ExecutionResult<TResult, TShape> = {
 			...request,
 			outputType,
-			extracted: request.returnType === 'object' ? iterables[0] : iterables,
+			extracted: (request.executionShape === 'single' ? iterables[0] : iterables) as ShapeOutput<TResult, TShape>,
 			downloaded: 0,
 			failed: 0,
 			errors,
@@ -47,11 +49,11 @@ export class JobService {
 
 		switch (outputType) {
 			case OutputType.JSON:
-				return this.backgroundService.handleJsonOutput(result, options);
+				return this.backgroundService.handleJsonOutput<TResult, TShape>(result, options);
 
 			case OutputType.BUFFER:
 			case OutputType.DEVICE:
-				this.backgroundService.handleDeviceOutputAsync(options, outputType, request, pipelineHooks, result);
+				this.backgroundService.handleDeviceOutputAsync<TResult, TShape>(options, outputType, request, pipelineHooks, result);
 				return result;
 
 			case OutputType.RETURN:
@@ -62,14 +64,14 @@ export class JobService {
 		}
 	}
 
-	private async extractMetadataFromTargets<TResult, TArgs extends ExecutionArgs>(targets: string[], request: TArgs): Promise<TResult[]> {
+	private async extractMetadataFromTargets<TResult, TExec extends ExecutionArgs>(targets: string[], request: TExec): Promise<TResult[]> {
 		const extractConcurrency = request.extractConcurrency ?? JobService.Default_EXTRACT_CONCURRENCY;
 
 		const extractedChunks: TResult[][] = new Array(targets.length);
 
 		await this.backgroundService.runWithConcurrency(targets, extractConcurrency, async (target, index) => {
 			try {
-				const result = await this.transformerService.transform<TArgs, TResult>(target, {
+				const result = await this.transformerService.transform<TExec, TResult>(target, {
 					...request,
 					entryUrl: target,
 					referer: target

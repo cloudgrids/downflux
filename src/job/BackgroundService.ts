@@ -3,7 +3,16 @@ import { FileService } from '../file';
 import { PipelineService } from '../pipelines';
 import { ProgressService } from '../progress';
 import { TransformerService } from '../transformers';
-import { DownloadResult, ExecutionArgs, ExecutionResult, JobOptions, OutputType, PipelineHook, PipelineItem } from '../util';
+import {
+	DownloadResult,
+	ExecutionArgs,
+	ExecutionResult,
+	ExecutionShape,
+	JobOptions,
+	OutputType,
+	PipelineHook,
+	PipelineItem
+} from '../util';
 
 export class BackgroundService {
 	private static readonly Default_DOWNLOAD_CONCURRENCY = 5;
@@ -16,12 +25,12 @@ export class BackgroundService {
 		private readonly pipelineService: PipelineService
 	) {}
 
-	private async processDownloadsInBackground<T>(
+	private async processDownloadsInBackground<T, S extends ExecutionShape>(
 		options: JobOptions,
 		outputType: OutputType,
 		request: ExecutionArgs,
 		pipelineHooks: PipelineHook[],
-		result: ExecutionResult<T>
+		result: ExecutionResult<T, S>
 	): Promise<void> {
 		const downloadConcurrency = options.concurrency ?? BackgroundService.Default_DOWNLOAD_CONCURRENCY;
 
@@ -142,19 +151,22 @@ export class BackgroundService {
 		await Promise.all(runners);
 	}
 
-	public async handleJsonOutput<T>(result: ExecutionResult<T>, options: JobOptions): Promise<ExecutionResult<T>> {
+	public async handleJsonOutput<T, S extends ExecutionShape>(
+		result: ExecutionResult<T, S>,
+		options: JobOptions
+	): Promise<ExecutionResult<T, S>> {
 		this.fileService.toJSON(result, options?.dirConfig?.directoryPath);
 		return result;
 	}
 
-	public handleDeviceOutputAsync<T>(
+	public handleDeviceOutputAsync<T, S extends ExecutionShape>(
 		options: JobOptions,
 		outputType: OutputType,
 		request: ExecutionArgs,
 		pipelineHooks: PipelineHook[],
-		result: ExecutionResult<T>
+		result: ExecutionResult<T, S>
 	): void {
-		this.processDownloadsInBackground(options, outputType, request, pipelineHooks, result).catch((err) => {
+		this.processDownloadsInBackground<T, S>(options, outputType, request, pipelineHooks, result).catch((err) => {
 			this.progressService.update({
 				status: 'FAILED',
 				error: { name: 'BackgroundProgress', cause: err, message: 'Background download pipeline error:' }

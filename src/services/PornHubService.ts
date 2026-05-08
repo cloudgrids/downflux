@@ -115,7 +115,7 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 			service: this.service,
 			urlType: UrlType.SOURCES,
 			allowedVideoQuality: args.quality,
-			returnType: 'object',
+			executionShape: 'single',
 			videoArgs: { viewKey, quality: args.quality }
 		});
 	}
@@ -155,7 +155,7 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 				PornHubMethods.getVideos,
 				false
 			),
-			returnType: 'array',
+			executionShape: 'multiple',
 			urlType: UrlType.ANCHORS,
 			videosArgs: { ...args, username, type }
 		});
@@ -176,7 +176,7 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 			targets: [this.url],
 			service: this.service,
 			method: PornHubMethods.getVideos,
-			returnType: 'array',
+			executionShape: 'multiple',
 			urlType: UrlType.ANCHORS,
 			videosArgs: { format }
 		});
@@ -198,7 +198,7 @@ export class PornHubService extends BaseService<PornHubExecArgs> {
 
 		return await this.execute<PornHubChannelsOutput[]>({
 			...this.makeTargets(channelUrl, range, this.service, PornHubMethods.getChannels, false),
-			returnType: 'array',
+			executionShape: 'multiple',
 			urlType: UrlType.ANCHORS
 		});
 	}
