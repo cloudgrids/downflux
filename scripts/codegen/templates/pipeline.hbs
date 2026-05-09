@@ -1,8 +1,7 @@
-import { pathBuilder } from '../helpers';
 import { DefaultPipeline } from './DefaultPipeline';
-import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, {{ArgsName}}, {{OutputName}}  } from '../util';
+import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, {{ArgsName}}, {{OutputName}}  } from '@app/contracts';
 
-export class {{ProviderName}}PipelineRegistry extends DefaultPipeline<{{ArgsName}}, {{OutputName}}> {
+export class {{ProviderName}}Pipeline extends DefaultPipeline<{{ArgsName}}, {{OutputName}}> {
 	public override build(metadata: {{OutputName}}, request: {{ArgsName}}): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,
@@ -40,7 +39,8 @@ export class {{ProviderName}}PipelineRegistry extends DefaultPipeline<{{ArgsName
 				mediaSegment = `${mediaType}/${id}`;
 		}
 
-		return pathBuilder(prefix, '//implement username', mediaSegment);
+		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer('// implementation needs here'), mediaSegment);
+
 	}
 
 	protected override extract(request: {{ArgsName}}, metadata: {{OutputName}}): PipelineExtractedItem[] {

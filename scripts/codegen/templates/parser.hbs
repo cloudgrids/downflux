@@ -1,8 +1,8 @@
-import { GenericException } from '../exceptions';
+import { GenericException } from '@app/exceptions';
 import { DefaultExtractorResult, {{ProviderName}}Output } from '@app/shared';
 import { DefaultParser } from './DefaultParser';
 
-export class {{ProviderName}}ParserRegistry extends DefaultParser {
+export class {{ProviderName}}Parser extends DefaultParser {
 
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<{{ProviderName}}Output>>> {
 		try {
@@ -11,7 +11,7 @@ export class {{ProviderName}}ParserRegistry extends DefaultParser {
 				sourceUrl,
 				};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.{{ProviderName}}, '{{ProviderName}}ParserRegistry', { cause: error });
+			throw new GenericException('Unable to parse some fields:', ProviderType.{{ProviderName}}, '{{ProviderName}}Parser', { cause: error });
 		}
 	}
 }

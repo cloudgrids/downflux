@@ -1,9 +1,10 @@
 import { Provider } from './Provider';
-import { {{ArgsName}}, ProviderType } from '../util';
-import { InvalidUrlException } from '../exceptions';
+import { {{ArgsName}}, ProviderType } from '@app/shared';
+import { InvalidUrlException } from '@app/exceptions';
 
 export class {{ProviderName}}Provider extends Provider<{{ArgsName}}> {
-	private readonly Provider = ProviderType.{{ProviderName}}
+	private readonly provider = ProviderType.{{ProviderName}}
+
 	constructor(url: string) {
 		super(url);
 		this.validateUrl(url);
@@ -13,7 +14,7 @@ export class {{ProviderName}}Provider extends Provider<{{ArgsName}}> {
 		try {
 			new URL(url);
 		} catch {
-			throw new InvalidUrlException(url, this.Provider);
+			throw new InvalidUrlException(url, this.provider);
 		}
 		if (!url.startsWith('https://...')) throw new InvalidUrlException(url, this.Provider);
 	}
