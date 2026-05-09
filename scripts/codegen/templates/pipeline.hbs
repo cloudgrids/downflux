@@ -1,8 +1,8 @@
 import { pathBuilder } from '../helpers';
-import { BasePipeline } from './BasePipeline';
+import { DefaultPipeline } from './DefaultPipeline';
 import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, {{ArgsName}}, {{OutputName}}  } from '../util';
 
-export class {{ProviderName}}PipelineRegistry extends BasePipeline<{{ArgsName}}, {{OutputName}}> {
+export class {{ProviderName}}PipelineRegistry extends DefaultPipeline<{{ArgsName}}, {{OutputName}}> {
 	public override build(metadata: {{OutputName}}, request: {{ArgsName}}): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,

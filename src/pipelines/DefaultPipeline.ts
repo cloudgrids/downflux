@@ -2,7 +2,7 @@ import { DefaultExtractorResult, ExecutionArgs, IdentifierContext, PipelineExtra
 import { MediaType } from '@app/shared';
 import { FileManager, PathBuilder } from '@app/storage';
 
-export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
+export class DefaultPipeline<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
 	protected readonly pathBuilder = new PathBuilder();
 
 	constructor(protected fileManager: FileManager) {}

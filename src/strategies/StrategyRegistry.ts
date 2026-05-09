@@ -10,17 +10,17 @@ export class StrategyRegistry {
 	constructor(private readonly progressManager: ProgressManager) {}
 
 	private readonly strategies: Record<ProviderType, StrategyCtor> = {
-		[ProviderType.OkPorn]: DefaultStrategy,
-		[ProviderType.PornHub]: PornHubStrategy,
-		[ProviderType.WallHaven]: DefaultStrategy,
 		[ProviderType.Coomer]: DefaultStrategy,
 		[ProviderType.Default]: DefaultStrategy,
-		[ProviderType.XHamster]: XHamsterStrategy,
-		[ProviderType.TnAFlix]: DefaultStrategy
+		[ProviderType.OkPorn]: DefaultStrategy,
+		[ProviderType.PornHub]: PornHubStrategy,
+		[ProviderType.TnAFlix]: DefaultStrategy,
+		[ProviderType.WallHaven]: DefaultStrategy,
+		[ProviderType.XHamster]: XHamsterStrategy
 	};
 
-	public getStrategy(service: ProviderType): DefaultStrategy {
-		const StrategyClass = this.strategies[service] ?? this.strategies[ProviderType.Default];
+	public getStrategy(provider: ProviderType): DefaultStrategy {
+		const StrategyClass = this.strategies[provider] ?? this.strategies[ProviderType.Default];
 		return new StrategyClass(this.progressManager);
 	}
 }

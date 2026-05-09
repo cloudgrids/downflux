@@ -1,8 +1,8 @@
 import { IdentifierContext, PipelineExtractedItem, PipelineItem, PornHubExecArgs, PornHubOutput } from '@app/contracts';
 import { MediaType } from '@app/shared';
-import { BasePipeline } from './BasePipeline';
+import { DefaultPipeline } from './DefaultPipeline';
 
-export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput> {
+export class PornHubPipeline extends DefaultPipeline<PornHubExecArgs, PornHubOutput> {
 	public override build(metadata: PornHubOutput, request: PornHubExecArgs): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,

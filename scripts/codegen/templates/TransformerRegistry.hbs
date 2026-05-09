@@ -1,10 +1,11 @@
-import { BaseHttpClient } from '../clients';
-import { ProgressManager } from '../progress/ProgressManager';
-import { ExecutionArgs, ProviderType } from '../util';
+import { HtmlClient } from '@app/clients';
+import { ExecutionArgs } from '@app/contracts';
+import { ProgressManager } from '@app/progress';
+import { ProviderType } from '@app/shared';
 import { DefaultTransformer } from './DefaultTransformer';
 {{imports}}
 
-type TransformerCtor = new (http: BaseHttpClient, progress: ProgressManager) => DefaultTransformer<any, any>;
+type TransformerCtor = new (html: HtmlClient, progress: ProgressManager) => DefaultTransformer<any, any>;
 
 export class TransformerRegistry {
 	private readonly transformers: Record<ProviderType, TransformerCtor> = {
@@ -12,16 +13,17 @@ export class TransformerRegistry {
 	};
 
 	constructor(
-		private readonly httpClient: BaseHttpClient,
+		private readonly htmlClient: HtmlClient,
 		private readonly progressManager: ProgressManager
 	) {}
 
+
 	public async transform<TArgs extends ExecutionArgs, TResult>(url: string, request: TArgs): Promise<TResult> {
-		const serviceType = request.service ?? ProviderType.Default;
+		const provider = request.provider ?? ProviderType.Default;
 
-		const TransformerClass = this.transformers[serviceType] ?? this.transformers[ProviderType.Default];
+		const TransformerClass = this.transformers[provider] ?? this.transformers[ProviderType.Default];
 
-		const transformer = new TransformerClass(this.httpClient, this.progressManager);
+		const transformer = new TransformerClass(this.htmlClient, this.progressManager);
 
 		return (await transformer.transform(url, request)) as TResult;
 	}

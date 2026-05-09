@@ -131,7 +131,7 @@ Public service method
   -> TransformerRegistry.transform()
   -> DefaultTransformer / service transformer
   -> PipelineRegistry.build()
-  -> BasePipeline / service pipeline
+  -> DefaultPipeline / service pipeline
   -> TaskCoordinator output handler
   -> TransferCoordinator.download()
   -> BaseDownloader
@@ -143,7 +143,7 @@ Public service method
 - **Progress start:** `ExecutionCoordinator` emits `started`.
 - **Metadata extraction:** `ExecutionCoordinator.extractMetadata` processes `targets` with `extractConcurrency` or the default value `3`.
 - **Transformation:** `TransformerRegistry` picks a transformer by `request.service`; if no match exists, it falls back to `DefaultTransformer`.
-- **PipelineRegistry creation:** `PipelineRegistry` picks a pipeline by `request.service`; if no match exists, it falls back to `BasePipeline`.
+- **PipelineRegistry creation:** `PipelineRegistry` picks a pipeline by `request.service`; if no match exists, it falls back to `DefaultPipeline`.
 - **Queue result:** `ExecutionCoordinator` returns an `ExecutionResult` containing `extracted`, `targetUrls`, `pipelineItems`, `downloaded`, `failed`, and `errors`.
 - **Output dispatch:** `JSON` writes JSON immediately, `RETURN` returns immediately, and `DEVICE`/`BUFFER` start background downloads.
 - **Background downloads:** `TaskCoordinator` applies download concurrency, respects `maxDownloads`, runs hooks, updates progress, increments `downloaded`/`failed`, and captures download errors.
@@ -160,8 +160,8 @@ Public service method
 - **`DefaultTransformer`** - Fetches HTML, performs default parsing, applies `SITE_EXTRACTORS` transforms, and returns metadata.
 - **`DefaultTransformer`** - Generic transformer that uses `DefaultTransformer` behavior without service-specific changes.
 - **`OkPornTransformer`** - Converts default parsed metadata into OkPorn album, video, model, tag, and channel output shapes. For videos, it can also fetch the linked album and filter sources by requested video quality.
-- **`PipelineRegistry`** - Registry/router for pipelines. Selects the pipeline for the requested service and falls back to `BasePipeline`.
-- **`BasePipeline`** - Converts generic metadata arrays such as `images`, `sources`, `videoPosters`, `divHrefs`, and `allUrls` into `PipelineItem[]`; detects extensions and MIME types; applies allowed extension filtering.
+- **`PipelineRegistry`** - Registry/router for pipelines. Selects the pipeline for the requested service and falls back to `DefaultPipeline`.
+- **`DefaultPipeline`** - Converts generic metadata arrays such as `images`, `sources`, `videoPosters`, `divHrefs`, and `allUrls` into `PipelineItem[]`; detects extensions and MIME types; applies allowed extension filtering.
 - **`OkPornPipeline`** - Converts OkPorn metadata into structured download items for albums, videos, video albums, posters, and album previews, with OkPorn-specific output path identifiers.
 - **`TransferCoordinator`** - Registry/router for downloaders. Selects the downloader for the requested service and falls back to `DefaultDownloader`.
 - **`BaseDownloader`** - Downloads one `PipelineItem`, resolves filename metadata, streams bytes to the selected sink, handles HLS naming, and returns `DownloadResult`.
@@ -244,7 +244,7 @@ src/
 - **Default**
   - Service: `DefaultProvider`
   - TransformerRegistry: `DefaultTransformer`
-  - PipelineRegistry: `BasePipeline`
+  - PipelineRegistry: `DefaultPipeline`
   - Downloader: `DefaultDownloader`
 - **Coomer/Kemono**
   - Service: `CoomerProvider`

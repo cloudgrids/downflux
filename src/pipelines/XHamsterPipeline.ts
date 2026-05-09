@@ -1,8 +1,8 @@
 import { IdentifierContext, PipelineExtractedItem, PipelineItem, XHamsterExecArgs, XHamsterOutput } from '@app/contracts';
 import { MediaType, VideoQuality } from '@app/shared';
-import { BasePipeline } from './BasePipeline';
+import { DefaultPipeline } from './DefaultPipeline';
 
-export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOutput> {
+export class XHamsterPipeline extends DefaultPipeline<XHamsterExecArgs, XHamsterOutput> {
 	public override build(metadata: XHamsterOutput, request: XHamsterExecArgs): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,

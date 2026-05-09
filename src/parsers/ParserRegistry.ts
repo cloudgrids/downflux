@@ -8,13 +8,13 @@ import { XHamsterParser } from './XHamsterParser';
 
 export class ParserRegistry {
 	private static readonly parsers: Record<ProviderType, DefaultParser> = {
-		[ProviderType.OkPorn]: new OkPornParser(),
-		[ProviderType.PornHub]: new PornHubParser(),
-		[ProviderType.WallHaven]: new WallHavenParser(),
 		[ProviderType.Coomer]: new DefaultParser(),
 		[ProviderType.Default]: new DefaultParser(),
-		[ProviderType.XHamster]: new XHamsterParser(),
-		[ProviderType.TnAFlix]: new TnAFlixParser()
+		[ProviderType.OkPorn]: new OkPornParser(),
+		[ProviderType.PornHub]: new PornHubParser(),
+		[ProviderType.TnAFlix]: new TnAFlixParser(),
+		[ProviderType.WallHaven]: new WallHavenParser(),
+		[ProviderType.XHamster]: new XHamsterParser()
 	};
 
 	public static getParser(providerType: ProviderType): DefaultParser {

@@ -13,13 +13,13 @@ type TransformerCtor = new (html: HtmlClient, progress: ProgressManager) => Defa
 
 export class TransformerRegistry {
 	private readonly transformers: Record<ProviderType, TransformerCtor> = {
-		[ProviderType.OkPorn]: OkPornTransformer,
-		[ProviderType.PornHub]: PornHubTransformer,
-		[ProviderType.WallHaven]: WallHavenTransformer,
 		[ProviderType.Coomer]: DefaultTransformer,
 		[ProviderType.Default]: DefaultTransformer,
-		[ProviderType.XHamster]: XHamsterTransformer,
-		[ProviderType.TnAFlix]: TnAFlixTransformer
+		[ProviderType.OkPorn]: OkPornTransformer,
+		[ProviderType.PornHub]: PornHubTransformer,
+		[ProviderType.TnAFlix]: TnAFlixTransformer,
+		[ProviderType.WallHaven]: WallHavenTransformer,
+		[ProviderType.XHamster]: XHamsterTransformer
 	};
 
 	constructor(
