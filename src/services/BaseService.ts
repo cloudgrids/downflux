@@ -28,10 +28,6 @@ export abstract class BaseService<TExec extends ExecutionArgs<ExecutionShape>> {
 	protected readonly deps: ServiceDependencies;
 	protected abstract validate(url: string): void;
 
-	/**
-	 * Creates a service instance.
-	 * @param url Source URL
-	 */
 	constructor(public readonly url: string) {
 		this.deps = createDefaultDependencies();
 		this.jobOptions = {

@@ -5,8 +5,9 @@ import { BaseService } from './BaseService';
 /**
  * @class `XHamsterService` for handling xHamster URLs and extracting video information.
  * @notes The XHamster service by default keeps video in `AV1` codec which is not widely supported by all players and devices.
- * @remarks If you face compatibility issues with the downloaded videos, you can set transcode options to re-encode the video using ffmpeg which should resolve most compatibility issues.
- *
+ * @remarks If you face compatibility issues with the downloaded videos,
+ * you can set transcode options to re-encode the video using ffmpeg which should resolve most compatibility issues,
+ * also it will be CPU intensive, make sure your OS can handle it
  */
 export class XHamsterService extends BaseService<XHamsterExecArgs> {
 	private readonly service = ServiceType.XHamster;

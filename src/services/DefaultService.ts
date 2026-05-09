@@ -8,11 +8,7 @@ import { BaseService } from './BaseService';
  */
 export class DefaultService extends BaseService<any> {
 	private readonly service = ServiceType.Default;
-	/**
-	 * Creates a default extraction service.
-	 * @param url Any valid URL
-	 * @throws InvalidUrlException When the URL is invalid
-	 */
+
 	constructor(url: string) {
 		super(url);
 		this.validate(url);

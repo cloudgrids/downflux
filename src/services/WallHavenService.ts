@@ -28,11 +28,6 @@ export class WallHavenService extends BaseService<WallHavenExecArgs> {
 	private readonly USER_URL = `${this.BASE_URL}/user`;
 	private readonly DefaultIndexRange: IndexRange = { start: 1, end: 1 };
 
-	/**
-	 * Creates a WallHaven service.
-	 * @param url WallHaven URL
-	 * @throws InvalidUrlException When the URL is not from WallHaven
-	 */
 	constructor(url: string) {
 		super(url);
 		this.validate(url);
