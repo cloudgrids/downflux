@@ -1,10 +1,10 @@
 import {
+	CoordinatorDependencies,
 	DirectoryOutputOptions,
 	ExecutionArgs,
 	HttpFetchOptions,
 	JobOptions,
 	JobProgressEvent,
-	ServiceDependencies,
 	TranscodeOptions
 } from '@app/contracts';
 import { InvalidRangeException } from '@app/exceptions';
@@ -19,7 +19,7 @@ import { createDefaultDependencies } from './dependency';
 export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	protected jobOptions: JobOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
-	protected readonly deps: ServiceDependencies;
+	protected readonly deps: CoordinatorDependencies;
 	protected abstract validate(url: string): void;
 
 	constructor(public readonly url: string) {
@@ -194,7 +194,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 		// without this the ProgressManager will not emit events
 		this.deps.progressManager.init(request);
 
-		const result = await this.deps.jobService.execute<TItem, TShape, TRequest>(request);
+		const result = await this.deps.executionCoordinator.execute<TItem, TShape, TRequest>(request);
 
 		return result.extracted as TResult;
 	}

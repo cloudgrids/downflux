@@ -1,14 +1,14 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { RegistryService } from '../src/contracts';
+import { RegistryCoordinator } from '../src/contracts';
 
-const appendUniqueJsonToRegistry = <T extends Record<string, RegistryService[]>>(file: string, key: keyof T, value: string) => {
+const appendUniqueJsonToRegistry = <T extends Record<string, RegistryCoordinator[]>>(file: string, key: keyof T, value: string) => {
 	const raw = readFileSync(file, 'utf-8');
 
 	const parsed = JSON.parse(raw) as T;
 
 	if (!parsed[key].find((s) => s.name === value)) {
-		const newService: RegistryService = {
+		const newService: RegistryCoordinator = {
 			name: value,
 			parser: true,
 			pipeline: true,

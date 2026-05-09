@@ -1,5 +1,4 @@
-import { PornHubService } from '../src/services';
-import { OutputType } from '../src/util';
+import {PornHubService} from '../'
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca

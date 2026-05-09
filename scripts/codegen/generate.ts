@@ -1,9 +1,9 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
-import { RegistryService } from '../../src/contracts';
+import { RegistryCoordinator } from '../../src/contracts';
 
 interface Registry {
-	services: RegistryService[];
+	services: RegistryCoordinator[];
 }
 
 const root = process.cwd();
