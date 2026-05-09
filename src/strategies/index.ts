@@ -1,4 +1,4 @@
-export * from './BaseStrategy';
+export * from './DefaultStrategy';
 export * from './PornHubStrategy';
-export * from './Strategy';
+export * from './StrategyRegistry';
 export * from './XHamsterStrategy';

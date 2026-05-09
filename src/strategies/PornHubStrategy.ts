@@ -1,13 +1,14 @@
-import { DownloadOptions, PornHubMediaDefinition, VideoQuality } from '../util';
-import { BaseStrategy } from './BaseStrategy';
+import { DownloadOptions, PornHubMediaDefinition } from '@app/contracts';
+import { VideoQuality } from '@app/shared';
+import { DefaultStrategy } from './DefaultStrategy';
 
-export class PornHubStrategy extends BaseStrategy {
+export class PornHubStrategy extends DefaultStrategy {
 	public shouldFallback404(url: string) {
 		return url.includes('phncdn.com');
 	}
 
 	public getFallbackUrl(url: string) {
-		this.progressService.update({ message: '[Switch CDN IF POSSIBLE]' });
+		this.progressManager.update({ message: '[Switch CDN IF POSSIBLE]' });
 
 		if (url.includes('iv-h')) return url.replace('iv-h', 'ev-h');
 		if (url.includes('ev-h')) return url.replace('ev-h', 'iv-h');
@@ -15,7 +16,7 @@ export class PornHubStrategy extends BaseStrategy {
 	}
 
 	public shouldReExtract(url: string) {
-		this.progressService.update({ message: 'CHECKING FOR RE-EXTRACTION' });
+		this.progressManager.update({ message: 'CHECKING FOR RE-EXTRACTION' });
 
 		return url.includes('phncdn.com') && url.includes('.m3u8');
 	}
@@ -28,14 +29,14 @@ export class PornHubStrategy extends BaseStrategy {
 	}
 
 	public getDirectVideoUrlFromText(body: string, opts: DownloadOptions) {
-		this.progressService.update({ message: 'GETTING DIRECT URL FROM TEXT' });
+		this.progressManager.update({ message: 'GETTING DIRECT URL FROM TEXT' });
 
 		const normalized = body.replace(/\\\//g, '/').replace(/&amp;/g, '&');
 
 		try {
 			const definitions = JSON.parse(normalized) as PornHubMediaDefinition[];
 			if (Array.isArray(definitions)) {
-				this.progressService.update({ message: 'PARSED MEDIA DEFINITIONS' });
+				this.progressManager.update({ message: 'PARSED MEDIA DEFINITIONS' });
 
 				const mp4Definitions = definitions
 					.filter((definition) => definition.format === 'mp4' && definition.videoUrl)
@@ -46,7 +47,7 @@ export class PornHubStrategy extends BaseStrategy {
 					: mp4Definitions[0]?.videoUrl;
 
 				if (opts.noDownload) {
-					this.progressService.update({
+					this.progressManager.update({
 						message: `NO DOWNLOAD MODE - SELECTED VIDEO URL: ${preferred} DEFINITION: ${mp4Definitions}`
 					});
 				}
@@ -54,7 +55,7 @@ export class PornHubStrategy extends BaseStrategy {
 				return preferred ?? null;
 			}
 		} catch {
-			this.progressService.update({ message: 'FALLING BACK TO PREVIOUS URL' });
+			this.progressManager.update({ message: 'FALLING BACK TO PREVIOUS URL' });
 		}
 
 		const match = normalized.match(/https?:\/\/[^\s"'<>\\]+\.mp4(?:\?[^\s"'<>\\]*)?/i);

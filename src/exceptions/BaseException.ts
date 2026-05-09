@@ -1,16 +1,16 @@
-import { ErrorCodes, ServiceType } from '../util';
+import { ErrorCodes, ProviderType } from '@app/shared';
 
 export interface ExceptionPayload<TMeta = any> {
 	errorCode: ErrorCodes;
 	message: string;
-	service: ServiceType;
+	provider: ProviderType;
 	method?: string;
 	context?: Record<string, any>;
 	metadata?: TMeta;
 }
 
 /**
- * @class BaseException
+ * @class Exception
  * @notes The base exception class for all custom exceptions in the application.
  * @notes Provides a consistent structure for error information, including error codes, context, and metadata.
  */

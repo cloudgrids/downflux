@@ -1,4 +1,4 @@
-import { ErrorCodes, ServiceType } from '../util';
+import { ErrorCodes, ProviderType } from '@app/shared';
 import { BaseException } from './BaseException';
 
 /**
@@ -9,27 +9,27 @@ import { BaseException } from './BaseException';
 export class InvalidDestinationException extends BaseException {
 	constructor(
 		public readonly url: string,
-		public readonly service: ServiceType,
+		public readonly provider: ProviderType,
 		public readonly method?: string,
 		public readonly context: Record<string, any> = {},
 		public readonly metadata?: any
 	) {
 		super({
 			errorCode: ErrorCodes.ENOENT,
-			message: InvalidDestinationException.buildMessage(url, service, method),
+			message: InvalidDestinationException.buildMessage(url, provider, method),
 			method: method,
-			service,
+			provider,
 			context,
 			metadata
 		});
 	}
 
-	private static buildMessage(path: string, service?: ServiceType, method?: string): string {
+	private static buildMessage(path: string, provider?: ProviderType, method?: string): string {
 		return [
 			`ENOENT: Invalid destination`,
 			`ERROR_CODE=${ErrorCodes.ENOENT}`,
 			`path=${path}`,
-			service && `service=${service}`,
+			`provider=${provider}`,
 			method && `identifier=${method}`
 		]
 			.filter(Boolean)

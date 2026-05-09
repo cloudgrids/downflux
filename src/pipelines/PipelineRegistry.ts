@@ -1,0 +1,35 @@
+import { ExecutionArgs, PipelineItem } from '@app/contracts';
+import { ProviderType } from '@app/shared';
+import { FileManager } from '@app/storage';
+import { BasePipeline } from './BasePipeline';
+import { OkPornPipeline } from './OkPornPipeline';
+import { PornHubPipeline } from './PornHubPipeline';
+import { TnAFlixPipeline } from './TnAFlixPipeline';
+import { WallHavenPipeline } from './WallHavenPipeline';
+import { XHamsterPipeline } from './XHamsterPipeline';
+
+type PipelineCtor = new (fileManager: FileManager) => BasePipeline<any, any>;
+
+export class PipelineRegistry {
+	constructor(protected fileManager: FileManager) {}
+
+	private readonly pipelines: Map<ProviderType, PipelineCtor> = new Map<ProviderType, PipelineCtor>([
+		[ProviderType.OkPorn, OkPornPipeline],
+		[ProviderType.PornHub, PornHubPipeline],
+		[ProviderType.WallHaven, WallHavenPipeline],
+		[ProviderType.Coomer, BasePipeline],
+		[ProviderType.Default, BasePipeline],
+		[ProviderType.XHamster, XHamsterPipeline],
+		[ProviderType.TnAFlix, TnAFlixPipeline]
+	]);
+
+	public build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): PipelineItem[] {
+		const provider = request.provider ?? ProviderType.Default;
+
+		const PipelineClass = this.pipelines.get(provider) ?? this.pipelines.get(ProviderType.Default)!;
+
+		const pipeline = new PipelineClass(this.fileManager);
+
+		return pipeline.build(metadata, request);
+	}
+}

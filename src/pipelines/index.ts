@@ -1,6 +1,6 @@
 export * from './BasePipeline';
 export * from './OkPornPipeline';
-export * from './PipelineService';
+export * from './PipelineRegistry';
 export * from './PornHubPipeline';
 export * from './TnAFlixPipeline';
 export * from './WallHavenPipeline';

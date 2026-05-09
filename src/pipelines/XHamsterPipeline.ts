@@ -1,5 +1,5 @@
-import { pathBuilder, spaceNormalizer } from '../helpers';
-import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, VideoQuality, XHamsterExecArgs, XHamsterOutput } from '../util';
+import { IdentifierContext, PipelineExtractedItem, PipelineItem, XHamsterExecArgs, XHamsterOutput } from '@app/contracts';
+import { MediaType, VideoQuality } from '@app/shared';
 import { BasePipeline } from './BasePipeline';
 
 export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOutput> {
@@ -11,10 +11,10 @@ export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOut
 				this.extract(request, metadata).map((item) => ({
 					downloadUrl: item.url,
 					sourceUrl: request.entryUrl,
-					service: request.service,
+					provider: request.provider,
 					identifier: {
 						mediaType: item.mediaType,
-						...this.fileService.detectResourceType(item.url, request),
+						...this.fileManager.detectResourceType(item.url, request),
 						key: this.buildIdentifier({
 							mediaType: item.mediaType,
 							metadata,
@@ -40,7 +40,7 @@ export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOut
 				mediaSegment = `${mediaType}/${id}`;
 		}
 
-		return pathBuilder(prefix, spaceNormalizer(metadata.username), mediaSegment);
+		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.username), mediaSegment);
 	}
 
 	protected override extract(request: XHamsterExecArgs, metadata: XHamsterOutput): PipelineExtractedItem[] {
@@ -51,7 +51,7 @@ export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOut
 				mediaType: MediaType.VIDEO_POSTER,
 				url: metadata.thumbnailUrl,
 				username: metadata.username,
-				id: spaceNormalizer(metadata.title)
+				id: this.pathBuilder.spaceNormalizer(metadata.title)
 			});
 		}
 
@@ -60,7 +60,7 @@ export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOut
 				mediaType: MediaType.VIDEOS,
 				url: request.allowedVideoQuality === VideoQuality.Q480 ? metadata.defaultVideoUrl : metadata.masterPlaylistUrl,
 				username: metadata.username,
-				id: spaceNormalizer(metadata.title)
+				id: this.pathBuilder.spaceNormalizer(metadata.title)
 			});
 		}
 

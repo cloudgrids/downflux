@@ -1,23 +1,20 @@
-import { detectVideoQuality } from '../helpers';
 import {
 	DefaultExtractorResult,
 	OkPornAlbumOutput,
 	OkPornChannelOutput,
 	OkPornExecArgs,
-	OkPornMethods,
 	OkPornModelOutput,
 	OkPornModelVideoIdsOutput,
 	OkPornOutput,
 	OkPornTagOutput,
 	OkPornVideoOutput,
-	TagKeys,
-	TagsOutput,
-	UrlType,
-	VideoQuality
-} from '../util';
-import { BaseTransformer } from './BaseTransformer';
+	TagsOutput
+} from '@app/contracts';
+import { inferVideoQuality, OkPornMethods, UrlType, VideoQuality } from '@app/shared';
+import { TagKeys } from '@app/types';
+import { DefaultTransformer } from './DefaultTransformer';
 
-export class OkPornTransformer extends BaseTransformer<
+export class OkPornTransformer extends DefaultTransformer<
 	OkPornExecArgs,
 	| OkPornAlbumOutput
 	| OkPornVideoOutput
@@ -136,7 +133,7 @@ export class OkPornTransformer extends BaseTransformer<
 			videoKeywords: metadata.keywords,
 			videoDescription: metadata.description,
 			videoId: metadata.sourceUrl.split('/').filter(Boolean).pop() ?? '',
-			videoSources: metadata.sources.map((url) => ({ url, quality: detectVideoQuality(url, VideoQuality.Q480) })),
+			videoSources: metadata.sources.map((url) => ({ url, quality: inferVideoQuality(url, VideoQuality.Q480) })),
 			videoPoster: customFields?.videoPoster ?? '',
 			videoScreenshot: customFields?.videoPoster ?? '',
 			modelName: customFields?.starredBy?.[0] ?? '',

@@ -3,6 +3,7 @@
 		"target": "ES2023",
 		"module": "commonjs",
 		"rootDir": "src",
+		"baseUrl": ".",
 		"declaration": true,
 		"declarationMap": true,
 		"strict": true,
@@ -16,7 +17,25 @@
 		"forceConsistentCasingInFileNames": true,
 		"noImplicitAny": false,
 		"strictBindCallApply": false,
-		"noFallthroughCasesInSwitch": false
+		"noFallthroughCasesInSwitch": false,
+		"paths": {
+			"@app/clients": ["src/clients/index"],
+			"@app/contracts": ["src/contracts/index"],
+			"@app/exceptions": ["src/exceptions/index"],
+			"@app/logger": ["src/logger/index"],
+			"@app/parsers": ["src/parsers/index"],
+			"@app/pipelines": ["src/pipelines/index"],
+			"@app/progress": ["src/progress/index"],
+			"@app/providers": ["src/providers/index"],
+			"@app/renderer": ["src/renderer/index"],
+			"@app/coordinators": ["src/coordinators/index"],
+			"@app/shared": ["src/shared/index"],
+			"@app/storage": ["src/storage/index"],
+			"@app/strategies": ["src/strategies/index"],
+			"@app/transfer": ["src/transfer/index"],
+			"@app/transformers": ["src/transformers/index"],
+			"@app/types": ["src/types/index"]
+		}
 	},
 	"include": ["src"],
 	"exclude": ["node_modules", "scripts"]

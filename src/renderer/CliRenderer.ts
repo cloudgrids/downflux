@@ -1,11 +1,11 @@
-import { LoggerService } from '../logger';
-import { ProgressFormatter, ProgressService } from '../progress';
-import { JobProgressEvent } from '../util';
+import { JobProgressEvent } from '@app/contracts';
+import { LogManager } from '@app/logger';
+import { ProgressFormatter, ProgressManager } from '@app/progress';
 
 export class CliRenderer {
-	private readonly logger = new LoggerService();
-	constructor(private readonly progressService: ProgressService) {
-		progressService.on('progress', this.listener);
+	private readonly logger = new LogManager();
+	constructor(private readonly progressManager: ProgressManager) {
+		progressManager.on('progress', this.listener);
 	}
 
 	private readonly listener = (state: Partial<JobProgressEvent>) => {
@@ -13,7 +13,7 @@ export class CliRenderer {
 	};
 
 	public destroy() {
-		this.progressService.off('progress', this.listener);
+		this.progressManager.off('progress', this.listener);
 	}
 
 	private render(state: Partial<JobProgressEvent>) {

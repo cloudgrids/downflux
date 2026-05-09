@@ -1,16 +1,13 @@
 import path from 'path';
-import { pathBuilder, spaceNormalizer } from '../helpers';
 import {
 	IdentifierContext,
-	MediaType,
 	PipelineExtractedItem,
 	PipelineItem,
 	WallHavenExecArgs,
-	WallHavenMethods,
 	WallHavenOutput,
-	WallHavenThumbnailQuality,
 	WallHavenUserFavoriteCollectionsOutput
-} from '../util';
+} from '@app/contracts';
+import { MediaType, WallHavenMethods, WallHavenThumbnailQuality } from '@app/shared';
 import { BasePipeline } from './BasePipeline';
 
 export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHavenOutput> {
@@ -21,11 +18,11 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 				request,
 				this.extract(request, metadata).map((item) => ({
 					downloadUrl: item.url,
-					service: request.service,
+					provider: request.provider,
 					sourceUrl: request.entryUrl,
 					identifier: {
 						mediaType: item.mediaType,
-						...this.fileService.detectResourceType(item.url, request),
+						...this.fileManager.detectResourceType(item.url, request),
 						key: this.buildIdentifier({
 							mediaType: item.mediaType,
 							metadata,
@@ -64,7 +61,7 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 				mediaSegment = 'misc';
 		}
 
-		return pathBuilder(prefix, username ?? spaceNormalizer(metadata.uploader), mediaSegment);
+		return this.pathBuilder.join(prefix, username ?? this.pathBuilder.spaceNormalizer(metadata.uploader), mediaSegment);
 	}
 
 	protected override extract(request: WallHavenExecArgs, metadata: WallHavenOutput): PipelineExtractedItem[] {
