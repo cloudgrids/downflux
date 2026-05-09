@@ -8,7 +8,7 @@ import {
 	TranscodeOptions
 } from '@app/contracts';
 import { InvalidRangeException } from '@app/exceptions';
-import { ExecutionType, OutputType, ProviderType, UrlType } from '@app/shared';
+import { ExecutionType, ExtractionTarget, OutputType, ProviderType } from '@app/shared';
 import { AllowedExtension, ExecutionShape, InferExecutionShape, Range } from '@app/types';
 import { createDefaultDependencies } from './dependency';
 
@@ -175,7 +175,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 			method: overrides?.method as string,
 			targets: overrides?.targets as string[],
 			entryUrl: this.url,
-			urlType: UrlType.ANCHORS,
+			extractionTarget: ExtractionTarget.ANCHORS,
 			executionType: ExecutionType.SEQUENTIAL,
 			...this.executionOptions,
 			...overrides

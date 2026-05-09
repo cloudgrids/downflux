@@ -1,4 +1,4 @@
-import { PornHubProvider } from '../src/providers';
+import { TnAFlixProvider } from '../src/providers';
 import { OutputType } from '../src/shared/enums';
 
 async function main() {
@@ -24,10 +24,16 @@ async function main() {
 		// 	.setOutput(OutputType.DEVICE, { directoryPath: directoryPath })
 		// 	.getVideo('738328', VideoQuality.Q720);
 
-		await new PornHubProvider('https://www.pornhub.org/view_video.php?viewkey=65b3ddcae8349')
+		// await new PornHubProvider('https://www.pornhub.org/view_video.php?viewkey=65b3ddcae8349')
+		// 	.setJobOptions({ logProgress: true })
+		// 	.setTransformOutput(true)
+		// 	.setOutput(OutputType.DEVICE, { directoryPath })
+		// 	.getVideo();
+
+		await new TnAFlixProvider('https://www.tnaflix.com/hd-videos/Girl-Gets-Introduced-to-Prison-Life/video3943507')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.DEVICE, { directoryPath })
+			.setOutput(OutputType.JSON, { directoryPath:'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);

@@ -10,7 +10,7 @@ import {
 	TagFilterOptions
 } from '@app/contracts';
 import { GenericException, InvalidRangeException, InvalidUrlException } from '@app/exceptions';
-import { OkPornMethods, ProviderType, UrlType, VideoQuality } from '@app/shared';
+import { ExtractionTarget, OkPornMethods, ProviderType, VideoQuality } from '@app/shared';
 import { IndexRange, PageRange } from '@app/types';
 import { Provider } from './Provider';
 
@@ -56,7 +56,7 @@ export class OkPornProvider extends Provider<OkPornExecArgs> {
 	public async getAlbums(param: PageRange = this.Default_PAGE_RANGE): Promise<OkPornAlbumOutput[]> {
 		return await this.execute<OkPornAlbumOutput[]>({
 			...this.makeTargets(this.ALBUMS_URL, param, this.provider, OkPornMethods.getAlbums),
-			urlType: UrlType.IMAGES,
+			extractionTarget: ExtractionTarget.IMAGES,
 			executionShape: 'multiple'
 		});
 	}
@@ -74,7 +74,7 @@ export class OkPornProvider extends Provider<OkPornExecArgs> {
 		if (!id) throw new GenericException('Album ID is required', this.provider, OkPornMethods.getAlbum);
 		return await this.execute<OkPornAlbumOutput>({
 			targets: [`${this.ALBUMS_URL}${id}/`],
-			urlType: UrlType.IMAGES,
+			extractionTarget: ExtractionTarget.IMAGES,
 			method: OkPornMethods.getAlbum,
 			provider: this.provider,
 			executionShape: 'single'
@@ -99,7 +99,7 @@ export class OkPornProvider extends Provider<OkPornExecArgs> {
 
 		return this.execute<OkPornModelOutput[]>({
 			...this.makeTargets(this.MODELS_URL, range, this.provider, OkPornMethods.getModels),
-			urlType: UrlType.ANCHORS,
+			extractionTarget: ExtractionTarget.ANCHORS,
 			modelArgs: args,
 			executionShape: 'multiple'
 		});
@@ -120,7 +120,7 @@ export class OkPornProvider extends Provider<OkPornExecArgs> {
 
 		return await this.execute<OkPornModelVideoIdsOutput>({
 			...this.makeTargets(`${this.MODELS_URL}${username}/`, range, this.provider, OkPornMethods.getModelVideoIds),
-			urlType: UrlType.ANCHORS,
+			extractionTarget: ExtractionTarget.ANCHORS,
 			executionShape: 'single'
 		});
 	}
@@ -138,7 +138,7 @@ export class OkPornProvider extends Provider<OkPornExecArgs> {
 	public async getTags(args: TagFilterOptions): Promise<OkPornTagOutput[]> {
 		return await this.execute<OkPornTagOutput[]>({
 			targets: [this.TAGS_URL],
-			urlType: UrlType.ANCHORS,
+			extractionTarget: ExtractionTarget.ANCHORS,
 			method: OkPornMethods.getTags,
 			provider: this.provider,
 			tagArgs: args,
@@ -163,7 +163,7 @@ export class OkPornProvider extends Provider<OkPornExecArgs> {
 		}
 		return await this.execute<OkPornChannelOutput[]>({
 			...this.makeTargets(this.CHANNELS_URL, range, this.provider, OkPornMethods.getChannels),
-			urlType: UrlType.ANCHORS,
+			extractionTarget: ExtractionTarget.ANCHORS,
 			channelArgs: args,
 			executionShape: 'multiple'
 		});
@@ -180,7 +180,7 @@ export class OkPornProvider extends Provider<OkPornExecArgs> {
 	public async getVideos(range: IndexRange = this.Default_INDEX_RANGE, quality?: VideoQuality): Promise<OkPornVideoOutput[]> {
 		return await this.execute<OkPornVideoOutput[]>({
 			...this.makeTargets(this.VIDEOS_URL, range, this.provider, OkPornMethods.getVideos),
-			urlType: UrlType.SOURCES,
+			extractionTarget: ExtractionTarget.SOURCES,
 			videoArgs: { quality },
 			allowedVideoQuality: quality,
 			executionShape: 'multiple'
@@ -202,7 +202,7 @@ export class OkPornProvider extends Provider<OkPornExecArgs> {
 
 		return await this.execute<OkPornVideoOutput>({
 			targets: [`${this.VIDEOS_URL}${id}/`],
-			urlType: UrlType.SOURCES,
+			extractionTarget: ExtractionTarget.SOURCES,
 			method: OkPornMethods.getVideo,
 			provider: this.provider,
 			videoArgs: { quality },

@@ -1,10 +1,19 @@
-import { TnAFlixExecArgs } from '@app/contracts';
+import { TnAFlixExecArgs, TnAFlixVideoOutput } from '@app/contracts';
 import { InvalidUrlException } from '@app/exceptions';
-import { ProviderType } from '@app/shared';
+import { ExtractionTarget, ProviderType, TnAFlixMethods, VideoQuality } from '@app/shared';
 import { Provider } from './Provider';
 
+/**
+ * @class TnAFlix provider.
+ * @operations operations related to TnAFlix.
+ * @notes Due to `Recv failure: Connection reset by peer` due to region-based restrictions,
+ * this provider is currently only tested to work with VPN enabled and set to US region.
+ * @remarks The provider is expected to work without VPN as well, but it is not tested yet.
+ * It might not work in some regions due to the mentioned restriction, but it should work in most regions.
+ */
 export class TnAFlixProvider extends Provider<TnAFlixExecArgs> {
 	private readonly provider = ProviderType.TnAFlix;
+	private HOST_REGEX = /^(?:www\.)?tnaflix\.(?:com)$/i;
 
 	constructor(url: string) {
 		super(url);
@@ -17,6 +26,27 @@ export class TnAFlixProvider extends Provider<TnAFlixExecArgs> {
 		} catch {
 			throw new InvalidUrlException(url, this.provider);
 		}
-		if (!url.startsWith('https://...')) throw new InvalidUrlException(url, this.provider);
+
+		const isSupportedHost = this.HOST_REGEX.test(new URL(this.url).hostname);
+
+		if (!isSupportedHost) throw new InvalidUrlException(url, this.provider);
+	}
+
+	/**
+	 * Fetches video information and sources from the provided TnAFlix URL.
+	 * @param url The TnAFlix video URL to fetch information from.
+	 * @param quality Optional parameter to specify desired video quality. If not provided, all available qualities will be returned.
+	 * @returns `TnAFlixVideoOutput` containing video metadata and source information.
+	 * @canDownload true
+	 */
+	public async getVideo(quality?: VideoQuality): Promise<TnAFlixVideoOutput> {
+		return await this.execute<TnAFlixVideoOutput>({
+			targets: [this.url],
+			provider: this.provider,
+			executionShape: 'single',
+			method: TnAFlixMethods.getVideo,
+			extractionTarget: ExtractionTarget.SOURCES,
+			allowedVideoQuality: quality
+		});
 	}
 }

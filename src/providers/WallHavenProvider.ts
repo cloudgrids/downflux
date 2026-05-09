@@ -9,7 +9,7 @@ import {
 	WallHavenWallPaperOutput
 } from '@app/contracts';
 import { GenericException, InvalidUrlException } from '@app/exceptions';
-import { OutputType, ProviderType, UrlType, WallHavenMethods, WallHavenThumbnailQuality } from '@app/shared';
+import { ExtractionTarget, OutputType, ProviderType, WallHavenMethods, WallHavenThumbnailQuality } from '@app/shared';
 import { IndexRange } from '@app/types';
 import { Provider } from './Provider';
 
@@ -57,7 +57,7 @@ export class WallHavenProvider extends Provider<WallHavenExecArgs> {
 			targets: [`${this.WALLPAPER_URL}/${id}`],
 			method: WallHavenMethods.getWallPaper,
 			provider: this.provider,
-			urlType: UrlType.IMAGES,
+			extractionTarget: ExtractionTarget.IMAGES,
 			thumbQualities,
 			executionShape: 'single'
 		});
@@ -90,7 +90,7 @@ export class WallHavenProvider extends Provider<WallHavenExecArgs> {
 			executionShape: 'single',
 			...existingOptions,
 			userArgs: args,
-			urlType: UrlType.IMAGES
+			extractionTarget: ExtractionTarget.IMAGES
 		});
 	}
 
@@ -138,7 +138,7 @@ export class WallHavenProvider extends Provider<WallHavenExecArgs> {
 				WallHavenMethods.getUserFavoriteCollections,
 				false
 			),
-			urlType: UrlType.IMAGES,
+			extractionTarget: ExtractionTarget.IMAGES,
 			executionShape: 'multiple',
 			userArgs: args
 		});
@@ -170,7 +170,7 @@ export class WallHavenProvider extends Provider<WallHavenExecArgs> {
 			executionShape: 'single',
 			...existingOptions,
 			collectionArgs: args,
-			urlType: UrlType.IMAGES
+			extractionTarget: ExtractionTarget.IMAGES
 		});
 	}
 

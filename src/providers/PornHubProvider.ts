@@ -9,7 +9,7 @@ import {
 	PornHubVideosOutput
 } from '@app/contracts';
 import { GenericException, InvalidUrlException } from '@app/exceptions';
-import { PornHubMethods, ProviderType, UrlFormat, UrlType } from '@app/shared';
+import { ExtractionTarget, PornHubMethods, ProviderType, UrlFormat } from '@app/shared';
 import { PageRange } from '@app/types';
 import { Provider } from './Provider';
 
@@ -110,7 +110,7 @@ export class PornHubProvider extends Provider<PornHubExecArgs> {
 			targets: [this.resolveUrl(viewKey)],
 			method: PornHubMethods.getVideo,
 			provider: this.provider,
-			urlType: UrlType.SOURCES,
+			extractionTarget: ExtractionTarget.SOURCES,
 			allowedVideoQuality: args.quality,
 			executionShape: 'single',
 			videoArgs: { viewKey, quality: args.quality }
@@ -153,7 +153,7 @@ export class PornHubProvider extends Provider<PornHubExecArgs> {
 				false
 			),
 			executionShape: 'multiple',
-			urlType: UrlType.ANCHORS,
+			extractionTarget: ExtractionTarget.ANCHORS,
 			videosArgs: { ...args, username, type }
 		});
 	}
@@ -174,7 +174,7 @@ export class PornHubProvider extends Provider<PornHubExecArgs> {
 			provider: this.provider,
 			method: PornHubMethods.getVideos,
 			executionShape: 'multiple',
-			urlType: UrlType.ANCHORS,
+			extractionTarget: ExtractionTarget.ANCHORS,
 			videosArgs: { format }
 		});
 	}
@@ -196,7 +196,7 @@ export class PornHubProvider extends Provider<PornHubExecArgs> {
 		return await this.execute<PornHubChannelsOutput[]>({
 			...this.makeTargets(channelUrl, range, this.provider, PornHubMethods.getChannels, false),
 			executionShape: 'multiple',
-			urlType: UrlType.ANCHORS
+			extractionTarget: ExtractionTarget.ANCHORS
 		});
 	}
 }

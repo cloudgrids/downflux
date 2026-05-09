@@ -1,5 +1,5 @@
 import { InvalidUrlException } from '@app/exceptions';
-import { ProviderType, UrlType } from '@app/shared';
+import { ExtractionTarget, ProviderType } from '@app/shared';
 import { Provider } from './Provider';
 
 /**
@@ -33,7 +33,7 @@ export class CoomerProvider extends Provider<any> {
 	 * @returns Extracted post link results
 	 */
 	public getPosts() {
-		return this.execute({ urlType: UrlType.ANCHORS });
+		return this.execute({ extractionTarget: ExtractionTarget.ANCHORS });
 	}
 
 	/**
@@ -41,6 +41,6 @@ export class CoomerProvider extends Provider<any> {
 	 * @returns Extracted attachment URL results
 	 */
 	public getAttachments() {
-		return this.execute({ urlType: UrlType.ALL_URLS });
+		return this.execute({ extractionTarget: ExtractionTarget.ALL_URLS });
 	}
 }

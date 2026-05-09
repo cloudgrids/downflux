@@ -1,4 +1,4 @@
-import { UrlType } from '@app/shared';
+import { ExtractionTarget } from '@app/shared';
 
 /**
  * Default output structure for extractor operations.
@@ -45,7 +45,7 @@ export interface DefaultExtractorResult<TCustomFields = unknown> {
 	allUrls?: string[];
 
 	/** URL category for pipeline routing */
-	urlType?: UrlType;
+	extractionTarget?: ExtractionTarget;
 
 	/** Extensible service-specific fields */
 	customFields?: TCustomFields;
