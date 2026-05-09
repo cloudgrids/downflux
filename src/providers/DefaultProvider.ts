@@ -1,5 +1,5 @@
 import { InvalidUrlException } from '@app/exceptions';
-import { ProviderType, UrlType } from '@app/shared';
+import { ExtractionTarget, ProviderType } from '@app/shared';
 import { Provider } from './Provider';
 
 /**
@@ -35,6 +35,6 @@ export class DefaultProvider extends Provider<any> {
 	 * @returns Extracted anchor result array
 	 */
 	public getLinks() {
-		return this.execute({ urlType: UrlType.ANCHORS });
+		return this.execute({ extractionTarget: ExtractionTarget.ANCHORS });
 	}
 }

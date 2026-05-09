@@ -1,5 +1,5 @@
 /** URL category for extraction and pipeline routing */
-export enum UrlType {
+export enum ExtractionTarget {
 	/** Anchor href URLs */
 	ANCHORS = 'ANCHORS',
 

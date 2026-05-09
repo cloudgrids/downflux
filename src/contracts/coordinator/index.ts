@@ -1,2 +1,2 @@
-export * from './RegistryCoordinator';
 export * from './CoordinatorDependency';
+export * from './RegistryCoordinator';

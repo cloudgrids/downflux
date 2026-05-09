@@ -10,7 +10,7 @@ import {
 	OkPornVideoOutput,
 	TagsOutput
 } from '@app/contracts';
-import { inferVideoQuality, OkPornMethods, UrlType, VideoQuality } from '@app/shared';
+import { ExtractionTarget, inferVideoQuality, OkPornMethods, VideoQuality } from '@app/shared';
 import { TagKeys } from '@app/types';
 import { DefaultTransformer } from './DefaultTransformer';
 
@@ -82,7 +82,7 @@ export class OkPornTransformer extends DefaultTransformer<
 			entryUrl: albumUrl,
 			referer: albumUrl,
 			method: OkPornMethods.getAlbum,
-			urlType: UrlType.IMAGES
+			extractionTarget: ExtractionTarget.IMAGES
 		};
 
 		const albumMetadata = (await super.transform(albumUrl, albumRequest)) as DefaultExtractorResult<Partial<OkPornOutput>>;

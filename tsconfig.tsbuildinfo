@@ -74,7 +74,7 @@
 		"./src/enums/outputtype.ts",
 		"./src/enums/servicetype.ts",
 		"./src/enums/steptype.ts",
-		"./src/enums/urltype.ts",
+		"./src/enums/extractionTarget.ts",
 		"./src/enums/videoquality.ts",
 		"./src/enums/services/coomermethods.ts",
 		"./src/enums/services/defaultmethods.ts",

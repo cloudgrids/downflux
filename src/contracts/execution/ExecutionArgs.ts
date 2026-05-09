@@ -1,6 +1,4 @@
-// util/interfaces/ExecutionArgs.ts
-
-import { ExecutionType, ProviderType, UrlType } from '@app/shared';
+import { ExecutionType, ProviderType, ExtractionTarget } from '@app/shared';
 import { ExecutionShape } from '@app/types';
 import { ExecutionOptions } from './ExecutionOptions';
 
@@ -19,5 +17,5 @@ export interface ExecutionArgs<S extends ExecutionShape = ExecutionShape> extend
 	executionShape: S;
 
 	executionType: ExecutionType;
-	urlType: UrlType;
+	extractionTarget: ExtractionTarget;
 }

@@ -205,7 +205,7 @@ Public service method
 
 ## Important Types
 
-- **`ExecutionArgs`** - Internal request object used by `ExecutionCoordinator`. Includes `service`, `method`, `entryUrl`, `targets`, `executionType`, `urlType`, and `ExecutionOptions`.
+- **`ExecutionArgs`** - Internal request object used by `ExecutionCoordinator`. Includes `service`, `method`, `entryUrl`, `targets`, `executionType`, `extractionTarget`, and `ExecutionOptions`.
 - **`ExecutionResult<T>`** - Final ExecutionCoordinator object. Includes extracted metadata, target download URLs, pipeline items, download counts, failures, and errors.
 - **`ExecutionOptions`** - Shared options for output directory, allowed extensions, video qualities, max downloads, extraction/download concurrency, hooks, progress events, logging, output type, execution type, and abort signal.
 - **`PipelineItem`** - One downloadable item with `downloadUrl`, `baseUrl`, `service`, and an identifier containing media type, MIME type, extension, and path key.

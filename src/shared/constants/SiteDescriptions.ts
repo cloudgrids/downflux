@@ -1,12 +1,12 @@
 import { OkPornModelVideoCard } from '@app/contracts';
 import { OkPornParser } from '@app/parsers';
-import { UrlType } from '../enums';
+import { ExtractionTarget } from '../enums';
 
 export const SITE_DESCRIPTIONS = [
 	{
 		category: 'okporn',
 		pattern: /(?:https?:\/\/)?(?:www\.)?ok\.porn\/(?:albums|video|models)\/([a-zA-Z0-9-]+)/,
-		urlType: UrlType.IMAGES,
+		extractionTarget: ExtractionTarget.IMAGES,
 		transform: ({ html, parser }) => {
 			const okPornParser = parser as OkPornParser;
 			return {
@@ -30,26 +30,26 @@ export const SITE_DESCRIPTIONS = [
 	{
 		category: 'coomer',
 		pattern: /https?:\/\/coomer\.(?:st|party)\/([^/]+)\/user\/([^/?#]+)/,
-		urlType: UrlType.ANCHORS
+		extractionTarget: ExtractionTarget.ANCHORS
 	},
 
 	{
 		category: 'kemono',
 		pattern: /https?:\/\/kemono\.(?:su|party)\/([^/]+)\/user\/([^/?#]+)/,
-		urlType: UrlType.ANCHORS
+		extractionTarget: ExtractionTarget.ANCHORS
 	},
 
 	{
 		category: 'wallhaven',
 		pattern: /https?:\/\/wallhaven\.cc\/(?:w|user|tag|search)\/([a-zA-Z0-9]+)/,
-		urlType: UrlType.IMAGES,
+		extractionTarget: ExtractionTarget.IMAGES,
 		transform: ({ html, parser }) => parser.transform(html, '')
 	},
 
 	{
 		category: 'shorts',
 		pattern: /https?:\/\/(?:www\.)?shorts\.xxx\/(?:video|embed)\/(\d+)/,
-		urlType: UrlType.SOURCES,
+		extractionTarget: ExtractionTarget.SOURCES,
 		transform: ({ html, parser }) => ({
 			sources: parser.extractSourceUrls(html),
 			images: parser.extractVideoPosters(html)
@@ -59,7 +59,7 @@ export const SITE_DESCRIPTIONS = [
 	{
 		category: 'generic',
 		pattern: /^https?:\/\//,
-		urlType: UrlType.ANCHORS
+		extractionTarget: ExtractionTarget.ANCHORS
 	}
 ];
 

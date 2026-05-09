@@ -9,7 +9,7 @@ import {
 	WallHavenUserUploadsOutput,
 	WallHavenWallPaperOutput
 } from '@app/contracts';
-import { UrlType, WallHavenMethods, WallHavenThumbnailQuality } from '@app/shared';
+import { ExtractionTarget, WallHavenMethods, WallHavenThumbnailQuality } from '@app/shared';
 import { DefaultTransformer } from './DefaultTransformer';
 
 export class WallHavenTransformer extends DefaultTransformer<
@@ -113,7 +113,7 @@ export class WallHavenTransformer extends DefaultTransformer<
 				entryUrl: thumbnail.siteUrl,
 				referer: thumbnail.siteUrl,
 				method: WallHavenMethods.getWallPaper,
-				urlType: UrlType.IMAGES
+				extractionTarget: ExtractionTarget.IMAGES
 			};
 
 			const wallPaper = (await super.transform(thumbnail.siteUrl, wallPaperRequest)) as DefaultExtractorResult<
