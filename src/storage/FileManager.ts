@@ -174,7 +174,7 @@ export class FileManager {
 			const fileSegment = segments.find((seg) => /\.[a-z0-9]+$/i.test(seg));
 
 			const originalFilename = fileSegment || segments.pop() || `fud_${Date.now()}`;
-			const normalizedFilename = originalFilename.replace(/\./g, '_');
+			const normalizedFilename = originalFilename;
 
 			const extension = extname(originalFilename).substring(1).toLowerCase();
 
@@ -268,7 +268,7 @@ export class FileManager {
 
 			const extension = isFmp4 ? 'mp4' : 'ts';
 
-			const baseName = this.sanitizeFilename(initial.originalFilename.replace(/\.[^.]+$/, '') || 'video').replace(/\./g, '_');
+			const baseName = this.sanitizeFilename(initial.originalFilename.replace(/\.[^.]+$/, '') || 'video');
 
 			return {
 				originalFilename: `${baseName}.${extension}`,
