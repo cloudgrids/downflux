@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { RegistryService } from '../src/util';
+import { RegistryService } from '../src/contracts';
 
 const appendUniqueJsonToRegistry = <T extends Record<string, RegistryService[]>>(file: string, key: keyof T, value: string) => {
 	const raw = readFileSync(file, 'utf-8');
@@ -24,7 +24,7 @@ const appendUniqueJsonToRegistry = <T extends Record<string, RegistryService[]>>
 	}
 };
 
-const appendUniqueJsonToPaths = <T extends Record<string, string[]>>(file: string, key: keyof T, value: string) => {
+export const appendUniqueJsonToPaths = <T extends Record<string, string[]>>(file: string, key: keyof T, value: string) => {
 	const raw = readFileSync(file, 'utf-8');
 
 	const parsed = JSON.parse(raw) as T;
@@ -43,7 +43,6 @@ const appendUniqueJsonToPaths = <T extends Record<string, string[]>>(file: strin
 	const names = process.argv.slice(2);
 
 	const registryPath = join(process.cwd(), 'scripts/codegen/registry.json');
-	const jsonPath = join(process.cwd(), 'paths.json');
 
 	if (!names.length) {
 		console.error('Please provide at least one file name to append in registry');
@@ -52,8 +51,6 @@ const appendUniqueJsonToPaths = <T extends Record<string, string[]>>(file: strin
 
 	for (const name of names) {
 		appendUniqueJsonToRegistry(registryPath, 'services', name);
-		appendUniqueJsonToPaths(jsonPath, 'paths', `src/util/interfaces/services/${name.toLowerCase()}`);
-		appendUniqueJsonToPaths(jsonPath, 'paths', `src/util/enums/services/${name.toLowerCase()}`);
 	}
 })();
 

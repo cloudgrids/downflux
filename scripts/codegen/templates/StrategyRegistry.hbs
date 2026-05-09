@@ -1,0 +1,23 @@
+import { FileManager } from '../storage';
+import { ProgressManager } from '../progress/ProgressManager';
+import { ProviderType } from '../util';
+import { DefaultStrategy } from './DefaultStrategy';
+{{imports}}
+
+type StrategyCtor = new (progress: ProgressManager, fileManager: FileManager) => DefaultStrategy;
+
+export class StrategyRegistry {
+	constructor(
+		private readonly progressManager: ProgressManager,
+		protected fileManager: FileManager
+	) {}
+
+	private readonly strategies: Record<ProviderType, StrategyCtor> = {
+		{{entries}}
+	};
+
+	public getStrategy(service: ProviderType): DefaultStrategy {
+		const StrategyClass = this.strategies[service] ?? this.strategies[ProviderType.Default];
+		return new StrategyClass(this.progressManager, this.fileManager);
+	}
+}

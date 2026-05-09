@@ -2,7 +2,7 @@ import { pathBuilder } from '../helpers';
 import { BasePipeline } from './BasePipeline';
 import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, {{ArgsName}}, {{OutputName}}  } from '../util';
 
-export class {{ServiceName}}Pipeline extends BasePipeline<{{ArgsName}}, {{OutputName}}> {
+export class {{ProviderName}}PipelineRegistry extends BasePipeline<{{ArgsName}}, {{OutputName}}> {
 	public override build(metadata: {{OutputName}}, request: {{ArgsName}}): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,
@@ -14,7 +14,7 @@ export class {{ServiceName}}Pipeline extends BasePipeline<{{ArgsName}}, {{Output
 					service: request.service,
 					identifier: {
 						mediaType: item.mediaType,
-						...this.fileService.detectResourceType(item.url, request),
+						...this.fileManager.detectResourceType(item.url, request),
 						key: this.buildIdentifier({
 							mediaType: item.mediaType,
 							metadata,
@@ -29,7 +29,7 @@ export class {{ServiceName}}Pipeline extends BasePipeline<{{ArgsName}}, {{Output
 
 	protected override buildIdentifier(ctx: IdentifierContext<{{OutputName}}>): string {
 		const { mediaType, id } = ctx;
-		const prefix = '{{ServiceName}}';
+		const prefix = '{{ProviderName}}';
 		let mediaSegment: string;
 
 		switch (mediaType) {

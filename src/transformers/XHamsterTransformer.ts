@@ -1,7 +1,8 @@
-import { DefaultExtractorResult, XHamsterExecArgs, XHamsterMethods, XHamsterOutput, XHamsterVideoOutput } from '../util';
-import { BaseTransformer } from './BaseTransformer';
+import { DefaultExtractorResult, XHamsterExecArgs, XHamsterOutput, XHamsterVideoOutput } from '@app/contracts';
+import { XHamsterMethods } from '@app/shared';
+import { DefaultTransformer } from './DefaultTransformer';
 
-export class XHamsterTransformer extends BaseTransformer<XHamsterExecArgs, DefaultExtractorResult | XHamsterVideoOutput> {
+export class XHamsterTransformer extends DefaultTransformer<XHamsterExecArgs, DefaultExtractorResult | XHamsterVideoOutput> {
 	private readonly DIRECT_MP4_REGEX = /^https:\/\/video5\.xhpingcdn\.com\/.*\.mp4$/;
 
 	public async transform(url: string, request?: XHamsterExecArgs): Promise<DefaultExtractorResult | XHamsterVideoOutput> {

@@ -1,7 +1,7 @@
-import { BaseTransformer } from './BaseTransformer';
+import { DefaultTransformer } from './DefaultTransformer';
 import { {{ArgsName}}, DefaultExtractorResult, {{OutputName}}, {{MethodName}} } from '../util';
 
-export class {{ServiceName}}Transformer extends BaseTransformer<{{ArgsName}}, DefaultExtractorResult> {
+export class {{ProviderName}}TransformerRegistry extends DefaultTransformer<{{ArgsName}}, DefaultExtractorResult> {
 	public async transform(url: string, request?: {{ArgsName}}): Promise<DefaultExtractorResult> {
 		const metadata = (await super.transform(url, request)) as DefaultExtractorResult<Partial<{{OutputName}}>>;
 

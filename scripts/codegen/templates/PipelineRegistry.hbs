@@ -1,0 +1,24 @@
+import { FileManager } from '../file';
+import { ExecutionArgs, PipelineItem, ProviderType } from '../util';
+import { BasePipeline } from './BasePipeline';
+{{imports}}
+
+type PipelineCtor = new (fileManager: FileManager) => BasePipeline<any, any>;
+
+export class PipelineRegistry {
+	constructor(protected fileManager: FileManager) {}
+
+	private readonly pipelines: Map<ProviderType, PipelineCtor> = new Map<ProviderType, PipelineCtor>([
+		{{entries}}
+	]);
+
+	public build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): PipelineItem[] {
+		const serviceType = request.service ?? ProviderType.Default;
+
+		const PipelineClass = this.pipelines.get(serviceType) ?? this.pipelines.get(ProviderType.Default)!;
+
+		const pipeline = new PipelineClass(this.fileManager);
+
+		return pipeline.build(metadata, request);
+	}
+}

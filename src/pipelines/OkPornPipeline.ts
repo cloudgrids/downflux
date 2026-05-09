@@ -1,5 +1,5 @@
-import { detectVideoQuality, pathBuilder, spaceNormalizer } from '../helpers';
-import { IdentifierContext, MediaType, OkPornExecArgs, OkPornOutput, PipelineExtractedItem, PipelineItem, VideoQuality } from '../util';
+import { IdentifierContext, OkPornExecArgs, OkPornOutput, PipelineExtractedItem, PipelineItem } from '@app/contracts';
+import { MediaType, VideoQuality, inferVideoQuality } from '@app/shared';
 import { BasePipeline } from './BasePipeline';
 
 export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
@@ -11,10 +11,10 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 				this.extract(request, metadata).map((item) => ({
 					downloadUrl: item.url,
 					sourceUrl: request.entryUrl,
-					service: request.service,
+					provider: request.provider,
 					identifier: {
 						mediaType: item.mediaType,
-						...this.fileService.detectResourceType(item.url, request),
+						...this.fileManager.detectResourceType(item.url, request),
 						key: this.buildIdentifier({
 							mediaType: item.mediaType,
 							metadata,
@@ -65,7 +65,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 				mediaSegment = 'misc';
 		}
 
-		return pathBuilder(prefix, spaceNormalizer(metadata.modelName), mediaSegment);
+		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.modelName), mediaSegment);
 	}
 
 	protected extract(request: OkPornExecArgs, metadata: OkPornOutput): PipelineExtractedItem[] {
@@ -94,7 +94,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 			this.filterByQuality(
 				metadata.videoCards.filter(Boolean).map((u) => ({
 					url: u.preview,
-					quality: detectVideoQuality(u.preview),
+					quality: inferVideoQuality(u.preview),
 					mediaType: MediaType.VIDEO_PREVIEW,
 					id: u.videoId
 				})),

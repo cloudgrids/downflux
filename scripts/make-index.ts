@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { paths } from '../paths.json';
 
 const INDEX_FILE_NAME = 'index.ts';
 
@@ -24,6 +23,18 @@ export const makeIndex = async (directory: string) => {
 	fs.writeFileSync(indexPath, indexFileContent.concat('\n'), { flag: 'w' });
 };
 
+const getDirectories = (dir: string, dirPaths: string[] = []) => {
+	dirPaths.push(dir);
+
+	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+		if (entry.isDirectory()) {
+			getDirectories(path.join(dir, entry.name), dirPaths);
+		}
+	}
+
+	return dirPaths;
+};
+
 (async () => {
-	for (const path of paths) await makeIndex(path);
+	for (const path of getDirectories('./src')) await makeIndex(path);
 })();

@@ -1,12 +1,12 @@
-import { ErrorCodes, ServiceType } from '../util';
+import { ErrorCodes, ProviderType } from '@app/shared';
 import { BaseException } from './BaseException';
 
 export class NotFoundException extends BaseException {
-	constructor(service: ServiceType, url: string, context?: Record<string, any>) {
+	constructor(provider: ProviderType, url: string, context?: Record<string, any>) {
 		super({
 			errorCode: ErrorCodes.HTTP_404,
 			message: `Resource not found`,
-			service,
+			provider,
 			context: {
 				url,
 				...context

@@ -1,8 +1,11 @@
-import { FileService } from '../file';
-import { DefaultExtractorResult, ExecutionArgs, IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem } from '../util';
+import { DefaultExtractorResult, ExecutionArgs, IdentifierContext, PipelineExtractedItem, PipelineItem } from '@app/contracts';
+import { MediaType } from '@app/shared';
+import { FileManager, PathBuilder } from '@app/storage';
 
 export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtractorResult> {
-	constructor(protected fileService: FileService) {}
+	protected readonly pathBuilder = new PathBuilder();
+
+	constructor(protected fileManager: FileManager) {}
 
 	public build(metadata: TResult, request: TExec): PipelineItem[] {
 		return this.sliceByMaxDownloads(
@@ -14,14 +17,14 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExtracto
 					sourceUrl: request.entryUrl,
 					identifier: {
 						mediaType,
-						...this.fileService.detectResourceType(url, request),
+						...this.fileManager.detectResourceType(url, request),
 						key: this.buildIdentifier({
 							mediaType,
 							metadata,
 							url
 						})
 					},
-					service: request.service
+					provider: request.provider
 				}))
 			)
 		);

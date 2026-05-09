@@ -1,4 +1,4 @@
-import { ErrorCodes, ServiceType } from '../util';
+import { ErrorCodes, ProviderType } from '@app/shared';
 import { BaseException } from './BaseException';
 
 /**
@@ -10,28 +10,28 @@ export class InvalidRangeException extends BaseException {
 	constructor(
 		public readonly start: number,
 		public readonly end: number,
-		public readonly service: ServiceType,
+		public readonly provider: ProviderType,
 		public readonly method?: string,
 		public readonly context: Record<string, any> = {},
 		public readonly metadata?: any
 	) {
 		super({
 			errorCode: ErrorCodes.INVALID_RANGE,
-			message: InvalidRangeException.buildMessage(start, end, service, method),
+			message: InvalidRangeException.buildMessage(start, end, provider, method),
 			method,
-			service,
+			provider,
 			context,
 			metadata
 		});
 	}
 
-	private static buildMessage(start: number, end: number, service?: ServiceType, method?: string): string {
+	private static buildMessage(start: number, end: number, provider?: ProviderType, method?: string): string {
 		return [
 			`Invalid range encountered`,
 			`ERROR_CODE=${ErrorCodes.INVALID_RANGE}`,
 			`start=${start}`,
 			`end=${end}`,
-			service && `service=${service}`,
+			`provider=${provider}`,
 			method && `method=${method}`
 		]
 			.filter(Boolean)

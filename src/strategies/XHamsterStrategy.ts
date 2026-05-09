@@ -1,6 +1,6 @@
-import { BaseStrategy } from './BaseStrategy';
+import { DefaultStrategy } from './DefaultStrategy';
 
-export class XHamsterStrategy extends BaseStrategy {
+export class XHamsterStrategy extends DefaultStrategy {
 	public override getHostFallbackUrls(url: string): string[] {
 		let parsed: URL;
 

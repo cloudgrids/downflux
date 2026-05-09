@@ -1,17 +1,17 @@
 import { GenericException } from '../exceptions';
-import { DefaultExtractorResult, {{ServiceName}}Output } from '../util';
-import { BaseParserService } from './BaseParserService';
+import { DefaultExtractorResult, {{ProviderName}}Output } from '../util';
+import { DefaultParser } from './DefaultParser';
 
-export class {{ServiceName}}ParserService extends BaseParserService {
+export class {{ProviderName}}ParserRegistry extends DefaultParser {
 
-	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<{{ServiceName}}Output>>> {
+	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<{{ProviderName}}Output>>> {
 		try {
 			return {
 				description,
 				sourceUrl,
 				};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ServiceType.{{ServiceName}}, '{{ServiceName}}ParserService', { cause: error });
+			throw new GenericException('Unable to parse some fields:', ProviderType.{{ProviderName}}, '{{ProviderName}}ParserRegistry', { cause: error });
 		}
 	}
 }

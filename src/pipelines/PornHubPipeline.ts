@@ -1,5 +1,5 @@
-import { pathBuilder, spaceNormalizer } from '../helpers';
-import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, PornHubExecArgs, PornHubOutput } from '../util';
+import { IdentifierContext, PipelineExtractedItem, PipelineItem, PornHubExecArgs, PornHubOutput } from '@app/contracts';
+import { MediaType } from '@app/shared';
 import { BasePipeline } from './BasePipeline';
 
 export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput> {
@@ -11,10 +11,10 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 				this.extract(request, metadata).map((item) => ({
 					downloadUrl: item.url,
 					sourceUrl: request.entryUrl,
-					service: request.service,
+					provider: request.provider,
 					identifier: {
 						mediaType: item.mediaType,
-						...this.fileService.detectResourceType(item.url, request),
+						...this.fileManager.detectResourceType(item.url, request),
 						key: this.buildIdentifier({
 							mediaType: item.mediaType,
 							metadata,
@@ -49,7 +49,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 			default:
 				mediaSegment = `${mediaType}/${id}`;
 		}
-		return pathBuilder(prefix, spaceNormalizer(metadata.user ?? id), mediaSegment);
+		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.user ?? id), mediaSegment);
 	}
 
 	protected override extract(request: PornHubExecArgs, metadata: PornHubOutput): PipelineExtractedItem[] {

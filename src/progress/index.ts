@@ -1,2 +1,2 @@
 export * from './ProgressFormatter';
-export * from './ProgressService';
+export * from './ProgressManager';

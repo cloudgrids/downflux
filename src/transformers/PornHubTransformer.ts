@@ -2,21 +2,21 @@ import {
 	DefaultExtractorResult,
 	PornHubChannelsOutput,
 	PornHubExecArgs,
-	PornHubMethods,
 	PornHubOutput,
 	PornHubVideoOutput,
 	PornHubVideosOutput
-} from '../util';
-import { BaseTransformer } from './BaseTransformer';
+} from '@app/contracts';
+import { PornHubMethods } from '@app/shared';
+import { DefaultTransformer } from './DefaultTransformer';
 
-export class PornHubTransformer extends BaseTransformer<
+export class PornHubTransformer extends DefaultTransformer<
 	PornHubExecArgs,
 	PornHubVideoOutput | PornHubVideosOutput | DefaultExtractorResult | PornHubChannelsOutput[]
 > {
 	public async transform(
 		url: string,
 		request: PornHubExecArgs
-	): Promise<PornHubVideoOutput | PornHubVideosOutput | PornHubChannelsOutput[] | DefaultExtractorResult<unknown>> {
+	): Promise<PornHubVideoOutput | PornHubVideosOutput | PornHubChannelsOutput[] | DefaultExtractorResult> {
 		const metadata = (await super.transform(url, request)) as DefaultExtractorResult<Partial<PornHubOutput>>;
 
 		if (!request?.transformOutput) return metadata;

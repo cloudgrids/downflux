@@ -1,20 +1,18 @@
 import {
 	DefaultExtractorResult,
-	UrlType,
 	WallHavenExecArgs,
-	WallHavenMethods,
 	WallHavenOutput,
 	WallHavenThumbnail,
-	WallHavenThumbnailQuality,
 	WallHavenUserFavoriteCollectionOutput,
 	WallHavenUserFavoriteCollectionsOutput,
 	WallHavenUserInfoOutput,
 	WallHavenUserUploadsOutput,
 	WallHavenWallPaperOutput
-} from '../util';
-import { BaseTransformer } from './BaseTransformer';
+} from '@app/contracts';
+import { UrlType, WallHavenMethods, WallHavenThumbnailQuality } from '@app/shared';
+import { DefaultTransformer } from './DefaultTransformer';
 
-export class WallHavenTransformer extends BaseTransformer<
+export class WallHavenTransformer extends DefaultTransformer<
 	WallHavenExecArgs,
 	| WallHavenWallPaperOutput
 	| WallHavenUserUploadsOutput

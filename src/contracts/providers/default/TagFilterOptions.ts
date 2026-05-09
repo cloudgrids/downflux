@@ -1,0 +1,17 @@
+import { TagKeys } from '@app/types';
+import { OkPornIdType } from '../okporn';
+
+/**
+ * Options for filtering tag output.
+ * Used by tag-based service operations.
+ */
+export interface TagFilterOptions {
+	/** Allowed tag keys */
+	allowedKeys?: TagKeys[];
+
+	/**
+	 * Output format for tag values
+	 * @defaultValue 'path'
+	 */
+	format?: OkPornIdType;
+}

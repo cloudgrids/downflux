@@ -1,4 +1,4 @@
-import { ErrorCodes, ServiceType } from '../util';
+import { ErrorCodes, ProviderType } from '@app/shared';
 import { BaseException } from './BaseException';
 
 /**
@@ -9,24 +9,22 @@ import { BaseException } from './BaseException';
 export class InvalidUrlException extends BaseException {
 	constructor(
 		public readonly url: string,
-		public readonly service: ServiceType,
+		public readonly provider: ProviderType,
 		public readonly method?: string,
 		public readonly context: Record<string, any> = {},
 		public readonly metadata?: any
 	) {
 		super({
 			errorCode: ErrorCodes.INVALID_URL,
-			message: InvalidUrlException.buildMessage(url, service, method),
+			message: InvalidUrlException.buildMessage(url, provider, method),
 			method: method,
-			service,
+			provider,
 			context,
 			metadata
 		});
 	}
 
-	private static buildMessage(url: string, service?: ServiceType, method?: string): string {
-		return [`Invalid URL encountered`, `url=${url}`, service && `service=${service}`, method && `method=${method}`]
-			.filter(Boolean)
-			.join(' | ');
+	private static buildMessage(url: string, provider?: ProviderType, method?: string): string {
+		return [`Invalid URL encountered`, `url=${url}`, `provider=${provider}`, method && `method=${method}`].filter(Boolean).join(' | ');
 	}
 }

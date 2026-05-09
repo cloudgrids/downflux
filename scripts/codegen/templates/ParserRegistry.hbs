@@ -1,0 +1,13 @@
+import { ProviderType } from '../util';
+import { DefaultParser } from './DefaultParser';
+{{imports}}
+
+export class ParserRegistry {
+	private static readonly parsers: Record<ProviderType, DefaultParser> = {
+		{{entries}}
+	};
+
+	public static getParser(service: ProviderType): DefaultParser {
+		return this.parsers[service] ?? this.parsers[ProviderType.Default];
+	}
+}
