@@ -1,31 +1,29 @@
 # DownFlux
 
-A simple media extraction and download library built with TypeScript and Node.js.
+Typescript Library for downloading and extracting sites metadata
 
-## Setup
-
-- **Runtime:** Node.js `>=18.0.0`
-- **Package manager:** `pnpm`
-- **Language:** TypeScript
-- **Build:** `tsup` for CJS, ESM, and types
-
-## Supported Services
+## Currently supported Services
 
 - **OkPorn** - Albums, videos, models, tags, channels
-- **PornHub** - Videos and channels
+- **PornHub** - Videos, channels, models, video
+- **WallHaven** - Albums, uploads, wallpapers, wallpaper
 - **XHamster** - Videos
 - **Default** - Generic URL extraction fallback
 
+More incoming...
+
 ## Output Modes
+
+`In all output modes it returns metadata extracted from sites`
 
 - **`OutputType.JSON`** - Save results as JSON file (default)
 - **`OutputType.DEVICE`** - Download files to disk
-- **`OutputType.BUFFER`** - Keep files in memory
+- **`OutputType.BUFFER`** - Returns buffer
 - **`OutputType.RETURN`** - Return metadata only
 
 ## How It Works
 
-1. Service validates and builds request
+1. Provider validates and builds request
 2. Metadata extracted from target URLs
 3. Transformers convert HTML to structured data
 4. Pipelines generate download items
@@ -51,15 +49,15 @@ A simple media extraction and download library built with TypeScript and Node.js
 ## Example Usage
 
 ```typescript
-import { OkPornProvider, OutputType } from 'downflux'
+import { OkPornProvider, OutputType } from 'downflux';
 
 const provider = new OkPornProvider('https://ok.porn/videos/search/?query=example')
   .setOutput(OutputType.DEVICE, { directoryPath: './downloads' })
   .setJobOptions({ concurrency: 3 })
-  .onProgress((event) => console.log(event))
+  .onProgress((event) => console.log(event));
 
-const videos = await provider.getVideos({ start: 0, end: 10 })
-console.log(`Found ${videos.length} videos`)
+const videos = await provider.getVideos({ start: 0, end: 10 });
+console.log(`Found ${videos.length} videos`);
 ```
 
 ## Notes
