@@ -7,7 +7,9 @@ Typescript Library for downloading and extracting sites metadata
 - **OkPorn** - Albums, videos, models, tags, channels
 - **PornHub** - Videos, channels, models, video
 - **WallHaven** - Albums, uploads, wallpapers, wallpaper
-- **XHamster** - Videos
+- **XHamster** - Video
+- **TnAFlix** - Video
+- **HqPorn** - Video
 - **Default** - Generic URL extraction fallback
 
 More incoming...

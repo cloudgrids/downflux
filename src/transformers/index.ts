@@ -1,4 +1,5 @@
 export * from './DefaultTransformer';
+export * from './HqPornTransformer';
 export * from './OkPornTransformer';
 export * from './PornHubTransformer';
 export * from './TnAFlixTransformer';

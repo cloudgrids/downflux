@@ -1,5 +1,6 @@
 import { ProviderType } from '@app/shared';
 import { DefaultParser } from './DefaultParser';
+import { HqPornParser } from './HqPornParser';
 import { OkPornParser } from './OkPornParser';
 import { PornHubParser } from './PornHubParser';
 import { TnAFlixParser } from './TnAFlixParser';
@@ -10,6 +11,7 @@ export class ParserRegistry {
 	private static readonly parsers: Record<ProviderType, DefaultParser> = {
 		[ProviderType.Coomer]: new DefaultParser(),
 		[ProviderType.Default]: new DefaultParser(),
+		[ProviderType.HqPorn]: new HqPornParser(),
 		[ProviderType.OkPorn]: new OkPornParser(),
 		[ProviderType.PornHub]: new PornHubParser(),
 		[ProviderType.TnAFlix]: new TnAFlixParser(),
