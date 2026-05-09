@@ -12,6 +12,7 @@ export class StrategyRegistry {
 	private readonly strategies: Record<ProviderType, StrategyCtor> = {
 		[ProviderType.Coomer]: DefaultStrategy,
 		[ProviderType.Default]: DefaultStrategy,
+		[ProviderType.HqPorn]: DefaultStrategy,
 		[ProviderType.OkPorn]: DefaultStrategy,
 		[ProviderType.PornHub]: PornHubStrategy,
 		[ProviderType.TnAFlix]: DefaultStrategy,

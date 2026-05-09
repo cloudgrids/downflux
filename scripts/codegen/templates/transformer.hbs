@@ -1,5 +1,7 @@
 import { DefaultTransformer } from './DefaultTransformer';
-import { {{ArgsName}}, DefaultExtractorResult, {{OutputName}}, {{MethodName}} } from '@app/contracts';
+import { {{ArgsName}}, DefaultExtractorResult, {{OutputName}} } from '@app/contracts';
+import { {{MethodName}} } from '@app/shared';
+
 
 export class {{ProviderName}}Transformer extends DefaultTransformer<{{ArgsName}}, DefaultExtractorResult> {
 	public async transform(url: string, request?: {{ArgsName}}): Promise<DefaultExtractorResult> {

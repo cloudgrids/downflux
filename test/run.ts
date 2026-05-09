@@ -1,4 +1,4 @@
-import { TnAFlixProvider } from '../src/providers';
+import { HqPornProvider, TnAFlixProvider } from '../src/providers';
 import { OutputType } from '../src/shared/enums';
 
 async function main() {
@@ -30,10 +30,10 @@ async function main() {
 		// 	.setOutput(OutputType.DEVICE, { directoryPath })
 		// 	.getVideo();
 
-		await new TnAFlixProvider('https://www.tnaflix.com/hd-videos/Girl-Gets-Introduced-to-Prison-Life/video3943507')
+		await new HqPornProvider('https://hqporn.xxx/darkx-com-rough-fingering-with-lacy-lennon_912943.html')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.JSON, { directoryPath:'DownFlux' })
+			.setOutput(OutputType.DEVICE, { directoryPath:'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);

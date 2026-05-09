@@ -1,5 +1,6 @@
 import { DefaultPipeline } from './DefaultPipeline';
-import { IdentifierContext, MediaType, PipelineExtractedItem, PipelineItem, {{ArgsName}}, {{OutputName}}  } from '@app/contracts';
+import { IdentifierContext, PipelineExtractedItem, PipelineItem, {{ArgsName}}, {{OutputName}}  } from '@app/contracts';
+import { MediaType } from '@app/shared';
 
 export class {{ProviderName}}Pipeline extends DefaultPipeline<{{ArgsName}}, {{OutputName}}> {
 	public override build(metadata: {{OutputName}}, request: {{ArgsName}}): PipelineItem[] {
@@ -10,7 +11,7 @@ export class {{ProviderName}}Pipeline extends DefaultPipeline<{{ArgsName}}, {{Ou
 				this.extract(request, metadata).map((item) => ({
 					downloadUrl: item.url,
 					sourceUrl: request.entryUrl,
-					service: request.service,
+					provider: request.provider,
 					identifier: {
 						mediaType: item.mediaType,
 						...this.fileManager.detectResourceType(item.url, request),
