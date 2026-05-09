@@ -1,5 +1,5 @@
 import { HlsClient, HtmlClient, StreamHttpClient } from '@app/clients';
-import { ServiceDependencies } from '@app/contracts';
+import { CoordinatorDependencies } from '@app/contracts';
 import { PipelineRegistry } from '@app/pipelines';
 import { ProgressManager } from '@app/progress';
 import { CliRenderer } from '@app/renderer';
@@ -13,7 +13,7 @@ import { ExecutionCoordinator, TaskCoordinator } from 'src/coordinators';
  * Creates the default service dependency graph.
  * @returns Default service dependencies
  */
-export function createDefaultDependencies(): ServiceDependencies {
+export function createDefaultDependencies(): CoordinatorDependencies {
 	const progressManager = new ProgressManager();
 
 	const cliRenderer = new CliRenderer(progressManager);
@@ -34,7 +34,7 @@ export function createDefaultDependencies(): ServiceDependencies {
 	const transferCoordinator = new TransferCoordinator(fileManager, streamHttpClient, progressManager);
 
 	const taskCoordinator = new TaskCoordinator(transferCoordinator, fileManager, transformerRegistry, progressManager, pipelineRegistry);
-	const jobService = new ExecutionCoordinator(transformerRegistry, taskCoordinator, progressManager, pipelineRegistry);
+	const executionCoordinator = new ExecutionCoordinator(transformerRegistry, taskCoordinator, progressManager, pipelineRegistry);
 
 	return {
 		htmlClient,
@@ -42,7 +42,7 @@ export function createDefaultDependencies(): ServiceDependencies {
 		transformerRegistry,
 		transferCoordinator,
 		strategyRegistry,
-		jobService,
+		executionCoordinator,
 		progressManager,
 		cliRenderer
 	};

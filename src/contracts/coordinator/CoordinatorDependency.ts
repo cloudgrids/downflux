@@ -6,12 +6,12 @@ import { TransferCoordinator } from '@app/transfer';
 import { TransformerRegistry } from '@app/transformers';
 import { ExecutionCoordinator } from 'src/coordinators';
 
-export interface ServiceDependencies {
+export interface CoordinatorDependencies {
 	htmlClient: HtmlClient;
 	streamHttpClient: StreamHttpClient;
 	transformerRegistry: TransformerRegistry;
 	transferCoordinator: TransferCoordinator;
-	jobService: ExecutionCoordinator;
+	executionCoordinator: ExecutionCoordinator;
 	strategyRegistry: StrategyRegistry;
 	progressManager: ProgressManager;
 	cliRenderer: CliRenderer;

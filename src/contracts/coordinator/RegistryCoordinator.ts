@@ -1,4 +1,4 @@
-export interface RegistryService {
+export interface RegistryCoordinator {
 	name: string;
 	parser?: boolean;
 	pipeline?: boolean;
