@@ -2,6 +2,7 @@ import { ExecutionArgs, PipelineItem } from '@app/contracts';
 import { ProviderType } from '@app/shared';
 import { FileManager } from '@app/storage';
 import { DefaultPipeline } from './DefaultPipeline';
+import { HqPornPipeline } from './HqPornPipeline';
 import { OkPornPipeline } from './OkPornPipeline';
 import { PornHubPipeline } from './PornHubPipeline';
 import { TnAFlixPipeline } from './TnAFlixPipeline';
@@ -16,6 +17,7 @@ export class PipelineRegistry {
 	private readonly pipelines: Map<ProviderType, PipelineCtor> = new Map<ProviderType, PipelineCtor>([
 		[ProviderType.Coomer, DefaultPipeline],
 		[ProviderType.Default, DefaultPipeline],
+		[ProviderType.HqPorn, HqPornPipeline],
 		[ProviderType.OkPorn, OkPornPipeline],
 		[ProviderType.PornHub, PornHubPipeline],
 		[ProviderType.TnAFlix, TnAFlixPipeline],
