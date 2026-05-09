@@ -1,4 +1,4 @@
-export * from './BasePipeline';
+export * from './DefaultPipeline';
 export * from './OkPornPipeline';
 export * from './PipelineRegistry';
 export * from './PornHubPipeline';

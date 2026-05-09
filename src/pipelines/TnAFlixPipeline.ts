@@ -1,4 +1,4 @@
 import { TnAFlixExecArgs, TnAFlixOutput } from '@app/contracts';
-import { BasePipeline } from './BasePipeline';
+import { DefaultPipeline } from './DefaultPipeline';
 
-export class TnAFlixPipeline extends BasePipeline<TnAFlixExecArgs, TnAFlixOutput> {}
+export class TnAFlixPipeline extends DefaultPipeline<TnAFlixExecArgs, TnAFlixOutput> {}

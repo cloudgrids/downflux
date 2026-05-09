@@ -1,26 +1,26 @@
 import { ExecutionArgs, PipelineItem } from '@app/contracts';
 import { ProviderType } from '@app/shared';
 import { FileManager } from '@app/storage';
-import { BasePipeline } from './BasePipeline';
+import { DefaultPipeline } from './DefaultPipeline';
 import { OkPornPipeline } from './OkPornPipeline';
 import { PornHubPipeline } from './PornHubPipeline';
 import { TnAFlixPipeline } from './TnAFlixPipeline';
 import { WallHavenPipeline } from './WallHavenPipeline';
 import { XHamsterPipeline } from './XHamsterPipeline';
 
-type PipelineCtor = new (fileManager: FileManager) => BasePipeline<any, any>;
+type PipelineCtor = new (fileManager: FileManager) => DefaultPipeline<any, any>;
 
 export class PipelineRegistry {
 	constructor(protected fileManager: FileManager) {}
 
 	private readonly pipelines: Map<ProviderType, PipelineCtor> = new Map<ProviderType, PipelineCtor>([
+		[ProviderType.Coomer, DefaultPipeline],
+		[ProviderType.Default, DefaultPipeline],
 		[ProviderType.OkPorn, OkPornPipeline],
 		[ProviderType.PornHub, PornHubPipeline],
+		[ProviderType.TnAFlix, TnAFlixPipeline],
 		[ProviderType.WallHaven, WallHavenPipeline],
-		[ProviderType.Coomer, BasePipeline],
-		[ProviderType.Default, BasePipeline],
-		[ProviderType.XHamster, XHamsterPipeline],
-		[ProviderType.TnAFlix, TnAFlixPipeline]
+		[ProviderType.XHamster, XHamsterPipeline]
 	]);
 
 	public build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): PipelineItem[] {

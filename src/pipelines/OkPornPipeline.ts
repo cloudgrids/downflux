@@ -1,8 +1,8 @@
 import { IdentifierContext, OkPornExecArgs, OkPornOutput, PipelineExtractedItem, PipelineItem } from '@app/contracts';
 import { MediaType, VideoQuality, inferVideoQuality } from '@app/shared';
-import { BasePipeline } from './BasePipeline';
+import { DefaultPipeline } from './DefaultPipeline';
 
-export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
+export class OkPornPipeline extends DefaultPipeline<OkPornExecArgs, OkPornOutput> {
 	public override build(metadata: OkPornOutput, request: OkPornExecArgs): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,

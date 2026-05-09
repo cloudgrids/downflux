@@ -1,4 +1,3 @@
-import path from 'path';
 import {
 	IdentifierContext,
 	PipelineExtractedItem,
@@ -8,9 +7,10 @@ import {
 	WallHavenUserFavoriteCollectionsOutput
 } from '@app/contracts';
 import { MediaType, WallHavenMethods, WallHavenThumbnailQuality } from '@app/shared';
-import { BasePipeline } from './BasePipeline';
+import path from 'path';
+import { DefaultPipeline } from './DefaultPipeline';
 
-export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHavenOutput> {
+export class WallHavenPipeline extends DefaultPipeline<WallHavenExecArgs, WallHavenOutput> {
 	public override build(metadata: WallHavenOutput, request: WallHavenExecArgs): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,
