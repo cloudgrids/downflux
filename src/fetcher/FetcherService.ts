@@ -92,8 +92,6 @@ export abstract class FetcherService {
 			.map(([name, value]) => `${name}=${value}`)
 			.join('; ');
 
-		console.log(cookie);
-
 		if (!cookie) return headers;
 
 		return { ...headers, Cookie: cookie };

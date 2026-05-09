@@ -21,8 +21,6 @@ export class XHamsterStrategy extends BaseStrategy {
 	}
 
 	public override getDirectVideoUrlFromText(body: string): string | null {
-		console.log({ body });
-
 		const match = body.match(/https?:\/\/[^\s"'<>]+\.m3u8[^\s"'<>]*/i);
 		return match?.[0] ?? null;
 	}

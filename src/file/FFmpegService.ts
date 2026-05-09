@@ -55,8 +55,6 @@ export class FfmpegService {
 			args = ['-y', '-loglevel', 'error', '-i', inputPath, ...codecArgs, '-movflags', '+faststart', outputPath];
 		}
 
-		console.log(`Running ffmpeg with args: ${args}`);
-
 		try {
 			await execFileAsync(ffmpegPath, args);
 

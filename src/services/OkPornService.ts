@@ -35,11 +35,6 @@ export class OkPornService extends BaseService<OkPornExecArgs> {
 	private readonly Default_PAGE_RANGE: PageRange = { page: 1, limit: 1 };
 	private readonly Default_INDEX_RANGE: IndexRange = { start: 1, end: 1 };
 
-	/**
-	 * Creates an OkPorn service.
-	 * @param url OkPorn URL
-	 * @throws InvalidUrlException When the URL is not OkPorn
-	 */
 	constructor(url: string) {
 		super(url);
 		this.validate(url);

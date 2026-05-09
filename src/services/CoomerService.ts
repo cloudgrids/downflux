@@ -8,11 +8,7 @@ import { BaseService } from './BaseService';
  */
 export class CoomerService extends BaseService<any> {
 	private readonly service = ServiceType.Coomer;
-	/**
-	 * Creates a Coomer/Kemono service.
-	 * @param url Coomer or Kemono URL
-	 * @throws InvalidUrlException When the host is unsupported
-	 */
+
 	constructor(url: string) {
 		super(url);
 		this.validate(url);

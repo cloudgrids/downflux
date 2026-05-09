@@ -25,8 +25,6 @@ export class DownloaderService {
 
 		const resolvedFile = this.resolveFileMetadata(initialFile, finalUrl, headers, isFmp4, dirConfig?.prefix);
 
-		console.log({ resolvedFile });
-
 		this.progressService.update({ message: `Extracting metadata for: ${resolvedFile.extendedFilename}` });
 
 		const { stream, finalize } = this.fileService.createSink({
@@ -67,8 +65,6 @@ export class DownloaderService {
 		prefix?: string
 	): ResolvedFile {
 		const isHls = finalUrl.includes('.m3u8') || headers['content-type']?.includes('application/vnd.apple.mpegurl');
-
-		console.log({ initial, finalUrl, isHls, isFmp4 }); // Debug log for metadata resolution
 
 		if (isHls) {
 			// const container = headers['x-hls-container']; --- IGNORE ---

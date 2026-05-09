@@ -4,6 +4,7 @@ import { BaseService } from './BaseService';
 
 export class TnAFlixService extends BaseService<TnAFlixExecArgs> {
 	private readonly service = ServiceType.TnAFlix;
+
 	constructor(url: string) {
 		super(url);
 		this.validate(url);

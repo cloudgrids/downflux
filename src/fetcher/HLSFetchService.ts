@@ -32,8 +32,6 @@ export class HLSFetchService {
 		let segments = this.parseSegments(mediaManifest, playlistUrl);
 		if (!segments.length) throw new Error('No segments found to manifest');
 
-		console.log({ playlistUrl, initUrl, isFmp4 });
-
 		// disable decrypt for fMP4
 		const keyInfo = isFmp4 ? null : this.parseKey(mediaManifest, playlistUrl);
 		const key = keyInfo ? await this.fetchKey(keyInfo.url) : null;
@@ -126,7 +124,9 @@ export class HLSFetchService {
 	private withDecrypt(readable: NodeJS.ReadableStream, i: number, key: Buffer | null, keyInfo: ParseKey | null): NodeJS.ReadableStream {
 		if (!key) return readable;
 
-		console.log(`Decrypting segment ${i + 1} with key ${keyInfo?.url} and IV ${keyInfo?.iv?.toString('hex')}`);
+		this.progressService.update({
+			message: `Decrypting segment ${i + 1} with key ${keyInfo?.url} and IV ${keyInfo?.iv?.toString('hex')}`
+		});
 
 		const iv = keyInfo?.iv
 			? keyInfo.iv

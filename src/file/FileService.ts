@@ -83,7 +83,6 @@ export class FileService {
 			stream,
 			finalize: async (resolved: ResolvedFile, headers: Record<string, string>, isFmp4?: boolean): Promise<CreateSinkOutput> => {
 				const buffer = Buffer.concat(chunks);
-				console.log({ bufferLength: buffer.length, expectedSize: headers['content-length'], isFmp4 });
 
 				return {
 					buffer,

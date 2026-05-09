@@ -25,16 +25,12 @@ export class StreamFetcherService extends FetcherService {
 	private async handleServiceAware404(url: string, opts: DownloadOptions): Promise<HLSStreamRequest | null> {
 		const strategy = this.strategyService.getStrategy(opts.service);
 
-		console.log({ url, service: opts.service, strategy404: strategy?.shouldFallback404?.(url) });
-
 		if (!strategy) return null;
 
 		const shouldFallback = strategy.shouldFallback404?.(url) && this.CDN_FALLBACK_COUNT < this.MAX_CDN_FALLBACK;
 
 		if (shouldFallback) {
 			const fallback = strategy.getFallbackUrl?.(url);
-
-			console.log({ fallback, strategyFallbackUrl: strategy.getFallbackUrl?.(url) });
 
 			if (fallback && fallback !== url) {
 				this.progressService.update({ message: `CDN fallback: ${fallback}` });
