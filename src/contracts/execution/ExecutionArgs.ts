@@ -2,9 +2,9 @@
 
 import { ExecutionType, ProviderType, UrlType } from '@app/shared';
 import { ExecutionShape } from '@app/types';
-import { JobOptions } from './JobOptions';
+import { ExecutionOptions } from './ExecutionOptions';
 
-export interface ExecutionArgs<S extends ExecutionShape = ExecutionShape> extends JobOptions {
+export interface ExecutionArgs<S extends ExecutionShape = ExecutionShape> extends ExecutionOptions {
 	provider: ProviderType;
 	method: string;
 	entryUrl: string;

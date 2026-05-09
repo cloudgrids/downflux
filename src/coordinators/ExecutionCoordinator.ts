@@ -7,7 +7,7 @@ import { ExecutionShape, ShapeOutput } from '@app/types';
 import { TaskCoordinator } from './TaskCoordinator';
 
 export class ExecutionCoordinator {
-	private static readonly Default_EXTRACT_CONCURRENCY = 3;
+	private static readonly DEFAULT_EXTRACT_CONCURRENCY = 3;
 
 	constructor(
 		private readonly transformerRegistry: TransformerRegistry,
@@ -67,7 +67,7 @@ export class ExecutionCoordinator {
 	}
 
 	private async extractMetadataFromTargets<TResult, TExec extends ExecutionArgs>(targets: string[], request: TExec): Promise<TResult[]> {
-		const extractConcurrency = request.extractConcurrency ?? ExecutionCoordinator.Default_EXTRACT_CONCURRENCY;
+		const extractConcurrency = request.extractConcurrency ?? ExecutionCoordinator.DEFAULT_EXTRACT_CONCURRENCY;
 
 		const extractedChunks: TResult[][] = new Array(targets.length);
 

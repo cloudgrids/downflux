@@ -7,7 +7,7 @@ import { JobProgressEvent } from './Progress';
  * Configuration options for a DownFlux ExecutionCoordinator.
  * Combines fetch, extraction, pipeline, and output settings.
  */
-export interface JobOptions extends HttpFetchOptions {
+export interface ExecutionOptions extends HttpFetchOptions {
 	/** Directory output configuration */
 	dirConfig?: DirectoryOutputOptions;
 

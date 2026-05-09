@@ -1,4 +1,5 @@
-import {PornHubService} from '../'
+import { PornHubProvider } from '../src/providers';
+import { OutputType } from '../src/shared/enums';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -23,11 +24,11 @@ async function main() {
 		// 	.setOutput(OutputType.DEVICE, { directoryPath: directoryPath })
 		// 	.getVideo('738328', VideoQuality.Q720);
 
-		await new PornHubService('https://www.pornhub.org/channels?o=al')
+		await new PornHubProvider('https://www.pornhub.org/view_video.php?viewkey=65b3ddcae8349')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
-			.getChannels();
+			.setOutput(OutputType.DEVICE, { directoryPath })
+			.getVideo();
 	} catch (error) {
 		console.error(error);
 		if (error instanceof Error) console.error(error.stack);

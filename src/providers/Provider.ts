@@ -2,8 +2,8 @@ import {
 	CoordinatorDependencies,
 	DirectoryOutputOptions,
 	ExecutionArgs,
+	ExecutionOptions,
 	HttpFetchOptions,
-	JobOptions,
 	JobProgressEvent,
 	TranscodeOptions
 } from '@app/contracts';
@@ -17,14 +17,14 @@ import { createDefaultDependencies } from './dependency';
  * Shared fluent configuration and execution helpers.
  */
 export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
-	protected jobOptions: JobOptions = {};
+	protected executionOptions: ExecutionOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
 	protected readonly deps: CoordinatorDependencies;
 	protected abstract validate(url: string): void;
 
 	constructor(public readonly url: string) {
 		this.deps = createDefaultDependencies();
-		this.jobOptions = {
+		this.executionOptions = {
 			outputType: OutputType.JSON,
 			executionType: ExecutionType.SEQUENTIAL
 		};
@@ -67,7 +67,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	 * @param transform Default is true, which applies the default transformation. Set to false to return raw extracted data.
 	 */
 	public setTransformOutput(transform: boolean = true): this {
-		this.jobOptions.transformOutput = transform;
+		this.executionOptions.transformOutput = transform;
 		return this;
 	}
 
@@ -86,7 +86,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	 * @defaultValue false - set to true to skip the download phase and only perform extraction (useful for debugging or when you only need metadata)
 	 */
 	public setNoDownload(noDownload: boolean = false): this {
-		this.jobOptions.noDownload = noDownload;
+		this.executionOptions.noDownload = noDownload;
 		return this;
 	}
 
@@ -97,7 +97,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	 * In such cases, you can set transcodeOptions to re-encode the video using ffmpeg which should resolve most compatibility issues.
 	 */
 	public setTranscodeOptions(opts: TranscodeOptions): this {
-		this.jobOptions.transcodeOptions = { ...this.jobOptions.transcodeOptions, ...opts };
+		this.executionOptions.transcodeOptions = { ...this.executionOptions.transcodeOptions, ...opts };
 		return this;
 	}
 
@@ -105,8 +105,8 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	 * Sets ExecutionCoordinator options.
 	 * @param opts Job options to merge
 	 */
-	public setJobOptions(opts: JobOptions): this {
-		this.jobOptions = { ...this.jobOptions, ...opts };
+	public setJobOptions(opts: ExecutionOptions): this {
+		this.executionOptions = { ...this.executionOptions, ...opts };
 		return this;
 	}
 
@@ -115,7 +115,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	 * @param maxDownloads Download limit
 	 */
 	public setMaxDownloads(maxDownloads: number): this {
-		this.jobOptions.maxDownloads = maxDownloads;
+		this.executionOptions.maxDownloads = maxDownloads;
 		return this;
 	}
 
@@ -124,7 +124,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	 * @param extensions File extensions such as `jpg` or `png`
 	 */
 	public setAllowedExtensions(...extensions: AllowedExtension[]): this {
-		this.jobOptions.allowedExtensions = extensions.map((ext) => ext.toLowerCase()) as AllowedExtension[];
+		this.executionOptions.allowedExtensions = extensions.map((ext) => ext.toLowerCase()) as AllowedExtension[];
 		return this;
 	}
 
@@ -133,7 +133,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	 * @param handler Progress event callback
 	 */
 	public onProgress(handler: (event: JobProgressEvent) => void): this {
-		this.jobOptions.onProgress = handler;
+		this.executionOptions.onProgress = handler;
 		return this;
 	}
 
@@ -143,7 +143,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	 * @defaultValue true
 	 */
 	public setProgressLogging(enabled = true): this {
-		this.jobOptions.logProgress = enabled;
+		this.executionOptions.logProgress = enabled;
 		return this;
 	}
 
@@ -154,8 +154,8 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	 * @defaultValue OutputType.JSON
 	 */
 	public setOutput(type: OutputType, config: DirectoryOutputOptions = {}): this {
-		this.jobOptions.outputType = type;
-		this.jobOptions.dirConfig = config;
+		this.executionOptions.outputType = type;
+		this.executionOptions.dirConfig = config;
 		return this;
 	}
 
@@ -165,7 +165,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	 * @defaultValue ExecutionType.SEQUENTIAL
 	 */
 	public setExecutionType(type: ExecutionType): this {
-		this.jobOptions.executionType = type;
+		this.executionOptions.executionType = type;
 		return this;
 	}
 
@@ -177,7 +177,7 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 			entryUrl: this.url,
 			urlType: UrlType.ANCHORS,
 			executionType: ExecutionType.SEQUENTIAL,
-			...this.jobOptions,
+			...this.executionOptions,
 			...overrides
 		} as TExec;
 	}

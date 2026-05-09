@@ -1,4 +1,4 @@
-import { JobOptions, JobProgressEvent, JobProgressStatus } from '@app/contracts';
+import { ExecutionOptions, JobProgressEvent, JobProgressStatus } from '@app/contracts';
 import EventEmitter from 'events';
 
 interface ProgressEvents {
@@ -8,12 +8,12 @@ interface ProgressEvents {
 /** For managing progress updates during ExecutionCoordinator execution
  * Emits 'progress' events with the current state of the ExecutionCoordinator, which can be used for rendering progress in the UI or CLI.
  * The `update` method is used to update the current state of the ExecutionCoordinator and emit progress events at a controlled interval to avoid excessive updates.
- * @requires must call `init` with JobOptions before use to set up callbacks and options
+ * @requires must call `init` with ExecutionOptions before use to set up callbacks and options
  */
 export class ProgressManager extends EventEmitter {
 	private lastRender = 0;
 	private readonly RENDER_INTERVAL = 500;
-	private options?: JobOptions;
+	private options?: ExecutionOptions;
 
 	private state: Partial<JobProgressEvent> = {
 		startTime: Date.now(),
@@ -49,7 +49,7 @@ export class ProgressManager extends EventEmitter {
 		return super.once(eventName, listener);
 	}
 
-	public init(options: JobOptions) {
+	public init(options: ExecutionOptions) {
 		this.options = options;
 	}
 

@@ -1,4 +1,4 @@
-import { DownloadResult, ExecutionArgs, ExecutionResult, JobOptions, PipelineHook, PipelineItem } from '@app/contracts';
+import { DownloadResult, ExecutionArgs, ExecutionOptions, ExecutionResult, PipelineHook, PipelineItem } from '@app/contracts';
 import { PipelineRegistry } from '@app/pipelines';
 import { ProgressManager } from '@app/progress';
 import { OutputType } from '@app/shared';
@@ -19,7 +19,7 @@ export class TaskCoordinator {
 	) {}
 
 	private async processDownloadsInBackground<T, S extends ExecutionShape>(
-		options: JobOptions,
+		options: ExecutionOptions,
 		outputType: OutputType,
 		request: ExecutionArgs,
 		pipelineHooks: PipelineHook[],
@@ -146,14 +146,14 @@ export class TaskCoordinator {
 
 	public async handleJsonOutput<T, S extends ExecutionShape>(
 		result: ExecutionResult<T, S>,
-		options: JobOptions
+		options: ExecutionOptions
 	): Promise<ExecutionResult<T, S>> {
 		this.fileManager.toJSON(result, options?.dirConfig?.directoryPath);
 		return result;
 	}
 
 	public handleDeviceOutputAsync<T, S extends ExecutionShape>(
-		options: JobOptions,
+		options: ExecutionOptions,
 		outputType: OutputType,
 		request: ExecutionArgs,
 		pipelineHooks: PipelineHook[],

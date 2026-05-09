@@ -77,7 +77,7 @@ export class WallHavenProvider extends Provider<WallHavenExecArgs> {
 		args: WallHavenUserExecArgs,
 		range: 'all' | IndexRange = this.DefaultIndexRange
 	): Promise<WallHavenUserUploadsOutput> {
-		const existingOptions = this.jobOptions;
+		const existingOptions = this.executionOptions;
 
 		return await this.execute<WallHavenUserUploadsOutput>({
 			...this.makeTargets(
@@ -157,7 +157,7 @@ export class WallHavenProvider extends Provider<WallHavenExecArgs> {
 		args: WallHavenUserFavoritesExecArgs,
 		range: 'all' | IndexRange = this.DefaultIndexRange
 	): Promise<WallHavenUserFavoriteCollectionOutput> {
-		const existingOptions = this.jobOptions;
+		const existingOptions = this.executionOptions;
 
 		return await this.execute<WallHavenUserFavoriteCollectionOutput>({
 			...this.makeTargets(

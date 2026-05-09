@@ -1,4 +1,4 @@
 export * from './ExecutionArgs';
+export * from './ExecutionOptions';
 export * from './ExecutionResult';
-export * from './JobOptions';
 export * from './Progress';
