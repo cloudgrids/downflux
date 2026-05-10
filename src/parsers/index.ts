@@ -7,3 +7,4 @@ export * from './PornsOkParser';
 export * from './TnAFlixParser';
 export * from './WallHavenParser';
 export * from './XHamsterParser';
+export * from './XVideosParser';

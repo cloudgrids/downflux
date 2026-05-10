@@ -7,6 +7,7 @@ import { PornsOkParser } from './PornsOkParser';
 import { TnAFlixParser } from './TnAFlixParser';
 import { WallHavenParser } from './WallHavenParser';
 import { XHamsterParser } from './XHamsterParser';
+import { XVideosParser } from './XVideosParser';
 
 export class ParserRegistry {
 	private static readonly parsers: Record<ProviderType, DefaultParser> = {
@@ -18,7 +19,8 @@ export class ParserRegistry {
 		[ProviderType.PornsOk]: new PornsOkParser(),
 		[ProviderType.TnAFlix]: new TnAFlixParser(),
 		[ProviderType.WallHaven]: new WallHavenParser(),
-		[ProviderType.XHamster]: new XHamsterParser()
+		[ProviderType.XHamster]: new XHamsterParser(),
+		[ProviderType.XVideos]: new XVideosParser()
 	};
 
 	public static getParser(providerType: ProviderType): DefaultParser {

@@ -10,6 +10,8 @@ Typescript Library for downloading and extracting sites metadata
 - **XHamster** - Video
 - **TnAFlix** - Video
 - **HqPorn** - Video
+- **PornsOk** - Video
+- **XVideos** - Video
 - **Default** - Generic URL extraction fallback
 
 More incoming...

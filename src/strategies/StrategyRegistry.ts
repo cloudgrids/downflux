@@ -3,6 +3,7 @@ import { ProviderType } from '@app/shared';
 import { DefaultStrategy } from './DefaultStrategy';
 import { PornHubStrategy } from './PornHubStrategy';
 import { XHamsterStrategy } from './XHamsterStrategy';
+import { XVideosStrategy } from './XVideosStrategy';
 
 type StrategyCtor = new (progress: ProgressManager) => DefaultStrategy;
 
@@ -18,7 +19,8 @@ export class StrategyRegistry {
 		[ProviderType.PornsOk]: DefaultStrategy,
 		[ProviderType.TnAFlix]: DefaultStrategy,
 		[ProviderType.WallHaven]: DefaultStrategy,
-		[ProviderType.XHamster]: XHamsterStrategy
+		[ProviderType.XHamster]: XHamsterStrategy,
+		[ProviderType.XVideos]: XVideosStrategy
 	};
 
 	public getStrategy(provider: ProviderType): DefaultStrategy {
