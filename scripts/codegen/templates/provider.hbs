@@ -6,6 +6,7 @@ import { {{ArgsName}} } from '@app/contracts';
 
 export class {{ProviderName}}Provider extends Provider<{{ArgsName}}> {
 	private readonly provider = ProviderType.{{ProviderName}}
+	private readonly HOST_REGEX = /implementation$/i;
 
 	constructor(url: string) {
 		super(url);
@@ -18,7 +19,7 @@ export class {{ProviderName}}Provider extends Provider<{{ArgsName}}> {
 		} catch {
 			throw new InvalidUrlException(url, this.provider);
 		}
-		if (!url.startsWith('https://...')) throw new InvalidUrlException(url, this.provider);
+		if (!this.isSupported(this.HOST_REGEX)) throw new InvalidUrlException(url, this.provider);
 	}
 }
 

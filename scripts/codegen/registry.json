@@ -71,6 +71,14 @@
       "transformer": true,
       "strategy": false,
       "method": true
+    },
+    {
+      "name": "XVideos",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
     }
   ]
 }

@@ -7,3 +7,4 @@ export * from './PornsOkPipeline';
 export * from './TnAFlixPipeline';
 export * from './WallHavenPipeline';
 export * from './XHamsterPipeline';
+export * from './XVideosPipeline';

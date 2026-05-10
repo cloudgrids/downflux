@@ -8,7 +8,7 @@ export class {{ProviderName}}Parser extends DefaultParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<{{ProviderName}}Output>>> {
 		try {
 			return {
-				sourceUrl,
+				customFields: {} as {{ProviderName}}Output
 				};
 		} catch (error) {
 			throw new GenericException('Unable to parse some fields:', ProviderType.{{ProviderName}}, '{{ProviderName}}Parser', { cause: error });

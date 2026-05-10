@@ -9,6 +9,7 @@ import { PornsOkPipeline } from './PornsOkPipeline';
 import { TnAFlixPipeline } from './TnAFlixPipeline';
 import { WallHavenPipeline } from './WallHavenPipeline';
 import { XHamsterPipeline } from './XHamsterPipeline';
+import { XVideosPipeline } from './XVideosPipeline';
 
 type PipelineCtor = new (fileManager: FileManager) => DefaultPipeline<any, any>;
 
@@ -24,7 +25,8 @@ export class PipelineRegistry {
 		[ProviderType.PornsOk, PornsOkPipeline],
 		[ProviderType.TnAFlix, TnAFlixPipeline],
 		[ProviderType.WallHaven, WallHavenPipeline],
-		[ProviderType.XHamster, XHamsterPipeline]
+		[ProviderType.XHamster, XHamsterPipeline],
+		[ProviderType.XVideos, XVideosPipeline]
 	]);
 
 	public build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): PipelineItem[] {

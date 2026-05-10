@@ -1,4 +1,4 @@
-import { HqPornProvider, PornsOkProvider, TnAFlixProvider } from '../src/providers';
+import { XVideosProvider } from '../src/providers';
 import { OutputType } from '../src/shared/enums';
 
 async function main() {
@@ -11,29 +11,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		// await new XHamsterService('https://xhopen.com/videos/roommate-i-tried-to-stick-my-dick-in-her-ass-but-she-couldnt-take-it-xhIGB2j')
-		// 	.setJobOptions({ logProgress: true })
-		// 	.setTransformOutput(true)
-		// 	.setAllowedExtensions('mp4')
-		// 	.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
-		// 	.getVideo();
-
-		// await new OkPornService('https://ok.porn/video/738328/')
-		// 	.setJobOptions({ logProgress: true })
-		// 	.setTransformOutput(true)
-		// 	.setOutput(OutputType.DEVICE, { directoryPath: directoryPath })
-		// 	.getVideo('738328', VideoQuality.Q720);
-
-		// await new PornHubProvider('https://www.pornhub.org/view_video.php?viewkey=65b3ddcae8349')
-		// 	.setJobOptions({ logProgress: true })
-		// 	.setTransformOutput(true)
-		// 	.setOutput(OutputType.DEVICE, { directoryPath })
-		// 	.getVideo();
-
-		await new PornsOkProvider('https://pornsok.com/video/victoria-rae-cumshot-and-orgasm-compilation-onlyfans.html')
+		await new XVideosProvider('https://www.xvideos2.com/video.hdlhetk8cf7/british_teen_porn_9')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.DEVICE, { directoryPath:'DownFlux' })
+			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);

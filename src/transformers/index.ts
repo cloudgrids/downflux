@@ -7,3 +7,4 @@ export * from './TnAFlixTransformer';
 export * from './TransformerRegistry';
 export * from './WallHavenTransformer';
 export * from './XHamsterTransformer';
+export * from './XVideosTransformer';

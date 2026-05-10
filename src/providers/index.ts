@@ -8,4 +8,5 @@ export * from './Provider';
 export * from './TnAFlixProvider';
 export * from './WallHavenProvider';
 export * from './XHamsterProvider';
+export * from './XVideosProvider';
 export * from './dependency';

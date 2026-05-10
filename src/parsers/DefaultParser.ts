@@ -303,6 +303,24 @@ export class DefaultParser {
 		return this.extractByTag(html, tag, options)[0] ?? null;
 	}
 
+	public extractScriptsByType(html: string, type: string): string[] {
+		const results = new Set<string>();
+		const scriptTagPattern = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
+		const typePattern = new RegExp(`(?:^|\\s)type\\s*=\\s*(["'])${type.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\1(?:\\s|$)`, 'i');
+
+		let match: RegExpExecArray | null;
+
+		while ((match = scriptTagPattern.exec(html)) !== null) {
+			const attrs = match[1] ?? '';
+			if (!typePattern.test(attrs)) continue;
+
+			const content = match[2]?.trim();
+			if (content) results.add(content);
+		}
+
+		return [...results];
+	}
+
 	public extractByClass(html: string, className: string): string[] {
 		const regex = new RegExp(`<([a-z0-9]+)\\b[^>]*class=["'][^"']*${className}[^"']*["'][^>]*>([\\s\\S]*?)<\\/\\1>`, 'gi');
 
@@ -348,6 +366,10 @@ export class DefaultParser {
 
 	public extractH3s(html: string, className?: string) {
 		return this.extractByTag(html, 'h3', { className });
+	}
+
+	public extractLists(html: string, className?: string) {
+		return this.extractByTag(html, 'li', { className });
 	}
 
 	public extractBlocks(html: string, tag: string, className?: string): string[] {
