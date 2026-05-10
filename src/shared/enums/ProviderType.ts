@@ -4,6 +4,7 @@ export enum ProviderType {
 	HqPorn = 'HqPornProvider',
 	OkPorn = 'OkPornProvider',
 	PornHub = 'PornHubProvider',
+	PornsOk = 'PornsOkProvider',
 	TnAFlix = 'TnAFlixProvider',
 	WallHaven = 'WallHavenProvider',
 	XHamster = 'XHamsterProvider'

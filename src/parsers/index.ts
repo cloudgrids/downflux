@@ -3,6 +3,7 @@ export * from './HqPornParser';
 export * from './OkPornParser';
 export * from './ParserRegistry';
 export * from './PornHubParser';
+export * from './PornsOkParser';
 export * from './TnAFlixParser';
 export * from './WallHavenParser';
 export * from './XHamsterParser';

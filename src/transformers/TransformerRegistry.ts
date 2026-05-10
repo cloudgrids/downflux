@@ -6,6 +6,7 @@ import { DefaultTransformer } from './DefaultTransformer';
 import { HqPornTransformer } from './HqPornTransformer';
 import { OkPornTransformer } from './OkPornTransformer';
 import { PornHubTransformer } from './PornHubTransformer';
+import { PornsOkTransformer } from './PornsOkTransformer';
 import { TnAFlixTransformer } from './TnAFlixTransformer';
 import { WallHavenTransformer } from './WallHavenTransformer';
 import { XHamsterTransformer } from './XHamsterTransformer';
@@ -19,6 +20,7 @@ export class TransformerRegistry {
 		[ProviderType.HqPorn]: HqPornTransformer,
 		[ProviderType.OkPorn]: OkPornTransformer,
 		[ProviderType.PornHub]: PornHubTransformer,
+		[ProviderType.PornsOk]: PornsOkTransformer,
 		[ProviderType.TnAFlix]: TnAFlixTransformer,
 		[ProviderType.WallHaven]: WallHavenTransformer,
 		[ProviderType.XHamster]: XHamsterTransformer

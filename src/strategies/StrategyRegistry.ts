@@ -15,6 +15,7 @@ export class StrategyRegistry {
 		[ProviderType.HqPorn]: DefaultStrategy,
 		[ProviderType.OkPorn]: DefaultStrategy,
 		[ProviderType.PornHub]: PornHubStrategy,
+		[ProviderType.PornsOk]: DefaultStrategy,
 		[ProviderType.TnAFlix]: DefaultStrategy,
 		[ProviderType.WallHaven]: DefaultStrategy,
 		[ProviderType.XHamster]: XHamsterStrategy

@@ -1,4 +1,4 @@
-import { HqPornProvider, TnAFlixProvider } from '../src/providers';
+import { HqPornProvider, PornsOkProvider, TnAFlixProvider } from '../src/providers';
 import { OutputType } from '../src/shared/enums';
 
 async function main() {
@@ -30,7 +30,7 @@ async function main() {
 		// 	.setOutput(OutputType.DEVICE, { directoryPath })
 		// 	.getVideo();
 
-		await new HqPornProvider('https://hqporn.xxx/darkx-com-rough-fingering-with-lacy-lennon_912943.html')
+		await new PornsOkProvider('https://pornsok.com/video/victoria-rae-cumshot-and-orgasm-compilation-onlyfans.html')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.DEVICE, { directoryPath:'DownFlux' })

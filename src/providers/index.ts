@@ -3,6 +3,7 @@ export * from './DefaultProvider';
 export * from './HqPornProvider';
 export * from './OkPornProvider';
 export * from './PornHubProvider';
+export * from './PornsOkProvider';
 export * from './Provider';
 export * from './TnAFlixProvider';
 export * from './WallHavenProvider';
