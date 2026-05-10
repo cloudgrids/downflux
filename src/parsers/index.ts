@@ -2,6 +2,7 @@ export * from './DefaultParser';
 export * from './HqPornParser';
 export * from './OkPornParser';
 export * from './ParserRegistry';
+export * from './Porn300Parser';
 export * from './PornHubParser';
 export * from './PornsOkParser';
 export * from './TnAFlixParser';

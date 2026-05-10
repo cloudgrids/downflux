@@ -4,6 +4,7 @@ import { FileManager } from '@app/storage';
 import { DefaultPipeline } from './DefaultPipeline';
 import { HqPornPipeline } from './HqPornPipeline';
 import { OkPornPipeline } from './OkPornPipeline';
+import { Porn300Pipeline } from './Porn300Pipeline';
 import { PornHubPipeline } from './PornHubPipeline';
 import { PornsOkPipeline } from './PornsOkPipeline';
 import { TnAFlixPipeline } from './TnAFlixPipeline';
@@ -22,6 +23,7 @@ export class PipelineRegistry {
 		[ProviderType.Default, DefaultPipeline],
 		[ProviderType.HqPorn, HqPornPipeline],
 		[ProviderType.OkPorn, OkPornPipeline],
+		[ProviderType.Porn300, Porn300Pipeline],
 		[ProviderType.PornHub, PornHubPipeline],
 		[ProviderType.PornsOk, PornsOkPipeline],
 		[ProviderType.TnAFlix, TnAFlixPipeline],

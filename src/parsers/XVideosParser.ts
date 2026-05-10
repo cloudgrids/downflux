@@ -8,8 +8,6 @@ export class XVideosParser extends DefaultParser {
 		const uploaderHTML = this.collectByClassNames(html, 'main-uploader', { includeInnerHTML: true })?.[0]?.innerHTML;
 		const uploader = this.extractAnchors(uploaderHTML, sourceUrl)?.[0]?.split('/')?.pop();
 
-		console.log(this.getVideoUrls(html));
-
 		try {
 			return {
 				customFields: {

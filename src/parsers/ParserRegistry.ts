@@ -2,6 +2,7 @@ import { ProviderType } from '@app/shared';
 import { DefaultParser } from './DefaultParser';
 import { HqPornParser } from './HqPornParser';
 import { OkPornParser } from './OkPornParser';
+import { Porn300Parser } from './Porn300Parser';
 import { PornHubParser } from './PornHubParser';
 import { PornsOkParser } from './PornsOkParser';
 import { TnAFlixParser } from './TnAFlixParser';
@@ -16,6 +17,7 @@ export class ParserRegistry {
 		[ProviderType.Default]: new DefaultParser(),
 		[ProviderType.HqPorn]: new HqPornParser(),
 		[ProviderType.OkPorn]: new OkPornParser(),
+		[ProviderType.Porn300]: new Porn300Parser(),
 		[ProviderType.PornHub]: new PornHubParser(),
 		[ProviderType.PornsOk]: new PornsOkParser(),
 		[ProviderType.TnAFlix]: new TnAFlixParser(),

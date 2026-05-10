@@ -4,7 +4,7 @@ import { ProgressManager } from '@app/progress';
 import { MIME_TYPE, OutputType, ProviderType } from '@app/shared';
 import { AllowedExtension, ExecutionShape } from '@app/types';
 import { createWriteStream, promises as fs, mkdirSync, writeFileSync } from 'fs';
-import { dirname, extname, isAbsolute, relative, resolve } from 'path';
+import { basename, dirname, extname, isAbsolute, relative, resolve } from 'path';
 import { Writable } from 'stream';
 import { FFmpegEngine } from './FFmpegEngine';
 import { PathBuilder } from './PathBuilder';
@@ -166,22 +166,25 @@ export class FileManager {
 	 * @returns {{originalFilename: string, extension: string, extendedFilename: string}}
 	 * path undefined => fud_timestamp
 	 */
+
 	public getFileInfo(url: string, prefix?: string): ResolvedFile {
 		try {
-			const pathname = new URL(url).pathname;
-			const segments = pathname.split('/').filter(Boolean);
+			const parsed = new URL(url);
 
-			const fileSegment = segments.find((seg) => /\.[a-z0-9]+$/i.test(seg));
+			const segments = parsed.pathname.split('/').filter(Boolean);
 
-			const originalFilename = fileSegment || segments.pop() || `fud_${Date.now()}`;
-			const normalizedFilename = originalFilename;
+			const fileSegment = [...segments].reverse().find((seg) => /^[^/?#]+\.[a-z0-9]{2,10}$/i.test(seg));
 
-			const extension = extname(originalFilename).substring(1).toLowerCase();
+			const originalFilename = (fileSegment ?? basename(parsed.pathname)) || `fud_${Date.now()}`;
+
+			const extension = extname(originalFilename).replace('.', '').toLowerCase();
+
+			console.log({ url, segments, fileSegment, originalFilename, extension });
 
 			return {
 				extension,
-				originalFilename: normalizedFilename,
-				extendedFilename: `${prefix ?? ''}${normalizedFilename}`
+				originalFilename,
+				extendedFilename: `${prefix ?? ''}${originalFilename}`
 			};
 		} catch {
 			throw new Error(`Unable to parse URL for file info: ${url}`);

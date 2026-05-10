@@ -87,6 +87,14 @@
       "transformer": true,
       "strategy": true,
       "method": true
+    },
+    {
+      "name": "Porn300",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
     }
   ]
 }

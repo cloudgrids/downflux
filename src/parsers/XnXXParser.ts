@@ -8,8 +8,6 @@ export class XnXXParser extends DefaultParser {
 		const uploaderHTML = this.collectByClassNames(html, 'main-uploader', { includeInnerHTML: true })?.[0]?.innerHTML;
 		const uploader = uploaderHTML ? this.extractAnchors(uploaderHTML, sourceUrl)?.[0]?.split('/')?.pop() : 'unknown';
 
-		console.log(this.getVideoUrls(html));
-
 		try {
 			return {
 				customFields: {
