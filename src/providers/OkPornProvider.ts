@@ -9,7 +9,7 @@ import {
 	OkPornVideoOutput,
 	TagFilterOptions
 } from '@app/contracts';
-import { GenericException, InvalidRangeException, InvalidUrlException } from '@app/exceptions';
+import { GenericException, InvalidRangeException } from '@app/exceptions';
 import { ExtractionTarget, OkPornMethods, ProviderType, VideoQuality } from '@app/shared';
 import { IndexRange, PageRange } from '@app/types';
 import { Provider } from './Provider';
@@ -20,7 +20,7 @@ import { Provider } from './Provider';
  * @remarks Model pages are limited to 555 pages. Channel pages are limited to 21 pages.
  */
 export class OkPornProvider extends Provider<OkPornExecArgs> {
-	private readonly provider = ProviderType.OkPorn;
+	protected readonly provider = ProviderType.OkPorn;
 	private readonly ALBUMS_URL = 'https://ok.porn/albums/';
 	private readonly VIDEOS_URL = 'https://ok.porn/video/';
 	private readonly MODELS_URL = 'https://ok.porn/models/';
@@ -32,17 +32,10 @@ export class OkPornProvider extends Provider<OkPornExecArgs> {
 	private readonly Default_INDEX_RANGE: IndexRange = { start: 1, end: 1 };
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	protected override validate(url: string): void {
-		try {
-			new URL(url);
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
-		if (!url.startsWith('https://ok.porn/')) throw new InvalidUrlException(url, this.provider);
+		super(url, {
+			provider: ProviderType.OkPorn,
+			urlPattern: /^(?:www\.)?ok\.porn$/i
+		});
 	}
 
 	/**

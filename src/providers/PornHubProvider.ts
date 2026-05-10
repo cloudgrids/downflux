@@ -8,7 +8,7 @@ import {
 	PornHubVideosFormat,
 	PornHubVideosOutput
 } from '@app/contracts';
-import { GenericException, InvalidUrlException } from '@app/exceptions';
+import { GenericException } from '@app/exceptions';
 import { ExtractionTarget, PornHubMethods, ProviderType, UrlFormat } from '@app/shared';
 import { PageRange } from '@app/types';
 import { Provider } from './Provider';
@@ -21,8 +21,7 @@ import { Provider } from './Provider';
  * @notes Please report any issues you encounter to help improve the provider.
  */
 export class PornHubProvider extends Provider<PornHubExecArgs> {
-	private readonly provider = ProviderType.PornHub;
-	private readonly HOST_REGEX = /^(?:www\.)?pornhub\.(?:com|net|org)$/i;
+	protected readonly provider = ProviderType.PornHub;
 	private readonly CHANNELS_PATH_REGEX = /^https:\/\/(?:www\.)?pornhub\.(?:com|net|org)\/channels(?:\?.*)?$/i;
 	private readonly Default_PAGE_RANGE: PageRange = { page: 1, limit: 1 };
 	private readonly PORN_HUB_FORMATS = ['pornstar', 'model', 'channels'] as const;
@@ -36,19 +35,10 @@ export class PornHubProvider extends Provider<PornHubExecArgs> {
 	};
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	protected override validate(url: string): void {
-		try {
-			new URL(url);
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
-		const isSupportedHost = this.HOST_REGEX.test(new URL(url).hostname);
-
-		if (!isSupportedHost) throw new InvalidUrlException(url, this.provider);
+		super(url, {
+			provider: ProviderType.PornHub,
+			urlPattern: /^(?:www\.)?pornhub\.(?:com|net|org)$/i
+		});
 	}
 
 	private get VIDEO_URL() {

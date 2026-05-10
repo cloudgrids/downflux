@@ -6,6 +6,7 @@ import { HqPornPipeline } from './HqPornPipeline';
 import { OkPornPipeline } from './OkPornPipeline';
 import { Porn300Pipeline } from './Porn300Pipeline';
 import { PornHubPipeline } from './PornHubPipeline';
+import { PornOnePipeline } from './PornOnePipeline';
 import { PornsOkPipeline } from './PornsOkPipeline';
 import { TnAFlixPipeline } from './TnAFlixPipeline';
 import { WallHavenPipeline } from './WallHavenPipeline';
@@ -25,6 +26,7 @@ export class PipelineRegistry {
 		[ProviderType.OkPorn, OkPornPipeline],
 		[ProviderType.Porn300, Porn300Pipeline],
 		[ProviderType.PornHub, PornHubPipeline],
+		[ProviderType.PornOne, PornOnePipeline],
 		[ProviderType.PornsOk, PornsOkPipeline],
 		[ProviderType.TnAFlix, TnAFlixPipeline],
 		[ProviderType.WallHaven, WallHavenPipeline],

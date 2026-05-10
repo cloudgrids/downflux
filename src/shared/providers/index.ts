@@ -4,6 +4,7 @@ export * from './hqporn';
 export * from './okporn';
 export * from './porn300';
 export * from './pornhub';
+export * from './pornone';
 export * from './pornsok';
 export * from './tnaflix';
 export * from './wallhaven';

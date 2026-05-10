@@ -1,27 +1,15 @@
 import { HqPornExecArgs, HqPornVideoOutput } from '@app/contracts';
-import { InvalidUrlException } from '@app/exceptions';
 import { HqPornMethods, ProviderType, VideoQuality } from '@app/shared';
 import { Provider } from './Provider';
 
 export class HqPornProvider extends Provider<HqPornExecArgs> {
-	private readonly provider = ProviderType.HqPorn;
-	private readonly HOST_REGEX = /^(?:www\.)?hqporn\.(?:com|xxx)$/i;
+	protected readonly provider = ProviderType.HqPorn;
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	protected override validate(url: string): void {
-		try {
-			new URL(url);
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
-
-		const isSupportedHost = this.HOST_REGEX.test(new URL(this.url).hostname);
-
-		if (!isSupportedHost) throw new InvalidUrlException(url, this.provider);
+		super(url, {
+			provider: ProviderType.HqPorn,
+			urlPattern: /^(?:www\.)?hqporn\.(?:com|xxx)$/i
+		});
 	}
 
 	/**

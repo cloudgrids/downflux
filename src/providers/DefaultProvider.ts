@@ -1,4 +1,3 @@
-import { InvalidUrlException } from '@app/exceptions';
 import { ExtractionTarget, ProviderType } from '@app/shared';
 import { Provider } from './Provider';
 
@@ -7,19 +6,13 @@ import { Provider } from './Provider';
  * Supports generic URL extraction.
  */
 export class DefaultProvider extends Provider<any> {
-	private readonly provider = ProviderType.Default;
+	protected readonly provider = ProviderType.Default;
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	protected override validate(url: string): void {
-		try {
-			new URL(url);
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
+		super(url, {
+			provider: ProviderType.Default,
+			urlPattern: /\*/i
+		});
 	}
 
 	/**

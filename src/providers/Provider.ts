@@ -5,9 +5,10 @@ import {
 	ExecutionOptions,
 	HttpFetchOptions,
 	JobProgressEvent,
+	ProviderConfig,
 	TranscodeOptions
 } from '@app/contracts';
-import { InvalidRangeException } from '@app/exceptions';
+import { InvalidRangeException, InvalidUrlException } from '@app/exceptions';
 import { ExecutionType, ExtractionTarget, OutputType, ProviderType } from '@app/shared';
 import { AllowedExtension, ExecutionShape, InferExecutionShape, Range } from '@app/types';
 import { createDefaultDependencies } from './dependency';
@@ -16,13 +17,23 @@ import { createDefaultDependencies } from './dependency';
  * Base provider API.
  * Shared fluent configuration and execution helpers.
  */
+
 export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 	protected executionOptions: ExecutionOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
 	protected readonly deps: CoordinatorDependencies;
-	protected abstract validate(url: string): void;
+	protected readonly provider: ProviderType;
+	protected readonly urlPattern: RegExp;
 
-	constructor(public readonly url: string) {
+	constructor(
+		public readonly url: string,
+		config: ProviderConfig
+	) {
+		this.provider = config.provider;
+		this.urlPattern = config.urlPattern;
+
+		this.validate();
+
 		this.deps = createDefaultDependencies();
 		this.executionOptions = {
 			outputType: OutputType.JSON,
@@ -39,8 +50,16 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 		return new URL(this.url).hostname;
 	}
 
-	protected isSupported(regex: RegExp): boolean {
-		return regex.test(this.HOST_NAME);
+	private validate(): void {
+		try {
+			new URL(this.url);
+		} catch {
+			throw new InvalidUrlException(this.url, this.provider);
+		}
+
+		if (!this.urlPattern.test(this.HOST_NAME)) {
+			throw new InvalidUrlException(this.url, this.provider);
+		}
 	}
 
 	/**

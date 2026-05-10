@@ -4,6 +4,7 @@ import { HqPornParser } from './HqPornParser';
 import { OkPornParser } from './OkPornParser';
 import { Porn300Parser } from './Porn300Parser';
 import { PornHubParser } from './PornHubParser';
+import { PornOneParser } from './PornOneParser';
 import { PornsOkParser } from './PornsOkParser';
 import { TnAFlixParser } from './TnAFlixParser';
 import { WallHavenParser } from './WallHavenParser';
@@ -19,6 +20,7 @@ export class ParserRegistry {
 		[ProviderType.OkPorn]: new OkPornParser(),
 		[ProviderType.Porn300]: new Porn300Parser(),
 		[ProviderType.PornHub]: new PornHubParser(),
+		[ProviderType.PornOne]: new PornOneParser(),
 		[ProviderType.PornsOk]: new PornsOkParser(),
 		[ProviderType.TnAFlix]: new TnAFlixParser(),
 		[ProviderType.WallHaven]: new WallHavenParser(),
