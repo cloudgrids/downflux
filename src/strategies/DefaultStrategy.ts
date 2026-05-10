@@ -13,8 +13,16 @@ export class DefaultStrategy implements ServiceStrategy {
 		return '';
 	}
 
-	public getHostFallbackUrls(url: string): string[] {
-		return [url];
+	public getHostFallbackUrls(url: string, subDomains: string[] = []): string[] {
+		let parsed: URL;
+
+		try {
+			parsed = new URL(url);
+		} catch {
+			return [url];
+		}
+
+		return Array.from(new Set([url, ...subDomains.map((host) => `${parsed.protocol}//${host}${this.constructPathname(parsed)}`)]));
 	}
 
 	public getFallbackUrl(url: string): string | null {
@@ -27,5 +35,9 @@ export class DefaultStrategy implements ServiceStrategy {
 
 	public shouldResolveTextResponse(url: string, contentType: string): boolean {
 		return false;
+	}
+
+	protected constructPathname(url: URL): string {
+		return `${url.pathname}${url.search}${url.hash}`;
 	}
 }

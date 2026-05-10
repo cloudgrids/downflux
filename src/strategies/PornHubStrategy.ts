@@ -3,6 +3,22 @@ import { VideoQuality } from '@app/shared';
 import { DefaultStrategy } from './DefaultStrategy';
 
 export class PornHubStrategy extends DefaultStrategy {
+	private SUB_DOMAINS = [
+		'pornhub.com',
+		'pornhub.org',
+		'de.pornhub.org',
+		'es.pornhub.org',
+		'fr.pornhub.org',
+		'it.pornhub.org',
+		'jp.pornhub.org',
+		'nl.pornhub.org',
+		'pl.pornhub.org'
+	];
+
+	public override getHostFallbackUrls(url: string): string[] {
+		return super.getHostFallbackUrls(url, this.SUB_DOMAINS);
+	}
+
 	public shouldFallback404(url: string) {
 		return url.includes('phncdn.com');
 	}

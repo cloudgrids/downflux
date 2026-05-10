@@ -95,6 +95,14 @@
       "transformer": true,
       "strategy": true,
       "method": true
+    },
+    {
+      "name": "PornOne",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
     }
   ]
 }
