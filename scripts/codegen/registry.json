@@ -63,6 +63,14 @@
       "transformer": true,
       "strategy": false,
       "method": true
+    },
+    {
+      "name": "PornsOk",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
     }
   ]
 }

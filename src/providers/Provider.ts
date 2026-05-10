@@ -35,6 +35,14 @@ export abstract class Provider<TExec extends ExecutionArgs<ExecutionShape>> {
 		return new URL(this.url).origin;
 	}
 
+	protected get HOST_NAME() {
+		return new URL(this.url).hostname;
+	}
+
+	protected isSupported(regex: RegExp): boolean {
+		return regex.test(this.HOST_NAME);
+	}
+
 	/**
 	 * Sets custom HTTP headers.
 	 * @param headers Request header map

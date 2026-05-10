@@ -246,6 +246,12 @@ export class FileManager {
 				return { mimeType: 'video/mp4', extension: 'mp4' };
 			}
 
+			case ProviderType.PornsOk: {
+				this.progressManager.update({ message: `[${request.provider}]Resolving resource type to default: ${url}` });
+
+				return { mimeType: 'video/mp4', extension: 'mp4' };
+			}
+
 			default: {
 				this.progressManager.update({ message: `[${request.provider}]Resolving resource type to default: ${url}` });
 
