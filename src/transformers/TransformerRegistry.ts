@@ -5,6 +5,7 @@ import { ProviderType } from '@app/shared';
 import { DefaultTransformer } from './DefaultTransformer';
 import { HqPornTransformer } from './HqPornTransformer';
 import { OkPornTransformer } from './OkPornTransformer';
+import { Porn300Transformer } from './Porn300Transformer';
 import { PornHubTransformer } from './PornHubTransformer';
 import { PornsOkTransformer } from './PornsOkTransformer';
 import { TnAFlixTransformer } from './TnAFlixTransformer';
@@ -21,6 +22,7 @@ export class TransformerRegistry {
 		[ProviderType.Default]: DefaultTransformer,
 		[ProviderType.HqPorn]: HqPornTransformer,
 		[ProviderType.OkPorn]: OkPornTransformer,
+		[ProviderType.Porn300]: Porn300Transformer,
 		[ProviderType.PornHub]: PornHubTransformer,
 		[ProviderType.PornsOk]: PornsOkTransformer,
 		[ProviderType.TnAFlix]: TnAFlixTransformer,

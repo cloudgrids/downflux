@@ -1,6 +1,7 @@
 import { ProgressManager } from '@app/progress';
 import { ProviderType } from '@app/shared';
 import { DefaultStrategy } from './DefaultStrategy';
+import { Porn300Strategy } from './Porn300Strategy';
 import { PornHubStrategy } from './PornHubStrategy';
 import { XHamsterStrategy } from './XHamsterStrategy';
 import { XVideosStrategy } from './XVideosStrategy';
@@ -16,6 +17,7 @@ export class StrategyRegistry {
 		[ProviderType.Default]: DefaultStrategy,
 		[ProviderType.HqPorn]: DefaultStrategy,
 		[ProviderType.OkPorn]: DefaultStrategy,
+		[ProviderType.Porn300]: Porn300Strategy,
 		[ProviderType.PornHub]: PornHubStrategy,
 		[ProviderType.PornsOk]: DefaultStrategy,
 		[ProviderType.TnAFlix]: DefaultStrategy,

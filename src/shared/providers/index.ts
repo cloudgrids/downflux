@@ -2,6 +2,7 @@ export * from './coomer';
 export * from './default';
 export * from './hqporn';
 export * from './okporn';
+export * from './porn300';
 export * from './pornhub';
 export * from './pornsok';
 export * from './tnaflix';

@@ -2,6 +2,7 @@ export * from './CoomerProvider';
 export * from './DefaultProvider';
 export * from './HqPornProvider';
 export * from './OkPornProvider';
+export * from './Porn300Provider';
 export * from './PornHubProvider';
 export * from './PornsOkProvider';
 export * from './Provider';
