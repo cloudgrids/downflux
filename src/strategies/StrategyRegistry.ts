@@ -4,6 +4,7 @@ import { DefaultStrategy } from './DefaultStrategy';
 import { PornHubStrategy } from './PornHubStrategy';
 import { XHamsterStrategy } from './XHamsterStrategy';
 import { XVideosStrategy } from './XVideosStrategy';
+import { XnXXStrategy } from './XnXXStrategy';
 
 type StrategyCtor = new (progress: ProgressManager) => DefaultStrategy;
 
@@ -20,7 +21,8 @@ export class StrategyRegistry {
 		[ProviderType.TnAFlix]: DefaultStrategy,
 		[ProviderType.WallHaven]: DefaultStrategy,
 		[ProviderType.XHamster]: XHamsterStrategy,
-		[ProviderType.XVideos]: XVideosStrategy
+		[ProviderType.XVideos]: XVideosStrategy,
+		[ProviderType.XnXX]: XnXXStrategy
 	};
 
 	public getStrategy(provider: ProviderType): DefaultStrategy {

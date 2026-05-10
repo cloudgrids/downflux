@@ -1,12 +1,12 @@
-import { DefaultExtractorResult, XVideosOutput, XVideosVideo } from '@app/contracts';
+import { DefaultExtractorResult, XnXXOutput } from '@app/contracts';
 import { GenericException } from '@app/exceptions';
 import { ProviderType } from '@app/shared';
 import { DefaultParser } from './DefaultParser';
 
-export class XVideosParser extends DefaultParser {
-	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<XVideosOutput>>> {
+export class XnXXParser extends DefaultParser {
+	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<XnXXOutput>>> {
 		const uploaderHTML = this.collectByClassNames(html, 'main-uploader', { includeInnerHTML: true })?.[0]?.innerHTML;
-		const uploader = this.extractAnchors(uploaderHTML, sourceUrl)?.[0]?.split('/')?.pop();
+		const uploader = uploaderHTML ? this.extractAnchors(uploaderHTML, sourceUrl)?.[0]?.split('/')?.pop() : 'unknown';
 
 		console.log(this.getVideoUrls(html));
 
@@ -22,14 +22,14 @@ export class XVideosParser extends DefaultParser {
 					pageUrl: sourceUrl,
 					uploader: uploader ?? 'unknown',
 					models: []
-				} as XVideosOutput
+				} as XnXXOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.XVideos, 'XVideosParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', ProviderType.XnXX, 'XnXXParser', { cause: error });
 		}
 	}
 
-	private getVideoUrls(html: string): XVideosVideo {
+	private getVideoUrls(html: string) {
 		const src = html ?? '';
 
 		const extract = (fnName: string) => {
@@ -38,9 +38,9 @@ export class XVideosParser extends DefaultParser {
 			return m ? m[1] : null;
 		};
 
-		const low = extract('setVideoUrlLow') as string;
-		const high = extract('setVideoUrlHigh') as string;
-		const hls = extract('setVideoHLS') as string;
+		const low = extract('setVideoUrlLow');
+		const high = extract('setVideoUrlHigh');
+		const hls = extract('setVideoHLS');
 
 		return { low, high, hls };
 	}

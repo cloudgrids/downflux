@@ -8,3 +8,4 @@ export * from './TnAFlixPipeline';
 export * from './WallHavenPipeline';
 export * from './XHamsterPipeline';
 export * from './XVideosPipeline';
+export * from './XnXXPipeline';

@@ -11,9 +11,9 @@ export class XHamsterStrategy extends DefaultStrategy {
 		}
 
 		const pathname = `${parsed.pathname}${parsed.search}${parsed.hash}`;
-		const candidates = ['xhamster.com', 'xhopen.com', 'xhtotal.com', 'xhamster.desi'];
+		const subDomains = ['xhamster.com', 'xhopen.com', 'xhtotal.com', 'xhamster.desi'];
 
-		return Array.from(new Set([url, ...candidates.map((host) => `${parsed.protocol}//${host}${pathname}`)]));
+		return Array.from(new Set([url, ...subDomains.map((host) => `${parsed.protocol}//${host}${pathname}`)]));
 	}
 
 	public override shouldResolveTextResponse(url: string, contentType: string): boolean {

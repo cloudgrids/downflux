@@ -6,7 +6,7 @@ const appendUniqueJsonToRegistry = <T extends Record<string, RegistryCoordinator
 	file: string,
 	key: keyof T,
 	value: string,
-	strategy: boolean = false
+	strategy: boolean = true
 ) => {
 	const raw = readFileSync(file, 'utf-8');
 

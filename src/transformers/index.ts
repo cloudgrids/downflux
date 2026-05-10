@@ -8,3 +8,4 @@ export * from './TransformerRegistry';
 export * from './WallHavenTransformer';
 export * from './XHamsterTransformer';
 export * from './XVideosTransformer';
+export * from './XnXXTransformer';
