@@ -44,14 +44,19 @@ export class DefaultParser {
 		let pos = 0;
 		const blen = begin.length;
 		const elen = end.length;
-		while (true) {
-			const start = html.indexOf(begin, pos);
-			if (start === -1) break;
-			const from = start + blen;
-			const to = html.indexOf(end, from);
-			if (to === -1) break;
-			yield html.slice(from, to);
-			pos = to + elen;
+
+		try {
+			while (true) {
+				const start = html.indexOf(begin, pos);
+				if (start === -1) break;
+				const from = start + blen;
+				const to = html.indexOf(end, from);
+				if (to === -1) break;
+				yield html.slice(from, to);
+				pos = to + elen;
+			}
+		} catch {
+			throw new Error('Unable to extract all pairs');
 		}
 	}
 
@@ -72,13 +77,17 @@ export class DefaultParser {
 
 	public extractAnchors(html: string, sourceUrl?: string): string[] {
 		const seen = new Set<string>();
-		for (const delimiter of ['"', "'"]) {
-			for (const raw of this.extractAllPairs(html, `href=${delimiter}`, delimiter)) {
-				const url = this.resolveUrl(raw.trim(), sourceUrl);
-				if (url) seen.add(url);
+		try {
+			for (const delimiter of ['"', "'"]) {
+				for (const raw of this.extractAllPairs(html, `href=${delimiter}`, delimiter)) {
+					const url = this.resolveUrl(raw.trim(), sourceUrl);
+					if (url) seen.add(url);
+				}
 			}
+			return [...seen];
+		} catch {
+			throw new Error('Unable to extract anchors');
 		}
-		return [...seen];
 	}
 
 	public extractAnchorTextsByHref(html: string, hrefPattern: RegExp): string[] {
@@ -103,28 +112,43 @@ export class DefaultParser {
 	public extractImageUrls(html: string): string[] {
 		const attrs = ['data-original="', 'data-src="', 'data-lazy="', 'src="'];
 		const seen = new Set<string>();
-		for (const attr of attrs) {
-			for (const url of this.extractAllPairs(html, attr, '"')) {
-				if (url.startsWith('http')) seen.add(url);
+
+		try {
+			for (const attr of attrs) {
+				for (const url of this.extractAllPairs(html, attr, '"')) {
+					if (url.startsWith('http')) seen.add(url);
+				}
 			}
+			return [...seen];
+		} catch {
+			throw new Error('Unable to extract image urls');
 		}
-		return [...seen];
 	}
 
 	public extractSourceUrls(html: string): string[] {
 		const urls: string[] = [];
-		for (const url of this.extractAllPairs(html, '<source src="', '"')) {
-			if (url.startsWith('http')) urls.push(url);
+
+		try {
+			for (const url of this.extractAllPairs(html, '<source src="', '"')) {
+				if (url.startsWith('http')) urls.push(url);
+			}
+			return [...new Set(urls)];
+		} catch {
+			throw new Error('Unable to extract image urls');
 		}
-		return [...new Set(urls)];
 	}
 
 	public extractVideoPosters(html: string): string[] {
 		const urls: string[] = [];
-		for (const url of this.extractAllPairs(html, 'poster="', '"')) {
-			if (url.startsWith('http')) urls.push(url);
+
+		try {
+			for (const url of this.extractAllPairs(html, 'poster="', '"')) {
+				if (url.startsWith('http')) urls.push(url);
+			}
+			return [...new Set(urls)];
+		} catch {
+			throw new Error('Unable to extract image urls');
 		}
-		return [...new Set(urls)];
 	}
 
 	public extractDivHrefs(html: string): string[] {

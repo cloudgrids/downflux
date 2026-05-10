@@ -233,28 +233,20 @@ export class FileManager {
 		else if (/(mp3|wav|aac|flac|ogg)$/.test(extension)) return { mimeType: `audio/${extension}`, extension };
 		else if (/(jpg|jpeg|png|gif|webp)$/.test(extension)) return { mimeType: `image/${extension}`, extension };
 
+		const message = { message: `[${request.provider}]Resolving resource type to default` };
+
 		switch (request.provider) {
-			case ProviderType.PornHub: {
-				this.progressManager.update({ message: `[${request.provider}]Resolving resource type to default: ${url}` });
-
-				return { mimeType: 'video/mp4', extension: 'mp4' };
-			}
-
-			case ProviderType.XHamster: {
-				this.progressManager.update({ message: `[${request.provider}]Resolving resource type to default: ${url}` });
-
-				return { mimeType: 'video/mp4', extension: 'mp4' };
-			}
-
+			case ProviderType.XnXX:
+			case ProviderType.PornHub:
+			case ProviderType.XVideos:
+			case ProviderType.XHamster:
 			case ProviderType.PornsOk: {
-				this.progressManager.update({ message: `[${request.provider}]Resolving resource type to default: ${url}` });
-
+				this.progressManager.update(message);
 				return { mimeType: 'video/mp4', extension: 'mp4' };
 			}
 
 			default: {
-				this.progressManager.update({ message: `[${request.provider}]Resolving resource type to default: ${url}` });
-
+				this.progressManager.update(message);
 				return { mimeType: 'application/octet-stream', extension: 'bin' };
 			}
 		}

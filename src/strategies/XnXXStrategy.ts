@@ -1,6 +1,6 @@
 import { DefaultStrategy } from './DefaultStrategy';
 
-export class XVideosStrategy extends DefaultStrategy {
+export class XnXXStrategy extends DefaultStrategy {
 	public override getHostFallbackUrls(url: string): string[] {
 		let parsed: URL;
 
@@ -11,7 +11,7 @@ export class XVideosStrategy extends DefaultStrategy {
 		}
 
 		const pathname = `${parsed.pathname}${parsed.search}${parsed.hash}`;
-		const subDomains = ['xvideos.com', 'xvideos2.com', 'xvideos3.com', 'xvideos1.com'];
+		const subDomains = ['xnxx.com', 'xnxx.health', 'xnxx.tv'];
 
 		return Array.from(new Set([url, ...subDomains.map((host) => `${parsed.protocol}//${host}${pathname}`)]));
 	}

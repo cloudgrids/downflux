@@ -1,9 +1,9 @@
-import { IdentifierContext, PipelineExtractedItem, PipelineItem, XVideosExecArgs, XVideosOutput } from '@app/contracts';
+import { IdentifierContext, PipelineExtractedItem, PipelineItem, XnXXExecArgs, XnXXOutput } from '@app/contracts';
 import { MediaType } from '@app/shared';
 import { DefaultPipeline } from './DefaultPipeline';
 
-export class XVideosPipeline extends DefaultPipeline<XVideosExecArgs, XVideosOutput> {
-	public override build(metadata: XVideosOutput, request: XVideosExecArgs): PipelineItem[] {
+export class XnXXPipeline extends DefaultPipeline<XnXXExecArgs, XnXXOutput> {
+	public override build(metadata: XnXXOutput, request: XnXXExecArgs): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,
 			this.filterByExt(
@@ -27,9 +27,9 @@ export class XVideosPipeline extends DefaultPipeline<XVideosExecArgs, XVideosOut
 		);
 	}
 
-	protected override buildIdentifier(ctx: IdentifierContext<XVideosOutput>): string {
+	protected override buildIdentifier(ctx: IdentifierContext<XnXXOutput>): string {
 		const { mediaType, id, metadata } = ctx;
-		const prefix = 'xvideos';
+		const prefix = 'xnxx';
 		let mediaSegment: string;
 
 		switch (mediaType) {
@@ -48,7 +48,7 @@ export class XVideosPipeline extends DefaultPipeline<XVideosExecArgs, XVideosOut
 		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.uploader), mediaSegment);
 	}
 
-	protected override extract(request: XVideosExecArgs, metadata: XVideosOutput): PipelineExtractedItem[] {
+	protected override extract(request: XnXXExecArgs, metadata: XnXXOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 		const videoId = request.entryUrl.split('/').pop();
 

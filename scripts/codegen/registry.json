@@ -79,6 +79,14 @@
       "transformer": true,
       "strategy": true,
       "method": true
+    },
+    {
+      "name": "XnXX",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
     }
   ]
 }

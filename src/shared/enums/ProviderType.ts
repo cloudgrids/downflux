@@ -8,5 +8,6 @@ export enum ProviderType {
 	TnAFlix = 'TnAFlixProvider',
 	WallHaven = 'WallHavenProvider',
 	XHamster = 'XHamsterProvider',
-	XVideos = 'XVideosProvider'
+	XVideos = 'XVideosProvider',
+	XnXX = 'XnXXProvider'
 }

@@ -7,4 +7,5 @@ export * from './pornsok';
 export * from './tnaflix';
 export * from './wallhaven';
 export * from './xhamster';
+export * from './xnxx';
 export * from './xvideos';

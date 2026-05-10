@@ -11,6 +11,7 @@ import { TnAFlixTransformer } from './TnAFlixTransformer';
 import { WallHavenTransformer } from './WallHavenTransformer';
 import { XHamsterTransformer } from './XHamsterTransformer';
 import { XVideosTransformer } from './XVideosTransformer';
+import { XnXXTransformer } from './XnXXTransformer';
 
 type TransformerCtor = new (html: HtmlClient, progress: ProgressManager) => DefaultTransformer<any, any>;
 
@@ -25,7 +26,8 @@ export class TransformerRegistry {
 		[ProviderType.TnAFlix]: TnAFlixTransformer,
 		[ProviderType.WallHaven]: WallHavenTransformer,
 		[ProviderType.XHamster]: XHamsterTransformer,
-		[ProviderType.XVideos]: XVideosTransformer
+		[ProviderType.XVideos]: XVideosTransformer,
+		[ProviderType.XnXX]: XnXXTransformer
 	};
 
 	constructor(
