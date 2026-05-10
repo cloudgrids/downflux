@@ -5,8 +5,9 @@ import { DefaultParser } from './DefaultParser';
 
 export class XVideosParser extends DefaultParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<XVideosOutput>>> {
-		const innerHTML = this.collectByClassNames(html, 'main-uploader', { includeInnerHTML: true })?.[0]?.innerHTML;
-		const uploader = this.extractAnchors(innerHTML, sourceUrl)?.[0]?.split('/')?.pop();
+		const uploaderHTML = this.collectByClassNames(html, 'main-uploader', { includeInnerHTML: true })?.[0]?.innerHTML;
+		const uploader = this.extractAnchors(uploaderHTML, sourceUrl)?.[0]?.split('/')?.pop();
+
 		try {
 			return {
 				customFields: {

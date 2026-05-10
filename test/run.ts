@@ -14,7 +14,7 @@ async function main() {
 		await new XVideosProvider('https://www.xvideos2.com/video.hdlhetk8cf7/british_teen_porn_9')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);
