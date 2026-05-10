@@ -1,5 +1,4 @@
 import { PornsOkExecArgs, PornsOkVideoOutput } from '@app/contracts';
-import { InvalidUrlException } from '@app/exceptions';
 import { ExtractionTarget, PornHubMethods, ProviderType, VideoQuality } from '@app/shared';
 import { Provider } from './Provider';
 
@@ -9,21 +8,13 @@ import { Provider } from './Provider';
  * @remarks The provider validates URLs to ensure they belong to the PornsOk domain and supports fetching video sources based on specified quality.
  */
 export class PornsOkProvider extends Provider<PornsOkExecArgs> {
-	private readonly provider = ProviderType.PornsOk;
-	private readonly HOST_REGEX = /^(?:www\.)?pornsok\.(?:com)$/i;
+	protected readonly provider = ProviderType.PornsOk;
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	protected override validate(url: string): void {
-		try {
-			new URL(url);
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
-		if (!this.isSupported(this.HOST_REGEX)) throw new InvalidUrlException(url, this.provider);
+		super(url, {
+			provider: ProviderType.PornsOk,
+			urlPattern: /^(?:www\.)?pornsok\.(?:com)$/i
+		});
 	}
 
 	/**

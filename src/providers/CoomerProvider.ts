@@ -1,4 +1,3 @@
-import { InvalidUrlException } from '@app/exceptions';
 import { ExtractionTarget, ProviderType } from '@app/shared';
 import { Provider } from './Provider';
 
@@ -7,25 +6,13 @@ import { Provider } from './Provider';
  * Supports Coomer and Kemono URLs.
  */
 export class CoomerProvider extends Provider<any> {
-	private readonly provider = ProviderType.Coomer;
+	protected readonly provider = ProviderType.Coomer;
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	protected override validate(url: string): void {
-		let hostname: string;
-
-		try {
-			hostname = new URL(url).hostname;
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
-
-		const isSupportedHost = /^(?:www\.)?(?:coomer\.(?:st|party)|kemono\.(?:su|party))$/i.test(hostname);
-
-		if (!isSupportedHost) throw new InvalidUrlException(url, this.provider);
+		super(url, {
+			provider: ProviderType.Coomer,
+			urlPattern: /^(?:www\.)?(?:coomer\.(?:st|party)|kemono\.(?:su|party))$/i
+		});
 	}
 
 	/**

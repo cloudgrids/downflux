@@ -3,6 +3,7 @@ import { ProviderType } from '@app/shared';
 import { DefaultStrategy } from './DefaultStrategy';
 import { Porn300Strategy } from './Porn300Strategy';
 import { PornHubStrategy } from './PornHubStrategy';
+import { PornOneStrategy } from './PornOneStrategy';
 import { XHamsterStrategy } from './XHamsterStrategy';
 import { XVideosStrategy } from './XVideosStrategy';
 import { XnXXStrategy } from './XnXXStrategy';
@@ -19,6 +20,7 @@ export class StrategyRegistry {
 		[ProviderType.OkPorn]: DefaultStrategy,
 		[ProviderType.Porn300]: Porn300Strategy,
 		[ProviderType.PornHub]: PornHubStrategy,
+		[ProviderType.PornOne]: PornOneStrategy,
 		[ProviderType.PornsOk]: DefaultStrategy,
 		[ProviderType.TnAFlix]: DefaultStrategy,
 		[ProviderType.WallHaven]: DefaultStrategy,

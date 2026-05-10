@@ -4,6 +4,7 @@ export * from './OkPornParser';
 export * from './ParserRegistry';
 export * from './Porn300Parser';
 export * from './PornHubParser';
+export * from './PornOneParser';
 export * from './PornsOkParser';
 export * from './TnAFlixParser';
 export * from './WallHavenParser';

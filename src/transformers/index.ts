@@ -3,6 +3,7 @@ export * from './HqPornTransformer';
 export * from './OkPornTransformer';
 export * from './Porn300Transformer';
 export * from './PornHubTransformer';
+export * from './PornOneTransformer';
 export * from './PornsOkTransformer';
 export * from './TnAFlixTransformer';
 export * from './TransformerRegistry';

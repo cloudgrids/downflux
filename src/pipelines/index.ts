@@ -4,6 +4,7 @@ export * from './OkPornPipeline';
 export * from './PipelineRegistry';
 export * from './Porn300Pipeline';
 export * from './PornHubPipeline';
+export * from './PornOnePipeline';
 export * from './PornsOkPipeline';
 export * from './TnAFlixPipeline';
 export * from './WallHavenPipeline';

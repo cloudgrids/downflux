@@ -11,25 +11,13 @@ import { Provider } from './Provider';
  * also it will be CPU intensive, make sure your OS can handle it
  */
 export class XHamsterProvider extends Provider<XHamsterExecArgs> {
-	private readonly provider = ProviderType.XHamster;
-	private readonly HOST_REGEX = /^(?:xhamster|xhopen|xhtotal)(?:\d+)?(?:\.com|\.desi)$/i;
+	protected readonly provider = ProviderType.XHamster;
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	protected override validate(url: string): void {
-		let parsed: URL;
-
-		try {
-			parsed = new URL(url);
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
-		const isSupportedHost = this.HOST_REGEX.test(parsed.hostname);
-
-		if (!isSupportedHost) throw new InvalidUrlException(url, this.provider);
+		super(url, {
+			provider: ProviderType.XHamster,
+			urlPattern: /^(?:xhamster|xhopen|xhtotal)(?:\d+)?(?:\.com|\.desi)$/i
+		});
 	}
 
 	private get VIDEO_URL() {

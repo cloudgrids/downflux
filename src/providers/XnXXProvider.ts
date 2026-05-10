@@ -1,25 +1,16 @@
 import { XnXXExecArgs } from '@app/contracts';
-import { InvalidUrlException } from '@app/exceptions';
 import { ExtractionTarget, ProviderType, XnXXMethods } from '@app/shared';
 import { XnXXVideoOutput } from 'src/contracts/providers/xnxx/XnXXVideoOutput';
 import { Provider } from './Provider';
 
 export class XnXXProvider extends Provider<XnXXExecArgs> {
-	private readonly provider = ProviderType.XnXX;
-	private readonly HOST_REGEX = /^(?:www\.)?xnxx(?:\d+)?\.(?:com|health)$/i;
+	protected readonly provider = ProviderType.XnXX;
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	protected override validate(url: string): void {
-		try {
-			new URL(url);
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
-		if (!this.isSupported(this.HOST_REGEX)) throw new InvalidUrlException(url, this.provider);
+		super(url, {
+			provider: ProviderType.XnXX,
+			urlPattern: /^(?:www\.)?xnxx(?:\d+)?\.(?:com|health)$/i
+		});
 	}
 
 	public async getVideo(): Promise<XnXXVideoOutput> {

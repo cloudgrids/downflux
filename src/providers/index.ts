@@ -4,6 +4,7 @@ export * from './HqPornProvider';
 export * from './OkPornProvider';
 export * from './Porn300Provider';
 export * from './PornHubProvider';
+export * from './PornOneProvider';
 export * from './PornsOkProvider';
 export * from './Provider';
 export * from './TnAFlixProvider';

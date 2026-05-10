@@ -1,5 +1,4 @@
 import { TnAFlixExecArgs, TnAFlixVideoOutput } from '@app/contracts';
-import { InvalidUrlException } from '@app/exceptions';
 import { ExtractionTarget, ProviderType, TnAFlixMethods, VideoQuality } from '@app/shared';
 import { Provider } from './Provider';
 
@@ -12,24 +11,13 @@ import { Provider } from './Provider';
  * It might not work in some regions due to the mentioned restriction, but it should work in most regions.
  */
 export class TnAFlixProvider extends Provider<TnAFlixExecArgs> {
-	private readonly provider = ProviderType.TnAFlix;
-	private HOST_REGEX = /^(?:www\.)?tnaflix\.(?:com)$/i;
+	protected readonly provider = ProviderType.TnAFlix;
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	protected override validate(url: string): void {
-		try {
-			new URL(url);
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
-
-		const isSupportedHost = this.HOST_REGEX.test(new URL(this.url).hostname);
-
-		if (!isSupportedHost) throw new InvalidUrlException(url, this.provider);
+		super(url, {
+			provider: ProviderType.TnAFlix,
+			urlPattern: /^(?:www\.)?tnaflix\.(?:com)$/i
+		});
 	}
 
 	/**

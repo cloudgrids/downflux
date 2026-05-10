@@ -8,7 +8,7 @@ import {
 	WallHavenUserUploadsOutput,
 	WallHavenWallPaperOutput
 } from '@app/contracts';
-import { GenericException, InvalidUrlException } from '@app/exceptions';
+import { GenericException } from '@app/exceptions';
 import { ExtractionTarget, OutputType, ProviderType, WallHavenMethods, WallHavenThumbnailQuality } from '@app/shared';
 import { IndexRange } from '@app/types';
 import { Provider } from './Provider';
@@ -18,27 +18,17 @@ import { Provider } from './Provider';
  * Provides wallpaper and user upload operations.
  */
 export class WallHavenProvider extends Provider<WallHavenExecArgs> {
-	private readonly provider = ProviderType.WallHaven;
+	protected readonly provider = ProviderType.WallHaven;
 	private readonly BASE_URL = 'https://wallhaven.cc';
 	private readonly WALLPAPER_URL = `${this.BASE_URL}/w`;
 	private readonly USER_URL = `${this.BASE_URL}/user`;
 	private readonly DefaultIndexRange: IndexRange = { start: 1, end: 1 };
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	/**
-	 * @override Validates that the URL is from WallHaven.
-	 */
-	protected override validate(url: string): void {
-		try {
-			new URL(url);
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
-		if (!url.startsWith('https://wallhaven.cc/')) throw new InvalidUrlException(url, this.provider);
+		super(url, {
+			provider: ProviderType.WallHaven,
+			urlPattern: /^(?:(?:www|th|w)\.)?wallhaven\.cc$/i
+		});
 	}
 
 	/**
