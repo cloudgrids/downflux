@@ -1,11 +1,11 @@
 import { GenericException } from '@app/exceptions';
-import { DefaultExtractorResult, {{ProviderName}}Output } from '@app/contracts';
+import { DefaultExecutionResult, {{ProviderName}}Output } from '@app/contracts';
 import { ProviderType } from '@app/shared';
-import { DefaultParser } from './DefaultParser';
+import { BaseParser } from '@app/base';
 
-export class {{ProviderName}}Parser extends DefaultParser {
+export class {{ProviderName}}Parser extends BaseParser {
 
-	public override transform(html: string, sourceUrl: string): Partial<DefaultExtractorResult<Partial<{{ProviderName}}Output>>> {
+	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<{{ProviderName}}Output>>> {
 		try {
 			return {
 				customFields: {} as {{ProviderName}}Output

@@ -1,0 +1,56 @@
+import { BaseParser } from '@base';
+import { ProviderType } from '@types';
+
+type ParserCtor = new () => BaseParser;
+
+type ParserFactory = () => Promise<ParserCtor>;
+
+async function loadParser<T>(loader: () => Promise<Record<string, unknown>>, key: string): Promise<T> {
+	const mod = await loader();
+
+	const exported = mod[key];
+
+	if (!exported) throw new Error(`Parser export "${key}" was not found`);
+
+	return exported as T;
+}
+
+const parserFactories: Record<ProviderType, ParserFactory> = {
+	[ProviderType.Coomer]: async () => BaseParser,
+	[ProviderType.Default]: async () => BaseParser,
+	[ProviderType.HqPorn]: () => loadParser(() => import('@provider/hqporn'), 'HqPornParser'),
+	[ProviderType.OkPorn]: () => loadParser(() => import('@provider/okporn'), 'OkPornParser'),
+	[ProviderType.Porn300]: () => loadParser(() => import('@provider/porn300'), 'Porn300Parser'),
+	[ProviderType.PornHub]: () => loadParser(() => import('@provider/pornhub'), 'PornHubParser'),
+	[ProviderType.PornOne]: () => loadParser(() => import('@provider/pornone'), 'PornOneParser'),
+	[ProviderType.PornsOk]: () => loadParser(() => import('@provider/pornsok'), 'PornsOkParser'),
+	[ProviderType.TnAFlix]: () => loadParser(() => import('@provider/tnaflix'), 'TnAFlixParser'),
+	[ProviderType.WallHaven]: () => loadParser(() => import('@provider/wallhaven'), 'WallHavenParser'),
+	[ProviderType.XHamster]: () => loadParser(() => import('@provider/xhamster'), 'XHamsterParser'),
+	[ProviderType.XVideos]: () => loadParser(() => import('@provider/xvideos'), 'XVideosParser'),
+	[ProviderType.XnXX]: () => loadParser(() => import('@provider/xnxx'), 'XnXXParser')
+};
+
+export class ParserRegistry {
+	private static readonly cache = new Map<ProviderType, ParserCtor>();
+
+	private static async resolveParser(provider: ProviderType): Promise<ParserCtor> {
+		const cached = ParserRegistry.cache.get(provider);
+
+		if (cached) return cached;
+
+		const factory = parserFactories[provider] ?? parserFactories[ProviderType.Default];
+
+		const ParserClass = await factory();
+
+		ParserRegistry.cache.set(provider, ParserClass);
+
+		return ParserClass;
+	}
+
+	public static async getParser(provider: ProviderType): Promise<BaseParser> {
+		const ParserClass = await this.resolveParser(provider);
+
+		return new ParserClass();
+	}
+}

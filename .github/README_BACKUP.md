@@ -99,16 +99,16 @@ main().catch(console.error);
 
 - **Service name:** `DefaultProvider`
 - **Exposes:**
-  - `getRawHtml()` returns `Promise<DefaultExtractorResult[]>`
-  - `getLinks()` returns `Promise<DefaultExtractorResult[]>`
+  - `getRawHtml()` returns `Promise<DefaultExecutionResult[]>`
+  - `getLinks()` returns `Promise<DefaultExecutionResult[]>`
 - **Description:** Handles any syntactically valid URL as a generic fallback.
 
 ### CoomerProvider
 
 - **Service name:** `CoomerProvider`
 - **Exposes:**
-  - `getPosts()` returns `Promise<DefaultExtractorResult[]>`
-  - `getAttachments()` returns `Promise<DefaultExtractorResult[]>`
+  - `getPosts()` returns `Promise<DefaultExecutionResult[]>`
+  - `getAttachments()` returns `Promise<DefaultExecutionResult[]>`
 - **Description:** Validates `coomer.st`, `coomer.party`, `kemono.su`, and `kemono.party` URLs. Current dependency maps do not include a dedicated Coomer transformer, pipeline, or downloader, so Coomer execution currently falls back through the generic/default behavior unless those mappings are added.
 
 ## Output Types
@@ -210,7 +210,7 @@ Public service method
 - **`ExecutionOptions`** - Shared options for output directory, allowed extensions, video qualities, max downloads, extraction/download concurrency, hooks, progress events, logging, output type, execution type, and abort signal.
 - **`PipelineItem`** - One downloadable item with `downloadUrl`, `baseUrl`, `service`, and an identifier containing media type, MIME type, extension, and path key.
 - **`DownloadResult`** - Result for one downloaded item, including original/final URL, filename, extension, MIME type, size, service, and optional buffer.
-- **`DefaultExtractorResult`** - Generic metadata shape with title, description, keywords, anchors, images, sources, status, base URL, URL type, and custom fields.
+- **`DefaultExecutionResult`** - Generic metadata shape with title, description, keywords, anchors, images, sources, status, base URL, URL type, and custom fields.
 - **`OkPornAlbumOutput`** - Album metadata and album image URLs.
 - **`OkPornVideoOutput`** - Video metadata, source URLs with quality, poster/screenshot, optional linked album, and model details.
 - **`OkPornModelOutput`** - Model listing page metadata and extracted model URLs.

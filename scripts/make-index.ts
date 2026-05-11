@@ -36,5 +36,5 @@ const getDirectories = (dir: string, dirPaths: string[] = []) => {
 };
 
 (async () => {
-	for (const path of getDirectories('./src')) await makeIndex(path);
+	for (const path of getDirectories('./packages')) await makeIndex(path);
 })();

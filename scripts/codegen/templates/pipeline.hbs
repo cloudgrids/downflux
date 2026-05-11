@@ -1,8 +1,8 @@
-import { DefaultPipeline } from './DefaultPipeline';
+import { BasePipeline } from '@app/base';
 import { IdentifierContext, PipelineExtractedItem, PipelineItem, {{ArgsName}}, {{OutputName}}  } from '@app/contracts';
 import { MediaType } from '@app/shared';
 
-export class {{ProviderName}}Pipeline extends DefaultPipeline<{{ArgsName}}, {{OutputName}}> {
+export class {{ProviderName}}Pipeline extends BasePipeline<{{ArgsName}}, {{OutputName}}> {
 	public override build(metadata: {{OutputName}}, request: {{ArgsName}}): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,

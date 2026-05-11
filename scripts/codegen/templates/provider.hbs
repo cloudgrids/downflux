@@ -1,4 +1,4 @@
-import { Provider } from './Provider';
+import { Provider } from '@app/base';
 import { ProviderType } from '@app/shared';
 import { InvalidUrlException } from '@app/exceptions';
 import { {{ArgsName}} } from '@app/contracts';
@@ -22,6 +22,5 @@ export class {{ProviderName}}Provider extends Provider<{{ArgsName}}> {
 		if (!this.isSupported(this.HOST_REGEX)) throw new InvalidUrlException(url, this.provider);
 	}
 }
-
 
 

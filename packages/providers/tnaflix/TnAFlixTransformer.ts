@@ -1,0 +1,39 @@
+import { BaseTransformer } from '@base';
+import { DefaultExecutionResult } from '@contracts';
+import { TnAFlixExecArgs, TnAFlixOutput, TnAFlixVideoOutput } from './TnAFlixContracts';
+import { TnAFlixMethods } from './TnAFlixTypes';
+
+export class TnAFlixTransformer extends BaseTransformer<TnAFlixExecArgs, TnAFlixVideoOutput | DefaultExecutionResult> {
+	public override async transform(
+		url: string,
+		request?: TnAFlixExecArgs | undefined
+	): Promise<DefaultExecutionResult | TnAFlixVideoOutput> {
+		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<TnAFlixOutput>>;
+
+		if (!request?.transformOutput) return metadata;
+
+		switch (request.method) {
+			case TnAFlixMethods.getVideo:
+				return this.toVideoOutput(request, metadata);
+
+			default:
+				return metadata;
+		}
+	}
+
+	private toVideoOutput(request: TnAFlixExecArgs, metadata: DefaultExecutionResult<Partial<TnAFlixOutput>>): TnAFlixVideoOutput {
+		const tnAFlixFields = metadata.customFields as TnAFlixOutput;
+
+		return {
+			disLikes: tnAFlixFields.disLikes,
+			likes: tnAFlixFields.likes,
+			pageUrl: tnAFlixFields.pageUrl ?? request.entryUrl,
+			title: tnAFlixFields.title,
+			videoPoster: tnAFlixFields.videoPoster,
+			videos: tnAFlixFields.videos,
+			videoTags: tnAFlixFields.videoTags,
+			uploader: tnAFlixFields.uploader,
+			videoId: tnAFlixFields.videoId
+		};
+	}
+}

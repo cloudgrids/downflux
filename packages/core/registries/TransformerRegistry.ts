@@ -1,0 +1,70 @@
+import { BaseTransformer } from '@base';
+import { ExecutionArgs } from '@contracts';
+import { ProgressManager } from '@core/progress';
+import { HtmlClient } from '@engine/http';
+import { ProviderType } from '@types';
+
+type TransformerCtor = new (html: HtmlClient, progress: ProgressManager) => BaseTransformer<any, any>;
+
+type TransformerFactory = () => Promise<TransformerCtor>;
+
+async function loadTransformer<T>(loader: () => Promise<Record<string, unknown>>, key: string): Promise<T> {
+	const mod = await loader();
+
+	const exported = mod[key];
+
+	if (!exported) {
+		throw new Error(`Transformer export "${key}" was not found`);
+	}
+
+	return exported as T;
+}
+
+const transformerFactories: Record<ProviderType, TransformerFactory> = {
+	[ProviderType.Coomer]: async () => BaseTransformer,
+	[ProviderType.Default]: async () => BaseTransformer,
+	[ProviderType.HqPorn]: () => loadTransformer(() => import('@provider/hqporn'), 'HqPornTransformer'),
+	[ProviderType.OkPorn]: () => loadTransformer(() => import('@provider/okporn'), 'OkPornTransformer'),
+	[ProviderType.Porn300]: () => loadTransformer(() => import('@provider/porn300'), 'Porn300Transformer'),
+	[ProviderType.PornHub]: () => loadTransformer(() => import('@provider/pornhub'), 'PornHubTransformer'),
+	[ProviderType.PornOne]: () => loadTransformer(() => import('@provider/pornone'), 'PornOneTransformer'),
+	[ProviderType.PornsOk]: () => loadTransformer(() => import('@provider/pornsok'), 'PornsOkTransformer'),
+	[ProviderType.TnAFlix]: () => loadTransformer(() => import('@provider/tnaflix'), 'TnAFlixTransformer'),
+	[ProviderType.WallHaven]: () => loadTransformer(() => import('@provider/wallhaven'), 'WallHavenTransformer'),
+	[ProviderType.XHamster]: () => loadTransformer(() => import('@provider/xhamster'), 'XHamsterTransformer'),
+	[ProviderType.XVideos]: () => loadTransformer(() => import('@provider/xvideos'), 'XVideosTransformer'),
+	[ProviderType.XnXX]: () => loadTransformer(() => import('@provider/xnxx'), 'XnXXTransformer')
+};
+
+export class TransformerRegistry {
+	private static readonly cache = new Map<ProviderType, TransformerCtor>();
+
+	constructor(
+		private readonly htmlClient: HtmlClient,
+		private readonly progressManager: ProgressManager
+	) {}
+
+	private async resolveTransformer(provider: ProviderType): Promise<TransformerCtor> {
+		const cached = TransformerRegistry.cache.get(provider);
+
+		if (cached) return cached;
+
+		const factory = transformerFactories[provider] ?? transformerFactories[ProviderType.Default];
+
+		const TransformerClass = await factory();
+
+		TransformerRegistry.cache.set(provider, TransformerClass);
+
+		return TransformerClass;
+	}
+
+	public async transform<TArgs extends ExecutionArgs, TResult>(url: string, request: TArgs): Promise<TResult> {
+		const provider = request.provider ?? ProviderType.Default;
+
+		const TransformerClass = await this.resolveTransformer(provider);
+
+		const transformer = new TransformerClass(this.htmlClient, this.progressManager);
+
+		return (await transformer.transform(url, request)) as TResult;
+	}
+}

@@ -1,9 +1,9 @@
 import { ProgressManager } from '@app/progress';
 import { ProviderType } from '@app/shared';
-import { DefaultStrategy } from './DefaultStrategy';
+import { BaseStrategy } from '@app/base';
 {{imports}}
 
-type StrategyCtor = new (progress: ProgressManager) => DefaultStrategy;
+type StrategyCtor = new (progress: ProgressManager) => BaseStrategy;
 
 export class StrategyRegistry {
 	constructor(private readonly progressManager: ProgressManager) {}
@@ -12,7 +12,7 @@ export class StrategyRegistry {
 		{{entries}}
 	};
 
-	public getStrategy(provider: ProviderType): DefaultStrategy {
+	public getStrategy(provider: ProviderType): BaseStrategy {
 		const StrategyClass = this.strategies[provider] ?? this.strategies[ProviderType.Default];
 		return new StrategyClass(this.progressManager);
 	}

@@ -1,10 +1,10 @@
 import { ExecutionArgs, PipelineItem } from '@app/contracts';
 import { ProviderType } from '@app/shared';
 import { FileManager } from '@app/storage';
-import { DefaultPipeline } from './DefaultPipeline';
+import { BasePipeline } from '@app/base';
 {{imports}}
 
-type PipelineCtor = new (fileManager: FileManager) => DefaultPipeline<any, any>;
+type PipelineCtor = new (fileManager: FileManager) => BasePipeline<any, any>;
 
 export class PipelineRegistry {
 	constructor(protected fileManager: FileManager) {}

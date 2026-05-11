@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { RegistryCoordinator } from '../src/contracts';
+import { RegistryCoordinator } from '../packages/contracts';
 
 const appendUniqueJsonToRegistry = <T extends Record<string, RegistryCoordinator[]>>(
 	file: string,

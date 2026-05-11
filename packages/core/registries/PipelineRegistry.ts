@@ -1,0 +1,64 @@
+import { BasePipeline } from '@base';
+import { ExecutionArgs, PipelineItem } from '@contracts';
+import { FileManager } from '@storage';
+import { ProviderType } from '@types';
+
+type PipelineCtor = new (fileManager: FileManager) => BasePipeline<any, any>;
+
+type PipelineFactory = () => Promise<PipelineCtor>;
+
+async function loadPipeline<T>(loader: () => Promise<Record<string, unknown>>, key: string): Promise<T> {
+	const mod = await loader();
+
+	const exported = mod[key];
+
+	if (!exported) throw new Error(`Pipeline export "${key}" was not found`);
+
+	return exported as T;
+}
+
+const pipelineFactories: Record<ProviderType, PipelineFactory> = {
+	[ProviderType.Coomer]: async () => BasePipeline,
+	[ProviderType.Default]: async () => BasePipeline,
+	[ProviderType.HqPorn]: () => loadPipeline(() => import('@provider/hqporn'), 'HqPornPipeline'),
+	[ProviderType.OkPorn]: () => loadPipeline(() => import('@provider/okporn'), 'OkPornPipeline'),
+	[ProviderType.Porn300]: () => loadPipeline(() => import('@provider/porn300'), 'Porn300Pipeline'),
+	[ProviderType.PornHub]: () => loadPipeline(() => import('@provider/pornhub'), 'PornHubPipeline'),
+	[ProviderType.PornOne]: () => loadPipeline(() => import('@provider/pornone'), 'PornOnePipeline'),
+	[ProviderType.PornsOk]: () => loadPipeline(() => import('@provider/pornsok'), 'PornsOkPipeline'),
+	[ProviderType.TnAFlix]: () => loadPipeline(() => import('@provider/tnaflix'), 'TnAFlixPipeline'),
+	[ProviderType.WallHaven]: () => loadPipeline(() => import('@provider/wallhaven'), 'WallHavenPipeline'),
+	[ProviderType.XHamster]: () => loadPipeline(() => import('@provider/xhamster'), 'XHamsterPipeline'),
+	[ProviderType.XVideos]: () => loadPipeline(() => import('@provider/xvideos'), 'XVideosPipeline'),
+	[ProviderType.XnXX]: () => loadPipeline(() => import('@provider/xnxx'), 'XnXXPipeline')
+};
+
+export class PipelineRegistry {
+	private static readonly cache = new Map<ProviderType, PipelineCtor>();
+
+	constructor(protected readonly fileManager: FileManager) {}
+
+	private async resolvePipeline(provider: ProviderType): Promise<PipelineCtor> {
+		const cached = PipelineRegistry.cache.get(provider);
+
+		if (cached) return cached;
+
+		const factory = pipelineFactories[provider] ?? pipelineFactories[ProviderType.Default];
+
+		const PipelineClass = await factory();
+
+		PipelineRegistry.cache.set(provider, PipelineClass);
+
+		return PipelineClass;
+	}
+
+	public async build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): Promise<PipelineItem[]> {
+		const provider = request.provider ?? ProviderType.Default;
+
+		const PipelineClass = await this.resolvePipeline(provider);
+
+		const pipeline = new PipelineClass(this.fileManager);
+
+		return pipeline.build(metadata, request);
+	}
+}

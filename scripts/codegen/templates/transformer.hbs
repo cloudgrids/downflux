@@ -1,11 +1,11 @@
-import { DefaultTransformer } from './DefaultTransformer';
-import { {{ArgsName}}, DefaultExtractorResult, {{OutputName}} } from '@app/contracts';
+import { BaseTransformer } from '@app/base';
+import { {{ArgsName}}, DefaultExecutionResult, {{OutputName}} } from '@app/contracts';
 import { {{MethodName}} } from '@app/shared';
 
 
-export class {{ProviderName}}Transformer extends DefaultTransformer<{{ArgsName}}, DefaultExtractorResult> {
-	public async transform(url: string, request?: {{ArgsName}}): Promise<DefaultExtractorResult> {
-		const metadata = (await super.transform(url, request)) as DefaultExtractorResult<Partial<{{OutputName}}>>;
+export class {{ProviderName}}Transformer extends BaseTransformer<{{ArgsName}}, DefaultExecutionResult> {
+	public async transform(url: string, request?: {{ArgsName}}): Promise<DefaultExecutionResult> {
+		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<{{OutputName}}>>;
 
 		if (!request?.transformOutput) return metadata;
 
