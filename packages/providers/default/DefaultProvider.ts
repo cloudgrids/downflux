@@ -1,11 +1,12 @@
 import { BaseProvider } from '@base';
 import { ExtractionTarget, ProviderType } from '@types';
+import { DefaultExecArgs } from './DefaultContracts';
 
 /**
  * Default provider.
  * Supports generic URL extraction.
  */
-export class DefaultProvider extends BaseProvider<any> {
+export class DefaultProvider extends BaseProvider<DefaultExecArgs> {
 	protected readonly provider = ProviderType.Default;
 
 	constructor(url: string) {

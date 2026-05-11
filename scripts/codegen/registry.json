@@ -1,30 +1,6 @@
 {
   "services": [
     {
-      "name": "OkPorn",
-      "parser": true,
-      "pipeline": true,
-      "transformer": true,
-      "strategy": false,
-      "method": true
-    },
-    {
-      "name": "PornHub",
-      "parser": true,
-      "pipeline": true,
-      "transformer": true,
-      "strategy": true,
-      "method": true
-    },
-    {
-      "name": "WallHaven",
-      "parser": true,
-      "pipeline": true,
-      "transformer": true,
-      "strategy": false,
-      "method": true
-    },
-    {
       "name": "Coomer",
       "parser": false,
       "pipeline": false,
@@ -41,7 +17,23 @@
       "method": false
     },
     {
-      "name": "XHamster",
+      "name": "HqPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "OkPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Porn300",
       "parser": true,
       "pipeline": true,
       "transformer": true,
@@ -49,19 +41,19 @@
       "method": true
     },
     {
-      "name": "TnAFlix",
+      "name": "PornHub",
       "parser": true,
       "pipeline": true,
       "transformer": true,
-      "strategy": false,
+      "strategy": true,
       "method": true
     },
     {
-      "name": "HqPorn",
+      "name": "PornOne",
       "parser": true,
       "pipeline": true,
       "transformer": true,
-      "strategy": false,
+      "strategy": true,
       "method": true
     },
     {
@@ -73,7 +65,31 @@
       "method": true
     },
     {
-      "name": "XVideos",
+      "name": "SexVid",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "TnAFlix",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "WallHaven",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "XHamster",
       "parser": true,
       "pipeline": true,
       "transformer": true,
@@ -89,15 +105,7 @@
       "method": true
     },
     {
-      "name": "Porn300",
-      "parser": true,
-      "pipeline": true,
-      "transformer": true,
-      "strategy": true,
-      "method": true
-    },
-    {
-      "name": "PornOne",
+      "name": "XVideos",
       "parser": true,
       "pipeline": true,
       "transformer": true,

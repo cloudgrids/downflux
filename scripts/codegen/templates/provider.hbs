@@ -1,25 +1,16 @@
-import { Provider } from '@app/base';
-import { ProviderType } from '@app/shared';
-import { InvalidUrlException } from '@app/exceptions';
-import { {{ArgsName}} } from '@app/contracts';
+import { BaseProvider } from '@base';
+import { ProviderType } from '@types';
+import { {{ArgsName}} } from './{{ProviderName}}Contracts';
 
 
-export class {{ProviderName}}Provider extends Provider<{{ArgsName}}> {
-	private readonly provider = ProviderType.{{ProviderName}}
-	private readonly HOST_REGEX = /implementation$/i;
+export class {{ProviderName}}Provider extends BaseProvider<{{ArgsName}}> {
+	protected readonly provider = ProviderType.{{ProviderName}}
 
 	constructor(url: string) {
-		super(url);
-		this.validate(url);
-	}
-
-	protected override validate(url: string): void {
-		try {
-			new URL(url);
-		} catch {
-			throw new InvalidUrlException(url, this.provider);
-		}
-		if (!this.isSupported(this.HOST_REGEX)) throw new InvalidUrlException(url, this.provider);
+		super(url,{
+			provider:ProviderType.{{ProviderName}},
+			urlPattern:/implementation$/i
+		});
 	}
 }
 

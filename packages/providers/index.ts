@@ -6,6 +6,7 @@ export * from './porn300';
 export * from './pornhub';
 export * from './pornone';
 export * from './pornsok';
+export * from './sexvid';
 export * from './tnaflix';
 export * from './wallhaven';
 export * from './xhamster';

@@ -1,7 +1,7 @@
-import { ExecutionArgs, PipelineItem } from '@app/contracts';
-import { ProviderType } from '@app/shared';
-import { FileManager } from '@app/storage';
-import { BasePipeline } from '@app/base';
+import { ExecutionArgs, PipelineItem } from '@contracts';
+import { ProviderType } from '@types';
+import { FileManager } from '@storage';
+import { BasePipeline } from '@base';
 {{imports}}
 
 type PipelineCtor = new (fileManager: FileManager) => BasePipeline<any, any>;

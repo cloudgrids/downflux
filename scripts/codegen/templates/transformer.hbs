@@ -1,6 +1,7 @@
-import { BaseTransformer } from '@app/base';
-import { {{ArgsName}}, DefaultExecutionResult, {{OutputName}} } from '@app/contracts';
-import { {{MethodName}} } from '@app/shared';
+import { BaseTransformer } from '@base';
+import { DefaultExecutionResult } from '@contracts';
+import { {{ArgsName}}, {{OutputName}} } from './{{ProviderName}}Contracts';
+import { {{MethodName}} } from './{{ProviderName}}Types';
 
 
 export class {{ProviderName}}Transformer extends BaseTransformer<{{ArgsName}}, DefaultExecutionResult> {

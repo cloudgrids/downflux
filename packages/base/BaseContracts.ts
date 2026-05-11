@@ -1,8 +1,4 @@
-import { ExecutionArgs, TagKeys } from '@contracts';
-
-export interface DefaultExecArgs extends ExecutionArgs {}
-
-export interface DefaultOutput {}
+import { TagKeys } from '@contracts';
 
 /**
  * Options for filtering tag output.
