@@ -1,42 +1,87 @@
 {
 	"compilerOptions": {
 		"target": "ES2023",
-		"module": "commonjs",
-		"rootDir": "src",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+
+		"rootDir": ".",
 		"baseUrl": ".",
+
 		"declaration": true,
 		"declarationMap": true,
+
 		"strict": true,
 		"skipLibCheck": true,
+
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
+
 		"removeComments": true,
 		"allowSyntheticDefaultImports": true,
+
 		"sourceMap": true,
+
 		"strictNullChecks": true,
+
 		"forceConsistentCasingInFileNames": true,
+
 		"noImplicitAny": false,
+
 		"strictBindCallApply": false,
 		"noFallthroughCasesInSwitch": false,
+
 		"paths": {
-			"@app/clients": ["src/clients/index"],
-			"@app/contracts": ["src/contracts/index"],
-			"@app/exceptions": ["src/exceptions/index"],
-			"@app/logger": ["src/logger/index"],
-			"@app/parsers": ["src/parsers/index"],
-			"@app/pipelines": ["src/pipelines/index"],
-			"@app/progress": ["src/progress/index"],
-			"@app/providers": ["src/providers/index"],
-			"@app/renderer": ["src/renderer/index"],
-			"@app/coordinators": ["src/coordinators/index"],
-			"@app/shared": ["src/shared/index"],
-			"@app/storage": ["src/storage/index"],
-			"@app/strategies": ["src/strategies/index"],
-			"@app/transfer": ["src/transfer/index"],
-			"@app/transformers": ["src/transformers/index"],
-			"@app/types": ["src/types/index"]
+			"@base": ["packages/base/index.ts"],
+
+			"@contracts": ["packages/contracts/index.ts"],
+
+			"@shared": ["packages/shared/index.ts"],
+
+			"@storage": ["packages/storage/index.ts"],
+
+			"@types": ["packages/types/index.ts"],
+
+			"@core/coordinators": ["packages/core/coordinators/index.ts"],
+
+			"@core/dependency": ["packages/core/dependency/index.ts"],
+
+			"@core/exceptions": ["packages/core/exceptions/index.ts"],
+
+			"@core/progress": ["packages/core/progress/index.ts"],
+
+			"@core/registries": ["packages/core/registries/index.ts"],
+
+			"@core/ui": ["packages/core/ui/index.ts"],
+
+			"@engine/http": ["packages/engines/http/index.ts"],
+
+			"@provider/coomer": ["packages/providers/coomer/index.ts"],
+
+			"@provider/default": ["packages/providers/default/index.ts"],
+
+			"@provider/hqporn": ["packages/providers/hqporn/index.ts"],
+
+			"@provider/okporn": ["packages/providers/okporn/index.ts"],
+
+			"@provider/porn300": ["packages/providers/porn300/index.ts"],
+
+			"@provider/pornhub": ["packages/providers/pornhub/index.ts"],
+
+			"@provider/pornone": ["packages/providers/pornone/index.ts"],
+
+			"@provider/pornsok": ["packages/providers/pornsok/index.ts"],
+
+			"@provider/tnaflix": ["packages/providers/tnaflix/index.ts"],
+
+			"@provider/wallhaven": ["packages/providers/wallhaven/index.ts"],
+
+			"@provider/xhamster": ["packages/providers/xhamster/index.ts"],
+
+			"@provider/xnxx": ["packages/providers/xnxx/index.ts"],
+
+			"@provider/xvideos": ["packages/providers/xvideos/index.ts"]
 		}
 	},
-	"include": ["src"],
-	"exclude": ["node_modules", "scripts"]
+	"include": ["packages/**/*", "test/**/*"],
+	"exclude": ["node_modules", "dist", "scripts"]
 }

@@ -1,5 +1,15 @@
 {
-	"entry": ["src/index.ts"],
+	"entry": [
+		"packages/index.ts",
+		"packages/base/index.ts",
+		"packages/contracts/index.ts",
+		"packages/core/index.ts",
+		"packages/engines/index.ts",
+		"packages/providers/index.ts",
+		"packages/shared/index.ts",
+		"packages/storage/index.ts",
+		"packages/types/index.ts"
+	],
 	"format": ["cjs", "esm"],
 	"dts": {
 		"compilerOptions": {

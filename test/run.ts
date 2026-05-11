@@ -1,5 +1,4 @@
-import { OkPornProvider, PornHubProvider, PornOneProvider } from '../src/providers';
-import { OutputType } from '../src/shared/enums';
+import { OutputType, PornHubProvider } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -14,10 +13,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new PornOneProvider('https://pornone.com/anime/tennis-star/280323941/')
+		await new PornHubProvider('https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);

@@ -26,7 +26,7 @@
 		"test": "TZ=UTC jest --setupFiles dotenv/config --config ./jest.config.json",
 		"test:watch": "npm run test -- --watch",
 		"test:run": "tsx test/run.ts",
-		"format": "prettier --write \"src/**/*.ts\"",
+		"format": "prettier --write \"packages/**/*.ts\" \"scripts/**/*.ts\"",
 		"generate": "tsx scripts/codegen/generate.ts",
 		"make:index": "tsx scripts/make-index.ts",
 		"make:registry": "tsx scripts/make-registry.ts"

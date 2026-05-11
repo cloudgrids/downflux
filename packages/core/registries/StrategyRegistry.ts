@@ -1,0 +1,59 @@
+import { BaseStrategy } from '@base';
+import { ProgressManager } from '@core/progress';
+import { ProviderType } from '@types';
+
+type StrategyCtor = new (progress: ProgressManager) => BaseStrategy;
+
+type StrategyFactory = () => Promise<StrategyCtor>;
+
+async function loadStrategy<T>(loader: () => Promise<Record<string, unknown>>, key: string): Promise<T> {
+	const mod = await loader();
+
+	const exported = mod[key];
+
+	if (!exported) throw new Error(`Strategy export "${key}" was not found`);
+
+	return exported as T;
+}
+
+const strategyFactories: Record<ProviderType, StrategyFactory> = {
+	[ProviderType.Coomer]: async () => BaseStrategy,
+	[ProviderType.Default]: async () => BaseStrategy,
+	[ProviderType.HqPorn]: async () => BaseStrategy,
+	[ProviderType.OkPorn]: async () => BaseStrategy,
+	[ProviderType.Porn300]: () => loadStrategy(() => import('@provider/porn300'), 'Porn300Strategy'),
+	[ProviderType.PornHub]: () => loadStrategy(() => import('@provider/pornhub'), 'PornHubStrategy'),
+	[ProviderType.PornOne]: () => loadStrategy(() => import('@provider/pornone'), 'PornOneStrategy'),
+	[ProviderType.PornsOk]: async () => BaseStrategy,
+	[ProviderType.TnAFlix]: async () => BaseStrategy,
+	[ProviderType.WallHaven]: async () => BaseStrategy,
+	[ProviderType.XHamster]: () => loadStrategy(() => import('@provider/xhamster'), 'XHamsterStrategy'),
+	[ProviderType.XVideos]: () => loadStrategy(() => import('@provider/xvideos'), 'XVideosStrategy'),
+	[ProviderType.XnXX]: () => loadStrategy(() => import('@provider/xnxx'), 'XnXXStrategy')
+};
+
+export class StrategyRegistry {
+	private static readonly cache = new Map<ProviderType, StrategyCtor>();
+
+	constructor(private readonly progressManager: ProgressManager) {}
+
+	private async resolveStrategy(provider: ProviderType): Promise<StrategyCtor> {
+		const cached = StrategyRegistry.cache.get(provider);
+
+		if (cached) return cached;
+
+		const factory = strategyFactories[provider] ?? strategyFactories[ProviderType.Default];
+
+		const StrategyClass = await factory();
+
+		StrategyRegistry.cache.set(provider, StrategyClass);
+
+		return StrategyClass;
+	}
+
+	public async getStrategy(provider: ProviderType): Promise<BaseStrategy> {
+		const StrategyClass = await this.resolveStrategy(provider);
+
+		return new StrategyClass(this.progressManager);
+	}
+}
