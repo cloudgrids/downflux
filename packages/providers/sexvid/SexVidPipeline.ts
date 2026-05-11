@@ -1,10 +1,10 @@
 import { BasePipeline } from '@base';
 import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
 import { MediaType } from '@types';
-import { {{ArgsName}}, {{OutputName}} } from './{{ProviderName}}Contracts';
+import { SexVidExecArgs, SexVidOutput } from './SexVidContracts';
 
-export class {{ProviderName}}Pipeline extends BasePipeline<{{ArgsName}}, {{OutputName}}> {
-	public override build(metadata: {{OutputName}}, request: {{ArgsName}}): PipelineItem[] {
+export class SexVidPipeline extends BasePipeline<SexVidExecArgs, SexVidOutput> {
+	public override build(metadata: SexVidOutput, request: SexVidExecArgs): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,
 			this.filterByExt(
@@ -28,9 +28,9 @@ export class {{ProviderName}}Pipeline extends BasePipeline<{{ArgsName}}, {{Outpu
 		);
 	}
 
-	protected override buildIdentifier(ctx: IdentifierContext<{{OutputName}}>): string {
+	protected override buildIdentifier(ctx: IdentifierContext<SexVidOutput>): string {
 		const { mediaType, id } = ctx;
-		const prefix = '{{ProviderName}}';
+		const prefix = 'SexVid';
 		let mediaSegment: string;
 
 		switch (mediaType) {
@@ -42,13 +42,11 @@ export class {{ProviderName}}Pipeline extends BasePipeline<{{ArgsName}}, {{Outpu
 		}
 
 		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer('// implementation needs here'), mediaSegment);
-
 	}
 
-	protected override extract(request: {{ArgsName}}, metadata: {{OutputName}}): PipelineExtractedItem[] {
+	protected override extract(request: SexVidExecArgs, metadata: SexVidOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
 		return Array.from(urls);
 	}
-
 }

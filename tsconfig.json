@@ -79,7 +79,10 @@
 
 			"@provider/xnxx": ["packages/providers/xnxx/index.ts"],
 
-			"@provider/xvideos": ["packages/providers/xvideos/index.ts"]
+			"@provider/xvideos": ["packages/providers/xvideos/index.ts"],
+
+			"@provider/sexvid": ["packages/providers/sexvid/index.ts"],
+
 		}
 	},
 	"include": ["packages/**/*", "test/**/*"],

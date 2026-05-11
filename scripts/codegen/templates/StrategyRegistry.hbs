@@ -1,6 +1,6 @@
-import { ProgressManager } from '@app/progress';
-import { ProviderType } from '@app/shared';
-import { BaseStrategy } from '@app/base';
+import { ProgressManager } from '@core/progress';
+import { ProviderType } from '@types';
+import { BaseStrategy } from '@base';
 {{imports}}
 
 type StrategyCtor = new (progress: ProgressManager) => BaseStrategy;

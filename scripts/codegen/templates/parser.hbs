@@ -1,7 +1,8 @@
-import { GenericException } from '@app/exceptions';
-import { DefaultExecutionResult, {{ProviderName}}Output } from '@app/contracts';
-import { ProviderType } from '@app/shared';
-import { BaseParser } from '@app/base';
+import { BaseParser } from '@base';
+import { DefaultExecutionResult } from '@contracts';
+import { GenericException } from '@core/exceptions';
+import { ProviderType } from '@types';
+import { {{ProviderName}}Output } from './{{ProviderName}}Contracts';
 
 export class {{ProviderName}}Parser extends BaseParser {
 
