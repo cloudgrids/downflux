@@ -1,4 +1,4 @@
-import { OutputType, SexVidProvider } from 'packages';
+import { OkPornProvider, OutputType } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -13,10 +13,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new SexVidProvider('https://www.sexvid.xxx/kelsey-jones-having-intense-hardcore-with-some-very-gifted-hunk.html')
+		await new OkPornProvider('https://ok.xxx/video/673559/')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);

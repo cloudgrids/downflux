@@ -56,11 +56,21 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 	protected override extract(request: PornHubExecArgs, metadata: PornHubOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
+		let viewKey: string;
+
+		try {
+			viewKey = new URL(request.entryUrl).searchParams.get('viewkey') ?? '';
+		} catch {
+			viewKey = request.entryUrl.split('=').pop() ?? 'unknown';
+		}
+
+		if (!viewKey) viewKey = request.entryUrl.split('=').pop() ?? 'unknown';
+
 		if (metadata.videoMetadata) {
 			urls.add({
 				url: metadata?.videoMetadata?.videoUrl,
 				mediaType: MediaType.VIDEOS,
-				id: request.videoArgs?.viewKey
+				id: viewKey
 			});
 		}
 
@@ -75,7 +85,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 			urls.add({
 				url: metadata.thumbnailUrl,
 				mediaType: MediaType.VIDEO_PREVIEW,
-				id: request.entryUrl.split('=').pop() ?? 'unknown'
+				id: viewKey
 			});
 		}
 
@@ -83,7 +93,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 			urls.add({
 				url: metadata.channelThumbnail,
 				mediaType: MediaType.CHANNELS,
-				id: metadata.channelName.replace(/\s+/g, '_').toLowerCase()
+				id: this.pathBuilder.spaceNormalizer(metadata.channelName ?? 'unknown')
 			});
 		}
 

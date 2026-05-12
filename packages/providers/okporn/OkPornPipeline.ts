@@ -30,8 +30,8 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 	}
 
 	protected override buildIdentifier(ctx: IdentifierContext<OkPornOutput>): string {
-		const { mediaType, metadata, id } = ctx;
-		const prefix = 'okporn';
+		const { mediaType, metadata, id, url } = ctx;
+		const prefix = url.includes('ok.xxx') ? 'okxxx' : 'okporn';
 		let mediaSegment: string;
 
 		switch (mediaType) {
