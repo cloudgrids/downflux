@@ -1,4 +1,4 @@
-import { BeegProvider, OutputType, VideoQuality } from 'packages';
+import { BeegProvider, OutputType, VideoQuality, XGroovyProvider } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -13,8 +13,8 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new BeegProvider('https://beeg.com/-0777761605151844')
-			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q720 })
+		await new XGroovyProvider('https://xgroovy.com/videos/651600/busty-bitch-gets-to-know-real-passion-fucking-in-the-shower/')
+			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q1080 })
 			.setTransformOutput(true)
 			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
 			.getVideo();

@@ -10,6 +10,7 @@ export * from './pornsok';
 export * from './sexvid';
 export * from './tnaflix';
 export * from './wallhaven';
+export * from './xgroovy';
 export * from './xhamster';
 export * from './xnxx';
 export * from './xvideos';

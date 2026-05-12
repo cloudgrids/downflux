@@ -80,12 +80,14 @@
 
 			"@provider/wallhaven": ["packages/providers/wallhaven/index.ts"],
 
+			"@provider/xgroovy": ["packages/providers/xgroovy/index.ts"],
+
 			"@provider/xhamster": ["packages/providers/xhamster/index.ts"],
 
 			"@provider/xnxx": ["packages/providers/xnxx/index.ts"],
 
 			"@provider/xvideos": ["packages/providers/xvideos/index.ts"]
-			// </auto-generated:entries>
+	// </auto-generated:entries>
 		}
 	},
 	"include": ["packages/**/*", "test/**/*"],
