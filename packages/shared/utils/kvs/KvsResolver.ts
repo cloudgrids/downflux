@@ -1,5 +1,5 @@
 export class KvsResolver {
-	private getLicenseToken(licenseCode: string): number[] {
+	private getSeeds(licenseCode: string): number[] {
 		const normalized = licenseCode.replace(/\$/g, '');
 
 		const digits = normalized.split('').map(Number);
@@ -18,12 +18,12 @@ export class KvsResolver {
 	}
 
 	private decipherHash(hash: string, licenseCode: string): string {
-		const token = this.getLicenseToken(licenseCode);
+		const seeds = this.getSeeds(licenseCode);
 		const chars = hash.split('');
 
 		let acc = 0;
 		for (let idx = chars.length - 1; idx >= 0; idx--) {
-			acc += token[idx];
+			acc += seeds[idx];
 			const target = (idx + acc) % chars.length;
 			[chars[idx], chars[target]] = [chars[target], chars[idx]];
 		}

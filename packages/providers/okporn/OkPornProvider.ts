@@ -14,27 +14,98 @@ import {
 import { OkPornMethods } from './OkPornTypes';
 
 /**
- * OkPorn provider.
- * Provides album, video, model, tag, and channel operations.
+ * OkPorn provider
  * @remarks Model pages are limited to 555 pages. Channel pages are limited to 21 pages.
+ * @notes This provider can be used with both `ok.porn` and `ok.xxx` domains.
+ * @provides album, video, model, tag, and channel operations.
  */
 export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	protected readonly provider = ProviderType.OkPorn;
-	private readonly ALBUMS_URL = 'https://ok.porn/albums/';
-	private readonly VIDEOS_URL = 'https://ok.porn/video/';
-	private readonly MODELS_URL = 'https://ok.porn/models/';
-	private readonly TAGS_URL = 'https://ok.porn/tags/';
-	private readonly CHANNELS_URL = 'https://ok.porn/channels/';
+	private readonly BASE_URLS = {
+		PORN: 'https://ok.porn',
+		XXX: 'https://ok.xxx'
+	};
 	private readonly MODEL_VIDEO_PAGE_LIMIT = 555;
 	private readonly CHANNEL_PAGE_LIMIT = 21;
-	private readonly Default_PAGE_RANGE: PageRange = { page: 1, limit: 1 };
-	private readonly Default_INDEX_RANGE: IndexRange = { start: 1, end: 1 };
+	private readonly DEFAULT_PAGE_RANGE: PageRange = { page: 1, limit: 1 };
+	private readonly DEFAULT_INDEX_RANGE: IndexRange = { start: 1, end: 1 };
+	private readonly PROVIDER_REGEX =
+		/^https:\/\/(?:www\.)?ok\.(?:porn|xxx)\/(albums|video|videos|tags|channels|models)\/?([a-zA-Z0-9]+)?\/?$/i;
+	private readonly urlMatch: RegExpMatchArray | null = this.url.match(this.PROVIDER_REGEX);
 
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.OkPorn,
-			urlPattern: /^(?:www\.)?ok\.porn$/i
+			urlPattern: /^(?:www\.)?ok\.(?:porn|xxx)$/i
 		});
+	}
+
+	get baseUrl(): string {
+		return this.url.includes('porn') ? this.BASE_URLS.PORN : this.BASE_URLS.XXX;
+	}
+
+	get albumsUrl(): string {
+		if (this.urlMatch?.[1] !== 'albums') throw new GenericException('Invalid URL', this.provider, OkPornMethods.getAlbums);
+
+		return `${this.baseUrl}/albums/`;
+	}
+
+	get albumUrl(): string {
+		const albumId = this.urlMatch?.[2];
+
+		if (!albumId) throw new GenericException('Album id is missing or not found', this.provider, OkPornMethods.getAlbums);
+
+		if (!/^\d+$/i.test(albumId) || this.urlMatch?.[1] !== 'albums') {
+			throw new GenericException('Invalid album url', this.provider, OkPornMethods.getAlbums);
+		}
+
+		return `${this.baseUrl}/${this.urlMatch?.[1]}/${albumId}/`;
+	}
+
+	get videoUrl(): string {
+		const videoId = this.urlMatch?.[2];
+
+		if (!videoId) throw new GenericException('Video id is missing or not found', this.provider, OkPornMethods.getVideo);
+
+		if (!/^\d+$/i.test(videoId) || this.urlMatch?.[1] !== 'video') {
+			throw new GenericException('Invalid video url', this.provider, OkPornMethods.getVideo);
+		}
+
+		return `${this.baseUrl}/${this.urlMatch?.[1]}/${videoId}/`;
+	}
+
+	get videosUrl(): string {
+		if (this.urlMatch?.[1] !== 'videos') throw new GenericException('Invalid URL', this.provider, OkPornMethods.getModels);
+
+		return `${this.baseUrl}/videos/`;
+	}
+
+	get modelUrl(): string {
+		const modelName = this.urlMatch?.[2];
+
+		if (!modelName) throw new GenericException('Model name is missing or not found', this.provider, OkPornMethods.getModels);
+
+		if (this.urlMatch?.[1] !== 'models') throw new GenericException('Invalid model url', this.provider, OkPornMethods.getModels);
+
+		return `${this.baseUrl}/${this.urlMatch?.[1]}/${modelName}/`;
+	}
+
+	get modelsUrl(): string {
+		if (this.urlMatch?.[1] !== 'models') throw new GenericException('Invalid URL', this.provider, OkPornMethods.getModels);
+
+		return `${this.baseUrl}/models/`;
+	}
+
+	get tagsUrl(): string {
+		if (this.urlMatch?.[1] !== 'tags') throw new GenericException('Invalid URL', this.provider, OkPornMethods.getTags);
+
+		return `${this.baseUrl}/tags/`;
+	}
+
+	get channelsUrl(): string {
+		if (this.urlMatch?.[1] !== 'channels') throw new GenericException('Invalid URL', this.provider, OkPornMethods.getChannels);
+
+		return `${this.baseUrl}/channels/`;
 	}
 
 	/**
@@ -43,11 +114,10 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @returns `OkPornAlbumOutput[]` list
 	 * @throws InvalidRangeException When the page range is invalid
 	 * @canDownload true
-	 * @notes The method will fetch the total number of pages for albums and iterate through them based on the specified range to retrieve all relevant metadata and thumbnail URLs.
 	 */
-	public async getAlbums(param: PageRange = this.Default_PAGE_RANGE): Promise<OkPornAlbumOutput[]> {
+	public async getAlbums(param: PageRange = this.DEFAULT_PAGE_RANGE): Promise<OkPornAlbumOutput[]> {
 		return await this.execute<OkPornAlbumOutput[]>({
-			...this.makeTargets(this.ALBUMS_URL, param, this.provider, OkPornMethods.getAlbums),
+			...this.makeTargets(this.albumsUrl, param, this.provider, OkPornMethods.getAlbums),
 			extractionTarget: ExtractionTarget.IMAGES,
 			executionShape: 'multiple'
 		});
@@ -55,17 +125,12 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 
 	/**
 	 * Gets a single album.
-	 * @param id Album identifier
 	 * @returns `OkPornAlbumOutput`
-	 * @remarks The album identifier can be found in the album URL (e.g., https://ok.porn/albums/12345/ has the identifier "12345")
-	 * @throws GenericException When the album ID is not provided
 	 * @canDownload true
-	 * @notes The method will retrieve the album metadata and thumbnail URLs based on the specified album ID.
 	 */
-	public async getAlbum(id: string): Promise<OkPornAlbumOutput> {
-		if (!id) throw new GenericException('Album ID is required', this.provider, OkPornMethods.getAlbum);
+	public async getAlbum(): Promise<OkPornAlbumOutput> {
 		return await this.execute<OkPornAlbumOutput>({
-			targets: [`${this.ALBUMS_URL}${id}/`],
+			targets: [this.albumUrl],
 			extractionTarget: ExtractionTarget.IMAGES,
 			method: OkPornMethods.getAlbum,
 			provider: this.provider,
@@ -78,19 +143,17 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @param range Page range
 	 * @param args Model identifier output format
 	 * @returns `OkPornModelOutput[]` list
-	 * @remarks The model video page limit is 555. Exceeding this will throw an InvalidRangeException.
 	 * @throws InvalidRangeException When the range exceeds the model page limit
 	 * @throws GenericException When the model identifier output format is invalid
 	 * @canDownload true
-	 * @notes The method will fetch the total number of pages for models and iterate through them based on the specified range to retrieve all relevant metadata and thumbnail URLs.
 	 */
-	public getModels(range: PageRange = this.Default_PAGE_RANGE, args?: OkPornIdType): Promise<OkPornModelOutput[]> {
+	public getModels(range: PageRange = this.DEFAULT_PAGE_RANGE, args?: OkPornIdType): Promise<OkPornModelOutput[]> {
 		if (range.limit > this.MODEL_VIDEO_PAGE_LIMIT) {
 			throw new InvalidRangeException(range.page, range.limit, this.provider, OkPornMethods.getModels);
 		}
 
 		return this.execute<OkPornModelOutput[]>({
-			...this.makeTargets(this.MODELS_URL, range, this.provider, OkPornMethods.getModels),
+			...this.makeTargets(this.modelsUrl, range, this.provider, OkPornMethods.getModels),
 			extractionTarget: ExtractionTarget.ANCHORS,
 			modelArgs: args,
 			executionShape: 'multiple'
@@ -105,13 +168,10 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @throws InvalidRangeException When the range exceeds the model video page limit
 	 * @throws GenericException When the username is not provided
 	 * @canDownload true
-	 * @notes The method will fetch the total number of pages for the model's videos and iterate through them based on the specified range to retrieve all relevant video identifiers and metadata.
 	 */
-	public async getModelVideoIds(username: string, range: PageRange = this.Default_PAGE_RANGE): Promise<OkPornModelVideoIdsOutput> {
-		if (!username) throw new GenericException('Model username is required', this.provider, OkPornMethods.getModelVideoIds);
-
+	public async getModelVideoIds(range: PageRange = this.DEFAULT_PAGE_RANGE): Promise<OkPornModelVideoIdsOutput> {
 		return await this.execute<OkPornModelVideoIdsOutput>({
-			...this.makeTargets(`${this.MODELS_URL}${username}/`, range, this.provider, OkPornMethods.getModelVideoIds),
+			...this.makeTargets(this.modelUrl, range, this.provider, OkPornMethods.getModelVideoIds),
 			extractionTarget: ExtractionTarget.ANCHORS,
 			executionShape: 'single'
 		});
@@ -120,16 +180,14 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	/**
 	 * Gets tags by filter options.
 	 * @param args Tag filter options
-	 * @returns `OkPornTagOutput[]` list in tag format if path is not specified, otherwise returns tag URLs or tag names based on the specified format
-	 * @remarks The tag page is not paginated and will return all tags matching the filter options. Use with specific filters to limit results.
+	 * @returns `OkPornTagOutput[]` list in tag format if path is not specified,
+	 *          otherwise returns tag URLs or tag names based on the specified format
 	 * @throws GenericException When the tag filter options are invalid
-	 * @remarks This method is not paginated and will return all tags matching the filter options. Use with specific filters to limit results.
 	 * @canDownload false
-	 * @notes The method will retrieve the tag metadata based on the specified filter options.
 	 */
 	public async getTags(args: TagFilterOptions): Promise<OkPornTagOutput[]> {
 		return await this.execute<OkPornTagOutput[]>({
-			targets: [this.TAGS_URL],
+			targets: [this.tagsUrl],
 			extractionTarget: ExtractionTarget.ANCHORS,
 			method: OkPornMethods.getTags,
 			provider: this.provider,
@@ -147,14 +205,13 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @throws InvalidRangeException When the range exceeds the channel page limit
 	 * @throws GenericException When the channel identifier output format is invalid
 	 * @canDownload false
-	 * @notes The method will fetch the total number of pages for channels and iterate through them based on the specified range to retrieve all relevant metadata and thumbnail URLs.
 	 */
-	public async getChannels(range: PageRange = this.Default_PAGE_RANGE, args?: OkPornIdType): Promise<OkPornChannelOutput[]> {
+	public async getChannels(range: PageRange = this.DEFAULT_PAGE_RANGE, args?: OkPornIdType): Promise<OkPornChannelOutput[]> {
 		if (range.limit > this.CHANNEL_PAGE_LIMIT) {
 			throw new InvalidRangeException(range.page, range.limit, this.provider, OkPornMethods.getChannels);
 		}
 		return await this.execute<OkPornChannelOutput[]>({
-			...this.makeTargets(this.CHANNELS_URL, range, this.provider, OkPornMethods.getChannels),
+			...this.makeTargets(this.channelsUrl, range, this.provider, OkPornMethods.getChannels),
 			extractionTarget: ExtractionTarget.ANCHORS,
 			channelArgs: args,
 			executionShape: 'multiple'
@@ -169,9 +226,9 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @throws InvalidRangeException When the index range is invalid
 	 * @canDownload true
 	 */
-	public async getVideos(range: IndexRange = this.Default_INDEX_RANGE, quality?: VideoQuality): Promise<OkPornVideoOutput[]> {
+	public async getVideos(range: IndexRange = this.DEFAULT_INDEX_RANGE, quality?: VideoQuality): Promise<OkPornVideoOutput[]> {
 		return await this.execute<OkPornVideoOutput[]>({
-			...this.makeTargets(this.VIDEOS_URL, range, this.provider, OkPornMethods.getVideos),
+			...this.makeTargets(this.videoUrl, range, this.provider, OkPornMethods.getVideos),
 			extractionTarget: ExtractionTarget.SOURCES,
 			videoArgs: { quality },
 			allowedVideoQuality: quality,
@@ -187,13 +244,10 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @remarks The video identifier can be found in the video URL (e.g., https://ok.porn/video/12345/ has the identifier "12345")
 	 * @throws GenericException When the video ID is not provided
 	 * @canDownload true
-	 * @notes The method will retrieve the video metadata and source URLs based on the specified video ID and quality.
 	 */
-	public async getVideo(id: string, quality?: VideoQuality): Promise<OkPornVideoOutput> {
-		if (!id) throw new GenericException('Video ID is required', this.provider, OkPornMethods.getVideo);
-
+	public async getVideo(quality?: VideoQuality): Promise<OkPornVideoOutput> {
 		return await this.execute<OkPornVideoOutput>({
-			targets: [`${this.VIDEOS_URL}${id}/`],
+			targets: [this.videoUrl],
 			extractionTarget: ExtractionTarget.SOURCES,
 			method: OkPornMethods.getVideo,
 			provider: this.provider,

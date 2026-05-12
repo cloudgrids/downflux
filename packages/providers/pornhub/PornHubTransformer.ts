@@ -63,7 +63,7 @@ export class PornHubTransformer extends BaseTransformer<
 
 			const metadata = (await super.transform(url, chunkRequest)) as DefaultExecutionResult<Partial<PornHubOutput>>;
 
-			videos.push({ ...this.toVideoOutput(chunkRequest, metadata), user: request.videosArgs?.username as string });
+			videos.push({ ...this.toVideoOutput(chunkRequest, metadata), user: request?.username as string });
 		}
 
 		return videos.filter((v) => Boolean(v?.videoMetadata?.videoUrl));
@@ -76,7 +76,7 @@ export class PornHubTransformer extends BaseTransformer<
 
 		return {
 			videoUrls,
-			username: request.videosArgs?.username as string,
+			username: request?.username ?? 'unknown',
 			currentPage: pornHubFields?.currentPage ?? '1',
 			fetchedVideos: videoUrls?.length?.toString() ?? '0'
 		};

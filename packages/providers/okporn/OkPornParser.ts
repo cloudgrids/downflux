@@ -12,12 +12,13 @@ export class OkPornParser extends BaseParser {
 				title: this.decodeHtmlEntities(this.extractTitle(html)),
 				customFields: {
 					modelName: this.extractCustomTitle(html).split('/').filter(Boolean).pop()?.trim() || 'unknown',
-					starredModels: this.extractStarredModels(html).map((m) => m.name) ?? [],
+					starredModels: this.extractStarredModels(html, sourceUrl).map((m) => m.name) ?? [],
 					videoAlbumId: this.extractAttributes(html, 'a', 'href')
 						.find((h) => /\/albums\/\d+\//.test(h))
 						?.match(/\/albums\/(\d+)\//)?.[1],
 					videoCreatedAt: this.extractSpans(html, 'date')[0],
-					starredBy: this.extractAnchorTextsByHref(html, /^(?:https?:\/\/(?:www\.)?ok\.porn)?\/models\/[^/?#]+\/?$/i) ?? [],
+					starredBy:
+						this.extractAnchorTextsByHref(html, /^(?:https?:\/\/(?:www\.)?ok\.(?:porn|xxx))?\/models\/[^/?#]+\/?$/i) ?? [],
 					videoPoster: this.extractVideoPosters(html)[0],
 					videoCards: this.extractVideoCards(html) ?? []
 				},
@@ -64,6 +65,8 @@ export class OkPornParser extends BaseParser {
 	}
 
 	public extractStarredModels(html: string, sourceUrl?: string) {
+		const origin = sourceUrl ? new URL(sourceUrl).origin : 'https://ok.porn';
+
 		return (
 			this.collectByClassNames(html, 'item', {
 				attributes: ['href', 'title'],
@@ -71,7 +74,7 @@ export class OkPornParser extends BaseParser {
 			})
 				.map((item) => ({
 					name: item.attributes?.title || item.text,
-					url: `https://ok.porn${item.attributes?.href ?? ''}`
+					url: `${origin}/${item.attributes?.href ?? ''}`
 				}))
 				.filter((m) => m.name && m.url) ?? []
 		);

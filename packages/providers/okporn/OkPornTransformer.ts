@@ -25,8 +25,6 @@ export class OkPornTransformer extends BaseTransformer<
 	| OkPornModelVideoIdsOutput
 	| DefaultExecutionResult
 > {
-	private readonly ALBUMS_URL = 'https://ok.porn/albums/';
-
 	public override async transform(
 		url: string,
 		request: OkPornExecArgs
@@ -77,7 +75,9 @@ export class OkPornTransformer extends BaseTransformer<
 	): Promise<OkPornAlbumOutput> {
 		const videoAlbumId = metadata.customFields?.videoAlbumId;
 
-		const albumUrl = `${this.ALBUMS_URL}${videoAlbumId}/`;
+		const origin = new URL(request.entryUrl).origin;
+
+		const albumUrl = `${origin}/albums/${videoAlbumId}/`;
 		const albumRequest = {
 			...request,
 			entryUrl: albumUrl,

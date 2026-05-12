@@ -1,14 +1,7 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, PageRange, ProviderType, UrlFormat } from '@types';
-import {
-	PornHubChannelsOutput,
-	PornHubExecArgs,
-	PornHubVideoExecArgs,
-	PornHubVideoOutput,
-	PornHubVideosExecArgs,
-	PornHubVideosOutput
-} from './PornHubContracts';
+import { ExtractionTarget, PageRange, ProviderType, UrlFormat, VideoQuality } from '@types';
+import { PornHubChannelsOutput, PornHubExecArgs, PornHubVideoOutput, PornHubVideosExecArgs, PornHubVideosOutput } from './PornHubContracts';
 import { PornHubChannelsQueryArgsType, PornHubMethods, PornHubVideosFormat } from './PornHubTypes';
 
 /**
@@ -88,9 +81,9 @@ export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 	 * @throws `GenericException` When the view key is missing or invalid
 	 * @canDownload true
 	 */
-	public async getVideo(args: PornHubVideoExecArgs = {}): Promise<PornHubVideoOutput> {
+	public async getVideo(quality?: VideoQuality): Promise<PornHubVideoOutput> {
 		const urlObj = new URL(this.url);
-		const viewKey = args.viewKey || urlObj.searchParams.get('viewkey');
+		const viewKey = urlObj.searchParams.get('viewkey');
 
 		if (!viewKey) throw new GenericException('View key not found', this.provider, PornHubMethods.getVideo);
 
@@ -99,9 +92,8 @@ export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 			method: PornHubMethods.getVideo,
 			provider: this.provider,
 			extractionTarget: ExtractionTarget.SOURCES,
-			allowedVideoQuality: args.quality,
-			executionShape: 'single',
-			videoArgs: { viewKey, quality: args.quality }
+			allowedVideoQuality: quality,
+			executionShape: 'single'
 		});
 	}
 
@@ -119,7 +111,7 @@ export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 		const url = new URL(this.url);
 		const pathParts = url.pathname.split('/').filter(Boolean);
 
-		const username = args.username || pathParts[1];
+		const username = pathParts[1];
 		const currentPage = Number(url.searchParams.get('page') ?? 1);
 
 		if (!username) throw new GenericException('Username is required', this.provider, PornHubMethods.getVideos);
@@ -142,7 +134,8 @@ export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 			),
 			executionShape: 'multiple',
 			extractionTarget: ExtractionTarget.ANCHORS,
-			videosArgs: { ...args, username, type }
+			videosArgs: { ...args, type },
+			username
 		});
 	}
 
