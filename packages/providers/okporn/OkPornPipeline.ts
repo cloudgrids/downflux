@@ -1,7 +1,7 @@
 import { BasePipeline } from '@base';
 import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
 import { inferVideoQuality } from '@shared';
-import { MediaType, VideoQuality } from '@types';
+import { MediaType } from '@types';
 import { OkPornExecArgs, OkPornOutput } from './OkPornContracts';
 
 export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
@@ -79,7 +79,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 
 		if (metadata.videoSources?.length) {
 			this.filterByQuality(metadata.videoSources.filter(Boolean), {
-				allowedQualities: request.videoArgs?.quality ? ([request.videoArgs?.quality] as VideoQuality[]) : [],
+				allowedQuality: request.videoArgs?.quality,
 				getQuality: (source) => source.quality
 			}).forEach(({ url }) => urls.add({ mediaType: MediaType.VIDEOS, url }));
 		}
@@ -101,7 +101,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 					id: u.videoId
 				})),
 				{
-					allowedQualities: request.videoArgs?.quality ? ([request.videoArgs?.quality] as VideoQuality[]) : [],
+					allowedQuality: request.videoArgs?.quality,
 					getQuality: (source) => source.quality
 				}
 			).forEach((item) => urls.add({ mediaType: item.mediaType, url: item.url, id: item.id }));

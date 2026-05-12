@@ -66,7 +66,7 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 
 		if (metadata.thumbnails?.length) {
 			this.filterByQuality(metadata.thumbnails, {
-				allowedQualities: request.thumbQualities as WallHavenThumbnailQuality[],
+				allowedQuality: request.thumbQuality as WallHavenThumbnailQuality,
 				getQuality: (thumb) => thumb.quality
 			}).forEach((thumb) =>
 				urls.add({
@@ -81,7 +81,7 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 		if (metadata.wallPapers?.length) {
 			metadata.wallPapers.forEach((wp) => {
 				this.filterByQuality(wp.thumbnails, {
-					allowedQualities: request.thumbQualities as WallHavenThumbnailQuality[],
+					allowedQuality: request.thumbQuality as WallHavenThumbnailQuality,
 					getQuality: (wallpaper) => wallpaper.quality
 				}).forEach((thumb) =>
 					urls.add({
@@ -97,7 +97,7 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 		if (collections?.length) {
 			collections.forEach((collection) => {
 				this.filterByQuality(collection.thumbnails, {
-					allowedQualities: request.thumbQualities as WallHavenThumbnailQuality[],
+					allowedQuality: request.thumbQuality as WallHavenThumbnailQuality,
 					getQuality: (thumb) => thumb.quality
 				}).forEach((thumb) =>
 					urls.add({

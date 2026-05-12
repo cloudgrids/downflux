@@ -75,30 +75,14 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExecutio
 	protected filterByQuality<T, TEnum = string | number>(
 		items: T[],
 		options: {
-			allowedQualities?: TEnum[] | TEnum | string | undefined;
-			getQuality: (item: T) => TEnum | undefined;
+			allowedQuality?: TEnum;
+			getQuality: (item: T) => TEnum;
 		}
 	): T[] {
-		const { allowedQualities, getQuality } = options;
+		const { allowedQuality, getQuality } = options;
 
-		if (allowedQualities === undefined || allowedQualities === null) return items;
+		if (!allowedQuality) return items;
 
-		let normalized: TEnum[] = [];
-
-		if (Array.isArray(allowedQualities)) {
-			normalized = allowedQualities as TEnum[];
-		} else if (typeof allowedQualities === 'string') {
-			normalized = [allowedQualities as unknown as TEnum];
-		} else {
-			// single enum/value provided
-			normalized = [allowedQualities as unknown as TEnum];
-		}
-
-		if (!normalized.length) return items;
-
-		return items.filter((item) => {
-			const quality = getQuality(item);
-			return quality !== undefined && normalized.includes(quality as TEnum);
-		});
+		return items.filter((item) => getQuality(item) === allowedQuality);
 	}
 }

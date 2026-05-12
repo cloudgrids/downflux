@@ -1,11 +1,11 @@
-import { HtmlClient } from '@engines/http';
+import { HttpClient } from '@engines/http';
 import { ExecutionArgs } from '@contracts';
 import { ProgressManager } from '@core/progress';
 import { ProviderType } from '@types';
 import { BaseTransformer } from '@base';
 {{imports}}
 
-type TransformerCtor = new (html: HtmlClient, progress: ProgressManager) => BaseTransformer<any, any>;
+type TransformerCtor = new (html: HttpClient, progress: ProgressManager) => BaseTransformer<any, any>;
 
 export class TransformerRegistry {
 	private readonly transformers: Record<ProviderType, TransformerCtor> = {
@@ -13,7 +13,7 @@ export class TransformerRegistry {
 	};
 
 	constructor(
-		private readonly htmlClient: HtmlClient,
+		private readonly httpClient: HttpClient,
 		private readonly progressManager: ProgressManager
 	) {}
 
@@ -23,7 +23,7 @@ export class TransformerRegistry {
 
 		const TransformerClass = this.transformers[provider] ?? this.transformers[ProviderType.Default];
 
-		const transformer = new TransformerClass(this.htmlClient, this.progressManager);
+		const transformer = new TransformerClass(this.httpClient, this.progressManager);
 
 		return (await transformer.transform(url, request)) as TResult;
 	}

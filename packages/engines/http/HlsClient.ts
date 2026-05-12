@@ -4,14 +4,17 @@ import { VideoQuality } from '@types';
 import { createDecipheriv } from 'crypto';
 import { once } from 'events';
 import { Readable, Writable } from 'stream';
+import { BaseHttpClient } from './BaseHttpClient';
 
 export interface ParseKey {
 	url: string;
 	iv?: Buffer;
 }
 
-export class HlsClient {
-	constructor(private readonly progressManager: ProgressManager) {}
+export class HlsClient extends BaseHttpClient {
+	constructor(progressManager: ProgressManager) {
+		super(progressManager);
+	}
 
 	public async fetchHlsStream(
 		manifest: string,
@@ -280,9 +283,5 @@ export class HlsClient {
 	private async fetchKey(url: string): Promise<Buffer<ArrayBuffer>> {
 		const res = await fetch(url);
 		return Buffer.from(await res.arrayBuffer());
-	}
-
-	private async fetchText(url: string, timeoutMs: number, headers: Record<string, any>): Promise<string> {
-		return (await fetch(url, { signal: AbortSignal.timeout(timeoutMs), headers })).text();
 	}
 }

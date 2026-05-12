@@ -1,3 +1,4 @@
+import { DownloadOptions } from '@contracts';
 import { ProgressManager } from '@core/progress';
 import { HEADER_PRESETS } from '@shared';
 import { Agent, Headers, fetch as UFetch } from 'undici';
@@ -162,6 +163,31 @@ export abstract class BaseHttpClient {
 
 			this.progressManager.update({ message: 'Primary transport failed, retrying with default transport' });
 			return UFetch(url, init);
+		}
+	}
+
+	public async fetchText(url: string, timeoutMs: number, headers: Record<string, any>): Promise<string> {
+		return (await fetch(url, { signal: AbortSignal.timeout(timeoutMs), headers })).text();
+	}
+
+	public async fetchJson(url: string, opts: DownloadOptions) {
+		const headers = this.addOriginWithHeader(
+			this.randomHeaders({ ...opts.headers, Referer: opts?.referer ?? url }),
+			opts?.referer ?? url
+		);
+
+		try {
+			const data = await fetch(url, {
+				method: 'GET',
+				signal: AbortSignal.timeout(opts?.timeoutMs ?? 30_0000),
+				headers
+			});
+
+			return data.json();
+		} catch (error) {
+			if (this.isTransportError(error)) this.progressManager.update({ message: 'Transport error occurred' });
+
+			throw new Error('JSON parsing failed', { cause: error });
 		}
 	}
 }

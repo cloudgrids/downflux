@@ -8,7 +8,7 @@ import { WallHavenThumbnailQuality } from './WallHavenTypes';
  */
 export interface WallHavenExecArgs extends ExecutionArgs {
 	/** Allowed thumbnail qualities */
-	thumbQualities?: WallHavenThumbnailQuality[];
+	thumbQuality?: WallHavenThumbnailQuality;
 
 	/** User upload execution arguments */
 	userArgs?: WallHavenUserExecArgs;

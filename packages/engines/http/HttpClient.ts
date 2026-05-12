@@ -4,7 +4,7 @@ import { StrategyRegistry } from '@core/registries';
 import { ProviderType } from '@types';
 import { BaseHttpClient } from './BaseHttpClient';
 
-export class HtmlClient extends BaseHttpClient {
+export class HttpClient extends BaseHttpClient {
 	constructor(progressManager: ProgressManager) {
 		super(progressManager);
 	}

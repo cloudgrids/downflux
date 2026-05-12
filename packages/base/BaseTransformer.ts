@@ -1,17 +1,17 @@
 import { DefaultExecutionResult, DownloadOptions, ExecutionArgs } from '@contracts';
 import { ProgressManager } from '@core/progress';
 import { ParserRegistry } from '@core/registries';
-import { HtmlClient } from '@engine/http';
+import { HttpClient } from '@engine/http';
 import { ProviderType } from '@types';
 
 export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExecutionResult> {
 	constructor(
-		protected readonly htmlClient: HtmlClient,
+		protected readonly httpClient: HttpClient,
 		protected readonly progressManager: ProgressManager
 	) {}
 
 	public async transform(url: string, request?: TExec): Promise<TResult> {
-		const fetched = await this.htmlClient.fetchHtml(url, request as DownloadOptions);
+		const fetched = await this.httpClient.fetchHtml(url, request as DownloadOptions);
 
 		const base = (await ParserRegistry.getParser(ProviderType.Default)).transform(fetched.html, fetched.finalUrl);
 
@@ -24,5 +24,9 @@ export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExecu
 		}
 
 		return base as TResult;
+	}
+
+	public async requestData(url: string, opts: DownloadOptions) {
+		return await this.httpClient.fetchJson(url, opts);
 	}
 }
