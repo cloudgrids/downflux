@@ -1,8 +1,10 @@
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
+import { KvsResolver } from '@shared';
 import { ProviderType } from '@types';
 
 export class BaseParser {
+	protected kvsResolver = new KvsResolver();
 	public transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult> {
 		try {
 			return {

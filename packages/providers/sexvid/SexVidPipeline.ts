@@ -29,23 +29,44 @@ export class SexVidPipeline extends BasePipeline<SexVidExecArgs, SexVidOutput> {
 	}
 
 	protected override buildIdentifier(ctx: IdentifierContext<SexVidOutput>): string {
-		const { mediaType, id } = ctx;
+		const { mediaType, id, metadata } = ctx;
 		const prefix = 'SexVid';
 		let mediaSegment: string;
 
 		switch (mediaType) {
 			case MediaType.VIDEOS:
-				mediaSegment = `${MediaType.VIDEOS}/${id}`;
+				mediaSegment = `${MediaType.VIDEOS}`;
+				break;
+			case MediaType.VIDEO_POSTER:
+				mediaSegment = `${MediaType.VIDEOS}/${mediaType}`;
 				break;
 			default:
 				mediaSegment = `${mediaType}/${id}`;
 		}
 
-		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer('// implementation needs here'), mediaSegment);
+		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.title ?? id), mediaSegment);
 	}
 
 	protected override extract(request: SexVidExecArgs, metadata: SexVidOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
+
+		if (metadata?.videos?.length) {
+			metadata.videos.forEach((v) => {
+				urls.add({
+					id: metadata.title,
+					url: v.url,
+					mediaType: MediaType.VIDEOS
+				});
+			});
+		}
+
+		if (metadata?.poster) {
+			urls.add({
+				id: metadata.title,
+				url: metadata.poster,
+				mediaType: MediaType.VIDEO_POSTER
+			});
+		}
 
 		return Array.from(urls);
 	}
