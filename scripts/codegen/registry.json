@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "Beeg",
-      "parser": false,
+      "parser": true,
       "pipeline": true,
       "transformer": true,
       "strategy": false,
@@ -94,6 +94,14 @@
       "pipeline": true,
       "transformer": true,
       "strategy": false,
+      "method": true
+    },
+    {
+      "name": "XGroovy",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
       "method": true
     },
     {
