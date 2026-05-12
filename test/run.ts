@@ -1,4 +1,4 @@
-import { OkPornProvider, OutputType } from 'packages';
+import { BeegProvider, OutputType, VideoQuality } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -13,10 +13,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new OkPornProvider('https://ok.xxx/video/673559/')
-			.setJobOptions({ logProgress: true })
+		await new BeegProvider('https://beeg.com/-0777761605151844')
+			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q720 })
 			.setTransformOutput(true)
-			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);

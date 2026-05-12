@@ -1,6 +1,14 @@
 {
   "services": [
     {
+      "name": "Beeg",
+      "parser": false,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "Coomer",
       "parser": false,
       "pipeline": false,

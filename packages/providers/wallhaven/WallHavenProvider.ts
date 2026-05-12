@@ -34,13 +34,13 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 	/**
 	 * Gets a single wallpaper.
 	 * @param id WallHaven wallpaper identifier
-	 * @param thumbQualities Thumbnail qualities to include in the response (defaults to all qualities)
+	 * @param thumbQuality Thumbnail qualities to include in the response (defaults to all qualities)
 	 * @returns `WallHavenWallPaperOutput` Wallpaper metadata and thumbnails
 	 * @throws `GenericException` When the ID is missing
 	 * @notes This method downloads the found urls and returns the metadata and thumbnail URLs without downloading the full wallpaper image.
 	 * @canDownload true
 	 */
-	public async getWallPaper(id: string, thumbQualities?: WallHavenThumbnailQuality[]): Promise<WallHavenWallPaperOutput> {
+	public async getWallPaper(id: string, thumbQuality?: WallHavenThumbnailQuality): Promise<WallHavenWallPaperOutput> {
 		if (!id) throw new GenericException('Wallpaper ID is required', this.provider, WallHavenMethods.getWallPaper);
 
 		return await this.execute<WallHavenWallPaperOutput>({
@@ -48,7 +48,7 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 			method: WallHavenMethods.getWallPaper,
 			provider: this.provider,
 			extractionTarget: ExtractionTarget.IMAGES,
-			thumbQualities,
+			thumbQuality,
 			executionShape: 'single'
 		});
 	}

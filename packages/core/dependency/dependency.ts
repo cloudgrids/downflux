@@ -3,7 +3,7 @@ import { ExecutionCoordinator, TaskCoordinator, TransferCoordinator } from '@cor
 import { ProgressManager } from '@core/progress';
 import { PipelineRegistry, StrategyRegistry, TransformerRegistry } from '@core/registries';
 import { CliManager } from '@core/ui';
-import { HlsClient, HtmlClient, StreamHttpClient } from '@engine/http';
+import { HlsClient, HttpClient, StreamHttpClient } from '@engine/http';
 import { FFmpegEngine, FileManager } from '@storage';
 
 /**
@@ -20,13 +20,13 @@ export function createDefaultDependencies(): CoordinatorDependencies {
 
 	const strategyRegistry = new StrategyRegistry(progressManager);
 
-	const htmlClient = new HtmlClient(progressManager);
+	const httpClient = new HttpClient(progressManager);
 	const hlsClient = new HlsClient(progressManager);
 	const streamHttpClient = new StreamHttpClient(hlsClient, strategyRegistry, progressManager);
 
 	const pipelineRegistry = new PipelineRegistry(fileManager);
 
-	const transformerRegistry = new TransformerRegistry(htmlClient, progressManager);
+	const transformerRegistry = new TransformerRegistry(httpClient, progressManager);
 
 	const transferCoordinator = new TransferCoordinator(fileManager, streamHttpClient, progressManager);
 
@@ -34,7 +34,7 @@ export function createDefaultDependencies(): CoordinatorDependencies {
 	const executionCoordinator = new ExecutionCoordinator(transformerRegistry, taskCoordinator, progressManager, pipelineRegistry);
 
 	return {
-		htmlClient,
+		httpClient,
 		streamHttpClient,
 		transformerRegistry,
 		transferCoordinator,

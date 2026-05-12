@@ -1,12 +1,12 @@
 import { ExecutionCoordinator, TransferCoordinator } from '@core/coordinators';
 import { ProgressManager } from '@core/progress';
 import { StrategyRegistry, TransformerRegistry } from '@core/registries';
-import { HtmlClient, StreamHttpClient } from '@engine/http';
+import { HttpClient, StreamHttpClient } from '@engine/http';
 import { ProviderType } from '@types';
 import { CliManager } from 'packages/core';
 
 export interface CoordinatorDependencies {
-	htmlClient: HtmlClient;
+	httpClient: HttpClient;
 	streamHttpClient: StreamHttpClient;
 	transformerRegistry: TransformerRegistry;
 	transferCoordinator: TransferCoordinator;

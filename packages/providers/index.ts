@@ -1,3 +1,4 @@
+export * from './beeg';
 export * from './coomer';
 export * from './default';
 export * from './hqporn';
