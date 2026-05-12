@@ -1,4 +1,4 @@
-import { OutputType, PornHubProvider } from 'packages';
+import { OutputType, SexVidProvider } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -13,7 +13,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new PornHubProvider('https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca')
+		await new SexVidProvider('https://www.sexvid.xxx/kelsey-jones-having-intense-hardcore-with-some-very-gifted-hunk.html')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
