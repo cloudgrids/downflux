@@ -8,6 +8,7 @@ export * from './pornhub';
 export * from './pornone';
 export * from './pornsok';
 export * from './sexvid';
+export * from './superporn';
 export * from './tnaflix';
 export * from './wallhaven';
 export * from './xgroovy';

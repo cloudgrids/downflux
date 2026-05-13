@@ -5,15 +5,19 @@ Typescript Library for downloading and extracting sites metadata
 ## Currently supported Services
 
 - **Default** - Generic URL extraction fallback
+- **Beeg** - Video
 - **HqPorn** - Video
-- **OkPorn** - Albums, videos, models, tags, channels
+- **OkPorn** - Albums, videos, models, tags, channels works for Ok.xxx too
 - **Porn300** - Video
-- **PornHub** - Videos, channels, models, video
+- **PornHub** - Video, channels, models, video
+- **PornOne** - Video
 - **PornsOk** - Video
+- **SexVid** - Video
+- **SuperPorn** - Video
 - **TnAFlix** - Video
 - **WallHaven** - Albums, uploads, wallpapers, wallpaper
+- **XGroovy** - Video
 - **XHamster** - Video
-- **XVideos** - Video
 - **XnXX** - Video
 - **XVideos** - Video
 

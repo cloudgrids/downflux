@@ -76,6 +76,8 @@
 
 			"@provider/sexvid": ["packages/providers/sexvid/index.ts"],
 
+			"@provider/superporn": ["packages/providers/superporn/index.ts"],
+
 			"@provider/tnaflix": ["packages/providers/tnaflix/index.ts"],
 
 			"@provider/wallhaven": ["packages/providers/wallhaven/index.ts"],

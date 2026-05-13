@@ -30,6 +30,7 @@ const transformerFactories: Record<ProviderType, TransformerFactory> = {
 	[ProviderType.PornOne]: () => loadTransformer(() => import('@provider/pornone'), 'PornOneTransformer'),
 	[ProviderType.PornsOk]: () => loadTransformer(() => import('@provider/pornsok'), 'PornsOkTransformer'),
 	[ProviderType.SexVid]: () => loadTransformer(() => import('@provider/sexvid'), 'SexVidTransformer'),
+	[ProviderType.SuperPorn]: () => loadTransformer(() => import('@provider/superporn'), 'SuperPornTransformer'),
 	[ProviderType.TnAFlix]: () => loadTransformer(() => import('@provider/tnaflix'), 'TnAFlixTransformer'),
 	[ProviderType.WallHaven]: () => loadTransformer(() => import('@provider/wallhaven'), 'WallHavenTransformer'),
 	[ProviderType.XGroovy]: () => loadTransformer(() => import('@provider/xgroovy'), 'XGroovyTransformer'),

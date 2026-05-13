@@ -2,7 +2,7 @@ import { DownloadOptions, HLSStreamRequest, PipelineItem } from '@contracts';
 import { DownloadException, NotFoundException } from '@core/exceptions';
 import { ProgressManager } from '@core/progress';
 import { StrategyRegistry } from '@core/registries';
-import { Readable, Writable } from 'stream';
+import { Readable, Transform, Writable } from 'stream';
 import { pipeline } from 'stream/promises';
 import { Response as UResponse } from 'undici';
 import { BaseHttpClient } from './BaseHttpClient';
@@ -168,22 +168,36 @@ export class StreamHttpClient extends BaseHttpClient {
 		const readable = Readable.fromWeb(res.body as any);
 
 		const size = Number(res.headers.get('content-length') || 0);
-		let downloaded = 0;
-		let lastEmit = 0;
 
-		readable.on('data', (chunk: Buffer) => {
-			downloaded += chunk.length;
+		let downloadedBytes = 0;
+		let lastEmit = Date.now();
 
-			const now = Date.now();
-			if (now - lastEmit > 2000) {
-				lastEmit = now;
+		const progressManager = this.progressManager;
 
-				this.progressManager.update({ downloadedBytes: downloaded, totalBytes: size });
+		const progress = new Transform({
+			transform(chunk: Buffer, _, cb) {
+				downloadedBytes += chunk.length;
+
+				const now = Date.now();
+
+				if (now - lastEmit > 2000) {
+					lastEmit = now;
+
+					progressManager.update({
+						downloadedBytes,
+						totalBytes: size
+					});
+				}
+
+				cb(null, chunk);
 			}
 		});
 
-		await pipeline(readable, stream);
+		await pipeline(readable, progress, stream);
 
-		this.progressManager.update({ status: 'COMPLETED', downloadedBytes: downloaded });
+		progressManager.update({
+			status: 'COMPLETED',
+			downloadedBytes
+		});
 	}
 }
