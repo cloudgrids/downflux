@@ -34,6 +34,8 @@ export class HttpClient extends BaseHttpClient {
 					body
 				} = await this.fetchWithTransportFallback(candidateUrl, {
 					headers,
+					body: opts.formData ? new URLSearchParams(opts.formData).toString() : undefined,
+					method: opts.formData ? 'POST' : 'GET',
 					redirect: 'follow',
 					signal: AbortSignal.timeout(timeoutMs)
 				});

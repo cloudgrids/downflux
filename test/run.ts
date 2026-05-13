@@ -1,4 +1,4 @@
-import { OutputType, TheyAreHugeProvider, VideoQuality } from 'packages';
+import { OutputType, PussySpaceProvider, VideoQuality } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -14,10 +14,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new TheyAreHugeProvider('https://www.theyarehuge.com/v/jenaveve-jolie-with-big-tits-handjob-closeup.big-boobs')
+		await new PussySpaceProvider('https://www.pussyspace.com/vid-6055999-naughty-babe-eva-nyx-gets-fucked-by-monster-dick/')
 			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q1080 })
 			.setTransformOutput(true)
-			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);

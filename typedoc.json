@@ -1,13 +1,13 @@
 {
-	"entryPoints": ["src"],
+	"entryPoints": ["packages"],
 	"tsconfig": "tsconfig.json",
-	"exclude": ["**/*.test.ts", "tests"],
+	"include": ["packages/**/*", "test/**/*"],
+	"exclude": ["node_modules", "dist", "scripts"],
 	"excludePrivate": true,
 	"excludeProtected": false,
 	"excludeInternal": true,
 	"readme": "none",
 	"categorizeByGroup": true,
-	"categoryOrder": ["downloaders", "fetcher", "pipelines", "services", "transformers", "parser", "util"],
 	"sort": ["source-order"],
 	"out": "docs"
 }

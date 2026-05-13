@@ -78,6 +78,9 @@ export interface HttpFetchOptions {
 
 	/** Request referer URL */
 	referer?: string;
+
+	/** Optional FormData for POST requests */
+	formData?: Record<string, string>;
 }
 
 export interface M3U8Variant {
