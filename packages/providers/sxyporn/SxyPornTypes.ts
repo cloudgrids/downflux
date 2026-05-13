@@ -1,4 +1,3 @@
 export enum SxyPornMethods {
-	getVideo = 'getVideo',
-	getVideos = 'getVideos'
+	getVideo = 'getVideo'
 }

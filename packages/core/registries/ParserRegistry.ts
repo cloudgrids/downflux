@@ -30,6 +30,7 @@ const parserFactories: Record<ProviderType, ParserFactory> = {
 	[ProviderType.SexVid]: () => loadParser(() => import('@provider/sexvid'), 'SexVidParser'),
 	[ProviderType.SuperPorn]: () => loadParser(() => import('@provider/superporn'), 'SuperPornParser'),
 	[ProviderType.SxyPorn]: () => loadParser(() => import('@provider/sxyporn'), 'SxyPornParser'),
+	[ProviderType.TheyAreHuge]: () => loadParser(() => import('@provider/theyarehuge'), 'TheyAreHugeParser'),
 	[ProviderType.TnAFlix]: () => loadParser(() => import('@provider/tnaflix'), 'TnAFlixParser'),
 	[ProviderType.WallHaven]: () => loadParser(() => import('@provider/wallhaven'), 'WallHavenParser'),
 	[ProviderType.XGroovy]: () => loadParser(() => import('@provider/xgroovy'), 'XGroovyParser'),

@@ -1,4 +1,4 @@
-import { OutputType, PerfectGirlsProvider, VideoQuality } from 'packages';
+import { OutputType, TheyAreHugeProvider, VideoQuality } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -14,7 +14,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new PerfectGirlsProvider('https://www.perfectgirls.xxx/video/739311/')
+		await new TheyAreHugeProvider('https://www.theyarehuge.com/v/jenaveve-jolie-with-big-tits-handjob-closeup.big-boobs')
 			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q1080 })
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
