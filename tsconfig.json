@@ -72,6 +72,8 @@
 
 			"@provider/porn300": ["packages/providers/porn300/index.ts"],
 
+			"@provider/porndoe": ["packages/providers/porndoe/index.ts"],
+
 			"@provider/pornhub": ["packages/providers/pornhub/index.ts"],
 
 			"@provider/pornone": ["packages/providers/pornone/index.ts"],

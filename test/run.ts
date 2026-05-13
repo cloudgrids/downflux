@@ -1,4 +1,4 @@
-import { CumLouderProvider, OutputType, VideoQuality } from 'packages';
+import { OutputType, PornDoeProvider, VideoQuality } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -15,10 +15,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new CumLouderProvider('https://www.cumlouder.com/porn-video/marta-lacroft-is-back/')
+		await new PornDoeProvider('https://porndoe.com/watch/pd7l5f7f6n2c')
 			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q1080 })
 			.setTransformOutput(true)
-			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);

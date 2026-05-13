@@ -172,25 +172,35 @@ export abstract class BaseHttpClient {
 
 	public async fetchJson(url: string, opts: DownloadOptions) {
 		const headers = this.addOriginWithHeader(
-			this.randomHeaders({ ...opts.headers, Referer: opts?.referer ?? url }),
+			this.randomHeaders({
+				Referer: opts?.referer ?? url,
+				...opts.headers
+			}),
 			opts?.referer ?? url
 		);
 
 		try {
-			const data = await fetch(url, {
+			const { headers: resHeaders, body } = await this.fetchWithTransportFallback(url, {
 				method: 'GET',
-				signal: AbortSignal.timeout(opts?.timeoutMs ?? 30_0000),
+				signal: AbortSignal.timeout(opts?.timeoutMs ?? 30_000),
 				headers
 			});
 
-			return data.json();
+			const buffer = this.decodeBody(await this.readBody(body as ReadableStream<Uint8Array>), resHeaders);
+
+			return JSON.parse(buffer.toString('utf8'));
 		} catch (error) {
 			const transportError = this.isTransportError(error);
+
 			if (transportError) {
-				this.progressManager.update({ message: `Transport error occurred: ${transportError}` });
+				this.progressManager.update({
+					message: `Transport error occurred: ${transportError}`
+				});
 			}
 
-			throw new Error('JSON parsing failed', { cause: error });
+			throw new Error('JSON parsing failed', {
+				cause: error
+			});
 		}
 	}
 }
