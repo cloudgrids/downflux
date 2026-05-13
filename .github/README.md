@@ -2,24 +2,29 @@
 
 Typescript Library for downloading and extracting sites metadata
 
-## Currently supported Services
+## Currently Supported Services
 
-- **Default** - Generic URL extraction fallback
-- **Beeg** - Video
-- **HqPorn** - Video
-- **OkPorn** - Albums, videos, models, tags, channels works for Ok.xxx too
-- **Porn300** - Video
-- **PornHub** - Video, channels, models, video
-- **PornOne** - Video
-- **PornsOk** - Video
-- **SexVid** - Video
-- **SuperPorn** - Video
-- **TnAFlix** - Video
-- **WallHaven** - Albums, uploads, wallpapers, wallpaper
-- **XGroovy** - Video
-- **XHamster** - Video
-- **XnXX** - Video
-- **XVideos** - Video
+| Provider         | Site URLs                    | Methods                                                                                                     | Returns                |
+| :--------------- | :--------------------------- | :---------------------------------------------------------------------------------------------------------- | :--------------------- |
+| **Default**      | _Any supported URL fallback_ | _Generic URL Extraction_                                                                                    | `ExtractItem`          |
+| **Beeg**         | `beeg.com`                   | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **Coomer**       | `coomer.su`, `coomer.party`  | `getPosts`, `getPost`, `getTags`, `getModels`                                                               | Post / Metadata        |
+| **HqPorn**       | `hqporn.tv`, `hqporn.com`    | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **OkPorn**       | `ok.porn`, `ok.xxx`          | `getAlbums`, `getAlbum`, `getModels`, `getTags`, `getChannels`, `getVideos`, `getVideo`, `getModelVideoIds` | Models, Videos, Albums |
+| **PerfectGirls** | `perfectgirls.net`           | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **Porn300**      | `porn300.com`                | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **PornHub**      | `pornhub.com`                | `getVideo`, `getModel`, `getChannels`, `getTags`, `getVideos`                                               | Video, Channel, Model  |
+| **PornOne**      | `pornone.com`                | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **PornsOk**      | `porns.ok`                   | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **SexVid**       | `sexvid.xxx`                 | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **SuperPorn**    | `superporn.com`              | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **SxyPorn**      | `sxyporn.com`                | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **TnAFlix**      | `tnaflix.com`                | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **WallHaven**    | `wallhaven.cc`               | `getWallPapers`, `getWallPaper`, `getUserUploads`, `getUserFavorites`, `getUserFavoriteCollections`         | Images, Uploads        |
+| **XGroovy**      | `xgroovy.com`                | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **XHamster**     | `xhamster.com`               | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **XnXX**         | `xnxx.com`                   | `getVideo`, `getVideos`                                                                                     | Video                  |
+| **XVideos**      | `xvideos.com`                | `getVideo`, `getVideos`                                                                                     | Video                  |
 
 More incoming...
 
