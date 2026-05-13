@@ -76,6 +76,8 @@
 
 			"@provider/pornsok": ["packages/providers/pornsok/index.ts"],
 
+			"@provider/pussyspace": ["packages/providers/pussyspace/index.ts"],
+
 			"@provider/sexvid": ["packages/providers/sexvid/index.ts"],
 
 			"@provider/superporn": ["packages/providers/superporn/index.ts"],
