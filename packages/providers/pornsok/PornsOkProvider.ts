@@ -7,6 +7,7 @@ import { PornsOkMethods } from './PornsOkTypes';
  * @class PornsOkProvider
  * Provides video operations for PornsOk.
  * @remarks The provider validates URLs to ensure they belong to the PornsOk domain and supports fetching video sources based on specified quality.
+ * @fileoverview Provides direct mp4 links
  */
 export class PornsOkProvider extends BaseProvider<PornsOkExecArgs> {
 	protected readonly provider = ProviderType.PornsOk;

@@ -89,6 +89,14 @@
       "method": true
     },
     {
+      "name": "SxyPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "TnAFlix",
       "parser": true,
       "pipeline": true,

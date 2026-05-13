@@ -10,6 +10,7 @@ import { XHamsterMethods } from './XHamsterTypes';
  * @remarks If you face compatibility issues with the downloaded videos,
  * you can set transcode options to re-encode the video using ffmpeg which should resolve most compatibility issues,
  * also it will be CPU intensive, make sure your OS can handle it
+ * @fileoverview Provides mp4 links
  */
 export class XHamsterProvider extends BaseProvider<XHamsterExecArgs> {
 	protected readonly provider = ProviderType.XHamster;
@@ -30,17 +31,10 @@ export class XHamsterProvider extends BaseProvider<XHamsterExecArgs> {
 	}
 
 	/**
-	 * Fetches video information and sources from the provided xHamster URL.
-	 * @param url The xHamster video URL to fetch information from.
 	 * @returns `XHamsterVideoOutput` containing video metadata and source information.
+	 * @description Fetches video sources from the provided xHamster URL.
 	 * @throws `InvalidUrlException` if the provided URL is not a valid xHamster video URL.
-	 * @notes The method expects the URL to be in the format of a video page on xHamster. If the URL does not match this format, an exception will be thrown.
-	 * The method extracts video information such as title, username, thumbnail URL,
-	 * and available video sources. It returns this information in a structured format defined by `XHamsterVideoOutput`.
 	 * @canDownload true
-	 * @remarks The XHamster provider by default keeps video in `AV1` codec which is not widely supported by all players and devices.
-	 * If you face compatibility issues with the downloaded videos, you can set transcode options to re-encode the video using ffmpeg which should resolve most compatibility issues,
-	 * also it will be CPU intensive, make sure your OS can handle it.
 	 */
 	public async getVideo(): Promise<XHamsterVideoOutput> {
 		if (!this.isVideoPath) throw new InvalidUrlException(this.url, this.provider);

@@ -10,6 +10,7 @@ import { PornHubChannelsQueryArgsType, PornHubMethods, PornHubVideosFormat } fro
  * @notes Due to the dynamic nature of PornHub's webpage and potential anti-scraping measures,
  * The `getVideo` method may not work reliably for all videos or may require frequent updates to the extraction logic.
  * @notes Please report any issues you encounter to help improve the provider.
+ * @fileoverview Provides mp4 links
  */
 export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 	protected readonly provider = ProviderType.PornHub;

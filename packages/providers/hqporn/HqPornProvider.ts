@@ -3,6 +3,12 @@ import { ProviderType, VideoQuality } from '@types';
 import { HqPornExecArgs, HqPornVideoOutput } from './HqPornContracts';
 import { HqPornMethods } from './HqPornTypes';
 
+/**
+ * @class HqPornProvider
+ * @extends BaseProvider
+ * @description Provider for HqPorn video downloader.
+ * @fileoverview Provides mp4 links
+ */
 export class HqPornProvider extends BaseProvider<HqPornExecArgs> {
 	protected readonly provider = ProviderType.HqPorn;
 
