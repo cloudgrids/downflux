@@ -25,6 +25,7 @@ const transformerFactories: Record<ProviderType, TransformerFactory> = {
 	[ProviderType.Default]: async () => BaseTransformer,
 	[ProviderType.HqPorn]: () => loadTransformer(() => import('@provider/hqporn'), 'HqPornTransformer'),
 	[ProviderType.OkPorn]: () => loadTransformer(() => import('@provider/okporn'), 'OkPornTransformer'),
+	[ProviderType.PerfectGirls]: () => loadTransformer(() => import('@provider/perfectgirls'), 'PerfectGirlsTransformer'),
 	[ProviderType.Porn300]: () => loadTransformer(() => import('@provider/porn300'), 'Porn300Transformer'),
 	[ProviderType.PornHub]: () => loadTransformer(() => import('@provider/pornhub'), 'PornHubTransformer'),
 	[ProviderType.PornOne]: () => loadTransformer(() => import('@provider/pornone'), 'PornOneTransformer'),

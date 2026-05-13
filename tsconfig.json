@@ -66,6 +66,8 @@
 
 			"@provider/okporn": ["packages/providers/okporn/index.ts"],
 
+			"@provider/perfectgirls": ["packages/providers/perfectgirls/index.ts"],
+
 			"@provider/porn300": ["packages/providers/porn300/index.ts"],
 
 			"@provider/pornhub": ["packages/providers/pornhub/index.ts"],
