@@ -82,6 +82,8 @@
 
 			"@provider/sxyporn": ["packages/providers/sxyporn/index.ts"],
 
+			"@provider/theyarehuge": ["packages/providers/theyarehuge/index.ts"],
+
 			"@provider/tnaflix": ["packages/providers/tnaflix/index.ts"],
 
 			"@provider/wallhaven": ["packages/providers/wallhaven/index.ts"],

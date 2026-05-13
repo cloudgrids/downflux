@@ -1,4 +1,3 @@
 export enum TnAFlixMethods {
-	getVideo = 'getVideo',
-	getVideos = 'getVideos'
+	getVideo = 'getVideo'
 }

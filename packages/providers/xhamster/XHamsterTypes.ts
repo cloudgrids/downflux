@@ -1,4 +1,3 @@
 export enum XHamsterMethods {
-	getVideo = 'getVideo',
-	getVideos = 'getVideos'
+	getVideo = 'getVideo'
 }

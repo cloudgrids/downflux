@@ -1,4 +1,3 @@
 export enum PornsOkMethods {
-	getVideo = 'getVideo',
-	getVideos = 'getVideos'
+	getVideo = 'getVideo'
 }

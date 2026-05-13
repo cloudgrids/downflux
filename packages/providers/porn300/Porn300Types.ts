@@ -1,4 +1,3 @@
 export enum Porn300Methods {
-	getVideo = 'getVideo',
-	getVideos = 'getVideos'
+	getVideo = 'getVideo'
 }

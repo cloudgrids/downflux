@@ -1,4 +1,3 @@
 export enum HqPornMethods {
-	getVideo = 'getVideo',
-	getVideos = 'getVideos'
+	getVideo = 'getVideo'
 }

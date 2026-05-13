@@ -1,4 +1,3 @@
 export enum SexVidMethods {
-	getVideo = 'getVideo',
-	getVideos = 'getVideos'
+	getVideo = 'getVideo'
 }

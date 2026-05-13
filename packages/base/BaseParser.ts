@@ -1,4 +1,4 @@
-import { DefaultExecutionResult } from '@contracts';
+import { DefaultExecutionResult, FlashVarsOutput } from '@contracts';
 import { GenericException } from '@core/exceptions';
 import { KvsResolver } from '@shared';
 import { ProviderType } from '@types';
@@ -22,6 +22,62 @@ export class BaseParser {
 		} catch (error) {
 			throw new GenericException('Unable to parse some fields:', ProviderType.Default, 'BaseParser', { cause: error });
 		}
+	}
+
+	public getFlashVars(html: string): FlashVarsOutput {
+		const extractField = (field: string) => {
+			const re = new RegExp(`${field}\\s*:\\s*['"]([^'"]+)['"]`, 'i');
+
+			const match = re.exec(html);
+
+			return match?.[1] || undefined;
+		};
+
+		const title = extractField('video_title');
+		const tags = extractField('video_tags')
+			?.split(',')
+			?.map((v) => v?.trim());
+		const categories = extractField('video_categories')
+			?.split(',')
+			?.map((v) => v?.trim());
+		const models = extractField('video_models')
+			?.split(',')
+			?.map((v) => v?.trim());
+		const previewUrl = extractField('preview_url');
+		const videoAltUrl2Redirect = extractField('video_alt_url2_redirect');
+		const videoAltUrl2Text = extractField('video_alt_url2_text');
+		const videoAltUrl2Hd = extractField('video_alt_url2_hd');
+		const videoAltUrl2 = extractField('video_alt_url_2');
+		const videoAltUrlText = extractField('video_alt_url_text');
+		const videoUrlHd = extractField('video_url_hd');
+		const videoUrlText = extractField('video_url_text');
+		const videoAltUrl = extractField('video_alt_url')?.match(/((?:function\/0\/)?https.*)/i)?.[0];
+		const videoUrl = extractField('video_url')?.match(/((?:function\/0\/)?https.*)/i)?.[0];
+		const postfix = extractField('postfix');
+		const rnd = extractField('rnd');
+		const licenseCode = extractField('license_code');
+		const videoId = extractField('video_id');
+
+		return {
+			videoId,
+			licenseCode,
+			rnd,
+			postfix,
+			videoAltUrl2,
+			videoUrl,
+			videoAltUrl,
+			videoAltUrl2Hd,
+			videoAltUrl2Text,
+			videoUrlHd,
+			videoUrlText,
+			videoAltUrlText,
+			videoAltUrl2Redirect,
+			previewUrl,
+			tags,
+			categories,
+			models,
+			title
+		};
 	}
 
 	public extractElementText(html: string, begin: string, end: string, fallback = ''): string {
