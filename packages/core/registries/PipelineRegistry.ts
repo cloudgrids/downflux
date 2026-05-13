@@ -24,6 +24,7 @@ const pipelineFactories: Record<ProviderType, PipelineFactory> = {
 	[ProviderType.Default]: async () => BasePipeline,
 	[ProviderType.HqPorn]: () => loadPipeline(() => import('@provider/hqporn'), 'HqPornPipeline'),
 	[ProviderType.OkPorn]: () => loadPipeline(() => import('@provider/okporn'), 'OkPornPipeline'),
+	[ProviderType.PerfectGirls]: () => loadPipeline(() => import('@provider/perfectgirls'), 'PerfectGirlsPipeline'),
 	[ProviderType.Porn300]: () => loadPipeline(() => import('@provider/porn300'), 'Porn300Pipeline'),
 	[ProviderType.PornHub]: () => loadPipeline(() => import('@provider/pornhub'), 'PornHubPipeline'),
 	[ProviderType.PornOne]: () => loadPipeline(() => import('@provider/pornone'), 'PornOnePipeline'),

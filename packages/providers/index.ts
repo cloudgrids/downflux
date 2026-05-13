@@ -3,6 +3,7 @@ export * from './coomer';
 export * from './default';
 export * from './hqporn';
 export * from './okporn';
+export * from './perfectgirls';
 export * from './porn300';
 export * from './pornhub';
 export * from './pornone';

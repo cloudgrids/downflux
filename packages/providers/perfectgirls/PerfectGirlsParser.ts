@@ -2,10 +2,10 @@ import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
 import { ProviderType } from '@types';
-import { OkPornModelVideoCard, OkPornOutput } from './OkPornContracts';
+import { PerfectGirlsModelVideoCard, PerfectGirlsOutput } from './PerfectGirlsContracts';
 
-export class OkPornParser extends BaseParser {
-	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<OkPornOutput>>> {
+export class PerfectGirlsParser extends BaseParser {
+	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<PerfectGirlsOutput>>> {
 		const videoInfo = this.getVideoInfo(html);
 
 		try {
@@ -29,11 +29,11 @@ export class OkPornParser extends BaseParser {
 				sourceUrl
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.OkPorn, 'OkPornParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', ProviderType.PerfectGirls, 'PerfectGirlsParser', { cause: error });
 		}
 	}
 
-	public extractVideoCards(html: string, sourceUrl?: string): OkPornModelVideoCard[] {
+	public extractVideoCards(html: string, sourceUrl?: string): PerfectGirlsModelVideoCard[] {
 		const anchors = this.extractBlocks(html, 'a');
 
 		return anchors
@@ -58,7 +58,7 @@ export class OkPornParser extends BaseParser {
 					duration: duration ?? ''
 				};
 			})
-			.filter(Boolean) as OkPornModelVideoCard[];
+			.filter(Boolean) as PerfectGirlsModelVideoCard[];
 	}
 
 	public extractCustomTitle(html: string): string {
@@ -66,7 +66,7 @@ export class OkPornParser extends BaseParser {
 	}
 
 	public extractStarredModels(html: string, sourceUrl?: string) {
-		const origin = sourceUrl ? new URL(sourceUrl).origin : 'https://ok.porn';
+		const origin = sourceUrl ? new URL(sourceUrl).origin : 'https://perfectgirls.xxx';
 
 		return (
 			this.collectByClassNames(html, 'item', {

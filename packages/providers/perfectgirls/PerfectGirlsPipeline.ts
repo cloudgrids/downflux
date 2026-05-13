@@ -2,10 +2,10 @@ import { BasePipeline } from '@base';
 import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
 import { inferVideoQuality } from '@shared';
 import { MediaType } from '@types';
-import { OkPornExecArgs, OkPornOutput } from './OkPornContracts';
+import { PerfectGirlsExecArgs, PerfectGirlsOutput } from './PerfectGirlsContracts';
 
-export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
-	public override build(metadata: OkPornOutput, request: OkPornExecArgs): PipelineItem[] {
+export class PerfectGirlsPipeline extends BasePipeline<PerfectGirlsExecArgs, PerfectGirlsOutput> {
+	public override build(metadata: PerfectGirlsOutput, request: PerfectGirlsExecArgs): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,
 			this.filterByExt(
@@ -29,9 +29,9 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 		);
 	}
 
-	protected override buildIdentifier(ctx: IdentifierContext<OkPornOutput>): string {
+	protected override buildIdentifier(ctx: IdentifierContext<PerfectGirlsOutput>): string {
 		const { mediaType, metadata, id, url } = ctx;
-		const prefix = url.includes('ok.xxx') ? 'okxxx' : 'okporn';
+		const prefix = url.includes('perfectgirls.xxx') ? 'perfectgirls' : 'perfectdamen';
 		let mediaSegment: string;
 
 		switch (mediaType) {
@@ -70,7 +70,7 @@ export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.author || metadata.modelName), mediaSegment);
 	}
 
-	protected extract(request: OkPornExecArgs, metadata: OkPornOutput): PipelineExtractedItem[] {
+	protected extract(request: PerfectGirlsExecArgs, metadata: PerfectGirlsOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
 		if (metadata.albumImages?.length) {

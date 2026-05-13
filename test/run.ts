@@ -1,4 +1,4 @@
-import { BeegProvider, OutputType, SuperPornProvider, SxyPornProvider, VideoQuality, XGroovyProvider } from 'packages';
+import { OutputType, PerfectGirlsProvider, VideoQuality } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -14,7 +14,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new SxyPornProvider('https://sxyprn.com/post/6a032ce922407.html')
+		await new PerfectGirlsProvider('https://www.perfectgirls.xxx/video/739311/')
 			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q1080 })
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })

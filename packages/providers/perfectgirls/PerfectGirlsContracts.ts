@@ -1,12 +1,13 @@
 import { TagFilterOptions } from '@base';
 import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { TagsOutput } from '@provider/okporn';
 import { VideoQuality } from '@types';
 
-export type OkPornIdType = 'path' | 'url';
+export type PerfectGirlsIdType = 'path' | 'url';
 
-export interface OkPornExecArgs extends ExecutionArgs {
-	modelArgs?: OkPornIdType;
-	channelArgs?: OkPornIdType;
+export interface PerfectGirlsExecArgs extends ExecutionArgs {
+	modelArgs?: PerfectGirlsIdType;
+	channelArgs?: PerfectGirlsIdType;
 	tagArgs?: TagFilterOptions;
 	videoArgs?: {
 		quality?: VideoQuality;
@@ -15,10 +16,10 @@ export interface OkPornExecArgs extends ExecutionArgs {
 
 /**
  * @interface
- * Interface representing the output structure for OkPorn album operations.
+ * Interface representing the output structure for PerfectGirls album operations.
  * Contains album metadata, images, and model context.
  */
-export interface OkPornAlbumOutput {
+export interface PerfectGirlsAlbumOutput {
 	/** Model name associated with the album */
 	modelName: string;
 
@@ -51,10 +52,10 @@ export interface OkPornAlbumOutput {
 }
 
 /**
- * Output structure for OkPorn video operations.
+ * Output structure for PerfectGirls video operations.
  * Contains video metadata, sources, poster, and album context.
  */
-export interface OkPornVideoOutput {
+export interface PerfectGirlsVideoOutput {
 	/** Video identifier */
 	videoId: string;
 
@@ -92,34 +93,31 @@ export interface OkPornVideoOutput {
 	videoAlbumId?: string;
 
 	/** Album metadata linked to the video */
-	videoAlbum?: OkPornAlbumOutput;
+	videoAlbum?: PerfectGirlsAlbumOutput;
 
 	/** Starred by list */
 	starredBy: string[];
 }
 
 /**
- * Output structure for OkPorn tag operations.
+ * Output structure for PerfectGirls tag operations.
  * Contains tags grouped by key.
  */
-export interface OkPornTagOutput {
+export interface PerfectGirlsTagOutput {
 	/** Tags grouped by tag key */
 	tags: TagsOutput;
 }
 
-export interface OkPornChannelOutput {
+export interface PerfectGirlsChannelOutput {
 	channelUrls: string[];
 	channelCount: number;
 }
 
-/** Mapping of tag keys to tag values */
-export type TagsOutput = Record<string, string[]>;
-
 /**
- * Video card from an OkPorn model page.
+ * Video card from an PerfectGirls model page.
  * Contains preview metadata for a model video.
  */
-export interface OkPornModelVideoCard {
+export interface PerfectGirlsModelVideoCard {
 	/** Video identifier */
 	videoId: string;
 
@@ -137,10 +135,10 @@ export interface OkPornModelVideoCard {
 }
 
 /**
- * Output structure for OkPorn model video card operations.
+ * Output structure for PerfectGirls model video card operations.
  * Contains model context and video cards.
  */
-export interface OkPornModelVideoIdsOutput {
+export interface PerfectGirlsModelVideoIdsOutput {
 	/** Model video page title */
 	pageTitle: string;
 
@@ -151,13 +149,13 @@ export interface OkPornModelVideoIdsOutput {
 	modelName: string;
 
 	/** Video cards found on the page */
-	videoCards: OkPornModelVideoCard[];
+	videoCards: PerfectGirlsModelVideoCard[];
 }
 /**
- * Output structure for OkPorn model operations.
+ * Output structure for PerfectGirls model operations.
  * Contains model page metadata and model links.
  */
-export interface OkPornModelOutput {
+export interface PerfectGirlsModelOutput {
 	/** Model listing page title */
 	pageTitle: string;
 
@@ -172,7 +170,8 @@ export interface OkPornModelOutput {
 }
 
 /**
- * Combined OkPorn output structure.
+ * Combined PerfectGirls output structure.
  * Used for broad internal service typing.
  */
-export interface OkPornOutput extends OkPornAlbumOutput, OkPornVideoOutput, OkPornModelOutput, OkPornModelVideoIdsOutput {}
+export interface PerfectGirlsOutput
+	extends PerfectGirlsAlbumOutput, PerfectGirlsVideoOutput, PerfectGirlsModelOutput, PerfectGirlsModelVideoIdsOutput {}

@@ -1,67 +1,67 @@
 import { BaseTransformer } from '@base';
 import { DefaultExecutionResult, TagKeys } from '@contracts';
+import { TagsOutput } from '@provider/okporn';
 import { inferVideoQuality } from '@shared';
 import { ExtractionTarget, VideoQuality } from '@types';
 import {
-	OkPornAlbumOutput,
-	OkPornChannelOutput,
-	OkPornExecArgs,
-	OkPornModelOutput,
-	OkPornModelVideoIdsOutput,
-	OkPornOutput,
-	OkPornTagOutput,
-	OkPornVideoOutput,
-	TagsOutput
-} from './OkPornContracts';
-import { OkPornMethods } from './OkPornTypes';
+	PerfectGirlsAlbumOutput,
+	PerfectGirlsChannelOutput,
+	PerfectGirlsExecArgs,
+	PerfectGirlsModelOutput,
+	PerfectGirlsModelVideoIdsOutput,
+	PerfectGirlsOutput,
+	PerfectGirlsTagOutput,
+	PerfectGirlsVideoOutput
+} from './PerfectGirlsContracts';
+import { PerfectGirlsMethods } from './PerfectGirlsTypes';
 
-export class OkPornTransformer extends BaseTransformer<
-	OkPornExecArgs,
-	| OkPornAlbumOutput
-	| OkPornVideoOutput
-	| OkPornModelOutput
-	| OkPornTagOutput
-	| OkPornChannelOutput
-	| OkPornModelVideoIdsOutput
+export class PerfectGirlsTransformer extends BaseTransformer<
+	PerfectGirlsExecArgs,
+	| PerfectGirlsAlbumOutput
+	| PerfectGirlsVideoOutput
+	| PerfectGirlsModelOutput
+	| PerfectGirlsTagOutput
+	| PerfectGirlsChannelOutput
+	| PerfectGirlsModelVideoIdsOutput
 	| DefaultExecutionResult
 > {
 	public override async transform(
 		url: string,
-		request: OkPornExecArgs
+		request: PerfectGirlsExecArgs
 	): Promise<
-		| OkPornAlbumOutput
-		| OkPornVideoOutput
-		| OkPornModelOutput
-		| OkPornTagOutput
-		| OkPornChannelOutput
-		| OkPornModelVideoIdsOutput
+		| PerfectGirlsAlbumOutput
+		| PerfectGirlsVideoOutput
+		| PerfectGirlsModelOutput
+		| PerfectGirlsTagOutput
+		| PerfectGirlsChannelOutput
+		| PerfectGirlsModelVideoIdsOutput
 		| DefaultExecutionResult
 	> {
-		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<OkPornOutput>>;
+		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<PerfectGirlsOutput>>;
 
 		if (!request?.transformOutput) return metadata;
 
 		switch (request?.method) {
-			case OkPornMethods.getAlbum:
-			case OkPornMethods.getAlbums:
+			case PerfectGirlsMethods.getAlbum:
+			case PerfectGirlsMethods.getAlbums:
 				return this.toAlbumOutput(metadata);
 
-			case OkPornMethods.getVideo:
-			case OkPornMethods.getVideos: {
+			case PerfectGirlsMethods.getVideo:
+			case PerfectGirlsMethods.getVideos: {
 				const album = await this.getVideoAlbum(metadata, request);
 				return this.toVideoOutput(request, metadata, album);
 			}
 
-			case OkPornMethods.getModels:
+			case PerfectGirlsMethods.getModels:
 				return this.toModelOutput(request, metadata);
 
-			case OkPornMethods.getTags:
+			case PerfectGirlsMethods.getTags:
 				return this.toTagOutput(request, metadata);
 
-			case OkPornMethods.getChannels:
+			case PerfectGirlsMethods.getChannels:
 				return this.toChannelOutput(request, metadata);
 
-			case OkPornMethods.getModelVideoIds:
+			case PerfectGirlsMethods.getModelVideoIds:
 				return this.toModelVideoIdsOutput(request, metadata);
 
 			default:
@@ -70,9 +70,9 @@ export class OkPornTransformer extends BaseTransformer<
 	}
 
 	private async getVideoAlbum(
-		metadata: DefaultExecutionResult<Partial<OkPornOutput>>,
-		request: OkPornExecArgs
-	): Promise<OkPornAlbumOutput> {
+		metadata: DefaultExecutionResult<Partial<PerfectGirlsOutput>>,
+		request: PerfectGirlsExecArgs
+	): Promise<PerfectGirlsAlbumOutput> {
 		const videoAlbumId = metadata.customFields?.videoAlbumId;
 
 		const origin = new URL(request.entryUrl).origin;
@@ -82,19 +82,19 @@ export class OkPornTransformer extends BaseTransformer<
 			...request,
 			entryUrl: albumUrl,
 			referer: albumUrl,
-			method: OkPornMethods.getAlbum,
+			method: PerfectGirlsMethods.getAlbum,
 			extractionTarget: ExtractionTarget.IMAGES
 		};
 
-		const albumMetadata = (await super.transform(albumUrl, albumRequest)) as DefaultExecutionResult<Partial<OkPornOutput>>;
+		const albumMetadata = (await super.transform(albumUrl, albumRequest)) as DefaultExecutionResult<Partial<PerfectGirlsOutput>>;
 
 		return this.toAlbumOutput(albumMetadata);
 	}
 
 	private toModelVideoIdsOutput(
-		request: OkPornExecArgs,
-		metadata: DefaultExecutionResult<Partial<OkPornOutput>>
-	): OkPornModelVideoIdsOutput {
+		request: PerfectGirlsExecArgs,
+		metadata: DefaultExecutionResult<Partial<PerfectGirlsOutput>>
+	): PerfectGirlsModelVideoIdsOutput {
 		const videoCards = metadata.customFields?.videoCards ?? [];
 		return {
 			modelName: request.targets[0].split('/').filter(Boolean)[3] ?? '',
@@ -104,7 +104,7 @@ export class OkPornTransformer extends BaseTransformer<
 		};
 	}
 
-	private toAlbumOutput(metadata: DefaultExecutionResult<Partial<OkPornOutput>>): OkPornAlbumOutput {
+	private toAlbumOutput(metadata: DefaultExecutionResult<Partial<PerfectGirlsOutput>>): PerfectGirlsAlbumOutput {
 		const customFields = metadata.customFields;
 
 		return {
@@ -122,11 +122,11 @@ export class OkPornTransformer extends BaseTransformer<
 	}
 
 	private toVideoOutput(
-		request: OkPornExecArgs,
-		metadata: DefaultExecutionResult<Partial<OkPornOutput>>,
-		videoAlbum?: OkPornAlbumOutput
-	): OkPornVideoOutput {
-		const customFields = metadata.customFields as OkPornOutput;
+		request: PerfectGirlsExecArgs,
+		metadata: DefaultExecutionResult<Partial<PerfectGirlsOutput>>,
+		videoAlbum?: PerfectGirlsAlbumOutput
+	): PerfectGirlsVideoOutput {
+		const customFields = metadata.customFields as PerfectGirlsOutput;
 
 		return {
 			videoTitle: metadata.title,
@@ -137,15 +137,18 @@ export class OkPornTransformer extends BaseTransformer<
 			videoSources: metadata.sources.map((url) => ({ url, quality: inferVideoQuality(url, VideoQuality.Q480) })),
 			videoPoster: customFields?.videoPoster ?? '',
 			videoScreenshot: customFields?.videoPoster ?? '',
-			author: customFields?.author,
 			videoAlbumId: customFields?.videoAlbumId,
 			videoCreatedAt: customFields?.videoCreatedAt,
 			videoAlbum: !videoAlbum?.albumImageCount ? undefined : videoAlbum,
-			starredBy: customFields?.starredBy ?? []
+			author: customFields?.author,
+			starredBy: customFields?.starredBy ?? customFields.starredModels
 		};
 	}
 
-	private toModelOutput(request: OkPornExecArgs, metadata: DefaultExecutionResult<Partial<OkPornOutput>>): OkPornModelOutput {
+	private toModelOutput(
+		request: PerfectGirlsExecArgs,
+		metadata: DefaultExecutionResult<Partial<PerfectGirlsOutput>>
+	): PerfectGirlsModelOutput {
 		let modelUrls = metadata.anchors.filter((a) => a.match(/https:\/\/ok\.porn\/models\/([a-z-]{2,})\/$/)).filter(Boolean);
 
 		if (request.modelArgs === 'path') modelUrls = modelUrls.map((url) => url.split('/').filter(Boolean).pop() ?? '');
@@ -158,7 +161,10 @@ export class OkPornTransformer extends BaseTransformer<
 		};
 	}
 
-	private toTagOutput(request: OkPornExecArgs, metadata: DefaultExecutionResult<Partial<OkPornOutput>>): OkPornTagOutput {
+	private toTagOutput(
+		request: PerfectGirlsExecArgs,
+		metadata: DefaultExecutionResult<Partial<PerfectGirlsOutput>>
+	): PerfectGirlsTagOutput {
 		const { format, allowedKeys } = request?.tagArgs || { format: 'url', allowedKeys: [] };
 		const tagUrls = metadata.anchors.filter((a) => a.match(/^https:\/\/ok\.porn\/tags\/([a-zA-Z0-9-]{2,})\/$/)).filter(Boolean);
 
@@ -177,7 +183,10 @@ export class OkPornTransformer extends BaseTransformer<
 		};
 	}
 
-	private toChannelOutput(request: OkPornExecArgs, metadata: DefaultExecutionResult<Partial<OkPornOutput>>): OkPornChannelOutput {
+	private toChannelOutput(
+		request: PerfectGirlsExecArgs,
+		metadata: DefaultExecutionResult<Partial<PerfectGirlsOutput>>
+	): PerfectGirlsChannelOutput {
 		let channelUrls = metadata.anchors?.filter((a) => a.match(/^https:\/\/ok\.porn\/sites\/([a-z-0-9]{2,})\/$/)).filter(Boolean);
 		if (request.channelArgs === 'path') channelUrls = channelUrls.map((url) => url.split('/').filter(Boolean).pop() ?? '');
 
