@@ -29,6 +29,7 @@ const pipelineFactories: Record<ProviderType, PipelineFactory> = {
 	[ProviderType.PornOne]: () => loadPipeline(() => import('@provider/pornone'), 'PornOnePipeline'),
 	[ProviderType.PornsOk]: () => loadPipeline(() => import('@provider/pornsok'), 'PornsOkPipeline'),
 	[ProviderType.SexVid]: () => loadPipeline(() => import('@provider/sexvid'), 'SexVidPipeline'),
+	[ProviderType.SuperPorn]: () => loadPipeline(() => import('@provider/superporn'), 'SuperPornPipeline'),
 	[ProviderType.TnAFlix]: () => loadPipeline(() => import('@provider/tnaflix'), 'TnAFlixPipeline'),
 	[ProviderType.WallHaven]: () => loadPipeline(() => import('@provider/wallhaven'), 'WallHavenPipeline'),
 	[ProviderType.XGroovy]: () => loadPipeline(() => import('@provider/xgroovy'), 'XGroovyPipeline'),

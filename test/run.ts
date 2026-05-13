@@ -1,4 +1,4 @@
-import { BeegProvider, OutputType, VideoQuality, XGroovyProvider } from 'packages';
+import { BeegProvider, OutputType, SuperPornProvider, VideoQuality, XGroovyProvider } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -6,6 +6,7 @@ async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=ph6208fbd8ea348
 	// https://www.pornhub.org/view_video.php?viewkey=69d63371a458d
 	// https://hqporn.xxx/beautiful-teen-chick-desires-orgasm_20486401.html
+	// https://xgroovy.com/videos/651600/busty-bitch-gets-to-know-real-passion-fucking-in-the-shower/
 	// https://xnxx.health/search-video/eAE9Uu1uEzEQfBXk3-a66_V--B6gKqJCiBYhRKsoTQMJuuaqJIQgxLszd0X88mg8OzNa-3f6nPp0lXJ6i_O8O58B36Req3kjkpyuU__FWYo09vyfNgYRTbJLiFEAmASrAVRjxkQOJtwy56Co2qpmVy7uBUwrBI1ld7Xq4lms1WIATlalTuNBRdhmRhjxWak0MuJsoSQCENacppoOM_Zok6F6UckqRZ0c4wWJFeWduaIJo7NXmpyNq6ElGCcFgqFQUYahwT5KbchiatJQ3hq3cGSRR61glGIq2zL8wiuysB8BQjprmAc0bCU09D6nj9jw3cVp-7geX__8_mtw_np3Ma28W41Pi-dxvxvF9AWY2eIwHpbDarsbu9Xw42GxflgO42nsnvfj4nTcLzfrGc5zXmgW4fHep55zepd6yukWiQdIt982x-nqw8zeXH56Of-9-KvNejkcNxDc3mDYPaQZdo2PALPEpXQc1DFrx7WlP38BYOuHcQ==/0c29a28e604a244843d390184440854b
 	// 736213
 
@@ -13,7 +14,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new XGroovyProvider('https://xgroovy.com/videos/651600/busty-bitch-gets-to-know-real-passion-fucking-in-the-shower/')
+		await new SuperPornProvider('https://www.superporn.com/video/he-likes-her-feet-but-her-pussy-much-more')
 			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q1080 })
 			.setTransformOutput(true)
 			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
