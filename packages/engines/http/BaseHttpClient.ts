@@ -136,10 +136,9 @@ export abstract class BaseHttpClient {
 		return Object.fromEntries(headers.entries());
 	}
 
-	protected isTransportError(error: unknown): boolean {
+	protected isTransportError(error: unknown): string | undefined {
 		const e = error as { code?: string; cause?: { code?: string } };
 		const code = e?.code ?? e?.cause?.code;
-
 		return [
 			'ECONNRESET',
 			'ECONNREFUSED',
@@ -148,7 +147,7 @@ export abstract class BaseHttpClient {
 			'UND_ERR_SOCKET',
 			'UND_ERR_CONNECT_TIMEOUT',
 			'UND_ERR_HEADERS_TIMEOUT'
-		].includes(String(code));
+		].find((c) => c === String(code));
 	}
 
 	protected async fetchWithTransportFallback(
@@ -159,9 +158,10 @@ export abstract class BaseHttpClient {
 		try {
 			return await UFetch(url, { ...init, dispatcher: this.agent });
 		} catch (error) {
-			if (!allowFallback || !this.isTransportError(error)) throw error;
+			const transportError = this.isTransportError(error);
+			if (!allowFallback || !transportError) throw error;
 
-			this.progressManager.update({ message: 'Primary transport failed, retrying with default transport' });
+			this.progressManager.update({ message: `Primary transport failed, retrying with default transport CODE: ${transportError}` });
 			return UFetch(url, init);
 		}
 	}
@@ -185,7 +185,10 @@ export abstract class BaseHttpClient {
 
 			return data.json();
 		} catch (error) {
-			if (this.isTransportError(error)) this.progressManager.update({ message: 'Transport error occurred' });
+			const transportError = this.isTransportError(error);
+			if (transportError) {
+				this.progressManager.update({ message: `Transport error occurred: ${transportError}` });
+			}
 
 			throw new Error('JSON parsing failed', { cause: error });
 		}
