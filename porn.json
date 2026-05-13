@@ -1,0 +1,147 @@
+{
+	"success": true,
+	"error": false,
+	"service": { "code": 200, "message": "Found", "loading": 0.1183 },
+	"payload": {
+		"ready": true,
+		"genre": "str",
+		"operation": "siteVideo\/watch",
+		"video": {
+			"id": 1143640,
+			"added": "7 years ago",
+			"links": { "like": "\/video\/like\/1143640", "dislike": "\/video\/dislike\/1143640" },
+			"playlists": {
+				"label": "Save",
+				"available": false,
+				"display": "\/profile\/playlists.json?movie_id=1143640",
+				"create": "\/profile\/playlist\/create.json",
+				"add": "\/profile\/playlist\/add-video.json",
+				"remove": "\/profile\/playlist\/remove-video.json",
+				"signup": "\/signup?utm_campaign=porndoe&utm_medium=desktop&utm_source=player_playlists",
+				"items": []
+			},
+			"pornstars": { "suggest": "\/sitePornstar\/suggest?movie_id=1143640" },
+			"favorite": {
+				"label": "favorite",
+				"added": false,
+				"add": "\/profile\/favorites\/add-video.json",
+				"remove": "\/profile\/favorites\/remove-video.json"
+			},
+			"comments": { "label": "comments", "visible": false },
+			"views": { "label": "views", "counter": 149914, "value": "149,914" },
+			"likes": { "label": "Likes", "button": "Like", "counter": 237, "value": "237", "liked": false },
+			"dislikes": { "label": "Dislikes", "button": "Dislike", "counter": 5, "value": "5", "disliked": false },
+			"chapters": { "title": "Skip to action", "more": "show more", "less": "show less" },
+			"report": {
+				"action": "\/siteVideo\/flag\/1143640",
+				"available": false,
+				"label": {
+					"player": "Report",
+					"title": "Report this video",
+					"section": "Tell us why",
+					"description": "Help us understand why you believe this content violates our terms of service by providing additional information\/detail(s).",
+					"placeholder": "Help us understand why you believe this"
+				},
+				"items": {
+					"inappropriate": "Inappropriate",
+					"underage": "Underage",
+					"copyrighted": "Copyrighted material",
+					"corrupted": "Movie corrupted",
+					"other": "Other"
+				}
+			},
+			"download": {
+				"title": "Available formats to download for this movie:",
+				"label": "download",
+				"available": false,
+				"items": []
+			},
+			"csrfToken": {
+				"name": "YII_CSRF_TOKEN",
+				"value": "RFlESVFTZm14MnRnQUVaRHRoV1NEc1dMZGVIalZqYkGdU1fLaUXLi9FJWSZ2b1ivX6bJkl_-302M1NuTAKMbbQ=="
+			},
+			"bubbles": {
+				"show": false,
+				"link": "https:\/\/go.porndoe.cam?userId=d24a912e58ac590035a106bf6c132f9bda3528570e1df81ac302e1667565d752&targetDomain=porndoe.cam&sourceId=player&campaignId=nojoin",
+				"logo": "https:\/\/p.cdnc.porndoe.com\/image\/channel\/avatar\/1\/8\/7\/2\/blacked-5f182c143a874.jpg",
+				"name": "",
+				"items": [
+					{ "visible": false, "name": "Free Live Show" },
+					{ "visible": false, "name": "Free Live Show" }
+				],
+				"track": { "view": "\/service\/bubbleView.json?id=1143640", "click": "\/service\/bubbleClick.json?id=1143640" }
+			}
+		},
+		"player": {
+			"poster": "https:\/\/p.cdnc.porndoe.com\/image\/movie\/crop\/0x1080\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373_19.jpg",
+			"link": "\/watch\/pd7l5f7f6n2c",
+			"preview": {
+				"type": "video",
+				"url": "https:\/\/p.cdnc.porndoe.com\/movie\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373-preview.mp4",
+				"interval": 1.04
+			},
+			"sources": {
+				"mp4": [
+					{
+						"path": "movie\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373-1080p-hd-4498.mp4",
+						"auto": false,
+						"name": "1080p HD",
+						"height": 1080,
+						"width": 1920,
+						"bitrate": 4498,
+						"default": false,
+						"link": "\/signup?utm_campaign=porndoe&utm_medium=desktop&utm_source=player_1080p",
+						"type": "link"
+					},
+					{
+						"path": "movie\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373-720p-hd-2500.mp4",
+						"auto": false,
+						"name": "720p HD",
+						"height": 720,
+						"width": 1280,
+						"bitrate": 2500,
+						"default": false,
+						"link": "https:\/\/pr.cdnc.porndoe.com\/movie\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373-720p-hd-2500.mp4?l=55&ip=45.112.68.162&expires=1778785304&token=e5395de650362780b60423f5c51be5bd",
+						"type": "video"
+					},
+					{
+						"path": "movie\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373-480p-1000.mp4",
+						"auto": false,
+						"name": "480p",
+						"height": 480,
+						"width": 854,
+						"bitrate": 1000,
+						"default": true,
+						"link": "https:\/\/pr.cdnc.porndoe.com\/movie\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373-480p-1000.mp4?l=52&ip=45.112.68.162&expires=1778785304&token=a28b8d74f86d0f7ca7d2aaa032935f5a",
+						"type": "video"
+					},
+					{
+						"path": "movie\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373-240p-400.mp4",
+						"auto": false,
+						"name": "240p",
+						"height": 240,
+						"width": 428,
+						"bitrate": 400,
+						"default": false,
+						"link": "https:\/\/pr.cdnc.porndoe.com\/movie\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373-240p-400.mp4?l=51&ip=45.112.68.162&expires=1778785304&token=97f6cf08ef2243152aac6a60a2f31d93",
+						"type": "video"
+					}
+				],
+				"deo": [
+					{
+						"path": "movie\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373-1080p-hd-4498.mp4",
+						"auto": false,
+						"name": "1080p HD",
+						"height": 1080,
+						"width": 1920,
+						"bitrate": 4498,
+						"default": false,
+						"link": "https:\/\/pr.cdnc.porndoe.com\/movie\/1\/1\/4\/3\/6\/4\/0\/5bc981467cc77-373-1080p-hd-4498.mp4?l=56&ip=45.112.68.162&expires=1778785304&token=20e2a4326ecbe14a55b6cb9349d0d0fb",
+						"type": "video"
+					}
+				],
+				"hls": []
+			}
+		}
+	}
+}

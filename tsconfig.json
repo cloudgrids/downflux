@@ -60,6 +60,8 @@
 
 			"@provider/coomer": ["packages/providers/coomer/index.ts"],
 
+			"@provider/cumlouder": ["packages/providers/cumlouder/index.ts"],
+
 			"@provider/default": ["packages/providers/default/index.ts"],
 
 			"@provider/hqporn": ["packages/providers/hqporn/index.ts"],
