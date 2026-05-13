@@ -65,6 +65,14 @@
       "method": true
     },
     {
+      "name": "PornDoe",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
       "name": "PornHub",
       "parser": true,
       "pipeline": true,
