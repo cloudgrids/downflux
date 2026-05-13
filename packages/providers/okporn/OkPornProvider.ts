@@ -18,6 +18,8 @@ import { OkPornMethods } from './OkPornTypes';
  * @remarks Model pages are limited to 555 pages. Channel pages are limited to 21 pages.
  * @notes This provider can be used with both `ok.porn` and `ok.xxx` domains.
  * @provides album, video, model, tag, and channel operations.
+ * @fileoverview Provides m3u8 links
+ * @dependencies - ffmpeg (for m3u8 to mp4 conversion)
  */
 export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	protected readonly provider = ProviderType.OkPorn;

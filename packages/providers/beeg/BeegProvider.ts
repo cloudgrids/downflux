@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { BeegExecArgs, BeegVideoOutput } from './BeegContracts';
 import { BeegMethods } from './BeegTypes';
 
+/**
+ * @class BeegProvider
+ * @extends BaseProvider
+ * @description Provider for Beeg video downloader.
+ * @fileoverview Provides m3u8 files and converts them to mp4 using ffmpeg
+ * @dependencies - ffmpeg (for m3u8 to mp4 conversion)
+ */
 export class BeegProvider extends BaseProvider<BeegExecArgs> {
 	protected readonly provider = ProviderType.Beeg;
 	private readonly PROVIDER_REGEX = /^https:\/\/(?:www\.)?beeg\.com\/([a-zA-Z0-9-]+)\/?$/i;

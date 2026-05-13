@@ -4,6 +4,12 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { SuperPornExecArgs, SuperPornVideoOutput } from './SuperPornContracts';
 import { SuperPornMethods } from './SuperPornTypes';
 
+/**
+ * @class SuperPornProvider
+ * @extends BaseProvider
+ * @description Provider for SuperPorn video downloader.
+ * @fileoverview Provides direct mp4 links
+ */
 export class SuperPornProvider extends BaseProvider<SuperPornExecArgs> {
 	protected readonly provider = ProviderType.SuperPorn;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?superporn\.(?:com)\/video\/([a-zA-Z0-9-]+)$/i;
@@ -21,6 +27,12 @@ export class SuperPornProvider extends BaseProvider<SuperPornExecArgs> {
 		return this.url;
 	}
 
+	/**
+	 * @returns `SuperPornVideoOutput` with video metadata and source URLs.
+	 * @description Fetches video sources from the provided URL.
+	 * @throws `GenericException` when the video sources cannot be extracted
+	 * @canDownload `true`
+	 */
 	public async getVideo(): Promise<SuperPornVideoOutput> {
 		return await this.execute<SuperPornVideoOutput>({
 			targets: [this.videoUrl],

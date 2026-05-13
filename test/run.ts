@@ -1,4 +1,4 @@
-import { BeegProvider, OutputType, SuperPornProvider, VideoQuality, XGroovyProvider } from 'packages';
+import { BeegProvider, OutputType, SuperPornProvider, SxyPornProvider, VideoQuality, XGroovyProvider } from 'packages';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -14,10 +14,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new SuperPornProvider('https://www.superporn.com/video/he-likes-her-feet-but-her-pussy-much-more')
+		await new SxyPornProvider('https://sxyprn.com/post/6a032ce922407.html')
 			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q1080 })
 			.setTransformOutput(true)
-			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);
