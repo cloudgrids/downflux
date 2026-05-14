@@ -27,6 +27,7 @@ const pipelineFactories: Record<ProviderType, PipelineFactory> = {
 	[ProviderType.HqPorn]: () => loadPipeline(() => import('@provider/hqporn'), 'HqPornPipeline'),
 	[ProviderType.Lesbian8]: () => loadPipeline(() => import('@provider/lesbian8'), 'Lesbian8Pipeline'),
 	[ProviderType.MegaTube]: () => loadPipeline(() => import('@provider/megatube'), 'MegaTubePipeline'),
+	[ProviderType.MyLust]: () => loadPipeline(() => import('@provider/mylust'), 'MyLustPipeline'),
 	[ProviderType.OkPorn]: () => loadPipeline(() => import('@provider/okporn'), 'OkPornPipeline'),
 	[ProviderType.PerfectGirls]: () => loadPipeline(() => import('@provider/perfectgirls'), 'PerfectGirlsPipeline'),
 	[ProviderType.Porn300]: () => loadPipeline(() => import('@provider/porn300'), 'Porn300Pipeline'),

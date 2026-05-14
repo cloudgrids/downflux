@@ -68,6 +68,8 @@
 
 			"@provider/megatube": ["./packages/providers/megatube/index.ts"],
 
+			"@provider/mylust": ["./packages/providers/mylust/index.ts"],
+
 			"@provider/okporn": ["./packages/providers/okporn/index.ts"],
 
 			"@provider/perfectgirls": ["./packages/providers/perfectgirls/index.ts"],

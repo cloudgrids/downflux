@@ -263,6 +263,25 @@ export class BaseParser {
 		}
 	}
 
+	public collectSources(html: string): Record<string, string>[] {
+		const regex = /<source\b([^>]+)>/gi;
+		const results: Array<Record<string, string>> = [];
+		let match: RegExpExecArray | null;
+
+		while ((match = regex.exec(html)) !== null) {
+			const attrsString = match[1];
+			const attrs: Record<string, string> = {};
+			const attrRegex = /([a-zA-Z0-9\-:]+)\s*=\s*(["'])(.*?)\2/g;
+			let attrMatch;
+			while ((attrMatch = attrRegex.exec(attrsString)) !== null) {
+				attrs[attrMatch[1]] = attrMatch[3];
+			}
+			results.push(attrs);
+		}
+
+		return results;
+	}
+
 	public extractVideoPosters(html: string): string[] {
 		const urls: string[] = [];
 
