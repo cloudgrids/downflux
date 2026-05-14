@@ -9,6 +9,14 @@
       "method": true
     },
     {
+      "name": "ColliderPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "Coomer",
       "parser": false,
       "pipeline": false,

@@ -1,5 +1,4 @@
-import { Lesbian8Provider } from '@provider/lesbian8';
-import { MegaTubeProvider } from '@provider/megatube';
+import { ColliderPornProvider } from '@provider/colliderporn';
 import { OutputType } from '@types';
 
 async function main() {
@@ -21,10 +20,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new Lesbian8Provider('https://www.lesbian8.com/videos/930874/pawg-tatted-honey-w-large-titties-sucks-screws-her-bbc-yoga-instructor-real-amateur-pair/?utm_source=zzz')
+		await new ColliderPornProvider('https://colliderporn.com/en/look/34679060/glamour.php')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);
