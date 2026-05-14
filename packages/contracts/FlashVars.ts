@@ -25,6 +25,7 @@ export interface FlashVarsOutput {
 	previewUrl1?: string;
 	previewUrl2?: string;
 	previewUrl3?: string;
+	previewUrl4?: string;
 	previews?: string[];
 	videos?: VideoSourceOutput[];
 	timelineScreens?: string[];

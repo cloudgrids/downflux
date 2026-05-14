@@ -11,6 +11,7 @@ export * from './perfectgirls';
 export * from './porn300';
 export * from './porndoe';
 export * from './pornhub';
+export * from './pornid';
 export * from './pornone';
 export * from './pornsok';
 export * from './pussyspace';

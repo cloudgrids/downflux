@@ -60,6 +60,7 @@ export class BaseParser {
 		const previewUrl1 = extractField('preview_url1');
 		const previewUrl2 = extractField('preview_url2');
 		const previewUrl3 = extractField('preview_url3');
+		const previewUrl4 = extractField('preview_url4');
 		const videoAltUrl2Redirect = extractField('video_alt_url2_redirect');
 		const videoAltUrl2Text = extractField('video_alt_url2_text');
 		const videoAltUrl2Hd = extractField('video_alt_url2_hd');
@@ -102,8 +103,14 @@ export class BaseParser {
 					}
 				: { url: videoAltUrl2, quality: url2Quality };
 
-		const videos = [url, url1, url2].filter((v) => v.url) as VideoSourceOutput[];
-		const previews = [previewUrl, previewUrl1, previewUrl2, previewUrl3].filter(Boolean) as string[];
+		const videos = Array.from(
+			new Map([url, url1, url2].filter((v): v is VideoSourceOutput => !!v.url).map((v) => [v.url, v])).values()
+		);
+
+		const previews = Array.from(
+			new Set([previewUrl, previewUrl1, previewUrl2, previewUrl3, previewUrl4].filter(Boolean) as string[])
+		).filter(Boolean) as string[];
+
 		const timelineScreens = Array.from({ length: timelineScreenCount ?? 0 }, (_, i) =>
 			timelineScreenUrl ? timelineScreenUrl.replace('{time}', (i + 1).toString()) : undefined
 		) as string[];
@@ -133,6 +140,7 @@ export class BaseParser {
 			previewUrl1,
 			previewUrl2,
 			previewUrl3,
+			previewUrl4,
 			videos,
 			previews,
 			timelineScreens

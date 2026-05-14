@@ -1,4 +1,5 @@
 import { ColliderPornProvider } from '@provider/colliderporn';
+import { PornIdProvider } from '@provider/pornid';
 import { ShamelessProvider } from '@provider/shameless';
 import { OutputType } from '@types';
 
@@ -21,7 +22,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new ShamelessProvider('https://shameless.com/videos/interracial-big-tits-porn-with-pale-skin-girl-alyx-star/')
+		await new PornIdProvider('https://www.pornid.xxx/blonde-gets-stretched-and-dominated-by-hung-black-stud.html')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
