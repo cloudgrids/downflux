@@ -172,10 +172,7 @@ export abstract class BaseHttpClient {
 
 	public async fetchJson(url: string, opts: DownloadOptions) {
 		const headers = this.addOriginWithHeader(
-			this.randomHeaders({
-				Referer: opts?.referer ?? url,
-				...opts.headers
-			}),
+			this.randomHeaders({ Referer: opts?.referer ?? url, ...opts.headers }),
 			opts?.referer ?? url
 		);
 
@@ -192,15 +189,9 @@ export abstract class BaseHttpClient {
 		} catch (error) {
 			const transportError = this.isTransportError(error);
 
-			if (transportError) {
-				this.progressManager.update({
-					message: `Transport error occurred: ${transportError}`
-				});
-			}
+			if (transportError) this.progressManager.update({ message: `Transport error occurred: ${transportError}` });
 
-			throw new Error('JSON parsing failed', {
-				cause: error
-			});
+			throw new Error('JSON parsing failed', { cause: error });
 		}
 	}
 }

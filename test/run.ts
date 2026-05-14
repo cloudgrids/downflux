@@ -19,7 +19,7 @@ async function main() {
 		await new PornDoeProvider('https://porndoe.com/watch/pd7l5f7f6n2c')
 			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q1080 })
 			.setTransformOutput(true)
-			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);

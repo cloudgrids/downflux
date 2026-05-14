@@ -42,6 +42,10 @@ export class PornDoePipeline extends BasePipeline<PornDoeExecArgs, PornDoeOutput
 				mediaSegment = `${MediaType.VIDEOS}/${id}/${mediaType}`;
 				break;
 
+			case MediaType.VIDEO_PREVIEW:
+				mediaSegment = `${MediaType.VIDEOS}/${id}/${mediaType}`;
+				break;
+
 			default:
 				mediaSegment = `${mediaType}/${id}`;
 		}
@@ -57,6 +61,14 @@ export class PornDoePipeline extends BasePipeline<PornDoeExecArgs, PornDoeOutput
 			urls.add({
 				url: metadata.poster,
 				mediaType: MediaType.VIDEO_POSTER,
+				id: videoId
+			});
+		}
+
+		if (metadata?.preview) {
+			urls.add({
+				url: metadata.preview,
+				mediaType: MediaType.VIDEO_PREVIEW,
 				id: videoId
 			});
 		}

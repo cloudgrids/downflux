@@ -9,6 +9,7 @@ export interface PornDoeVideoOutput {
 	videos: PornDoeVideoSource[];
 	poster: string;
 	pageUrl: string;
+	preview: string;
 	id: string;
 	uploader: string;
 	banners?: {

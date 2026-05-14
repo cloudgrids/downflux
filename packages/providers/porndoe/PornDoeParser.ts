@@ -19,7 +19,6 @@ export class PornDoeParser extends BaseParser {
 					banners,
 					uploader: uploader?.[0],
 					pageUrl: sourceUrl,
-					poster: this.extractMetaPropertyContent(html, 'og:image'),
 					title: this.extractMetaPropertyContent(html, 'og:title')
 				} as PornDoeOutput
 			};

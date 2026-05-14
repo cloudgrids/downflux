@@ -40,20 +40,24 @@ export class PornDoeTransformer extends BaseTransformer<PornDoeExecArgs, Default
 			}
 		);
 
-		const videos = (mp4Sources?.payload?.player?.sources?.mp4 || []) as PornDoeVideoSource[];
-		const hds = mp4Sources?.payload?.player?.sources?.deo ?? [];
+		const player = mp4Sources?.payload?.player;
+
+		const videos = (player?.sources?.mp4 || []) as PornDoeVideoSource[];
+		const hds = player?.sources?.deo ?? [];
+
+		const preview = player?.preview?.url;
+		const poster = player.poster;
 
 		videos.push(...hds);
-
-		console.log({ videos });
 
 		return {
 			description: metadata.description,
 			pageUrl: pornDoeFields.pageUrl,
-			poster: pornDoeFields.poster,
 			title: metadata.title,
 			videos: videos?.filter((v) => v?.type === 'video') ?? [],
 			id: pornDoeFields.id,
+			preview,
+			poster,
 			uploader: pornDoeFields.uploader
 		};
 	}
