@@ -5,6 +5,7 @@ export enum MediaType {
 	ALBUMS = 'albums',
 	SCREENSHOT = 'screenshot',
 	VIDEO_SCREENSHOT = 'video_screenshot',
+	VIDEO_TIMELINES = 'video_timelines',
 	VIDEO_POSTER = 'video_poster',
 	ALBUM_PREVIEW = 'album_preview',
 	VIDEO_ALBUM = 'video_album',

@@ -33,6 +33,13 @@ export class BaseParser {
 			return match?.[1] || undefined;
 		};
 
+		const videoModels = extractField('video_models')
+			?.split(',')
+			.map((v) => v?.trim());
+		const timelineScreenUrl = extractField('timeline_screens_url');
+		const timelineScreenCount = extractField('timeline_screens_count')
+			? parseInt(extractField('timeline_screens_count')!, 10)
+			: undefined;
 		const title = extractField('video_title');
 		const tags = extractField('video_tags')
 			?.split(',')
@@ -76,7 +83,10 @@ export class BaseParser {
 			tags,
 			categories,
 			models,
-			title
+			title,
+			videoModels,
+			timelineScreenUrl,
+			timelineScreenCount
 		};
 	}
 
