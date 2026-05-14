@@ -16,5 +16,8 @@ export interface FlashVarsOutput {
 	videoAltUrlText?: string;
 	videoAltUrl2Text?: string;
 	videoAltUrl2Redirect?: string;
+	videoModels?: string[];
+	timelineScreenUrl?: string;
+	timelineScreenCount?: number;
 	previewUrl?: string;
 }

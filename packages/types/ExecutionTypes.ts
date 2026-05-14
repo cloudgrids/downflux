@@ -41,6 +41,7 @@ export enum ProviderType {
 	CumLouder = 'CumLouderProvider',
 	Default = 'DefaultProvider',
 	HqPorn = 'HqPornProvider',
+	Lesbian8 = 'Lesbian8Provider',
 	MegaTube = 'MegaTubeProvider',
 	OkPorn = 'OkPornProvider',
 	PerfectGirls = 'PerfectGirlsProvider',
