@@ -35,6 +35,7 @@ const strategyFactories: Record<ProviderType, StrategyFactory> = {
 	[ProviderType.PornsOk]: async () => BaseStrategy,
 	[ProviderType.PussySpace]: async () => BaseStrategy,
 	[ProviderType.SexVid]: async () => BaseStrategy,
+	[ProviderType.Shameless]: async () => BaseStrategy,
 	[ProviderType.SuperPorn]: async () => BaseStrategy,
 	[ProviderType.SxyPorn]: async () => BaseStrategy,
 	[ProviderType.TheyAreHuge]: async () => BaseStrategy,

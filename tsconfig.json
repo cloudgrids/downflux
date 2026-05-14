@@ -86,6 +86,8 @@
 
 			"@provider/sexvid": ["./packages/providers/sexvid/index.ts"],
 
+			"@provider/shameless": ["./packages/providers/shameless/index.ts"],
+
 			"@provider/superporn": ["./packages/providers/superporn/index.ts"],
 
 			"@provider/sxyporn": ["./packages/providers/sxyporn/index.ts"],

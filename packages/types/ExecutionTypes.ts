@@ -53,6 +53,7 @@ export enum ProviderType {
 	PornsOk = 'PornsOkProvider',
 	PussySpace = 'PussySpaceProvider',
 	SexVid = 'SexVidProvider',
+	Shameless = 'ShamelessProvider',
 	SuperPorn = 'SuperPornProvider',
 	SxyPorn = 'SxyPornProvider',
 	TheyAreHuge = 'TheyAreHugeProvider',

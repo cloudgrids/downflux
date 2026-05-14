@@ -1,4 +1,5 @@
 import { ColliderPornProvider } from '@provider/colliderporn';
+import { ShamelessProvider } from '@provider/shameless';
 import { OutputType } from '@types';
 
 async function main() {
@@ -20,7 +21,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new ColliderPornProvider('https://colliderporn.com/en/look/34679060/glamour.php')
+		await new ShamelessProvider('https://shameless.com/videos/interracial-big-tits-porn-with-pale-skin-girl-alyx-star/')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
