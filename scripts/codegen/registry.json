@@ -145,6 +145,14 @@
       "method": true
     },
     {
+      "name": "TubeVSex",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "WallHaven",
       "parser": true,
       "pipeline": true,

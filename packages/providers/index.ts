@@ -16,6 +16,7 @@ export * from './superporn';
 export * from './sxyporn';
 export * from './theyarehuge';
 export * from './tnaflix';
+export * from './tubevsex';
 export * from './wallhaven';
 export * from './xgroovy';
 export * from './xhamster';

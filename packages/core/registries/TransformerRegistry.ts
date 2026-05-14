@@ -38,6 +38,7 @@ const transformerFactories: Record<ProviderType, TransformerFactory> = {
 	[ProviderType.SxyPorn]: () => loadTransformer(() => import('@provider/sxyporn'), 'SxyPornTransformer'),
 	[ProviderType.TheyAreHuge]: () => loadTransformer(() => import('@provider/theyarehuge'), 'TheyAreHugeTransformer'),
 	[ProviderType.TnAFlix]: () => loadTransformer(() => import('@provider/tnaflix'), 'TnAFlixTransformer'),
+	[ProviderType.TubeVSex]: () => loadTransformer(() => import('@provider/tubevsex'), 'TubeVSexTransformer'),
 	[ProviderType.WallHaven]: () => loadTransformer(() => import('@provider/wallhaven'), 'WallHavenTransformer'),
 	[ProviderType.XGroovy]: () => loadTransformer(() => import('@provider/xgroovy'), 'XGroovyTransformer'),
 	[ProviderType.XHamster]: () => loadTransformer(() => import('@provider/xhamster'), 'XHamsterTransformer'),
