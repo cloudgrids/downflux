@@ -6,7 +6,7 @@
 
 # Class: OkPornTransformer
 
-Defined in: [packages/providers/okporn/OkPornTransformer.ts:18](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornTransformer.ts#L18)
+Defined in: [packages/providers/okporn/OkPornTransformer.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornTransformer.ts#L18)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/okporn/OkPornTransformer.ts:18](https://github.c
 
 > **new OkPornTransformer**(`httpClient`, `progressManager`): `OkPornTransformer`
 
-Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L8)
+Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L8)
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downf
 
 > `protected` `readonly` **httpClient**: [`HttpClient`](HttpClient.md)
 
-Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L9)
+Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L9)
 
 #### Inherited from
 
@@ -56,7 +56,7 @@ Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downf
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L10)
+Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L10)
 
 #### Inherited from
 
@@ -68,7 +68,7 @@ Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/down
 
 > **requestData**(`url`, `opts`): `Promise`\<`any`\>
 
-Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L29)
+Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L29)
 
 #### Parameters
 
@@ -94,7 +94,7 @@ Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/down
 
 > **transform**(`url`, `request`): `Promise`\<[`DefaultExecutionResult`](../interfaces/DefaultExecutionResult.md)\<`unknown`\> \| [`OkPornAlbumOutput`](../interfaces/OkPornAlbumOutput.md) \| [`OkPornVideoOutput`](../interfaces/OkPornVideoOutput.md) \| [`OkPornTagOutput`](../interfaces/OkPornTagOutput.md) \| [`OkPornChannelOutput`](../interfaces/OkPornChannelOutput.md) \| [`OkPornModelVideoIdsOutput`](../interfaces/OkPornModelVideoIdsOutput.md) \| [`OkPornModelOutput`](../interfaces/OkPornModelOutput.md)\>
 
-Defined in: [packages/providers/okporn/OkPornTransformer.ts:28](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornTransformer.ts#L28)
+Defined in: [packages/providers/okporn/OkPornTransformer.ts:28](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornTransformer.ts#L28)
 
 #### Parameters
 

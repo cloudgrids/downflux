@@ -6,7 +6,7 @@
 
 # Interface: XGroovyOutput
 
-Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:4](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xgroovy/XGroovyContracts.ts#L4)
+Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xgroovy/XGroovyContracts.ts#L4)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:4](https://github.co
 
 > **title**: `string`
 
-Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xgroovy/XGroovyContracts.ts#L7)
+Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xgroovy/XGroovyContracts.ts#L7)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:7](https://github.co
 
 > **description**: `string`
 
-Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xgroovy/XGroovyContracts.ts#L8)
+Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xgroovy/XGroovyContracts.ts#L8)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:8](https://github.co
 
 > **poster**: `string`
 
-Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xgroovy/XGroovyContracts.ts#L9)
+Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xgroovy/XGroovyContracts.ts#L9)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:9](https://github.co
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xgroovy/XGroovyContracts.ts#L10)
+Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xgroovy/XGroovyContracts.ts#L10)
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:10](https://github.c
 
 > **uploaderId**: `string`
 
-Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xgroovy/XGroovyContracts.ts#L11)
+Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xgroovy/XGroovyContracts.ts#L11)
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:11](https://github.c
 
 > **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xgroovy/XGroovyContracts.ts#L12)
+Defined in: [packages/providers/xgroovy/XGroovyContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xgroovy/XGroovyContracts.ts#L12)
 
 #### Inherited from
 

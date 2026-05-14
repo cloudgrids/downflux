@@ -6,7 +6,7 @@
 
 # Interface: XnXXOutput
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:5](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xnxx/XnXXContracts.ts#L5)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:5](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xnxx/XnXXContracts.ts#L5)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:5](https://github.com/fork
 
 > **title**: `string`
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:14](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xnxx/XnXXContracts.ts#L14)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xnxx/XnXXContracts.ts#L14)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:14](https://github.com/for
 
 > **description**: `string`
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:15](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xnxx/XnXXContracts.ts#L15)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xnxx/XnXXContracts.ts#L15)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:15](https://github.com/for
 
 > **duration**: `number`
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:16](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xnxx/XnXXContracts.ts#L16)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xnxx/XnXXContracts.ts#L16)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:16](https://github.com/for
 
 > **videoUrl**: [`XnXXVideo`](XnXXVideo.md)
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:17](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xnxx/XnXXContracts.ts#L17)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xnxx/XnXXContracts.ts#L17)
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:17](https://github.com/for
 
 > **keywords**: `string`[]
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:18](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xnxx/XnXXContracts.ts#L18)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xnxx/XnXXContracts.ts#L18)
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:18](https://github.com/for
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:19](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xnxx/XnXXContracts.ts#L19)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:19](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xnxx/XnXXContracts.ts#L19)
 
 #### Inherited from
 
@@ -90,7 +90,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:19](https://github.com/for
 
 > **poster**: `string`
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:20](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xnxx/XnXXContracts.ts#L20)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:20](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xnxx/XnXXContracts.ts#L20)
 
 #### Inherited from
 
@@ -102,7 +102,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:20](https://github.com/for
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:21](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xnxx/XnXXContracts.ts#L21)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:21](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xnxx/XnXXContracts.ts#L21)
 
 #### Inherited from
 
@@ -114,7 +114,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:21](https://github.com/for
 
 > **models**: `string`[]
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:22](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xnxx/XnXXContracts.ts#L22)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:22](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xnxx/XnXXContracts.ts#L22)
 
 #### Inherited from
 

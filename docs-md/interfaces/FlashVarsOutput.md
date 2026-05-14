@@ -6,7 +6,7 @@
 
 # Interface: FlashVarsOutput
 
-Defined in: [packages/contracts/FlashVars.ts:1](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L1)
+Defined in: [packages/contracts/FlashVars.ts:3](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L3)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/FlashVars.ts:1](https://github.com/forkts/downfl
 
 > `optional` **videoId?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:2](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L2)
+Defined in: [packages/contracts/FlashVars.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L4)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/FlashVars.ts:2](https://github.com/forkts/downfl
 
 > `optional` **title?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:3](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L3)
+Defined in: [packages/contracts/FlashVars.ts:5](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L5)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/FlashVars.ts:3](https://github.com/forkts/downfl
 
 > `optional` **categories?**: `string`[]
 
-Defined in: [packages/contracts/FlashVars.ts:4](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L4)
+Defined in: [packages/contracts/FlashVars.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L6)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/contracts/FlashVars.ts:4](https://github.com/forkts/downfl
 
 > `optional` **tags?**: `string`[]
 
-Defined in: [packages/contracts/FlashVars.ts:5](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L5)
+Defined in: [packages/contracts/FlashVars.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L7)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/contracts/FlashVars.ts:5](https://github.com/forkts/downfl
 
 > `optional` **models?**: `string`[]
 
-Defined in: [packages/contracts/FlashVars.ts:6](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L6)
+Defined in: [packages/contracts/FlashVars.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L8)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/contracts/FlashVars.ts:6](https://github.com/forkts/downfl
 
 > `optional` **licenseCode?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L7)
+Defined in: [packages/contracts/FlashVars.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L9)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [packages/contracts/FlashVars.ts:7](https://github.com/forkts/downfl
 
 > `optional` **rnd?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L8)
+Defined in: [packages/contracts/FlashVars.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L10)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [packages/contracts/FlashVars.ts:8](https://github.com/forkts/downfl
 
 > `optional` **postfix?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L9)
+Defined in: [packages/contracts/FlashVars.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L11)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [packages/contracts/FlashVars.ts:9](https://github.com/forkts/downfl
 
 > `optional` **videoUrl?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L10)
+Defined in: [packages/contracts/FlashVars.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L12)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [packages/contracts/FlashVars.ts:10](https://github.com/forkts/downf
 
 > `optional` **videoAltUrl?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L11)
+Defined in: [packages/contracts/FlashVars.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L13)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [packages/contracts/FlashVars.ts:11](https://github.com/forkts/downf
 
 > `optional` **videoUrlText?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L12)
+Defined in: [packages/contracts/FlashVars.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L14)
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: [packages/contracts/FlashVars.ts:12](https://github.com/forkts/downf
 
 > `optional` **videoUrlHd?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L13)
+Defined in: [packages/contracts/FlashVars.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L15)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: [packages/contracts/FlashVars.ts:13](https://github.com/forkts/downf
 
 > `optional` **videoAltUrl2?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:14](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L14)
+Defined in: [packages/contracts/FlashVars.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L16)
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: [packages/contracts/FlashVars.ts:14](https://github.com/forkts/downf
 
 > `optional` **videoAltUrl2Hd?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:15](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L15)
+Defined in: [packages/contracts/FlashVars.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L17)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: [packages/contracts/FlashVars.ts:15](https://github.com/forkts/downf
 
 > `optional` **videoAltUrlText?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:16](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L16)
+Defined in: [packages/contracts/FlashVars.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L18)
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: [packages/contracts/FlashVars.ts:16](https://github.com/forkts/downf
 
 > `optional` **videoAltUrl2Text?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:17](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L17)
+Defined in: [packages/contracts/FlashVars.ts:19](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L19)
 
 ***
 
@@ -142,7 +142,31 @@ Defined in: [packages/contracts/FlashVars.ts:17](https://github.com/forkts/downf
 
 > `optional` **videoAltUrl2Redirect?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:18](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L18)
+Defined in: [packages/contracts/FlashVars.ts:20](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L20)
+
+***
+
+### videoModels?
+
+> `optional` **videoModels?**: `string`[]
+
+Defined in: [packages/contracts/FlashVars.ts:21](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L21)
+
+***
+
+### timelineScreenUrl?
+
+> `optional` **timelineScreenUrl?**: `string`
+
+Defined in: [packages/contracts/FlashVars.ts:22](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L22)
+
+***
+
+### timelineScreenCount?
+
+> `optional` **timelineScreenCount?**: `number`
+
+Defined in: [packages/contracts/FlashVars.ts:23](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L23)
 
 ***
 
@@ -150,4 +174,60 @@ Defined in: [packages/contracts/FlashVars.ts:18](https://github.com/forkts/downf
 
 > `optional` **previewUrl?**: `string`
 
-Defined in: [packages/contracts/FlashVars.ts:19](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/FlashVars.ts#L19)
+Defined in: [packages/contracts/FlashVars.ts:24](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L24)
+
+***
+
+### previewUrl1?
+
+> `optional` **previewUrl1?**: `string`
+
+Defined in: [packages/contracts/FlashVars.ts:25](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L25)
+
+***
+
+### previewUrl2?
+
+> `optional` **previewUrl2?**: `string`
+
+Defined in: [packages/contracts/FlashVars.ts:26](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L26)
+
+***
+
+### previewUrl3?
+
+> `optional` **previewUrl3?**: `string`
+
+Defined in: [packages/contracts/FlashVars.ts:27](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L27)
+
+***
+
+### previewUrl4?
+
+> `optional` **previewUrl4?**: `string`
+
+Defined in: [packages/contracts/FlashVars.ts:28](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L28)
+
+***
+
+### previews?
+
+> `optional` **previews?**: `string`[]
+
+Defined in: [packages/contracts/FlashVars.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L29)
+
+***
+
+### videos?
+
+> `optional` **videos?**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
+
+Defined in: [packages/contracts/FlashVars.ts:30](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L30)
+
+***
+
+### timelineScreens?
+
+> `optional` **timelineScreens?**: `string`[]
+
+Defined in: [packages/contracts/FlashVars.ts:31](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/FlashVars.ts#L31)

@@ -6,7 +6,7 @@
 
 # Interface: PornHubVideosOutput
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:127](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L127)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:127](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L127)
 
 Interface representing the output structure for a PornHub model's videos.
 
@@ -16,7 +16,7 @@ Interface representing the output structure for a PornHub model's videos.
 
 > `optional` **username?**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:129](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L129)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:129](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L129)
 
 The username of the model
 
@@ -26,7 +26,7 @@ The username of the model
 
 > **fetchedVideos**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:132](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L132)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:132](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L132)
 
 Fetched videos
 
@@ -36,7 +36,7 @@ Fetched videos
 
 > **currentPage**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:135](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L135)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:135](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L135)
 
 Current page of videos
 
@@ -46,6 +46,6 @@ Current page of videos
 
 > **videoUrls**: `string`[]
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:138](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L138)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:138](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L138)
 
 An array of video URLs associated with the model

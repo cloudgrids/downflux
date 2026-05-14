@@ -6,7 +6,7 @@
 
 # Interface: SexVidVideoOutput
 
-Defined in: [packages/providers/sexvid/SexVidContracts.ts:6](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sexvid/SexVidContracts.ts#L6)
+Defined in: [packages/providers/sexvid/SexVidContracts.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sexvid/SexVidContracts.ts#L6)
 
 ## Extended by
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/sexvid/SexVidContracts.ts:6](https://github.com/
 
 > **title**: `string`
 
-Defined in: [packages/providers/sexvid/SexVidContracts.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sexvid/SexVidContracts.ts#L7)
+Defined in: [packages/providers/sexvid/SexVidContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sexvid/SexVidContracts.ts#L7)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [packages/providers/sexvid/SexVidContracts.ts:7](https://github.com/
 
 > **description**: `string`
 
-Defined in: [packages/providers/sexvid/SexVidContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sexvid/SexVidContracts.ts#L8)
+Defined in: [packages/providers/sexvid/SexVidContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sexvid/SexVidContracts.ts#L8)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [packages/providers/sexvid/SexVidContracts.ts:8](https://github.com/
 
 > **tags**: `string`[]
 
-Defined in: [packages/providers/sexvid/SexVidContracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sexvid/SexVidContracts.ts#L9)
+Defined in: [packages/providers/sexvid/SexVidContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sexvid/SexVidContracts.ts#L9)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/sexvid/SexVidContracts.ts:9](https://github.com/
 
 > **poster**: `string`
 
-Defined in: [packages/providers/sexvid/SexVidContracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sexvid/SexVidContracts.ts#L10)
+Defined in: [packages/providers/sexvid/SexVidContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sexvid/SexVidContracts.ts#L10)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [packages/providers/sexvid/SexVidContracts.ts:10](https://github.com
 
 > **duration**: `number`
 
-Defined in: [packages/providers/sexvid/SexVidContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sexvid/SexVidContracts.ts#L11)
+Defined in: [packages/providers/sexvid/SexVidContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sexvid/SexVidContracts.ts#L11)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [packages/providers/sexvid/SexVidContracts.ts:11](https://github.com
 
 > **releasedAt**: `string`
 
-Defined in: [packages/providers/sexvid/SexVidContracts.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sexvid/SexVidContracts.ts#L12)
+Defined in: [packages/providers/sexvid/SexVidContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sexvid/SexVidContracts.ts#L12)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [packages/providers/sexvid/SexVidContracts.ts:12](https://github.com
 
 > **actor**: `string`
 
-Defined in: [packages/providers/sexvid/SexVidContracts.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sexvid/SexVidContracts.ts#L13)
+Defined in: [packages/providers/sexvid/SexVidContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sexvid/SexVidContracts.ts#L13)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [packages/providers/sexvid/SexVidContracts.ts:13](https://github.com
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/sexvid/SexVidContracts.ts:14](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sexvid/SexVidContracts.ts#L14)
+Defined in: [packages/providers/sexvid/SexVidContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sexvid/SexVidContracts.ts#L14)
 
 ***
 
@@ -82,4 +82,4 @@ Defined in: [packages/providers/sexvid/SexVidContracts.ts:14](https://github.com
 
 > **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/providers/sexvid/SexVidContracts.ts:15](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sexvid/SexVidContracts.ts#L15)
+Defined in: [packages/providers/sexvid/SexVidContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sexvid/SexVidContracts.ts#L15)

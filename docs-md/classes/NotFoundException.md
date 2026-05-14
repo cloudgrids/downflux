@@ -6,7 +6,7 @@
 
 # Class: NotFoundException
 
-Defined in: [packages/core/exceptions/NotFoundException.ts:4](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/exceptions/NotFoundException.ts#L4)
+Defined in: [packages/core/exceptions/NotFoundException.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/NotFoundException.ts#L4)
 
 Exception
 The base exception class for all custom exceptions in the application.
@@ -22,7 +22,7 @@ Provides a consistent structure for error information, including error codes, co
 
 > **new NotFoundException**(`provider`, `url`, `context?`): `NotFoundException`
 
-Defined in: [packages/core/exceptions/NotFoundException.ts:5](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/exceptions/NotFoundException.ts#L5)
+Defined in: [packages/core/exceptions/NotFoundException.ts:5](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/NotFoundException.ts#L5)
 
 #### Parameters
 
@@ -74,7 +74,7 @@ not capture any frames.
 
 > `readonly` **errorCode**: [`ErrorCodes`](../enumerations/ErrorCodes.md)
 
-Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/exceptions/BaseException.ts#L18)
+Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/BaseException.ts#L18)
 
 #### Inherited from
 
@@ -86,7 +86,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/fo
 
 > `readonly` **context**: `Record`\<`string`, `any`\>
 
-Defined in: [packages/core/exceptions/BaseException.ts:19](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/exceptions/BaseException.ts#L19)
+Defined in: [packages/core/exceptions/BaseException.ts:19](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/BaseException.ts#L19)
 
 #### Inherited from
 
@@ -98,7 +98,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:19](https://github.com/fo
 
 > `readonly` `optional` **metadata?**: `any`
 
-Defined in: [packages/core/exceptions/BaseException.ts:20](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/exceptions/BaseException.ts#L20)
+Defined in: [packages/core/exceptions/BaseException.ts:20](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/BaseException.ts#L20)
 
 #### Inherited from
 
@@ -258,7 +258,7 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 > **toJSON**(): `object`
 
-Defined in: [packages/core/exceptions/BaseException.ts:33](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/exceptions/BaseException.ts#L33)
+Defined in: [packages/core/exceptions/BaseException.ts:33](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/BaseException.ts#L33)
 
 #### Returns
 

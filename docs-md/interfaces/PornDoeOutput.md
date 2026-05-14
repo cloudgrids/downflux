@@ -6,7 +6,7 @@
 
 # Interface: PornDoeOutput
 
-Defined in: [packages/providers/porndoe/PornDoeContracts.ts:4](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porndoe/PornDoeContracts.ts#L4)
+Defined in: [packages/providers/porndoe/PornDoeContracts.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porndoe/PornDoeContracts.ts#L4)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/porndoe/PornDoeContracts.ts:4](https://github.co
 
 > **title**: `string`
 
-Defined in: [packages/providers/porndoe/PornDoeContracts.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porndoe/PornDoeContracts.ts#L7)
+Defined in: [packages/providers/porndoe/PornDoeContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porndoe/PornDoeContracts.ts#L7)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [packages/providers/porndoe/PornDoeContracts.ts:7](https://github.co
 
 > **description**: `string`
 
-Defined in: [packages/providers/porndoe/PornDoeContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porndoe/PornDoeContracts.ts#L8)
+Defined in: [packages/providers/porndoe/PornDoeContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porndoe/PornDoeContracts.ts#L8)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/porndoe/PornDoeContracts.ts:8](https://github.co
 
 > **videos**: [`PornDoeVideoSource`](PornDoeVideoSource.md)[]
 
-Defined in: [packages/providers/porndoe/PornDoeContracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porndoe/PornDoeContracts.ts#L9)
+Defined in: [packages/providers/porndoe/PornDoeContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porndoe/PornDoeContracts.ts#L9)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [packages/providers/porndoe/PornDoeContracts.ts:9](https://github.co
 
 > **poster**: `string`
 
-Defined in: [packages/providers/porndoe/PornDoeContracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porndoe/PornDoeContracts.ts#L10)
+Defined in: [packages/providers/porndoe/PornDoeContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porndoe/PornDoeContracts.ts#L10)
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: [packages/providers/porndoe/PornDoeContracts.ts:10](https://github.c
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/porndoe/PornDoeContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porndoe/PornDoeContracts.ts#L11)
+Defined in: [packages/providers/porndoe/PornDoeContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porndoe/PornDoeContracts.ts#L11)
 
 #### Inherited from
 
@@ -74,11 +74,23 @@ Defined in: [packages/providers/porndoe/PornDoeContracts.ts:11](https://github.c
 
 ***
 
+### preview
+
+> **preview**: `string`
+
+Defined in: [packages/providers/porndoe/PornDoeContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porndoe/PornDoeContracts.ts#L12)
+
+#### Inherited from
+
+[`PornDoeVideoOutput`](PornDoeVideoOutput.md).[`preview`](PornDoeVideoOutput.md#preview)
+
+***
+
 ### id
 
 > **id**: `string`
 
-Defined in: [packages/providers/porndoe/PornDoeContracts.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porndoe/PornDoeContracts.ts#L12)
+Defined in: [packages/providers/porndoe/PornDoeContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porndoe/PornDoeContracts.ts#L13)
 
 #### Inherited from
 
@@ -90,7 +102,7 @@ Defined in: [packages/providers/porndoe/PornDoeContracts.ts:12](https://github.c
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/porndoe/PornDoeContracts.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porndoe/PornDoeContracts.ts#L13)
+Defined in: [packages/providers/porndoe/PornDoeContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porndoe/PornDoeContracts.ts#L14)
 
 #### Inherited from
 
@@ -102,7 +114,7 @@ Defined in: [packages/providers/porndoe/PornDoeContracts.ts:13](https://github.c
 
 > `optional` **banners?**: `object`
 
-Defined in: [packages/providers/porndoe/PornDoeContracts.ts:14](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porndoe/PornDoeContracts.ts#L14)
+Defined in: [packages/providers/porndoe/PornDoeContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porndoe/PornDoeContracts.ts#L15)
 
 #### page
 

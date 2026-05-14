@@ -6,7 +6,7 @@
 
 # Interface: PussySpaceVideoOutput
 
-Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pussyspace/PussySpaceContracts.ts#L8)
+Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pussyspace/PussySpaceContracts.ts#L8)
 
 ## Extended by
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:8](https://git
 
 > **poster**: `string`
 
-Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pussyspace/PussySpaceContracts.ts#L9)
+Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pussyspace/PussySpaceContracts.ts#L9)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:9](https://git
 
 > **title**: `string`
 
-Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pussyspace/PussySpaceContracts.ts#L10)
+Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pussyspace/PussySpaceContracts.ts#L10)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:10](https://gi
 
 > **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pussyspace/PussySpaceContracts.ts#L11)
+Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pussyspace/PussySpaceContracts.ts#L11)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:11](https://gi
 
 > **description**: `string`
 
-Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pussyspace/PussySpaceContracts.ts#L12)
+Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pussyspace/PussySpaceContracts.ts#L12)
 
 ***
 
@@ -50,4 +50,4 @@ Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:12](https://gi
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pussyspace/PussySpaceContracts.ts#L13)
+Defined in: [packages/providers/pussyspace/PussySpaceContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pussyspace/PussySpaceContracts.ts#L13)

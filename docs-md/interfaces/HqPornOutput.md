@@ -6,7 +6,7 @@
 
 # Interface: HqPornOutput
 
-Defined in: [packages/providers/hqporn/HqPornContracts.ts:3](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/hqporn/HqPornContracts.ts#L3)
+Defined in: [packages/providers/hqporn/HqPornContracts.ts:3](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/hqporn/HqPornContracts.ts#L3)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/hqporn/HqPornContracts.ts:3](https://github.com/
 
 > **title**: `string`
 
-Defined in: [packages/providers/hqporn/HqPornContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/hqporn/HqPornContracts.ts#L8)
+Defined in: [packages/providers/hqporn/HqPornContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/hqporn/HqPornContracts.ts#L8)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [packages/providers/hqporn/HqPornContracts.ts:8](https://github.com/
 
 > **poster**: `string`
 
-Defined in: [packages/providers/hqporn/HqPornContracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/hqporn/HqPornContracts.ts#L9)
+Defined in: [packages/providers/hqporn/HqPornContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/hqporn/HqPornContracts.ts#L9)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/hqporn/HqPornContracts.ts:9](https://github.com/
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/hqporn/HqPornContracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/hqporn/HqPornContracts.ts#L10)
+Defined in: [packages/providers/hqporn/HqPornContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/hqporn/HqPornContracts.ts#L10)
 
 #### Inherited from
 
@@ -50,15 +50,15 @@ Defined in: [packages/providers/hqporn/HqPornContracts.ts:10](https://github.com
 
 ***
 
-### videoUrl
+### videos
 
-> **videoUrl**: `string`
+> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/providers/hqporn/HqPornContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/hqporn/HqPornContracts.ts#L11)
+Defined in: [packages/providers/hqporn/HqPornContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/hqporn/HqPornContracts.ts#L11)
 
 #### Inherited from
 
-[`HqPornVideoOutput`](HqPornVideoOutput.md).[`videoUrl`](HqPornVideoOutput.md#videourl)
+[`HqPornVideoOutput`](HqPornVideoOutput.md).[`videos`](HqPornVideoOutput.md#videos)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [packages/providers/hqporn/HqPornContracts.ts:11](https://github.com
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/hqporn/HqPornContracts.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/hqporn/HqPornContracts.ts#L12)
+Defined in: [packages/providers/hqporn/HqPornContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/hqporn/HqPornContracts.ts#L12)
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ Defined in: [packages/providers/hqporn/HqPornContracts.ts:12](https://github.com
 
 > `optional` **videoTags?**: `string`[]
 
-Defined in: [packages/providers/hqporn/HqPornContracts.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/hqporn/HqPornContracts.ts#L13)
+Defined in: [packages/providers/hqporn/HqPornContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/hqporn/HqPornContracts.ts#L13)
 
 #### Inherited from
 

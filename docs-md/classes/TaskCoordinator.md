@@ -6,7 +6,7 @@
 
 # Class: TaskCoordinator
 
-Defined in: [packages/core/coordinators/TaskCoordinator.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TaskCoordinator.ts#L8)
+Defined in: [packages/core/coordinators/TaskCoordinator.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TaskCoordinator.ts#L8)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/coordinators/TaskCoordinator.ts:8](https://github.com
 
 > **new TaskCoordinator**(`transferCoordinator`, `fileManager`, `transformerRegistry`, `progressManager`, `pipelineRegistry`): `TaskCoordinator`
 
-Defined in: [packages/core/coordinators/TaskCoordinator.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TaskCoordinator.ts#L11)
+Defined in: [packages/core/coordinators/TaskCoordinator.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TaskCoordinator.ts#L11)
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: [packages/core/coordinators/TaskCoordinator.ts:11](https://github.co
 
 > **runWithConcurrency**\<`T`\>(`items`, `concurrency`, `worker`): `Promise`\<`void`\>
 
-Defined in: [packages/core/coordinators/TaskCoordinator.ts:128](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TaskCoordinator.ts#L128)
+Defined in: [packages/core/coordinators/TaskCoordinator.ts:128](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TaskCoordinator.ts#L128)
 
 #### Type Parameters
 
@@ -80,7 +80,7 @@ Defined in: [packages/core/coordinators/TaskCoordinator.ts:128](https://github.c
 
 > **handleJsonOutput**\<`T`, `S`\>(`result`, `options`): `Promise`\<[`ExecutionResult`](../interfaces/ExecutionResult.md)\<`T`, `S`\>\>
 
-Defined in: [packages/core/coordinators/TaskCoordinator.ts:145](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TaskCoordinator.ts#L145)
+Defined in: [packages/core/coordinators/TaskCoordinator.ts:145](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TaskCoordinator.ts#L145)
 
 #### Type Parameters
 
@@ -112,7 +112,7 @@ Defined in: [packages/core/coordinators/TaskCoordinator.ts:145](https://github.c
 
 > **handleDeviceOutputAsync**\<`T`, `S`\>(`options`, `outputType`, `request`, `pipelineHooks`, `result`): `void`
 
-Defined in: [packages/core/coordinators/TaskCoordinator.ts:153](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TaskCoordinator.ts#L153)
+Defined in: [packages/core/coordinators/TaskCoordinator.ts:153](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TaskCoordinator.ts#L153)
 
 #### Type Parameters
 

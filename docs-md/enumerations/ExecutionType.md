@@ -6,7 +6,7 @@
 
 # Enumeration: ExecutionType
 
-Defined in: [packages/types/ExecutionTypes.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L8)
+Defined in: [packages/types/ExecutionTypes.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L8)
 
 Job execution strategy
 
@@ -16,7 +16,7 @@ Job execution strategy
 
 > **SEQUENTIAL**: `"SEQUENTIAL"`
 
-Defined in: [packages/types/ExecutionTypes.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L10)
+Defined in: [packages/types/ExecutionTypes.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L10)
 
 Sequential task execution
 
@@ -26,6 +26,6 @@ Sequential task execution
 
 > **PARALLEL**: `"PARALLEL"`
 
-Defined in: [packages/types/ExecutionTypes.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L13)
+Defined in: [packages/types/ExecutionTypes.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L13)
 
 Concurrent task execution

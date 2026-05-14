@@ -6,7 +6,7 @@
 
 # Interface: TheyAreHugeOutput
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:4](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L4)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L4)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:4](https://g
 
 > **title**: `string`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L7)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L7)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:7](https://g
 
 > **description**: `string`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L8)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L8)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:8](https://g
 
 > **poster**: `string`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L9)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L9)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:9](https://g
 
 > **videoId**: `string`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L10)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L10)
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:10](https://
 
 > **tags**: `string`[]
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L11)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L11)
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:11](https://
 
 > **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L12)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L12)
 
 #### Inherited from
 
@@ -90,7 +90,7 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:12](https://
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L13)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L13)
 
 #### Inherited from
 
@@ -102,7 +102,7 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:13](https://
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:14](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L14)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L14)
 
 #### Inherited from
 
@@ -114,7 +114,7 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:14](https://
 
 > **models**: `string`[]
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:15](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L15)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L15)
 
 #### Inherited from
 

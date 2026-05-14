@@ -6,7 +6,7 @@
 
 # Class: PipelineRegistry
 
-Defined in: [packages/core/registries/PipelineRegistry.ts:48](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/registries/PipelineRegistry.ts#L48)
+Defined in: [packages/core/registries/PipelineRegistry.ts:54](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/PipelineRegistry.ts#L54)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/registries/PipelineRegistry.ts:48](https://github.com
 
 > **new PipelineRegistry**(`fileManager`): `PipelineRegistry`
 
-Defined in: [packages/core/registries/PipelineRegistry.ts:51](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/registries/PipelineRegistry.ts#L51)
+Defined in: [packages/core/registries/PipelineRegistry.ts:57](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/PipelineRegistry.ts#L57)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [packages/core/registries/PipelineRegistry.ts:51](https://github.com
 
 > `protected` `readonly` **fileManager**: [`FileManager`](FileManager.md)
 
-Defined in: [packages/core/registries/PipelineRegistry.ts:51](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/registries/PipelineRegistry.ts#L51)
+Defined in: [packages/core/registries/PipelineRegistry.ts:57](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/PipelineRegistry.ts#L57)
 
 ## Methods
 
@@ -40,7 +40,7 @@ Defined in: [packages/core/registries/PipelineRegistry.ts:51](https://github.com
 
 > **build**\<`TResult`, `TExec`\>(`metadata`, `request`): `Promise`\<[`PipelineItem`](../interfaces/PipelineItem.md)[]\>
 
-Defined in: [packages/core/registries/PipelineRegistry.ts:67](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/registries/PipelineRegistry.ts#L67)
+Defined in: [packages/core/registries/PipelineRegistry.ts:73](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/PipelineRegistry.ts#L73)
 
 #### Type Parameters
 

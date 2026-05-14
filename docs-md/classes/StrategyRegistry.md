@@ -6,7 +6,7 @@
 
 # Class: StrategyRegistry
 
-Defined in: [packages/core/registries/StrategyRegistry.ts:47](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/registries/StrategyRegistry.ts#L47)
+Defined in: [packages/core/registries/StrategyRegistry.ts:53](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/StrategyRegistry.ts#L53)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/registries/StrategyRegistry.ts:47](https://github.com
 
 > **new StrategyRegistry**(`progressManager`): `StrategyRegistry`
 
-Defined in: [packages/core/registries/StrategyRegistry.ts:50](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/registries/StrategyRegistry.ts#L50)
+Defined in: [packages/core/registries/StrategyRegistry.ts:56](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/StrategyRegistry.ts#L56)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [packages/core/registries/StrategyRegistry.ts:50](https://github.com
 
 > **getStrategy**(`provider`): `Promise`\<[`BaseStrategy`](BaseStrategy.md)\>
 
-Defined in: [packages/core/registries/StrategyRegistry.ts:66](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/registries/StrategyRegistry.ts#L66)
+Defined in: [packages/core/registries/StrategyRegistry.ts:72](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/StrategyRegistry.ts#L72)
 
 #### Parameters
 

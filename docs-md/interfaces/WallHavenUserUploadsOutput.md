@@ -6,7 +6,7 @@
 
 # Interface: WallHavenUserUploadsOutput
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:126](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/wallhaven/WallHavenContracts.ts#L126)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:126](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L126)
 
 Interface representing the output structure for WallHaven user upload operations.
 Contains uploader pagination and thumbnail results.
@@ -21,7 +21,7 @@ Contains uploader pagination and thumbnail results.
 
 > **currentPage**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:128](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/wallhaven/WallHavenContracts.ts#L128)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:128](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L128)
 
 Current upload page
 
@@ -31,7 +31,7 @@ Current upload page
 
 > **thumbnails**: [`WallHavenThumbnail`](WallHavenThumbnail.md)[]
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:131](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/wallhaven/WallHavenContracts.ts#L131)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:131](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L131)
 
 Thumbnails found on the upload page
 
@@ -41,7 +41,7 @@ Thumbnails found on the upload page
 
 > `optional` **wallPapers?**: [`WallHavenWallPaperOutput`](WallHavenWallPaperOutput.md)[]
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:134](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/wallhaven/WallHavenContracts.ts#L134)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:134](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L134)
 
 Wallpaper metadata when requested
 
@@ -51,7 +51,7 @@ Wallpaper metadata when requested
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:144](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/wallhaven/WallHavenContracts.ts#L144)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:144](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L144)
 
 Uploader username
 
@@ -65,7 +65,7 @@ Uploader username
 
 > **totalContents**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:147](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/wallhaven/WallHavenContracts.ts#L147)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:147](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L147)
 
 Total uploaded content count
 
@@ -79,7 +79,7 @@ Total uploaded content count
 
 > **totalPages**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:150](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/wallhaven/WallHavenContracts.ts#L150)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:150](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L150)
 
 Total upload pages
 

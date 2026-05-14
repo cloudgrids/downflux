@@ -6,7 +6,7 @@
 
 # Class: FileManager
 
-Defined in: [packages/storage/FileManager.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FileManager.ts#L11)
+Defined in: [packages/storage/FileManager.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L11)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/storage/FileManager.ts:11](https://github.com/forkts/downf
 
 > **new FileManager**(`ffmpegEngine`, `progressManager`): `FileManager`
 
-Defined in: [packages/storage/FileManager.ts:16](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FileManager.ts#L16)
+Defined in: [packages/storage/FileManager.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L16)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [packages/storage/FileManager.ts:16](https://github.com/forkts/downf
 
 > **createSink**(`sinkInput`): `object`
 
-Defined in: [packages/storage/FileManager.ts:21](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FileManager.ts#L21)
+Defined in: [packages/storage/FileManager.ts:21](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L21)
 
 #### Parameters
 
@@ -80,7 +80,7 @@ Defined in: [packages/storage/FileManager.ts:21](https://github.com/forkts/downf
 
 > **finalizeStream**(`finalPath`, `tOptions?`, `isFmp4?`, `opts?`): `Promise`\<\{ `path`: `string`; `filename`: `string`; `extension`: `string`; `mimeType`: `any`; \}\>
 
-Defined in: [packages/storage/FileManager.ts:124](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FileManager.ts#L124)
+Defined in: [packages/storage/FileManager.ts:124](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L124)
 
 #### Parameters
 
@@ -116,7 +116,7 @@ Defined in: [packages/storage/FileManager.ts:124](https://github.com/forkts/down
 
 > **toJSON**\<`T`, `S`\>(`result`, `directoryPath?`): `string`
 
-Defined in: [packages/storage/FileManager.ts:145](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FileManager.ts#L145)
+Defined in: [packages/storage/FileManager.ts:145](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L145)
 
 #### Type Parameters
 
@@ -148,7 +148,7 @@ Defined in: [packages/storage/FileManager.ts:145](https://github.com/forkts/down
 
 > **getFileInfo**(`url`, `prefix?`): [`ResolvedFile`](../interfaces/ResolvedFile.md)
 
-Defined in: [packages/storage/FileManager.ts:169](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FileManager.ts#L169)
+Defined in: [packages/storage/FileManager.ts:169](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L169)
 
 Extracts filename and extension from URL.
 
@@ -178,7 +178,7 @@ path undefined => fud_timestamp
 
 > **sanitizeFilename**(`name`): `string`
 
-Defined in: [packages/storage/FileManager.ts:193](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FileManager.ts#L193)
+Defined in: [packages/storage/FileManager.ts:193](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L193)
 
 #### Parameters
 
@@ -196,7 +196,7 @@ Defined in: [packages/storage/FileManager.ts:193](https://github.com/forkts/down
 
 > **detectResourceType**(`url`, `request`): `object`
 
-Defined in: [packages/storage/FileManager.ts:229](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FileManager.ts#L229)
+Defined in: [packages/storage/FileManager.ts:229](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L229)
 
 #### Parameters
 
@@ -226,7 +226,7 @@ Defined in: [packages/storage/FileManager.ts:229](https://github.com/forkts/down
 
 > **deriveResolvedFile**(`initial`, `finalUrl`, `headers`, `isFmp4?`, `prefix?`): [`ResolvedFile`](../interfaces/ResolvedFile.md)
 
-Defined in: [packages/storage/FileManager.ts:256](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FileManager.ts#L256)
+Defined in: [packages/storage/FileManager.ts:256](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L256)
 
 #### Parameters
 

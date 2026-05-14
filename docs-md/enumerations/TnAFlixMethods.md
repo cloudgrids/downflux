@@ -6,7 +6,7 @@
 
 # Enumeration: TnAFlixMethods
 
-Defined in: [packages/providers/tnaflix/TnAFlixTypes.ts:1](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixTypes.ts#L1)
+Defined in: [packages/providers/tnaflix/TnAFlixTypes.ts:1](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixTypes.ts#L1)
 
 ## Enumeration Members
 
@@ -14,4 +14,4 @@ Defined in: [packages/providers/tnaflix/TnAFlixTypes.ts:1](https://github.com/fo
 
 > **getVideo**: `"getVideo"`
 
-Defined in: [packages/providers/tnaflix/TnAFlixTypes.ts:2](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixTypes.ts#L2)
+Defined in: [packages/providers/tnaflix/TnAFlixTypes.ts:2](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixTypes.ts#L2)

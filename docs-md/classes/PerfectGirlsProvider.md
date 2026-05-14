@@ -6,7 +6,7 @@
 
 # Class: PerfectGirlsProvider
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:23](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L23)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:23](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L23)
 
 PerfectGirlsProvider
 This provider can be used with both `perfectdamen.co` and `perfectgirls.xxx` domains.
@@ -24,7 +24,7 @@ Dependencies: - ffmpeg (for m3u8 to mp4 conversion)
 
 > **new PerfectGirlsProvider**(`url`): `PerfectGirlsProvider`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:37](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L37)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:37](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L37)
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:37](https:/
 
 > `protected` **executionOptions**: [`ExecutionOptions`](../interfaces/ExecutionOptions.md) = `{}`
 
-Defined in: [packages/base/BaseProvider.ts:29](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L29)
+Defined in: [packages/base/BaseProvider.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L29)
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Defined in: [packages/base/BaseProvider.ts:29](https://github.com/forkts/downflu
 
 > `protected` **httpOptions**: [`HttpFetchOptions`](../interfaces/HttpFetchOptions.md) = `{}`
 
-Defined in: [packages/base/BaseProvider.ts:30](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L30)
+Defined in: [packages/base/BaseProvider.ts:30](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L30)
 
 #### Inherited from
 
@@ -70,7 +70,7 @@ Defined in: [packages/base/BaseProvider.ts:30](https://github.com/forkts/downflu
 
 > `protected` `readonly` **deps**: [`CoordinatorDependencies`](../interfaces/CoordinatorDependencies.md)
 
-Defined in: [packages/base/BaseProvider.ts:31](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L31)
+Defined in: [packages/base/BaseProvider.ts:31](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L31)
 
 #### Inherited from
 
@@ -82,7 +82,7 @@ Defined in: [packages/base/BaseProvider.ts:31](https://github.com/forkts/downflu
 
 > `protected` `readonly` **urlPattern**: `RegExp`
 
-Defined in: [packages/base/BaseProvider.ts:33](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L33)
+Defined in: [packages/base/BaseProvider.ts:33](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L33)
 
 #### Inherited from
 
@@ -94,7 +94,7 @@ Defined in: [packages/base/BaseProvider.ts:33](https://github.com/forkts/downflu
 
 > `readonly` **url**: `string`
 
-Defined in: [packages/base/BaseProvider.ts:36](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L36)
+Defined in: [packages/base/BaseProvider.ts:36](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L36)
 
 #### Inherited from
 
@@ -106,7 +106,7 @@ Defined in: [packages/base/BaseProvider.ts:36](https://github.com/forkts/downflu
 
 > `protected` `readonly` **provider**: [`PerfectGirls`](../enumerations/ProviderType.md#perfectgirls) = `ProviderType.PerfectGirls`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:24](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L24)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:24](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L24)
 
 #### Overrides
 
@@ -120,7 +120,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:24](https:/
 
 > **get** `protected` **ORIGIN**(): `string`
 
-Defined in: [packages/base/BaseProvider.ts:52](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L52)
+Defined in: [packages/base/BaseProvider.ts:52](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L52)
 
 ##### Returns
 
@@ -138,7 +138,7 @@ Defined in: [packages/base/BaseProvider.ts:52](https://github.com/forkts/downflu
 
 > **get** `protected` **HOST\_NAME**(): `string`
 
-Defined in: [packages/base/BaseProvider.ts:56](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L56)
+Defined in: [packages/base/BaseProvider.ts:56](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L56)
 
 ##### Returns
 
@@ -156,7 +156,7 @@ Defined in: [packages/base/BaseProvider.ts:56](https://github.com/forkts/downflu
 
 > **get** **baseUrl**(): `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:44](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L44)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:44](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L44)
 
 ##### Returns
 
@@ -170,7 +170,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:44](https:/
 
 > **get** **albumsUrl**(): `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:48](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L48)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:48](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L48)
 
 ##### Returns
 
@@ -184,7 +184,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:48](https:/
 
 > **get** **albumUrl**(): `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:54](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L54)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:54](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L54)
 
 ##### Returns
 
@@ -198,7 +198,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:54](https:/
 
 > **get** **videoUrl**(): `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:66](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L66)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:66](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L66)
 
 ##### Returns
 
@@ -212,7 +212,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:66](https:/
 
 > **get** **videosUrl**(): `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:78](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L78)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:78](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L78)
 
 ##### Returns
 
@@ -226,7 +226,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:78](https:/
 
 > **get** **modelUrl**(): `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:84](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L84)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:84](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L84)
 
 ##### Returns
 
@@ -240,7 +240,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:84](https:/
 
 > **get** **modelsUrl**(): `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:94](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L94)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:94](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L94)
 
 ##### Returns
 
@@ -254,7 +254,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:94](https:/
 
 > **get** **tagsUrl**(): `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:100](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L100)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:100](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L100)
 
 ##### Returns
 
@@ -268,7 +268,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:100](https:
 
 > **get** **channelsUrl**(): `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:106](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L106)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:106](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L106)
 
 ##### Returns
 
@@ -280,7 +280,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:106](https:
 
 > **setHeaders**(`headers`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:76](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L76)
+Defined in: [packages/base/BaseProvider.ts:76](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L76)
 
 Sets custom HTTP headers.
 
@@ -306,7 +306,7 @@ Request header map
 
 > **setTimeout**(`timeoutMs`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:85](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L85)
+Defined in: [packages/base/BaseProvider.ts:85](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L85)
 
 Sets HTTP timeout.
 
@@ -332,7 +332,7 @@ Timeout in milliseconds
 
 > **setRetries**(`retries`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:94](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L94)
+Defined in: [packages/base/BaseProvider.ts:94](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L94)
 
 Sets fetch retry count.
 
@@ -358,7 +358,7 @@ Retry attempt count
 
 > **setTransformOutput**(`transform?`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:103](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L103)
+Defined in: [packages/base/BaseProvider.ts:103](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L103)
 
 Transform output to provider-specific result type.
 
@@ -384,7 +384,7 @@ Default is true, which applies the default transformation. Set to false to retur
 
 > **setHttpOptions**(`opts`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:112](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L112)
+Defined in: [packages/base/BaseProvider.ts:112](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L112)
 
 Sets HTTP fetch options.
 
@@ -410,7 +410,7 @@ HTTP options to merge
 
 > **setNoDownload**(`noDownload?`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:122](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L122)
+Defined in: [packages/base/BaseProvider.ts:122](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L122)
 
 Sets no download flag.
 
@@ -442,7 +442,7 @@ false - set to true to skip the download phase and only perform extraction (usef
 
 > **setTranscodeOptions**(`opts`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:134](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L134)
+Defined in: [packages/base/BaseProvider.ts:134](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L134)
 
 Sets transcode options.
 
@@ -470,7 +470,7 @@ Make sure your OS can handle it
 
 > **setJobOptions**(`opts`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:143](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L143)
+Defined in: [packages/base/BaseProvider.ts:143](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L143)
 
 Sets ExecutionCoordinator options.
 
@@ -496,7 +496,7 @@ Job options to merge
 
 > **setMaxDownloads**(`maxDownloads`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:152](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L152)
+Defined in: [packages/base/BaseProvider.ts:152](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L152)
 
 Sets maximum downloads.
 
@@ -522,7 +522,7 @@ Download limit
 
 > **setAllowedExtensions**(...`extensions`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:161](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L161)
+Defined in: [packages/base/BaseProvider.ts:161](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L161)
 
 Sets allowed file extensions.
 
@@ -548,7 +548,7 @@ File extensions such as `jpg` or `png`
 
 > **onProgress**(`handler`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:170](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L170)
+Defined in: [packages/base/BaseProvider.ts:170](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L170)
 
 Sets progress handler.
 
@@ -574,7 +574,7 @@ Progress event callback
 
 > **setProgressLogging**(`enabled?`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:180](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L180)
+Defined in: [packages/base/BaseProvider.ts:180](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L180)
 
 Enables console progress logging.
 
@@ -606,7 +606,7 @@ true
 
 > **setOutput**(`type`, `config?`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:191](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L191)
+Defined in: [packages/base/BaseProvider.ts:191](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L191)
 
 Sets output type.
 
@@ -644,7 +644,7 @@ OutputType.JSON
 
 > **setExecutionType**(`type`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:202](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L202)
+Defined in: [packages/base/BaseProvider.ts:202](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L202)
 
 Sets execution strategy.
 
@@ -676,7 +676,7 @@ ExecutionType.SEQUENTIAL
 
 > `protected` **buildRequest**(`overrides?`): [`PerfectGirlsExecArgs`](../interfaces/PerfectGirlsExecArgs.md)
 
-Defined in: [packages/base/BaseProvider.ts:207](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L207)
+Defined in: [packages/base/BaseProvider.ts:207](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L207)
 
 #### Parameters
 
@@ -698,7 +698,7 @@ Defined in: [packages/base/BaseProvider.ts:207](https://github.com/forkts/downfl
 
 > `protected` **execute**\<`TResult`\>(`overrides?`): `Promise`\<`TResult`\>
 
-Defined in: [packages/base/BaseProvider.ts:220](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L220)
+Defined in: [packages/base/BaseProvider.ts:220](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L220)
 
 #### Type Parameters
 
@@ -726,7 +726,7 @@ Defined in: [packages/base/BaseProvider.ts:220](https://github.com/forkts/downfl
 
 > `protected` **makeTargets**(`sourceUrl`, `range`, `provider`, `method`, `addTrailingSlash?`): `object`
 
-Defined in: [packages/base/BaseProvider.ts:237](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseProvider.ts#L237)
+Defined in: [packages/base/BaseProvider.ts:237](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseProvider.ts#L237)
 
 #### Parameters
 
@@ -776,7 +776,7 @@ Defined in: [packages/base/BaseProvider.ts:237](https://github.com/forkts/downfl
 
 > **getAlbums**(`param?`): `Promise`\<[`PerfectGirlsAlbumOutput`](../interfaces/PerfectGirlsAlbumOutput.md)[]\>
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:119](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L119)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:119](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L119)
 
 Gets albums by page range.
 
@@ -805,7 +805,7 @@ true
 
 > **getAlbum**(): `Promise`\<[`PerfectGirlsAlbumOutput`](../interfaces/PerfectGirlsAlbumOutput.md)\>
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:132](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L132)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:132](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L132)
 
 Gets a single album.
 
@@ -822,7 +822,7 @@ true
 
 > **getModels**(`range?`, `args?`): `Promise`\<[`PerfectGirlsModelOutput`](../interfaces/PerfectGirlsModelOutput.md)[]\>
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:151](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L151)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:151](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L151)
 
 Gets models by page range.
 
@@ -861,7 +861,7 @@ true
 
 > **getModelVideoIds**(`range?`): `Promise`\<[`PerfectGirlsModelVideoIdsOutput`](../interfaces/PerfectGirlsModelVideoIdsOutput.md)\>
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:172](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L172)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:172](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L172)
 
 Gets video cards for a model.
 
@@ -894,7 +894,7 @@ true
 
 > **getTags**(`args`): `Promise`\<[`PerfectGirlsTagOutput`](../interfaces/PerfectGirlsTagOutput.md)[]\>
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:188](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L188)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:188](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L188)
 
 Gets tags by filter options.
 
@@ -924,7 +924,7 @@ false
 
 > **getChannels**(`range?`, `args?`): `Promise`\<[`PerfectGirlsChannelOutput`](../interfaces/PerfectGirlsChannelOutput.md)[]\>
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:209](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L209)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:209](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L209)
 
 Gets channels by page range.
 
@@ -964,7 +964,7 @@ false
 
 > **getVideos**(`range?`, `quality?`): `Promise`\<[`PerfectGirlsVideoOutput`](../interfaces/PerfectGirlsVideoOutput.md)[]\>
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:229](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L229)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:229](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L229)
 
 Gets videos by index range.
 
@@ -999,7 +999,7 @@ true
 
 > **getVideo**(`quality?`): `Promise`\<[`PerfectGirlsVideoOutput`](../interfaces/PerfectGirlsVideoOutput.md)\>
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:247](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L247)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsProvider.ts:247](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsProvider.ts#L247)
 
 Gets a single video.
 

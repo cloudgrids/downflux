@@ -7,7 +7,7 @@ import { CumLouderMethods } from './CumLouderTypes';
 /**
  * @class `CumLouderProvider`
  * @throws `ECONNRESET` or similar network errors if the CumLouder website is `inaccessible` from the provider's `location`.
- * @todo The provider is still under development and may not support all video formats or qualities available on CumLouder.
+ * The provider is still under development and may not support all video formats or qualities available on CumLouder.
  * Default video quality is set to `QUnknown` due to limitations in the source HTML,
  * but this may be refined in the future as the provider is further developed and improved.
  */

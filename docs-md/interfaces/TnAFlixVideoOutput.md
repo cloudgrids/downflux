@@ -6,7 +6,7 @@
 
 # Interface: TnAFlixVideoOutput
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:15](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixContracts.ts#L15)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L15)
 
 ## Extended by
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:15](https://github.c
 
 > **title**: `string`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:16](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixContracts.ts#L16)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L16)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:16](https://github.c
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:18](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixContracts.ts#L18)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L18)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:18](https://github.c
 
 > **videoId**: `string`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:20](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixContracts.ts#L20)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:20](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L20)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:20](https://github.c
 
 > **videos**: [`TnAFlixVideo`](TnAFlixVideo.md)[]
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:22](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixContracts.ts#L22)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:22](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L22)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:22](https://github.c
 
 > **videoPoster**: `string`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:24](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixContracts.ts#L24)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:24](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L24)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:24](https://github.c
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:26](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixContracts.ts#L26)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:26](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L26)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:26](https://github.c
 
 > `optional` **videoTags?**: `string`[]
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:28](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixContracts.ts#L28)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:28](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L28)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:28](https://github.c
 
 > **likes**: `number`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:30](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixContracts.ts#L30)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:30](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L30)
 
 ***
 
@@ -82,4 +82,4 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:30](https://github.c
 
 > **disLikes**: `number`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:32](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/tnaflix/TnAFlixContracts.ts#L32)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:32](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L32)

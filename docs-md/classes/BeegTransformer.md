@@ -6,7 +6,12 @@
 
 # Class: BeegTransformer
 
-Defined in: [packages/providers/beeg/BeegTransformer.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/beeg/BeegTransformer.ts#L7)
+Defined in: [packages/providers/beeg/BeegTransformer.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/beeg/BeegTransformer.ts#L13)
+
+`BeegTransformer`
+Transforms raw data fetched from the Beeg API into a structured format suitable for video downloading.
+The transformer is designed to work with the Beeg API's response structure and may need adjustments if the API changes.
+Provides all quality videos along with posters
 
 ## Extends
 
@@ -18,7 +23,7 @@ Defined in: [packages/providers/beeg/BeegTransformer.ts:7](https://github.com/fo
 
 > **new BeegTransformer**(`httpClient`, `progressManager`): `BeegTransformer`
 
-Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L8)
+Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L8)
 
 #### Parameters
 
@@ -44,7 +49,7 @@ Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downf
 
 > `protected` `readonly` **httpClient**: [`HttpClient`](HttpClient.md)
 
-Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L9)
+Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L9)
 
 #### Inherited from
 
@@ -56,7 +61,7 @@ Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downf
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L10)
+Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L10)
 
 #### Inherited from
 
@@ -68,7 +73,7 @@ Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/down
 
 > **requestData**(`url`, `opts`): `Promise`\<`any`\>
 
-Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L29)
+Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L29)
 
 #### Parameters
 
@@ -94,7 +99,7 @@ Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/down
 
 > **transform**(`url`, `request?`): `Promise`\<[`BeegVideoOutput`](../interfaces/BeegVideoOutput.md) \| [`DefaultExecutionResult`](../interfaces/DefaultExecutionResult.md)\<`unknown`\>\>
 
-Defined in: [packages/providers/beeg/BeegTransformer.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/beeg/BeegTransformer.ts#L12)
+Defined in: [packages/providers/beeg/BeegTransformer.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/beeg/BeegTransformer.ts#L18)
 
 #### Parameters
 

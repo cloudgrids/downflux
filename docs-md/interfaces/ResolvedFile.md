@@ -6,7 +6,7 @@
 
 # Interface: ResolvedFile
 
-Defined in: [packages/contracts/StorageContracts.ts:24](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L24)
+Defined in: [packages/contracts/StorageContracts.ts:24](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L24)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/StorageContracts.ts:24](https://github.com/forkt
 
 > **originalFilename**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:25](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L25)
+Defined in: [packages/contracts/StorageContracts.ts:25](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L25)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/StorageContracts.ts:25](https://github.com/forkt
 
 > **extension**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:26](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L26)
+Defined in: [packages/contracts/StorageContracts.ts:26](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L26)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [packages/contracts/StorageContracts.ts:26](https://github.com/forkt
 
 > **extendedFilename**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:27](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L27)
+Defined in: [packages/contracts/StorageContracts.ts:27](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L27)

@@ -6,7 +6,7 @@
 
 # Class: StreamHttpClient
 
-Defined in: [packages/engines/http/StreamingClient.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/StreamingClient.ts#L11)
+Defined in: [packages/engines/http/StreamingClient.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/StreamingClient.ts#L11)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/engines/http/StreamingClient.ts:11](https://github.com/for
 
 > **new StreamHttpClient**(`hlsClient`, `strategyRegistry`, `progressManager`): `StreamHttpClient`
 
-Defined in: [packages/engines/http/StreamingClient.ts:17](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/StreamingClient.ts#L17)
+Defined in: [packages/engines/http/StreamingClient.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/StreamingClient.ts#L17)
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: [packages/engines/http/StreamingClient.ts:17](https://github.com/for
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L8)
+Defined in: [packages/engines/http/BaseHttpClient.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L8)
 
 #### Inherited from
 
@@ -60,7 +60,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:8](https://github.com/forkt
 
 > `protected` `readonly` **cookieJar**: `Map`\<`string`, `Map`\<`string`, `string`\>\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L10)
+Defined in: [packages/engines/http/BaseHttpClient.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L10)
 
 #### Inherited from
 
@@ -72,7 +72,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:10](https://github.com/fork
 
 > `protected` `readonly` **CHROME\_CIPHERS**: `string`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L11)
+Defined in: [packages/engines/http/BaseHttpClient.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L11)
 
 #### Inherited from
 
@@ -84,7 +84,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:11](https://github.com/fork
 
 > `protected` `readonly` **agent**: `Agent`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:29](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L29)
+Defined in: [packages/engines/http/BaseHttpClient.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L29)
 
 #### Inherited from
 
@@ -96,7 +96,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:29](https://github.com/fork
 
 > `protected` **randomHeaders**(`extra?`): `object`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:39](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L39)
+Defined in: [packages/engines/http/BaseHttpClient.ts:39](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L39)
 
 #### Parameters
 
@@ -118,7 +118,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:39](https://github.com/fork
 
 > `protected` **delay**(`attempt`): `Promise`\<`unknown`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:48](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L48)
+Defined in: [packages/engines/http/BaseHttpClient.ts:48](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L48)
 
 #### Parameters
 
@@ -140,7 +140,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:48](https://github.com/fork
 
 > `protected` **readBody**(`body`): `Promise`\<`Buffer`\<`ArrayBufferLike`\>\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:55](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L55)
+Defined in: [packages/engines/http/BaseHttpClient.ts:55](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L55)
 
 #### Parameters
 
@@ -162,7 +162,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:55](https://github.com/fork
 
 > `protected` **decodeBody**(`buffer`, `headers`): `Buffer`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:70](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L70)
+Defined in: [packages/engines/http/BaseHttpClient.ts:70](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L70)
 
 #### Parameters
 
@@ -188,7 +188,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:70](https://github.com/fork
 
 > `protected` **applyCookieWithHeader**(`url`, `headers`): `Record`\<`string`, `string`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:86](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L86)
+Defined in: [packages/engines/http/BaseHttpClient.ts:86](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L86)
 
 #### Parameters
 
@@ -214,7 +214,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:86](https://github.com/fork
 
 > `protected` **storeCookies**(`url`, `headers`): `void`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:101](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L101)
+Defined in: [packages/engines/http/BaseHttpClient.ts:101](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L101)
 
 #### Parameters
 
@@ -240,7 +240,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:101](https://github.com/for
 
 > `protected` **addOriginWithHeader**(`headers`, `referer?`): `Record`\<`string`, `string`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:124](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L124)
+Defined in: [packages/engines/http/BaseHttpClient.ts:124](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L124)
 
 #### Parameters
 
@@ -266,7 +266,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:124](https://github.com/for
 
 > `protected` **headers**(`headers`): `Record`\<`string`, `string`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:135](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L135)
+Defined in: [packages/engines/http/BaseHttpClient.ts:135](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L135)
 
 #### Parameters
 
@@ -288,7 +288,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:135](https://github.com/for
 
 > `protected` **isTransportError**(`error`): `string` \| `undefined`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:139](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L139)
+Defined in: [packages/engines/http/BaseHttpClient.ts:139](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L139)
 
 #### Parameters
 
@@ -310,7 +310,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:139](https://github.com/for
 
 > `protected` **fetchWithTransportFallback**(`url`, `init`, `allowFallback?`): `Promise`\<`Response`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:153](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L153)
+Defined in: [packages/engines/http/BaseHttpClient.ts:153](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L153)
 
 #### Parameters
 
@@ -340,7 +340,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:153](https://github.com/for
 
 > **fetchText**(`url`, `timeoutMs`, `headers`): `Promise`\<`string`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:169](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L169)
+Defined in: [packages/engines/http/BaseHttpClient.ts:169](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L169)
 
 #### Parameters
 
@@ -370,7 +370,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:169](https://github.com/for
 
 > **fetchJson**(`url`, `opts`): `Promise`\<`any`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:173](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/BaseHttpClient.ts#L173)
+Defined in: [packages/engines/http/BaseHttpClient.ts:173](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L173)
 
 #### Parameters
 
@@ -396,7 +396,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:173](https://github.com/for
 
 > **requestStream**(`url`, `opts`): `Promise`\<[`HLSStreamRequest`](../interfaces/HLSStreamRequest.md)\>
 
-Defined in: [packages/engines/http/StreamingClient.ts:82](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/engines/http/StreamingClient.ts#L82)
+Defined in: [packages/engines/http/StreamingClient.ts:82](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/StreamingClient.ts#L82)
 
 #### Parameters
 

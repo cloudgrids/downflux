@@ -6,7 +6,7 @@
 
 # Interface: ProviderConfig
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:28](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L28)
+Defined in: [packages/contracts/CoordinatorDependency.ts:28](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L28)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:28](https://github.com/
 
 > **provider**: [`ProviderType`](../enumerations/ProviderType.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:29](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L29)
+Defined in: [packages/contracts/CoordinatorDependency.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L29)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:29](https://github.com/
 
 > **urlPattern**: `RegExp`
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:30](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L30)
+Defined in: [packages/contracts/CoordinatorDependency.ts:30](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L30)

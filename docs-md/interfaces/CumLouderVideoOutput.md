@@ -6,7 +6,7 @@
 
 # Interface: CumLouderVideoOutput
 
-Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:6](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/cumlouder/CumLouderContracts.ts#L6)
+Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/cumlouder/CumLouderContracts.ts#L6)
 
 ## Extended by
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:6](https://githu
 
 > **title**: `string`
 
-Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/cumlouder/CumLouderContracts.ts#L7)
+Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/cumlouder/CumLouderContracts.ts#L7)
 
 ***
 
@@ -26,15 +26,15 @@ Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:7](https://githu
 
 > **description**: `string`
 
-Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/cumlouder/CumLouderContracts.ts#L8)
+Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/cumlouder/CumLouderContracts.ts#L8)
 
 ***
 
-### videoUrl
+### videos
 
-> **videoUrl**: `string`
+> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/cumlouder/CumLouderContracts.ts#L9)
+Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/cumlouder/CumLouderContracts.ts#L9)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:9](https://githu
 
 > **poster**: `string`
 
-Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/cumlouder/CumLouderContracts.ts#L10)
+Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/cumlouder/CumLouderContracts.ts#L10)
 
 ***
 
@@ -50,4 +50,4 @@ Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:10](https://gith
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/cumlouder/CumLouderContracts.ts#L11)
+Defined in: [packages/providers/cumlouder/CumLouderContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/cumlouder/CumLouderContracts.ts#L11)

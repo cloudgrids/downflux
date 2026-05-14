@@ -6,7 +6,7 @@
 
 # Class: TransferCoordinator
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TransferCoordinator.ts#L8)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L8)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:8](https://github
 
 > **new TransferCoordinator**(`fileManager`, `streamHttpClient`, `progressManager`): `TransferCoordinator`
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TransferCoordinator.ts#L9)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L9)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:9](https://github
 
 > `protected` `readonly` **fileManager**: [`FileManager`](FileManager.md)
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TransferCoordinator.ts#L10)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L10)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:10](https://githu
 
 > `protected` `readonly` **streamHttpClient**: [`StreamHttpClient`](StreamHttpClient.md)
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TransferCoordinator.ts#L11)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L11)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:11](https://githu
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TransferCoordinator.ts#L12)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L12)
 
 ## Methods
 
@@ -64,7 +64,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:12](https://githu
 
 > **download**(`item`, `opts`): `Promise`\<[`DownloadResult`](../interfaces/DownloadResult.md)\>
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:15](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/TransferCoordinator.ts#L15)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L15)
 
 #### Parameters
 

@@ -6,7 +6,7 @@
 
 # Class: XGroovyStrategy
 
-Defined in: [packages/providers/xgroovy/XGroovyStrategy.ts:3](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xgroovy/XGroovyStrategy.ts#L3)
+Defined in: [packages/providers/xgroovy/XGroovyStrategy.ts:3](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xgroovy/XGroovyStrategy.ts#L3)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/xgroovy/XGroovyStrategy.ts:3](https://github.com
 
 > **new XGroovyStrategy**(`progressManager`): `XGroovyStrategy`
 
-Defined in: [packages/base/BaseStrategy.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseStrategy.ts#L7)
+Defined in: [packages/base/BaseStrategy.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L7)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [packages/base/BaseStrategy.ts:7](https://github.com/forkts/downflux
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseStrategy.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseStrategy.ts#L7)
+Defined in: [packages/base/BaseStrategy.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L7)
 
 #### Inherited from
 
@@ -52,7 +52,7 @@ Defined in: [packages/base/BaseStrategy.ts:7](https://github.com/forkts/downflux
 
 > **shouldFallback404**(`url`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseStrategy.ts#L9)
+Defined in: [packages/base/BaseStrategy.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L9)
 
 #### Parameters
 
@@ -74,7 +74,7 @@ Defined in: [packages/base/BaseStrategy.ts:9](https://github.com/forkts/downflux
 
 > **getDirectVideoUrlFromText**(`body`, `opts`): `string` \| `null`
 
-Defined in: [packages/base/BaseStrategy.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseStrategy.ts#L13)
+Defined in: [packages/base/BaseStrategy.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L13)
 
 #### Parameters
 
@@ -100,7 +100,7 @@ Defined in: [packages/base/BaseStrategy.ts:13](https://github.com/forkts/downflu
 
 > **getFallbackUrl**(`url`): `string` \| `null`
 
-Defined in: [packages/base/BaseStrategy.ts:29](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseStrategy.ts#L29)
+Defined in: [packages/base/BaseStrategy.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L29)
 
 #### Parameters
 
@@ -122,7 +122,7 @@ Defined in: [packages/base/BaseStrategy.ts:29](https://github.com/forkts/downflu
 
 > **shouldReExtract**(`url`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:33](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseStrategy.ts#L33)
+Defined in: [packages/base/BaseStrategy.ts:33](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L33)
 
 #### Parameters
 
@@ -144,7 +144,7 @@ Defined in: [packages/base/BaseStrategy.ts:33](https://github.com/forkts/downflu
 
 > **shouldResolveTextResponse**(`url`, `contentType`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseStrategy.ts#L37)
+Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L37)
 
 #### Parameters
 
@@ -170,7 +170,7 @@ Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflu
 
 > `protected` **constructPathname**(`url`): `string`
 
-Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseStrategy.ts#L41)
+Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L41)
 
 #### Parameters
 
@@ -192,7 +192,7 @@ Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflu
 
 > **getHostFallbackUrls**(`url`): `string`[]
 
-Defined in: [packages/providers/xgroovy/XGroovyStrategy.ts:19](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/xgroovy/XGroovyStrategy.ts#L19)
+Defined in: [packages/providers/xgroovy/XGroovyStrategy.ts:19](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xgroovy/XGroovyStrategy.ts#L19)
 
 #### Parameters
 

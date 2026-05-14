@@ -6,7 +6,7 @@
 
 # Interface: BeegVideoOutput
 
-Defined in: [packages/providers/beeg/BeegContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/beeg/BeegContracts.ts#L8)
+Defined in: [packages/providers/beeg/BeegContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/beeg/BeegContracts.ts#L8)
 
 ## Extended by
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/beeg/BeegContracts.ts:8](https://github.com/fork
 
 > **videos**: [`BeegVideoMetadata`](BeegVideoMetadata.md)[]
 
-Defined in: [packages/providers/beeg/BeegContracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/beeg/BeegContracts.ts#L9)
+Defined in: [packages/providers/beeg/BeegContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/beeg/BeegContracts.ts#L9)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [packages/providers/beeg/BeegContracts.ts:9](https://github.com/fork
 
 > **username**: `string`
 
-Defined in: [packages/providers/beeg/BeegContracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/beeg/BeegContracts.ts#L10)
+Defined in: [packages/providers/beeg/BeegContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/beeg/BeegContracts.ts#L10)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [packages/providers/beeg/BeegContracts.ts:10](https://github.com/for
 
 > **description**: `string`
 
-Defined in: [packages/providers/beeg/BeegContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/beeg/BeegContracts.ts#L11)
+Defined in: [packages/providers/beeg/BeegContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/beeg/BeegContracts.ts#L11)
 
 ***
 
@@ -42,4 +42,4 @@ Defined in: [packages/providers/beeg/BeegContracts.ts:11](https://github.com/for
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/beeg/BeegContracts.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/beeg/BeegContracts.ts#L12)
+Defined in: [packages/providers/beeg/BeegContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/beeg/BeegContracts.ts#L12)

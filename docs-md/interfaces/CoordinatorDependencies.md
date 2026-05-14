@@ -6,7 +6,7 @@
 
 # Interface: CoordinatorDependencies
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L8)
+Defined in: [packages/contracts/CoordinatorDependency.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L8)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:8](https://github.com/f
 
 > **httpClient**: [`HttpClient`](../classes/HttpClient.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L9)
+Defined in: [packages/contracts/CoordinatorDependency.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L9)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:9](https://github.com/f
 
 > **streamHttpClient**: [`StreamHttpClient`](../classes/StreamHttpClient.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L10)
+Defined in: [packages/contracts/CoordinatorDependency.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L10)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:10](https://github.com/
 
 > **transformerRegistry**: [`TransformerRegistry`](../classes/TransformerRegistry.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L11)
+Defined in: [packages/contracts/CoordinatorDependency.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L11)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:11](https://github.com/
 
 > **transferCoordinator**: [`TransferCoordinator`](../classes/TransferCoordinator.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L12)
+Defined in: [packages/contracts/CoordinatorDependency.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L12)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:12](https://github.com/
 
 > **executionCoordinator**: [`ExecutionCoordinator`](../classes/ExecutionCoordinator.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L13)
+Defined in: [packages/contracts/CoordinatorDependency.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L13)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:13](https://github.com/
 
 > **strategyRegistry**: [`StrategyRegistry`](../classes/StrategyRegistry.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:14](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L14)
+Defined in: [packages/contracts/CoordinatorDependency.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L14)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:14](https://github.com/
 
 > **progressManager**: [`ProgressManager`](../classes/ProgressManager.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:15](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L15)
+Defined in: [packages/contracts/CoordinatorDependency.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L15)
 
 ***
 
@@ -70,4 +70,4 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:15](https://github.com/
 
 > **cliManager**: [`CliManager`](../classes/CliManager.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:16](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L16)
+Defined in: [packages/contracts/CoordinatorDependency.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L16)

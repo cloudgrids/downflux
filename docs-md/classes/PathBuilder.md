@@ -6,7 +6,7 @@
 
 # Class: PathBuilder
 
-Defined in: [packages/storage/PathBuilder.ts:3](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/PathBuilder.ts#L3)
+Defined in: [packages/storage/PathBuilder.ts:3](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/PathBuilder.ts#L3)
 
 ## Constructors
 
@@ -24,7 +24,7 @@ Defined in: [packages/storage/PathBuilder.ts:3](https://github.com/forkts/downfl
 
 > **buildOutputPath**(`basePath`, `filename`, `identifier?`): `string`
 
-Defined in: [packages/storage/PathBuilder.ts:4](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/PathBuilder.ts#L4)
+Defined in: [packages/storage/PathBuilder.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/PathBuilder.ts#L4)
 
 #### Parameters
 
@@ -50,7 +50,7 @@ Defined in: [packages/storage/PathBuilder.ts:4](https://github.com/forkts/downfl
 
 > **buildDirectoryPath**(`filename`, `identifier?`): `string`
 
-Defined in: [packages/storage/PathBuilder.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/PathBuilder.ts#L12)
+Defined in: [packages/storage/PathBuilder.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/PathBuilder.ts#L12)
 
 #### Parameters
 
@@ -72,7 +72,7 @@ Defined in: [packages/storage/PathBuilder.ts:12](https://github.com/forkts/downf
 
 > **join**(...`segments`): `string`
 
-Defined in: [packages/storage/PathBuilder.ts:18](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/PathBuilder.ts#L18)
+Defined in: [packages/storage/PathBuilder.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/PathBuilder.ts#L18)
 
 #### Parameters
 
@@ -88,15 +88,15 @@ Defined in: [packages/storage/PathBuilder.ts:18](https://github.com/forkts/downf
 
 ### spaceNormalizer()
 
-> **spaceNormalizer**(`input`): `string`
+> **spaceNormalizer**(`input?`): `string`
 
-Defined in: [packages/storage/PathBuilder.ts:22](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/PathBuilder.ts#L22)
+Defined in: [packages/storage/PathBuilder.ts:22](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/PathBuilder.ts#L22)
 
 #### Parameters
 
-##### input
+##### input?
 
-`string`
+`string` = `'unknown'`
 
 #### Returns
 

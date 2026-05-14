@@ -6,7 +6,7 @@
 
 # Interface: PerfectGirlsModelVideoCard
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:120](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L120)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:120](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L120)
 
 Video card from an PerfectGirls model page.
 Contains preview metadata for a model video.
@@ -17,7 +17,7 @@ Contains preview metadata for a model video.
 
 > **videoId**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:122](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L122)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:122](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L122)
 
 Video identifier
 
@@ -27,7 +27,7 @@ Video identifier
 
 > **customTitle**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:125](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L125)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:125](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L125)
 
 Video card title
 
@@ -37,7 +37,7 @@ Video card title
 
 > **preview**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:128](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L128)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:128](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L128)
 
 Preview video URL
 
@@ -47,7 +47,7 @@ Preview video URL
 
 > **screenShot**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:131](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L131)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:131](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L131)
 
 Screenshot image URL
 
@@ -57,6 +57,6 @@ Screenshot image URL
 
 > **duration**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:134](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L134)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:134](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L134)
 
 Video duration text

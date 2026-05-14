@@ -6,7 +6,7 @@
 
 # Interface: PerfectGirlsModelOutput
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:158](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L158)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:158](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L158)
 
 Output structure for PerfectGirls model operations.
 Contains model page metadata and model links.
@@ -21,7 +21,7 @@ Contains model page metadata and model links.
 
 > **pageTitle**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:160](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L160)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:160](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L160)
 
 Model listing page title
 
@@ -31,7 +31,7 @@ Model listing page title
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:163](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L163)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:163](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L163)
 
 Model listing page URL
 
@@ -41,7 +41,7 @@ Model listing page URL
 
 > **modelUrls**: `string`[]
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:166](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L166)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:166](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L166)
 
 Model URLs or path values
 
@@ -51,6 +51,6 @@ Model URLs or path values
 
 > **modelCount**: `number`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:169](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L169)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:169](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L169)
 
 Number of models found

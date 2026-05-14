@@ -6,7 +6,7 @@
 
 # Class: FFmpegEngine
 
-Defined in: [packages/storage/FFmpegEngine.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FFmpegEngine.ts#L11)
+Defined in: [packages/storage/FFmpegEngine.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FFmpegEngine.ts#L11)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/storage/FFmpegEngine.ts:11](https://github.com/forkts/down
 
 > **new FFmpegEngine**(`progressManager`): `FFmpegEngine`
 
-Defined in: [packages/storage/FFmpegEngine.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FFmpegEngine.ts#L12)
+Defined in: [packages/storage/FFmpegEngine.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FFmpegEngine.ts#L12)
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Defined in: [packages/storage/FFmpegEngine.ts:12](https://github.com/forkts/down
 
 > **get** **ffmpeg**(): `string`
 
-Defined in: [packages/storage/FFmpegEngine.ts:14](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FFmpegEngine.ts#L14)
+Defined in: [packages/storage/FFmpegEngine.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FFmpegEngine.ts#L14)
 
 ##### Returns
 
@@ -46,7 +46,7 @@ Defined in: [packages/storage/FFmpegEngine.ts:14](https://github.com/forkts/down
 
 > **finalizeMedia**(`options`): `Promise`\<\{ `path`: `string`; `filename`: `string`; `extension`: `string`; `mimeType`: `string`; \}\>
 
-Defined in: [packages/storage/FFmpegEngine.ts:18](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/storage/FFmpegEngine.ts#L18)
+Defined in: [packages/storage/FFmpegEngine.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FFmpegEngine.ts#L18)
 
 #### Parameters
 

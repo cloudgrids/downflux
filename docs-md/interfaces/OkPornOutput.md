@@ -6,7 +6,7 @@
 
 # Interface: OkPornOutput
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:178](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L178)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:178](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L178)
 
 Combined OkPorn output structure.
 Used for broad internal service typing.
@@ -21,7 +21,7 @@ Used for broad internal service typing.
 
 > **modelName**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:23](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L23)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:23](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L23)
 
 Model name associated with the album
 
@@ -35,7 +35,7 @@ Model name associated with the album
 
 > **starredModels**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:26](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L26)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:26](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L26)
 
 Starred models associated with the album
 
@@ -49,7 +49,7 @@ Starred models associated with the album
 
 > **albumId**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:29](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L29)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L29)
 
 Album identifier
 
@@ -63,7 +63,7 @@ Album identifier
 
 > **albumTitle**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:32](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L32)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:32](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L32)
 
 Album title
 
@@ -77,7 +77,7 @@ Album title
 
 > **albumDescription**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:35](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L35)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:35](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L35)
 
 Album description
 
@@ -91,7 +91,7 @@ Album description
 
 > **albumKeywords**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:38](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L38)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:38](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L38)
 
 Album keywords
 
@@ -105,7 +105,7 @@ Album keywords
 
 > **albumUrl**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:41](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L41)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:41](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L41)
 
 Album page URL
 
@@ -119,7 +119,7 @@ Album page URL
 
 > **albumThumbnail**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:44](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L44)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:44](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L44)
 
 Album thumbnail URL
 
@@ -133,7 +133,7 @@ Album thumbnail URL
 
 > **albumImages**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:47](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L47)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:47](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L47)
 
 Album image URLs
 
@@ -147,7 +147,7 @@ Album image URLs
 
 > **albumImageCount**: `number`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:50](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L50)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:50](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L50)
 
 Album image count
 
@@ -161,7 +161,7 @@ Album image count
 
 > **videoId**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:59](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L59)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:59](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L59)
 
 Video identifier
 
@@ -175,7 +175,7 @@ Video identifier
 
 > **videoTitle**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:62](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L62)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:62](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L62)
 
 Video title
 
@@ -189,7 +189,7 @@ Video title
 
 > **videoUrl**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:65](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L65)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:65](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L65)
 
 Video page URL
 
@@ -203,7 +203,7 @@ Video page URL
 
 > **videoKeywords**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:68](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L68)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:68](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L68)
 
 Video keywords
 
@@ -217,7 +217,7 @@ Video keywords
 
 > **videoDescription**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:71](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L71)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:71](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L71)
 
 Video description
 
@@ -231,7 +231,7 @@ Video description
 
 > **videoScreenshot**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:74](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L74)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:74](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L74)
 
 Screenshot image URL
 
@@ -245,7 +245,7 @@ Screenshot image URL
 
 > **videoSources**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:77](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L77)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:77](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L77)
 
 Video source URLs with detected quality
 
@@ -259,7 +259,7 @@ Video source URLs with detected quality
 
 > **videoPoster**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:80](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L80)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:80](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L80)
 
 Poster image URL
 
@@ -273,7 +273,7 @@ Poster image URL
 
 > `optional` **videoCreatedAt?**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:83](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L83)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:83](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L83)
 
 Video creation date text
 
@@ -287,7 +287,7 @@ Video creation date text
 
 > **author**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:86](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L86)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:86](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L86)
 
 Author name associated with the video
 
@@ -301,7 +301,7 @@ Author name associated with the video
 
 > `optional` **fullVideoSource?**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:89](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L89)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:89](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L89)
 
 Full source URL when available
 
@@ -315,7 +315,7 @@ Full source URL when available
 
 > `optional` **videoAlbumId?**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:92](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L92)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:92](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L92)
 
 Album identifier linked to the video
 
@@ -329,7 +329,7 @@ Album identifier linked to the video
 
 > `optional` **videoAlbum?**: [`OkPornAlbumOutput`](OkPornAlbumOutput.md)
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:95](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L95)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:95](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L95)
 
 Album metadata linked to the video
 
@@ -343,7 +343,7 @@ Album metadata linked to the video
 
 > **starredBy**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:98](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L98)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:98](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L98)
 
 Starred by list
 
@@ -357,7 +357,7 @@ Starred by list
 
 > **videoCount**: `number`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:148](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L148)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:148](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L148)
 
 Number of video cards found
 
@@ -371,7 +371,7 @@ Number of video cards found
 
 > **videoCards**: [`OkPornModelVideoCard`](OkPornModelVideoCard.md)[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:154](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L154)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:154](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L154)
 
 Video cards found on the page
 
@@ -385,7 +385,7 @@ Video cards found on the page
 
 > **pageTitle**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:162](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L162)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:162](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L162)
 
 Model listing page title
 
@@ -399,7 +399,7 @@ Model listing page title
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:165](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L165)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:165](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L165)
 
 Model listing page URL
 
@@ -413,7 +413,7 @@ Model listing page URL
 
 > **modelUrls**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:168](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L168)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:168](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L168)
 
 Model URLs or path values
 
@@ -427,7 +427,7 @@ Model URLs or path values
 
 > **modelCount**: `number`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:171](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/okporn/OkPornContracts.ts#L171)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:171](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L171)
 
 Number of models found
 

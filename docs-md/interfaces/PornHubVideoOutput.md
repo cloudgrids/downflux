@@ -6,7 +6,7 @@
 
 # Interface: PornHubVideoOutput
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:67](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L67)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:67](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L67)
 
 Interface representing the output structure for a PornHub video.
 
@@ -16,7 +16,7 @@ Interface representing the output structure for a PornHub video.
 
 > **title**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:69](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L69)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:69](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L69)
 
 The title of the video
 
@@ -26,7 +26,7 @@ The title of the video
 
 > **videoUrl**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:72](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L72)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:72](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L72)
 
 The URL of the video
 
@@ -36,7 +36,7 @@ The URL of the video
 
 > **thumbnailUrl**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:75](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L75)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:75](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L75)
 
 The URL of the video thumbnail
 
@@ -46,7 +46,7 @@ The URL of the video thumbnail
 
 > **videoMetadata**: [`PornHubVideo`](PornHubVideo.md)
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:78](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L78)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:78](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L78)
 
 Associated .m3u8 files and metadata
 
@@ -56,7 +56,7 @@ Associated .m3u8 files and metadata
 
 > **duration**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:81](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L81)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:81](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L81)
 
 The duration of the video in seconds
 
@@ -66,7 +66,7 @@ The duration of the video in seconds
 
 > **views**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:84](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L84)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:84](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L84)
 
 The number of views the video has
 
@@ -76,7 +76,7 @@ The number of views the video has
 
 > **likes**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:87](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L87)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:87](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L87)
 
 The number of likes the video has
 
@@ -86,7 +86,7 @@ The number of likes the video has
 
 > `optional` **tags?**: `string`[]
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:90](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L90)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:90](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L90)
 
 The tags associated with the video
 
@@ -96,7 +96,7 @@ The tags associated with the video
 
 > `optional` **category?**: `string`[]
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:93](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L93)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:93](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L93)
 
 The category of the video
 
@@ -106,7 +106,7 @@ The category of the video
 
 > **user**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:96](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L96)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:96](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L96)
 
 The name of the uploader of the video
 
@@ -116,7 +116,7 @@ The name of the uploader of the video
 
 > **userAvatar**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:99](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L99)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:99](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L99)
 
 user avatar
 
@@ -126,7 +126,7 @@ user avatar
 
 > **totalVideos**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:102](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L102)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:102](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L102)
 
 total Videos
 
@@ -136,7 +136,7 @@ total Videos
 
 > **totalSubscribers**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:105](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L105)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:105](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L105)
 
 total subscribers
 
@@ -146,6 +146,6 @@ total subscribers
 
 > **uploadDate**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:108](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornhub/PornHubContracts.ts#L108)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:108](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L108)
 
 The upload date of the video

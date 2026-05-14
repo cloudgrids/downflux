@@ -6,7 +6,7 @@ import { BeegMethods } from './BeegTypes';
 
 /**
  * @class `BeegTransformer`
- * @description Transforms raw data fetched from the Beeg API into a structured format suitable for video downloading.
+ * Transforms raw data fetched from the Beeg API into a structured format suitable for video downloading.
  * The transformer is designed to work with the Beeg API's response structure and may need adjustments if the API changes.
  * Provides all quality videos along with posters
  */

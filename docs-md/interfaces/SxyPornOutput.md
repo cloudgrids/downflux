@@ -6,7 +6,7 @@
 
 # Interface: SxyPornOutput
 
-Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:4](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sxyporn/SxyPornContracts.ts#L4)
+Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sxyporn/SxyPornContracts.ts#L4)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:4](https://github.co
 
 > **title**: `string`
 
-Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sxyporn/SxyPornContracts.ts#L7)
+Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sxyporn/SxyPornContracts.ts#L7)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:7](https://github.co
 
 > **description**: `string`
 
-Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sxyporn/SxyPornContracts.ts#L8)
+Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sxyporn/SxyPornContracts.ts#L8)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:8](https://github.co
 
 > **poster**: `string`
 
-Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sxyporn/SxyPornContracts.ts#L9)
+Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sxyporn/SxyPornContracts.ts#L9)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:9](https://github.co
 
 > **tags**: `string`[]
 
-Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sxyporn/SxyPornContracts.ts#L10)
+Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sxyporn/SxyPornContracts.ts#L10)
 
 #### Inherited from
 
@@ -62,15 +62,27 @@ Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:10](https://github.c
 
 ***
 
-### videoUrl
+### duration
 
-> **videoUrl**: `string`
+> **duration**: `string`
 
-Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sxyporn/SxyPornContracts.ts#L11)
+Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sxyporn/SxyPornContracts.ts#L11)
 
 #### Inherited from
 
-[`SxyPornVideoOutput`](SxyPornVideoOutput.md).[`videoUrl`](SxyPornVideoOutput.md#videourl)
+[`SxyPornVideoOutput`](SxyPornVideoOutput.md).[`duration`](SxyPornVideoOutput.md#duration)
+
+***
+
+### videos
+
+> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
+
+Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sxyporn/SxyPornContracts.ts#L12)
+
+#### Inherited from
+
+[`SxyPornVideoOutput`](SxyPornVideoOutput.md).[`videos`](SxyPornVideoOutput.md#videos)
 
 ***
 
@@ -78,7 +90,7 @@ Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:11](https://github.c
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sxyporn/SxyPornContracts.ts#L12)
+Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sxyporn/SxyPornContracts.ts#L13)
 
 #### Inherited from
 
@@ -90,7 +102,7 @@ Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:12](https://github.c
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/sxyporn/SxyPornContracts.ts#L13)
+Defined in: [packages/providers/sxyporn/SxyPornContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/sxyporn/SxyPornContracts.ts#L14)
 
 #### Inherited from
 

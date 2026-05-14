@@ -6,7 +6,7 @@
 
 # Interface: PerfectGirlsModelVideoIdsOutput
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:141](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L141)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:141](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L141)
 
 Output structure for PerfectGirls model video card operations.
 Contains model context and video cards.
@@ -21,7 +21,7 @@ Contains model context and video cards.
 
 > **pageTitle**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:143](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L143)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:143](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L143)
 
 Model video page title
 
@@ -31,7 +31,7 @@ Model video page title
 
 > **videoCount**: `number`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:146](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L146)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:146](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L146)
 
 Number of video cards found
 
@@ -41,7 +41,7 @@ Number of video cards found
 
 > **modelName**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:149](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L149)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:149](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L149)
 
 Model name associated with the videos
 
@@ -51,6 +51,6 @@ Model name associated with the videos
 
 > **videoCards**: [`PerfectGirlsModelVideoCard`](PerfectGirlsModelVideoCard.md)[]
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:152](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L152)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:152](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L152)
 
 Video cards found on the page

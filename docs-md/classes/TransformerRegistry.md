@@ -6,7 +6,7 @@
 
 # Class: TransformerRegistry
 
-Defined in: [packages/core/registries/TransformerRegistry.ts:49](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/registries/TransformerRegistry.ts#L49)
+Defined in: [packages/core/registries/TransformerRegistry.ts:55](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/TransformerRegistry.ts#L55)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/registries/TransformerRegistry.ts:49](https://github.
 
 > **new TransformerRegistry**(`httpClient`, `progressManager`): `TransformerRegistry`
 
-Defined in: [packages/core/registries/TransformerRegistry.ts:52](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/registries/TransformerRegistry.ts#L52)
+Defined in: [packages/core/registries/TransformerRegistry.ts:58](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/TransformerRegistry.ts#L58)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [packages/core/registries/TransformerRegistry.ts:52](https://github.
 
 > **transform**\<`TArgs`, `TResult`\>(`url`, `request`): `Promise`\<`TResult`\>
 
-Defined in: [packages/core/registries/TransformerRegistry.ts:71](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/registries/TransformerRegistry.ts#L71)
+Defined in: [packages/core/registries/TransformerRegistry.ts:77](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/TransformerRegistry.ts#L77)
 
 #### Type Parameters
 

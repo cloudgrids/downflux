@@ -6,7 +6,7 @@
 
 # Interface: Porn300Output
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:5](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porn300/Porn300Contracts.ts#L5)
+Defined in: [packages/providers/porn300/Porn300Contracts.ts:5](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L5)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/porn300/Porn300Contracts.ts:5](https://github.co
 
 > **title**: `string`
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porn300/Porn300Contracts.ts#L8)
+Defined in: [packages/providers/porn300/Porn300Contracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L8)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [packages/providers/porn300/Porn300Contracts.ts:8](https://github.co
 
 > **description**: `string`
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porn300/Porn300Contracts.ts#L9)
+Defined in: [packages/providers/porn300/Porn300Contracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L9)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/porn300/Porn300Contracts.ts:9](https://github.co
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porn300/Porn300Contracts.ts#L10)
+Defined in: [packages/providers/porn300/Porn300Contracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L10)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [packages/providers/porn300/Porn300Contracts.ts:10](https://github.c
 
 > **poster**: `string`
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porn300/Porn300Contracts.ts#L11)
+Defined in: [packages/providers/porn300/Porn300Contracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L11)
 
 #### Inherited from
 
@@ -62,12 +62,12 @@ Defined in: [packages/providers/porn300/Porn300Contracts.ts:11](https://github.c
 
 ***
 
-### videoUrl
+### videos
 
-> **videoUrl**: `string`
+> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porn300/Porn300Contracts.ts#L12)
+Defined in: [packages/providers/porn300/Porn300Contracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L12)
 
 #### Inherited from
 
-[`Porn300VideoOutput`](Porn300VideoOutput.md).[`videoUrl`](Porn300VideoOutput.md#videourl)
+[`Porn300VideoOutput`](Porn300VideoOutput.md).[`videos`](Porn300VideoOutput.md#videos)

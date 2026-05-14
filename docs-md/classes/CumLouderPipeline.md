@@ -6,7 +6,7 @@
 
 # Class: CumLouderPipeline
 
-Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:6](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/cumlouder/CumLouderPipeline.ts#L6)
+Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/cumlouder/CumLouderPipeline.ts#L6)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:6](https://github
 
 > **new CumLouderPipeline**(`fileManager`): `CumLouderPipeline`
 
-Defined in: [packages/base/BasePipeline.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BasePipeline.ts#L8)
+Defined in: [packages/base/BasePipeline.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L8)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [packages/base/BasePipeline.ts:8](https://github.com/forkts/downflux
 
 > `protected` `readonly` **pathBuilder**: [`PathBuilder`](PathBuilder.md)
 
-Defined in: [packages/base/BasePipeline.ts:6](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BasePipeline.ts#L6)
+Defined in: [packages/base/BasePipeline.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L6)
 
 #### Inherited from
 
@@ -52,7 +52,7 @@ Defined in: [packages/base/BasePipeline.ts:6](https://github.com/forkts/downflux
 
 > `protected` **fileManager**: [`FileManager`](FileManager.md)
 
-Defined in: [packages/base/BasePipeline.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BasePipeline.ts#L8)
+Defined in: [packages/base/BasePipeline.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L8)
 
 #### Inherited from
 
@@ -64,7 +64,7 @@ Defined in: [packages/base/BasePipeline.ts:8](https://github.com/forkts/downflux
 
 > `protected` **filterByExt**(`request`, `pipelineItems`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-Defined in: [packages/base/BasePipeline.ts:33](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BasePipeline.ts#L33)
+Defined in: [packages/base/BasePipeline.ts:33](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L33)
 
 #### Parameters
 
@@ -90,7 +90,7 @@ Defined in: [packages/base/BasePipeline.ts:33](https://github.com/forkts/downflu
 
 > `protected` **sliceByMaxDownloads**(`request`, `items`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-Defined in: [packages/base/BasePipeline.ts:39](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BasePipeline.ts#L39)
+Defined in: [packages/base/BasePipeline.ts:39](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L39)
 
 #### Parameters
 
@@ -116,7 +116,7 @@ Defined in: [packages/base/BasePipeline.ts:39](https://github.com/forkts/downflu
 
 > `protected` **filterByQuality**\<`T`, `TEnum`\>(`items`, `options`): `T`[]
 
-Defined in: [packages/base/BasePipeline.ts:75](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BasePipeline.ts#L75)
+Defined in: [packages/base/BasePipeline.ts:75](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L75)
 
 #### Type Parameters
 
@@ -158,7 +158,7 @@ Defined in: [packages/base/BasePipeline.ts:75](https://github.com/forkts/downflu
 
 > **build**(`metadata`, `request`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/cumlouder/CumLouderPipeline.ts#L7)
+Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/cumlouder/CumLouderPipeline.ts#L7)
 
 #### Parameters
 
@@ -184,7 +184,7 @@ Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:7](https://github
 
 > `protected` **buildIdentifier**(`ctx`): `string`
 
-Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:31](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/cumlouder/CumLouderPipeline.ts#L31)
+Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:31](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/cumlouder/CumLouderPipeline.ts#L31)
 
 #### Parameters
 
@@ -206,7 +206,7 @@ Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:31](https://githu
 
 > `protected` **extract**(`request`, `metadata`): [`PipelineExtractedItem`](../interfaces/PipelineExtractedItem.md)[]
 
-Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:52](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/cumlouder/CumLouderPipeline.ts#L52)
+Defined in: [packages/providers/cumlouder/CumLouderPipeline.ts:52](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/cumlouder/CumLouderPipeline.ts#L52)
 
 #### Parameters
 

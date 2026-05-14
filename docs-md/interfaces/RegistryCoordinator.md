@@ -6,7 +6,7 @@
 
 # Interface: RegistryCoordinator
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:19](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L19)
+Defined in: [packages/contracts/CoordinatorDependency.ts:19](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L19)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:19](https://github.com/
 
 > **name**: `string`
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:20](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L20)
+Defined in: [packages/contracts/CoordinatorDependency.ts:20](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L20)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:20](https://github.com/
 
 > `optional` **parser?**: `boolean`
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:21](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L21)
+Defined in: [packages/contracts/CoordinatorDependency.ts:21](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L21)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:21](https://github.com/
 
 > `optional` **pipeline?**: `boolean`
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:22](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L22)
+Defined in: [packages/contracts/CoordinatorDependency.ts:22](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L22)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:22](https://github.com/
 
 > `optional` **transformer?**: `boolean`
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:23](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L23)
+Defined in: [packages/contracts/CoordinatorDependency.ts:23](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L23)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:23](https://github.com/
 
 > `optional` **strategy?**: `boolean`
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:24](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L24)
+Defined in: [packages/contracts/CoordinatorDependency.ts:24](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L24)
 
 ***
 
@@ -54,4 +54,4 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:24](https://github.com/
 
 > `optional` **method?**: `boolean`
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:25](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/CoordinatorDependency.ts#L25)
+Defined in: [packages/contracts/CoordinatorDependency.ts:25](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/CoordinatorDependency.ts#L25)

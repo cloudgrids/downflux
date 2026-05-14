@@ -6,7 +6,7 @@
 
 # Enumeration: VideoQuality
 
-Defined in: [packages/types/ExecutionTypes.ts:68](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L68)
+Defined in: [packages/types/ExecutionTypes.ts:74](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L74)
 
 Video quality labels
 
@@ -16,7 +16,7 @@ Video quality labels
 
 > **Q144**: `"144p"`
 
-Defined in: [packages/types/ExecutionTypes.ts:70](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L70)
+Defined in: [packages/types/ExecutionTypes.ts:76](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L76)
 
 144p quality
 
@@ -26,7 +26,7 @@ Defined in: [packages/types/ExecutionTypes.ts:70](https://github.com/forkts/down
 
 > **Q240**: `"240p"`
 
-Defined in: [packages/types/ExecutionTypes.ts:73](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L73)
+Defined in: [packages/types/ExecutionTypes.ts:79](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L79)
 
 240p quality
 
@@ -36,7 +36,7 @@ Defined in: [packages/types/ExecutionTypes.ts:73](https://github.com/forkts/down
 
 > **Q360**: `"360p"`
 
-Defined in: [packages/types/ExecutionTypes.ts:76](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L76)
+Defined in: [packages/types/ExecutionTypes.ts:82](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L82)
 
 360p quality
 
@@ -46,7 +46,7 @@ Defined in: [packages/types/ExecutionTypes.ts:76](https://github.com/forkts/down
 
 > **Q480**: `"480p"`
 
-Defined in: [packages/types/ExecutionTypes.ts:79](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L79)
+Defined in: [packages/types/ExecutionTypes.ts:85](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L85)
 
 480p quality
 
@@ -56,7 +56,7 @@ Defined in: [packages/types/ExecutionTypes.ts:79](https://github.com/forkts/down
 
 > **Q720**: `"720p"`
 
-Defined in: [packages/types/ExecutionTypes.ts:82](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L82)
+Defined in: [packages/types/ExecutionTypes.ts:88](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L88)
 
 720p quality
 
@@ -66,7 +66,7 @@ Defined in: [packages/types/ExecutionTypes.ts:82](https://github.com/forkts/down
 
 > **Q1080**: `"1080p"`
 
-Defined in: [packages/types/ExecutionTypes.ts:85](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L85)
+Defined in: [packages/types/ExecutionTypes.ts:91](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L91)
 
 1080p quality
 
@@ -76,7 +76,7 @@ Defined in: [packages/types/ExecutionTypes.ts:85](https://github.com/forkts/down
 
 > **Q1440**: `"1440p"`
 
-Defined in: [packages/types/ExecutionTypes.ts:88](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L88)
+Defined in: [packages/types/ExecutionTypes.ts:94](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L94)
 
 1440p quality
 
@@ -86,7 +86,7 @@ Defined in: [packages/types/ExecutionTypes.ts:88](https://github.com/forkts/down
 
 > **Q2160**: `"2160p"`
 
-Defined in: [packages/types/ExecutionTypes.ts:91](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L91)
+Defined in: [packages/types/ExecutionTypes.ts:97](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L97)
 
 2160p quality
 
@@ -96,7 +96,7 @@ Defined in: [packages/types/ExecutionTypes.ts:91](https://github.com/forkts/down
 
 > **Q4320**: `"4320p"`
 
-Defined in: [packages/types/ExecutionTypes.ts:94](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L94)
+Defined in: [packages/types/ExecutionTypes.ts:100](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L100)
 
 4320p quality
 
@@ -106,6 +106,6 @@ Defined in: [packages/types/ExecutionTypes.ts:94](https://github.com/forkts/down
 
 > **QUnknown**: `"unknown"`
 
-Defined in: [packages/types/ExecutionTypes.ts:97](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/types/ExecutionTypes.ts#L97)
+Defined in: [packages/types/ExecutionTypes.ts:103](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/types/ExecutionTypes.ts#L103)
 
 Unknown quality

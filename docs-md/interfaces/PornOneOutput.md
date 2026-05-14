@@ -6,7 +6,7 @@
 
 # Interface: PornOneOutput
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:3](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornone/PornOneContracts.ts#L3)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:3](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L3)
 
 ## Extends
 
@@ -14,11 +14,19 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:3](https://github.co
 
 ## Properties
 
+### quality?
+
+> `optional` **quality?**: `string`
+
+Defined in: [packages/providers/pornone/PornOneContracts.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L4)
+
+***
+
 ### title
 
 > **title**: `string`
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornone/PornOneContracts.ts#L8)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L10)
 
 #### Inherited from
 
@@ -30,7 +38,7 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:8](https://github.co
 
 > **description**: `string`
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornone/PornOneContracts.ts#L9)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L11)
 
 #### Inherited from
 
@@ -42,7 +50,7 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:9](https://github.co
 
 > `optional` **tags?**: `string`[]
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornone/PornOneContracts.ts#L10)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L12)
 
 #### Inherited from
 
@@ -54,7 +62,7 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:10](https://github.c
 
 > **poster**: `string`
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornone/PornOneContracts.ts#L11)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L13)
 
 #### Inherited from
 
@@ -66,7 +74,7 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:11](https://github.c
 
 > `optional` **categories?**: `string`[]
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:12](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornone/PornOneContracts.ts#L12)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L14)
 
 #### Inherited from
 
@@ -78,7 +86,7 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:12](https://github.c
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornone/PornOneContracts.ts#L13)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L15)
 
 #### Inherited from
 
@@ -90,7 +98,7 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:13](https://github.c
 
 > `optional` **pornStars?**: `string`[]
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:14](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornone/PornOneContracts.ts#L14)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L16)
 
 #### Inherited from
 
@@ -102,7 +110,7 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:14](https://github.c
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:15](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornone/PornOneContracts.ts#L15)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L17)
 
 #### Inherited from
 
@@ -110,12 +118,12 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:15](https://github.c
 
 ***
 
-### videoUrl
+### videos
 
-> **videoUrl**: `string`
+> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:16](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornone/PornOneContracts.ts#L16)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L18)
 
 #### Inherited from
 
-[`PornOneVideoOutput`](PornOneVideoOutput.md).[`videoUrl`](PornOneVideoOutput.md#videourl)
+[`PornOneVideoOutput`](PornOneVideoOutput.md).[`videos`](PornOneVideoOutput.md#videos)

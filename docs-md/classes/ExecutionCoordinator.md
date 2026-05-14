@@ -6,7 +6,7 @@
 
 # Class: ExecutionCoordinator
 
-Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/ExecutionCoordinator.ts#L7)
+Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/ExecutionCoordinator.ts#L7)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:7](https://githu
 
 > **new ExecutionCoordinator**(`transformerRegistry`, `taskCoordinator`, `progressManager`, `pipelineRegistry`): `ExecutionCoordinator`
 
-Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/ExecutionCoordinator.ts#L10)
+Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/ExecutionCoordinator.ts#L10)
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:10](https://gith
 
 > **execute**\<`TResult`, `TShape`, `TExec`\>(`request`): `Promise`\<[`ExecutionResult`](../interfaces/ExecutionResult.md)\<`TResult`, `TShape`\>\>
 
-Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:17](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/core/coordinators/ExecutionCoordinator.ts#L17)
+Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/ExecutionCoordinator.ts#L17)
 
 #### Type Parameters
 

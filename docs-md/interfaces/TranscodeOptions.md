@@ -6,7 +6,7 @@
 
 # Interface: TranscodeOptions
 
-Defined in: [packages/contracts/StorageContracts.ts:30](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L30)
+Defined in: [packages/contracts/StorageContracts.ts:30](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L30)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/StorageContracts.ts:30](https://github.com/forkt
 
 > `optional` **inputPath?**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:31](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L31)
+Defined in: [packages/contracts/StorageContracts.ts:31](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L31)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/StorageContracts.ts:31](https://github.com/forkt
 
 > `optional` **deleteInput?**: `boolean`
 
-Defined in: [packages/contracts/StorageContracts.ts:33](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L33)
+Defined in: [packages/contracts/StorageContracts.ts:33](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L33)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/StorageContracts.ts:33](https://github.com/forkt
 
 > `optional` **ffmpegArgs?**: `string`[]
 
-Defined in: [packages/contracts/StorageContracts.ts:35](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L35)
+Defined in: [packages/contracts/StorageContracts.ts:35](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L35)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/contracts/StorageContracts.ts:35](https://github.com/forkt
 
 > `optional` **outputExtension?**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:37](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L37)
+Defined in: [packages/contracts/StorageContracts.ts:37](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L37)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/contracts/StorageContracts.ts:37](https://github.com/forkt
 
 > `optional` **preset?**: `"medium"` \| `"ultrafast"` \| `"superfast"` \| `"veryfast"` \| `"faster"` \| `"fast"` \| `"slow"`
 
-Defined in: [packages/contracts/StorageContracts.ts:39](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L39)
+Defined in: [packages/contracts/StorageContracts.ts:39](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L39)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/contracts/StorageContracts.ts:39](https://github.com/forkt
 
 > `optional` **crf?**: `number`
 
-Defined in: [packages/contracts/StorageContracts.ts:41](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L41)
+Defined in: [packages/contracts/StorageContracts.ts:41](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L41)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [packages/contracts/StorageContracts.ts:41](https://github.com/forkt
 
 > `optional` **videoCodec?**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:43](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L43)
+Defined in: [packages/contracts/StorageContracts.ts:43](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L43)
 
 ***
 
@@ -70,4 +70,4 @@ Defined in: [packages/contracts/StorageContracts.ts:43](https://github.com/forkt
 
 > `optional` **audioCodec?**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:45](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/contracts/StorageContracts.ts#L45)
+Defined in: [packages/contracts/StorageContracts.ts:45](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/StorageContracts.ts#L45)

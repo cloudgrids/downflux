@@ -6,7 +6,7 @@
 
 # Interface: PornsOkOutput
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:28](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L28)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:28](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L28)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:28](https://github.c
 
 > **title**: `string`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:6](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L6)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L6)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:6](https://github.co
 
 > **poster**: `string`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L8)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L8)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:8](https://github.co
 
 > **duration**: `number`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:11](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L11)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L11)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:11](https://github.c
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:13](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L13)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L13)
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:13](https://github.c
 
 > **uploadedAt**: `string`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:15](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L15)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L15)
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:15](https://github.c
 
 > **totalViews**: `number`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:17](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L17)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L17)
 
 #### Inherited from
 
@@ -90,7 +90,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:17](https://github.c
 
 > **type**: `string`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:19](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L19)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:19](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L19)
 
 #### Inherited from
 
@@ -98,15 +98,15 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:19](https://github.c
 
 ***
 
-### videoUrl
+### videos
 
-> **videoUrl**: `string`
+> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:21](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L21)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:21](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L21)
 
 #### Inherited from
 
-[`PornsOkVideoOutput`](PornsOkVideoOutput.md).[`videoUrl`](PornsOkVideoOutput.md#videourl)
+[`PornsOkVideoOutput`](PornsOkVideoOutput.md).[`videos`](PornsOkVideoOutput.md#videos)
 
 ***
 
@@ -114,7 +114,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:21](https://github.c
 
 > `optional` **starredBy?**: `string`[]
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:23](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L23)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:23](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L23)
 
 #### Inherited from
 
@@ -126,7 +126,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:23](https://github.c
 
 > `optional` **categories?**: `string`[]
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:25](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/pornsok/PornsOkContracts.ts#L25)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:25](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L25)
 
 #### Inherited from
 

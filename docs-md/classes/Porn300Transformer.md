@@ -6,7 +6,7 @@
 
 # Class: Porn300Transformer
 
-Defined in: [packages/providers/porn300/Porn300Transformer.ts:6](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porn300/Porn300Transformer.ts#L6)
+Defined in: [packages/providers/porn300/Porn300Transformer.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Transformer.ts#L7)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/providers/porn300/Porn300Transformer.ts:6](https://github.
 
 > **new Porn300Transformer**(`httpClient`, `progressManager`): `Porn300Transformer`
 
-Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L8)
+Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L8)
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downf
 
 > `protected` `readonly` **httpClient**: [`HttpClient`](HttpClient.md)
 
-Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L9)
+Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L9)
 
 #### Inherited from
 
@@ -56,7 +56,7 @@ Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downf
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L10)
+Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L10)
 
 #### Inherited from
 
@@ -68,7 +68,7 @@ Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/down
 
 > **requestData**(`url`, `opts`): `Promise`\<`any`\>
 
-Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/base/BaseTransformer.ts#L29)
+Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L29)
 
 #### Parameters
 
@@ -94,7 +94,7 @@ Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/down
 
 > **transform**(`url`, `request?`): `Promise`\<[`DefaultExecutionResult`](../interfaces/DefaultExecutionResult.md)\<`unknown`\> \| [`Porn300VideoOutput`](../interfaces/Porn300VideoOutput.md)\>
 
-Defined in: [packages/providers/porn300/Porn300Transformer.ts:7](https://github.com/forkts/downflux/blob/006b207423ee96ab7915738c2b481e0f2c3fe609/packages/providers/porn300/Porn300Transformer.ts#L7)
+Defined in: [packages/providers/porn300/Porn300Transformer.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Transformer.ts#L8)
 
 #### Parameters
 
