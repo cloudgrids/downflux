@@ -176,7 +176,7 @@ let tsConfigReg = read(tsConfigPath);
 const tsEntries = registry.services
 	.map((s) => {
 		const toLowerCase = s.name.toLowerCase();
-		return `\t\t\t"@provider/${toLowerCase}": ["packages/providers/${toLowerCase}/index.ts"]`;
+		return `\t\t\t"@provider/${toLowerCase}": ["./packages/providers/${toLowerCase}/index.ts"]`;
 	})
 	.sort((a, b) => a.localeCompare(b))
 	.join(',\n\n');

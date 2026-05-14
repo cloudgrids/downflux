@@ -19,7 +19,7 @@ export class PathBuilder {
 		return segments.join('/');
 	}
 
-	public spaceNormalizer(input: string): string {
-		return input?.replace(/[^a-zA-Z0-9]/g, '_')?.trim() || input || 'unknown';
+	public spaceNormalizer(input: string = 'unknown'): string {
+		return input?.replace(/[^a-zA-Z0-9]/g, '_')?.trim();
 	}
 }

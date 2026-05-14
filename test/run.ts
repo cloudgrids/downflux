@@ -1,5 +1,5 @@
-import { PornDoeProvider } from '@provider/porndoe';
-import { OutputType, VideoQuality } from '@types';
+import { TubeVSexProvider } from '@provider/tubevsex';
+import { OutputType } from '@types';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -16,10 +16,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new PornDoeProvider('https://porndoe.com/watch/pd7l5f7f6n2c')
-			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q1080 })
+		await new TubeVSexProvider('https://www.tubev.sex/video-archive/856353/curly-redhead-bride-feels-intense')
+			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);
