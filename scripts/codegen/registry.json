@@ -137,6 +137,14 @@
       "method": true
     },
     {
+      "name": "Shameless",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "SuperPorn",
       "parser": true,
       "pipeline": true,

@@ -6,10 +6,7 @@ import { SexVidOutput } from './SexVidContracts';
 
 export class SexVidParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<SexVidOutput>>> {
-		const { videoUrl: rawVideoUrl, videoAltUrl: rawVideoAltUrl, videoUrlText, videoAltUrlText, licenseCode } = this.getFlashVars(html);
-
-		const videoUrl = rawVideoUrl && licenseCode ? this.kvsResolver.resolveKvsUrl(rawVideoUrl, licenseCode) : rawVideoUrl;
-		const videoAltUrl = rawVideoAltUrl && licenseCode ? this.kvsResolver.resolveKvsUrl(rawVideoAltUrl, licenseCode) : rawVideoAltUrl;
+		const flashVars = this.getFlashVars(html);
 
 		try {
 			return {
@@ -19,10 +16,7 @@ export class SexVidParser extends BaseParser {
 					duration: parseInt(this.extractMetaPropertyContent(html, 'og:video:duration') ?? '0', 10),
 					releasedAt: this.extractMetaPropertyContent(html, 'og:video:release_date'),
 					pageUrl: sourceUrl,
-					videos: [
-						{ url: videoUrl, quality: videoUrlText },
-						{ url: videoAltUrl, quality: videoAltUrlText }
-					]
+					videos: flashVars?.videos
 				} as SexVidOutput
 			};
 		} catch (error) {

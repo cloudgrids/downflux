@@ -1,7 +1,7 @@
-import { DefaultExecutionResult, FlashVarsOutput } from '@contracts';
+import { DefaultExecutionResult, FlashVarsOutput, VideoSourceOutput } from '@contracts';
 import { GenericException } from '@core/exceptions';
 import { KvsResolver } from '@shared';
-import { ProviderType } from '@types';
+import { ProviderType, VideoQuality } from '@types';
 
 export class BaseParser {
 	protected kvsResolver = new KvsResolver();
@@ -57,19 +57,56 @@ export class BaseParser {
 			?.split(',')
 			?.map((v) => v?.trim());
 		const previewUrl = extractField('preview_url');
+		const previewUrl1 = extractField('preview_url1');
+		const previewUrl2 = extractField('preview_url2');
+		const previewUrl3 = extractField('preview_url3');
 		const videoAltUrl2Redirect = extractField('video_alt_url2_redirect');
 		const videoAltUrl2Text = extractField('video_alt_url2_text');
 		const videoAltUrl2Hd = extractField('video_alt_url2_hd');
-		const videoAltUrl2 = extractField('video_alt_url_2');
+		const videoAltUrl2 = extractField('video_alt_url2');
 		const videoAltUrlText = extractField('video_alt_url_text');
 		const videoUrlHd = extractField('video_url_hd');
 		const videoUrlText = extractField('video_url_text');
 		const videoAltUrl = extractField('video_alt_url')?.match(/((?:function\/0\/)?https.*)/i)?.[0];
-		const videoUrl = extractField('video_url')?.match(/((?:function\/0\/)?https.*)/i)?.[0];
+		const videoUrl = extractField('video_url')?.match(/((?:function\/\d+\/)?https.*)/i)?.[0];
 		const postfix = extractField('postfix');
 		const rnd = extractField('rnd');
 		const licenseCode = extractField('license_code');
 		const videoId = extractField('video_id');
+
+		const urlQuality = (videoUrlText?.replace(/[^0-9p]+/i, '') as VideoQuality) || VideoQuality.QUnknown;
+		const url1Quality = (videoAltUrlText?.replace(/[^0-9p]+/i, '') as VideoQuality) || VideoQuality.QUnknown;
+		const url2Quality = (videoAltUrl2Text?.replace(/[^0-9p]+/i, '') as VideoQuality) || VideoQuality.QUnknown;
+
+		const url =
+			videoUrl && licenseCode
+				? {
+						url: this.kvsResolver.resolveKvsUrl(videoUrl, licenseCode),
+						quality: urlQuality
+					}
+				: { url: videoUrl, quality: urlQuality };
+
+		const url1 =
+			videoAltUrl && licenseCode
+				? {
+						url: this.kvsResolver.resolveKvsUrl(videoAltUrl, licenseCode),
+						quality: url1Quality
+					}
+				: { url: videoAltUrl, quality: url1Quality };
+
+		const url2 =
+			videoAltUrl2 && licenseCode
+				? {
+						url: this.kvsResolver.resolveKvsUrl(videoAltUrl2, licenseCode),
+						quality: url2Quality
+					}
+				: { url: videoAltUrl2, quality: url2Quality };
+
+		const videos = [url, url1, url2].filter((v) => v.url) as VideoSourceOutput[];
+		const previews = [previewUrl, previewUrl1, previewUrl2, previewUrl3].filter(Boolean) as string[];
+		const timelineScreens = Array.from({ length: timelineScreenCount ?? 0 }, (_, i) =>
+			timelineScreenUrl ? timelineScreenUrl.replace('{time}', (i + 1).toString()) : undefined
+		) as string[];
 
 		return {
 			videoId,
@@ -92,7 +129,13 @@ export class BaseParser {
 			title,
 			videoModels,
 			timelineScreenUrl,
-			timelineScreenCount
+			timelineScreenCount,
+			previewUrl1,
+			previewUrl2,
+			previewUrl3,
+			videos,
+			previews,
+			timelineScreens
 		};
 	}
 

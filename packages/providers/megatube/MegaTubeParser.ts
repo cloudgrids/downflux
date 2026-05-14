@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType, VideoQuality } from '@types';
+import { ProviderType } from '@types';
 import { MegaTubeOutput } from './MegaTubeContracts';
 
 export class MegaTubeParser extends BaseParser {
@@ -10,18 +10,13 @@ export class MegaTubeParser extends BaseParser {
 
 		const detail = this.collectByClassNames(html, 'video_info-content', { includeInnerHTML: true })?.[0]?.text || 'unknown';
 
-		const videoUrl =
-			flashVars.videoUrl && flashVars.licenseCode
-				? this.kvsResolver.resolveKvsUrl(flashVars.videoUrl, flashVars.licenseCode)
-				: flashVars.videoUrl;
-
-		console.log({ flashVars, detail, videoUrl });
+		console.log({ flashVars, detail });
 
 		try {
 			return {
 				customFields: {
 					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					videos: [{ url: videoUrl, quality: VideoQuality.QUnknown }],
+					videos: flashVars?.videos,
 					pageUrl: sourceUrl,
 					videoId: flashVars.videoId,
 					uploader: detail?.replace(/\s*Title:.*$/, '')?.trim() || 'Unknown'

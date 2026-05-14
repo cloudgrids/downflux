@@ -1,3 +1,5 @@
+import { VideoSourceOutput } from './DownloadContracts';
+
 export interface FlashVarsOutput {
 	videoId?: string;
 	title?: string;
@@ -20,4 +22,10 @@ export interface FlashVarsOutput {
 	timelineScreenUrl?: string;
 	timelineScreenCount?: number;
 	previewUrl?: string;
+	previewUrl1?: string;
+	previewUrl2?: string;
+	previewUrl3?: string;
+	previews?: string[];
+	videos?: VideoSourceOutput[];
+	timelineScreens?: string[];
 }
