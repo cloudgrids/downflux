@@ -61,11 +61,16 @@ export class PornOnePipeline extends BasePipeline<PornOneExecArgs, PornOneOutput
 			});
 		}
 
-		if (metadata?.videoUrl) {
-			urls.add({
-				url: metadata.videoUrl,
-				id: videoId,
-				mediaType: MediaType.VIDEOS
+		if (metadata?.videos?.length) {
+			this.filterByQuality(metadata.videos, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (video) => video.quality
+			}).forEach((video) => {
+				urls.add({
+					url: video.url,
+					id: videoId,
+					mediaType: MediaType.VIDEOS
+				});
 			});
 		}
 

@@ -8,6 +8,8 @@ import { HqPornMethods } from './HqPornTypes';
  * @extends BaseProvider
  * Provider for HqPorn video downloader.
  * Provides mp4 links
+ * Does not exposes video quality or poster information due to limitations in the source HTML,
+ * but these may be added in the future as the provider is further developed and refined.
  */
 export class HqPornProvider extends BaseProvider<HqPornExecArgs> {
 	protected readonly provider = ProviderType.HqPorn;

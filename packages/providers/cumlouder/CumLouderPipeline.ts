@@ -63,11 +63,16 @@ export class CumLouderPipeline extends BasePipeline<CumLouderExecArgs, CumLouder
 			});
 		}
 
-		if (metadata?.videoUrl) {
-			urls.add({
-				url: metadata.videoUrl,
-				mediaType: MediaType.VIDEOS,
-				id: videoId
+		if (metadata?.videos?.length) {
+			this.filterByQuality(metadata.videos, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (video) => video.quality
+			}).forEach((video) => {
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: videoId
+				});
 			});
 		}
 

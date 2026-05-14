@@ -1,4 +1,4 @@
-import { ExecutionArgs } from '@contracts';
+import { ExecutionArgs, VideoSourceOutput } from '@contracts';
 
 export interface Porn300ExecArgs extends ExecutionArgs {}
 
@@ -9,5 +9,5 @@ export interface Porn300VideoOutput {
 	description: string;
 	pageUrl: string;
 	poster: string;
-	videoUrl: string;
+	videos: VideoSourceOutput[];
 }

@@ -1,6 +1,6 @@
 import { DefaultExecutionResult, ExecutionArgs, IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
 import { FileManager, PathBuilder } from '@storage';
-import { MediaType } from '@types';
+import { MediaType, VideoQuality } from '@types';
 
 export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExecutionResult> {
 	protected readonly pathBuilder = new PathBuilder();
@@ -81,7 +81,7 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExecutio
 	): T[] {
 		const { allowedQuality, getQuality } = options;
 
-		if (!allowedQuality) return items;
+		if (!allowedQuality || allowedQuality === VideoQuality.QUnknown) return items;
 
 		return items.filter((item) => getQuality(item) === allowedQuality);
 	}

@@ -28,7 +28,7 @@ export class PornsOkTransformer extends BaseTransformer<PornsOkExecArgs, Default
 			uploadedAt: pornsOkFields.uploadedAt,
 			totalViews: pornsOkFields.totalViews,
 			type: pornsOkFields.type,
-			videoUrl: pornsOkFields.videoUrl,
+			videos: pornsOkFields.videos,
 			starredBy: pornsOkFields.starredBy,
 			categories: pornsOkFields.categories
 		};

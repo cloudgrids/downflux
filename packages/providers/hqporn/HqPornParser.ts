@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { ProviderType, VideoQuality } from '@types';
 import { HqPornOutput } from './HqPornContracts';
 
 export class HqPornParser extends BaseParser {
@@ -14,7 +14,7 @@ export class HqPornParser extends BaseParser {
 						?.trim(),
 					poster: this.extractVideoPosters(html)?.[0],
 					pageUrl: sourceUrl,
-					videoUrl: this.extractSourceUrls(html)?.[0],
+					videos: this.extractSourceUrls(html)?.map((url) => ({ url, quality: VideoQuality.QUnknown })),
 					videoTags: this.extractMetaKeywords(html) ?? []
 				}
 			};

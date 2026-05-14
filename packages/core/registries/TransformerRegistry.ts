@@ -25,6 +25,7 @@ const transformerFactories: Record<ProviderType, TransformerFactory> = {
 	[ProviderType.CumLouder]: () => loadTransformer(() => import('@provider/cumlouder'), 'CumLouderTransformer'),
 	[ProviderType.Default]: async () => BaseTransformer,
 	[ProviderType.HqPorn]: () => loadTransformer(() => import('@provider/hqporn'), 'HqPornTransformer'),
+	[ProviderType.MegaTube]: () => loadTransformer(() => import('@provider/megatube'), 'MegaTubeTransformer'),
 	[ProviderType.OkPorn]: () => loadTransformer(() => import('@provider/okporn'), 'OkPornTransformer'),
 	[ProviderType.PerfectGirls]: () => loadTransformer(() => import('@provider/perfectgirls'), 'PerfectGirlsTransformer'),
 	[ProviderType.Porn300]: () => loadTransformer(() => import('@provider/porn300'), 'Porn300Transformer'),

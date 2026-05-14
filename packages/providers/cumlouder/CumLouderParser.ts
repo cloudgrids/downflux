@@ -8,7 +8,9 @@ export class CumLouderParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<CumLouderOutput>>> {
 		const pornStars = this.collectByClassNames(html, 'pornstar-link');
 
-		console.log({ pornStars });
+		const videoInfo = this.collectByClassNames(html, 'cum_player_html5_api', { includeInnerHTML: true })?.[0];
+
+		console.log({ pornStars, videoInfo });
 
 		try {
 			return {

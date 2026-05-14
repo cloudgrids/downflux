@@ -1,10 +1,10 @@
 import { BasePipeline } from '@base';
 import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
 import { MediaType } from '@types';
-import { SuperPornExecArgs, SuperPornOutput } from './SuperPornContracts';
+import { MegaTubeExecArgs, MegaTubeOutput } from './MegaTubeContracts';
 
-export class SuperPornPipeline extends BasePipeline<SuperPornExecArgs, SuperPornOutput> {
-	public override build(metadata: SuperPornOutput, request: SuperPornExecArgs): PipelineItem[] {
+export class MegaTubePipeline extends BasePipeline<MegaTubeExecArgs, MegaTubeOutput> {
+	public override build(metadata: MegaTubeOutput, request: MegaTubeExecArgs): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,
 			this.filterByExt(
@@ -28,9 +28,9 @@ export class SuperPornPipeline extends BasePipeline<SuperPornExecArgs, SuperPorn
 		);
 	}
 
-	protected override buildIdentifier(ctx: IdentifierContext<SuperPornOutput>): string {
+	protected override buildIdentifier(ctx: IdentifierContext<MegaTubeOutput>): string {
 		const { mediaType, id, metadata } = ctx;
-		const prefix = 'SuperPorn';
+		const prefix = 'MegaTube';
 		let mediaSegment: string;
 
 		switch (mediaType) {
@@ -46,12 +46,11 @@ export class SuperPornPipeline extends BasePipeline<SuperPornExecArgs, SuperPorn
 				mediaSegment = `${mediaType}/${id}`;
 		}
 
-		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.uploader || 'superporn_uploader'), mediaSegment);
+		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.uploader), mediaSegment);
 	}
 
-	protected override extract(request: SuperPornExecArgs, metadata: SuperPornOutput): PipelineExtractedItem[] {
+	protected override extract(request: MegaTubeExecArgs, metadata: MegaTubeOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
-		const videoId = this.pathBuilder.spaceNormalizer(metadata.title);
 
 		if (metadata?.videos?.length) {
 			this.filterByQuality(metadata.videos, {
@@ -60,17 +59,17 @@ export class SuperPornPipeline extends BasePipeline<SuperPornExecArgs, SuperPorn
 			}).forEach((video) => {
 				urls.add({
 					url: video.url,
-					mediaType: MediaType.VIDEOS,
-					id: videoId
+					id: metadata.videoId,
+					mediaType: MediaType.VIDEOS
 				});
 			});
 		}
 
 		if (metadata?.poster) {
 			urls.add({
-				mediaType: MediaType.VIDEO_POSTER,
 				url: metadata.poster,
-				id: videoId
+				id: metadata.videoId,
+				mediaType: MediaType.VIDEO_POSTER
 			});
 		}
 

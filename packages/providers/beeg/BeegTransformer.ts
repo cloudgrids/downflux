@@ -4,6 +4,12 @@ import { OutputType } from '@types';
 import { BeegExecArgs, BeegVideoMetadata, BeegVideoOutput } from './BeegContracts';
 import { BeegMethods } from './BeegTypes';
 
+/**
+ * @class `BeegTransformer`
+ * @description Transforms raw data fetched from the Beeg API into a structured format suitable for video downloading.
+ * The transformer is designed to work with the Beeg API's response structure and may need adjustments if the API changes.
+ * Provides all quality videos along with posters
+ */
 export class BeegTransformer extends BaseTransformer<BeegExecArgs, DefaultExecutionResult | BeegVideoOutput> {
 	private readonly REFERER = 'https://beeg.com/';
 	private readonly VIDEO_ORIGIN = 'https://video.beeg.com';

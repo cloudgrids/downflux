@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { ProviderType, VideoQuality } from '@types';
 import { PornOneOutput } from './PornOneContracts';
 
 export class PornOneParser extends BaseParser {
@@ -19,6 +19,10 @@ export class PornOneParser extends BaseParser {
 		try {
 			return {
 				customFields: {
+					quality:
+						this.collectByClassNames(html, 'vjs-tech', { includeInnerHTML: true })?.[0].innerHTML.match(
+							/label="([^"]+)"/i
+						)?.[1] ?? VideoQuality.QUnknown,
 					pageUrl: sourceUrl,
 					poster: this.extractMetaPropertyContent(html, 'og:image')
 				} as PornOneOutput

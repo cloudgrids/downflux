@@ -1,4 +1,4 @@
-import { ExecutionArgs } from '@contracts';
+import { ExecutionArgs, VideoSourceOutput } from '@contracts';
 
 export interface CumLouderExecArgs extends ExecutionArgs {}
 export interface CumLouderOutput extends CumLouderVideoOutput {}
@@ -6,7 +6,7 @@ export interface CumLouderOutput extends CumLouderVideoOutput {}
 export interface CumLouderVideoOutput {
 	title: string;
 	description: string;
-	videoUrl: string;
+	videos: VideoSourceOutput[];
 	poster: string;
 	pageUrl: string;
 }

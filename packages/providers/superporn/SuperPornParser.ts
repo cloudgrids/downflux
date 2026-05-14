@@ -1,20 +1,29 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { ProviderType, VideoQuality } from '@types';
 import { SuperPornOutput } from './SuperPornContracts';
 
 export class SuperPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<SuperPornOutput>>> {
-		const uploader = this.collectByClassNames(html, 'info-uploader') as Array<{ text: string }>;
 		const tags = this.collectByClassNames(html, 'chip-link') as Array<{ text: string }>;
+
+		const videoInfo = this.extractScriptsByType(html, 'application/ld+json').flatMap((script) => JSON.parse(script))?.[0];
+
 		try {
 			return {
 				customFields: {
+					title: videoInfo?.name,
+					description: videoInfo?.description,
 					pageUrl: sourceUrl,
 					poster: this.extractMetaPropertyContent(html, 'og:image'),
 					tags: tags.map((tag) => tag.text),
-					uploader: uploader.map((uploader) => uploader.text)?.[0]
+					uploader: videoInfo?.author?.name || 'Unknown',
+					width: videoInfo?.width,
+					height: videoInfo?.height,
+					duration: videoInfo?.duration,
+					uploadedAt: videoInfo?.uploadDate,
+					quality: videoInfo?.height ? `${videoInfo?.height}p` : VideoQuality.QUnknown
 				} as SuperPornOutput
 			};
 		} catch (error) {

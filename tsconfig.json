@@ -62,6 +62,8 @@
 
 			"@provider/hqporn": ["./packages/providers/hqporn/index.ts"],
 
+			"@provider/megatube": ["./packages/providers/megatube/index.ts"],
+
 			"@provider/okporn": ["./packages/providers/okporn/index.ts"],
 
 			"@provider/perfectgirls": ["./packages/providers/perfectgirls/index.ts"],

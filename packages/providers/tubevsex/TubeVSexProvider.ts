@@ -6,7 +6,7 @@ import { TubeVSexMethods } from './TubeVSexTypes';
 
 export class TubeVSexProvider extends BaseProvider<TubeVSexExecArgs> {
 	protected readonly provider = ProviderType.TubeVSex;
-	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?tubev\.(?:sex)\/video-archive\/[\d]+\/[^/]+$/i;
+	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?tubev\.(?:sex)\/(?:video-archive|video)\/[\d]+\/[^/]+$/i;
 
 	constructor(url: string) {
 		super(url, {

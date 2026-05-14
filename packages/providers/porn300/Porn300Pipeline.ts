@@ -52,21 +52,27 @@ export class Porn300Pipeline extends BasePipeline<Porn300ExecArgs, Porn300Output
 
 	protected override extract(request: Porn300ExecArgs, metadata: Porn300Output): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
+		const videoId = request.entryUrl.split('/').filter(Boolean).pop() as string;
 
 		if (metadata?.poster) {
 			urls.add({
 				url: metadata.poster,
 				mediaType: MediaType.VIDEO_POSTER,
-				id: request.entryUrl.split('/').filter(Boolean).pop(),
+				id: videoId,
 				extension: metadata.poster.split('/').pop()?.split('.').pop() as ImageExtension
 			});
 		}
 
-		if (metadata?.videoUrl) {
-			urls.add({
-				url: metadata.videoUrl,
-				mediaType: MediaType.VIDEOS,
-				id: request.entryUrl.split('/').filter(Boolean).pop()
+		if (metadata?.videos?.length) {
+			this.filterByQuality(metadata.videos, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (video) => video.quality
+			}).forEach((video) => {
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: videoId
+				});
 			});
 		}
 
