@@ -7,9 +7,9 @@ import { SxyPornMethods } from './SxyPornTypes';
 /**
  * @class SxyPornProvider
  * @extends BaseProvider
- * @description Provider for SxyPorn video downloader.
- * @notes This provider is still in `development` due to cloudflare challenge
- * @fileoverview Provides mp4 links
+ * Provider for SxyPorn video downloader.
+ * This provider is still in `development` due to cloudflare challenge
+ * Provides mp4 links
  */
 export class SxyPornProvider extends BaseProvider<SxyPornExecArgs> {
 	protected readonly provider = ProviderType.SxyPorn;
@@ -34,9 +34,9 @@ export class SxyPornProvider extends BaseProvider<SxyPornExecArgs> {
 
 	/**
 	 * @returns `SxyPornVideoOutput` with video metadata and source URLs.
-	 * @description Fetches video sources from the provided URL.
+	 * Fetches video sources from the provided URL.
 	 * @throws `GenericException` when the video sources cannot be extracted
-	 * @canDownload `true`
+	 * `true`
 	 */
 	public async getVideo(): Promise<SxyPornVideoOutput> {
 		return await this.execute<SxyPornVideoOutput>({

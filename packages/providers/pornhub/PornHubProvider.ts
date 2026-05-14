@@ -6,11 +6,11 @@ import { PornHubChannelsQueryArgsType, PornHubMethods, PornHubVideosFormat } fro
 
 /**
  * @class PornHub provider.
- * @operations operations related to PornHub.
- * @notes Due to the dynamic nature of PornHub's webpage and potential anti-scraping measures,
+ * Operations: operations related to PornHub.
+ * Due to the dynamic nature of PornHub's webpage and potential anti-scraping measures,
  * The `getVideo` method may not work reliably for all videos or may require frequent updates to the extraction logic.
- * @notes Please report any issues you encounter to help improve the provider.
- * @fileoverview Provides mp4 links
+ * Please report any issues you encounter to help improve the provider.
+ * Provides mp4 links
  */
 export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 	protected readonly provider = ProviderType.PornHub;
@@ -75,12 +75,11 @@ export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 	}
 
 	/**
-	 * @param viewKey refers to the ID https://pornhub.com/view_video.php?viewkey=ph5b2c8e1cbb9d `ph5b2c8e1cbb9d`
 	 * @defaultValue `viewKey` is collected from the entry URL query param if exists
 	 * @param quality allowed video quality (e.g., 720p, 1080p). If not specified, highest quality will be returned.
 	 * @returns `PornHubVideoOutput` containing video metadata and source URLs
 	 * @throws `GenericException` When the view key is missing or invalid
-	 * @canDownload true
+	 * true
 	 */
 	public async getVideo(quality?: VideoQuality): Promise<PornHubVideoOutput> {
 		const urlObj = new URL(this.url);
@@ -100,11 +99,11 @@ export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 
 	/**
 	 * @returns `PornHubVideosOutput[]` containing video urls
-	 * @notes This method does not download videos only returns array or urls
+	 * This method does not download videos only returns array or urls
 	 * @throws `GenericException` when the username or type is missing, usually derived from URL if exists
 	 * @param args options parameter to specify username, type of videos and quality
-	 * @notes This method is specially designed for fetching videos from `channel` or `model` or `pornstar` pages where the videos are listed in a paginated format.
-	 * @canDownload false
+	 * This method is specially designed for fetching videos from `channel` or `model` or `pornstar` pages where the videos are listed in a paginated format.
+	 * false
 	 */
 	public async getVideos(args: PornHubVideosExecArgs = {}, range: PageRange = this.Default_PAGE_RANGE): Promise<PornHubVideosOutput[]> {
 		let type = args.type;
@@ -146,9 +145,9 @@ export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 	 * @throws `GenericException` when the URL format is invalid or unsupported
 	 * @param format options parameter to specify format of the videos
 	 * @returns `PornHubVideosOutput[]` containing video urls
-	 * @notes This method does not download videos only returns array or urls
-	 * @notes The method will attempt to determine the format based on the URL structure and extract videos accordingly.
-	 * @canDownload false
+	 * This method does not download videos only returns array or urls
+	 * The method will attempt to determine the format based on the URL structure and extract videos accordingly.
+	 * false
 	 */
 	public async getVideosFromAnyUrl(format?: UrlFormat): Promise<PornHubVideosOutput[]> {
 		return await this.execute<PornHubVideosOutput[]>({

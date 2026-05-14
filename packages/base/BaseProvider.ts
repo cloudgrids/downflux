@@ -126,9 +126,10 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 
 	/**
 	 * Sets transcode options.
-	 * @param opts Transcode configuration
-	 * @notes Sometimes due to nature of the OS, the video might not play after download.
+	 * @param opts
+	 * Sometimes due to nature of the OS, the video might not play after download.
 	 * In such cases, you can set transcodeOptions to re-encode the video using ffmpeg which should resolve most compatibility issues.
+	 * Make sure your OS can handle it
 	 */
 	public setTranscodeOptions(opts: TranscodeOptions): this {
 		this.executionOptions.transcodeOptions = { ...this.executionOptions.transcodeOptions, ...opts };

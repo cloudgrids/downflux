@@ -1,4 +1,5 @@
-import { OutputType, PornDoeProvider, VideoQuality } from 'packages';
+import { PornDoeProvider } from '@provider/porndoe';
+import { OutputType, VideoQuality } from '@types';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca

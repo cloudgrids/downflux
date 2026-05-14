@@ -4,7 +4,7 @@ import { BaseException } from './BaseException';
 /**
  * @class InvalidDestinationException
  * @throws Exception thrown when a invalid destination is provided by the user.
- * @notes Provides a consistent error structure for disk write related issues across services.
+ * Provides a consistent error structure for disk write related issues across services.
  */
 export class InvalidDestinationException extends BaseException {
 	constructor(

@@ -15,10 +15,10 @@ import { PerfectGirlsMethods } from './PerfectGirlsTypes';
 
 /**
  * @class PerfectGirlsProvider
- * @notes This provider can be used with both `perfectdamen.co` and `perfectgirls.xxx` domains.
- * @provides album, video, model, tag, and channel operations.
- * @fileoverview Provides m3u8 links
- * @dependencies - ffmpeg (for m3u8 to mp4 conversion)
+ * This provider can be used with both `perfectdamen.co` and `perfectgirls.xxx` domains.
+ * Provides: album, video, model, tag, and channel operations.
+ * Provides m3u8 links
+ * Dependencies: - ffmpeg (for m3u8 to mp4 conversion)
  */
 export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 	protected readonly provider = ProviderType.PerfectGirls;
@@ -114,7 +114,7 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 	 * @param param Page range
 	 * @returns `PerfectGirlsAlbumOutput[]` list
 	 * @throws InvalidRangeException When the page range is invalid
-	 * @canDownload true
+	 * true
 	 */
 	public async getAlbums(param: PageRange = this.DEFAULT_PAGE_RANGE): Promise<PerfectGirlsAlbumOutput[]> {
 		return await this.execute<PerfectGirlsAlbumOutput[]>({
@@ -127,7 +127,7 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 	/**
 	 * Gets a single album.
 	 * @returns `PerfectGirlsAlbumOutput`
-	 * @canDownload true
+	 * true
 	 */
 	public async getAlbum(): Promise<PerfectGirlsAlbumOutput> {
 		return await this.execute<PerfectGirlsAlbumOutput>({
@@ -146,7 +146,7 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 	 * @returns `PerfectGirlsModelOutput[]` list
 	 * @throws InvalidRangeException When the range exceeds the model page limit
 	 * @throws GenericException When the model identifier output format is invalid
-	 * @canDownload true
+	 * true
 	 */
 	public getModels(range: PageRange = this.DEFAULT_PAGE_RANGE, args?: PerfectGirlsIdType): Promise<PerfectGirlsModelOutput[]> {
 		if (range.limit > this.MODEL_VIDEO_PAGE_LIMIT) {
@@ -163,12 +163,11 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 
 	/**
 	 * Gets video cards for a model.
-	 * @param username Model username
 	 * @param range Page range
 	 * @returns `PerfectGirlsModelVideoIdsOutput` containing video identifiers and metadata
 	 * @throws InvalidRangeException When the range exceeds the model video page limit
 	 * @throws GenericException When the username is not provided
-	 * @canDownload true
+	 * true
 	 */
 	public async getModelVideoIds(range: PageRange = this.DEFAULT_PAGE_RANGE): Promise<PerfectGirlsModelVideoIdsOutput> {
 		return await this.execute<PerfectGirlsModelVideoIdsOutput>({
@@ -184,7 +183,7 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 	 * @returns `PerfectGirlsTagOutput[]` list in tag format if path is not specified,
 	 *          otherwise returns tag URLs or tag names based on the specified format
 	 * @throws GenericException When the tag filter options are invalid
-	 * @canDownload false
+	 * false
 	 */
 	public async getTags(args: TagFilterOptions): Promise<PerfectGirlsTagOutput[]> {
 		return await this.execute<PerfectGirlsTagOutput[]>({
@@ -202,10 +201,10 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 	 * @param range Page range
 	 * @param args Channel identifier output format
 	 * @returns `PerfectGirlsChannelOutput[]` list
-	 * @remarks The channel page limit is 21. Exceeding this will throw an InvalidRangeException.
+	 * remarks The channel page limit is 21. Exceeding this will throw an InvalidRangeException.
 	 * @throws InvalidRangeException When the range exceeds the channel page limit
 	 * @throws GenericException When the channel identifier output format is invalid
-	 * @canDownload false
+	 * false
 	 */
 	public async getChannels(range: PageRange = this.DEFAULT_PAGE_RANGE, args?: PerfectGirlsIdType): Promise<PerfectGirlsChannelOutput[]> {
 		if (range.limit > this.CHANNEL_PAGE_LIMIT) {
@@ -225,7 +224,7 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 	 * @param quality Allowed video quality
 	 * @returns `PerfectGirlsVideoOutput[]` list
 	 * @throws InvalidRangeException When the index range is invalid
-	 * @canDownload true
+	 * true
 	 */
 	public async getVideos(range: IndexRange = this.DEFAULT_INDEX_RANGE, quality?: VideoQuality): Promise<PerfectGirlsVideoOutput[]> {
 		return await this.execute<PerfectGirlsVideoOutput[]>({
@@ -239,12 +238,11 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 
 	/**
 	 * Gets a single video.
-	 * @param id Video identifier
 	 * @param quality Allowed video quality
 	 * @returns `PerfectGirlsVideoOutput`
-	 * @remarks The video identifier can be found in the video URL (e.g., https://ok.porn/video/12345/ has the identifier "12345")
+	 * remarks The video identifier can be found in the video URL (e.g., https://ok.porn/video/12345/ has the identifier "12345")
 	 * @throws GenericException When the video ID is not provided
-	 * @canDownload true
+	 * true
 	 */
 	public async getVideo(quality?: VideoQuality): Promise<PerfectGirlsVideoOutput> {
 		return await this.execute<PerfectGirlsVideoOutput>({

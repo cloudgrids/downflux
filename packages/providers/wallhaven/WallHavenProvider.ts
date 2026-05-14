@@ -37,8 +37,8 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 	 * @param thumbQuality Thumbnail qualities to include in the response (defaults to all qualities)
 	 * @returns `WallHavenWallPaperOutput` Wallpaper metadata and thumbnails
 	 * @throws `GenericException` When the ID is missing
-	 * @notes This method downloads the found urls and returns the metadata and thumbnail URLs without downloading the full wallpaper image.
-	 * @canDownload true
+	 * This method downloads the found urls and returns the metadata and thumbnail URLs without downloading the full wallpaper image.
+	 * true
 	 */
 	public async getWallPaper(id: string, thumbQuality?: WallHavenThumbnailQuality): Promise<WallHavenWallPaperOutput> {
 		if (!id) throw new GenericException('Wallpaper ID is required', this.provider, WallHavenMethods.getWallPaper);
@@ -59,9 +59,9 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 	 * @param range Page index range or 'all' to get all pages (defaults to first page)
 	 * @returns `WallHavenUserUploadsOutput` User upload metadata and thumbnails
 	 * @throws `GenericException` When the username is missing
-	 * @notes This method downloads the images and metadata for a user's uploads
-	 * @notes The method will fetch the total number of pages for the user's uploads and iterate through them based on the specified range to retrieve all relevant metadata and thumbnail URLs.
-	 * @canDownload true
+	 * This method downloads the images and metadata for a user's uploads
+	 * The method will fetch the total number of pages for the user's uploads and iterate through them based on the specified range to retrieve all relevant metadata and thumbnail URLs.
+	 * true
 	 */
 	public async getUserUploads(
 		args: WallHavenUserExecArgs,
@@ -89,9 +89,9 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 	 * @param username WallHaven username
 	 * @returns `WallHavenUserInfo` Total upload images count
 	 * @throws `GenericException` When the username is missing
-	 * @notes This method only fetches the total upload count and total pages for a user, it does not download any images or thumbnails.
-	 * @notes This method is used internally to determine the number of pages to fetch when retrieving user uploads.
-	 * @canDownload false
+	 * This method only fetches the total upload count and total pages for a user, it does not download any images or thumbnails.
+	 * This method is used internally to determine the number of pages to fetch when retrieving user uploads.
+	 * false
 	 */
 	public async getUserUploadsInfo(username: string): Promise<WallHavenUserInfoOutput> {
 		if (!username) throw new GenericException('Username is required', this.provider, WallHavenMethods.getUserUploadsInfo);
@@ -109,8 +109,8 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 	 * Gets the favorite collections for a WallHaven user.
 	 * @returns `WallHavenUserFavoriteCollection[]` User favorite collections metadata and thumbnails
 	 * @throws `GenericException` When the username is missing
-	 * @notes This method downloads and fetches the favorite collection metadata and thumbnail URLs
-	 * @canDownload true
+	 * This method downloads and fetches the favorite collection metadata and thumbnail URLs
+	 * true
 	 */
 	public async getUserFavoriteCollections(
 		args: WallHavenUserExecArgs,
@@ -140,8 +140,8 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 	 * @param range Page index range or 'all' to get all pages (defaults to first page)
 	 * @returns `WallHavenUserUploadsOutput` User upload metadata and thumbnails
 	 * @throws `GenericException` When the username or collection ID is missing
-	 * @notes This method downloads the images and metadata for a specific favorite collection, it does not download any images.
-	 * @canDownload true
+	 * This method downloads the images and metadata for a specific favorite collection, it does not download any images.
+	 * true
 	 */
 	public async getUserFavoritesCollection(
 		args: WallHavenUserFavoritesExecArgs,

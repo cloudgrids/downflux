@@ -15,11 +15,11 @@ import { OkPornMethods } from './OkPornTypes';
 
 /**
  * OkPorn provider
- * @remarks Model pages are limited to 555 pages. Channel pages are limited to 21 pages.
- * @notes This provider can be used with both `ok.porn` and `ok.xxx` domains.
- * @provides album, video, model, tag, and channel operations.
- * @fileoverview Provides m3u8 links
- * @dependencies - ffmpeg (for m3u8 to mp4 conversion)
+ * remarks Model pages are limited to 555 pages. Channel pages are limited to 21 pages.
+ * This provider can be used with both `ok.porn` and `ok.xxx` domains.
+ * Provides: album, video, model, tag, and channel operations.
+ * Provides m3u8 links
+ * Dependencies: - ffmpeg (for m3u8 to mp4 conversion)
  */
 export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	protected readonly provider = ProviderType.OkPorn;
@@ -115,7 +115,7 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @param param Page range
 	 * @returns `OkPornAlbumOutput[]` list
 	 * @throws InvalidRangeException When the page range is invalid
-	 * @canDownload true
+	 * true
 	 */
 	public async getAlbums(param: PageRange = this.DEFAULT_PAGE_RANGE): Promise<OkPornAlbumOutput[]> {
 		return await this.execute<OkPornAlbumOutput[]>({
@@ -128,7 +128,7 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	/**
 	 * Gets a single album.
 	 * @returns `OkPornAlbumOutput`
-	 * @canDownload true
+	 * true
 	 */
 	public async getAlbum(): Promise<OkPornAlbumOutput> {
 		return await this.execute<OkPornAlbumOutput>({
@@ -147,7 +147,7 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @returns `OkPornModelOutput[]` list
 	 * @throws InvalidRangeException When the range exceeds the model page limit
 	 * @throws GenericException When the model identifier output format is invalid
-	 * @canDownload true
+	 * true
 	 */
 	public getModels(range: PageRange = this.DEFAULT_PAGE_RANGE, args?: OkPornIdType): Promise<OkPornModelOutput[]> {
 		if (range.limit > this.MODEL_VIDEO_PAGE_LIMIT) {
@@ -164,12 +164,11 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 
 	/**
 	 * Gets video cards for a model.
-	 * @param username Model username
 	 * @param range Page range
 	 * @returns `OkPornModelVideoIdsOutput` containing video identifiers and metadata
 	 * @throws InvalidRangeException When the range exceeds the model video page limit
 	 * @throws GenericException When the username is not provided
-	 * @canDownload true
+	 * true
 	 */
 	public async getModelVideoIds(range: PageRange = this.DEFAULT_PAGE_RANGE): Promise<OkPornModelVideoIdsOutput> {
 		return await this.execute<OkPornModelVideoIdsOutput>({
@@ -185,7 +184,7 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @returns `OkPornTagOutput[]` list in tag format if path is not specified,
 	 *          otherwise returns tag URLs or tag names based on the specified format
 	 * @throws GenericException When the tag filter options are invalid
-	 * @canDownload false
+	 * false
 	 */
 	public async getTags(args: TagFilterOptions): Promise<OkPornTagOutput[]> {
 		return await this.execute<OkPornTagOutput[]>({
@@ -203,10 +202,10 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @param range Page range
 	 * @param args Channel identifier output format
 	 * @returns `OkPornChannelOutput[]` list
-	 * @remarks The channel page limit is 21. Exceeding this will throw an InvalidRangeException.
+	 * remarks The channel page limit is 21. Exceeding this will throw an InvalidRangeException.
 	 * @throws InvalidRangeException When the range exceeds the channel page limit
 	 * @throws GenericException When the channel identifier output format is invalid
-	 * @canDownload false
+	 * false
 	 */
 	public async getChannels(range: PageRange = this.DEFAULT_PAGE_RANGE, args?: OkPornIdType): Promise<OkPornChannelOutput[]> {
 		if (range.limit > this.CHANNEL_PAGE_LIMIT) {
@@ -226,7 +225,7 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	 * @param quality Allowed video quality
 	 * @returns `OkPornVideoOutput[]` list
 	 * @throws InvalidRangeException When the index range is invalid
-	 * @canDownload true
+	 * true
 	 */
 	public async getVideos(range: IndexRange = this.DEFAULT_INDEX_RANGE, quality?: VideoQuality): Promise<OkPornVideoOutput[]> {
 		return await this.execute<OkPornVideoOutput[]>({
@@ -240,12 +239,11 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 
 	/**
 	 * Gets a single video.
-	 * @param id Video identifier
 	 * @param quality Allowed video quality
 	 * @returns `OkPornVideoOutput`
-	 * @remarks The video identifier can be found in the video URL (e.g., https://ok.porn/video/12345/ has the identifier "12345")
+	 * remarks The video identifier can be found in the video URL (e.g., https://ok.porn/video/12345/ has the identifier "12345")
 	 * @throws GenericException When the video ID is not provided
-	 * @canDownload true
+	 * true
 	 */
 	public async getVideo(quality?: VideoQuality): Promise<OkPornVideoOutput> {
 		return await this.execute<OkPornVideoOutput>({
