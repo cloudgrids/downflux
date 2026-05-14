@@ -6,9 +6,9 @@ import { XVideosMethods } from './XVideosTypes';
 /**
  * @class XVideosProvider
  * @extends BaseProvider
- * @description Provider for XVideos video downloader.
- * @fileoverview Provides m3u8 links
- * @dependencies ffmpeg (for m3u8 to mp4 conversion)
+ * Provider for XVideos video downloader.
+ * Provides m3u8 links
+ * Dependencies: ffmpeg (for m3u8 to mp4 conversion)
  */
 export class XVideosProvider extends BaseProvider<XVideosExecArgs> {
 	protected readonly provider = ProviderType.XVideos;
@@ -22,9 +22,9 @@ export class XVideosProvider extends BaseProvider<XVideosExecArgs> {
 
 	/**
 	 * @returns `XVideosVideoOutput` with video metadata and source URLs.
-	 * @description Fetches video sources from the provided XVideos URL.
+	 * Fetches video sources from the provided XVideos URL.
 	 * @throws `GenericException` when the video sources cannot be extracted
-	 * @canDownload `true`
+	 * `true`
 	 */
 	public async getVideo(): Promise<XVideosVideoOutput> {
 		return await this.execute<XVideosVideoOutput>({

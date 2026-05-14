@@ -1,7 +1,6 @@
 {
 	"entryPoints": ["packages"],
 	"tsconfig": "tsconfig.json",
-	"include": ["packages/**/*", "test/**/*"],
 	"exclude": ["node_modules", "dist", "scripts"],
 	"excludePrivate": true,
 	"excludeProtected": false,

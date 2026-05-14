@@ -6,8 +6,8 @@ import { HqPornMethods } from './HqPornTypes';
 /**
  * @class HqPornProvider
  * @extends BaseProvider
- * @description Provider for HqPorn video downloader.
- * @fileoverview Provides mp4 links
+ * Provider for HqPorn video downloader.
+ * Provides mp4 links
  */
 export class HqPornProvider extends BaseProvider<HqPornExecArgs> {
 	protected readonly provider = ProviderType.HqPorn;
@@ -25,7 +25,7 @@ export class HqPornProvider extends BaseProvider<HqPornExecArgs> {
 	 * @throws `InvalidUrlException` if the URL is not a valid HqPorn video page URL.
 	 * @throws `GenericException` for any parsing or extraction errors.
 	 * @param quality Optional parameter to specify desired video quality. If not provided, all available qualities will be returned.
-	 * @canDownload true
+	 * true
 	 */
 	public async getVideo(quality?: VideoQuality): Promise<HqPornVideoOutput> {
 		return await this.execute<HqPornVideoOutput>({

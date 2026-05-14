@@ -11,8 +11,8 @@ export interface ExceptionPayload<TMeta = any> {
 
 /**
  * @class Exception
- * @notes The base exception class for all custom exceptions in the application.
- * @notes Provides a consistent structure for error information, including error codes, context, and metadata.
+ * The base exception class for all custom exceptions in the application.
+ * Provides a consistent structure for error information, including error codes, context, and metadata.
  */
 export class BaseException<TMeta = any> extends Error {
 	public readonly errorCode: ErrorCodes;

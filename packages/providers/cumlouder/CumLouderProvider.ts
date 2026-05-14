@@ -1,13 +1,14 @@
 import { BaseProvider } from '@base';
+import { GenericException } from '@core/exceptions';
 import { ExtractionTarget, ProviderType } from '@types';
-import { CumLouderMethods, GenericException } from 'packages';
 import { CumLouderExecArgs, CumLouderVideoOutput } from './CumLouderContracts';
+import { CumLouderMethods } from './CumLouderTypes';
 
 /**
  * @class CumLouderProvider
- * @description Provider implementation for CumLouder website, responsible for validating URLs, extracting video information, and handling video downloads.
- * @notes This provider might not support for all regions due to potential geo-restrictions on CumLouder content. Ensure that the provided URLs are accessible from your location.
- * @remarks The provider is still under development and may not support all video formats or qualities available on CumLouder.
+ * Provider implementation for CumLouder website, responsible for validating URLs, extracting video information, and handling video downloads.
+ * This provider might not support for all regions due to potential geo-restrictions on CumLouder content. Ensure that the provided URLs are accessible from your location.
+ * remarks The provider is still under development and may not support all video formats or qualities available on CumLouder.
  * As the default is unknown
  */
 export class CumLouderProvider extends BaseProvider<CumLouderExecArgs> {

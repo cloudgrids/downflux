@@ -5,12 +5,12 @@ import { TnAFlixMethods } from './TnAFlixTypes';
 
 /**
  * @class TnAFlix provider.
- * @operations operations related to TnAFlix.
- * @notes Due to `Recv failure: Connection reset by peer` due to region-based restrictions,
+ * Operations: operations related to TnAFlix.
+ * Due to `Recv failure: Connection reset by peer` due to region-based restrictions,
  * this provider is currently only tested to work with VPN enabled and set to US region.
- * @remarks The provider is expected to work without VPN as well, but it is not tested yet.
+ * remarks The provider is expected to work without VPN as well, but it is not tested yet.
  * It might not work in some regions due to the mentioned restriction, but it should work in most regions.
- * @fileoverview Provides mp4 links
+ * Provides mp4 links
  */
 export class TnAFlixProvider extends BaseProvider<TnAFlixExecArgs> {
 	protected readonly provider = ProviderType.TnAFlix;
@@ -24,10 +24,10 @@ export class TnAFlixProvider extends BaseProvider<TnAFlixExecArgs> {
 
 	/**
 	 * @returns `TnAFlixVideoOutput` containing video metadata and source information.
-	 * @description Fetches video sources from the provided TnAFlix URL.
+	 * Fetches video sources from the provided TnAFlix URL.
 	 * @param quality Optional parameter to specify desired video quality. If not provided, all available qualities will be returned.
 	 * @throws `GenericException` when the video sources cannot be extracted
-	 * @canDownload `true`
+	 * `true`
 	 */
 	public async getVideo(quality?: VideoQuality): Promise<TnAFlixVideoOutput> {
 		return await this.execute<TnAFlixVideoOutput>({

@@ -7,8 +7,8 @@ import { XGroovyMethods } from './XGroovyTypes';
 /**
  * @class XGroovyProvider
  * @extends BaseProvider
- * @description Provider for XGroovy video downloader.
- * @fileoverview Provides direct mp4 links
+ * Provider for XGroovy video downloader.
+ * Provides direct mp4 links
  */
 export class XGroovyProvider extends BaseProvider<XGroovyExecArgs> {
 	protected readonly provider = ProviderType.XGroovy;
@@ -32,9 +32,9 @@ export class XGroovyProvider extends BaseProvider<XGroovyExecArgs> {
 
 	/**
 	 * @returns `XGroovyVideoOutput` with video metadata and source URLs.
-	 * @description Fetches video sources from the provided XGroovy URL.
+	 * Fetches video sources from the provided XGroovy URL.
 	 * @throws `GenericException` when the video sources cannot be extracted
-	 * @canDownload `true`
+	 * `true`
 	 */
 	public async getVideo(): Promise<XGroovyVideoOutput> {
 		return await this.execute<XGroovyVideoOutput>({

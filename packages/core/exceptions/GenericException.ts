@@ -4,7 +4,7 @@ import { BaseException } from './BaseException';
 /**
  * @class GenericException
  * @throws A generic exception for invalid arguments or missing parameters in provider methods.
- * @notes Provides a consistent error structure for argument-related issues across services.
+ * Provides a consistent error structure for argument-related issues across services.
  */
 export class GenericException extends BaseException {
 	constructor(

@@ -4,7 +4,7 @@ import { BaseException } from './BaseException';
 /**
  * @class ProviderMismatchException
  * @throws Exception thrown when a URL does not match the expected provider pattern.
- * @notes Provides a consistent error structure for provider mismatch issues across services.
+ * Provides a consistent error structure for provider mismatch issues across services.
  */
 export class ProviderMismatchException extends BaseException {
 	constructor(

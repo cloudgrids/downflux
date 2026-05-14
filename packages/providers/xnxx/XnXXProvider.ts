@@ -6,9 +6,9 @@ import { XnXXMethods } from './XnXXTypes';
 /**
  * @class XnXXProvider
  * @extends BaseProvider
- * @description Provider for XnXX video downloader.
- * @fileoverview Provides m3u8 links
- * @dependencies ffmpeg (for m3u8 to mp4 conversion)
+ * Provider for XnXX video downloader.
+ * Provides m3u8 links
+ * Dependencies: ffmpeg (for m3u8 to mp4 conversion)
  */
 export class XnXXProvider extends BaseProvider<XnXXExecArgs> {
 	protected readonly provider = ProviderType.XnXX;
@@ -22,9 +22,9 @@ export class XnXXProvider extends BaseProvider<XnXXExecArgs> {
 
 	/**
 	 * @returns `XnXXVideoOutput` with video metadata and source URLs.
-	 * @description Fetches video sources from the provided XnXX URL.
+	 * Fetches video sources from the provided XnXX URL.
 	 * @throws `GenericException` when the video sources cannot be extracted
-	 * @canDownload `true`
+	 * `true`
 	 */
 	public async getVideo(): Promise<XnXXVideoOutput> {
 		return await this.execute<XnXXVideoOutput>({

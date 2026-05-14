@@ -6,9 +6,9 @@ import { PornOneMethods } from './PornOneTypes';
 /**
  * @class PornOneProvider
  * @extends BaseProvider
- * @description Provider for PornOne video downloader.
- * @notes Still under `development` due to cloudflare challenge
- * @fileoverview Direct mp4 links
+ * Provider for PornOne video downloader.
+ * Still under `development` due to cloudflare challenge
+ * Direct mp4 links
  */
 export class PornOneProvider extends BaseProvider<PornOneExecArgs> {
 	protected readonly provider = ProviderType.PornOne;
