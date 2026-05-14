@@ -29,17 +29,9 @@ export class XnXXParser extends BaseParser {
 	}
 
 	private getVideoUrls(html: string) {
-		const src = html ?? '';
-
-		const extract = (fnName: string) => {
-			const re = new RegExp(`${fnName}\\s*\\(\\s*['"]([^'"]+)['"]\\s*\\)`, 'i');
-			const m = re.exec(src);
-			return m ? m[1] : null;
-		};
-
-		const low = extract('setVideoUrlLow');
-		const high = extract('setVideoUrlHigh');
-		const hls = extract('setVideoHLS');
+		const low = this.extractScriptMethodInput('setVideoUrlLow', html);
+		const high = this.extractScriptMethodInput('setVideoUrlHigh', html);
+		const hls = this.extractScriptMethodInput('setVideoHLS', html);
 
 		return { low, high, hls };
 	}

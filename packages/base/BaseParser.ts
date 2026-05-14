@@ -24,6 +24,12 @@ export class BaseParser {
 		}
 	}
 
+	public extractScriptMethodInput(fnName: string, html: string): string | null {
+		const re = new RegExp(`${fnName}\\s*\\(\\s*['"]([^'"]+)['"]\\s*\\)`, 'i');
+		const m = re.exec(html);
+		return m ? m[1] : null;
+	}
+
 	public getFlashVars(html: string): FlashVarsOutput {
 		const extractField = (field: string) => {
 			const re = new RegExp(`${field}\\s*:\\s*['"]([^'"]+)['"]`, 'i');
