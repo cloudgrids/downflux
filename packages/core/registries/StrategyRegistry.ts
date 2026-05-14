@@ -26,6 +26,7 @@ const strategyFactories: Record<ProviderType, StrategyFactory> = {
 	[ProviderType.HqPorn]: async () => BaseStrategy,
 	[ProviderType.Lesbian8]: async () => BaseStrategy,
 	[ProviderType.MegaTube]: async () => BaseStrategy,
+	[ProviderType.MyLust]: () => loadStrategy(() => import('@provider/mylust'), 'MyLustStrategy'),
 	[ProviderType.OkPorn]: async () => BaseStrategy,
 	[ProviderType.PerfectGirls]: () => loadStrategy(() => import('@provider/perfectgirls'), 'PerfectGirlsStrategy'),
 	[ProviderType.Porn300]: () => loadStrategy(() => import('@provider/porn300'), 'Porn300Strategy'),

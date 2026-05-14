@@ -9,7 +9,7 @@ import {
 	ShapeOutput,
 	VideoQuality
 } from '@types';
-import { HttpFetchOptions } from './DownloadContracts';
+import { HttpFetchOptions, VideoSourceOutput } from './DownloadContracts';
 import { PipelineHook, PipelineItem } from './PipelineContracts';
 import { JobProgressEvent } from './ProgressContracts';
 import { DirectoryOutputOptions, TranscodeOptions } from './StorageContracts';
@@ -149,6 +149,15 @@ export interface DefaultExecutionResult<TCustomFields = unknown> {
 
 	/** Extensible service-specific fields */
 	customFields?: TCustomFields;
+}
+
+export interface DefaultVideoOutput {
+	title: string;
+	keywords: string[];
+	description: string;
+	poster: string;
+	videos: VideoSourceOutput[];
+	pageUrl: string;
 }
 
 export type TagKeys =
