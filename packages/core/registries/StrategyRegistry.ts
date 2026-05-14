@@ -31,6 +31,7 @@ const strategyFactories: Record<ProviderType, StrategyFactory> = {
 	[ProviderType.Porn300]: () => loadStrategy(() => import('@provider/porn300'), 'Porn300Strategy'),
 	[ProviderType.PornDoe]: () => loadStrategy(() => import('@provider/porndoe'), 'PornDoeStrategy'),
 	[ProviderType.PornHub]: () => loadStrategy(() => import('@provider/pornhub'), 'PornHubStrategy'),
+	[ProviderType.PornId]: async () => BaseStrategy,
 	[ProviderType.PornOne]: () => loadStrategy(() => import('@provider/pornone'), 'PornOneStrategy'),
 	[ProviderType.PornsOk]: async () => BaseStrategy,
 	[ProviderType.PussySpace]: async () => BaseStrategy,

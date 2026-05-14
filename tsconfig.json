@@ -78,6 +78,8 @@
 
 			"@provider/pornhub": ["./packages/providers/pornhub/index.ts"],
 
+			"@provider/pornid": ["./packages/providers/pornid/index.ts"],
+
 			"@provider/pornone": ["./packages/providers/pornone/index.ts"],
 
 			"@provider/pornsok": ["./packages/providers/pornsok/index.ts"],

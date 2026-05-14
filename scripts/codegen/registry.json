@@ -105,6 +105,14 @@
       "method": true
     },
     {
+      "name": "PornId",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "PornOne",
       "parser": true,
       "pipeline": true,

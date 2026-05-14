@@ -32,6 +32,7 @@ const pipelineFactories: Record<ProviderType, PipelineFactory> = {
 	[ProviderType.Porn300]: () => loadPipeline(() => import('@provider/porn300'), 'Porn300Pipeline'),
 	[ProviderType.PornDoe]: () => loadPipeline(() => import('@provider/porndoe'), 'PornDoePipeline'),
 	[ProviderType.PornHub]: () => loadPipeline(() => import('@provider/pornhub'), 'PornHubPipeline'),
+	[ProviderType.PornId]: () => loadPipeline(() => import('@provider/pornid'), 'PornIdPipeline'),
 	[ProviderType.PornOne]: () => loadPipeline(() => import('@provider/pornone'), 'PornOnePipeline'),
 	[ProviderType.PornsOk]: () => loadPipeline(() => import('@provider/pornsok'), 'PornsOkPipeline'),
 	[ProviderType.PussySpace]: () => loadPipeline(() => import('@provider/pussyspace'), 'PussySpacePipeline'),
