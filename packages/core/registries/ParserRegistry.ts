@@ -22,6 +22,7 @@ const parserFactories: Record<ProviderType, ParserFactory> = {
 	[ProviderType.CumLouder]: () => loadParser(() => import('@provider/cumlouder'), 'CumLouderParser'),
 	[ProviderType.Default]: async () => BaseParser,
 	[ProviderType.HqPorn]: () => loadParser(() => import('@provider/hqporn'), 'HqPornParser'),
+	[ProviderType.MegaTube]: () => loadParser(() => import('@provider/megatube'), 'MegaTubeParser'),
 	[ProviderType.OkPorn]: () => loadParser(() => import('@provider/okporn'), 'OkPornParser'),
 	[ProviderType.PerfectGirls]: () => loadParser(() => import('@provider/perfectgirls'), 'PerfectGirlsParser'),
 	[ProviderType.Porn300]: () => loadParser(() => import('@provider/porn300'), 'Porn300Parser'),

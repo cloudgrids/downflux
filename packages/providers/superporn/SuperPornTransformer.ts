@@ -1,5 +1,6 @@
 import { BaseTransformer } from '@base';
-import { DefaultExecutionResult } from '@contracts';
+import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
+import { VideoQuality } from '@types';
 import { SuperPornExecArgs, SuperPornOutput, SuperPornVideoOutput } from './SuperPornContracts';
 import { SuperPornMethods } from './SuperPornTypes';
 
@@ -19,14 +20,22 @@ export class SuperPornTransformer extends BaseTransformer<SuperPornExecArgs, Def
 
 	private toVideoOutput(metadata: DefaultExecutionResult<Partial<SuperPornOutput>>): SuperPornVideoOutput {
 		const superPornFields = metadata.customFields as SuperPornOutput;
+
 		return {
+			...superPornFields,
 			pageUrl: superPornFields.pageUrl,
 			tags: superPornFields?.tags,
 			uploader: superPornFields?.uploader,
-			videoUrl: metadata.sources?.find((src) => /^https:\/\/cdnst(?:\d+)\.superporn\.com\/.*/i.test(src)) as string,
+			videos: metadata.sources?.map((src) => {
+				const isVideoCdn = /^https:\/\/cdnst(?:\d+)?\.superporn\.com\/.*/i.test(src);
+				return {
+					url: src,
+					quality: isVideoCdn ? superPornFields?.quality : VideoQuality.QUnknown
+				};
+			}) as VideoSourceOutput[],
 			poster: superPornFields?.poster,
-			title: metadata.title,
-			description: metadata.description
+			title: superPornFields?.title || metadata.title,
+			description: superPornFields?.description || metadata.description
 		};
 	}
 }

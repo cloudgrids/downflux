@@ -41,6 +41,14 @@
       "method": true
     },
     {
+      "name": "MegaTube",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "OkPorn",
       "parser": true,
       "pipeline": true,

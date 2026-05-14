@@ -60,13 +60,13 @@ export class TubeVSexPipeline extends BasePipeline<TubeVSexExecArgs, TubeVSexOut
 			});
 		}
 
-		if (metadata?.videoUrl) {
-			this.filterByQuality([metadata.videoUrl], {
+		if (metadata?.videos?.length) {
+			this.filterByQuality(metadata.videos, {
 				allowedQuality: request.allowedVideoQuality,
-				getQuality: () => metadata.quality
-			}).forEach((url) => {
+				getQuality: (item) => item.quality
+			}).forEach((video) => {
 				urls.add({
-					url: url,
+					url: video.url,
 					mediaType: MediaType.VIDEOS,
 					id: metadata.videoId
 				});

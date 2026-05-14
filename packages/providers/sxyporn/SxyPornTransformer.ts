@@ -21,13 +21,13 @@ export class SxyPornTransformer extends BaseTransformer<SxyPornExecArgs, Default
 		const sxyPornFields = metadata.customFields as SxyPornOutput;
 
 		return {
+			...sxyPornFields,
 			uploader: sxyPornFields.uploader,
 			pageUrl: sxyPornFields.pageUrl,
 			description: sxyPornFields.description,
 			poster: sxyPornFields.poster,
 			title: sxyPornFields.title,
-			tags: metadata.keywords,
-			videoUrl: sxyPornFields.videoUrl
+			tags: metadata.keywords
 		};
 	}
 }

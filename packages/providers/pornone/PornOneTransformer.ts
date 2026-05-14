@@ -1,5 +1,5 @@
 import { BaseTransformer } from '@base';
-import { DefaultExecutionResult } from '@contracts';
+import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
 import { PornOneExecArgs, PornOneOutput, PornOneVideoOutput } from './PornOneContracts';
 import { PornOneMethods } from './PornOneTypes';
 
@@ -28,7 +28,9 @@ export class PornOneTransformer extends BaseTransformer<PornOneExecArgs, Default
 			tags: metadata.keywords,
 			title: metadata.title,
 			uploader: pornOneFields.uploader,
-			videoUrl: metadata.sources.filter((url) => url.includes('pornone'))?.[0]
+			videos: metadata.sources
+				.filter((url) => url.includes('pornone'))
+				.map((url) => ({ url, quality: pornOneFields.quality })) as VideoSourceOutput[]
 		};
 	}
 }

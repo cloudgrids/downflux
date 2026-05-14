@@ -8,7 +8,8 @@ import { TheyAreHugeMethods } from './TheyAreHugeTypes';
  * @class TheyAreHugeProvider
  * TheyAreHugeProvider is responsible for handling all interactions with the TheyAreHuge service.
  * Available video qualities are `240p` and `480p`. The provider will attempt to fetch both, but availability may vary based on the video.
- * remarks The provider is still under development.
+ * @todo Currently, it can't fetch the video qualities over 720p due to login requirement, but it can fetch 240p and 480p qualities without login.
+ * Under development.
  */
 export class TheyAreHugeProvider extends BaseProvider<TheyAreHugeExecArgs> {
 	protected readonly provider = ProviderType.TheyAreHuge;

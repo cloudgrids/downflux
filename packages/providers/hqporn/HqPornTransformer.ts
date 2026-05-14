@@ -20,12 +20,12 @@ export class HqPornTransformer extends BaseTransformer<HqPornExecArgs, HqPornVid
 	private toVideoOutput(metadata: DefaultExecutionResult<Partial<HqPornOutput>>): HqPornOutput {
 		const hqPornFields = metadata.customFields as HqPornOutput;
 		return {
-			title: hqPornFields.title || '',
-			poster: hqPornFields.poster || '',
-			pageUrl: hqPornFields.pageUrl || '',
-			videoUrl: hqPornFields.videoUrl || '',
-			videoTags: hqPornFields.videoTags || [],
-			uploader: hqPornFields?.title?.split('-')?.[0]?.trim() || 'Unknown'
+			title: hqPornFields?.title,
+			poster: hqPornFields?.poster,
+			pageUrl: hqPornFields?.pageUrl,
+			videos: hqPornFields?.videos,
+			videoTags: hqPornFields?.videoTags || [],
+			uploader: hqPornFields?.title?.split(':')?.[0]?.trim() || 'Unknown'
 		};
 	}
 }

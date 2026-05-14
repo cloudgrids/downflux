@@ -1,6 +1,8 @@
-import { ExecutionArgs } from '@contracts';
+import { ExecutionArgs, VideoSourceOutput } from '@contracts';
 
-export interface PornOneOutput extends PornOneVideoOutput {}
+export interface PornOneOutput extends PornOneVideoOutput {
+	quality?: string;
+}
 
 export interface PornOneExecArgs extends ExecutionArgs {}
 
@@ -13,5 +15,5 @@ export interface PornOneVideoOutput {
 	uploader: string;
 	pornStars?: string[];
 	pageUrl: string;
-	videoUrl: string;
+	videos: VideoSourceOutput[];
 }

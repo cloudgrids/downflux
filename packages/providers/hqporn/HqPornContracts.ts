@@ -1,4 +1,4 @@
-import { ExecutionArgs } from '@contracts';
+import { ExecutionArgs, VideoSourceOutput } from '@contracts';
 
 export interface HqPornOutput extends HqPornVideoOutput {}
 
@@ -8,7 +8,7 @@ export interface HqPornVideoOutput {
 	title: string;
 	poster: string;
 	pageUrl: string;
-	videoUrl: string;
+	videos: VideoSourceOutput[];
 	uploader: string;
 	videoTags?: string[];
 }

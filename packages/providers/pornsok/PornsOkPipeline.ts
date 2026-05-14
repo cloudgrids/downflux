@@ -52,11 +52,16 @@ export class PornsOkPipeline extends BasePipeline<PornsOkExecArgs, PornsOkOutput
 	protected override extract(request: PornsOkExecArgs, metadata: PornsOkOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
-		if (metadata.videoUrl) {
-			urls.add({
-				url: metadata.videoUrl,
-				mediaType: MediaType.VIDEOS,
-				id: metadata.title || 'unknown'
+		if (metadata?.videos?.length) {
+			this.filterByQuality(metadata.videos, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (video) => video.quality
+			}).forEach((video) => {
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: metadata.title || 'unknown'
+				});
 			});
 		}
 

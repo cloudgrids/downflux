@@ -1,5 +1,6 @@
 import { BaseTransformer } from '@base';
-import { DefaultExecutionResult } from '@contracts';
+import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
+import { VideoQuality } from '@types';
 import { CumLouderExecArgs, CumLouderOutput, CumLouderVideoOutput } from './CumLouderContracts';
 import { CumLouderMethods } from './CumLouderTypes';
 
@@ -21,7 +22,13 @@ export class CumLouderTransformer extends BaseTransformer<CumLouderExecArgs, Def
 		const cumLouderFields = metadata.customFields as CumLouderOutput;
 		return {
 			pageUrl: cumLouderFields.pageUrl,
-			videoUrl: metadata.sources?.find((src) => /^https:\/\/mediacdnst(?:\d+)\.cumlouder\.com\/.*/i.test(src)) as string,
+			videos: metadata.sources
+				?.filter((src) => /^https:\/\/mediacdnst(?:\d+)\.cumlouder\.com\/.*/i.test(src))
+				?.map((video) => ({
+					url: video,
+					quality: VideoQuality.QUnknown
+				})) as VideoSourceOutput[],
+
 			poster: cumLouderFields?.poster,
 			title: metadata.title,
 			description: metadata.description

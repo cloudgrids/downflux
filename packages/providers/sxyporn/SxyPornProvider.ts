@@ -8,7 +8,7 @@ import { SxyPornMethods } from './SxyPornTypes';
  * @class SxyPornProvider
  * @extends BaseProvider
  * Provider for SxyPorn video downloader.
- * This provider is still in `development` due to cloudflare challenge
+ * This provider is still in `development` due to Cloudflare challenge
  * Provides mp4 links
  */
 export class SxyPornProvider extends BaseProvider<SxyPornExecArgs> {

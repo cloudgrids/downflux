@@ -46,12 +46,26 @@ export class HqPornPipeline extends BasePipeline<HqPornExecArgs, HqPornOutput> {
 
 	protected override extract(request: HqPornExecArgs, metadata: HqPornOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
+		const videoId = this.pathBuilder.spaceNormalizer(metadata.title.match(/:\s([^HD]+)\s/i)?.[1] || metadata.title);
 
-		if (metadata?.videoUrl) {
+		if (metadata?.videos?.length) {
+			this.filterByQuality(metadata.videos, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (video) => video.quality
+			}).forEach((video) => {
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: videoId
+				});
+			});
+		}
+
+		if (metadata?.poster) {
 			urls.add({
-				url: metadata.videoUrl,
-				mediaType: MediaType.VIDEOS,
-				id: metadata.title
+				url: metadata.poster,
+				mediaType: MediaType.VIDEO_POSTER,
+				id: videoId
 			});
 		}
 
