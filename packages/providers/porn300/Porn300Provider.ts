@@ -17,11 +17,12 @@ export class Porn300Provider extends BaseProvider<Porn300ExecArgs> {
 			provider: ProviderType.Porn300,
 			urlPattern: /^(?:www\.)?porn300(?:\d+)?\.(?:com|net)$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

@@ -18,11 +18,12 @@ export class MegaTubeProvider extends BaseProvider<MegaTubeExecArgs> {
 			provider: ProviderType.MegaTube,
 			urlPattern: /^(?:www\.)?megatube\.(?:xxx)$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: true,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: true,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

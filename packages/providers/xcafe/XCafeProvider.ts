@@ -13,11 +13,12 @@ export class XCafeProvider extends BaseProvider<XCafeExecArgs> {
 			provider: ProviderType.XCafe,
 			urlPattern: /^(?:www\.)?xcafe\.(?:com)$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

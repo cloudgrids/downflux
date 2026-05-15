@@ -173,12 +173,12 @@ export abstract class BaseHttpClient {
 			const transportError = this.isTransportError(error);
 			if (!allowFallback || !transportError) throw error;
 
-			this.progressManager.update({ message: `Primary transport failed, retrying with SNI spoof transport CODE: ${transportError}` });
+			this.progressManager.update({ message: `Transport failure, Retrying with SNI spoof, CODE: ${transportError}` });
 
 			try {
 				return await UFetch(url, { ...init, dispatcher: this.spoofAgent });
 			} catch (spoofError) {
-				this.progressManager.update({ message: `SNI spoof transport failed, retrying with default transport, ${spoofError}` });
+				this.progressManager.update({ message: `SNI spoof transport failed, Retry with default, ${spoofError}` });
 				return UFetch(url, init);
 			}
 		}

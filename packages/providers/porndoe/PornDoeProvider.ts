@@ -13,11 +13,12 @@ export class PornDoeProvider extends BaseProvider<PornDoeExecArgs> {
 			provider: ProviderType.PornDoe,
 			urlPattern: /^(?:(?:www|de|en|fs|pt|es|fr|it)\.)?porndoe\.(?:com)$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

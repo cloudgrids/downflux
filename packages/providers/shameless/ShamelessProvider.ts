@@ -13,11 +13,12 @@ export class ShamelessProvider extends BaseProvider<ShamelessExecArgs> {
 			provider: ProviderType.Shameless,
 			urlPattern: /^(?:www\.)?shameless\.(?:com)$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: true,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: true,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

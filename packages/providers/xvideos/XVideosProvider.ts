@@ -18,11 +18,12 @@ export class XVideosProvider extends BaseProvider<XVideosExecArgs> {
 			provider: ProviderType.XVideos,
 			urlPattern: /(?:www\.)?xvideos(?:\d+)?\.(?:com)$/i,
 			metadata: {
-				hls: true,
-				mp4: false,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: true,
+				hasMp4: false,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'failed'
 			}
 		});
 	}

@@ -65,6 +65,19 @@ export class TnAFlixPipeline extends BasePipeline<TnAFlixExecArgs, TnAFlixOutput
 			});
 		}
 
+		if (metadata?.videos?.hls?.length) {
+			this.filterByQuality(metadata.videos?.hls, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (video) => video.quality
+			}).forEach((video) => {
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: metadata.videoId
+				});
+			});
+		}
+
 		if (metadata?.poster) {
 			urls.add({
 				mediaType: MediaType.VIDEO_POSTER,

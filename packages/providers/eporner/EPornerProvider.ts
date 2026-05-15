@@ -11,11 +11,12 @@ export class EPornerProvider extends BaseProvider<EPornerExecArgs> {
 			provider: ProviderType.EPorner,
 			urlPattern: /(?:(?:www|pl|en|fr|es|pt|it|de|nl|ph|jp)\.)?eporner\.(?:com)$/i,
 			metadata: {
-				hls: true,
-				mp4: true,
-				kvs: false,
-				geoRestriction: true,
-				needsBrowser: false
+				hasHls: true,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: true,
+				requiresBrowser: false,
+				sniSpoofing: 'working'
 			}
 		});
 	}

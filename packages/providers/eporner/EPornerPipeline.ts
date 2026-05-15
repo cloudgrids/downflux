@@ -52,11 +52,24 @@ export class EPornerPipeline extends BasePipeline<EPornerExecArgs, EPornerOutput
 	protected override extract(request: EPornerExecArgs, metadata: EPornerOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
-		if (metadata?.videos?.mp4) {
+		if (metadata?.videos?.mp4?.length) {
 			this.filterByQuality(metadata?.videos?.mp4, {
 				allowedQuality: request.allowedVideoQuality,
 				getQuality: (video) => video.quality
 			})?.forEach((video) => {
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: metadata.videoId
+				});
+			});
+		}
+
+		if (metadata?.videos?.hls?.length) {
+			this.filterByQuality(metadata.videos?.hls, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (video) => video.quality
+			}).forEach((video) => {
 				urls.add({
 					url: video.url,
 					mediaType: MediaType.VIDEOS,

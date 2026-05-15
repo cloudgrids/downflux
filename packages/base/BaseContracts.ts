@@ -1,4 +1,5 @@
 import { TagKeys } from '@contracts';
+import { SniSpoofStatus } from './BaseTypes';
 
 /**
  * Options for filtering tag output.
@@ -20,17 +21,20 @@ export interface TagFilterOptions {
  */
 export interface ProviderMetadata {
 	/** Supports HLS streaming */
-	hls: boolean;
+	hasHls: boolean;
 
 	/** Supports MP4 progressive download */
-	mp4: boolean;
+	hasMp4: boolean;
 
 	/** Integrated with KVS (Kernel Video Sharing) */
-	kvs: boolean;
+	hasKvs: boolean;
 
 	/** Subject to geographic restrictions */
-	geoRestriction: boolean;
+	underGeoRestriction: boolean;
 
 	/** Requires browser automation (e.g. Playwright) */
-	needsBrowser: boolean;
+	requiresBrowser: boolean;
+
+	/** Supports SNI spoofing for bypassing geo-restrictions */
+	sniSpoofing: SniSpoofStatus;
 }
