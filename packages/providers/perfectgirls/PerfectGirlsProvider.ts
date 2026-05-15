@@ -39,11 +39,12 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 			provider: ProviderType.PerfectGirls,
 			urlPattern: /^(?:www\.)?(?:perfectgirls|perfectdamen)\.(?:co|xxx)$/i,
 			metadata: {
-				hls: true,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: true,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

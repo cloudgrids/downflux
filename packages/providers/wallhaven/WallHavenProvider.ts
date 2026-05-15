@@ -29,11 +29,12 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 			provider: ProviderType.WallHaven,
 			urlPattern: /^(?:(?:www|th|w)\.)?wallhaven\.cc$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

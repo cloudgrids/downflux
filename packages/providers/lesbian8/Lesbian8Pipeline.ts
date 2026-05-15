@@ -69,6 +69,19 @@ export class Lesbian8Pipeline extends BasePipeline<Lesbian8ExecArgs, Lesbian8Out
 			});
 		}
 
+		if (metadata?.videos?.hls?.length) {
+			this.filterByQuality(metadata.videos?.hls, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (video) => video.quality
+			}).forEach((video) => {
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: metadata.id
+				});
+			});
+		}
+
 		if (metadata?.timelineScreens?.length) {
 			metadata.timelineScreens.forEach((screenUrl) => {
 				urls.add({

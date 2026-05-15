@@ -6,3 +6,5 @@ export enum DefaultMethods {
 	/** Link extraction */
 	getLinks = 'getLinks'
 }
+
+export type SniSpoofStatus = 'working' | 'failed' | 'untested';

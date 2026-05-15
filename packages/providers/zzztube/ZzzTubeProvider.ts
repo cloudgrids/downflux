@@ -13,11 +13,12 @@ export class ZzzTubeProvider extends BaseProvider<ZzzTubeExecArgs> {
 			provider: ProviderType.ZzzTube,
 			urlPattern: /^(?:www\.)?zzztube\.(?:com)$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

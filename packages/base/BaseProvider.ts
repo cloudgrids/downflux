@@ -48,11 +48,12 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 		this.provider = config.provider;
 		this.urlPattern = config.urlPattern;
 		this.providerMetadata = config.metadata ?? {
-			hls: true,
-			mp4: true,
-			kvs: false,
-			geoRestriction: false,
-			needsBrowser: false
+			hasHls: true,
+			hasMp4: true,
+			hasKvs: false,
+			underGeoRestriction: false,
+			requiresBrowser: false,
+			sniSpoofing: 'untested'
 		};
 
 		this.validate();

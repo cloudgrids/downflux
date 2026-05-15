@@ -24,11 +24,12 @@ export class ColliderPornProvider extends BaseProvider<ColliderPornExecArgs> {
 			provider: ProviderType.ColliderPorn,
 			urlPattern: /^(?:www\.)?colliderporn\.(?:com)$/i,
 			metadata: {
-				hls: true,
-				mp4: false,
-				kvs: false,
-				geoRestriction: true,
-				needsBrowser: false
+				hasHls: true,
+				hasMp4: false,
+				hasKvs: false,
+				underGeoRestriction: true,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

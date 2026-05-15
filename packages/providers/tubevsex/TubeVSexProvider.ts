@@ -13,11 +13,12 @@ export class TubeVSexProvider extends BaseProvider<TubeVSexExecArgs> {
 			provider: ProviderType.TubeVSex,
 			urlPattern: /^(?:www\.)?tubev\.(?:sex)$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

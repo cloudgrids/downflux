@@ -18,11 +18,12 @@ export class PornOneProvider extends BaseProvider<PornOneExecArgs> {
 			provider: ProviderType.PornOne,
 			urlPattern: /^(?:www\.)?pornone\.(?:com|net)$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

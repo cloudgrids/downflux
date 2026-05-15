@@ -14,11 +14,12 @@ export class DefaultProvider extends BaseProvider<DefaultExecArgs> {
 			provider: ProviderType.Default,
 			urlPattern: /\*/i,
 			metadata: {
-				hls: true,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: true,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

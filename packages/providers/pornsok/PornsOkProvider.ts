@@ -17,11 +17,12 @@ export class PornsOkProvider extends BaseProvider<PornsOkExecArgs> {
 			provider: ProviderType.PornsOk,
 			urlPattern: /^(?:www\.)?pornsok\.(?:com)$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}

@@ -20,11 +20,12 @@ export class XGroovyProvider extends BaseProvider<XGroovyExecArgs> {
 			provider: ProviderType.XGroovy,
 			urlPattern: /^(?:(?:www|rt|pt|de|es|pl|it|cn|jp|ko|nl)?\.)?xgroovy(?:-fr)?\.(?:com)$/i,
 			metadata: {
-				hls: false,
-				mp4: true,
-				kvs: false,
-				geoRestriction: false,
-				needsBrowser: false
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: false,
+				underGeoRestriction: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested'
 			}
 		});
 	}
