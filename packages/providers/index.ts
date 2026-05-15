@@ -24,6 +24,7 @@ export * from './theyarehuge';
 export * from './tnaflix';
 export * from './tubevsex';
 export * from './wallhaven';
+export * from './xcafe';
 export * from './xgroovy';
 export * from './xhamster';
 export * from './xnxx';

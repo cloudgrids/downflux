@@ -37,4 +37,7 @@ const getDirectories = (dir: string, dirPaths: string[] = []) => {
 
 (async () => {
 	for (const path of getDirectories('./packages')) await makeIndex(path);
+
+	console.log('\n\n- If your editor shows ESLint/TS errors, reload the window.');
+	console.log("- Run 'pnpm run format' to update barrels and format.");
 })();

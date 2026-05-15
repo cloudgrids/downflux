@@ -1,4 +1,4 @@
-import { ZzzTubeProvider } from '@provider/zzztube';
+import { XCafeProvider } from '@provider/xcafe';
 import { OutputType } from '@types';
 
 async function main() {
@@ -10,6 +10,7 @@ async function main() {
 	// https://www.cumlouder.com/porn-video/marta-lacroft-is-back/
 	// https://sxyprn.com/post/6a04c3df93b97.html
 	// https://sxyprn.com/post/6a0353fa27bb7.html
+	// https://xcafe.com/59983/
 	//https://lovehomeporn.com/video/132676/i-found-out-my-limber-lady-lusts-after-my-pal-s-enormous-rod
 	// https://www.megatube.xxx/videos/180705/amateur-fuck-for-niks-indian-and-cum-in-mouth/
 	// https://www.tubev.sex/video/2116249/innocent-shoplifter-teen-gets
@@ -22,10 +23,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new ZzzTubeProvider('https://zzztube.com/15617353?title=girlcum-sera-ryder-receives-squirting')
+		await new XCafeProvider('https://xcafe.com/59983/')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);

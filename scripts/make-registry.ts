@@ -75,7 +75,7 @@ const registryPath = join(rootDir, 'scripts/codegen/registry.json');
 
 	writeFileSync(registryPath, JSON.stringify({ services }, null, 2));
 
-	console.log(`\nRegistry rebuilt successfully at scripts/codegen/registry.json`);
+	console.log(`\n\nRegistry rebuilt successfully at scripts/codegen/registry.json`);
 	console.log((names.length ? `Added new components. ` : '') + `Total providers: ${services.length}`);
 	console.log('\nNext steps:');
 	console.log("- Run 'pnpm run generate' to build missing files based on this registry.");

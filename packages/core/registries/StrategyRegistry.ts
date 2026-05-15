@@ -44,6 +44,7 @@ const strategyFactories: Record<ProviderType, StrategyFactory> = {
 	[ProviderType.TnAFlix]: async () => BaseStrategy,
 	[ProviderType.TubeVSex]: async () => BaseStrategy,
 	[ProviderType.WallHaven]: async () => BaseStrategy,
+	[ProviderType.XCafe]: async () => BaseStrategy,
 	[ProviderType.XGroovy]: () => loadStrategy(() => import('@provider/xgroovy'), 'XGroovyStrategy'),
 	[ProviderType.XHamster]: () => loadStrategy(() => import('@provider/xhamster'), 'XHamsterStrategy'),
 	[ProviderType.XnXX]: () => loadStrategy(() => import('@provider/xnxx'), 'XnXXStrategy'),
