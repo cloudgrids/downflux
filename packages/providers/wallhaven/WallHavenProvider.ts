@@ -30,7 +30,7 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 			urlPattern: /^(?:(?:www|th|w)\.)?wallhaven\.cc$/i,
 			metadata: {
 				hasHls: false,
-				hasMp4: true,
+				hasMp4: false,
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,

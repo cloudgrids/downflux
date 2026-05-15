@@ -15,6 +15,8 @@ export class XCafeProvider extends BaseProvider<XCafeExecArgs> {
 			metadata: {
 				hasHls: false,
 				hasMp4: true,
+				hlsIntegrated: false,
+				mp4Integrated: true,
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,

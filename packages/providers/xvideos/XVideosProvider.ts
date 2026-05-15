@@ -6,8 +6,13 @@ import { XVideosMethods } from './XVideosTypes';
 /**
  * @class XVideosProvider
  * @extends BaseProvider
+ *
  * Provider for XVideos video downloader.
  * Provides m3u8 links
+ *
+ * The `xvideos.com` does not have any flashVars but for subdomains like `xvideos2` has flashVars which contains the video sources.
+ * So we have to handle both cases in the extractor.
+ *
  * Dependencies: ffmpeg (for m3u8 to mp4 conversion)
  */
 export class XVideosProvider extends BaseProvider<XVideosExecArgs> {
@@ -19,11 +24,13 @@ export class XVideosProvider extends BaseProvider<XVideosExecArgs> {
 			urlPattern: /(?:www\.)?xvideos(?:\d+)?\.(?:com)$/i,
 			metadata: {
 				hasHls: true,
-				hasMp4: false,
-				hasKvs: false,
+				hasMp4: true,
+				hlsIntegrated: true,
+				mp4Integrated: false,
+				hasKvs: true, // for subdomains like xvideos2
 				underGeoRestriction: false,
 				requiresBrowser: false,
-				sniSpoofing: 'failed'
+				sniSpoofing: 'failed' // for xvideos.com, untested for subdomains like xvideos2
 			}
 		});
 	}

@@ -143,7 +143,7 @@ export class FileManager {
 	}
 
 	public toJSON<T, S extends ExecutionShape>(result: ExecutionResult<T, S>, directoryPath: string = this.baseDir): string {
-		const finalPath = this.getFilePath(result.provider, directoryPath, `result_${Date.now()}.json`);
+		const finalPath = this.getFilePath(result.provider, directoryPath, `${result.provider}_${Date.now()}.json`);
 
 		writeFileSync(finalPath, JSON.stringify([result], this.replacer, 2));
 

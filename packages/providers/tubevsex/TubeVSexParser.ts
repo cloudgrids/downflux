@@ -19,7 +19,7 @@ export class TubeVSexParser extends BaseParser {
 					quality: `${height}p`,
 					videos: jsonContent?.contentUrl ? { mp4: [{ url: jsonContent.contentUrl, quality: `${height}p` }] } : { mp4: [] },
 					uploadedAt: jsonContent.uploadDate,
-					videoId: sourceUrl.match(/video-archive\/(\d+)/i)?.[1],
+					videoId: sourceUrl.match(/(?:video-archive|video)\/(\d+)/i)?.[1],
 					poster: this.extractMetaPropertyContent(html, 'og:image'),
 					width: this.extractMetaPropertyContent(html, 'og:video:width'),
 					duration: this.extractMetaPropertyContent(html, 'og:video:duration'),

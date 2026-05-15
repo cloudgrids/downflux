@@ -1,4 +1,9 @@
 import { EPornerProvider } from '@provider/eporner';
+import { TnAFlixProvider } from '@provider/tnaflix';
+import { TubeVSexProvider } from '@provider/tubevsex';
+import { XGroovyProvider } from '@provider/xgroovy';
+import { XHamsterProvider } from '@provider/xhamster';
+import { XnXXProvider } from '@provider/xnxx';
 import { XVideosProvider } from '@provider/xvideos';
 import { OutputType } from '@types';
 
@@ -24,10 +29,10 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new XVideosProvider('https://www.xvideos2.com/video.ookcptk0aa3/cute_teen_student_gives_her_pussy_for_creampie')
+		await new TnAFlixProvider('https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
-			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })
+			.setOutput(OutputType.JSON, { directoryPath: 'test/providers' })
 			.getVideo();
 	} catch (error) {
 		console.error(error);
