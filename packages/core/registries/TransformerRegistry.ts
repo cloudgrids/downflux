@@ -49,7 +49,8 @@ const transformerFactories: Record<ProviderType, TransformerFactory> = {
 	[ProviderType.XGroovy]: () => loadTransformer(() => import('@provider/xgroovy'), 'XGroovyTransformer'),
 	[ProviderType.XHamster]: () => loadTransformer(() => import('@provider/xhamster'), 'XHamsterTransformer'),
 	[ProviderType.XnXX]: () => loadTransformer(() => import('@provider/xnxx'), 'XnXXTransformer'),
-	[ProviderType.XVideos]: () => loadTransformer(() => import('@provider/xvideos'), 'XVideosTransformer')
+	[ProviderType.XVideos]: () => loadTransformer(() => import('@provider/xvideos'), 'XVideosTransformer'),
+	[ProviderType.ZzzTube]: () => loadTransformer(() => import('@provider/zzztube'), 'ZzzTubeTransformer')
 	// </auto-generated:entries>
 };
 

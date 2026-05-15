@@ -47,7 +47,8 @@ const strategyFactories: Record<ProviderType, StrategyFactory> = {
 	[ProviderType.XGroovy]: () => loadStrategy(() => import('@provider/xgroovy'), 'XGroovyStrategy'),
 	[ProviderType.XHamster]: () => loadStrategy(() => import('@provider/xhamster'), 'XHamsterStrategy'),
 	[ProviderType.XnXX]: () => loadStrategy(() => import('@provider/xnxx'), 'XnXXStrategy'),
-	[ProviderType.XVideos]: () => loadStrategy(() => import('@provider/xvideos'), 'XVideosStrategy')
+	[ProviderType.XVideos]: () => loadStrategy(() => import('@provider/xvideos'), 'XVideosStrategy'),
+	[ProviderType.ZzzTube]: async () => BaseStrategy
 	// </auto-generated:entries>
 };
 

@@ -284,5 +284,6 @@ export const VIDEO_DOMAINS = [
 	'xhmaster',
 	'xnxx',
 	'xvideos',
-	'mylust'
+	'mylust',
+	'zzztube'
 ];

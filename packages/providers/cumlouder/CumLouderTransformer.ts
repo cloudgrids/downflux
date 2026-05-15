@@ -31,7 +31,8 @@ export class CumLouderTransformer extends BaseTransformer<CumLouderExecArgs, Def
 
 			poster: cumLouderFields?.poster,
 			title: metadata.title,
-			description: metadata.description
+			description: metadata.description,
+			tags: metadata.keywords || []
 		};
 	}
 }

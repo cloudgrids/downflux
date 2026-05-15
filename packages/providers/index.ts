@@ -28,3 +28,4 @@ export * from './xgroovy';
 export * from './xhamster';
 export * from './xnxx';
 export * from './xvideos';
+export * from './zzztube';

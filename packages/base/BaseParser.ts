@@ -263,8 +263,8 @@ export class BaseParser {
 		}
 	}
 
-	public collectSources(html: string): Record<string, string>[] {
-		const regex = /<source\b([^>]+)>/gi;
+	public collectElements(html: string, type: string): Record<string, string>[] {
+		const regex = new RegExp(`<${type}\\b([^>]+)>`, 'gi');
 		const results: Array<Record<string, string>> = [];
 		let match: RegExpExecArray | null;
 

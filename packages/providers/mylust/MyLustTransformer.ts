@@ -22,7 +22,7 @@ export class MyLustTransformer extends BaseTransformer<MyLustExecArgs, DefaultEx
 		return {
 			...myLustFields,
 			description: metadata?.description,
-			keywords: metadata?.keywords,
+			tags: metadata?.keywords,
 			title: metadata?.title
 		};
 	}

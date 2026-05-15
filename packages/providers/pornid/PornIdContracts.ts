@@ -1,20 +1,13 @@
-import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface PornIdExecArgs extends ExecutionArgs {}
 export interface PornIdOutput extends PornIdVideoOutput {}
 
-export interface PornIdVideoOutput {
+export interface PornIdVideoOutput extends DefaultVideoOutput {
 	id: string;
 	categories: string[];
-	tags: string[];
-	title: string;
-	description: string;
-	keywords: string[];
-	poster: string;
 	previews: string[];
-	videos: VideoSourceOutput[];
 	timelineScreenCount?: number;
 	timelineScreens?: string[];
 	uploader: string;
-	pageUrl: string;
 }

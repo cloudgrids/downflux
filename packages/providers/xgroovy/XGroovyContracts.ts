@@ -1,13 +1,8 @@
-import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface XGroovyExecArgs extends ExecutionArgs {}
 export interface XGroovyOutput extends XGroovyVideoOutput {}
 
-export interface XGroovyVideoOutput {
-	title: string;
-	description: string;
-	poster: string;
-	pageUrl: string;
+export interface XGroovyVideoOutput extends DefaultVideoOutput {
 	uploaderId: string;
-	videos: VideoSourceOutput[];
 }

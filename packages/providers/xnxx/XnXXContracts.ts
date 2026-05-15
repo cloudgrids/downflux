@@ -1,4 +1,4 @@
-import { ExecutionArgs } from '@contracts';
+import { DefaultMetadata, ExecutionArgs } from '@contracts';
 
 export interface XnXXExecArgs extends ExecutionArgs {}
 
@@ -10,13 +10,9 @@ export interface XnXXVideo {
 	hls: string;
 }
 
-export interface XnXXVideoOutput {
-	title: string;
-	description: string;
+export interface XnXXVideoOutput extends DefaultMetadata {
 	duration: number;
 	videoUrl: XnXXVideo;
-	keywords: string[];
-	pageUrl: string;
 	poster: string;
 	uploader: string;
 	models: string[];

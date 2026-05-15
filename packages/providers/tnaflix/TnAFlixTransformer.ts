@@ -25,15 +25,16 @@ export class TnAFlixTransformer extends BaseTransformer<TnAFlixExecArgs, TnAFlix
 		const tnAFlixFields = metadata.customFields as TnAFlixOutput;
 
 		return {
-			disLikes: tnAFlixFields.disLikes,
-			likes: tnAFlixFields.likes,
-			pageUrl: tnAFlixFields.pageUrl ?? request.entryUrl,
-			title: tnAFlixFields.title,
-			videoPoster: tnAFlixFields.videoPoster,
-			videos: tnAFlixFields.videos,
-			videoTags: tnAFlixFields.videoTags,
-			uploader: tnAFlixFields.uploader,
-			videoId: tnAFlixFields.videoId
+			disLikes: tnAFlixFields?.disLikes,
+			likes: tnAFlixFields?.likes,
+			pageUrl: tnAFlixFields?.pageUrl ?? request.entryUrl,
+			title: tnAFlixFields?.title,
+			poster: tnAFlixFields?.poster,
+			videos: tnAFlixFields?.videos,
+			tags: tnAFlixFields?.tags,
+			uploader: tnAFlixFields?.uploader,
+			videoId: tnAFlixFields?.videoId,
+			description: metadata?.description
 		};
 	}
 }

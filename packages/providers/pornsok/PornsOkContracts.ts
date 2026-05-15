@@ -1,27 +1,13 @@
-import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface PornsOkExecArgs extends ExecutionArgs {}
 
-export interface PornsOkVideoOutput {
-	title: string;
-
-	poster: string;
-
-	// In seconds
+export interface PornsOkVideoOutput extends DefaultVideoOutput {
 	duration: number;
-
-	pageUrl: string;
-
 	uploadedAt: string;
-
 	totalViews: number;
-
 	type: string;
-
-	videos: VideoSourceOutput[];
-
 	starredBy?: string[];
-
 	categories?: string[];
 }
 

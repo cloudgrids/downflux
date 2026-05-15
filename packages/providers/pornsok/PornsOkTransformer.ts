@@ -21,16 +21,18 @@ export class PornsOkTransformer extends BaseTransformer<PornsOkExecArgs, Default
 		const pornsOkFields = metadata.customFields as PornsOkOutput;
 
 		return {
-			title: pornsOkFields.title,
-			poster: pornsOkFields.poster,
-			duration: pornsOkFields.duration,
-			pageUrl: pornsOkFields.pageUrl,
-			uploadedAt: pornsOkFields.uploadedAt,
-			totalViews: pornsOkFields.totalViews,
-			type: pornsOkFields.type,
-			videos: pornsOkFields.videos,
-			starredBy: pornsOkFields.starredBy,
-			categories: pornsOkFields.categories
+			title: pornsOkFields?.title,
+			poster: pornsOkFields?.poster,
+			duration: pornsOkFields?.duration,
+			pageUrl: pornsOkFields?.pageUrl,
+			uploadedAt: pornsOkFields?.uploadedAt,
+			totalViews: pornsOkFields?.totalViews,
+			type: pornsOkFields?.type,
+			videos: pornsOkFields?.videos,
+			starredBy: pornsOkFields?.starredBy,
+			categories: pornsOkFields?.categories,
+			tags: metadata?.keywords,
+			description: metadata?.description
 		};
 	}
 }

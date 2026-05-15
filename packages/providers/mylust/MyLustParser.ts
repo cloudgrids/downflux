@@ -7,7 +7,7 @@ import { MyLustOutput } from './MyLustContracts';
 export class MyLustParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<MyLustOutput>>> {
 		const scripts = this.extractScriptsByType(html, 'application/ld+json')?.flatMap((script) => JSON.parse(script))?.[0];
-		const videos = this.collectSources(html)?.map((source) => ({ url: source?.src, quality: source?.title }));
+		const videos = this.collectElements(html, 'source')?.map((source) => ({ url: source?.src, quality: source?.title }));
 
 		try {
 			return {

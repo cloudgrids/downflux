@@ -14,7 +14,7 @@ export class XnXXParser extends BaseParser {
 				customFields: {
 					title: this.extractTitle(html),
 					description: this.extractMetaDescription(html),
-					keywords: this.extractMetaKeywords(html),
+					tags: this.extractMetaKeywords(html),
 					duration: parseInt(this.extractMetaPropertyContent(html, 'og:duration') || '0', 10),
 					videoUrl: this.getVideoUrls(html),
 					poster: this.extractMetaPropertyContent(html, 'og:image'),
