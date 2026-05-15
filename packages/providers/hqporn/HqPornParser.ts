@@ -14,8 +14,7 @@ export class HqPornParser extends BaseParser {
 						?.trim(),
 					poster: this.extractVideoPosters(html)?.[0],
 					pageUrl: sourceUrl,
-					videos: this.extractSourceUrls(html)?.map((url) => ({ url, quality: VideoQuality.QUnknown })),
-					videoTags: this.extractMetaKeywords(html) ?? []
+					videos: this.extractSourceUrls(html)?.map((url) => ({ url, quality: VideoQuality.QUnknown }))
 				}
 			};
 		} catch (error) {

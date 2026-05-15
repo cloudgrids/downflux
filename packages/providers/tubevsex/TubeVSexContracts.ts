@@ -1,18 +1,14 @@
-import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface TubeVSexExecArgs extends ExecutionArgs {}
 export interface TubeVSexOutput extends TubeVSexVideoOutput {}
 
-export interface TubeVSexVideoOutput {
+export interface TubeVSexVideoOutput extends DefaultVideoOutput {
 	videoId: string;
-	title: string;
-	pageUrl: string;
-	poster: string;
 	width: string;
 	height: string;
 	duration: string;
 	quality: string;
-	videos: VideoSourceOutput[];
 	uploader: string;
 	uploadedAt: string;
 	categories: string[];

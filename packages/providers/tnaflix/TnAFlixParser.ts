@@ -11,11 +11,12 @@ export class TnAFlixParser extends BaseParser {
 				likes: parseInt(likes),
 				pageUrl: sourceUrl,
 				title: this.extractTitle(html),
+				description: '',
 				uploader: this.extractAnchors(html).find((url) => url.includes('/profile')) ?? 'unknown',
 				videoId: sourceUrl.split('/').pop(),
-				videoPoster: this.extractMetaPropertyContent(html, 'og:image'),
+				poster: this.extractMetaPropertyContent(html, 'og:image'),
 				videos: this.getVideos(html),
-				videoTags: []
+				tags: []
 			} as TnAFlixOutput
 		};
 	}

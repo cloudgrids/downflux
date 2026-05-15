@@ -26,7 +26,8 @@ export class XGroovyTransformer extends BaseTransformer<XGroovyExecArgs, Default
 			uploaderId: metadata?.anchors?.find((url) => !!url.match(/members\/(\d+)/))?.match(/members\/(\d+)/)?.[1] ?? 'xgroovy_uploader',
 			title: metadata.title,
 			poster: xGroovyFields.poster,
-			videos: xGroovyFields.videos
+			videos: xGroovyFields.videos,
+			tags: metadata.keywords || []
 		};
 	}
 }

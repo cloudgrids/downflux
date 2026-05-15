@@ -58,6 +58,7 @@ export class PornDoeTransformer extends BaseTransformer<PornDoeExecArgs, Default
 			id: pornDoeFields.id,
 			preview,
 			poster,
+			tags: metadata.keywords || [],
 			uploader: pornDoeFields.uploader
 		};
 	}

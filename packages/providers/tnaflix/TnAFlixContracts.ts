@@ -1,4 +1,4 @@
-import { ExecutionArgs } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface TnAFlixOutput extends TnAFlixVideoOutput {}
 
@@ -12,22 +12,10 @@ export interface TnAFlixVideo {
 	type: string;
 }
 
-export interface TnAFlixVideoOutput {
-	title: string;
-
+export interface TnAFlixVideoOutput extends Omit<DefaultVideoOutput, 'videos'> {
 	uploader: string;
-
 	videoId: string;
-
 	videos: TnAFlixVideo[];
-
-	videoPoster: string;
-
-	pageUrl: string;
-
-	videoTags?: string[];
-
 	likes: number;
-
 	disLikes: number;
 }

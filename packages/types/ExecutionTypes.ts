@@ -65,7 +65,8 @@ export enum ProviderType {
 	XGroovy = 'XGroovyProvider',
 	XHamster = 'XHamsterProvider',
 	XnXX = 'XnXXProvider',
-	XVideos = 'XVideosProvider'
+	XVideos = 'XVideosProvider',
+	ZzzTube = 'ZzzTubeProvider'
 	// </auto-generated:entries>
 }
 

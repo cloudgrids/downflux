@@ -31,23 +31,15 @@
 
 		"paths": {
 			"@base": ["./packages/base/index.ts"],
-
 			"@contracts": ["./packages/contracts/index.ts"],
-
 			"@shared": ["./packages/shared/index.ts"],
 			"@storage": ["./packages/storage/index.ts"],
-
 			"@types": ["./packages/types/index.ts"],
-
 			"@core/coordinators": ["./packages/core/coordinators/index.ts"],
-
 			"@core/dependency": ["./packages/core/dependency/index.ts"],
-
 			"@core/exceptions": ["./packages/core/exceptions/index.ts"],
 			"@core/progress": ["./packages/core/progress/index.ts"],
-
 			"@core/registries": ["./packages/core/registries/index.ts"],
-
 			"@core/ui": ["./packages/core/ui/index.ts"],
 			"@engine/http": ["./packages/engines/http/index.ts"],
 
@@ -110,7 +102,9 @@
 
 			"@provider/xnxx": ["./packages/providers/xnxx/index.ts"],
 
-			"@provider/xvideos": ["./packages/providers/xvideos/index.ts"]
+			"@provider/xvideos": ["./packages/providers/xvideos/index.ts"],
+
+			"@provider/zzztube": ["./packages/providers/zzztube/index.ts"]
 	// </auto-generated:entries>
 		}
 	},

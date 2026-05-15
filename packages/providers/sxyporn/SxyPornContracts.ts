@@ -1,15 +1,9 @@
-import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface SxyPornExecArgs extends ExecutionArgs {}
 export interface SxyPornOutput extends SxyPornVideoOutput {}
 
-export interface SxyPornVideoOutput {
-	title: string;
-	description: string;
-	poster: string;
-	tags: string[];
+export interface SxyPornVideoOutput extends DefaultVideoOutput {
 	duration: string;
-	videos: VideoSourceOutput[];
-	pageUrl: string;
 	uploader: string;
 }

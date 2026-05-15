@@ -1,5 +1,5 @@
-import { MyLustProvider } from '@provider/mylust';
-import { OutputType, VideoQuality } from '@types';
+import { ZzzTubeProvider } from '@provider/zzztube';
+import { OutputType } from '@types';
 
 async function main() {
 	// https://www.pornhub.org/view_video.php?viewkey=68aad3eadaaca
@@ -10,6 +10,7 @@ async function main() {
 	// https://www.cumlouder.com/porn-video/marta-lacroft-is-back/
 	// https://sxyprn.com/post/6a04c3df93b97.html
 	// https://sxyprn.com/post/6a0353fa27bb7.html
+	//https://lovehomeporn.com/video/132676/i-found-out-my-limber-lady-lusts-after-my-pal-s-enormous-rod
 	// https://www.megatube.xxx/videos/180705/amateur-fuck-for-niks-indian-and-cum-in-mouth/
 	// https://www.tubev.sex/video/2116249/innocent-shoplifter-teen-gets
 	// https://mylust.com/videos/969432/pretty-fit-busty-brunette-gal-fulfills-her-step-bro-s-dreams-amazes-him-with-hot-dick-riding/?promoid=15163716308817
@@ -21,10 +22,8 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new MyLustProvider(
-			'https://mylust.com/videos/969432/pretty-fit-busty-brunette-gal-fulfills-her-step-bro-s-dreams-amazes-him-with-hot-dick-riding/?promoid=15163716308817'
-		)
-			.setJobOptions({ logProgress: true, allowedVideoQuality: VideoQuality.Q1080 })
+		await new ZzzTubeProvider('https://zzztube.com/15617353?title=girlcum-sera-ryder-receives-squirting')
+			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.DEVICE, { directoryPath: 'DownFlux' })
 			.getVideo();

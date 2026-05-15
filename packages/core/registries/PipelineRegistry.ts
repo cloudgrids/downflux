@@ -48,7 +48,8 @@ const pipelineFactories: Record<ProviderType, PipelineFactory> = {
 	[ProviderType.XGroovy]: () => loadPipeline(() => import('@provider/xgroovy'), 'XGroovyPipeline'),
 	[ProviderType.XHamster]: () => loadPipeline(() => import('@provider/xhamster'), 'XHamsterPipeline'),
 	[ProviderType.XnXX]: () => loadPipeline(() => import('@provider/xnxx'), 'XnXXPipeline'),
-	[ProviderType.XVideos]: () => loadPipeline(() => import('@provider/xvideos'), 'XVideosPipeline')
+	[ProviderType.XVideos]: () => loadPipeline(() => import('@provider/xvideos'), 'XVideosPipeline'),
+	[ProviderType.ZzzTube]: () => loadPipeline(() => import('@provider/zzztube'), 'ZzzTubePipeline')
 	// </auto-generated:entries>
 };
 

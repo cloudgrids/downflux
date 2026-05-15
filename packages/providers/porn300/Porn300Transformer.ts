@@ -25,6 +25,7 @@ export class Porn300Transformer extends BaseTransformer<Porn300ExecArgs, Default
 			pageUrl: porn300Fields.pageUrl,
 			poster: porn300Fields.poster,
 			title: metadata.title,
+			tags: metadata.keywords || [],
 			videos: metadata.sources
 				?.filter((source) => source?.includes('porn300'))
 				.map((video) => ({

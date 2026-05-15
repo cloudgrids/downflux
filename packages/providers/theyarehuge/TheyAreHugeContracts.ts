@@ -1,16 +1,10 @@
-import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface TheyAreHugeExecArgs extends ExecutionArgs {}
 export interface TheyAreHugeOutput extends TheyAreHugeVideoOutput {}
 
-export interface TheyAreHugeVideoOutput {
-	title: string;
-	description: string;
-	poster: string;
+export interface TheyAreHugeVideoOutput extends DefaultVideoOutput {
 	videoId: string;
-	tags: string[];
-	videos: VideoSourceOutput[];
-	pageUrl: string;
 	uploader: string;
 	models: string[];
 }

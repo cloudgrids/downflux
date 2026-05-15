@@ -46,7 +46,8 @@ const parserFactories: Record<ProviderType, ParserFactory> = {
 	[ProviderType.XGroovy]: () => loadParser(() => import('@provider/xgroovy'), 'XGroovyParser'),
 	[ProviderType.XHamster]: () => loadParser(() => import('@provider/xhamster'), 'XHamsterParser'),
 	[ProviderType.XnXX]: () => loadParser(() => import('@provider/xnxx'), 'XnXXParser'),
-	[ProviderType.XVideos]: () => loadParser(() => import('@provider/xvideos'), 'XVideosParser')
+	[ProviderType.XVideos]: () => loadParser(() => import('@provider/xvideos'), 'XVideosParser'),
+	[ProviderType.ZzzTube]: () => loadParser(() => import('@provider/zzztube'), 'ZzzTubeParser')
 	// </auto-generated:entries>
 };
 

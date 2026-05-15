@@ -1,19 +1,13 @@
-import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface SuperPornExecArgs extends ExecutionArgs {}
 export interface SuperPornOutput extends SuperPornVideoOutput {}
 
-export interface SuperPornVideoOutput {
-	title: string;
-	pageUrl: string;
-	description: string;
-	poster: string;
+export interface SuperPornVideoOutput extends DefaultVideoOutput {
 	duration: string;
 	uploader: string;
 	uploadedAt: string;
 	width: number;
 	height: number;
 	quality: string;
-	videos: VideoSourceOutput[];
-	tags: string[];
 }

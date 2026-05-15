@@ -1,15 +1,9 @@
-import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface MegaTubeExecArgs extends ExecutionArgs {}
 export interface MegaTubeOutput extends MegaTubeVideoOutput {}
 
-export interface MegaTubeVideoOutput {
-	title: string;
-	description: string;
-	poster: string;
+export interface MegaTubeVideoOutput extends DefaultVideoOutput {
 	videoId: string;
-	videos: VideoSourceOutput[];
-	tags: string[];
-	pageUrl: string;
 	uploader: string;
 }

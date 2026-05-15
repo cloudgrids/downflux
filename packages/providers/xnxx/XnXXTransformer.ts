@@ -25,7 +25,7 @@ export class XnXXTransformer extends BaseTransformer<XnXXExecArgs, DefaultExecut
 			duration: xVideosFields.duration,
 			description: xVideosFields.description,
 			videoUrl: xVideosFields.videoUrl,
-			keywords: xVideosFields.keywords,
+			tags: xVideosFields.tags,
 			poster: xVideosFields.poster,
 			uploader: xVideosFields.uploader,
 			models: xVideosFields.models,

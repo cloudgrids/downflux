@@ -151,13 +151,16 @@ export interface DefaultExecutionResult<TCustomFields = unknown> {
 	customFields?: TCustomFields;
 }
 
-export interface DefaultVideoOutput {
+export interface DefaultMetadata {
 	title: string;
-	keywords: string[];
+	tags: string[];
 	description: string;
+	pageUrl: string;
+}
+
+export interface DefaultVideoOutput extends DefaultMetadata {
 	poster: string;
 	videos: VideoSourceOutput[];
-	pageUrl: string;
 }
 
 export type TagKeys =
