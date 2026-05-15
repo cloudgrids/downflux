@@ -18,7 +18,14 @@ export class CumLouderProvider extends BaseProvider<CumLouderExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.CumLouder,
-			urlPattern: /^(?:www\.)?cumlouder\.(?:com)$/i
+			urlPattern: /^(?:www\.)?cumlouder\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

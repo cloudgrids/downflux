@@ -22,17 +22,24 @@ export class CumLouderTransformer extends BaseTransformer<CumLouderExecArgs, Def
 		const cumLouderFields = metadata.customFields as CumLouderOutput;
 		return {
 			pageUrl: cumLouderFields.pageUrl,
-			videos: metadata.sources
-				?.filter((src) => /^https:\/\/mediacdnst(?:\d+)\.cumlouder\.com\/.*/i.test(src))
-				?.map((video) => ({
-					url: video,
-					quality: VideoQuality.QUnknown
-				})) as VideoSourceOutput[],
-
+			videos: this.mapSources(metadata.sources),
 			poster: cumLouderFields?.poster,
 			title: metadata.title,
 			description: metadata.description,
 			tags: metadata.keywords || []
 		};
+	}
+
+	private mapSources(sources: string[]): { mp4: VideoSourceOutput[] } {
+		return {
+			mp4: this.filterAndMapSources(sources).map((video) => ({
+				url: video,
+				quality: VideoQuality.QUnknown
+			})) as VideoSourceOutput[]
+		};
+	}
+
+	private filterAndMapSources(sources: string[]) {
+		return sources?.filter((src) => /^https:\/\/mediacdnst(?:\d+)\.cumlouder\.com\/.*/i.test(src));
 	}
 }

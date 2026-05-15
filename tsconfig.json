@@ -54,6 +54,8 @@
 
 			"@provider/default": ["./packages/providers/default/index.ts"],
 
+			"@provider/eporner": ["./packages/providers/eporner/index.ts"],
+
 			"@provider/hqporn": ["./packages/providers/hqporn/index.ts"],
 
 			"@provider/lesbian8": ["./packages/providers/lesbian8/index.ts"],

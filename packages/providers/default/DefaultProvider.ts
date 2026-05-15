@@ -12,7 +12,14 @@ export class DefaultProvider extends BaseProvider<DefaultExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.Default,
-			urlPattern: /\*/i
+			urlPattern: /\*/i,
+			metadata: {
+				hls: true,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

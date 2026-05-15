@@ -16,7 +16,14 @@ export class PornOneProvider extends BaseProvider<PornOneExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.PornOne,
-			urlPattern: /^(?:www\.)?pornone\.(?:com|net)$/i
+			urlPattern: /^(?:www\.)?pornone\.(?:com|net)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

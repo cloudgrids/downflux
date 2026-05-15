@@ -52,13 +52,24 @@ export class TnAFlixPipeline extends BasePipeline<TnAFlixExecArgs, TnAFlixOutput
 	protected override extract(request: TnAFlixExecArgs, metadata: TnAFlixOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
-		if (metadata?.videos?.length) {
-			metadata.videos.forEach((video) => {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (item) => item.quality
+			}).forEach((video) => {
 				urls.add({
 					mediaType: MediaType.VIDEOS,
 					url: video.url,
 					id: metadata.videoId
 				});
+			});
+		}
+
+		if (metadata?.poster) {
+			urls.add({
+				mediaType: MediaType.VIDEO_POSTER,
+				url: metadata.poster,
+				id: metadata.videoId
 			});
 		}
 

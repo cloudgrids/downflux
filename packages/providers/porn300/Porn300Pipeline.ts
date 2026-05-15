@@ -63,8 +63,8 @@ export class Porn300Pipeline extends BasePipeline<Porn300ExecArgs, Porn300Output
 			});
 		}
 
-		if (metadata?.videos?.length) {
-			this.filterByQuality(metadata.videos, {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos?.mp4, {
 				allowedQuality: request.allowedVideoQuality,
 				getQuality: (video) => video.quality
 			}).forEach((video) => {

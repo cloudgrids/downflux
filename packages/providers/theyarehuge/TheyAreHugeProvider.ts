@@ -18,7 +18,14 @@ export class TheyAreHugeProvider extends BaseProvider<TheyAreHugeExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.TheyAreHuge,
-			urlPattern: /^(?:www\.)?theyarehuge\.(?:com)$/i
+			urlPattern: /^(?:www\.)?theyarehuge\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: true,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

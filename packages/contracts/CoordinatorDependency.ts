@@ -1,3 +1,4 @@
+import { ProviderMetadata } from '@base';
 import { ExecutionCoordinator, TransferCoordinator } from '@core/coordinators';
 import { ProgressManager } from '@core/progress';
 import { StrategyRegistry, TransformerRegistry } from '@core/registries';
@@ -28,4 +29,5 @@ export interface RegistryCoordinator {
 export interface ProviderConfig {
 	provider: ProviderType;
 	urlPattern: RegExp;
+	metadata?: ProviderMetadata;
 }

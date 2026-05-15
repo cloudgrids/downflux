@@ -18,7 +18,14 @@ export class SxyPornProvider extends BaseProvider<SxyPornExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.SxyPorn,
-			urlPattern: /^(?:www\.)?sxyprn\.(?:com)$/i
+			urlPattern: /^(?:www\.)?sxyprn\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

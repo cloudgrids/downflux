@@ -16,7 +16,14 @@ export class XnXXProvider extends BaseProvider<XnXXExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.XnXX,
-			urlPattern: /^(?:www\.)?xnxx(?:\d+)?\.(?:com|health)$/i
+			urlPattern: /^(?:www\.)?xnxx(?:\d+)?\.(?:com|health)$/i,
+			metadata: {
+				hls: true,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

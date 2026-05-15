@@ -60,8 +60,8 @@ export class PornIdPipeline extends BasePipeline<PornIdExecArgs, PornIdOutput> {
 	protected override extract(request: PornIdExecArgs, metadata: PornIdOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
-		if (metadata?.videos?.length) {
-			this.filterByQuality(metadata.videos, {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
 				allowedQuality: request.allowedVideoQuality,
 				getQuality: (item) => item.quality
 			}).forEach((video) => {

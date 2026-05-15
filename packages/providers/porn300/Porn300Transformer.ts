@@ -1,5 +1,5 @@
 import { BaseTransformer } from '@base';
-import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
+import { DefaultExecutionResult, VideosFormat, VideoSourceOutput } from '@contracts';
 import { VideoQuality } from '@types';
 import { Porn300ExecArgs, Porn300Output, Porn300VideoOutput } from './Porn300Contracts';
 import { Porn300Methods } from './Porn300Types';
@@ -26,7 +26,13 @@ export class Porn300Transformer extends BaseTransformer<Porn300ExecArgs, Default
 			poster: porn300Fields.poster,
 			title: metadata.title,
 			tags: metadata.keywords || [],
-			videos: metadata.sources
+			videos: this.mapSources(metadata.sources)
+		};
+	}
+
+	private mapSources(sources: string[]): VideosFormat {
+		return {
+			mp4: sources
 				?.filter((source) => source?.includes('porn300'))
 				.map((video) => ({
 					url: video,

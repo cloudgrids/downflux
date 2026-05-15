@@ -18,7 +18,14 @@ export class TnAFlixProvider extends BaseProvider<TnAFlixExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.TnAFlix,
-			urlPattern: /^(?:www\.)?tnaflix\.(?:com)$/i
+			urlPattern: /^(?:www\.)?tnaflix\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

@@ -19,7 +19,9 @@ export class SxyPornParser extends BaseParser {
 					title: this.extractMetaPropertyContent(html, 'og:title'),
 					uploader: uploader?.[0]?.text?.trim() || 'Unknown',
 					duration: videoMeta?.[1]?.trim(),
-					videos: this.extractVideoUrls(html)?.map((url) => ({ url, quality: videoMeta?.[2] || VideoQuality.QUnknown })) || []
+					videos: {
+						mp4: this.extractVideoUrls(html)?.map((url) => ({ url, quality: videoMeta?.[2] || VideoQuality.QUnknown })) || []
+					}
 				} as SxyPornOutput
 			};
 		} catch (error) {

@@ -18,7 +18,14 @@ export class XHamsterProvider extends BaseProvider<XHamsterExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.XHamster,
-			urlPattern: /^(?:xhamster|xhopen|xhtotal)(?:\d+)?(?:\.com|\.desi)$/i
+			urlPattern: /^(?:xhamster|xhopen|xhtotal)(?:\d+)?(?:\.com|\.desi)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

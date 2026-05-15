@@ -22,7 +22,14 @@ export class ColliderPornProvider extends BaseProvider<ColliderPornExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.ColliderPorn,
-			urlPattern: /^(?:www\.)?colliderporn\.(?:com)$/i
+			urlPattern: /^(?:www\.)?colliderporn\.(?:com)$/i,
+			metadata: {
+				hls: true,
+				mp4: false,
+				kvs: false,
+				geoRestriction: true,
+				needsBrowser: false
+			}
 		});
 	}
 

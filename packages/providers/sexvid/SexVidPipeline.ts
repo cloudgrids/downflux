@@ -50,11 +50,14 @@ export class SexVidPipeline extends BasePipeline<SexVidExecArgs, SexVidOutput> {
 	protected override extract(request: SexVidExecArgs, metadata: SexVidOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
-		if (metadata?.videos?.length) {
-			metadata.videos.forEach((v) => {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (item) => item.quality
+			}).forEach((video) => {
 				urls.add({
 					id: metadata.title,
-					url: v.url,
+					url: video.url,
 					mediaType: MediaType.VIDEOS
 				});
 			});

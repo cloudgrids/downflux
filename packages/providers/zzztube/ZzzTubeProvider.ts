@@ -11,7 +11,14 @@ export class ZzzTubeProvider extends BaseProvider<ZzzTubeExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.ZzzTube,
-			urlPattern: /^(?:www\.)?zzztube\.(?:com)$/i
+			urlPattern: /^(?:www\.)?zzztube\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

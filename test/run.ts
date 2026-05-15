@@ -1,4 +1,4 @@
-import { XCafeProvider } from '@provider/xcafe';
+import { EPornerProvider } from '@provider/eporner';
 import { OutputType } from '@types';
 
 async function main() {
@@ -23,7 +23,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new XCafeProvider('https://xcafe.com/59983/')
+		await new EPornerProvider('https://de.eporner.com/video-tpuMqMUvR6d/i-wanna-impregnate-her/')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON, { directoryPath: 'DownFlux' })

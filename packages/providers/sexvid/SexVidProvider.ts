@@ -15,7 +15,14 @@ export class SexVidProvider extends BaseProvider<SexVidExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.SexVid,
-			urlPattern: /^(?:www\.)?sexvid\.(?:xxx)$/i
+			urlPattern: /^(?:www\.)?sexvid\.(?:xxx)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: true,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

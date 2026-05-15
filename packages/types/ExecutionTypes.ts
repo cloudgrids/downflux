@@ -41,6 +41,7 @@ export enum ProviderType {
 	Coomer = 'CoomerProvider',
 	CumLouder = 'CumLouderProvider',
 	Default = 'DefaultProvider',
+	EPorner = 'EPornerProvider',
 	HqPorn = 'HqPornProvider',
 	Lesbian8 = 'Lesbian8Provider',
 	MegaTube = 'MegaTubeProvider',
@@ -101,7 +102,24 @@ export enum VideoQuality {
 
 	/** 4320p quality */
 	Q4320 = '4320p',
-
 	/** Unknown quality */
 	QUnknown = 'unknown'
+}
+
+/** Video stream formats */
+export enum VideoFormat {
+	/** HTTP Live Streaming */
+	HLS = 'hls',
+
+	/** MPEG-4 Part 14 */
+	MP4 = 'mp4'
+}
+
+/** Video codec formats */
+export enum VideoCodec {
+	/** H.264 / AVC */
+	H264 = 'h264',
+
+	/** AV1 (AOMedia Video 1) */
+	AV1 = 'av1'
 }

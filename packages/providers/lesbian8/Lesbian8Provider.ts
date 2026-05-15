@@ -11,7 +11,14 @@ export class Lesbian8Provider extends BaseProvider<Lesbian8ExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.Lesbian8,
-			urlPattern: /(?:www\.)?lesbian8\.(?:com|net)$/i
+			urlPattern: /(?:www\.)?lesbian8\.(?:com|net)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: true,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

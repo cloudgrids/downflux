@@ -40,7 +40,7 @@ export class PussySpaceTransformer extends BaseTransformer<PussySpaceExecArgs, D
 			...pussySpaceFields,
 			description: metadata.description,
 			title: metadata.title,
-			videos: metadataFromApi.customFields?.videos || [],
+			videos: metadataFromApi.customFields?.videos ?? { mp4: [] },
 			tags: metadata.keywords || []
 		};
 	}

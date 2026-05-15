@@ -11,7 +11,14 @@ export class TubeVSexProvider extends BaseProvider<TubeVSexExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.TubeVSex,
-			urlPattern: /^(?:www\.)?tubev\.(?:sex)$/i
+			urlPattern: /^(?:www\.)?tubev\.(?:sex)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

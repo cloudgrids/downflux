@@ -61,8 +61,8 @@ export class PornOnePipeline extends BasePipeline<PornOneExecArgs, PornOneOutput
 			});
 		}
 
-		if (metadata?.videos?.length) {
-			this.filterByQuality(metadata.videos, {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
 				allowedQuality: request.allowedVideoQuality,
 				getQuality: (video) => video.quality
 			}).forEach((video) => {

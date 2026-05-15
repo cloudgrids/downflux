@@ -18,7 +18,7 @@ export class ShamelessParser extends BaseParser {
 			return {
 				customFields: {
 					uploader: uploaderHTML.match(/^[^\n]*/)?.[0] ?? 'unknown',
-					videos: flashVars?.videos,
+					videos: { mp4: flashVars?.videos ?? [] },
 					pageUrl: sourceUrl,
 					poster: flashVars?.previewUrl,
 					title: flashVars?.title,

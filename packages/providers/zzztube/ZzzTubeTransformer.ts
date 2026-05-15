@@ -1,5 +1,5 @@
 import { BaseTransformer } from '@base';
-import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
+import { DefaultExecutionResult, VideosFormat, VideoSourceOutput } from '@contracts';
 import { VideoQuality } from '@types';
 import { ZzzTubeExecArgs, ZzzTubeOutput, ZzzTubeVideoOutput } from './ZzzTubeContracts';
 import { ZzzTubeMethods } from './ZzzTubeTypes';
@@ -26,7 +26,13 @@ export class ZzzTubeTransformer extends BaseTransformer<ZzzTubeExecArgs, Default
 			title: metadata?.title,
 			description: metadata?.description,
 			tags: metadata?.keywords || [],
-			videos: metadata?.sources?.map((src) => {
+			videos: this.mapSources(metadata.sources)
+		};
+	}
+
+	private mapSources(sources: string[]): VideosFormat {
+		return {
+			mp4: sources?.map((src) => {
 				const match = src.match(/^https:\/\/(?:vcdn(?:\d+)\.)?zzztube\.(?:com)\/key.*_(\d{3,4})?\.mp4$/i);
 				if (match) {
 					return {

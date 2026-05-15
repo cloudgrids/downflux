@@ -36,6 +36,18 @@ export abstract class BaseHttpClient {
 		}
 	});
 
+	protected readonly spoofAgent = new Agent({
+		connect: {
+			ciphers: this.CHROME_CIPHERS,
+			honorCipherOrder: true,
+			minVersion: 'TLSv1.2',
+			maxVersion: 'TLSv1.3',
+			ALPNProtocols: ['h2', 'http/1.1'],
+			servername: 'www.google.com',
+			checkServerIdentity: () => undefined
+		}
+	});
+
 	protected randomHeaders(extra: Record<string, string> = {}) {
 		const preset = HEADER_PRESETS[Math.floor(Math.random() * HEADER_PRESETS.length)];
 
@@ -150,7 +162,7 @@ export abstract class BaseHttpClient {
 		].find((c) => c === String(code));
 	}
 
-	protected async fetchWithTransportFallback(
+	public async fetchWithTransportFallback(
 		url: string,
 		init: Parameters<typeof UFetch>[1],
 		allowFallback: boolean = true
@@ -161,8 +173,14 @@ export abstract class BaseHttpClient {
 			const transportError = this.isTransportError(error);
 			if (!allowFallback || !transportError) throw error;
 
-			this.progressManager.update({ message: `Primary transport failed, retrying with default transport CODE: ${transportError}` });
-			return UFetch(url, init);
+			this.progressManager.update({ message: `Primary transport failed, retrying with SNI spoof transport CODE: ${transportError}` });
+
+			try {
+				return await UFetch(url, { ...init, dispatcher: this.spoofAgent });
+			} catch (spoofError) {
+				this.progressManager.update({ message: `SNI spoof transport failed, retrying with default transport, ${spoofError}` });
+				return UFetch(url, init);
+			}
 		}
 	}
 

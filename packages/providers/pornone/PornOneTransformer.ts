@@ -1,5 +1,6 @@
 import { BaseTransformer } from '@base';
-import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
+import { DefaultExecutionResult, VideosFormat, VideoSourceOutput } from '@contracts';
+import { VideoQuality } from '@types';
 import { PornOneExecArgs, PornOneOutput, PornOneVideoOutput } from './PornOneContracts';
 import { PornOneMethods } from './PornOneTypes';
 
@@ -28,9 +29,13 @@ export class PornOneTransformer extends BaseTransformer<PornOneExecArgs, Default
 			tags: metadata.keywords,
 			title: metadata.title,
 			uploader: pornOneFields.uploader,
-			videos: metadata.sources
-				.filter((url) => url.includes('pornone'))
-				.map((url) => ({ url, quality: pornOneFields.quality })) as VideoSourceOutput[]
+			videos: this.mapSources(metadata.sources, pornOneFields.quality ?? VideoQuality.QUnknown)
+		};
+	}
+
+	private mapSources(sources: string[], quality: string): VideosFormat {
+		return {
+			mp4: sources?.filter((url) => url.includes('pornone')).map((url) => ({ url, quality: quality })) as VideoSourceOutput[]
 		};
 	}
 }

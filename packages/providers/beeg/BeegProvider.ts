@@ -20,7 +20,14 @@ export class BeegProvider extends BaseProvider<BeegExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.Beeg,
-			urlPattern: /^(?:www\.)?beeg\.(?:com)$/i
+			urlPattern: /^(?:www\.)?beeg\.(?:com)$/i,
+			metadata: {
+				hls: true,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

@@ -16,7 +16,7 @@ export class SexVidParser extends BaseParser {
 					duration: parseInt(this.extractMetaPropertyContent(html, 'og:video:duration') ?? '0', 10),
 					releasedAt: this.extractMetaPropertyContent(html, 'og:video:release_date'),
 					pageUrl: sourceUrl,
-					videos: flashVars?.videos
+					videos: { mp4: flashVars?.videos ?? [] }
 				} as SexVidOutput
 			};
 		} catch (error) {

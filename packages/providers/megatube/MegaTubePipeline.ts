@@ -52,8 +52,8 @@ export class MegaTubePipeline extends BasePipeline<MegaTubeExecArgs, MegaTubeOut
 	protected override extract(request: MegaTubeExecArgs, metadata: MegaTubeOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
-		if (metadata?.videos?.length) {
-			this.filterByQuality(metadata.videos, {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
 				allowedQuality: request.allowedVideoQuality,
 				getQuality: (video) => video.quality
 			}).forEach((video) => {

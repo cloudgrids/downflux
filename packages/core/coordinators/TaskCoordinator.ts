@@ -55,7 +55,6 @@ export class TaskCoordinator {
 			try {
 				const downloadResult = await this.transferCoordinator.download(pipelineItem, {
 					...options,
-					allowedVideoQuality: request?.allowedVideoQuality,
 					outputType,
 					provider: request.provider,
 					reExtract: async (item) => {
