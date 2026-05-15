@@ -22,6 +22,8 @@ export class XGroovyProvider extends BaseProvider<XGroovyExecArgs> {
 			metadata: {
 				hasHls: false,
 				hasMp4: true,
+				hlsIntegrated: false,
+				mp4Integrated: true,
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,

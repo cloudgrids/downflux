@@ -20,21 +20,27 @@ export interface TagFilterOptions {
  * Metadata describing provider capabilities and restrictions.
  */
 export interface ProviderMetadata {
-	/** Supports HLS streaming */
+	/** Mentioned site supports HLS streaming */
 	hasHls: boolean;
 
-	/** Supports MP4 progressive download */
+	/** Integrated HLS support for better compatibility */
+	hlsIntegrated?: boolean;
+
+	/** Mentioned site supports MP4 progressive download */
 	hasMp4: boolean;
 
-	/** Integrated with KVS (Kernel Video Sharing) */
+	/** Integrated MP4 support for better compatibility */
+	mp4Integrated?: boolean;
+
+	/** Mentioned site is integrated with KVS (Kernel Video Sharing) */
 	hasKvs: boolean;
 
-	/** Subject to geographic restrictions */
+	/** Mentioned site is subject to geographic restrictions */
 	underGeoRestriction: boolean;
 
-	/** Requires browser automation (e.g. Playwright) */
+	/** Mentioned site requires browser automation (e.g. Playwright) */
 	requiresBrowser: boolean;
 
-	/** Supports SNI spoofing for bypassing geo-restrictions */
+	/** Mentioned site supports SNI spoofing for bypassing geo-restrictions */
 	sniSpoofing: SniSpoofStatus;
 }

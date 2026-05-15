@@ -20,10 +20,12 @@ export class XnXXProvider extends BaseProvider<XnXXExecArgs> {
 			metadata: {
 				hasHls: true,
 				hasMp4: true,
+				hlsIntegrated: true,
+				mp4Integrated: true,
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
-				sniSpoofing: 'failed'
+				sniSpoofing: 'working'
 			}
 		});
 	}

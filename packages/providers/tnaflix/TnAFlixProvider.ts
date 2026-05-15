@@ -22,6 +22,8 @@ export class TnAFlixProvider extends BaseProvider<TnAFlixExecArgs> {
 			metadata: {
 				hasHls: false,
 				hasMp4: true,
+				hlsIntegrated: false,
+				mp4Integrated: true,
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,

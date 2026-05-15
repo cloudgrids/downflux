@@ -1,5 +1,6 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
+import { VideoQuality } from '@types';
 import { TnAFlixOutput } from './TnAFlixContracts';
 
 export class TnAFlixParser extends BaseParser {
@@ -12,10 +13,15 @@ export class TnAFlixParser extends BaseParser {
 				pageUrl: sourceUrl,
 				title: this.extractTitle(html),
 				description: '',
-				uploader: this.extractAnchors(html).find((url) => url.includes('/profile')) ?? 'unknown',
-				videoId: sourceUrl.split('/').pop(),
+				uploader:
+					this.extractAnchors(html)
+						.find((url) => url.includes('/profile'))
+						?.match(/profile\/([^/]+)/)?.[1] ?? 'unknown',
+				videoId: sourceUrl.match(/\/video(\d+)/i)?.[1] ?? 'unknown',
 				poster: this.extractMetaPropertyContent(html, 'og:image'),
-				videos: this.getVideos(html),
+				videos: {
+					mp4: this.getVideos(html)
+				},
 				tags: []
 			} as TnAFlixOutput
 		};
@@ -29,7 +35,7 @@ export class TnAFlixParser extends BaseParser {
 		while ((match = sourceRegex.exec(html)) !== null) {
 			videos.push({
 				url: match[1],
-				quality: match[3]
+				quality: `${match[2]}p` as VideoQuality
 			});
 		}
 
