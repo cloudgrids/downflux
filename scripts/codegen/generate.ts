@@ -183,6 +183,6 @@ const tsEntries = registry.services
 tsConfigReg = patchRegion(tsConfigReg, 'entries', tsEntries);
 write(tsConfigPath, tsConfigReg);
 
-console.log('\nCodegen finished. Next steps:');
+console.log('\n\nCodegen finished. Next steps:');
 console.log('- If your editor shows ESLint/TS errors, reload the window.');
 console.log("- Run 'pnpm run make:index' then 'pnpm run format' to update barrels and format.");

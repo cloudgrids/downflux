@@ -96,6 +96,8 @@
 
 			"@provider/wallhaven": ["./packages/providers/wallhaven/index.ts"],
 
+			"@provider/xcafe": ["./packages/providers/xcafe/index.ts"],
+
 			"@provider/xgroovy": ["./packages/providers/xgroovy/index.ts"],
 
 			"@provider/xhamster": ["./packages/providers/xhamster/index.ts"],
