@@ -11,7 +11,14 @@ export class PussySpaceProvider extends BaseProvider<PussySpaceExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.PussySpace,
-			urlPattern: /^(?:www\.)?pussyspace\.(?:com)$/i
+			urlPattern: /^(?:www\.)?pussyspace\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

@@ -53,8 +53,8 @@ export class SuperPornPipeline extends BasePipeline<SuperPornExecArgs, SuperPorn
 		const urls: Set<PipelineExtractedItem> = new Set();
 		const videoId = this.pathBuilder.spaceNormalizer(metadata.title);
 
-		if (metadata?.videos?.length) {
-			this.filterByQuality(metadata.videos, {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
 				allowedQuality: request.allowedVideoQuality,
 				getQuality: (video) => video.quality
 			}).forEach((video) => {

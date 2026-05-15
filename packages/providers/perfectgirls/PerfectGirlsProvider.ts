@@ -37,7 +37,14 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.PerfectGirls,
-			urlPattern: /^(?:www\.)?(?:perfectgirls|perfectdamen)\.(?:co|xxx)$/i
+			urlPattern: /^(?:www\.)?(?:perfectgirls|perfectdamen)\.(?:co|xxx)$/i,
+			metadata: {
+				hls: true,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

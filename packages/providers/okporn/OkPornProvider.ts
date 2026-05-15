@@ -38,7 +38,14 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.OkPorn,
-			urlPattern: /^(?:www\.)?ok\.(?:porn|xxx)$/i
+			urlPattern: /^(?:www\.)?ok\.(?:porn|xxx)$/i,
+			metadata: {
+				hls: true,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

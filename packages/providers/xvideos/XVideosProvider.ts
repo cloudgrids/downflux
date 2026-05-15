@@ -16,7 +16,14 @@ export class XVideosProvider extends BaseProvider<XVideosExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.XVideos,
-			urlPattern: /(?:www\.)?xvideos(?:\d+)?\.(?:com)$/i
+			urlPattern: /(?:www\.)?xvideos(?:\d+)?\.(?:com)$/i,
+			metadata: {
+				hls: true,
+				mp4: false,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

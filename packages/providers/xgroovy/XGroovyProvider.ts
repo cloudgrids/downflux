@@ -18,7 +18,14 @@ export class XGroovyProvider extends BaseProvider<XGroovyExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.XGroovy,
-			urlPattern: /^(?:(?:www|rt|pt|de|es|pl|it|cn|jp|ko|nl)?\.)?xgroovy(?:-fr)?\.(?:com)$/i
+			urlPattern: /^(?:(?:www|rt|pt|de|es|pl|it|cn|jp|ko|nl)?\.)?xgroovy(?:-fr)?\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

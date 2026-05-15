@@ -11,7 +11,7 @@ export class XCafeParser extends BaseParser {
 			return {
 				customFields: {
 					pageUrl: sourceUrl,
-					videos: [{ url: source?.src, quality: VideoQuality.QUnknown }],
+					videos: { mp4: [{ url: source?.src, quality: VideoQuality.QUnknown }] },
 					poster: this.extractMetaPropertyContent(html, 'og:image')
 				} as XCafeOutput
 			};

@@ -11,7 +11,14 @@ export class PornDoeProvider extends BaseProvider<PornDoeExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.PornDoe,
-			urlPattern: /^(?:(?:www|de|en|fs|pt|es|fr|it)\.)?porndoe\.(?:com)$/i
+			urlPattern: /^(?:(?:www|de|en|fs|pt|es|fr|it)\.)?porndoe\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

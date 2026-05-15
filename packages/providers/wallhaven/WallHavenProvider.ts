@@ -27,7 +27,14 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.WallHaven,
-			urlPattern: /^(?:(?:www|th|w)\.)?wallhaven\.cc$/i
+			urlPattern: /^(?:(?:www|th|w)\.)?wallhaven\.cc$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

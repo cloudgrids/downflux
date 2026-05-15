@@ -10,7 +10,7 @@ export class PussySpaceParser extends BaseParser {
 
 		const match = html.match(/player\.api\(['"]file['"],['"]([\s\S]*?)['"]\)/s);
 
-		const videos = [...(match?.[1].matchAll(/\[(\d+p)](https?:\/\/[^\s,"]+)/g) ?? [])].map(([, quality, url]) => ({
+		const mp4 = [...(match?.[1].matchAll(/\[(\d+p)](https?:\/\/[^\s,"]+)/g) ?? [])].map(([, quality, url]) => ({
 			quality,
 			url
 		}));
@@ -18,7 +18,7 @@ export class PussySpaceParser extends BaseParser {
 		try {
 			return {
 				customFields: {
-					videos,
+					videos: { mp4 },
 					token: tokenMatch?.[1],
 					pageUrl: sourceUrl,
 					poster: this.extractMetaPropertyContent(html, 'og:image')

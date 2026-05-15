@@ -17,7 +17,7 @@ export class PornsOkParser extends BaseParser {
 					uploadedAt: this.extractMetaPropertyContent(html, 'ya:ovs:upload_date'),
 					totalViews: parseInt(this.extractMetaPropertyContent(html, 'ya:ovs:views_total') || '0', 10),
 					type: this.extractMetaPropertyContent(html, 'og:video:type'),
-					videos: [{ url: videoUrl, quality: VideoQuality.QUnknown }],
+					videos: { mp4: [{ url: videoUrl, quality: VideoQuality.QUnknown }] },
 					starredBy:
 						this.collectByClassNames(html, 'cat-link pstar', { includeInnerHTML: true })?.map((el) => el?.innerHTML) ?? [],
 					categories: this.collectByClassNames(html, 'cat-link', { includeInnerHTML: true })?.map((el) => el?.innerHTML) ?? []

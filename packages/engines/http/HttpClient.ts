@@ -54,6 +54,7 @@ export class HttpClient extends BaseHttpClient {
 				};
 			} catch (error) {
 				lastError = error instanceof Error ? error : new Error(String(error));
+
 				if (attempt < retries) {
 					await this.delay(attempt);
 					continue;

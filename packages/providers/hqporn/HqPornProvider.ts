@@ -17,7 +17,14 @@ export class HqPornProvider extends BaseProvider<HqPornExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.HqPorn,
-			urlPattern: /^(?:www\.)?hqporn\.(?:com|xxx)$/i
+			urlPattern: /^(?:www\.)?hqporn\.(?:com|xxx)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

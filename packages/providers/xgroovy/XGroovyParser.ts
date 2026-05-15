@@ -9,7 +9,7 @@ export class XGroovyParser extends BaseParser {
 		try {
 			return {
 				customFields: {
-					videos: this.getVideos(html),
+					videos: { mp4: this.getVideos(html) },
 					pageUrl: sourceUrl,
 					poster: this.extractMetaPropertyContent(html, 'og:image')
 				} as XGroovyOutput

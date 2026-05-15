@@ -56,8 +56,8 @@ export class Lesbian8Pipeline extends BasePipeline<Lesbian8ExecArgs, Lesbian8Out
 	protected override extract(request: Lesbian8ExecArgs, metadata: Lesbian8Output): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
-		if (metadata?.videos?.length) {
-			this.filterByQuality(metadata.videos, {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos?.mp4, {
 				allowedQuality: request.allowedVideoQuality,
 				getQuality: (video) => video.quality
 			}).forEach((video) => {

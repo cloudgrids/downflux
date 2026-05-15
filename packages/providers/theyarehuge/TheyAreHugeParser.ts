@@ -16,10 +16,12 @@ export class TheyAreHugeParser extends BaseParser {
 					poster: flashVars.previewUrl,
 					tags: flashVars.tags,
 					title: flashVars.title,
-					videos: [
-						{ url: flashVars.videoUrl, quality: VideoQuality.Q240 },
-						{ url: flashVars.videoAltUrl, quality: VideoQuality.Q480 }
-					]
+					videos: {
+						mp4: [
+							{ url: flashVars.videoUrl, quality: VideoQuality.Q240 },
+							{ url: flashVars.videoAltUrl, quality: VideoQuality.Q480 }
+						]
+					}
 				} as TheyAreHugeOutput
 			};
 		} catch (error) {

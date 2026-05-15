@@ -11,7 +11,14 @@ export class PornIdProvider extends BaseProvider<PornIdExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.PornId,
-			urlPattern: /(?:www\.)?pornid\.(?:xxx|name)$/i
+			urlPattern: /(?:www\.)?pornid\.(?:xxx|name)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: true,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

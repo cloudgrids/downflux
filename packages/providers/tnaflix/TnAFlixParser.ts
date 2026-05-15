@@ -1,6 +1,6 @@
 import { BaseParser } from '@base';
-import { DefaultExecutionResult } from '@contracts';
-import { TnAFlixOutput, TnAFlixVideo } from './TnAFlixContracts';
+import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
+import { TnAFlixOutput } from './TnAFlixContracts';
 
 export class TnAFlixParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<TnAFlixOutput>>> {
@@ -21,15 +21,14 @@ export class TnAFlixParser extends BaseParser {
 		};
 	}
 
-	private getVideos(html: string): TnAFlixVideo[] {
-		const videos: TnAFlixVideo[] = [];
-		const sourceRegex = /<source\s+[^>]*src="([^"]+)"[^>]*type="([^"]+)"[^>]*size="([^"]+)"[^>]*>/g;
+	private getVideos(html: string): VideoSourceOutput[] {
+		const videos: VideoSourceOutput[] = [];
+		const sourceRegex = /<source\s+[^>]*src="([^"]+)"[^>]*type="[^"]+"[^>]*size="([^"]+)"[^>]*>/g;
 		let match;
 
 		while ((match = sourceRegex.exec(html)) !== null) {
 			videos.push({
 				url: match[1],
-				type: match[2],
 				quality: match[3]
 			});
 		}

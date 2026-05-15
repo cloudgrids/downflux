@@ -29,7 +29,14 @@ export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.PornHub,
-			urlPattern: /^(?:www\.)?pornhub\.(?:com|net|org)$/i
+			urlPattern: /^(?:www\.)?pornhub\.(?:com|net|org)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: true,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

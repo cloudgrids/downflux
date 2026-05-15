@@ -14,3 +14,23 @@ export interface TagFilterOptions {
 	 */
 	format?: 'path' | 'url';
 }
+
+/**
+ * Metadata describing provider capabilities and restrictions.
+ */
+export interface ProviderMetadata {
+	/** Supports HLS streaming */
+	hls: boolean;
+
+	/** Supports MP4 progressive download */
+	mp4: boolean;
+
+	/** Integrated with KVS (Kernel Video Sharing) */
+	kvs: boolean;
+
+	/** Subject to geographic restrictions */
+	geoRestriction: boolean;
+
+	/** Requires browser automation (e.g. Playwright) */
+	needsBrowser: boolean;
+}

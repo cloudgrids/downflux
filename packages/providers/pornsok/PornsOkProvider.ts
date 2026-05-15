@@ -15,7 +15,14 @@ export class PornsOkProvider extends BaseProvider<PornsOkExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.PornsOk,
-			urlPattern: /^(?:www\.)?pornsok\.(?:com)$/i
+			urlPattern: /^(?:www\.)?pornsok\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

@@ -6,6 +6,14 @@
 
 ### EXPLANATION
 
+### SNI SPOOFING
+
+1. **Primary Transport**: BaseHttpClient first attempts to download using configured primary undici agent with customized ciphers and ALPNProtocols.
+
+2. **Hybrid Fallback (SNI Spoofing)**: If the primary transport fails with `ECONNRESET`, it catches the error and switches to a dedicated spoofAgent. This agent specifically tells the TLS socket to connect to `www.google.com` during the TLS handshake (which easily bypasses the ISP's SNI DPI filters).
+
+3. **Because the HTTP Host header still correctly passes `de.eporner.com`, the Eporner or any other sites backend seamlessly processes the request and responds with a successful `HTTP 200 OK`**.
+
 ```
 HLS always uses m3u8 playlists not direct video files.
 

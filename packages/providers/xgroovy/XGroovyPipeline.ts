@@ -56,8 +56,8 @@ export class XGroovyPipeline extends BasePipeline<XGroovyExecArgs, XGroovyOutput
 
 		const videoId = this.pathBuilder.spaceNormalizer(metadata.title);
 
-		if (metadata?.videos?.length) {
-			this.filterByQuality(metadata.videos, {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
 				allowedQuality: request.allowedVideoQuality,
 				getQuality: (item) => item.quality
 			}).forEach((video) => {

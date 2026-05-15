@@ -11,7 +11,14 @@ export class MyLustProvider extends BaseProvider<MyLustExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.MyLust,
-			urlPattern: /^(?:(?:www|de|ru)\.)?mylust\.(?:com)$/i
+			urlPattern: /^(?:(?:www|de|ru)\.)?mylust\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

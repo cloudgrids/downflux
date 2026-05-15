@@ -1,13 +1,17 @@
 import { OutputType, ProviderType, VideoQuality } from '@types';
 import { Writable } from 'stream';
-import { ExecutionOptions } from './ExecutionContracts';
 import { PipelineItem } from './PipelineContracts';
+import { DirectoryOutputOptions, TranscodeOptions } from './StorageContracts';
 
-export interface DownloadOptions extends ExecutionOptions {
+export interface DownloadOptions extends HttpFetchOptions {
+	dirConfig?: DirectoryOutputOptions;
+	transcodeOptions?: TranscodeOptions;
 	outputType: OutputType;
 	provider: ProviderType;
 	reExtract?: (item: PipelineItem) => Promise<PipelineItem | null>;
 	pipelineItem?: PipelineItem;
+	noDownload?: boolean;
+	allowedVideoQuality?: VideoQuality;
 }
 
 /**

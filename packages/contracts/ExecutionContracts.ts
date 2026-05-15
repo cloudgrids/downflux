@@ -1,4 +1,4 @@
-import { TagFilterOptions } from '@base';
+import { ProviderMetadata, TagFilterOptions } from '@base';
 import {
 	AllowedExtension,
 	ExecutionShape,
@@ -7,6 +7,8 @@ import {
 	OutputType,
 	ProviderType,
 	ShapeOutput,
+	VideoCodec,
+	VideoFormat,
 	VideoQuality
 } from '@types';
 import { HttpFetchOptions, VideoSourceOutput } from './DownloadContracts';
@@ -30,6 +32,9 @@ export interface ExecutionArgs<S extends ExecutionShape = ExecutionShape> extend
 
 	executionType: ExecutionType;
 	extractionTarget: ExtractionTarget;
+
+	/** Provider capabilities and restrictions */
+	providerMetadata?: ProviderMetadata;
 }
 
 /**
@@ -45,6 +50,12 @@ export interface ExecutionOptions extends HttpFetchOptions {
 
 	/** Allowed video quality */
 	allowedVideoQuality?: VideoQuality;
+
+	/** Preferred video format (e.g. hls, mp4) */
+	preferredVideoFormat?: VideoFormat;
+
+	/** Preferred video codec (e.g. h264, av1) */
+	preferredVideoCodec?: VideoCodec;
 
 	/** Tag filtering options */
 	tagFilterOptions?: TagFilterOptions;
@@ -158,9 +169,14 @@ export interface DefaultMetadata {
 	pageUrl: string;
 }
 
+export interface VideosFormat {
+	mp4?: VideoSourceOutput[];
+	hls?: VideoSourceOutput[];
+}
+
 export interface DefaultVideoOutput extends DefaultMetadata {
 	poster: string;
-	videos: VideoSourceOutput[];
+	videos: VideosFormat;
 }
 
 export type TagKeys =

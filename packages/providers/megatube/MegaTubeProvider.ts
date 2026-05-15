@@ -16,7 +16,14 @@ export class MegaTubeProvider extends BaseProvider<MegaTubeExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.MegaTube,
-			urlPattern: /^(?:www\.)?megatube\.(?:xxx)$/i
+			urlPattern: /^(?:www\.)?megatube\.(?:xxx)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: true,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

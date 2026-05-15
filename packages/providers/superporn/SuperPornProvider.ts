@@ -17,7 +17,14 @@ export class SuperPornProvider extends BaseProvider<SuperPornExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.SuperPorn,
-			urlPattern: /^(?:www\.)?superporn\.(?:com)$/i
+			urlPattern: /^(?:www\.)?superporn\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

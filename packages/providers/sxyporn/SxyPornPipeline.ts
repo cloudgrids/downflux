@@ -53,8 +53,8 @@ export class SxyPornPipeline extends BasePipeline<SxyPornExecArgs, SxyPornOutput
 		const urls: Set<PipelineExtractedItem> = new Set();
 		const videoId = request.entryUrl.match(/\/post\/([^.html]+)/i)?.[1];
 
-		if (metadata?.videos?.length) {
-			this.filterByQuality(metadata.videos, {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
 				allowedQuality: request.allowedVideoQuality,
 				getQuality: (video) => video.quality
 			}).forEach((video) => {

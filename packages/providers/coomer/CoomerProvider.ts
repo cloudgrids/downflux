@@ -11,7 +11,14 @@ export class CoomerProvider extends BaseProvider<any> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.Coomer,
-			urlPattern: /^(?:www\.)?(?:coomer\.(?:st|party)|kemono\.(?:su|party))$/i
+			urlPattern: /^(?:www\.)?(?:coomer\.(?:st|party)|kemono\.(?:su|party))$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

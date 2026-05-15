@@ -11,7 +11,14 @@ export class ShamelessProvider extends BaseProvider<ShamelessExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.Shameless,
-			urlPattern: /^(?:www\.)?shameless\.(?:com)$/i
+			urlPattern: /^(?:www\.)?shameless\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: true,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

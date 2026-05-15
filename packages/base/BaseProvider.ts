@@ -18,8 +18,11 @@ import {
 	InferExecutionShape,
 	OutputType,
 	ProviderType,
-	Range
+	Range,
+	VideoCodec,
+	VideoFormat
 } from '@types';
+import { ProviderMetadata } from './BaseContracts';
 
 /**
  * Base provider API.
@@ -31,6 +34,12 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	protected readonly deps: CoordinatorDependencies;
 	protected readonly provider: ProviderType;
 	protected readonly urlPattern: RegExp;
+	protected readonly providerMetadata: ProviderMetadata;
+
+	/** Provider capabilities and restrictions */
+	protected get metadata(): ProviderMetadata {
+		return this.providerMetadata;
+	}
 
 	constructor(
 		public readonly url: string,
@@ -38,13 +47,21 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	) {
 		this.provider = config.provider;
 		this.urlPattern = config.urlPattern;
+		this.providerMetadata = config.metadata ?? {
+			hls: true,
+			mp4: true,
+			kvs: false,
+			geoRestriction: false,
+			needsBrowser: false
+		};
 
 		this.validate();
 
 		this.deps = createDefaultDependencies();
 		this.executionOptions = {
 			outputType: OutputType.JSON,
-			executionType: ExecutionType.SEQUENTIAL
+			executionType: ExecutionType.SEQUENTIAL,
+			preferredVideoFormat: VideoFormat.MP4
 		};
 		this.httpOptions = { referer: url };
 	}
@@ -137,6 +154,24 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	}
 
 	/**
+	 * Sets preferred video format.
+	 * @param format Video format (hls or mp4)
+	 */
+	public setPreferredFormat(format: VideoFormat): this {
+		this.executionOptions.preferredVideoFormat = format;
+		return this;
+	}
+
+	/**
+	 * Sets preferred video codec.
+	 * @param codec Video codec (h264 or av1)
+	 */
+	public setPreferredCodec(codec: VideoCodec): this {
+		this.executionOptions.preferredVideoCodec = codec;
+		return this;
+	}
+
+	/**
 	 * Sets ExecutionCoordinator options.
 	 * @param opts Job options to merge
 	 */
@@ -212,6 +247,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 			entryUrl: this.url,
 			extractionTarget: ExtractionTarget.ANCHORS,
 			executionType: ExecutionType.SEQUENTIAL,
+			providerMetadata: this.metadata,
 			...this.executionOptions,
 			...overrides
 		} as TExec;

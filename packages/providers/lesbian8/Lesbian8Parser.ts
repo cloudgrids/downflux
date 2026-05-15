@@ -20,7 +20,8 @@ export class Lesbian8Parser extends BaseParser {
 					starred: flashVars?.models,
 					timelineScreenCount: flashVars?.timelineScreenCount,
 					timelineScreens: flashVars?.timelineScreens,
-					title: flashVars?.title
+					title: flashVars?.title,
+					description: ''
 				} as Lesbian8Output
 			};
 		} catch (error) {

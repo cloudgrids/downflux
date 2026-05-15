@@ -11,7 +11,14 @@ export class XCafeProvider extends BaseProvider<XCafeExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.XCafe,
-			urlPattern: /^(?:www\.)?xcafe\.(?:com)$/i
+			urlPattern: /^(?:www\.)?xcafe\.(?:com)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

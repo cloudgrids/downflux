@@ -1,10 +1,10 @@
 import { BasePipeline } from '@base';
 import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
 import { MediaType } from '@types';
-import { HqPornExecArgs, HqPornOutput } from './HqPornContracts';
+import { EPornerExecArgs, EPornerOutput } from './EPornerContracts';
 
-export class HqPornPipeline extends BasePipeline<HqPornExecArgs, HqPornOutput> {
-	public override build(metadata: HqPornOutput, request: HqPornExecArgs): PipelineItem[] {
+export class EPornerPipeline extends BasePipeline<EPornerExecArgs, EPornerOutput> {
+	public override build(metadata: EPornerOutput, request: EPornerExecArgs): PipelineItem[] {
 		return this.sliceByMaxDownloads(
 			request,
 			this.filterByExt(
@@ -28,15 +28,20 @@ export class HqPornPipeline extends BasePipeline<HqPornExecArgs, HqPornOutput> {
 		);
 	}
 
-	protected override buildIdentifier(ctx: IdentifierContext<HqPornOutput>): string {
+	protected override buildIdentifier(ctx: IdentifierContext<EPornerOutput>): string {
 		const { mediaType, id, metadata } = ctx;
-		const prefix = 'HqPorn';
+		const prefix = 'EPorner';
 		let mediaSegment: string;
 
 		switch (mediaType) {
 			case MediaType.VIDEOS:
 				mediaSegment = `${MediaType.VIDEOS}/${id}`;
 				break;
+
+			case MediaType.VIDEO_POSTER:
+				mediaSegment = `${MediaType.VIDEOS}/${id}/${mediaType}`;
+				break;
+
 			default:
 				mediaSegment = `${mediaType}/${id}`;
 		}
@@ -44,19 +49,18 @@ export class HqPornPipeline extends BasePipeline<HqPornExecArgs, HqPornOutput> {
 		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.uploader), mediaSegment);
 	}
 
-	protected override extract(request: HqPornExecArgs, metadata: HqPornOutput): PipelineExtractedItem[] {
+	protected override extract(request: EPornerExecArgs, metadata: EPornerOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
-		const videoId = this.pathBuilder.spaceNormalizer(metadata.title.match(/:\s([^HD]+)\s/i)?.[1] || metadata.title);
 
-		if (metadata?.videos?.mp4?.length) {
-			this.filterByQuality(metadata.videos?.mp4, {
+		if (metadata?.videos?.mp4) {
+			this.filterByQuality(metadata?.videos?.mp4, {
 				allowedQuality: request.allowedVideoQuality,
 				getQuality: (video) => video.quality
-			}).forEach((video) => {
+			})?.forEach((video) => {
 				urls.add({
 					url: video.url,
 					mediaType: MediaType.VIDEOS,
-					id: videoId
+					id: metadata.videoId
 				});
 			});
 		}
@@ -65,7 +69,7 @@ export class HqPornPipeline extends BasePipeline<HqPornExecArgs, HqPornOutput> {
 			urls.add({
 				url: metadata.poster,
 				mediaType: MediaType.VIDEO_POSTER,
-				id: videoId
+				id: metadata.videoId
 			});
 		}
 

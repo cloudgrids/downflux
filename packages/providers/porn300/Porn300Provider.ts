@@ -15,7 +15,14 @@ export class Porn300Provider extends BaseProvider<Porn300ExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: ProviderType.Porn300,
-			urlPattern: /^(?:www\.)?porn300(?:\d+)?\.(?:com|net)$/i
+			urlPattern: /^(?:www\.)?porn300(?:\d+)?\.(?:com|net)$/i,
+			metadata: {
+				hls: false,
+				mp4: true,
+				kvs: false,
+				geoRestriction: false,
+				needsBrowser: false
+			}
 		});
 	}
 

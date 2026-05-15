@@ -7,7 +7,7 @@ import { MyLustOutput } from './MyLustContracts';
 export class MyLustParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<MyLustOutput>>> {
 		const scripts = this.extractScriptsByType(html, 'application/ld+json')?.flatMap((script) => JSON.parse(script))?.[0];
-		const videos = this.collectElements(html, 'source')?.map((source) => ({ url: source?.src, quality: source?.title }));
+		const mp4 = this.collectElements(html, 'source')?.map((source) => ({ url: source?.src, quality: source?.title }));
 
 		try {
 			return {
@@ -17,7 +17,10 @@ export class MyLustParser extends BaseParser {
 					uploader: scripts?.author?.[0]?.name || 'unknown',
 					videoId: html.match(/videoId\s*:\s*['"]([^'"]+)['"]/i)?.[1],
 					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					videos
+					videos: { mp4 },
+					title: '',
+					tags: [],
+					description: ''
 				} as MyLustOutput
 			};
 		} catch (error) {
