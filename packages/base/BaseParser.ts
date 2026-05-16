@@ -5,7 +5,7 @@ import { ProviderType, VideoQuality } from '@types';
 
 export class BaseParser {
 	protected kvsResolver = new KvsResolver();
-	protected transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult> {
+	public transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult> {
 		try {
 			return {
 				anchors: this.extractAnchors(html, sourceUrl),
