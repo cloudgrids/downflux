@@ -241,6 +241,7 @@ export class FileManager {
 			case ProviderType.XVideos:
 			case ProviderType.XHamster:
 			case ProviderType.Beeg:
+			case ProviderType.PussySpace:
 			case ProviderType.PornsOk: {
 				this.progressManager.update(message);
 				return { mimeType: 'video/mp4', extension: 'mp4' };

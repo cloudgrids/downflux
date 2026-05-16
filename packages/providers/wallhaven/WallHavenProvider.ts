@@ -34,6 +34,9 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

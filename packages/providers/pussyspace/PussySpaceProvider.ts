@@ -15,9 +15,16 @@ export class PussySpaceProvider extends BaseProvider<PussySpaceExecArgs> {
 			metadata: {
 				hasHls: false,
 				hasMp4: true,
+				hlsIntegrated: false,
+				mp4Integrated: true,
+				requiresLogin: false,
+				needsExternalAPI: true,
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

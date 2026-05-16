@@ -44,6 +44,9 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

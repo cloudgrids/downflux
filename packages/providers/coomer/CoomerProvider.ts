@@ -18,6 +18,9 @@ export class CoomerProvider extends BaseProvider<any> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

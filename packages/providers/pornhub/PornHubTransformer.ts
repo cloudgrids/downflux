@@ -33,40 +33,22 @@ export class PornHubTransformer extends BaseTransformer<
 	private toVideoOutput(request: PornHubExecArgs, metadata: DefaultExecutionResult<Partial<PornHubOutput>>): PornHubVideoOutput {
 		const pornHubFields = metadata?.customFields as PornHubOutput;
 		return {
-			videoUrl: pornHubFields?.videoUrl,
+			pageUrl: pornHubFields?.pageUrl,
 			title: metadata?.title,
-			thumbnailUrl: pornHubFields?.thumbnailUrl,
 			duration: pornHubFields?.duration,
 			category: pornHubFields?.category,
 			uploadDate: pornHubFields?.uploadDate,
 			views: pornHubFields?.views,
 			likes: pornHubFields?.likes,
 			tags: pornHubFields?.tags,
-			videoMetadata: pornHubFields.videoMetadata,
+			poster: pornHubFields?.poster,
+			description: pornHubFields?.description,
+			videos: pornHubFields.videos,
 			user: pornHubFields?.user,
 			userAvatar: pornHubFields?.userAvatar,
 			totalVideos: pornHubFields?.totalVideos,
 			totalSubscribers: pornHubFields?.totalSubscribers
 		};
-	}
-
-	private async getVideos(request: PornHubExecArgs, videoUrls: string[]): Promise<PornHubVideoOutput[]> {
-		const videos: PornHubVideoOutput[] = [];
-
-		for (const url of videoUrls) {
-			const chunkRequest: PornHubExecArgs = {
-				...request,
-				entryUrl: url,
-				referer: url,
-				method: PornHubMethods.getVideo
-			};
-
-			const metadata = (await super.transform(url, chunkRequest)) as DefaultExecutionResult<Partial<PornHubOutput>>;
-
-			videos.push({ ...this.toVideoOutput(chunkRequest, metadata), user: request?.username as string });
-		}
-
-		return videos.filter((v) => Boolean(v?.videoMetadata?.videoUrl));
 	}
 
 	private toVideosOutput(request: PornHubExecArgs, metadata: DefaultExecutionResult<Partial<PornHubOutput>>): PornHubVideosOutput {

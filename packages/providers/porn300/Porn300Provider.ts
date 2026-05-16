@@ -22,6 +22,9 @@ export class Porn300Provider extends BaseProvider<Porn300ExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

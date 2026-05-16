@@ -13,9 +13,7 @@ export class PornIdParser extends BaseParser {
 			return {
 				customFields: {
 					uploader,
-					videos: {
-						mp4: flashVars?.videos
-					},
+					videos: { mp4: flashVars.videos },
 					pageUrl: sourceUrl,
 					poster: flashVars?.previewUrl,
 					id: flashVars?.videoId,

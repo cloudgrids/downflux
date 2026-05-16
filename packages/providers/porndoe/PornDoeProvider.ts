@@ -18,6 +18,9 @@ export class PornDoeProvider extends BaseProvider<PornDoeExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

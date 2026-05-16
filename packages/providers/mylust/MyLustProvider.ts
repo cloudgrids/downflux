@@ -18,6 +18,9 @@ export class MyLustProvider extends BaseProvider<MyLustExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { ProviderType, VideoQuality } from '@types';
 import { PornHubChannelsOutput, PornHubOutput, PornHubVideo } from './PornHubContracts';
 
 export class PornHubParser extends BaseParser {
@@ -11,21 +11,30 @@ export class PornHubParser extends BaseParser {
 
 			return {
 				customFields: {
-					videoUrl: sourceUrl,
+					pageUrl: sourceUrl,
 					channels,
-					videoMetadata: this.extractVideoUrlsFromFlashVars(html)?.find((video) => video.format === 'mp4'),
+					videos: {
+						mp4:
+							this.extractVideoUrlsFromFlashVars(html)
+								?.filter((video) => video.format === 'mp4')
+								?.map((video) => ({ url: video.videoUrl, quality: VideoQuality.QUnknown })) ?? [],
+						hls:
+							this.extractVideoUrlsFromFlashVars(html)
+								?.filter((video) => video.format === 'hls')
+								?.map((video) => ({ url: video.videoUrl, quality: `${video.quality}p` as VideoQuality })) ?? []
+					},
 					title: this.extractSpans(html, 'inlineFree')[0] ?? this.extractTitle(html),
 					views: this.extractSpans(html, 'count')[0]?.match(/(\d+(?:\.\d+)?)([KMB]?)/g)?.[0] ?? '0',
 					likes: this.extractSpans(html, 'votesUp')[0]?.match(/(\d+(?:\.\d+)?)([KMB]?)/g)?.[0] ?? '0',
 					duration: this.extractMetaPropertyContent(html, 'video:duration') ?? '0',
-					thumbnailUrl: this.extractMetaNameContent(html, 'twitter:image') ?? this.extractMetaNameContent(html, 'og:image'),
 					user:
 						this.collectByClassNames(html, 'userInfoBlock', { includeInnerHTML: true })[0]?.innerHTML?.match(
 							/href="\/(?:model|channel|pornstar|users)\/([^"]+)"/
 						)?.[1] ?? 'pornhub_user',
 					totalVideos: this.extractUserStat(html, 'Videos'),
 					totalSubscribers: this.extractUserStat(html, 'Subscribers'),
-
+					poster: this.extractMetaPropertyContent(html, 'og:image'),
+					description: this.extractMetaPropertyContent(html, 'og:description'),
 					uploadDate: this.extractDivs(html, 'videoInfo')[0],
 					userAvatar: this.extractUserAvatar(html),
 					currentPage: new URL(sourceUrl)?.searchParams?.get('page') ?? '1'
@@ -81,7 +90,7 @@ export class PornHubParser extends BaseParser {
 			return {
 				channelName: (nameFromClass || slug).toUpperCase(),
 				subscribers: extractStat(channelHtml, 'Subscribers'),
-				videos: extractStat(channelHtml, 'Videos'),
+				channelVideos: extractStat(channelHtml, 'Videos'),
 				videosViews: extractStat(channelHtml, 'Videos\\s*Views'),
 				channelThumbnail,
 				channelUrl,

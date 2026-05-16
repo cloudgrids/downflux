@@ -41,6 +41,11 @@ export class TheyAreHugePipeline extends BasePipeline<TheyAreHugeExecArgs, TheyA
 			case MediaType.VIDEO_POSTER:
 				mediaSegment = `${MediaType.VIDEOS}/${id}/${mediaType}`;
 				break;
+
+			case MediaType.VIDEO_TIMELINES:
+				mediaSegment = `${MediaType.VIDEOS}/${id}/${MediaType.VIDEO_TIMELINES}`;
+				break;
+
 			default:
 				mediaSegment = `${mediaType}/${id}`;
 		}
@@ -80,6 +85,16 @@ export class TheyAreHugePipeline extends BasePipeline<TheyAreHugeExecArgs, TheyA
 				urls.add({
 					url: video.url,
 					mediaType: MediaType.VIDEOS,
+					id: metadata.videoId
+				});
+			});
+		}
+
+		if (metadata?.timelineScreens?.length) {
+			metadata.timelineScreens.forEach((screenUrl) => {
+				urls.add({
+					url: screenUrl,
+					mediaType: MediaType.VIDEO_TIMELINES,
 					id: metadata.videoId
 				});
 			});

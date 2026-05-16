@@ -29,28 +29,29 @@ export class PornsOkPipeline extends BasePipeline<PornsOkExecArgs, PornsOkOutput
 	}
 
 	protected override buildIdentifier(ctx: IdentifierContext<PornsOkOutput>): string {
-		const { mediaType, id } = ctx;
+		const { mediaType, id, metadata } = ctx;
 		const prefix = 'PornsOk';
 		let mediaSegment: string;
 
 		switch (mediaType) {
 			case MediaType.VIDEOS:
-				mediaSegment = `${MediaType.VIDEOS}`;
+				mediaSegment = `${MediaType.VIDEOS}/${id}`;
 				break;
 
 			case MediaType.VIDEO_POSTER:
-				mediaSegment = `${MediaType.VIDEO_POSTER}`;
+				mediaSegment = `${MediaType.VIDEOS}/${id}/${mediaType}`;
 				break;
 
 			default:
 				mediaSegment = `${mediaType}/${id}`;
 		}
 
-		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(id as string), mediaSegment);
+		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.starredBy?.[0]), mediaSegment);
 	}
 
 	protected override extract(request: PornsOkExecArgs, metadata: PornsOkOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
+		const videoId = this.pathBuilder.spaceNormalizer(metadata.title);
 
 		if (metadata?.videos?.mp4?.length) {
 			this.filterByQuality(metadata.videos.mp4, {
@@ -60,7 +61,7 @@ export class PornsOkPipeline extends BasePipeline<PornsOkExecArgs, PornsOkOutput
 				urls.add({
 					url: video.url,
 					mediaType: MediaType.VIDEOS,
-					id: metadata.title || 'unknown'
+					id: videoId
 				});
 			});
 		}
@@ -73,7 +74,7 @@ export class PornsOkPipeline extends BasePipeline<PornsOkExecArgs, PornsOkOutput
 				urls.add({
 					url: video.url,
 					mediaType: MediaType.VIDEOS,
-					id: metadata.title || 'unknown'
+					id: videoId
 				});
 			});
 		}
@@ -82,7 +83,7 @@ export class PornsOkPipeline extends BasePipeline<PornsOkExecArgs, PornsOkOutput
 			urls.add({
 				url: metadata.poster,
 				mediaType: MediaType.VIDEO_POSTER,
-				id: metadata.title || 'unknown'
+				id: videoId
 			});
 		}
 

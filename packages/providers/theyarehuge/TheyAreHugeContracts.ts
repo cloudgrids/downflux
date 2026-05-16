@@ -7,4 +7,6 @@ export interface TheyAreHugeVideoOutput extends DefaultVideoOutput {
 	videoId: string;
 	uploader: string;
 	models: string[];
+	timelineScreenCount: number;
+	timelineScreens: string[];
 }

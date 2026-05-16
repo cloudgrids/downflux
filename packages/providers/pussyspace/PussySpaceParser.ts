@@ -10,7 +10,7 @@ export class PussySpaceParser extends BaseParser {
 
 		const match = html.match(/player\.api\(['"]file['"],['"]([\s\S]*?)['"]\)/s);
 
-		const mp4 = [...(match?.[1].matchAll(/\[(\d+p)](https?:\/\/[^\s,"]+)/g) ?? [])].map(([, quality, url]) => ({
+		const mp4 = [...(match?.[1].matchAll(/\[(\d+p)](https?:\/\/[^\s,"]+)/g) ?? [])].map(([_, quality, url]) => ({
 			quality,
 			url
 		}));

@@ -53,6 +53,9 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 			hasKvs: false,
 			underGeoRestriction: false,
 			requiresBrowser: false,
+			canDownload: true,
+			underDevelopment: true,
+			cloudflareChallenge: false,
 			sniSpoofing: 'untested'
 		};
 

@@ -27,17 +27,17 @@ export class XGroovyProvider extends BaseProvider<XGroovyExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});
 	}
 
 	private get videoUrl() {
-		const match = this.url.match(this.VIDEO_PATH_REGEX);
-
-		if (!match) throw new GenericException('Invalid xgroovy url', this.provider);
-
-		return this.url;
+		if (this.VIDEO_PATH_REGEX.test(this.url)) return this.url;
+		throw new GenericException('Invalid xgroovy url', this.provider, XGroovyMethods.getVideo);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-import { ExecutionArgs } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 import { UrlFormat } from '@types';
 import { PornHubVideosFormat } from './PornHubTypes';
 
@@ -36,7 +36,7 @@ export interface PornHubVideosExecArgs {
 export interface PornHubChannelsOutput {
 	channelName: string;
 	subscribers: number;
-	videos: number;
+	channelVideos: number;
 	videosViews: number;
 	channelThumbnail: string;
 	channelUrl: string;
@@ -64,19 +64,7 @@ export interface PornHubOutput extends PornHubVideoOutput, PornHubVideosOutput, 
  * @interface
  * Interface representing the output structure for a PornHub video.
  */
-export interface PornHubVideoOutput {
-	/** The title of the video */
-	title: string;
-
-	/** The URL of the video */
-	videoUrl: string;
-
-	/** The URL of the video thumbnail */
-	thumbnailUrl: string;
-
-	/** Associated .m3u8 files and metadata */
-	videoMetadata: PornHubVideo;
-
+export interface PornHubVideoOutput extends DefaultVideoOutput {
 	/** The duration of the video in seconds */
 	duration: string;
 
@@ -85,9 +73,6 @@ export interface PornHubVideoOutput {
 
 	/** The number of likes the video has */
 	likes: string;
-
-	/** The tags associated with the video */
-	tags?: string[];
 
 	/** The category of the video */
 	category?: string[];

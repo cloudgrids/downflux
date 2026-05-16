@@ -20,17 +20,17 @@ export class TubeVSexProvider extends BaseProvider<TubeVSexExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});
 	}
 
 	get videoUrl(): string {
-		const match = this.url.match(this.VIDEO_URL_REGEX);
-
-		if (!match) throw new GenericException('Invalid TubeVSex video URL', this.provider);
-
-		return this.url;
+		if (this.VIDEO_URL_REGEX.test(this.url)) return this.url;
+		throw new GenericException('Invalid TubeVSex video URL', this.provider, TubeVSexMethods.getVideo);
 	}
 
 	public async getVideo(): Promise<TubeVSexVideoOutput> {

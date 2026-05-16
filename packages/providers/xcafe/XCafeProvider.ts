@@ -20,6 +20,9 @@ export class XCafeProvider extends BaseProvider<XCafeExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});
@@ -27,7 +30,7 @@ export class XCafeProvider extends BaseProvider<XCafeExecArgs> {
 
 	get videoUrl(): string {
 		if (this.VIDEO_URL_REGEX.test(this.url)) return this.url;
-		throw new GenericException('Invalid XCafe video URL', this.provider);
+		throw new GenericException('Invalid XCafe video URL', this.provider, XCafeMethods.getVideo);
 	}
 
 	public async getVideo(): Promise<XCafeVideoOutput> {

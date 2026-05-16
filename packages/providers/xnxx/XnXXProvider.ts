@@ -25,6 +25,9 @@ export class XnXXProvider extends BaseProvider<XnXXExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'working'
 			}
 		});
