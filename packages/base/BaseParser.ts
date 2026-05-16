@@ -5,7 +5,7 @@ import { ProviderType, VideoQuality } from '@types';
 
 export class BaseParser {
 	protected kvsResolver = new KvsResolver();
-	public transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult> {
+	protected transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult> {
 		try {
 			return {
 				anchors: this.extractAnchors(html, sourceUrl),
@@ -24,13 +24,13 @@ export class BaseParser {
 		}
 	}
 
-	public extractScriptMethodInput(fnName: string, html: string): string | null {
+	protected extractScriptMethodInput(fnName: string, html: string): string | null {
 		const re = new RegExp(`${fnName}\\s*\\(\\s*['"]([^'"]+)['"]\\s*\\)`, 'i');
 		const m = re.exec(html);
 		return m ? m[1] : null;
 	}
 
-	public getFlashVars(html: string): FlashVarsOutput {
+	protected getFlashVars(html: string): FlashVarsOutput {
 		const flashVarsBlocks = [...html.matchAll(/var\s+flashVars\s*=\s*\{([\s\S]*?)\};/gi)].map((m) => m[1]);
 
 		if (!flashVarsBlocks.length) {
@@ -153,7 +153,7 @@ export class BaseParser {
 		};
 	}
 
-	public extractElementText(html: string, begin: string, end: string, fallback = ''): string {
+	protected extractElementText(html: string, begin: string, end: string, fallback = ''): string {
 		const start = html.indexOf(begin);
 		if (start === -1) return fallback;
 		const from = start + begin.length;
@@ -162,7 +162,7 @@ export class BaseParser {
 		return html.slice(from, to);
 	}
 
-	public extractElementTextPair(html: string, begin: string, end: string, pos = 0): [string | null, number] {
+	protected extractElementTextPair(html: string, begin: string, end: string, pos = 0): [string | null, number] {
 		const start = html.indexOf(begin, pos);
 		if (start === -1) return [null, pos];
 		const from = start + begin.length;
@@ -171,7 +171,7 @@ export class BaseParser {
 		return [html.slice(from, to), to + end.length];
 	}
 
-	public *extractAllPairs(html: string, begin: string, end: string): Generator<string> {
+	protected *extractAllPairs(html: string, begin: string, end: string): Generator<string> {
 		let pos = 0;
 		const blen = begin.length;
 		const elen = end.length;
@@ -191,7 +191,7 @@ export class BaseParser {
 		}
 	}
 
-	public extractAll(
+	protected extractAll(
 		html: string,
 		rules: Array<[key: string, begin: string, end: string]>,
 		startPos = 0
@@ -206,7 +206,7 @@ export class BaseParser {
 		return [result, pos];
 	}
 
-	public extractAnchors(html: string, sourceUrl?: string): string[] {
+	protected extractAnchors(html: string, sourceUrl?: string): string[] {
 		const seen = new Set<string>();
 		try {
 			for (const delimiter of ['"', "'"]) {
@@ -221,7 +221,7 @@ export class BaseParser {
 		}
 	}
 
-	public extractAnchorTextsByHref(html: string, hrefPattern: RegExp): string[] {
+	protected extractAnchorTextsByHref(html: string, hrefPattern: RegExp): string[] {
 		const seen = new Set<string>();
 		const anchorPattern = /<a\b[^>]*\bhref\s*=\s*(["'])(.*?)\1[^>]*>([\s\S]*?)<\/a>/gi;
 		let match: RegExpExecArray | null;
@@ -240,7 +240,7 @@ export class BaseParser {
 		return [...seen];
 	}
 
-	public extractImageUrls(html: string): string[] {
+	protected extractImageUrls(html: string): string[] {
 		const attrs = ['data-original="', 'data-src="', 'data-lazy="', 'src="'];
 		const seen = new Set<string>();
 
@@ -256,7 +256,7 @@ export class BaseParser {
 		}
 	}
 
-	public extractSourceUrls(html: string): string[] {
+	protected extractSourceUrls(html: string): string[] {
 		const urls: string[] = [];
 
 		try {
@@ -269,7 +269,7 @@ export class BaseParser {
 		}
 	}
 
-	public collectElements(html: string, type: string): Record<string, string>[] {
+	protected collectElements(html: string, type: string): Record<string, string>[] {
 		const regex = new RegExp(`<${type}\\b([^>]+)>`, 'gi');
 		const results: Array<Record<string, string>> = [];
 		let match: RegExpExecArray | null;
@@ -288,7 +288,7 @@ export class BaseParser {
 		return results;
 	}
 
-	public extractVideoPosters(html: string): string[] {
+	protected extractVideoPosters(html: string): string[] {
 		const urls: string[] = [];
 
 		try {
@@ -301,7 +301,7 @@ export class BaseParser {
 		}
 	}
 
-	public extractDivHrefs(html: string): string[] {
+	protected extractDivHrefs(html: string): string[] {
 		const urls: string[] = [];
 		const re = /<div[^>]+href="([^"]+)"/g;
 		let m: RegExpExecArray | null;
@@ -311,7 +311,7 @@ export class BaseParser {
 		return [...new Set(urls)];
 	}
 
-	public extractVideoUrls(html: string): string[] {
+	protected extractVideoUrls(html: string): string[] {
 		const urls: string[] = [];
 		const re = /<video[^>]*src="([^"]+)"/g;
 		let m: RegExpExecArray | null;
@@ -321,11 +321,11 @@ export class BaseParser {
 		return [...new Set(urls)];
 	}
 
-	public extractAllUrls(html: string): string[] {
+	protected extractAllUrls(html: string): string[] {
 		return [...html.matchAll(/https?:\/\/[^\s"'<>\\]+/g)].map((m) => m[0]);
 	}
 
-	public extractLinks(html: string): string[] {
+	protected extractLinks(html: string): string[] {
 		const urls: string[] = [];
 		const re = /<link\b[^>]*\brel=(['"])(?:preload|preload\s+stylesheet|stylesheet\s+preload)\1[^>]*\bhref=(['"])([^'"]+)\2[^>]*>/gi;
 		let match: RegExpExecArray | null;
@@ -337,7 +337,7 @@ export class BaseParser {
 		return [...new Set(urls)];
 	}
 
-	public extractMetaDescription(html: string): string {
+	protected extractMetaDescription(html: string): string {
 		return this.decodeHtmlEntities(
 			this.extractElementText(html, 'name="description" content="', '"') ||
 				this.extractElementText(html, "name='description' content='", "'") ||
@@ -345,7 +345,7 @@ export class BaseParser {
 		);
 	}
 
-	public extractMetaNameContent(html: string, value: string): string {
+	protected extractMetaNameContent(html: string, value: string): string {
 		return this.decodeHtmlEntities(
 			this.extractElementText(html, `name="${value}" content="`, '"') ||
 				this.extractElementText(html, `name='${value}' content='`, "'") ||
@@ -353,7 +353,7 @@ export class BaseParser {
 		);
 	}
 
-	public extractMetaPropertyContent(html: string, value: string): string {
+	protected extractMetaPropertyContent(html: string, value: string): string {
 		return this.decodeHtmlEntities(
 			this.extractElementText(html, `property="${value}" content="`, '"') ||
 				this.extractElementText(html, `property='${value}' content='`, "'") ||
@@ -361,7 +361,7 @@ export class BaseParser {
 		);
 	}
 
-	public collectAnchors(
+	protected collectAnchors(
 		html: string,
 		options?: {
 			sourceUrl?: string;
@@ -413,7 +413,7 @@ export class BaseParser {
 		return results;
 	}
 
-	public extractMetaKeywords(html: string): string[] {
+	protected extractMetaKeywords(html: string): string[] {
 		const raw =
 			this.extractElementText(html, 'name="keywords" content="', '"') ||
 			this.extractElementText(html, "name='keywords' content='", "'");
@@ -423,11 +423,11 @@ export class BaseParser {
 			.filter(Boolean);
 	}
 
-	public extractTitle(html: string): string {
+	protected extractTitle(html: string): string {
 		return this.decodeHtmlEntities(this.extractElementText(html, '<title>', '</title>'));
 	}
 
-	public resolveUrl(raw: string, base?: string): string | null {
+	protected resolveUrl(raw: string, base?: string): string | null {
 		if (!raw) return null;
 		try {
 			return new URL(raw, base).toString();
@@ -436,7 +436,7 @@ export class BaseParser {
 		}
 	}
 
-	public decodeHtmlEntities(str: string): string {
+	protected decodeHtmlEntities(str: string): string {
 		return str
 			.replace(/&amp;/g, '&')
 			.replace(/&lt;/g, '<')
@@ -447,7 +447,7 @@ export class BaseParser {
 			.replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(Number(dec)));
 	}
 
-	public extractByTag(
+	protected extractByTag(
 		html: string,
 		tag: string,
 		options?: {
@@ -473,11 +473,11 @@ export class BaseParser {
 		return results;
 	}
 
-	public extractOneByTag(html: string, tag: string, options?: { className?: string }): string | null {
+	protected extractOneByTag(html: string, tag: string, options?: { className?: string }): string | null {
 		return this.extractByTag(html, tag, options)[0] ?? null;
 	}
 
-	public extractScriptsByType(html: string, type: string): string[] {
+	protected extractScriptsByType(html: string, type: string): string[] {
 		const results = new Set<string>();
 		const scriptTagPattern = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
 		const typePattern = new RegExp(`(?:^|\\s)type\\s*=\\s*(["'])${type.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\1(?:\\s|$)`, 'i');
@@ -495,7 +495,7 @@ export class BaseParser {
 		return [...results];
 	}
 
-	public extractByClass(html: string, className: string): string[] {
+	protected extractByClass(html: string, className: string): string[] {
 		const regex = new RegExp(`<([a-z0-9]+)\\b[^>]*class=["'][^"']*${className}[^"']*["'][^>]*>([\\s\\S]*?)<\\/\\1>`, 'gi');
 
 		const results: string[] = [];
@@ -509,7 +509,7 @@ export class BaseParser {
 		return results;
 	}
 
-	public extractAttributes(html: string, tag: string, attr: string): string[] {
+	protected extractAttributes(html: string, tag: string, attr: string): string[] {
 		const regex = new RegExp(`<${tag}\\b[^>]*${attr}=["']([^"']+)["']`, 'gi');
 
 		const results: string[] = [];
@@ -522,31 +522,31 @@ export class BaseParser {
 		return [...new Set(results)];
 	}
 
-	public extractSpans(html: string, className?: string) {
+	protected extractSpans(html: string, className?: string) {
 		return this.extractByTag(html, 'span', { className });
 	}
 
-	public extractDivs(html: string, className?: string) {
+	protected extractDivs(html: string, className?: string) {
 		return this.extractByTag(html, 'div', { className });
 	}
 
-	public extractAnchorsContent(html: string, className?: string) {
+	protected extractAnchorsContent(html: string, className?: string) {
 		return this.extractByTag(html, 'a', { className });
 	}
 
-	public extractH2s(html: string, className?: string) {
+	protected extractH2s(html: string, className?: string) {
 		return this.extractByTag(html, 'h2', { className });
 	}
 
-	public extractH3s(html: string, className?: string) {
+	protected extractH3s(html: string, className?: string) {
 		return this.extractByTag(html, 'h3', { className });
 	}
 
-	public extractLists(html: string, className?: string) {
+	protected extractLists(html: string, className?: string) {
 		return this.extractByTag(html, 'li', { className });
 	}
 
-	public extractBlocks(html: string, tag: string, className?: string): string[] {
+	protected extractBlocks(html: string, tag: string, className?: string): string[] {
 		const classPattern = className ? `[^>]*class=["'][^"']*${className}[^"']*["']` : `[^>]*`;
 
 		const regex = new RegExp(`<${tag}\\b${classPattern}[^>]*>[\\s\\S]*?<\\/${tag}>`, 'gi');
@@ -554,7 +554,7 @@ export class BaseParser {
 		return [...html.matchAll(regex)].map((m) => m[0]);
 	}
 
-	public extractKeyValue(html: string, keyPattern: RegExp, valuePattern: RegExp): Record<string, string> {
+	protected extractKeyValue(html: string, keyPattern: RegExp, valuePattern: RegExp): Record<string, string> {
 		const result: Record<string, string> = {};
 
 		const keys = [...html.matchAll(keyPattern)];
@@ -569,7 +569,7 @@ export class BaseParser {
 		return result;
 	}
 
-	public collectByClassNames(
+	protected collectByClassNames(
 		html: string,
 		classNames: string | string[],
 		options?: {

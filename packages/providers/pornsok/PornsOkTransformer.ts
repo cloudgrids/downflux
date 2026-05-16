@@ -17,7 +17,7 @@ export class PornsOkTransformer extends BaseTransformer<PornsOkExecArgs, Default
 		}
 	}
 
-	public toVideoOutput(metadata: DefaultExecutionResult<Partial<PornsOkOutput>>): PornsOkVideoOutput {
+	private toVideoOutput(metadata: DefaultExecutionResult<Partial<PornsOkOutput>>): PornsOkVideoOutput {
 		const pornsOkFields = metadata.customFields as PornsOkOutput;
 
 		return {

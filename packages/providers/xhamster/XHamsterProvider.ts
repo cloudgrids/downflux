@@ -55,7 +55,7 @@ export class XHamsterProvider extends BaseProvider<XHamsterExecArgs> {
 			extractionTarget: ExtractionTarget.ANCHORS,
 			method: XHamsterMethods.getVideo,
 			executionShape: 'single',
-			targets: [this.url]
+			targets: [this.videoUrl]
 		});
 	}
 }

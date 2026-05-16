@@ -17,7 +17,7 @@ export class XnXXTransformer extends BaseTransformer<XnXXExecArgs, DefaultExecut
 		}
 	}
 
-	public toVideoOutput(metadata: DefaultExecutionResult<Partial<XnXXOutput>>): XnXXVideoOutput {
+	private toVideoOutput(metadata: DefaultExecutionResult<Partial<XnXXOutput>>): XnXXVideoOutput {
 		const xVideosFields = metadata.customFields as XnXXOutput;
 
 		return {

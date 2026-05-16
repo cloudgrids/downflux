@@ -13,7 +13,7 @@ import { SxyPornMethods } from './SxyPornTypes';
  */
 export class SxyPornProvider extends BaseProvider<SxyPornExecArgs> {
 	protected readonly provider = ProviderType.SxyPorn;
-	private VIDEO_PATH_REGEX = /^https:\/\/sxyprn\.com\/post\/([a-z-0-9A-Z]+)\.html$/i;
+	private readonly VIDEO_PATH_REGEX = /^https:\/\/sxyprn\.com\/post\/([a-z-0-9A-Z]+)\.html$/i;
 
 	constructor(url: string) {
 		super(url, {
@@ -36,7 +36,7 @@ export class SxyPornProvider extends BaseProvider<SxyPornExecArgs> {
 		});
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		if (this.VIDEO_PATH_REGEX.test(this.url)) return this.url;
 		throw new GenericException('Invalid URL for SxyPorn video', ProviderType.SxyPorn, SxyPornMethods.getVideo);
 	}

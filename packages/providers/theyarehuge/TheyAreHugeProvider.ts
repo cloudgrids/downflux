@@ -15,7 +15,7 @@ import { TheyAreHugeMethods } from './TheyAreHugeTypes';
  */
 export class TheyAreHugeProvider extends BaseProvider<TheyAreHugeExecArgs> {
 	protected readonly provider = ProviderType.TheyAreHuge;
-	private VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?theyarehuge\.(?:com)\/v\/([a-zA-Z-0-9.]+)(?:\?.*)?/i;
+	private readonly VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?theyarehuge\.(?:com)\/v\/([a-zA-Z-0-9.]+)(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
@@ -38,7 +38,7 @@ export class TheyAreHugeProvider extends BaseProvider<TheyAreHugeExecArgs> {
 		});
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		if (this.VIDEO_REGEX_PATH.test(this.url)) return this.url;
 		throw new GenericException('Invalid TheyAreHuge video URL', this.provider, TheyAreHugeMethods.getVideo);
 	}

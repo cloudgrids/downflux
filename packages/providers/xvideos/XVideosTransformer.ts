@@ -17,7 +17,7 @@ export class XVideosTransformer extends BaseTransformer<XVideosExecArgs, Default
 		}
 	}
 
-	public toVideoOutput(metadata: DefaultExecutionResult<Partial<XVideosOutput>>): XVideosVideoOutput {
+	private toVideoOutput(metadata: DefaultExecutionResult<Partial<XVideosOutput>>): XVideosVideoOutput {
 		const xVideosFields = metadata.customFields as XVideosOutput;
 
 		return {

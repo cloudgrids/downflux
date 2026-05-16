@@ -6,7 +6,7 @@ import { PussySpaceMethods } from './PussySpaceTypes';
 
 export class PussySpaceProvider extends BaseProvider<PussySpaceExecArgs> {
 	protected readonly provider = ProviderType.PussySpace;
-	private VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?pussyspace\.(?:com)\/vid-([a-z-0-9A-Z-.]+)\/(?:\?.*)?/i;
+	private readonly VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?pussyspace\.(?:com)\/vid-([a-z-0-9A-Z-.]+)\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
@@ -30,12 +30,10 @@ export class PussySpaceProvider extends BaseProvider<PussySpaceExecArgs> {
 		});
 	}
 
-	get videoUrl(): string {
-		const match = this.url.match(this.VIDEO_REGEX_PATH);
+	private get videoUrl(): string {
+		if (this.VIDEO_REGEX_PATH.test(this.url)) return this.url;
 
-		if (!match) throw new GenericException('Invalid video url', this.provider);
-
-		return this.url;
+		throw new GenericException('Invalid video url', this.provider);
 	}
 
 	public async getVideo(): Promise<PussySpaceVideoOutput> {

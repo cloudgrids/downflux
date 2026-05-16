@@ -28,7 +28,7 @@ export class MyLustProvider extends BaseProvider<MyLustExecArgs> {
 		});
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		if (this.VIDEO_URL_PATTERN.test(this.url)) return this.url;
 
 		throw new GenericException('Invalid MyLust video URL', this.provider);

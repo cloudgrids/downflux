@@ -1,8 +1,4 @@
 import { BeegProvider } from '@provider/beeg';
-import { ColliderPornProvider } from '@provider/colliderporn';
-import { CumLouderProvider } from '@provider/cumlouder';
-import { EPornerProvider } from '@provider/eporner';
-import { HqPornProvider } from '@provider/hqporn';
 import { OutputType } from '@types';
 
 async function main() {

@@ -28,7 +28,7 @@ export class XCafeProvider extends BaseProvider<XCafeExecArgs> {
 		});
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		if (this.VIDEO_URL_REGEX.test(this.url)) return this.url;
 		throw new GenericException('Invalid XCafe video URL', this.provider, XCafeMethods.getVideo);
 	}

@@ -13,7 +13,8 @@ import { CumLouderMethods } from './CumLouderTypes';
  */
 export class CumLouderProvider extends BaseProvider<CumLouderExecArgs> {
 	protected readonly provider = ProviderType.CumLouder;
-	private VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?cumlouder\.(?:com)\/(?:(?:es|it|fr|de|nl|br)\/)?(?:porn-video|videos)\/([^./]+)\/$/i;
+	private readonly VIDEO_REGEX_PATH =
+		/^https:\/\/(?:www\.)?cumlouder\.(?:com)\/(?:(?:es|it|fr|de|nl|br)\/)?(?:porn-video|videos)\/([^./]+)\/$/i;
 
 	constructor(url: string) {
 		super(url, {

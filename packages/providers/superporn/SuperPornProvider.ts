@@ -35,7 +35,7 @@ export class SuperPornProvider extends BaseProvider<SuperPornExecArgs> {
 		});
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		if (this.VIDEO_PATH_REGEX.test(this.url)) return this.url;
 		throw new GenericException('Invalid SuperPorn video URL', this.provider, SuperPornMethods.getVideo);
 	}

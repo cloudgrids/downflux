@@ -40,7 +40,7 @@ export class ColliderPornProvider extends BaseProvider<ColliderPornExecArgs> {
 		});
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		if (this.VIDEO_URL_REGEX.test(this.url)) return this.url;
 
 		throw new GenericException('Invalid ColliderPorn video URL', this.provider);

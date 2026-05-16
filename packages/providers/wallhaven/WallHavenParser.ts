@@ -36,7 +36,7 @@ export class WallHavenParser extends BaseParser {
 		}
 	}
 
-	public extractCollectionData(html: string): WallHavenUserFavoriteCollectionsOutput[] {
+	private extractCollectionData(html: string): WallHavenUserFavoriteCollectionsOutput[] {
 		const blocks = this.collectByClassNames(html, 'collection-inner', {
 			includeInnerHTML: true,
 			attributes: ['href']
@@ -68,7 +68,7 @@ export class WallHavenParser extends BaseParser {
 		}) as WallHavenUserFavoriteCollectionsOutput[];
 	}
 
-	public extractDefinitionList(html: string): Record<string, string> {
+	private extractDefinitionList(html: string): Record<string, string> {
 		const result: Record<string, string> = {};
 		const dlStart = html.toLowerCase().indexOf('<dl');
 		if (dlStart === -1) return result;

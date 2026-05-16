@@ -13,8 +13,7 @@ import { BeegMethods } from './BeegTypes';
  */
 export class BeegProvider extends BaseProvider<BeegExecArgs> {
 	protected readonly provider = ProviderType.Beeg;
-	private readonly PROVIDER_REGEX = /^https:\/\/(?:www\.)?beeg\.com\/([a-zA-Z0-9-]+)\/?$/i;
-	private readonly urlMatch: RegExpMatchArray | null = this.url.match(this.PROVIDER_REGEX);
+	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?beeg\.com\/-0([0-9]+)\/?$/i;
 	private VIDEO_ID: string = '';
 
 	constructor(url: string) {
@@ -37,14 +36,12 @@ export class BeegProvider extends BaseProvider<BeegExecArgs> {
 		});
 	}
 
-	get videoUrl() {
-		const videoId = this.urlMatch?.[1];
+	private get videoUrl() {
+		const videoId = this.url.match(this.VIDEO_PATH_REGEX)?.[1];
 
 		if (!videoId) throw new GenericException('Video id is missing or not found', this.provider, BeegMethods.getVideo);
 
 		this.VIDEO_ID = videoId.replace(/^-0/i, '');
-
-		if (!this.VIDEO_ID) throw new GenericException('Invalid video url', this.provider, BeegMethods.getVideo);
 
 		return `https://beeg.com/${videoId}`;
 	}

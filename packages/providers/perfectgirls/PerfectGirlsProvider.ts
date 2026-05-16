@@ -54,17 +54,17 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 		});
 	}
 
-	get baseUrl(): string {
+	private get baseUrl(): string {
 		return this.url.includes('xxx') ? this.BASE_URLS.XXX : this.BASE_URLS.PORN;
 	}
 
-	get albumsUrl(): string {
+	private get albumsUrl(): string {
 		if (this.urlMatch?.[1] !== 'albums') throw new GenericException('Invalid URL', this.provider, PerfectGirlsMethods.getAlbums);
 
 		return `${this.baseUrl}/albums/`;
 	}
 
-	get albumUrl(): string {
+	private get albumUrl(): string {
 		const albumId = this.urlMatch?.[2];
 
 		if (!albumId) throw new GenericException('Album id is missing or not found', this.provider, PerfectGirlsMethods.getAlbums);
@@ -76,7 +76,7 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 		return `${this.baseUrl}/${this.urlMatch?.[1]}/${albumId}/`;
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		const videoId = this.urlMatch?.[2];
 
 		if (!videoId) throw new GenericException('Video id is missing or not found', this.provider, PerfectGirlsMethods.getVideo);
@@ -88,13 +88,13 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 		return `${this.baseUrl}/${this.urlMatch?.[1]}/${videoId}/`;
 	}
 
-	get videosUrl(): string {
+	private get videosUrl(): string {
 		if (this.urlMatch?.[1] !== 'videos') throw new GenericException('Invalid URL', this.provider, PerfectGirlsMethods.getModels);
 
 		return `${this.baseUrl}/videos/`;
 	}
 
-	get modelUrl(): string {
+	private get modelUrl(): string {
 		const modelName = this.urlMatch?.[2];
 
 		if (!modelName) throw new GenericException('Model name is missing or not found', this.provider, PerfectGirlsMethods.getModels);
@@ -104,19 +104,19 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 		return `${this.baseUrl}/${this.urlMatch?.[1]}/${modelName}/`;
 	}
 
-	get modelsUrl(): string {
+	private get modelsUrl(): string {
 		if (this.urlMatch?.[1] !== 'models') throw new GenericException('Invalid URL', this.provider, PerfectGirlsMethods.getModels);
 
 		return `${this.baseUrl}/models/`;
 	}
 
-	get tagsUrl(): string {
+	private get tagsUrl(): string {
 		if (this.urlMatch?.[1] !== 'tags') throw new GenericException('Invalid URL', this.provider, PerfectGirlsMethods.getTags);
 
 		return `${this.baseUrl}/tags/`;
 	}
 
-	get channelsUrl(): string {
+	private get channelsUrl(): string {
 		if (this.urlMatch?.[1] !== 'channels') throw new GenericException('Invalid URL', this.provider, PerfectGirlsMethods.getChannels);
 
 		return `${this.baseUrl}/channels/`;

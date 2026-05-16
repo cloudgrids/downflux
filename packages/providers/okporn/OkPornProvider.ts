@@ -55,17 +55,17 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 		});
 	}
 
-	get baseUrl(): string {
+	private get baseUrl(): string {
 		return this.url.includes('porn') ? this.BASE_URLS.PORN : this.BASE_URLS.XXX;
 	}
 
-	get albumsUrl(): string {
+	private get albumsUrl(): string {
 		if (this.urlMatch?.[1] !== 'albums') throw new GenericException('Invalid URL', this.provider, OkPornMethods.getAlbums);
 
 		return `${this.baseUrl}/albums/`;
 	}
 
-	get albumUrl(): string {
+	private get albumUrl(): string {
 		const albumId = this.urlMatch?.[2];
 
 		if (!albumId) throw new GenericException('Album id is missing or not found', this.provider, OkPornMethods.getAlbums);
@@ -77,7 +77,7 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 		return `${this.baseUrl}/${this.urlMatch?.[1]}/${albumId}/`;
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		const videoId = this.urlMatch?.[2];
 
 		if (!videoId) throw new GenericException('Video id is missing or not found', this.provider, OkPornMethods.getVideo);
@@ -89,13 +89,13 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 		return `${this.baseUrl}/${this.urlMatch?.[1]}/${videoId}/`;
 	}
 
-	get videosUrl(): string {
+	private get videosUrl(): string {
 		if (this.urlMatch?.[1] !== 'videos') throw new GenericException('Invalid URL', this.provider, OkPornMethods.getModels);
 
 		return `${this.baseUrl}/videos/`;
 	}
 
-	get modelUrl(): string {
+	private get modelUrl(): string {
 		const modelName = this.urlMatch?.[2];
 
 		if (!modelName) throw new GenericException('Model name is missing or not found', this.provider, OkPornMethods.getModels);
@@ -105,19 +105,19 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 		return `${this.baseUrl}/${this.urlMatch?.[1]}/${modelName}/`;
 	}
 
-	get modelsUrl(): string {
+	private get modelsUrl(): string {
 		if (this.urlMatch?.[1] !== 'models') throw new GenericException('Invalid URL', this.provider, OkPornMethods.getModels);
 
 		return `${this.baseUrl}/models/`;
 	}
 
-	get tagsUrl(): string {
+	private get tagsUrl(): string {
 		if (this.urlMatch?.[1] !== 'tags') throw new GenericException('Invalid URL', this.provider, OkPornMethods.getTags);
 
 		return `${this.baseUrl}/tags/`;
 	}
 
-	get channelsUrl(): string {
+	private get channelsUrl(): string {
 		if (this.urlMatch?.[1] !== 'channels') throw new GenericException('Invalid URL', this.provider, OkPornMethods.getChannels);
 
 		return `${this.baseUrl}/channels/`;
