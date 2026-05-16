@@ -16,6 +16,8 @@ export class Lesbian8Provider extends BaseProvider<Lesbian8ExecArgs> {
 				hasHls: false,
 				hasMp4: true,
 				hasKvs: true,
+				hlsIntegrated: false,
+				mp4Integrated: true,
 				underGeoRestriction: false,
 				requiresBrowser: false,
 				canDownload: true,

@@ -14,6 +14,8 @@ export class MyLustProvider extends BaseProvider<MyLustExecArgs> {
 			urlPattern: /^(?:(?:www|de|ru)\.)?mylust\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				hlsIntegrated: false,
+				mp4Integrated: true,
 				hasMp4: true,
 				hasKvs: false,
 				underGeoRestriction: false,
@@ -27,11 +29,9 @@ export class MyLustProvider extends BaseProvider<MyLustExecArgs> {
 	}
 
 	get videoUrl(): string {
-		const match = this.url.match(this.VIDEO_URL_PATTERN);
+		if (this.VIDEO_URL_PATTERN.test(this.url)) return this.url;
 
-		if (!match) throw new GenericException('Invalid MyLust video URL', this.provider);
-
-		return this.url;
+		throw new GenericException('Invalid MyLust video URL', this.provider);
 	}
 
 	public async getVideo(): Promise<MyLustVideoOutput> {

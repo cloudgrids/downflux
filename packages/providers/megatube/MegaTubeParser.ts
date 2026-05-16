@@ -10,13 +10,11 @@ export class MegaTubeParser extends BaseParser {
 
 		const detail = this.collectByClassNames(html, 'video_info-content', { includeInnerHTML: true })?.[0]?.text || 'unknown';
 
-		console.log({ flashVars, detail });
-
 		try {
 			return {
 				customFields: {
 					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					videos: flashVars?.videos,
+					videos: { mp4: flashVars?.videos },
 					pageUrl: sourceUrl,
 					videoId: flashVars.videoId,
 					uploader: detail?.replace(/\s*Title:.*$/, '')?.trim() || 'Unknown',

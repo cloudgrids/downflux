@@ -26,7 +26,7 @@ export interface ProviderMetadata {
 	/** Integrated HLS support for better compatibility */
 	hlsIntegrated?: boolean;
 
-	/** Mentioned site supports MP4 progressive download */
+	/** Mentioned site supports direct MP4 progressive download */
 	hasMp4: boolean;
 
 	/** Integrated MP4 support for better compatibility */
@@ -34,6 +34,9 @@ export interface ProviderMetadata {
 
 	/** Mentioned site is integrated with KVS (Kernel Video Sharing) */
 	hasKvs: boolean;
+
+	/** Mentioned site has embeddable videos available */
+	hasEmbeddableVideos?: boolean;
 
 	/** Mentioned site is subject to geographic restrictions */
 	underGeoRestriction: boolean;

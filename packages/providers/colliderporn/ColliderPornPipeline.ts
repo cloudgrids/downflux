@@ -52,12 +52,30 @@ export class ColliderPornPipeline extends BasePipeline<ColliderPornExecArgs, Col
 	protected override extract(request: ColliderPornExecArgs, metadata: ColliderPornOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
-		if (metadata.videoUrl.hls) {
-			urls.add({
-				url: metadata.videoUrl.hls,
-				mediaType: MediaType.VIDEOS,
-				id: metadata.videoId
-			});
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (video) => video.quality
+			}).forEach((video) =>
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: metadata.videoId
+				})
+			);
+		}
+
+		if (metadata?.videos?.hls?.length) {
+			this.filterByQuality(metadata.videos.hls, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (video) => video.quality
+			}).forEach((video) =>
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: metadata.videoId
+				})
+			);
 		}
 
 		if (metadata?.poster) {

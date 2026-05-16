@@ -184,7 +184,7 @@ export class FileManager {
 				extendedFilename: `${prefix ?? ''}${originalFilename}`
 			};
 		} catch {
-			throw new Error(`Unable to parse URL for file info: ${url}`);
+			throw new Error(`Unable to retrieve file information: ${url}`);
 		}
 	}
 

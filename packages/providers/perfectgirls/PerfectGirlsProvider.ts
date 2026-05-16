@@ -40,7 +40,9 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 			urlPattern: /^(?:www\.)?(?:perfectgirls|perfectdamen)\.(?:co|xxx)$/i,
 			metadata: {
 				hasHls: true,
-				hasMp4: true,
+				hasMp4: false,
+				hlsIntegrated: true,
+				mp4Integrated: false,
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,

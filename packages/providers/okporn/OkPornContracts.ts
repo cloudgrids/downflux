@@ -1,5 +1,5 @@
 import { TagFilterOptions } from '@base';
-import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 import { VideoQuality } from '@types';
 
 export type OkPornIdType = 'path' | 'url';
@@ -54,30 +54,12 @@ export interface OkPornAlbumOutput {
  * Output structure for OkPorn video operations.
  * Contains video metadata, sources, poster, and album context.
  */
-export interface OkPornVideoOutput {
+export interface OkPornVideoOutput extends DefaultVideoOutput {
 	/** Video identifier */
 	videoId: string;
 
-	/** Video title */
-	videoTitle: string;
-
-	/** Video page URL */
-	videoUrl: string;
-
-	/** Video keywords */
-	videoKeywords: string[];
-
-	/** Video description */
-	videoDescription: string;
-
 	/** Screenshot image URL */
 	videoScreenshot: string;
-
-	/** Video source URLs with detected quality */
-	videoSources: VideoSourceOutput[];
-
-	/** Poster image URL */
-	videoPoster: string;
 
 	/** Video creation date text */
 	videoCreatedAt?: string;

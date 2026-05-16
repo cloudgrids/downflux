@@ -1,5 +1,8 @@
-import { PornDoeProvider } from '@provider/porndoe';
-import { PornHubProvider } from '@provider/pornhub';
+import { BeegProvider } from '@provider/beeg';
+import { ColliderPornProvider } from '@provider/colliderporn';
+import { CumLouderProvider } from '@provider/cumlouder';
+import { EPornerProvider } from '@provider/eporner';
+import { HqPornProvider } from '@provider/hqporn';
 import { OutputType } from '@types';
 
 async function main() {
@@ -24,7 +27,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new PornDoeProvider('https://porndoe.com/watch/pd7l5f7f6n2c')
+		await new BeegProvider('https://beeg.com/-0777761605151844')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON, { directoryPath: 'test/providers' })

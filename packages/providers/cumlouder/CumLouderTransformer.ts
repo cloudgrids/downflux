@@ -1,5 +1,5 @@
 import { BaseTransformer } from '@base';
-import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
+import { DefaultExecutionResult, VideosFormat, VideoSourceOutput } from '@contracts';
 import { VideoQuality } from '@types';
 import { CumLouderExecArgs, CumLouderOutput, CumLouderVideoOutput } from './CumLouderContracts';
 import { CumLouderMethods } from './CumLouderTypes';
@@ -30,7 +30,7 @@ export class CumLouderTransformer extends BaseTransformer<CumLouderExecArgs, Def
 		};
 	}
 
-	private mapSources(sources: string[]): { mp4: VideoSourceOutput[] } {
+	private mapSources(sources: string[]): VideosFormat {
 		return {
 			mp4: this.filterAndMapSources(sources).map((video) => ({
 				url: video,

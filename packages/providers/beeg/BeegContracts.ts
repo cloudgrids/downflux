@@ -1,15 +1,13 @@
-import { ExecutionArgs } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface BeegExecArgs extends ExecutionArgs {
 	id: string;
 }
 export interface BeegOutput extends BeegVideoOutput {}
 
-export interface BeegVideoOutput {
-	videos: BeegVideoMetadata[];
+export interface BeegVideoOutput extends DefaultVideoOutput {
 	username: string;
-	description: string;
-	pageUrl: string;
+	videoId: string;
 }
 
 export interface BeegVideoMetadata {

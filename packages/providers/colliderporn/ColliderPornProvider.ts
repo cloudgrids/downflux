@@ -6,9 +6,9 @@ import { ColliderPornMethods } from './ColliderPornTypes';
 
 /**
  * This provider sets embedded video URLs from XVideos,
- * as ColliderPorn is a front for XVideos and doesn't have its own video hosting.
+ * as ColliderPorn is a front for XVideos and multiple other sites and doesn't have its own video hosting.
  * So the video metadata is quite limited and we rely on the embedded video data for most of the information.
- * It might not work in some region due to geo-restrictions, as the embedded video URLs are from XVideos.
+ * It might not work as to collect the metadata and video URLs, as the embedded video data can be geo-restricted or removed by the original host.
  */
 export class ColliderPornProvider extends BaseProvider<ColliderPornExecArgs> {
 	protected readonly provider = ProviderType.ColliderPorn;
@@ -25,11 +25,14 @@ export class ColliderPornProvider extends BaseProvider<ColliderPornExecArgs> {
 			urlPattern: /^(?:www\.)?colliderporn\.(?:com)$/i,
 			metadata: {
 				hasHls: true,
-				hasMp4: false,
+				hasMp4: true,
+				hlsIntegrated: true,
+				mp4Integrated: true,
 				hasKvs: false,
+				hasEmbeddableVideos: true,
 				underGeoRestriction: true,
 				requiresBrowser: false,
-				canDownload: true,
+				canDownload: false,
 				underDevelopment: true,
 				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
@@ -39,6 +42,7 @@ export class ColliderPornProvider extends BaseProvider<ColliderPornExecArgs> {
 
 	get videoUrl(): string {
 		if (this.VIDEO_URL_REGEX.test(this.url)) return this.url;
+
 		throw new GenericException('Invalid ColliderPorn video URL', this.provider);
 	}
 

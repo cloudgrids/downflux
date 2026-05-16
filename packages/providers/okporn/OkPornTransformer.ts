@@ -1,7 +1,6 @@
 import { BaseTransformer } from '@base';
 import { DefaultExecutionResult, TagKeys } from '@contracts';
-import { inferVideoQuality } from '@shared';
-import { ExtractionTarget, VideoQuality } from '@types';
+import { ExtractionTarget } from '@types';
 import {
 	OkPornAlbumOutput,
 	OkPornChannelOutput,
@@ -129,19 +128,19 @@ export class OkPornTransformer extends BaseTransformer<
 		const customFields = metadata.customFields as OkPornOutput;
 
 		return {
-			videoTitle: metadata.title,
-			videoUrl: metadata.sourceUrl,
-			videoKeywords: metadata.keywords,
-			videoDescription: metadata.description,
+			title: metadata.title,
+			pageUrl: metadata.sourceUrl,
+			tags: metadata.keywords,
+			description: metadata.description,
 			videoId: metadata.sourceUrl.split('/').filter(Boolean).pop() ?? '',
-			videoSources: metadata.sources.map((url) => ({ url, quality: inferVideoQuality(url, VideoQuality.Q480) })),
-			videoPoster: customFields?.videoPoster ?? '',
-			videoScreenshot: customFields?.videoPoster ?? '',
-			author: customFields?.author,
+			poster: customFields?.poster,
+			videos: customFields?.videos,
+			videoScreenshot: customFields?.poster ?? '',
 			videoAlbumId: customFields?.videoAlbumId,
 			videoCreatedAt: customFields?.videoCreatedAt,
 			videoAlbum: !videoAlbum?.albumImageCount ? undefined : videoAlbum,
-			starredBy: customFields?.starredBy ?? []
+			author: customFields?.author,
+			starredBy: customFields?.starredBy ?? customFields.starredModels
 		};
 	}
 
