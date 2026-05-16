@@ -29,6 +29,9 @@ export class ColliderPornProvider extends BaseProvider<ColliderPornExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: true,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

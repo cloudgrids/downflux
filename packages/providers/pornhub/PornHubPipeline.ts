@@ -35,7 +35,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 
 		switch (mediaType) {
 			case MediaType.VIDEOS:
-			case MediaType.VIDEO_PREVIEW:
+			case MediaType.VIDEO_POSTER:
 				mediaSegment = `${MediaType.VIDEOS}/${id}`;
 				break;
 
@@ -66,11 +66,29 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 
 		if (!viewKey) viewKey = request.entryUrl.split('=').pop() ?? 'unknown';
 
-		if (metadata.videoMetadata) {
-			urls.add({
-				url: metadata?.videoMetadata?.videoUrl,
-				mediaType: MediaType.VIDEOS,
-				id: viewKey
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (item) => item.quality
+			}).forEach((video) => {
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: viewKey
+				});
+			});
+		}
+
+		if (metadata?.videos?.hls?.length) {
+			this.filterByQuality(metadata.videos.hls, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (item) => item.quality
+			}).forEach((video) => {
+				urls.add({
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: viewKey
+				});
 			});
 		}
 
@@ -81,10 +99,10 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 			});
 		}
 
-		if (metadata.thumbnailUrl) {
+		if (metadata?.poster) {
 			urls.add({
-				url: metadata.thumbnailUrl,
-				mediaType: MediaType.VIDEO_PREVIEW,
+				url: metadata.poster,
+				mediaType: MediaType.VIDEO_POSTER,
 				id: viewKey
 			});
 		}

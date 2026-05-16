@@ -20,9 +20,14 @@ export class PornOneProvider extends BaseProvider<PornOneExecArgs> {
 			metadata: {
 				hasHls: false,
 				hasMp4: true,
+				hlsIntegrated: false,
+				mp4Integrated: true,
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: false,
+				underDevelopment: true,
+				cloudflareChallenge: true,
 				sniSpoofing: 'untested'
 			}
 		});

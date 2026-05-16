@@ -31,12 +31,18 @@ export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 			provider: ProviderType.PornHub,
 			urlPattern: /^(?:www\.)?pornhub\.(?:com|net|org)$/i,
 			metadata: {
-				hasHls: false,
+				hasHls: true,
 				hasMp4: true,
 				hasKvs: true,
+				hlsIntegrated: true,
+				mp4Integrated: true,
+				requiresLogin: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
-				sniSpoofing: 'untested'
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
+				sniSpoofing: 'working'
 			}
 		});
 	}

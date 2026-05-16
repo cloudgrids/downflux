@@ -18,10 +18,16 @@ export class PornsOkProvider extends BaseProvider<PornsOkExecArgs> {
 			urlPattern: /^(?:www\.)?pornsok\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				hlsIntegrated: false,
+				mp4Integrated: true,
+				requiresLogin: false,
 				hasMp4: true,
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

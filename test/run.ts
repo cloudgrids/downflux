@@ -1,10 +1,4 @@
-import { EPornerProvider } from '@provider/eporner';
-import { TnAFlixProvider } from '@provider/tnaflix';
-import { TubeVSexProvider } from '@provider/tubevsex';
-import { XGroovyProvider } from '@provider/xgroovy';
-import { XHamsterProvider } from '@provider/xhamster';
-import { XnXXProvider } from '@provider/xnxx';
-import { XVideosProvider } from '@provider/xvideos';
+import { PornHubProvider } from '@provider/pornhub';
 import { OutputType } from '@types';
 
 async function main() {
@@ -29,7 +23,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new TnAFlixProvider('https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign')
+		await new PornHubProvider('https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON, { directoryPath: 'test/providers' })

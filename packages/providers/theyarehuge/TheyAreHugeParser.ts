@@ -16,6 +16,8 @@ export class TheyAreHugeParser extends BaseParser {
 					poster: flashVars.previewUrl,
 					tags: flashVars.tags,
 					title: flashVars.title,
+					timelineScreenCount: flashVars.timelineScreenCount,
+					timelineScreens: flashVars.timelineScreens,
 					videos: {
 						mp4: [
 							{ url: flashVars.videoUrl, quality: VideoQuality.Q240 },

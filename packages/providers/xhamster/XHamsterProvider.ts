@@ -30,6 +30,9 @@ export class XHamsterProvider extends BaseProvider<XHamsterExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'working'
 			}
 		});
@@ -37,8 +40,7 @@ export class XHamsterProvider extends BaseProvider<XHamsterExecArgs> {
 
 	private get videoUrl(): string {
 		if (this.VIDEO_URL_REGEX.test(this.url)) return this.url;
-
-		throw new GenericException(this.url, this.provider);
+		throw new GenericException('Invalid XHamster video URL', this.provider, XHamsterMethods.getVideo);
 	}
 
 	/**

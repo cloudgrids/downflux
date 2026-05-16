@@ -22,22 +22,23 @@ export class SxyPornProvider extends BaseProvider<SxyPornExecArgs> {
 			metadata: {
 				hasHls: false,
 				hasMp4: true,
+				hlsIntegrated: false,
+				mp4Integrated: true,
 				hasKvs: false,
 				underGeoRestriction: false,
+				requiresLogin: false,
 				requiresBrowser: false,
+				canDownload: false,
+				underDevelopment: true,
+				cloudflareChallenge: true,
 				sniSpoofing: 'untested'
 			}
 		});
 	}
 
 	get videoUrl(): string {
-		const match = this.url.match(this.VIDEO_PATH_REGEX);
-		if (!match) {
-			throw new GenericException('Invalid URL for SxyPorn video', ProviderType.SxyPorn, SxyPornMethods.getVideo, {
-				cause: this.url
-			});
-		}
-		return this.url;
+		if (this.VIDEO_PATH_REGEX.test(this.url)) return this.url;
+		throw new GenericException('Invalid URL for SxyPorn video', ProviderType.SxyPorn, SxyPornMethods.getVideo);
 	}
 
 	/**

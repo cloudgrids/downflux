@@ -29,7 +29,7 @@ export class SexVidPipeline extends BasePipeline<SexVidExecArgs, SexVidOutput> {
 	}
 
 	protected override buildIdentifier(ctx: IdentifierContext<SexVidOutput>): string {
-		const { mediaType, id } = ctx;
+		const { mediaType, id, metadata } = ctx;
 		const prefix = 'SexVid';
 		let mediaSegment: string;
 
@@ -44,7 +44,7 @@ export class SexVidPipeline extends BasePipeline<SexVidExecArgs, SexVidOutput> {
 				mediaSegment = `${mediaType}/${id}`;
 		}
 
-		return this.pathBuilder.join(prefix, mediaSegment);
+		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.actor), mediaSegment);
 	}
 
 	protected override extract(request: SexVidExecArgs, metadata: SexVidOutput): PipelineExtractedItem[] {

@@ -14,10 +14,15 @@ export class PornIdProvider extends BaseProvider<PornIdExecArgs> {
 			urlPattern: /(?:www\.)?pornid\.(?:xxx|name)$/i,
 			metadata: {
 				hasHls: false,
+				hlsIntegrated: false,
+				mp4Integrated: true,
 				hasMp4: true,
 				hasKvs: true,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

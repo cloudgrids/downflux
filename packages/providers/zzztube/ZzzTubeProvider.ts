@@ -20,6 +20,9 @@ export class ZzzTubeProvider extends BaseProvider<ZzzTubeExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});
@@ -27,8 +30,7 @@ export class ZzzTubeProvider extends BaseProvider<ZzzTubeExecArgs> {
 
 	get videoUrl(): string {
 		if (this.VIDEO_URL_REGEX.test(this.url)) return this.url;
-
-		throw new GenericException('Invalid ZzzTube video URL', this.provider);
+		throw new GenericException('Invalid ZzzTube video URL', this.provider, ZzzTubeMethods.getVideo);
 	}
 
 	public async getVideo(): Promise<ZzzTubeVideoOutput> {

@@ -31,116 +31,122 @@ export class BaseParser {
 	}
 
 	public getFlashVars(html: string): FlashVarsOutput {
-		const extractField = (field: string) => {
-			const re = new RegExp(`${field}\\s*:\\s*['"]([^'"]+)['"]`, 'i');
+		const flashVarsBlocks = [...html.matchAll(/var\s+flashVars\s*=\s*\{([\s\S]*?)\};/gi)].map((m) => m[1]);
 
-			const match = re.exec(html);
+		if (!flashVarsBlocks.length) {
+			return {} as FlashVarsOutput;
+		}
 
-			return match?.[1] || undefined;
+		const extractFields = (field: string): string[] => {
+			const re = new RegExp(`${field}\\s*:\\s*['"]([^'"]+)['"]`, 'gi');
+
+			return flashVarsBlocks.flatMap((block) => [...block.matchAll(re)].map((m) => m[1]));
 		};
 
-		const videoModels = extractField('video_models')
-			?.split(',')
-			.map((v) => v?.trim());
-		const timelineScreenUrl = extractField('timeline_screens_url');
-		const timelineScreenCount = extractField('timeline_screens_count')
-			? parseInt(extractField('timeline_screens_count')!, 10)
-			: undefined;
-		const title = extractField('video_title');
-		const tags = extractField('video_tags')
-			?.split(',')
-			?.map((v) => v?.trim());
-		const categories = extractField('video_categories')
-			?.split(',')
-			?.map((v) => v?.trim());
-		const models = extractField('video_models')
-			?.split(',')
-			?.map((v) => v?.trim());
-		const previewUrl = extractField('preview_url');
-		const previewUrl1 = extractField('preview_url1');
-		const previewUrl2 = extractField('preview_url2');
-		const previewUrl3 = extractField('preview_url3');
-		const previewUrl4 = extractField('preview_url4');
-		const videoAltUrl2Redirect = extractField('video_alt_url2_redirect');
-		const videoAltUrl2Text = extractField('video_alt_url2_text');
-		const videoAltUrl2Hd = extractField('video_alt_url2_hd');
-		const videoAltUrl2 = extractField('video_alt_url2');
-		const videoAltUrlText = extractField('video_alt_url_text');
-		const videoUrlHd = extractField('video_url_hd');
-		const videoUrlText = extractField('video_url_text');
-		const videoAltUrl = extractField('video_alt_url')?.match(/((?:function\/0\/)?https.*)/i)?.[0];
-		const videoUrl = extractField('video_url')?.match(/((?:function\/\d+\/)?https.*)/i)?.[0];
-		const postfix = extractField('postfix');
-		const rnd = extractField('rnd');
+		const extractField = (field: string): string | undefined => {
+			return extractFields(field)[0];
+		};
+
+		const unique = <T>(arr: T[]) => Array.from(new Set(arr));
+
+		const parseList = (field: string): string[] => {
+			return unique(
+				extractFields(field)
+					.flatMap((v) => v.split(','))
+					.map((v) => v.trim())
+					.filter(Boolean)
+			);
+		};
+
+		const resolveVideo = (rawUrl?: string, quality?: string, licenseCode?: string): VideoSourceOutput | undefined => {
+			if (!rawUrl) return undefined;
+
+			const cleaned = rawUrl.match(/((?:function\/\d+\/)?https.*)/i)?.[0];
+
+			if (!cleaned) return undefined;
+
+			return {
+				url: licenseCode ? this.kvsResolver.resolveKvsUrl(cleaned, licenseCode) : cleaned,
+				quality: (quality?.replace(/[^0-9p]+/gi, '') as VideoQuality) ?? VideoQuality.QUnknown
+			};
+		};
+
 		const licenseCode = extractField('license_code');
-		const videoId = extractField('video_id');
 
-		const urlQuality = (videoUrlText?.replace(/[^0-9p]+/i, '') as VideoQuality) || VideoQuality.QUnknown;
-		const url1Quality = (videoAltUrlText?.replace(/[^0-9p]+/i, '') as VideoQuality) || VideoQuality.QUnknown;
-		const url2Quality = (videoAltUrl2Text?.replace(/[^0-9p]+/i, '') as VideoQuality) || VideoQuality.QUnknown;
+		const videoUrls = extractFields('video_url');
+		const videoUrlTexts = extractFields('video_url_text');
 
-		const url =
-			videoUrl && licenseCode
-				? {
-						url: this.kvsResolver.resolveKvsUrl(videoUrl, licenseCode),
-						quality: urlQuality
-					}
-				: { url: videoUrl, quality: urlQuality };
+		const altVideoUrls = extractFields('video_alt_url');
+		const altVideoTexts = extractFields('video_alt_url_text');
 
-		const url1 =
-			videoAltUrl && licenseCode
-				? {
-						url: this.kvsResolver.resolveKvsUrl(videoAltUrl, licenseCode),
-						quality: url1Quality
-					}
-				: { url: videoAltUrl, quality: url1Quality };
+		const alt2VideoUrls = extractFields('video_alt_url2');
+		const alt2VideoTexts = extractFields('video_alt_url2_text');
 
-		const url2 =
-			videoAltUrl2 && licenseCode
-				? {
-						url: this.kvsResolver.resolveKvsUrl(videoAltUrl2, licenseCode),
-						quality: url2Quality
-					}
-				: { url: videoAltUrl2, quality: url2Quality };
+		const videosRaw = [
+			...videoUrls.map((url, i) => resolveVideo(url, videoUrlTexts[i], licenseCode)),
 
-		const videos = Array.from(
-			new Map([url, url1, url2].filter((v): v is VideoSourceOutput => !!v.url).map((v) => [v.url, v])).values()
+			...altVideoUrls.map((url, i) => resolveVideo(url, altVideoTexts[i], licenseCode)),
+
+			...alt2VideoUrls.map((url, i) => resolveVideo(url, alt2VideoTexts[i], licenseCode))
+		].filter(Boolean) as VideoSourceOutput[];
+
+		const videos = Array.from(new Map(videosRaw.map((v) => [v.url, v])).values());
+
+		const previews = unique(
+			[
+				...extractFields('preview_url'),
+				...extractFields('preview_url1'),
+				...extractFields('preview_url2'),
+				...extractFields('preview_url3'),
+				...extractFields('preview_url4')
+			].filter(Boolean)
 		);
 
-		const previews = Array.from(
-			new Set([previewUrl, previewUrl1, previewUrl2, previewUrl3, previewUrl4].filter(Boolean) as string[])
-		).filter(Boolean) as string[];
+		const timelineScreenUrl = extractField('timeline_screens_url');
+
+		const timelineScreenCount = extractField('timeline_screens_count')
+			? parseInt(extractField('timeline_screens_count') ?? '0', 10)
+			: undefined;
 
 		const timelineScreens = Array.from({ length: timelineScreenCount ?? 0 }, (_, i) =>
-			timelineScreenUrl ? timelineScreenUrl.replace('{time}', (i + 1).toString()) : undefined
-		) as string[];
+			timelineScreenUrl ? timelineScreenUrl.replace('{time}', String(i + 1)) : undefined
+		).filter(Boolean) as string[];
 
 		return {
-			videoId,
+			videoId: extractField('video_id'),
 			licenseCode,
-			rnd,
-			postfix,
-			videoAltUrl2,
-			videoUrl,
-			videoAltUrl,
-			videoAltUrl2Hd,
-			videoAltUrl2Text,
-			videoUrlHd,
-			videoUrlText,
-			videoAltUrlText,
-			videoAltUrl2Redirect,
-			previewUrl,
-			tags,
-			categories,
-			models,
-			title,
-			videoModels,
+			rnd: extractField('rnd'),
+			postfix: extractField('postfix'),
+
+			videoUrl: extractField('video_url'),
+			videoAltUrl: extractField('video_alt_url'),
+			videoAltUrl2: extractField('video_alt_url2'),
+
+			videoUrlHd: extractField('video_url_hd'),
+			videoUrlText: extractField('video_url_text'),
+
+			videoAltUrlText: extractField('video_alt_url_text'),
+
+			videoAltUrl2Text: extractField('video_alt_url2_text'),
+			videoAltUrl2Hd: extractField('video_alt_url2_hd'),
+			videoAltUrl2Redirect: extractField('video_alt_url2_redirect'),
+
+			previewUrl: extractField('preview_url'),
+			previewUrl1: extractField('preview_url1'),
+			previewUrl2: extractField('preview_url2'),
+			previewUrl3: extractField('preview_url3'),
+			previewUrl4: extractField('preview_url4'),
+
+			title: extractField('video_title'),
+
+			tags: parseList('video_tags'),
+			categories: parseList('video_categories'),
+			models: parseList('video_models'),
+			videoModels: parseList('video_models'),
+
 			timelineScreenUrl,
 			timelineScreenCount,
-			previewUrl1,
-			previewUrl2,
-			previewUrl3,
-			previewUrl4,
+
 			videos,
 			previews,
 			timelineScreens

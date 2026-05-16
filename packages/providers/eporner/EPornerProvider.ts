@@ -16,6 +16,9 @@ export class EPornerProvider extends BaseProvider<EPornerExecArgs> {
 				hasKvs: false,
 				underGeoRestriction: true,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'working'
 			}
 		});

@@ -18,6 +18,9 @@ export class Lesbian8Provider extends BaseProvider<Lesbian8ExecArgs> {
 				hasKvs: true,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});

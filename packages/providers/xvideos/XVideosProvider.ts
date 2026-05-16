@@ -30,6 +30,9 @@ export class XVideosProvider extends BaseProvider<XVideosExecArgs> {
 				hasKvs: true, // for subdomains like xvideos2
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'failed' // for xvideos.com, untested for subdomains like xvideos2
 			}
 		});

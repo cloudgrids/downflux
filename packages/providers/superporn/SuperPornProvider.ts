@@ -20,19 +20,24 @@ export class SuperPornProvider extends BaseProvider<SuperPornExecArgs> {
 			urlPattern: /^(?:www\.)?superporn\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				hlsIntegrated: false,
+				mp4Integrated: true,
+				requiresLogin: false,
 				hasMp4: true,
 				hasKvs: false,
 				underGeoRestriction: false,
 				requiresBrowser: false,
+				canDownload: true,
+				underDevelopment: true,
+				cloudflareChallenge: false,
 				sniSpoofing: 'untested'
 			}
 		});
 	}
 
 	get videoUrl(): string {
-		const match = this.url.match(this.VIDEO_PATH_REGEX);
-		if (!match) throw new GenericException('Invalid SuperPorn video url', ProviderType.SuperPorn, 'SuperPornProvider');
-		return this.url;
+		if (this.VIDEO_PATH_REGEX.test(this.url)) return this.url;
+		throw new GenericException('Invalid SuperPorn video URL', this.provider, SuperPornMethods.getVideo);
 	}
 
 	/**
