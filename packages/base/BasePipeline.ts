@@ -8,24 +8,26 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExecutio
 	constructor(protected fileManager: FileManager) {}
 
 	public build(metadata: TResult, request: TExec): PipelineItem[] {
-		return this.sliceByMaxDownloads(
-			request,
-			this.filterByExt(
+		return this.uniquePipelines(
+			this.sliceByMaxDownloads(
 				request,
-				this.extract(request, metadata).map(({ mediaType, url }) => ({
-					downloadUrl: url,
-					sourceUrl: request.entryUrl,
-					identifier: {
-						mediaType,
-						...this.fileManager.detectResourceType(url, request),
-						key: this.buildIdentifier({
+				this.filterByExt(
+					request,
+					this.extract(request, metadata).map(({ mediaType, url }) => ({
+						downloadUrl: url,
+						sourceUrl: request.entryUrl,
+						identifier: {
 							mediaType,
-							metadata,
-							url
-						})
-					},
-					provider: request.provider
-				}))
+							...this.fileManager.detectResourceType(url, request),
+							key: this.buildIdentifier({
+								mediaType,
+								metadata,
+								url
+							})
+						},
+						provider: request.provider
+					}))
+				)
 			)
 		);
 	}
@@ -84,5 +86,17 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExecutio
 		if (!allowedQuality || allowedQuality === VideoQuality.QUnknown) return items;
 
 		return items.filter((item) => getQuality(item) === allowedQuality);
+	}
+
+	protected uniquePipelines(pipelines: PipelineItem[]): PipelineItem[] {
+		const uniqueMap = new Map<string, PipelineItem>();
+
+		for (const pipeline of pipelines) {
+			if (!uniqueMap.has(pipeline.downloadUrl)) {
+				uniqueMap.set(pipeline.downloadUrl, pipeline);
+			}
+		}
+
+		return Array.from(uniqueMap.values());
 	}
 }

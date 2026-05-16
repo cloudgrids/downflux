@@ -30,7 +30,16 @@ export class TnAFlixTransformer extends BaseTransformer<TnAFlixExecArgs, TnAFlix
 			pageUrl: tnAFlixFields?.pageUrl ?? request.entryUrl,
 			title: tnAFlixFields?.title,
 			poster: tnAFlixFields?.poster,
-			videos: tnAFlixFields?.videos,
+			videos: {
+				mp4: this.uniqueVideos(tnAFlixFields?.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(tnAFlixFields?.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			tags: tnAFlixFields?.tags,
 			uploader: tnAFlixFields?.uploader,
 			videoId: tnAFlixFields?.videoId,

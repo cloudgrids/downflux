@@ -21,12 +21,23 @@ export class SuperPornTransformer extends BaseTransformer<SuperPornExecArgs, Def
 	private toVideoOutput(metadata: DefaultExecutionResult<Partial<SuperPornOutput>>): SuperPornVideoOutput {
 		const superPornFields = metadata.customFields as SuperPornOutput;
 
+		const videos = this.mapSources(metadata.sources, superPornFields?.quality as VideoQuality);
+
 		return {
 			...superPornFields,
 			pageUrl: superPornFields.pageUrl,
 			tags: superPornFields?.tags,
 			uploader: superPornFields?.uploader,
-			videos: this.mapSources(metadata.sources, superPornFields?.quality as VideoQuality),
+			videos: {
+				mp4: this.uniqueVideos(videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			poster: superPornFields?.poster,
 			title: superPornFields?.title || metadata.title,
 			description: superPornFields?.description || metadata.description

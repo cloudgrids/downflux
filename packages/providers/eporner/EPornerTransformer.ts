@@ -1,5 +1,5 @@
 import { BaseTransformer } from '@base';
-import { DefaultExecutionResult, VideosFormat, VideoSourceOutput } from '@contracts';
+import { DefaultExecutionResult, VideosFormat } from '@contracts';
 import { OutputType, ProviderType, VideoQuality } from '@types';
 import { EPornerExecArgs, EPornerOutput, EPornerVideoOutput } from './EPornerContracts';
 import { EPornerMethods } from './EPornerTypes';
@@ -53,8 +53,14 @@ export class EPornerTransformer extends BaseTransformer<EPornerExecArgs, Default
 		});
 
 		return {
-			mp4: this.transformSources(json?.sources?.mp4),
-			hls: this.transformSources(json?.sources?.hls)
+			mp4: this.uniqueVideos<EPornerSource>(json?.sources?.mp4, {
+				getUrl: (video) => video?.src,
+				getQuality: (video) => (video?.labelShort as VideoQuality) ?? VideoQuality.QUnknown
+			}),
+			hls: this.uniqueVideos<EPornerSource>(json?.sources?.hls, {
+				getUrl: (video) => video?.src,
+				getQuality: (video) => (video?.labelShort as VideoQuality) ?? VideoQuality.QUnknown
+			})
 		};
 	}
 
@@ -65,16 +71,5 @@ export class EPornerTransformer extends BaseTransformer<EPornerExecArgs, Default
 			parseInt(hash.substring(16, 24), 16).toString(36) +
 			parseInt(hash.substring(24, 32), 16).toString(36)
 		);
-	}
-
-	private transformSources(data: Record<string, EPornerSource>): VideoSourceOutput[] {
-		const urls = new Set<VideoSourceOutput>();
-		for (const { src, labelShort } of Object.values(data)) {
-			urls.add({
-				url: src,
-				quality: (labelShort as VideoQuality) ?? VideoQuality.QUnknown
-			});
-		}
-		return Array.from(urls);
 	}
 }

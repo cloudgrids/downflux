@@ -21,7 +21,16 @@ export class MegaTubeTransformer extends BaseTransformer<MegaTubeExecArgs, Defau
 		const megaTubeFields = metadata.customFields as MegaTubeOutput;
 		return {
 			pageUrl: megaTubeFields.pageUrl,
-			videos: megaTubeFields.videos,
+			videos: {
+				mp4: this.uniqueVideos(megaTubeFields.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(megaTubeFields.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			poster: megaTubeFields.poster,
 			videoId: megaTubeFields.videoId,
 			description: metadata.description,

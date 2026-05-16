@@ -23,7 +23,16 @@ export class HqPornTransformer extends BaseTransformer<HqPornExecArgs, HqPornVid
 			title: hqPornFields?.title,
 			poster: hqPornFields?.poster,
 			pageUrl: hqPornFields?.pageUrl,
-			videos: hqPornFields?.videos,
+			videos: {
+				mp4: this.uniqueVideos(hqPornFields?.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(hqPornFields?.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			tags: metadata?.keywords || [],
 			description: metadata?.description || '',
 			uploader: hqPornFields?.title?.split(':')?.[0]?.trim() || 'Unknown'

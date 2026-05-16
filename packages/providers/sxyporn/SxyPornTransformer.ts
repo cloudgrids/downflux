@@ -22,6 +22,16 @@ export class SxyPornTransformer extends BaseTransformer<SxyPornExecArgs, Default
 
 		return {
 			...sxyPornFields,
+			videos: {
+				mp4: this.uniqueVideos(sxyPornFields.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(sxyPornFields.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			uploader: sxyPornFields.uploader,
 			pageUrl: sxyPornFields.pageUrl,
 			description: sxyPornFields.description,

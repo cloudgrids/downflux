@@ -21,6 +21,16 @@ export class ShamelessTransformer extends BaseTransformer<ShamelessExecArgs, Def
 		const customFields = metadata.customFields as ShamelessOutput;
 		return {
 			...customFields,
+			videos: {
+				mp4: this.uniqueVideos(customFields.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(customFields.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			description: metadata?.description,
 			tags: metadata?.keywords,
 			title: metadata?.title
