@@ -7,26 +7,28 @@ import { WallHavenMethods, WallHavenThumbnailQuality } from './WallHavenTypes';
 
 export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHavenOutput> {
 	public override build(metadata: WallHavenOutput, request: WallHavenExecArgs): PipelineItem[] {
-		return this.sliceByMaxDownloads(
-			request,
-			this.filterByExt(
+		return this.uniquePipelines(
+			this.sliceByMaxDownloads(
 				request,
-				this.extract(request, metadata).map((item) => ({
-					downloadUrl: item.url,
-					provider: request.provider,
-					sourceUrl: request.entryUrl,
-					identifier: {
-						mediaType: item.mediaType,
-						...this.fileManager.detectResourceType(item.url, request),
-						key: this.buildIdentifier({
+				this.filterByExt(
+					request,
+					this.extract(request, metadata).map((item) => ({
+						downloadUrl: item.url,
+						provider: request.provider,
+						sourceUrl: request.entryUrl,
+						identifier: {
 							mediaType: item.mediaType,
-							metadata,
-							url: item.url,
-							id: item.id,
-							username: item.username
-						})
-					}
-				}))
+							...this.fileManager.detectResourceType(item.url, request),
+							key: this.buildIdentifier({
+								mediaType: item.mediaType,
+								metadata,
+								url: item.url,
+								id: item.id,
+								username: item.username
+							})
+						}
+					}))
+				)
 			)
 		);
 	}

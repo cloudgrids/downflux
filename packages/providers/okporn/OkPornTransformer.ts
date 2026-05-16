@@ -113,7 +113,7 @@ export class OkPornTransformer extends BaseTransformer<
 			albumDescription: metadata.description,
 			modelName: customFields?.modelName ?? '',
 			albumId: metadata.sourceUrl.split('/').filter(Boolean).pop() ?? '',
-			albumImages: metadata.images,
+			albumImages: this.unique(metadata.images),
 			albumThumbnail: metadata.images[0],
 			albumImageCount: metadata.images.length,
 			starredModels: (customFields?.starredModels as string[]) ?? []
@@ -134,7 +134,16 @@ export class OkPornTransformer extends BaseTransformer<
 			description: metadata.description,
 			videoId: metadata.sourceUrl.split('/').filter(Boolean).pop() ?? '',
 			poster: customFields?.poster,
-			videos: customFields?.videos,
+			videos: {
+				hls: this.uniqueVideos(customFields?.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				mp4: this.uniqueVideos(customFields?.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			videoScreenshot: customFields?.poster ?? '',
 			videoAlbumId: customFields?.videoAlbumId,
 			videoCreatedAt: customFields?.videoCreatedAt,
@@ -153,7 +162,7 @@ export class OkPornTransformer extends BaseTransformer<
 			pageTitle: metadata.title,
 			pageUrl: metadata.sourceUrl,
 			modelCount: modelUrls.length,
-			modelUrls
+			modelUrls: this.unique(modelUrls)
 		};
 	}
 
@@ -181,7 +190,7 @@ export class OkPornTransformer extends BaseTransformer<
 		if (request.channelArgs === 'path') channelUrls = channelUrls.map((url) => url.split('/').filter(Boolean).pop() ?? '');
 
 		return {
-			channelUrls,
+			channelUrls: this.unique(channelUrls),
 			channelCount: channelUrls?.length
 		};
 	}

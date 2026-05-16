@@ -9,9 +9,9 @@ export class OkPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<OkPornOutput>>> {
 		const videoInfo = this.getVideoInfo(html);
 
-		const hls = Array.from(new Set(this.collectElements(html, 'source')?.map((source) => source?.src))).map((source) => ({
-			url: source,
-			quality: inferVideoQuality(source ?? '')
+		const hls = this.collectElements(html, 'source').map((source) => ({
+			url: source?.src,
+			quality: inferVideoQuality(source?.src)
 		}));
 
 		try {

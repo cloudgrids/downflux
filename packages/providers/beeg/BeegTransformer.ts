@@ -46,6 +46,12 @@ export class BeegTransformer extends BaseTransformer<BeegExecArgs, DefaultExecut
 		const description = fetchedFile?.data[0]?.cd_value || 'Beeg_description_not_found';
 		const videos = fetchedFile?.qualities?.h264 as BeegVideoMetadata[];
 		const videoId = videos?.[0]?.id;
+		const fallBackVideo = [
+			{
+				url: `${this.VIDEO_ORIGIN}/${fetchedFile?.fallback}`,
+				quality: fetchedFile?.fallback?.match(/\/(\d{3,4}p)\//)?.[1] as VideoQuality
+			}
+		];
 
 		return {
 			description: description,
@@ -56,19 +62,14 @@ export class BeegTransformer extends BaseTransformer<BeegExecArgs, DefaultExecut
 			videoId: videoId?.toString() ?? 'unknown',
 			pageUrl: request.entryUrl,
 			videos: {
-				hls:
-					videos?.map((video) => ({
-						quality: `${video.quality}p` as VideoQuality,
-						url: `${this.VIDEO_ORIGIN}/${video.url}`
-					})) ?? [],
-				mp4: fetchedFile?.fallback
-					? [
-							{
-								url: `${this.VIDEO_ORIGIN}/${fetchedFile?.fallback}`,
-								quality: fetchedFile?.fallback?.match(/\/(\d{3,4}p)\//)?.[1] as VideoQuality
-							}
-						]
-					: []
+				hls: this.uniqueVideos(videos ?? [], {
+					getUrl: (video) => `${this.VIDEO_ORIGIN}/${video.url}`,
+					getQuality: (video) => `${video.quality}p` as VideoQuality
+				}),
+				mp4: this.uniqueVideos(fallBackVideo, {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
 			}
 		};
 	}

@@ -21,6 +21,16 @@ export class MyLustTransformer extends BaseTransformer<MyLustExecArgs, DefaultEx
 		const myLustFields = metadata.customFields as MyLustOutput;
 		return {
 			...myLustFields,
+			videos: {
+				mp4: this.uniqueVideos(myLustFields.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(myLustFields.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			description: metadata?.description,
 			tags: metadata?.keywords,
 			title: metadata?.title

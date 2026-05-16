@@ -43,7 +43,16 @@ export class PornHubTransformer extends BaseTransformer<
 			tags: pornHubFields?.tags,
 			poster: pornHubFields?.poster,
 			description: pornHubFields?.description,
-			videos: pornHubFields.videos,
+			videos: {
+				mp4: this.uniqueVideos(pornHubFields?.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(pornHubFields?.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			user: pornHubFields?.user,
 			userAvatar: pornHubFields?.userAvatar,
 			totalVideos: pornHubFields?.totalVideos,
@@ -57,7 +66,7 @@ export class PornHubTransformer extends BaseTransformer<
 		if (request?.videosArgs?.format === 'path') videoUrls = videoUrls.map((url) => url.split('=').pop() ?? url);
 
 		return {
-			videoUrls,
+			videoUrls: this.unique(videoUrls),
 			username: request?.username ?? 'unknown',
 			currentPage: pornHubFields?.currentPage ?? '1',
 			fetchedVideos: videoUrls?.length?.toString() ?? '0'

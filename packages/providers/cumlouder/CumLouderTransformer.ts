@@ -32,10 +32,16 @@ export class CumLouderTransformer extends BaseTransformer<CumLouderExecArgs, Def
 
 	private mapSources(sources: string[]): VideosFormat {
 		return {
-			mp4: this.filterAndMapSources(sources).map((video) => ({
-				url: video,
-				quality: VideoQuality.QUnknown
-			})) as VideoSourceOutput[]
+			mp4: this.uniqueVideos(
+				this.filterAndMapSources(sources).map((video) => ({
+					url: video,
+					quality: VideoQuality.QUnknown
+				})) as VideoSourceOutput[],
+				{
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}
+			)
 		};
 	}
 

@@ -21,12 +21,23 @@ export class ZzzTubeTransformer extends BaseTransformer<ZzzTubeExecArgs, Default
 	private toVideoOutput(metadata: DefaultExecutionResult<Partial<ZzzTubeOutput>>): ZzzTubeVideoOutput {
 		const zzzTubeFields = metadata.customFields as ZzzTubeOutput;
 
+		const videos = this.mapSources(metadata.sources);
+
 		return {
 			...zzzTubeFields,
 			title: metadata?.title,
 			description: metadata?.description,
 			tags: metadata?.keywords || [],
-			videos: this.mapSources(metadata.sources)
+			videos: {
+				mp4: this.uniqueVideos(videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			}
 		};
 	}
 

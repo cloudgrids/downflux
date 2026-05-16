@@ -22,6 +22,16 @@ export class XCafeTransformer extends BaseTransformer<XCafeExecArgs, DefaultExec
 		const uploaderUrl = metadata?.anchors.find((anchor) => /channels\/([^/]+)\//i.test(anchor));
 		return {
 			...xCafeFields,
+			videos: {
+				mp4: this.uniqueVideos(xCafeFields.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(xCafeFields.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			description: metadata?.description,
 			tags: metadata?.keywords,
 			title: metadata?.title,

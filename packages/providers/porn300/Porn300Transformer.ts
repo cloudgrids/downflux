@@ -32,12 +32,18 @@ export class Porn300Transformer extends BaseTransformer<Porn300ExecArgs, Default
 
 	private mapSources(sources: string[]): VideosFormat {
 		return {
-			mp4: sources
-				?.filter((source) => source?.includes('porn300'))
-				.map((video) => ({
-					url: video,
-					quality: VideoQuality.QUnknown
-				})) as VideoSourceOutput[]
+			mp4: this.uniqueVideos(
+				sources
+					?.filter((source) => source?.includes('porn300'))
+					.map((video) => ({
+						url: video,
+						quality: VideoQuality.QUnknown
+					})) as VideoSourceOutput[],
+				{
+					getQuality: (video) => video.quality,
+					getUrl: (video) => video.url
+				}
+			)
 		};
 	}
 }

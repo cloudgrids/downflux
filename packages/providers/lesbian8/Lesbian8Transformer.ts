@@ -21,6 +21,16 @@ export class Lesbian8Transformer extends BaseTransformer<Lesbian8ExecArgs, Defau
 		const lesbian8Fields = metadata.customFields as Lesbian8Output;
 		return {
 			...lesbian8Fields,
+			videos: {
+				mp4: this.uniqueVideos(lesbian8Fields.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(lesbian8Fields.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			description: metadata.description
 		};
 	}

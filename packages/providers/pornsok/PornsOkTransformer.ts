@@ -28,7 +28,16 @@ export class PornsOkTransformer extends BaseTransformer<PornsOkExecArgs, Default
 			uploadedAt: pornsOkFields?.uploadedAt,
 			totalViews: pornsOkFields?.totalViews,
 			type: pornsOkFields?.type,
-			videos: pornsOkFields?.videos,
+			videos: {
+				mp4: this.uniqueVideos(pornsOkFields?.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(pornsOkFields?.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			starredBy: pornsOkFields?.starredBy,
 			categories: pornsOkFields?.categories,
 			tags: metadata?.keywords,

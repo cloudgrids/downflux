@@ -5,25 +5,27 @@ import { TheyAreHugeExecArgs, TheyAreHugeOutput } from './TheyAreHugeContracts';
 
 export class TheyAreHugePipeline extends BasePipeline<TheyAreHugeExecArgs, TheyAreHugeOutput> {
 	public override build(metadata: TheyAreHugeOutput, request: TheyAreHugeExecArgs): PipelineItem[] {
-		return this.sliceByMaxDownloads(
-			request,
-			this.filterByExt(
+		return this.uniquePipelines(
+			this.sliceByMaxDownloads(
 				request,
-				this.extract(request, metadata).map((item) => ({
-					downloadUrl: item.url,
-					sourceUrl: request.entryUrl,
-					provider: request.provider,
-					identifier: {
-						mediaType: item.mediaType,
-						...this.fileManager.detectResourceType(item.url, request),
-						key: this.buildIdentifier({
+				this.filterByExt(
+					request,
+					this.extract(request, metadata).map((item) => ({
+						downloadUrl: item.url,
+						sourceUrl: request.entryUrl,
+						provider: request.provider,
+						identifier: {
 							mediaType: item.mediaType,
-							metadata,
-							url: item.url,
-							id: item.id
-						})
-					}
-				}))
+							...this.fileManager.detectResourceType(item.url, request),
+							key: this.buildIdentifier({
+								mediaType: item.mediaType,
+								metadata,
+								url: item.url,
+								id: item.id
+							})
+						}
+					}))
+				)
 			)
 		);
 	}

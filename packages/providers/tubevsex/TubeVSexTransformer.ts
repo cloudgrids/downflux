@@ -21,6 +21,16 @@ export class TubeVSexTransformer extends BaseTransformer<TubeVSexExecArgs, Defau
 		const tubeVSexFields = metadata.customFields as TubeVSexOutput;
 		return {
 			...tubeVSexFields,
+			videos: {
+				mp4: this.uniqueVideos(tubeVSexFields.videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(tubeVSexFields.videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			title: metadata.title,
 			description: metadata.description,
 			tags: metadata.keywords || []

@@ -20,6 +20,7 @@ export class PornOneTransformer extends BaseTransformer<PornOneExecArgs, Default
 
 	private toVideoOutput(metadata: DefaultExecutionResult<Partial<PornOneOutput>>): PornOneVideoOutput {
 		const pornOneFields = metadata.customFields as PornOneOutput;
+		const mp4 = this.mapSources(metadata.sources, pornOneFields.quality ?? VideoQuality.QUnknown)?.mp4;
 		return {
 			categories: pornOneFields.categories,
 			description: metadata.description,
@@ -29,7 +30,12 @@ export class PornOneTransformer extends BaseTransformer<PornOneExecArgs, Default
 			tags: metadata.keywords,
 			title: metadata.title,
 			uploader: pornOneFields.uploader,
-			videos: this.mapSources(metadata.sources, pornOneFields.quality ?? VideoQuality.QUnknown)
+			videos: {
+				mp4: this.uniqueVideos(mp4 || [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			}
 		};
 	}
 

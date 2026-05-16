@@ -36,11 +36,22 @@ export class PussySpaceTransformer extends BaseTransformer<PussySpaceExecArgs, D
 			}
 		})) as DefaultExecutionResult<Partial<PussySpaceOutput>>;
 
+		const videos = metadataFromApi.customFields?.videos;
+
 		return {
 			...pussySpaceFields,
 			description: metadata.description,
 			title: metadata.title,
-			videos: metadataFromApi.customFields?.videos ?? { mp4: [] },
+			videos: {
+				mp4: this.uniqueVideos(videos?.mp4 ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}),
+				hls: this.uniqueVideos(videos?.hls ?? [], {
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				})
+			},
 			tags: metadata.keywords || []
 		};
 	}
