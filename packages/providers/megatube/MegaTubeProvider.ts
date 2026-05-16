@@ -20,6 +20,8 @@ export class MegaTubeProvider extends BaseProvider<MegaTubeExecArgs> {
 			metadata: {
 				hasHls: false,
 				hasMp4: true,
+				hlsIntegrated: false,
+				mp4Integrated: true,
 				hasKvs: true,
 				underGeoRestriction: false,
 				requiresBrowser: false,

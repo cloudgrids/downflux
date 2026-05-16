@@ -179,7 +179,7 @@ export abstract class BaseHttpClient {
 				return await UFetch(url, { ...init, dispatcher: this.spoofAgent });
 			} catch (spoofError) {
 				this.progressManager.update({ message: `SNI spoof transport failed, Retry with default, ${spoofError}` });
-				return UFetch(url, init);
+				return await UFetch(url, init);
 			}
 		}
 	}

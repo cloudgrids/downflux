@@ -24,13 +24,15 @@ export class BeegProvider extends BaseProvider<BeegExecArgs> {
 			metadata: {
 				hasHls: true,
 				hasMp4: true,
+				hlsIntegrated: true,
+				mp4Integrated: true,
 				hasKvs: false,
-				underGeoRestriction: false,
+				underGeoRestriction: true,
 				requiresBrowser: false,
 				canDownload: true,
 				underDevelopment: true,
 				cloudflareChallenge: false,
-				sniSpoofing: 'untested'
+				sniSpoofing: 'working'
 			}
 		});
 	}

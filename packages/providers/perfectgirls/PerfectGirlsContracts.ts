@@ -1,5 +1,5 @@
 import { TagFilterOptions } from '@base';
-import { ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 import { TagsOutput } from '@provider/okporn';
 import { VideoQuality } from '@types';
 
@@ -55,30 +55,12 @@ export interface PerfectGirlsAlbumOutput {
  * Output structure for PerfectGirls video operations.
  * Contains video metadata, sources, poster, and album context.
  */
-export interface PerfectGirlsVideoOutput {
+export interface PerfectGirlsVideoOutput extends DefaultVideoOutput {
 	/** Video identifier */
 	videoId: string;
 
-	/** Video title */
-	videoTitle: string;
-
-	/** Video page URL */
-	videoUrl: string;
-
-	/** Video keywords */
-	videoKeywords: string[];
-
-	/** Video description */
-	videoDescription: string;
-
 	/** Screenshot image URL */
 	videoScreenshot: string;
-
-	/** Video source URLs with detected quality */
-	videoSources: VideoSourceOutput[];
-
-	/** Poster image URL */
-	videoPoster: string;
 
 	/** Video creation date text */
 	videoCreatedAt?: string;

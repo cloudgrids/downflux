@@ -28,17 +28,15 @@ export class CumLouderProvider extends BaseProvider<CumLouderExecArgs> {
 				canDownload: true,
 				underDevelopment: true,
 				cloudflareChallenge: false,
-				sniSpoofing: 'untested'
+				sniSpoofing: 'failed'
 			}
 		});
 	}
 
 	get videoUrl(): string {
-		const match = this.url.match(this.VIDEO_REGEX_PATH);
+		if (this.VIDEO_REGEX_PATH.test(this.url)) return this.url;
 
-		if (!match) throw new GenericException('Invalid video url', this.provider);
-
-		return this.url;
+		throw new GenericException('Invalid video url', this.provider);
 	}
 
 	public async getVideo(): Promise<CumLouderVideoOutput> {

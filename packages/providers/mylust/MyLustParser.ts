@@ -1,13 +1,21 @@
 import { BaseParser } from '@base';
-import { DefaultExecutionResult } from '@contracts';
+import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { ProviderType, VideoQuality } from '@types';
 import { MyLustOutput } from './MyLustContracts';
 
 export class MyLustParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<MyLustOutput>>> {
 		const scripts = this.extractScriptsByType(html, 'application/ld+json')?.flatMap((script) => JSON.parse(script))?.[0];
-		const mp4 = this.collectElements(html, 'source')?.map((source) => ({ url: source?.src, quality: source?.title }));
+		const uniqueSources = new Map<string, VideoSourceOutput>();
+
+		this.collectElements(html, 'source')?.forEach((source) => {
+			if (source?.src)
+				uniqueSources.set(source.src, {
+					url: source.src,
+					quality: (source.title as VideoQuality) || VideoQuality.QUnknown
+				});
+		});
 
 		try {
 			return {
@@ -17,7 +25,7 @@ export class MyLustParser extends BaseParser {
 					uploader: scripts?.author?.[0]?.name || 'unknown',
 					videoId: html.match(/videoId\s*:\s*['"]([^'"]+)['"]/i)?.[1],
 					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					videos: { mp4 },
+					videos: { mp4: Array.from(uniqueSources.values()) },
 					title: '',
 					tags: [],
 					description: ''

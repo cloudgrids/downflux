@@ -22,7 +22,7 @@ export class ColliderPornTransformer extends BaseTransformer<ColliderPornExecArg
 		return {
 			...customFields,
 			description: metadata?.description,
-			keywords: metadata?.keywords,
+			tags: metadata?.keywords,
 			title: metadata?.title
 		};
 	}

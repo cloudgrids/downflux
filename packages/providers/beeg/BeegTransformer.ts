@@ -1,6 +1,6 @@
 import { BaseTransformer } from '@base';
 import { DefaultExecutionResult } from '@contracts';
-import { OutputType } from '@types';
+import { OutputType, VideoQuality } from '@types';
 import { BeegExecArgs, BeegVideoMetadata, BeegVideoOutput } from './BeegContracts';
 import { BeegMethods } from './BeegTypes';
 
@@ -45,16 +45,31 @@ export class BeegTransformer extends BaseTransformer<BeegExecArgs, DefaultExecut
 		const fetchedFile = parsedData?.file;
 		const description = fetchedFile?.data[0]?.cd_value || 'Beeg_description_not_found';
 		const videos = fetchedFile?.qualities?.h264 as BeegVideoMetadata[];
+		const videoId = videos?.[0]?.id;
 
 		return {
 			description: description,
 			username: 'unknown',
+			title: '',
+			poster: '',
+			tags: [],
+			videoId: videoId?.toString() ?? 'unknown',
 			pageUrl: request.entryUrl,
-			videos:
-				videos?.map((video) => ({
-					...video,
-					url: `${this.VIDEO_ORIGIN}/${video.url}`
-				})) ?? []
+			videos: {
+				hls:
+					videos?.map((video) => ({
+						quality: `${video.quality}p` as VideoQuality,
+						url: `${this.VIDEO_ORIGIN}/${video.url}`
+					})) ?? [],
+				mp4: fetchedFile?.fallback
+					? [
+							{
+								url: `${this.VIDEO_ORIGIN}/${fetchedFile?.fallback}`,
+								quality: fetchedFile?.fallback?.match(/\/(\d{3,4}p)\//)?.[1] as VideoQuality
+							}
+						]
+					: []
+			}
 		};
 	}
 }

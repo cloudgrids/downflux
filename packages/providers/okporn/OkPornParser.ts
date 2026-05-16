@@ -1,12 +1,18 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
+import { inferVideoQuality } from '@shared';
 import { ProviderType } from '@types';
 import { OkPornModelVideoCard, OkPornOutput } from './OkPornContracts';
 
 export class OkPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<OkPornOutput>>> {
 		const videoInfo = this.getVideoInfo(html);
+
+		const hls = Array.from(new Set(this.collectElements(html, 'source')?.map((source) => source?.src))).map((source) => ({
+			url: source,
+			quality: inferVideoQuality(source ?? '')
+		}));
 
 		try {
 			return {
@@ -20,8 +26,9 @@ export class OkPornParser extends BaseParser {
 						.find((h) => /\/albums\/\d+\//.test(h))
 						?.match(/\/albums\/(\d+)\//)?.[1],
 					videoCreatedAt: videoInfo?.uploadDate,
-					videoPoster: videoInfo?.thumbnailUrl || this.extractVideoPosters(html)[0],
-					videoCards: this.extractVideoCards(html) ?? []
+					poster: videoInfo?.thumbnailUrl || this.extractVideoPosters(html)[0],
+					videoCards: this.extractVideoCards(html) ?? [],
+					videos: { hls }
 				},
 				videoPosters: this.extractVideoPosters(html),
 				description: videoInfo?.description || this.extractMetaDescription(html),

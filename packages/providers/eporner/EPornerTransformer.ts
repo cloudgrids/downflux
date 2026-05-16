@@ -19,7 +19,7 @@ export class EPornerTransformer extends BaseTransformer<EPornerExecArgs, Default
 
 		switch (request?.method) {
 			case EPornerMethods.getVideo:
-				return this.toVideoOutput(request, metadata);
+				return await this.toVideoOutput(request, metadata);
 			default:
 				return metadata;
 		}

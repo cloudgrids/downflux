@@ -13,6 +13,9 @@ export class EPornerProvider extends BaseProvider<EPornerExecArgs> {
 			metadata: {
 				hasHls: true,
 				hasMp4: true,
+				hlsIntegrated: true,
+				mp4Integrated: true,
+				needsExternalAPI: true,
 				hasKvs: false,
 				underGeoRestriction: true,
 				requiresBrowser: false,

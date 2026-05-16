@@ -55,7 +55,11 @@ export class PornDoeTransformer extends BaseTransformer<PornDoeExecArgs, Default
 			pageUrl: pornDoeFields.pageUrl,
 			title: metadata.title,
 			id: pornDoeFields.id,
-			videos: { mp4: videos.map((video) => ({ url: video.link, quality: `${video.height}p` as VideoQuality })) },
+			videos: {
+				mp4: videos
+					.filter((video) => video.type === 'video')
+					.map((video) => ({ url: video.link, quality: `${video.height}p` as VideoQuality }))
+			},
 			preview,
 			poster,
 			tags: metadata.keywords || [],

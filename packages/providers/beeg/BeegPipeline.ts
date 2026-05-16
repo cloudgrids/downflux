@@ -1,6 +1,6 @@
 import { BasePipeline } from '@base';
 import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
-import { MediaType, VideoQuality } from '@types';
+import { MediaType } from '@types';
 import { BeegExecArgs, BeegOutput } from './BeegContracts';
 
 export class BeegPipeline extends BasePipeline<BeegExecArgs, BeegOutput> {
@@ -36,7 +36,7 @@ export class BeegPipeline extends BasePipeline<BeegExecArgs, BeegOutput> {
 
 		switch (mediaType) {
 			case MediaType.VIDEOS:
-				mediaSegment = `${MediaType.VIDEOS}/${id}/${secondaryId}p`;
+				mediaSegment = `${MediaType.VIDEOS}/${id}/${secondaryId}`;
 				break;
 			default:
 				mediaSegment = `${mediaType}/${id}`;
@@ -48,13 +48,27 @@ export class BeegPipeline extends BasePipeline<BeegExecArgs, BeegOutput> {
 	protected override extract(request: BeegExecArgs, metadata: BeegOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 
-		if (metadata?.videos?.length) {
-			this.filterByQuality(metadata.videos, {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
 				allowedQuality: request.allowedVideoQuality,
-				getQuality: (item) => `${item?.quality}p` as VideoQuality
+				getQuality: (item) => item?.quality
 			}).forEach((video) => {
 				urls.add({
-					id: video?.id?.toString(),
+					id: metadata.videoId,
+					secondaryId: video?.quality?.toString(),
+					url: video?.url,
+					mediaType: MediaType.VIDEOS
+				});
+			});
+		}
+
+		if (metadata?.videos?.hls?.length) {
+			this.filterByQuality(metadata.videos.hls, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (item) => item?.quality
+			}).forEach((video) => {
+				urls.add({
+					id: metadata.videoId,
 					secondaryId: video?.quality?.toString(),
 					url: video?.url,
 					mediaType: MediaType.VIDEOS

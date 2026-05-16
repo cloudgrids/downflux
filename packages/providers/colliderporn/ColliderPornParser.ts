@@ -1,20 +1,39 @@
 import { BaseParser } from '@base';
-import { DefaultExecutionResult } from '@contracts';
+import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { ProviderType, VideoQuality } from '@types';
 import { ColliderPornOutput } from './ColliderPornContracts';
 
 export class ColliderPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<ColliderPornOutput>>> {
+		const mp4s = [this.extractScriptMethodInput('setVideoUrlLow', html), this.extractScriptMethodInput('setVideoUrlHigh', html)]
+			?.filter(Boolean)
+			?.map((url) => ({ url, quality: VideoQuality.QUnknown }));
+
+		const hls = [this.extractScriptMethodInput('setVideoUrlHls', html)]
+			?.filter(Boolean)
+			?.map((url) => ({ url, quality: VideoQuality.QUnknown }));
+
+		const uniqueMp4sSources = new Map<string, VideoSourceOutput>();
+
+		this.collectElements(html, 'source')?.forEach((source) => {
+			if (source?.src)
+				uniqueMp4sSources.set(source.src, {
+					url: source.src,
+					quality: (source.title as VideoQuality) || VideoQuality.QUnknown
+				});
+		});
+
 		try {
 			return {
 				customFields: {
+					tags: [],
+					description: '',
 					pageUrl: sourceUrl,
 					poster: this.extractScriptMethodInput('setThumbUrl', html),
-					videoUrl: {
-						low: this.extractScriptMethodInput('setVideoUrlLow', html),
-						high: this.extractScriptMethodInput('setVideoUrlHigh', html),
-						hls: this.extractScriptMethodInput('setVideoHLS', html)
+					videos: {
+						mp4: mp4s?.length ? mp4s : Array.from(uniqueMp4sSources.values()),
+						hls: hls?.length ? hls : []
 					},
 					title: this.extractScriptMethodInput('setVideoTitle', html),
 					uploader: this.extractScriptMethodInput('setUploaderName', html),
