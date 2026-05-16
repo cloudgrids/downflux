@@ -131,7 +131,7 @@ export class PornHubParser extends BaseParser {
 		}
 	}
 
-	public extractUserAvatar(html: string): string {
+	private extractUserAvatar(html: string): string {
 		const element = this.extractBlocks(html, 'a', 'userAvatarLink')[0] ?? html;
 		return this.extractImageUrls(element)[0] ?? '';
 	}

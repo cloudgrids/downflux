@@ -40,7 +40,7 @@ export class PerfectGirlsParser extends BaseParser {
 		}
 	}
 
-	public extractVideoCards(html: string, sourceUrl?: string): PerfectGirlsModelVideoCard[] {
+	private extractVideoCards(html: string, sourceUrl?: string): PerfectGirlsModelVideoCard[] {
 		const anchors = this.extractBlocks(html, 'a');
 
 		return anchors
@@ -68,11 +68,11 @@ export class PerfectGirlsParser extends BaseParser {
 			.filter(Boolean) as PerfectGirlsModelVideoCard[];
 	}
 
-	public extractCustomTitle(html: string): string {
+	private extractCustomTitle(html: string): string {
 		return this.extractElementText(html, 'class="item" href="', '"');
 	}
 
-	public extractStarredModels(html: string, sourceUrl?: string) {
+	private extractStarredModels(html: string, sourceUrl?: string) {
 		const origin = sourceUrl ? new URL(sourceUrl).origin : 'https://perfectgirls.xxx';
 
 		return (
@@ -88,7 +88,7 @@ export class PerfectGirlsParser extends BaseParser {
 		);
 	}
 
-	public getVideoInfo(html: string) {
+	private getVideoInfo(html: string) {
 		return this.extractScriptsByType(html, 'application/ld+json').map((script) => JSON.parse(script))?.[0];
 	}
 }

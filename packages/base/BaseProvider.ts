@@ -42,8 +42,8 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	}
 
 	constructor(
-		public readonly url: string,
-		config: ProviderConfig
+		protected readonly url: string,
+		protected config: ProviderConfig
 	) {
 		this.provider = config.provider;
 		this.urlPattern = config.urlPattern;
@@ -149,6 +149,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	 * Sets transcode options.
 	 * @param opts
 	 * Sometimes due to nature of the OS, the video might not play after download.
+	 *
 	 * In such cases, you can set transcodeOptions to re-encode the video using ffmpeg which should resolve most compatibility issues.
 	 * Make sure your OS can handle it
 	 */
@@ -169,6 +170,11 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	/**
 	 * Sets preferred video codec.
 	 * @param codec Video codec (h264 or av1)
+	 *
+	 * This feature is still experimental not yet implemented for all providers.
+	 *
+	 * It allows you to specify a preferred video codec which can help with compatibility or performance in some cases.
+	 * If the provider supports it, it will try to download the video in the specified codec. If not available, it will fall back to the default behavior.
 	 */
 	public setPreferredCodec(codec: VideoCodec): this {
 		this.executionOptions.preferredVideoCodec = codec;
@@ -237,6 +243,16 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	 * Sets execution strategy.
 	 * @param type Execution mode
 	 * @defaultValue ExecutionType.SEQUENTIAL
+	 *
+	 * This feature is still `experimental` and not yet implemented for all providers.
+	 * It allows you to specify the execution strategy for the extraction and download process.
+	 *
+	 * - `SEQUENTIAL`: Extracts and downloads items one by one.
+	 *  This is the most compatible mode and should work with all providers, but can be slower for large batches.
+	 *
+	 * - `PARALLEL`: Extracts all items first, then downloads them in parallel.
+	 *  This can be faster for large batches, but may cause issues with providers that have strict rate limits or anti-bot measures.
+	 * Use with caution and test thoroughly if you choose to use `PARALLEL` execution.
 	 */
 	public setExecutionType(type: ExecutionType): this {
 		this.executionOptions.executionType = type;

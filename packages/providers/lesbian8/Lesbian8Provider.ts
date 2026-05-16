@@ -28,7 +28,7 @@ export class Lesbian8Provider extends BaseProvider<Lesbian8ExecArgs> {
 		});
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		const match = this.url.match(this.VIDEO_REGEX_PATH);
 
 		if (!match) throw new GenericException('Invalid video url', this.provider);

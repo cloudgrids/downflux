@@ -29,7 +29,7 @@ export class ShamelessProvider extends BaseProvider<ShamelessExecArgs> {
 		});
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		if (this.VIDEO_URL_REGEX.test(this.url)) return this.url;
 
 		throw new GenericException('Invalid video URL', this.provider);

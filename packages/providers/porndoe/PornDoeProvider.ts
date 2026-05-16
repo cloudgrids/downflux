@@ -30,7 +30,7 @@ export class PornDoeProvider extends BaseProvider<PornDoeExecArgs> {
 		});
 	}
 
-	get videoUrl(): string {
+	private get videoUrl(): string {
 		if (this.VIDEO_PATH_REGEX.test(this.url)) return this.url;
 
 		throw new GenericException('Invalid video url', this.provider);
