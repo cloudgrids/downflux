@@ -1,6 +1,6 @@
 import { BaseTransformer } from '@base';
 import { DefaultExecutionResult } from '@contracts';
-import { OutputType } from '@types';
+import { OutputType, VideoQuality } from '@types';
 import { PornDoeExecArgs, PornDoeOutput, PornDoeVideoOutput, PornDoeVideoSource } from './PornDoeContracts';
 import { PornDoeMethods } from './PornDoeTypes';
 
@@ -54,8 +54,8 @@ export class PornDoeTransformer extends BaseTransformer<PornDoeExecArgs, Default
 			description: metadata.description,
 			pageUrl: pornDoeFields.pageUrl,
 			title: metadata.title,
-			videos: videos?.filter((v) => v?.type === 'video') ?? [],
 			id: pornDoeFields.id,
+			videos: { mp4: videos.map((video) => ({ url: video.link, quality: `${video.height}p` as VideoQuality })) },
 			preview,
 			poster,
 			tags: metadata.keywords || [],

@@ -73,13 +73,26 @@ export class PornDoePipeline extends BasePipeline<PornDoeExecArgs, PornDoeOutput
 			});
 		}
 
-		if (metadata?.videos?.length) {
-			this.filterByQuality(metadata.videos, {
+		if (metadata?.videos?.mp4?.length) {
+			this.filterByQuality(metadata.videos.mp4, {
 				allowedQuality: request.allowedVideoQuality,
-				getQuality: (item) => `${item.height}p`
+				getQuality: (item) => item.quality
 			}).forEach((video) =>
 				urls.add({
-					url: video.link,
+					url: video.url,
+					mediaType: MediaType.VIDEOS,
+					id: videoId
+				})
+			);
+		}
+
+		if (metadata?.videos?.hls?.length) {
+			this.filterByQuality(metadata.videos.hls, {
+				allowedQuality: request.allowedVideoQuality,
+				getQuality: (item) => item.quality
+			}).forEach((video) =>
+				urls.add({
+					url: video.url,
 					mediaType: MediaType.VIDEOS,
 					id: videoId
 				})

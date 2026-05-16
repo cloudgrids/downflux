@@ -3,8 +3,7 @@ import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
 export interface PornDoeExecArgs extends ExecutionArgs {}
 export interface PornDoeOutput extends PornDoeVideoOutput {}
 
-export interface PornDoeVideoOutput extends Omit<DefaultVideoOutput, 'videos'> {
-	videos: PornDoeVideoSource[];
+export interface PornDoeVideoOutput extends DefaultVideoOutput {
 	preview: string;
 	id: string;
 	uploader: string;

@@ -14,6 +14,10 @@ export class PornDoeProvider extends BaseProvider<PornDoeExecArgs> {
 			urlPattern: /^(?:(?:www|de|en|fs|pt|es|fr|it)\.)?porndoe\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				hlsIntegrated: false,
+				mp4Integrated: true,
+				needsExternalAPI: true,
+				requiresLogin: false,
 				hasMp4: true,
 				hasKvs: false,
 				underGeoRestriction: false,
@@ -27,11 +31,9 @@ export class PornDoeProvider extends BaseProvider<PornDoeExecArgs> {
 	}
 
 	get videoUrl(): string {
-		const match = this.url.match(this.VIDEO_PATH_REGEX);
+		if (this.VIDEO_PATH_REGEX.test(this.url)) return this.url;
 
-		if (!match) throw new GenericException('Invalid video url', this.provider);
-
-		return this.url;
+		throw new GenericException('Invalid video url', this.provider);
 	}
 
 	public async getVideo(): Promise<PornDoeVideoOutput> {
