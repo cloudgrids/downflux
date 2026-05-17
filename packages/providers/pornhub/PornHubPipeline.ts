@@ -1,38 +1,12 @@
 import { BasePipeline } from '@base';
-import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
+import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { PornHubExecArgs, PornHubOutput } from './PornHubContracts';
 
 export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput> {
-	public override build(metadata: PornHubOutput, request: PornHubExecArgs): PipelineItem[] {
-		return this.uniquePipelines(
-			this.sliceByMaxDownloads(
-				request,
-				this.filterByExt(
-					request,
-					this.extract(request, metadata).map((item) => ({
-						downloadUrl: item.url,
-						sourceUrl: request.entryUrl,
-						provider: request.provider,
-						identifier: {
-							mediaType: item.mediaType,
-							...this.fileManager.detectResourceType(item.url, request),
-							key: this.buildIdentifier({
-								mediaType: item.mediaType,
-								metadata,
-								url: item.url,
-								id: item.id
-							})
-						}
-					}))
-				)
-			)
-		);
-	}
-
 	protected override buildIdentifier(ctx: IdentifierContext<PornHubOutput>): string {
 		const { mediaType, metadata, id } = ctx;
-		const prefix = 'pornhub';
+		const prefix = 'PornHub';
 		let mediaSegment: string;
 
 		switch (mediaType) {
@@ -55,9 +29,7 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.user ?? id), mediaSegment);
 	}
 
-	protected override extract(request: PornHubExecArgs, metadata: PornHubOutput): PipelineExtractedItem[] {
-		const urls: Set<PipelineExtractedItem> = new Set();
-
+	protected override mappings(metadata: PornHubOutput, request: PornHubExecArgs): PipelineMappings {
 		let viewKey: string;
 
 		try {
@@ -68,55 +40,49 @@ export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput
 
 		if (!viewKey) viewKey = request.entryUrl.split('=').pop() ?? 'unknown';
 
-		if (metadata?.videos?.mp4?.length) {
-			this.filterByQuality(metadata.videos.mp4, {
-				allowedQuality: request.allowedVideoQuality,
-				getQuality: (item) => item.quality
-			}).forEach((video) => {
-				urls.add({
-					url: video.url,
-					mediaType: MediaType.VIDEOS,
-					id: viewKey
-				});
-			});
-		}
-
-		if (metadata?.videos?.hls?.length) {
-			this.filterByQuality(metadata.videos.hls, {
-				allowedQuality: request.allowedVideoQuality,
-				getQuality: (item) => item.quality
-			}).forEach((video) => {
-				urls.add({
-					url: video.url,
-					mediaType: MediaType.VIDEOS,
-					id: viewKey
-				});
-			});
-		}
-
-		if (metadata?.userAvatar) {
-			urls.add({
-				url: metadata.userAvatar,
-				mediaType: MediaType.AVATAR
-			});
-		}
-
-		if (metadata?.poster) {
-			urls.add({
-				url: metadata.poster,
-				mediaType: MediaType.VIDEO_POSTER,
-				id: viewKey
-			});
-		}
-
-		if (metadata?.channelThumbnail) {
-			urls.add({
-				url: metadata.channelThumbnail,
-				mediaType: MediaType.CHANNELS,
-				id: this.pathBuilder.spaceNormalizer(metadata.channelName ?? 'unknown')
-			});
-		}
-
-		return Array.from(urls);
+		return [
+			this.createMappings(
+				this.filterByQuality(metadata.videos?.mp4, {
+					allowedQuality: request.allowedVideoQuality,
+					getQuality: (item) => item.quality
+				}),
+				{
+					getMedia: () => MediaType.VIDEOS,
+					getUrl: (video) => video.url,
+					getId: () => viewKey
+				}
+			),
+			this.createMappings(metadata?.poster ? [metadata.poster] : undefined, {
+				getMedia: () => MediaType.VIDEO_POSTER,
+				getUrl: (poster) => poster,
+				getId: () => viewKey
+			}),
+			this.createMappings(
+				this.filterByQuality(metadata.videos?.hls, {
+					allowedQuality: request.allowedVideoQuality,
+					getQuality: (item) => item.quality
+				}),
+				{
+					getMedia: () => MediaType.VIDEOS,
+					getUrl: (video) => video.url,
+					getId: () => viewKey
+				}
+			),
+			this.createMappings(metadata?.userAvatar ? [metadata.userAvatar] : undefined, {
+				getMedia: () => MediaType.AVATAR,
+				getUrl: (avatar) => avatar,
+				getId: () => this.pathBuilder.spaceNormalizer(metadata.user ?? 'unknown')
+			}),
+			this.createMappings(metadata?.channelThumbnail ? [metadata.channelThumbnail] : undefined, {
+				getMedia: () => MediaType.CHANNELS,
+				getUrl: (thumb) => thumb,
+				getId: () => this.pathBuilder.spaceNormalizer(metadata.channelName ?? 'unknown')
+			}),
+			this.createMappings(metadata?.channelThumbnail ? [metadata.channelThumbnail] : undefined, {
+				getMedia: () => MediaType.CHANNELS,
+				getUrl: (cover) => cover,
+				getId: () => this.pathBuilder.spaceNormalizer(metadata.channelName ?? 'unknown')
+			})
+		];
 	}
 }

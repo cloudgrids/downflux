@@ -1,35 +1,9 @@
 import { BasePipeline } from '@base';
-import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
+import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { PornOneExecArgs, PornOneOutput } from './PornOneContracts';
 
 export class PornOnePipeline extends BasePipeline<PornOneExecArgs, PornOneOutput> {
-	public override build(metadata: PornOneOutput, request: PornOneExecArgs): PipelineItem[] {
-		return this.uniquePipelines(
-			this.sliceByMaxDownloads(
-				request,
-				this.filterByExt(
-					request,
-					this.extract(request, metadata).map((item) => ({
-						downloadUrl: item.url,
-						sourceUrl: request.entryUrl,
-						provider: request.provider,
-						identifier: {
-							mediaType: item.mediaType,
-							...this.fileManager.detectResourceType(item.url, request),
-							key: this.buildIdentifier({
-								mediaType: item.mediaType,
-								metadata,
-								url: item.url,
-								id: item.id
-							})
-						}
-					}))
-				)
-			)
-		);
-	}
-
 	protected override buildIdentifier(ctx: IdentifierContext<PornOneOutput>): string {
 		const { mediaType, id, metadata } = ctx;
 		const prefix = 'PornOne';
@@ -51,44 +25,37 @@ export class PornOnePipeline extends BasePipeline<PornOneExecArgs, PornOneOutput
 		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.uploader || 'unknown'), mediaSegment);
 	}
 
-	protected override extract(request: PornOneExecArgs, metadata: PornOneOutput): PipelineExtractedItem[] {
-		const urls: Set<PipelineExtractedItem> = new Set();
+	protected override mappings(metadata: PornOneOutput, request: PornOneExecArgs): PipelineMappings {
 		const videoId = request.entryUrl.split('/').filter(Boolean).pop() ?? 'unknown';
 
-		if (metadata?.poster) {
-			urls.add({
-				url: metadata.poster,
-				mediaType: MediaType.VIDEO_POSTER,
-				id: videoId
-			});
-		}
-
-		if (metadata?.videos?.mp4?.length) {
-			this.filterByQuality(metadata.videos.mp4, {
-				allowedQuality: request.allowedVideoQuality,
-				getQuality: (video) => video.quality
-			}).forEach((video) => {
-				urls.add({
-					url: video.url,
-					id: videoId,
-					mediaType: MediaType.VIDEOS
-				});
-			});
-		}
-
-		if (metadata?.videos?.hls?.length) {
-			this.filterByQuality(metadata.videos?.hls, {
-				allowedQuality: request.allowedVideoQuality,
-				getQuality: (video) => video.quality
-			}).forEach((video) => {
-				urls.add({
-					url: video.url,
-					mediaType: MediaType.VIDEOS,
-					id: videoId
-				});
-			});
-		}
-
-		return Array.from(urls);
+		return [
+			this.createMappings(
+				this.filterByQuality(metadata.videos?.mp4, {
+					allowedQuality: request.allowedVideoQuality,
+					getQuality: (video) => video.quality
+				}),
+				{
+					getMedia: () => MediaType.VIDEOS,
+					getUrl: (video) => video.url,
+					getId: () => videoId
+				}
+			),
+			this.createMappings(metadata?.poster ? [metadata.poster] : undefined, {
+				getMedia: () => MediaType.VIDEO_POSTER,
+				getUrl: (poster) => poster,
+				getId: () => videoId
+			}),
+			this.createMappings(
+				this.filterByQuality(metadata.videos?.hls, {
+					allowedQuality: request.allowedVideoQuality,
+					getQuality: (video) => video.quality
+				}),
+				{
+					getMedia: () => MediaType.VIDEOS,
+					getUrl: (video) => video.url,
+					getId: () => videoId
+				}
+			)
+		];
 	}
 }

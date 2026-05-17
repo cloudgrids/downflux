@@ -4,7 +4,9 @@ import {
 	IdentifierContext,
 	PipelineExtractedItem,
 	PipelineExtractionHandler,
-	PipelineItem
+	PipelineItem,
+	PipelineMapping,
+	PipelineMappings
 } from '@contracts';
 import { Helper } from '@shared';
 import { FileManager, PathBuilder } from '@storage';
@@ -22,19 +24,19 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult extends DefaultEx
 				request,
 				this.filterByExt(
 					request,
-					this.extract(request, metadata).map(({ mediaType, url }) => ({
-						downloadUrl: url,
+					this.extract(request, metadata).map((item) => ({
+						downloadUrl: item.url,
 						sourceUrl: request.entryUrl,
+						provider: request.provider,
 						identifier: {
-							mediaType,
-							...this.fileManager.detectResourceType(url, request),
+							mediaType: item.mediaType,
+							...this.fileManager.detectResourceType(item.url, request),
+							...(item.extension && { extension: item.extension }),
 							key: this.buildIdentifier({
-								mediaType,
 								metadata,
-								url
+								...item
 							})
-						},
-						provider: request.provider
+						}
 					}))
 				)
 			)
@@ -57,30 +59,25 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult extends DefaultEx
 		return `${new URL(metadata.sourceUrl).hostname}/${ctx.mediaType}/${new URL(metadata.sourceUrl).pathname.substring(1)}`;
 	}
 
-	protected mappings(metadata: TResult): Array<[unknown[] | undefined, PipelineExtractionHandler<unknown>]> {
-		return [
-			[
-				metadata?.sources,
-				{
-					getUrl: (x: string) => x,
-					getMedia: () => MediaType.VIDEOS
-				}
-			],
+	protected createMappings<T>(elements: T[] | undefined, handler: PipelineExtractionHandler<T>): PipelineMapping<T> {
+		if (!elements || !elements.length) return [undefined, handler];
 
-			[
-				metadata?.images,
-				{
-					getUrl: (x: string) => x,
-					getMedia: () => MediaType.IMAGES
-				}
-			]
-		] as const;
+		return [elements, handler];
 	}
 
-	protected extract(request: TExec, metadata: any): PipelineExtractedItem[] {
+	protected mappings(metadata: TResult, request: TExec): PipelineMappings {
+		console.log('Resolving to base pipeline mapping:', request);
+
+		return [
+			this.createMappings(metadata?.sources, { getUrl: (x) => x, getMedia: () => MediaType.VIDEOS }),
+			this.createMappings(metadata?.images, { getUrl: (x) => x, getMedia: () => MediaType.IMAGES })
+		];
+	}
+
+	protected extract(request: TExec, metadata: TResult): PipelineExtractedItem[] {
 		const urls: PipelineExtractedItem[] = [];
 
-		for (const [elements, handler] of this.mappings(metadata)) {
+		for (const [elements, handler] of this.mappings(metadata, request)) {
 			this.extractedItems(urls, handler, elements);
 		}
 
@@ -88,7 +85,7 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult extends DefaultEx
 	}
 
 	protected filterByQuality<T, TEnum = string | number>(
-		items: T[],
+		items: T[] = [],
 		options: {
 			allowedQuality?: TEnum;
 			getQuality: (item: T) => TEnum;
@@ -125,7 +122,7 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult extends DefaultEx
 						extension: handlers.getExt?.(element),
 						mimeType: handlers.getMime?.(element),
 						id: handlers.getId?.(element),
-						secondaryId: handlers.getSecId?.(element),
+						secondaryId: handlers.getSecondaryId?.(element),
 						username: handlers.getUsername?.(element)
 					}) as PipelineExtractedItem
 			)
