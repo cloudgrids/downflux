@@ -48,8 +48,6 @@
 
 			"@provider/colliderporn": ["./packages/providers/colliderporn/index.ts"],
 
-			"@provider/coomer": ["./packages/providers/coomer/index.ts"],
-
 			"@provider/cumlouder": ["./packages/providers/cumlouder/index.ts"],
 
 			"@provider/default": ["./packages/providers/default/index.ts"],
@@ -109,7 +107,7 @@
 			"@provider/xvideos": ["./packages/providers/xvideos/index.ts"],
 
 			"@provider/zzztube": ["./packages/providers/zzztube/index.ts"]
-	// </auto-generated:entries>
+			// </auto-generated:entries>
 		}
 	},
 	"include": ["packages/**/*", "test/**/*"],

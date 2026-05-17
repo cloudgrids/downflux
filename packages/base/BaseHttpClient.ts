@@ -43,6 +43,7 @@ export abstract class BaseHttpClient {
 			minVersion: 'TLSv1.2',
 			maxVersion: 'TLSv1.3',
 			ALPNProtocols: ['h2', 'http/1.1'],
+			/* This does not works with all sites, but is necessary for some SNI-restricted ones */
 			servername: 'www.google.com',
 			checkServerIdentity: () => undefined
 		}
