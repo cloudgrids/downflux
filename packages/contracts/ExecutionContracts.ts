@@ -164,7 +164,7 @@ export interface DefaultExecutionResult<TCustomFields = unknown> {
 	sources: string[];
 
 	/** Video URLs */
-	videos: string[];
+	videoSources: string[];
 
 	/** Hyper links */
 	links: string[];

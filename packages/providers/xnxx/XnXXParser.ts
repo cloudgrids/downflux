@@ -19,8 +19,7 @@ export class XnXXParser extends BaseParser {
 					videoUrl: this.getVideoUrls(html),
 					poster: this.extractMetaPropertyContent(html, 'og:image'),
 					pageUrl: sourceUrl,
-					uploader: uploader ?? 'unknown',
-					models: []
+					uploader: uploader ?? 'unknown'
 				} as XnXXOutput
 			};
 		} catch (error) {

@@ -1,5 +1,5 @@
 import { TagFilterOptions } from '@base';
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 import { TagsOutput } from '@provider/okporn';
 import { VideoQuality } from '@types';
 
@@ -156,4 +156,9 @@ export interface PerfectGirlsModelOutput {
  * Used for broad internal service typing.
  */
 export interface PerfectGirlsOutput
-	extends PerfectGirlsAlbumOutput, PerfectGirlsVideoOutput, PerfectGirlsModelOutput, PerfectGirlsModelVideoIdsOutput {}
+	extends
+		DefaultExecutionResult,
+		PerfectGirlsAlbumOutput,
+		PerfectGirlsVideoOutput,
+		PerfectGirlsModelOutput,
+		PerfectGirlsModelVideoIdsOutput {}

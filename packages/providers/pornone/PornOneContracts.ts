@@ -1,6 +1,6 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
-export interface PornOneOutput extends PornOneVideoOutput {
+export interface PornOneOutput extends DefaultExecutionResult, PornOneVideoOutput {
 	quality?: string;
 }
 

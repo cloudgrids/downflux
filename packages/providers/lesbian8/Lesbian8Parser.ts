@@ -12,7 +12,9 @@ export class Lesbian8Parser extends BaseParser {
 			return {
 				customFields: {
 					pageUrl: sourceUrl,
-					videos: flashVars?.videos,
+					videos: {
+						mp4: flashVars?.videos
+					},
 					categories: flashVars?.categories,
 					tags: flashVars?.tags,
 					id: flashVars?.videoId,
@@ -20,8 +22,7 @@ export class Lesbian8Parser extends BaseParser {
 					starred: flashVars?.models,
 					timelineScreenCount: flashVars?.timelineScreenCount,
 					timelineScreens: flashVars?.timelineScreens,
-					title: flashVars?.title,
-					description: ''
+					title: flashVars?.title
 				} as Lesbian8Output
 			};
 		} catch (error) {

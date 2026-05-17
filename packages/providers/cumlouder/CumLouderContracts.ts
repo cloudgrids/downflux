@@ -1,6 +1,6 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface CumLouderExecArgs extends ExecutionArgs {}
-export interface CumLouderOutput extends CumLouderVideoOutput {}
+export interface CumLouderOutput extends DefaultExecutionResult, CumLouderVideoOutput {}
 
 export interface CumLouderVideoOutput extends DefaultVideoOutput {}

@@ -14,13 +14,11 @@ export class XVideosParser extends BaseParser {
 				customFields: {
 					title: this.extractTitle(html),
 					description: this.extractMetaDescription(html),
-					tags: [],
 					duration: parseInt(this.extractMetaPropertyContent(html, 'og:duration') || '0', 10),
 					videoUrl: this.getVideoUrls(html),
 					poster: this.extractMetaPropertyContent(html, 'og:image'),
 					pageUrl: sourceUrl,
-					uploader: uploader ?? 'unknown',
-					models: []
+					uploader: uploader ?? 'unknown'
 				} as XVideosOutput
 			};
 		} catch (error) {

@@ -30,7 +30,7 @@ export class BeegTransformer extends BaseTransformer<BeegExecArgs, DefaultExecut
 					links: [],
 					sources: [],
 					sourceUrl: url,
-					videos: []
+					videoSources: []
 				};
 		}
 	}

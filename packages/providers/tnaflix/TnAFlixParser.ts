@@ -12,7 +12,6 @@ export class TnAFlixParser extends BaseParser {
 				likes: parseInt(likes),
 				pageUrl: sourceUrl,
 				title: this.extractTitle(html),
-				description: '',
 				uploader:
 					this.extractAnchors(html)
 						.find((url) => url.includes('/profile'))
@@ -21,8 +20,7 @@ export class TnAFlixParser extends BaseParser {
 				poster: this.extractMetaPropertyContent(html, 'og:image'),
 				videos: {
 					mp4: this.getVideos(html)
-				},
-				tags: []
+				}
 			} as TnAFlixOutput
 		};
 	}

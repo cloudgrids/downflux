@@ -1,6 +1,6 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
-export interface HqPornOutput extends HqPornVideoOutput {}
+export interface HqPornOutput extends DefaultExecutionResult, HqPornVideoOutput {}
 
 export interface HqPornExecArgs extends ExecutionArgs {}
 

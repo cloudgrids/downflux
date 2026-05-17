@@ -1,4 +1,4 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface PornsOkExecArgs extends ExecutionArgs {}
 
@@ -11,4 +11,4 @@ export interface PornsOkVideoOutput extends DefaultVideoOutput {
 	categories?: string[];
 }
 
-export interface PornsOkOutput extends PornsOkVideoOutput {}
+export interface PornsOkOutput extends DefaultExecutionResult, PornsOkVideoOutput {}

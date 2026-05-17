@@ -1,4 +1,4 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 import { UrlFormat } from '@types';
 import { PornHubVideosFormat } from './PornHubTypes';
 
@@ -56,7 +56,7 @@ export interface PornHubMediaDefinition {
  * @interface
  * @internal type used for internal transformations,
  */
-export interface PornHubOutput extends PornHubVideoOutput, PornHubVideosOutput, PornHubChannelsOutput {
+export interface PornHubOutput extends DefaultExecutionResult, PornHubVideoOutput, PornHubVideosOutput, PornHubChannelsOutput {
 	channels: PornHubChannelsOutput[];
 }
 

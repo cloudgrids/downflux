@@ -30,6 +30,16 @@ export interface PipelineExtractedItem {
 	secondaryId?: string;
 }
 
+export interface PipelineExtractionHandler<T> {
+	getUrl(item: T): string;
+	getMedia(item: T): MediaType;
+	getMime?(item: T): string;
+	getExt?(item: T): AllowedExtension;
+	getId?(item: T): string;
+	getSecId?(item: T): string;
+	getUsername?(item: T): string;
+}
+
 export interface IdentifierContext<TMetadata> {
 	mediaType: MediaType;
 	metadata: TMetadata;

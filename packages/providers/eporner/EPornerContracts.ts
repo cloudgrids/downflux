@@ -1,7 +1,7 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface EPornerExecArgs extends ExecutionArgs {}
-export interface EPornerOutput extends EPornerVideoOutput {
+export interface EPornerOutput extends DefaultExecutionResult, EPornerVideoOutput {
 	hash: string;
 }
 

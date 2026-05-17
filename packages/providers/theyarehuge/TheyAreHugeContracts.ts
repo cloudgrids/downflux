@@ -1,7 +1,7 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface TheyAreHugeExecArgs extends ExecutionArgs {}
-export interface TheyAreHugeOutput extends TheyAreHugeVideoOutput {}
+export interface TheyAreHugeOutput extends DefaultExecutionResult, TheyAreHugeVideoOutput {}
 
 export interface TheyAreHugeVideoOutput extends DefaultVideoOutput {
 	videoId: string;
