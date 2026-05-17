@@ -1,10 +1,16 @@
 /** Default service methods */
 export enum DefaultMethods {
-	/** Raw metadata extraction */
-	getRawHtml = 'getRawHtml',
-
 	/** Link extraction */
-	getLinks = 'getLinks'
+	getLinks = 'getLinks',
+
+	/** Image extraction */
+	getImages = 'getImages',
+
+	/** Video extraction */
+	getVideos = 'getVideos',
+
+	/** Audio extraction */
+	getAudio = 'getAudios'
 }
 
 export type SniSpoofStatus = 'working' | 'failed' | 'untested';

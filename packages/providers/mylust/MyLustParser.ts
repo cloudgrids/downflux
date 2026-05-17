@@ -23,10 +23,7 @@ export class MyLustParser extends BaseParser {
 					uploader: scripts?.author?.[0]?.name || 'unknown',
 					videoId: html.match(/videoId\s*:\s*['"]([^'"]+)['"]/i)?.[1],
 					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					videos: { mp4 },
-					title: '',
-					tags: [],
-					description: ''
+					videos: { mp4 }
 				} as MyLustOutput
 			};
 		} catch (error) {

@@ -20,8 +20,6 @@ export class ColliderPornParser extends BaseParser {
 		try {
 			return {
 				customFields: {
-					tags: [],
-					description: '',
 					pageUrl: sourceUrl,
 					poster: this.extractScriptMethodInput('setThumbUrl', html),
 					videos: { mp4: mp4s?.length ? mp4s : altMp4s, hls: hls },

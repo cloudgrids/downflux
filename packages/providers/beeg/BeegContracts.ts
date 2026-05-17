@@ -1,9 +1,9 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface BeegExecArgs extends ExecutionArgs {
 	id: string;
 }
-export interface BeegOutput extends BeegVideoOutput {}
+export interface BeegOutput extends DefaultExecutionResult, BeegVideoOutput {}
 
 export interface BeegVideoOutput extends DefaultVideoOutput {
 	username: string;

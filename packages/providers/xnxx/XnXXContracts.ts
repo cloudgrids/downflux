@@ -1,8 +1,8 @@
-import { DefaultMetadata, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultMetadata, ExecutionArgs } from '@contracts';
 
 export interface XnXXExecArgs extends ExecutionArgs {}
 
-export interface XnXXOutput extends XnXXVideoOutput {}
+export interface XnXXOutput extends DefaultExecutionResult, XnXXVideoOutput {}
 
 export interface XnXXVideo {
 	low: string;

@@ -1,7 +1,7 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface PornIdExecArgs extends ExecutionArgs {}
-export interface PornIdOutput extends PornIdVideoOutput {}
+export interface PornIdOutput extends DefaultExecutionResult, PornIdVideoOutput {}
 
 export interface PornIdVideoOutput extends DefaultVideoOutput {
 	id: string;

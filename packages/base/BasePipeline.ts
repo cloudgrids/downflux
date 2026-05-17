@@ -1,9 +1,18 @@
-import { DefaultExecutionResult, ExecutionArgs, IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
+import {
+	DefaultExecutionResult,
+	ExecutionArgs,
+	IdentifierContext,
+	PipelineExtractedItem,
+	PipelineExtractionHandler,
+	PipelineItem
+} from '@contracts';
+import { Helper } from '@shared';
 import { FileManager, PathBuilder } from '@storage';
 import { MediaType, VideoQuality } from '@types';
 
-export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExecutionResult> {
+export class BasePipeline<TExec extends ExecutionArgs, TResult extends DefaultExecutionResult = DefaultExecutionResult> {
 	protected readonly pathBuilder = new PathBuilder();
+	protected readonly helper = new Helper();
 
 	constructor(protected fileManager: FileManager) {}
 
@@ -48,27 +57,31 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExecutio
 		return `${new URL(metadata.sourceUrl).hostname}/${ctx.mediaType}/${new URL(metadata.sourceUrl).pathname.substring(1)}`;
 	}
 
+	protected mappings(metadata: TResult): Array<[unknown[] | undefined, PipelineExtractionHandler<unknown>]> {
+		return [
+			[
+				metadata?.sources,
+				{
+					getUrl: (x: string) => x,
+					getMedia: () => MediaType.VIDEOS
+				}
+			],
+
+			[
+				metadata?.images,
+				{
+					getUrl: (x: string) => x,
+					getMedia: () => MediaType.IMAGES
+				}
+			]
+		] as const;
+	}
+
 	protected extract(request: TExec, metadata: any): PipelineExtractedItem[] {
 		const urls: PipelineExtractedItem[] = [];
 
-		if (metadata.images?.length) {
-			metadata.images.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.IMAGES, url }));
-		}
-
-		if (metadata.sources?.length) {
-			metadata.sources.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.VIDEOS, url }));
-		}
-
-		if (metadata.videoPosters?.length) {
-			metadata.videoPosters.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.VIDEO_POSTER, url }));
-		}
-
-		if (metadata.divHREFs?.length) {
-			metadata.divHREFs.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.OTHER, url }));
-		}
-
-		if (metadata.allUrls?.length) {
-			metadata.allUrls.filter(Boolean).forEach((url) => urls.push({ mediaType: MediaType.OTHER, url }));
+		for (const [elements, handler] of this.mappings(metadata)) {
+			this.extractedItems(urls, handler, elements);
 		}
 
 		return urls;
@@ -98,5 +111,24 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult = DefaultExecutio
 		}
 
 		return Array.from(uniqueMap.values());
+	}
+
+	protected extractedItems<T>(targets: PipelineExtractedItem[], handlers: PipelineExtractionHandler<T>, elements?: T[]) {
+		if (!elements || elements.length === 0) return [];
+
+		targets.push(
+			...elements.filter(Boolean).map(
+				(element) =>
+					this.helper.shake({
+						url: handlers.getUrl(element),
+						mediaType: handlers.getMedia(element),
+						extension: handlers.getExt?.(element),
+						mimeType: handlers.getMime?.(element),
+						id: handlers.getId?.(element),
+						secondaryId: handlers.getSecId?.(element),
+						username: handlers.getUsername?.(element)
+					}) as PipelineExtractedItem
+			)
+		);
 	}
 }

@@ -30,7 +30,7 @@ export class XHamsterTransformer extends BaseTransformer<XHamsterExecArgs, Defau
 			username: xHamsterFields.username,
 			tags: metadata.keywords || [],
 			masterPlaylistUrl: xHamsterFields.masterPlaylistUrl,
-			defaultVideoUrl: metadata.videos?.find((video) => this.DIRECT_MP4_REGEX.test(video)) ?? metadata.videos?.[0]
+			defaultVideoUrl: metadata.videoSources?.find((video) => this.DIRECT_MP4_REGEX.test(video)) ?? metadata.videoSources?.[0]
 		};
 	}
 }

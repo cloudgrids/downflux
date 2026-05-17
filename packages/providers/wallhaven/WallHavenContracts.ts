@@ -1,4 +1,4 @@
-import { ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, ExecutionArgs } from '@contracts';
 import { WallHavenThumbnailQuality } from './WallHavenTypes';
 
 /**
@@ -52,6 +52,7 @@ export interface WallHavenUserFavoritesExecArgs extends WallHavenUserExecArgs {
  */
 export interface WallHavenOutput
 	extends
+		DefaultExecutionResult,
 		WallHavenWallPaperOutput,
 		WallHavenUserUploadsOutput,
 		WallHavenWallPaperOutput,

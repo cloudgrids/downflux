@@ -1,8 +1,8 @@
-import { DefaultMetadata, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultMetadata, ExecutionArgs } from '@contracts';
 
 export interface XVideosExecArgs extends ExecutionArgs {}
 
-export interface XVideosOutput extends XVideosVideoOutput {}
+export interface XVideosOutput extends DefaultExecutionResult, XVideosVideoOutput {}
 
 export interface XVideosVideo {
 	low: string;

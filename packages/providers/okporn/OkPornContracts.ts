@@ -1,5 +1,5 @@
 import { TagFilterOptions } from '@base';
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 import { VideoQuality } from '@types';
 
 export type OkPornIdType = 'path' | 'url';
@@ -157,4 +157,5 @@ export interface OkPornModelOutput {
  * Combined OkPorn output structure.
  * Used for broad internal service typing.
  */
-export interface OkPornOutput extends OkPornAlbumOutput, OkPornVideoOutput, OkPornModelOutput, OkPornModelVideoIdsOutput {}
+export interface OkPornOutput
+	extends DefaultExecutionResult, OkPornAlbumOutput, OkPornVideoOutput, OkPornModelOutput, OkPornModelVideoIdsOutput {}

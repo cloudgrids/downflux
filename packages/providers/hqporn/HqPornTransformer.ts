@@ -17,7 +17,7 @@ export class HqPornTransformer extends BaseTransformer<HqPornExecArgs, HqPornVid
 		}
 	}
 
-	private toVideoOutput(metadata: DefaultExecutionResult<Partial<HqPornOutput>>): HqPornOutput {
+	private toVideoOutput(metadata: DefaultExecutionResult<Partial<HqPornOutput>>): HqPornVideoOutput {
 		const hqPornFields = metadata.customFields as HqPornOutput;
 		return {
 			title: hqPornFields?.title,

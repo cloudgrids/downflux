@@ -1,6 +1,6 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
-export interface TnAFlixOutput extends TnAFlixVideoOutput {}
+export interface TnAFlixOutput extends DefaultExecutionResult, TnAFlixVideoOutput {}
 
 export interface TnAFlixExecArgs extends ExecutionArgs {}
 

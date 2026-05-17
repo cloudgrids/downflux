@@ -1,7 +1,7 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface SexVidExecArgs extends ExecutionArgs {}
-export interface SexVidOutput extends SexVidVideoOutput {}
+export interface SexVidOutput extends DefaultExecutionResult, SexVidVideoOutput {}
 
 export interface SexVidVideoOutput extends DefaultVideoOutput {
 	duration: number;

@@ -17,10 +17,7 @@ export class MegaTubeParser extends BaseParser {
 					videos: { mp4: flashVars?.videos },
 					pageUrl: sourceUrl,
 					videoId: flashVars.videoId,
-					uploader: detail?.replace(/\s*Title:.*$/, '')?.trim() || 'Unknown',
-					title: '',
-					tags: [],
-					description: ''
+					uploader: detail?.replace(/\s*Title:.*$/, '')?.trim() || 'Unknown'
 				} as MegaTubeOutput
 			};
 		} catch (error) {

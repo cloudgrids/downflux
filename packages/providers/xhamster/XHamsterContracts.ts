@@ -1,8 +1,8 @@
-import { DefaultMetadata, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultMetadata, ExecutionArgs } from '@contracts';
 
 export interface XHamsterExecArgs extends ExecutionArgs {}
 
-export interface XHamsterOutput extends XHamsterVideoOutput {}
+export interface XHamsterOutput extends DefaultExecutionResult, XHamsterVideoOutput {}
 
 export interface XHamsterVideoOutput extends DefaultMetadata {
 	thumbnailUrl: string;

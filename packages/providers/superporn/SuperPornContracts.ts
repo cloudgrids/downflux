@@ -1,7 +1,7 @@
-import { DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface SuperPornExecArgs extends ExecutionArgs {}
-export interface SuperPornOutput extends SuperPornVideoOutput {}
+export interface SuperPornOutput extends DefaultExecutionResult, SuperPornVideoOutput {}
 
 export interface SuperPornVideoOutput extends DefaultVideoOutput {
 	duration: string;
