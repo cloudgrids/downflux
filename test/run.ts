@@ -1,4 +1,5 @@
 import { BeegProvider } from '@provider/beeg';
+import { XVideosProvider } from '@provider/xvideos';
 import { OutputType } from '@types';
 
 async function main() {
@@ -23,7 +24,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new BeegProvider('https://beeg.com/-0777761605151844')
+		await new XVideosProvider('https://www.xvideos.com/video.ookcptk0aa3/cute_teen_student_gives_her_pussy_for_creampie')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON, { directoryPath: 'test/providers' })

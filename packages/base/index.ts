@@ -1,4 +1,5 @@
 export * from './BaseContracts';
+export * from './BaseHttpClient';
 export * from './BaseParser';
 export * from './BasePipeline';
 export * from './BaseProvider';

@@ -11,6 +11,7 @@ import {
 	VideoFormat,
 	VideoQuality
 } from '@types';
+import { Dispatcher } from 'undici';
 import { HttpFetchOptions, VideoSourceOutput } from './DownloadContracts';
 import { PipelineHook, PipelineItem } from './PipelineContracts';
 import { JobProgressEvent } from './ProgressContracts';
@@ -101,6 +102,28 @@ export interface ExecutionOptions extends HttpFetchOptions {
 
 	/** Abort signal for cancelling the ExecutionCoordinator */
 	signal?: AbortSignal;
+}
+
+export interface HttpAgentOptions {
+	userAgent?: string;
+
+	enableSniSpoofing?: boolean;
+
+	proxy?: ProxyOptions;
+
+	dispatcher?: Dispatcher;
+}
+
+export interface ProxyOptions {
+	type: 'http' | 'https' | 'socks4' | 'socks5';
+
+	host: string;
+
+	port: number;
+
+	username?: string;
+
+	password?: string;
 }
 
 export interface ExecutionResult<TResult, S extends ExecutionShape> extends ExecutionArgs {

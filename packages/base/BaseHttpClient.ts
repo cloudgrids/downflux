@@ -1,7 +1,7 @@
-import { DownloadOptions } from '@contracts';
+import { DownloadOptions, HttpAgentOptions } from '@contracts';
 import { ProgressManager } from '@core/progress';
 import { HEADER_PRESETS } from '@shared';
-import { Agent, Headers, fetch as UFetch } from 'undici';
+import { Agent, Dispatcher, Headers, ProxyAgent, fetch as UFetch } from 'undici';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
 
 export abstract class BaseHttpClient {
@@ -55,6 +55,22 @@ export abstract class BaseHttpClient {
 			...preset,
 			...extra
 		};
+	}
+
+	private createDispatcher(options?: HttpAgentOptions): Dispatcher {
+		if (options?.dispatcher) return options.dispatcher;
+
+		if (options?.proxy) {
+			const { type, host, port, username, password } = options.proxy;
+			const auth = username && password ? `${encodeURIComponent(username)}:${encodeURIComponent(password)}@` : '';
+			const proxyUrl = `${type}://${auth}${host}:${port}`;
+
+			return new ProxyAgent({ uri: proxyUrl });
+		}
+
+		if (options?.enableSniSpoofing) return this.spoofAgent;
+
+		return this.agent;
 	}
 
 	protected async delay(attempt: number) {
@@ -165,6 +181,7 @@ export abstract class BaseHttpClient {
 	public async fetchWithTransportFallback(
 		url: string,
 		init: Parameters<typeof UFetch>[1],
+		options: HttpAgentOptions,
 		allowFallback: boolean = true
 	): ReturnType<typeof UFetch> {
 		try {
@@ -176,7 +193,7 @@ export abstract class BaseHttpClient {
 			this.progressManager.update({ message: `Transport failure, Retrying with SNI spoof, CODE: ${transportError}` });
 
 			try {
-				return await UFetch(url, { ...init, dispatcher: this.spoofAgent });
+				return await UFetch(url, { ...init, dispatcher: this.createDispatcher(options) });
 			} catch (spoofError) {
 				this.progressManager.update({ message: `SNI spoof transport failed, Retry with default, ${spoofError}` });
 				return await UFetch(url, init);
@@ -195,11 +212,15 @@ export abstract class BaseHttpClient {
 		);
 
 		try {
-			const { headers: resHeaders, body } = await this.fetchWithTransportFallback(url, {
-				method: 'GET',
-				signal: AbortSignal.timeout(opts?.timeoutMs ?? 30_000),
-				headers
-			});
+			const { headers: resHeaders, body } = await this.fetchWithTransportFallback(
+				url,
+				{
+					method: 'GET',
+					signal: AbortSignal.timeout(opts?.timeoutMs ?? 30_000),
+					headers
+				},
+				opts
+			);
 
 			const buffer = this.decodeBody(await this.readBody(body as ReadableStream<Uint8Array>), resHeaders);
 
