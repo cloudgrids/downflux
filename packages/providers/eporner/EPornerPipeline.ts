@@ -1,35 +1,9 @@
 import { BasePipeline } from '@base';
-import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
+import { IdentifierContext, PipelineExtractedItem } from '@contracts';
 import { MediaType } from '@types';
 import { EPornerExecArgs, EPornerOutput } from './EPornerContracts';
 
 export class EPornerPipeline extends BasePipeline<EPornerExecArgs, EPornerOutput> {
-	public override build(metadata: EPornerOutput, request: EPornerExecArgs): PipelineItem[] {
-		return this.uniquePipelines(
-			this.sliceByMaxDownloads(
-				request,
-				this.filterByExt(
-					request,
-					this.extract(request, metadata).map((item) => ({
-						downloadUrl: item.url,
-						sourceUrl: request.entryUrl,
-						provider: request.provider,
-						identifier: {
-							mediaType: item.mediaType,
-							...this.fileManager.detectResourceType(item.url, request),
-							key: this.buildIdentifier({
-								mediaType: item.mediaType,
-								metadata,
-								url: item.url,
-								id: item.id
-							})
-						}
-					}))
-				)
-			)
-		);
-	}
-
 	protected override buildIdentifier(ctx: IdentifierContext<EPornerOutput>): string {
 		const { mediaType, id, metadata } = ctx;
 		const prefix = 'EPorner';

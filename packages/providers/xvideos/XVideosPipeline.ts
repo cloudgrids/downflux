@@ -1,35 +1,9 @@
 import { BasePipeline } from '@base';
-import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
+import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { XVideosExecArgs, XVideosOutput } from './XVideosContracts';
 
 export class XVideosPipeline extends BasePipeline<XVideosExecArgs, XVideosOutput> {
-	public override build(metadata: XVideosOutput, request: XVideosExecArgs): PipelineItem[] {
-		return this.uniquePipelines(
-			this.sliceByMaxDownloads(
-				request,
-				this.filterByExt(
-					request,
-					this.extract(request, metadata).map((item) => ({
-						downloadUrl: item.url,
-						sourceUrl: request.entryUrl,
-						provider: request.provider,
-						identifier: {
-							mediaType: item.mediaType,
-							...this.fileManager.detectResourceType(item.url, request),
-							key: this.buildIdentifier({
-								mediaType: item.mediaType,
-								metadata,
-								url: item.url,
-								id: item.id
-							})
-						}
-					}))
-				)
-			)
-		);
-	}
-
 	protected override buildIdentifier(ctx: IdentifierContext<XVideosOutput>): string {
 		const { mediaType, id, metadata } = ctx;
 		const prefix = 'xvideos';
@@ -51,26 +25,20 @@ export class XVideosPipeline extends BasePipeline<XVideosExecArgs, XVideosOutput
 		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.uploader), mediaSegment);
 	}
 
-	protected override extract(request: XVideosExecArgs, metadata: XVideosOutput): PipelineExtractedItem[] {
-		const urls: Set<PipelineExtractedItem> = new Set();
+	protected override mappings(metadata: XVideosOutput, request: XVideosExecArgs): PipelineMappings {
 		const videoId = request.entryUrl.split('/').pop();
 
-		if (metadata?.poster) {
-			urls.add({
-				url: metadata.poster,
-				mediaType: MediaType.VIDEO_POSTER,
-				id: videoId
-			});
-		}
-
-		if (metadata?.videoUrl) {
-			urls.add({
-				url: metadata.videoUrl.hls,
-				mediaType: MediaType.VIDEOS,
-				id: videoId
-			});
-		}
-
-		return Array.from(urls);
+		return [
+			this.createMappings(metadata?.videoUrl ? [metadata.videoUrl.hls] : undefined, {
+				getMedia: () => MediaType.VIDEOS,
+				getUrl: (url) => url,
+				getId: () => videoId || 'unknown'
+			}),
+			this.createMappings(metadata?.poster ? [metadata.poster] : undefined, {
+				getMedia: () => MediaType.VIDEO_POSTER,
+				getUrl: (poster) => poster,
+				getId: () => videoId || 'unknown'
+			})
+		];
 	}
 }

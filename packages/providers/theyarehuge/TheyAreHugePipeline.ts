@@ -1,35 +1,9 @@
 import { BasePipeline } from '@base';
-import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
+import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { TheyAreHugeExecArgs, TheyAreHugeOutput } from './TheyAreHugeContracts';
 
 export class TheyAreHugePipeline extends BasePipeline<TheyAreHugeExecArgs, TheyAreHugeOutput> {
-	public override build(metadata: TheyAreHugeOutput, request: TheyAreHugeExecArgs): PipelineItem[] {
-		return this.uniquePipelines(
-			this.sliceByMaxDownloads(
-				request,
-				this.filterByExt(
-					request,
-					this.extract(request, metadata).map((item) => ({
-						downloadUrl: item.url,
-						sourceUrl: request.entryUrl,
-						provider: request.provider,
-						identifier: {
-							mediaType: item.mediaType,
-							...this.fileManager.detectResourceType(item.url, request),
-							key: this.buildIdentifier({
-								mediaType: item.mediaType,
-								metadata,
-								url: item.url,
-								id: item.id
-							})
-						}
-					}))
-				)
-			)
-		);
-	}
-
 	protected override buildIdentifier(ctx: IdentifierContext<TheyAreHugeOutput>): string {
 		const { mediaType, id, metadata } = ctx;
 		const prefix = 'TheyAreHuge';
@@ -55,53 +29,40 @@ export class TheyAreHugePipeline extends BasePipeline<TheyAreHugeExecArgs, TheyA
 		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.title), mediaSegment);
 	}
 
-	protected override extract(request: TheyAreHugeExecArgs, metadata: TheyAreHugeOutput): PipelineExtractedItem[] {
-		const urls: Set<PipelineExtractedItem> = new Set();
-
-		if (metadata?.poster) {
-			urls.add({
-				url: metadata.poster,
-				mediaType: MediaType.VIDEO_POSTER,
-				id: metadata.videoId
-			});
-		}
-
-		if (metadata?.videos?.mp4?.length) {
-			this.filterByQuality(metadata.videos.mp4, {
-				allowedQuality: request.allowedVideoQuality,
-				getQuality: (item) => item.quality
-			}).forEach((video) => {
-				urls.add({
-					mediaType: MediaType.VIDEOS,
-					url: video.url,
-					id: metadata.videoId
-				});
-			});
-		}
-
-		if (metadata?.videos?.hls?.length) {
-			this.filterByQuality(metadata.videos?.hls, {
-				allowedQuality: request.allowedVideoQuality,
-				getQuality: (video) => video.quality
-			}).forEach((video) => {
-				urls.add({
-					url: video.url,
-					mediaType: MediaType.VIDEOS,
-					id: metadata.videoId
-				});
-			});
-		}
-
-		if (metadata?.timelineScreens?.length) {
-			metadata.timelineScreens.forEach((screenUrl) => {
-				urls.add({
-					url: screenUrl,
-					mediaType: MediaType.VIDEO_TIMELINES,
-					id: metadata.videoId
-				});
-			});
-		}
-
-		return Array.from(urls);
+	protected override mappings(metadata: TheyAreHugeOutput, request: TheyAreHugeExecArgs): PipelineMappings {
+		return [
+			this.createMappings(
+				this.filterByQuality(metadata.videos?.mp4, {
+					allowedQuality: request.allowedVideoQuality,
+					getQuality: (video) => video.quality
+				}),
+				{
+					getMedia: () => MediaType.VIDEOS,
+					getUrl: (video) => video.url,
+					getId: () => metadata.videoId
+				}
+			),
+			this.createMappings(metadata?.poster ? [metadata.poster] : undefined, {
+				getMedia: () => MediaType.VIDEO_POSTER,
+				getUrl: (poster) => poster,
+				getId: () => metadata.videoId
+			}),
+			this.createMappings(
+				this.filterByQuality(metadata.videos?.hls, {
+					allowedQuality: request.allowedVideoQuality,
+					getQuality: (video) => video.quality
+				}),
+				{
+					getMedia: () => MediaType.VIDEOS,
+					getUrl: (video) => video.url,
+					getId: () => metadata.videoId
+				}
+			),
+			this.createMappings(metadata?.timelineScreens, {
+				getMedia: () => MediaType.VIDEO_TIMELINES,
+				getUrl: (screen) => screen,
+				getId: () => metadata.videoId
+			})
+		];
 	}
 }

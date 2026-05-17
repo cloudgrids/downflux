@@ -1,35 +1,9 @@
 import { BasePipeline } from '@base';
-import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
+import { IdentifierContext, PipelineExtractedItem, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { TubeVSexExecArgs, TubeVSexOutput } from './TubeVSexContracts';
 
 export class TubeVSexPipeline extends BasePipeline<TubeVSexExecArgs, TubeVSexOutput> {
-	public override build(metadata: TubeVSexOutput, request: TubeVSexExecArgs): PipelineItem[] {
-		return this.uniquePipelines(
-			this.sliceByMaxDownloads(
-				request,
-				this.filterByExt(
-					request,
-					this.extract(request, metadata).map((item) => ({
-						downloadUrl: item.url,
-						sourceUrl: request.entryUrl,
-						provider: request.provider,
-						identifier: {
-							mediaType: item.mediaType,
-							...this.fileManager.detectResourceType(item.url, request),
-							key: this.buildIdentifier({
-								mediaType: item.mediaType,
-								metadata,
-								url: item.url,
-								id: item.id
-							})
-						}
-					}))
-				)
-			)
-		);
-	}
-
 	protected override buildIdentifier(ctx: IdentifierContext<TubeVSexOutput>): string {
 		const { mediaType, id, metadata } = ctx;
 		const prefix = 'TubeVSex';
@@ -51,6 +25,37 @@ export class TubeVSexPipeline extends BasePipeline<TubeVSexExecArgs, TubeVSexOut
 		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.uploader), mediaSegment);
 	}
 
+	protected override mappings(metadata: TubeVSexOutput, request: TubeVSexExecArgs): PipelineMappings {
+		return [
+			this.createMappings(
+				this.filterByQuality(metadata.videos?.mp4, {
+					allowedQuality: request.allowedVideoQuality,
+					getQuality: (video) => video.quality
+				}),
+				{
+					getMedia: () => MediaType.VIDEOS,
+					getUrl: (video) => video.url,
+					getId: () => metadata.videoId
+				}
+			),
+			this.createMappings(metadata?.poster ? [metadata.poster] : undefined, {
+				getMedia: () => MediaType.VIDEO_POSTER,
+				getUrl: (poster) => poster,
+				getId: () => metadata.videoId
+			}),
+			this.createMappings(
+				this.filterByQuality(metadata.videos?.hls, {
+					allowedQuality: request.allowedVideoQuality,
+					getQuality: (video) => video.quality
+				}),
+				{
+					getMedia: () => MediaType.VIDEOS,
+					getUrl: (video) => video.url,
+					getId: () => metadata.videoId
+				}
+			)
+		];
+	}
 	protected override extract(request: TubeVSexExecArgs, metadata: TubeVSexOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 

@@ -36,9 +36,12 @@ export interface PipelineExtractionHandler<T> {
 	getMime?(item: T): string;
 	getExt?(item: T): AllowedExtension;
 	getId?(item: T): string;
-	getSecId?(item: T): string;
+	getSecondaryId?(item: T): string;
 	getUsername?(item: T): string;
 }
+
+export type PipelineMapping<TMetadata> = [TMetadata[] | undefined, PipelineExtractionHandler<TMetadata>];
+export type PipelineMappings = PipelineMapping<unknown>[];
 
 export interface IdentifierContext<TMetadata> {
 	mediaType: MediaType;

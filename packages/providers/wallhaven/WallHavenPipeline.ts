@@ -1,38 +1,11 @@
 import { BasePipeline } from '@base';
-import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
+import { IdentifierContext, PipelineExtractedItem, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import path from 'path';
 import { WallHavenExecArgs, WallHavenOutput, WallHavenUserFavoriteCollectionsOutput } from './WallHavenContracts';
 import { WallHavenMethods, WallHavenThumbnailQuality } from './WallHavenTypes';
 
 export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHavenOutput> {
-	public override build(metadata: WallHavenOutput, request: WallHavenExecArgs): PipelineItem[] {
-		return this.uniquePipelines(
-			this.sliceByMaxDownloads(
-				request,
-				this.filterByExt(
-					request,
-					this.extract(request, metadata).map((item) => ({
-						downloadUrl: item.url,
-						provider: request.provider,
-						sourceUrl: request.entryUrl,
-						identifier: {
-							mediaType: item.mediaType,
-							...this.fileManager.detectResourceType(item.url, request),
-							key: this.buildIdentifier({
-								mediaType: item.mediaType,
-								metadata,
-								url: item.url,
-								id: item.id,
-								username: item.username
-							})
-						}
-					}))
-				)
-			)
-		);
-	}
-
 	protected override buildIdentifier(ctx: IdentifierContext<WallHavenOutput>): string {
 		const { mediaType, metadata, id, username, secondaryId } = ctx;
 		const prefix = 'wallhaven';
@@ -61,44 +34,46 @@ export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHaven
 		return this.pathBuilder.join(prefix, username ?? this.pathBuilder.spaceNormalizer(metadata.uploader), mediaSegment);
 	}
 
+	protected override mappings(metadata: WallHavenOutput, request: WallHavenExecArgs): PipelineMappings {
+		const isFavCollection = request.method === WallHavenMethods.getUserFavoriteCollection;
+
+		return [
+			this.createMappings(
+				this.filterByQuality(metadata.thumbnails, {
+					allowedQuality: request.thumbQuality as WallHavenThumbnailQuality,
+					getQuality: (thumb) => thumb.quality
+				}),
+				{
+					getMedia: () => (isFavCollection ? MediaType.COLLECTION : MediaType.UPLOADS),
+					getUrl: (thumb) => thumb.url,
+					getId: (thumb) => thumb.id,
+					getSecondaryId: () => metadata?.collectionId ?? ''
+				}
+			),
+			this.createMappings(
+				metadata?.wallPapers?.flatMap((wp) => {
+					return this.filterByQuality(wp.thumbnails, {
+						allowedQuality: request.thumbQuality as WallHavenThumbnailQuality,
+						getQuality: (wallpaper) => wallpaper.quality
+					});
+				}),
+				{
+					getMedia: () => MediaType.THUMBNAILS,
+					getUrl: (thumb) => thumb.url,
+					getId: (thumb) => thumb.id,
+					getSecondaryId: () => metadata?.collectionId ?? ''
+				}
+			)
+		];
+	}
+
 	protected override extract(request: WallHavenExecArgs, metadata: WallHavenOutput): PipelineExtractedItem[] {
 		const urls: Set<PipelineExtractedItem> = new Set();
 		const collections = Array.isArray(metadata) ? (metadata as WallHavenUserFavoriteCollectionsOutput[]) : [];
-		const isFavCollection = request.method === WallHavenMethods.getUserFavoriteCollection;
-
-		if (metadata.thumbnails?.length) {
-			this.filterByQuality(metadata.thumbnails, {
-				allowedQuality: request.thumbQuality as WallHavenThumbnailQuality,
-				getQuality: (thumb) => thumb.quality
-			}).forEach((thumb) =>
-				urls.add({
-					mediaType: isFavCollection ? MediaType.COLLECTION : MediaType.UPLOADS,
-					secondaryId: metadata?.collectionId,
-					url: thumb.url,
-					id: thumb.id
-				})
-			);
-		}
-
-		if (metadata.wallPapers?.length) {
-			metadata.wallPapers.forEach((wp) => {
-				this.filterByQuality(wp.thumbnails, {
-					allowedQuality: request.thumbQuality as WallHavenThumbnailQuality,
-					getQuality: (wallpaper) => wallpaper.quality
-				}).forEach((thumb) =>
-					urls.add({
-						mediaType: isFavCollection ? MediaType.COLLECTION : MediaType.UPLOADS,
-						url: thumb.url,
-						id: thumb.id,
-						secondaryId: metadata?.collectionId
-					})
-				);
-			});
-		}
 
 		if (collections?.length) {
-			collections.forEach((collection) => {
-				this.filterByQuality(collection.thumbnails, {
+			collections.flatMap((collection) => {
+				return this.filterByQuality(collection.thumbnails, {
 					allowedQuality: request.thumbQuality as WallHavenThumbnailQuality,
 					getQuality: (thumb) => thumb.quality
 				}).forEach((thumb) =>

@@ -293,7 +293,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 
 		const request = this.buildRequest(overrides) as TRequest;
 
-		// without this the ProgressManager will not emit events
+		// without calling the `init` method, the ProgressManager will not emit events
 		this.deps.progressManager.init(request);
 
 		const result = await this.deps.executionCoordinator.execute<TItem, TShape, TRequest>(request);

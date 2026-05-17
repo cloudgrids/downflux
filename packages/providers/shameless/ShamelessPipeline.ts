@@ -1,35 +1,9 @@
 import { BasePipeline } from '@base';
-import { IdentifierContext, PipelineExtractedItem, PipelineItem } from '@contracts';
+import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { ShamelessExecArgs, ShamelessOutput } from './ShamelessContracts';
 
 export class ShamelessPipeline extends BasePipeline<ShamelessExecArgs, ShamelessOutput> {
-	public override build(metadata: ShamelessOutput, request: ShamelessExecArgs): PipelineItem[] {
-		return this.uniquePipelines(
-			this.sliceByMaxDownloads(
-				request,
-				this.filterByExt(
-					request,
-					this.extract(request, metadata).map((item) => ({
-						downloadUrl: item.url,
-						sourceUrl: request.entryUrl,
-						provider: request.provider,
-						identifier: {
-							mediaType: item.mediaType,
-							...this.fileManager.detectResourceType(item.url, request),
-							key: this.buildIdentifier({
-								mediaType: item.mediaType,
-								metadata,
-								url: item.url,
-								id: item.id
-							})
-						}
-					}))
-				)
-			)
-		);
-	}
-
 	protected override buildIdentifier(ctx: IdentifierContext<ShamelessOutput>): string {
 		const { mediaType, id, metadata } = ctx;
 		const prefix = 'Shameless';
@@ -59,63 +33,34 @@ export class ShamelessPipeline extends BasePipeline<ShamelessExecArgs, Shameless
 		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.uploader), mediaSegment);
 	}
 
-	protected override extract(request: ShamelessExecArgs, metadata: ShamelessOutput): PipelineExtractedItem[] {
-		const urls: Set<PipelineExtractedItem> = new Set();
-
-		if (metadata?.videos?.mp4?.length) {
-			this.filterByQuality(metadata.videos.mp4, {
-				allowedQuality: request.allowedVideoQuality,
-				getQuality: (item) => item.quality
-			}).forEach((video) => {
-				urls.add({
-					url: video.url,
-					mediaType: MediaType.VIDEOS,
-					id: metadata.id
-				});
-			});
-		}
-
-		if (metadata?.videos?.hls?.length) {
-			this.filterByQuality(metadata.videos?.hls, {
-				allowedQuality: request.allowedVideoQuality,
-				getQuality: (video) => video.quality
-			}).forEach((video) => {
-				urls.add({
-					url: video.url,
-					mediaType: MediaType.VIDEOS,
-					id: metadata.id
-				});
-			});
-		}
-
-		if (metadata?.timelineScreens?.length) {
-			metadata?.timelineScreens.forEach((screenUrl) => {
-				urls.add({
-					mediaType: MediaType.VIDEO_TIMELINES,
-					url: screenUrl,
-					id: metadata.id
-				});
-			});
-		}
-
-		if (metadata?.poster) {
-			urls.add({
-				url: metadata.poster,
-				mediaType: MediaType.VIDEO_POSTER,
-				id: metadata.id
-			});
-		}
-
-		if (metadata?.previews?.length) {
-			metadata?.previews.forEach((previewUrl) => {
-				urls.add({
-					mediaType: MediaType.VIDEO_PREVIEWS,
-					url: previewUrl,
-					id: metadata.id
-				});
-			});
-		}
-
-		return Array.from(urls);
+	protected override mappings(metadata: ShamelessOutput, request: ShamelessExecArgs): PipelineMappings {
+		return [
+			this.createMappings(
+				this.filterByQuality(metadata.videos?.mp4, {
+					allowedQuality: request.allowedVideoQuality,
+					getQuality: (item) => item.quality
+				}),
+				{
+					getMedia: () => MediaType.VIDEOS,
+					getUrl: (video) => video.url,
+					getId: () => metadata.id
+				}
+			),
+			this.createMappings(metadata?.poster ? [metadata.poster] : undefined, {
+				getMedia: () => MediaType.VIDEO_POSTER,
+				getUrl: (poster) => poster,
+				getId: () => metadata.id
+			}),
+			this.createMappings(metadata?.previews ? metadata.previews : undefined, {
+				getMedia: () => MediaType.VIDEO_PREVIEWS,
+				getUrl: (preview) => preview,
+				getId: () => metadata.id
+			}),
+			this.createMappings(metadata?.timelineScreens ? metadata.timelineScreens : undefined, {
+				getMedia: () => MediaType.VIDEO_TIMELINES,
+				getUrl: (screen) => screen,
+				getId: () => metadata.id
+			})
+		];
 	}
 }
