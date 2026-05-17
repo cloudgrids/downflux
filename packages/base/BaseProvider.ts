@@ -3,6 +3,7 @@ import {
 	DirectoryOutputOptions,
 	ExecutionArgs,
 	ExecutionOptions,
+	HttpAgentOptions,
 	HttpFetchOptions,
 	JobProgressEvent,
 	ProviderConfig,
@@ -70,12 +71,16 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 		this.httpOptions = { referer: url };
 	}
 
-	protected get ORIGIN() {
+	protected get ORIGIN(): string {
 		return new URL(this.url).origin;
 	}
 
-	protected get HOST_NAME() {
+	protected get HOST_NAME(): string {
 		return new URL(this.url).hostname;
+	}
+
+	protected isValidHostName(): boolean {
+		return this.urlPattern.test(this.HOST_NAME);
 	}
 
 	private validate(): void {
@@ -85,9 +90,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 			throw new InvalidUrlException(this.url, this.provider);
 		}
 
-		if (!this.urlPattern.test(this.HOST_NAME)) {
-			throw new InvalidUrlException(this.url, this.provider);
-		}
+		if (!this.isValidHostName()) throw new InvalidUrlException(this.url, this.provider);
 	}
 
 	/**
@@ -187,6 +190,14 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	 */
 	public setJobOptions(opts: ExecutionOptions): this {
 		this.executionOptions = { ...this.executionOptions, ...opts };
+		return this;
+	}
+
+	/** Sets HTTP agent options.
+	 * @param opts HTTP agent options to merge
+	 */
+	public setAgentOptions(opts: HttpAgentOptions): this {
+		this.httpOptions = { ...this.httpOptions, ...opts };
 		return this;
 	}
 

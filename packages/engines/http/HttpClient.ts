@@ -1,8 +1,8 @@
+import { BaseHttpClient } from '@base';
 import { DownloadOptions, FetchResult } from '@contracts';
 import { ProgressManager } from '@core/progress';
 import { StrategyRegistry } from '@core/registries';
 import { ProviderType } from '@types';
-import { BaseHttpClient } from './BaseHttpClient';
 
 export class HttpClient extends BaseHttpClient {
 	constructor(progressManager: ProgressManager) {
@@ -32,13 +32,17 @@ export class HttpClient extends BaseHttpClient {
 					status: statusCode,
 					headers: resHeaders,
 					body
-				} = await this.fetchWithTransportFallback(candidateUrl, {
-					headers,
-					body: opts.formData ? new URLSearchParams(opts.formData).toString() : undefined,
-					method: opts.formData ? 'POST' : 'GET',
-					redirect: 'follow',
-					signal: AbortSignal.timeout(timeoutMs)
-				});
+				} = await this.fetchWithTransportFallback(
+					candidateUrl,
+					{
+						headers,
+						body: opts.formData ? new URLSearchParams(opts.formData).toString() : undefined,
+						method: opts.formData ? 'POST' : 'GET',
+						redirect: 'follow',
+						signal: AbortSignal.timeout(timeoutMs)
+					},
+					opts
+				);
 
 				this.storeCookies(candidateUrl, resHeaders);
 

@@ -1,5 +1,6 @@
 import { OutputType, ProviderType, VideoQuality } from '@types';
 import { Writable } from 'stream';
+import { HttpAgentOptions } from './ExecutionContracts';
 import { PipelineItem } from './PipelineContracts';
 import { DirectoryOutputOptions, TranscodeOptions } from './StorageContracts';
 
@@ -70,7 +71,7 @@ export interface HLSStreamRequest {
  * HTTP fetch options.
  * Controls request headers, retries, timeout, and referer.
  */
-export interface HttpFetchOptions {
+export interface HttpFetchOptions extends HttpAgentOptions {
 	/** Custom request headers */
 	headers?: Record<string, string>;
 

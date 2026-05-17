@@ -1,3 +1,4 @@
+import { BaseHttpClient } from '@base';
 import { DownloadOptions, HLSStreamRequest, PipelineItem } from '@contracts';
 import { DownloadException, NotFoundException } from '@core/exceptions';
 import { ProgressManager } from '@core/progress';
@@ -5,7 +6,6 @@ import { StrategyRegistry } from '@core/registries';
 import { Readable, Transform, Writable } from 'stream';
 import { pipeline } from 'stream/promises';
 import { Response as UResponse } from 'undici';
-import { BaseHttpClient } from './BaseHttpClient';
 import { HlsClient } from './HlsClient';
 
 export class StreamHttpClient extends BaseHttpClient {
@@ -97,11 +97,15 @@ export class StreamHttpClient extends BaseHttpClient {
 			);
 
 			try {
-				const response = await this.fetchWithTransportFallback(candidateUrl, {
-					headers,
-					redirect: 'follow',
-					referrer: opts.referer
-				});
+				const response = await this.fetchWithTransportFallback(
+					candidateUrl,
+					{
+						headers,
+						redirect: 'follow',
+						referrer: opts.referer
+					},
+					opts
+				);
 
 				this.storeCookies(candidateUrl, response.headers);
 

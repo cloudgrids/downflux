@@ -1,10 +1,10 @@
+import { BaseHttpClient } from '@base';
 import { DownloadOptions, M3U8Variant } from '@contracts';
 import { ProgressManager } from '@core/progress';
 import { VideoQuality } from '@types';
 import { createDecipheriv } from 'crypto';
 import { once } from 'events';
 import { Readable, Writable } from 'stream';
-import { BaseHttpClient } from './BaseHttpClient';
 
 export interface ParseKey {
 	url: string;
