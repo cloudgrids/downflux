@@ -284,14 +284,16 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 		} as TExec;
 	}
 
-	protected async execute<TResult>(overrides?: Partial<TExec & { executionShape: InferExecutionShape<TResult> }>): Promise<TResult> {
+	protected async execute<TResult>(
+		overrides: TExec | { executionShape: InferExecutionShape<TResult>; entryUrl?: string }
+	): Promise<TResult> {
 		type TItem = TResult extends Array<infer U> ? U : TResult;
 
 		type TShape = InferExecutionShape<TResult>;
 
 		type TRequest = TExec & { executionShape: TShape };
 
-		const request = this.buildRequest(overrides) as TRequest;
+		const request = this.buildRequest(overrides as TExec) as TRequest;
 
 		// without calling the `init` method, the ProgressManager will not emit events
 		this.deps.progressManager.init(request);

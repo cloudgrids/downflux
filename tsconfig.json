@@ -76,6 +76,8 @@
 
 			"@provider/pornone": ["./packages/providers/pornone/index.ts"],
 
+			"@provider/pornseven": ["./packages/providers/pornseven/index.ts"],
+
 			"@provider/pornsok": ["./packages/providers/pornsok/index.ts"],
 
 			"@provider/pussyspace": ["./packages/providers/pussyspace/index.ts"],
@@ -107,7 +109,7 @@
 			"@provider/xvideos": ["./packages/providers/xvideos/index.ts"],
 
 			"@provider/zzztube": ["./packages/providers/zzztube/index.ts"]
-			// </auto-generated:entries>
+	// </auto-generated:entries>
 		}
 	},
 	"include": ["packages/**/*", "test/**/*"],

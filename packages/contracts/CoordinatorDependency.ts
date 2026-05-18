@@ -29,5 +29,5 @@ export interface RegistryCoordinator {
 export interface ProviderConfig {
 	provider: ProviderType;
 	urlPattern: RegExp;
-	metadata?: ProviderMetadata;
+	metadata: ProviderMetadata;
 }

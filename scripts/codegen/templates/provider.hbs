@@ -9,7 +9,15 @@ export class {{ProviderName}}Provider extends BaseProvider<{{ArgsName}}> {
 	constructor(url: string) {
 		super(url,{
 			provider:ProviderType.{{ProviderName}},
-			urlPattern:/implementation$/i
+			urlPattern:/implementation$/i,
+			metadata: {
+			    hasHls: false,
+				hasMp4: true,
+				hasKvs: false,
+				requiresBrowser: false,
+				sniSpoofing: 'untested',
+				underGeoRestriction: false
+			}
 		});
 	}
 }

@@ -14,6 +14,7 @@ export * from './porndoe';
 export * from './pornhub';
 export * from './pornid';
 export * from './pornone';
+export * from './pornseven';
 export * from './pornsok';
 export * from './pussyspace';
 export * from './sexvid';

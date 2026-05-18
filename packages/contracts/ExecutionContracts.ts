@@ -23,15 +23,12 @@ export interface ExecutionArgs<S extends ExecutionShape = ExecutionShape> extend
 	entryUrl: string;
 	targets: string[];
 	/**
-	 * Internal runtime metadata describing
-	 * the structural shape of extracted output.
-	 *
-	 * single   -> TResult
-	 * multiple -> TResult[]
+	 * Internal runtime metadata describing the structural shape of extracted output.
+	 * single -> TResult; multiple -> TResult[]
 	 */
 	executionShape: S;
 
-	executionType: ExecutionType;
+	executionType?: ExecutionType;
 	extractionTarget: ExtractionTarget;
 
 	/** Provider capabilities and restrictions */

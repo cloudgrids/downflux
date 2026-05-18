@@ -1,5 +1,4 @@
-import { BeegProvider } from '@provider/beeg';
-import { XVideosProvider } from '@provider/xvideos';
+import { PornSevenProvider } from '@provider/pornseven';
 import { OutputType } from '@types';
 
 async function main() {
@@ -24,7 +23,7 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new XVideosProvider('https://www.xvideos.com/video.ookcptk0aa3/cute_teen_student_gives_her_pussy_for_creampie')
+		await new PornSevenProvider('https://www.porn7.xxx/v/old-archive/726468/milf-goddess-lauren-shows-handjob?hl=ms%27;video_links_full[%27ko%27]%20=%20%27https://www.porn7.xxx/v/old-archive/726468/milf-goddess-lauren-shows-handjob?hl=ko')
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON, { directoryPath: 'test/providers' })

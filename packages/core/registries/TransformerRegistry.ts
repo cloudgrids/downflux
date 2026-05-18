@@ -36,6 +36,7 @@ const transformerFactories: Record<ProviderType, TransformerFactory> = {
 	[ProviderType.PornHub]: () => loadTransformer(() => import('@provider/pornhub'), 'PornHubTransformer'),
 	[ProviderType.PornId]: () => loadTransformer(() => import('@provider/pornid'), 'PornIdTransformer'),
 	[ProviderType.PornOne]: () => loadTransformer(() => import('@provider/pornone'), 'PornOneTransformer'),
+	[ProviderType.PornSeven]: () => loadTransformer(() => import('@provider/pornseven'), 'PornSevenTransformer'),
 	[ProviderType.PornsOk]: () => loadTransformer(() => import('@provider/pornsok'), 'PornsOkTransformer'),
 	[ProviderType.PussySpace]: () => loadTransformer(() => import('@provider/pussyspace'), 'PussySpaceTransformer'),
 	[ProviderType.SexVid]: () => loadTransformer(() => import('@provider/sexvid'), 'SexVidTransformer'),
