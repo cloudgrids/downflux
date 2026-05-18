@@ -22,6 +22,7 @@ const pipelineFactories: Record<ProviderType, PipelineFactory> = {
 	[ProviderType.Beeg]: () => loadPipeline(() => import('@provider/beeg'), 'BeegPipeline'),
 	[ProviderType.ColliderPorn]: () => loadPipeline(() => import('@provider/colliderporn'), 'ColliderPornPipeline'),
 	[ProviderType.CumLouder]: () => loadPipeline(() => import('@provider/cumlouder'), 'CumLouderPipeline'),
+	[ProviderType.DaNude]: () => loadPipeline(() => import('@provider/danude'), 'DaNudePipeline'),
 	[ProviderType.Default]: async () => BasePipeline,
 	[ProviderType.EPorner]: () => loadPipeline(() => import('@provider/eporner'), 'EPornerPipeline'),
 	[ProviderType.HqPorn]: () => loadPipeline(() => import('@provider/hqporn'), 'HqPornPipeline'),

@@ -50,6 +50,8 @@
 
 			"@provider/cumlouder": ["./packages/providers/cumlouder/index.ts"],
 
+			"@provider/danude": ["./packages/providers/danude/index.ts"],
+
 			"@provider/default": ["./packages/providers/default/index.ts"],
 
 			"@provider/eporner": ["./packages/providers/eporner/index.ts"],

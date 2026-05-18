@@ -25,6 +25,14 @@
       "method": true
     },
     {
+      "name": "DaNude",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "Default",
       "parser": false,
       "pipeline": false,

@@ -39,6 +39,7 @@ export enum ProviderType {
 	Beeg = 'BeegProvider',
 	ColliderPorn = 'ColliderPornProvider',
 	CumLouder = 'CumLouderProvider',
+	DaNude = 'DaNudeProvider',
 	Default = 'DefaultProvider',
 	EPorner = 'EPornerProvider',
 	HqPorn = 'HqPornProvider',

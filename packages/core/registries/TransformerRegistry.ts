@@ -23,6 +23,7 @@ const transformerFactories: Record<ProviderType, TransformerFactory> = {
 	[ProviderType.Beeg]: () => loadTransformer(() => import('@provider/beeg'), 'BeegTransformer'),
 	[ProviderType.ColliderPorn]: () => loadTransformer(() => import('@provider/colliderporn'), 'ColliderPornTransformer'),
 	[ProviderType.CumLouder]: () => loadTransformer(() => import('@provider/cumlouder'), 'CumLouderTransformer'),
+	[ProviderType.DaNude]: () => loadTransformer(() => import('@provider/danude'), 'DaNudeTransformer'),
 	[ProviderType.Default]: async () => BaseTransformer,
 	[ProviderType.EPorner]: () => loadTransformer(() => import('@provider/eporner'), 'EPornerTransformer'),
 	[ProviderType.HqPorn]: () => loadTransformer(() => import('@provider/hqporn'), 'HqPornTransformer'),

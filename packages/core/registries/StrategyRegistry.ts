@@ -21,6 +21,7 @@ const strategyFactories: Record<ProviderType, StrategyFactory> = {
 	[ProviderType.Beeg]: async () => BaseStrategy,
 	[ProviderType.ColliderPorn]: async () => BaseStrategy,
 	[ProviderType.CumLouder]: async () => BaseStrategy,
+	[ProviderType.DaNude]: async () => BaseStrategy,
 	[ProviderType.Default]: async () => BaseStrategy,
 	[ProviderType.EPorner]: () => loadStrategy(() => import('@provider/eporner'), 'EPornerStrategy'),
 	[ProviderType.HqPorn]: async () => BaseStrategy,
