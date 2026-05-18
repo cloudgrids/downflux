@@ -3,6 +3,7 @@ export * from './colliderporn';
 export * from './cumlouder';
 export * from './danude';
 export * from './default';
+export * from './epicgfs';
 export * from './eporner';
 export * from './hqporn';
 export * from './lesbian8';

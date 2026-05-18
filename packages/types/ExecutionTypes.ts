@@ -41,6 +41,7 @@ export enum ProviderType {
 	CumLouder = 'CumLouderProvider',
 	DaNude = 'DaNudeProvider',
 	Default = 'DefaultProvider',
+	EpicGfs = 'EpicGfsProvider',
 	EPorner = 'EPornerProvider',
 	HqPorn = 'HqPornProvider',
 	Lesbian8 = 'Lesbian8Provider',

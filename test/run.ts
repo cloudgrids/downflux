@@ -1,4 +1,5 @@
 import { DaNudeProvider } from '@provider/danude';
+import { EpicGfsProvider } from '@provider/epicgfs';
 import { XDeguProvider } from '@provider/xdegu';
 import { OutputType } from '@types';
 
@@ -24,8 +25,8 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new DaNudeProvider(
-			'https://www.danude.com/videos/55422/step-sis-shows-me-how-to-fuck-then-begs-me-to-give-her-a-creampie/?utm_source=awn-rse&utm_medium=inc&utm_campaign=babestare2020'
+		await new EpicGfsProvider(
+'https://www.epicgfs.com/videos/64970/the-stepmother-asked-not-to-bother-her-after-the-club-but-no-i-want-her-to-taste-my-dick/?utm_source=awn-rse&utm_medium=inc&utm_campaign=babestare2020'
 		)
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
