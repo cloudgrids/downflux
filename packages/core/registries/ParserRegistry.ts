@@ -33,6 +33,7 @@ const parserFactories: Record<ProviderType, ParserFactory> = {
 	[ProviderType.PornHub]: () => loadParser(() => import('@provider/pornhub'), 'PornHubParser'),
 	[ProviderType.PornId]: () => loadParser(() => import('@provider/pornid'), 'PornIdParser'),
 	[ProviderType.PornOne]: () => loadParser(() => import('@provider/pornone'), 'PornOneParser'),
+	[ProviderType.PornSeven]: () => loadParser(() => import('@provider/pornseven'), 'PornSevenParser'),
 	[ProviderType.PornsOk]: () => loadParser(() => import('@provider/pornsok'), 'PornsOkParser'),
 	[ProviderType.PussySpace]: () => loadParser(() => import('@provider/pussyspace'), 'PussySpaceParser'),
 	[ProviderType.SexVid]: () => loadParser(() => import('@provider/sexvid'), 'SexVidParser'),

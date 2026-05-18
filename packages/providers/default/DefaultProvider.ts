@@ -28,14 +28,6 @@ export class DefaultProvider extends BaseProvider<DefaultExecArgs> {
 	}
 
 	/**
-	 * Gets raw default metadata.
-	 * @returns Extracted default result array
-	 */
-	public getRawHtml() {
-		return this.execute();
-	}
-
-	/**
 	 * Gets links.
 	 * @returns Extracted anchor result array
 	 */
@@ -43,7 +35,9 @@ export class DefaultProvider extends BaseProvider<DefaultExecArgs> {
 		return await this.execute<string[]>({
 			provider: this.provider,
 			method: DefaultMethods.getLinks,
-			extractionTarget: ExtractionTarget.ANCHORS
+			extractionTarget: ExtractionTarget.ANCHORS,
+			executionShape: 'multiple',
+			targets: [this.url]
 		});
 	}
 
@@ -55,7 +49,9 @@ export class DefaultProvider extends BaseProvider<DefaultExecArgs> {
 		return await this.execute<string[]>({
 			provider: this.provider,
 			method: DefaultMethods.getImages,
-			extractionTarget: ExtractionTarget.IMAGES
+			extractionTarget: ExtractionTarget.IMAGES,
+			executionShape: 'multiple',
+			targets: [this.url]
 		});
 	}
 
@@ -67,7 +63,9 @@ export class DefaultProvider extends BaseProvider<DefaultExecArgs> {
 		return await this.execute<string[]>({
 			provider: this.provider,
 			method: DefaultMethods.getVideos,
-			extractionTarget: ExtractionTarget.SOURCES
+			extractionTarget: ExtractionTarget.SOURCES,
+			executionShape: 'multiple',
+			targets: [this.url]
 		});
 	}
 
@@ -79,7 +77,9 @@ export class DefaultProvider extends BaseProvider<DefaultExecArgs> {
 		return await this.execute<string[]>({
 			provider: this.provider,
 			method: DefaultMethods.getAudio,
-			extractionTarget: ExtractionTarget.SOURCES
+			extractionTarget: ExtractionTarget.SOURCES,
+			executionShape: 'multiple',
+			targets: [this.url]
 		});
 	}
 }

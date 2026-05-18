@@ -1,260 +1,268 @@
 {
-	"services": [
-		{
-			"name": "Beeg",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "ColliderPorn",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "CumLouder",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "Default",
-			"parser": false,
-			"pipeline": false,
-			"transformer": false,
-			"strategy": false,
-			"method": false
-		},
-		{
-			"name": "EPorner",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "HqPorn",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "Lesbian8",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "MegaTube",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "MyLust",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "OkPorn",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "PerfectGirls",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "Porn300",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "PornDoe",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "PornHub",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "PornId",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "PornOne",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "PornsOk",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "PussySpace",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "SexVid",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "Shameless",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "SuperPorn",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "SxyPorn",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "TheyAreHuge",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "TnAFlix",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "TubeVSex",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "WallHaven",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "XCafe",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		},
-		{
-			"name": "XGroovy",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "XHamster",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "XnXX",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "XVideos",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": true,
-			"method": true
-		},
-		{
-			"name": "ZzzTube",
-			"parser": true,
-			"pipeline": true,
-			"transformer": true,
-			"strategy": false,
-			"method": true
-		}
-	]
+  "services": [
+    {
+      "name": "Beeg",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "ColliderPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "CumLouder",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Default",
+      "parser": false,
+      "pipeline": false,
+      "transformer": false,
+      "strategy": false,
+      "method": false
+    },
+    {
+      "name": "EPorner",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "HqPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Lesbian8",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "MegaTube",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "MyLust",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "OkPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "PerfectGirls",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "Porn300",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "PornDoe",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "PornHub",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "PornId",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "PornOne",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "PornSeven",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "PornsOk",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "PussySpace",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "SexVid",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Shameless",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "SuperPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "SxyPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "TheyAreHuge",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "TnAFlix",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "TubeVSex",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "WallHaven",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "XCafe",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "XGroovy",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "XHamster",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "XnXX",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "XVideos",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": true,
+      "method": true
+    },
+    {
+      "name": "ZzzTube",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    }
+  ]
 }
