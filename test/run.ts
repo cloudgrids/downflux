@@ -1,4 +1,4 @@
-import { PornSevenProvider } from '@provider/pornseven';
+import { XDeguProvider } from '@provider/xdegu';
 import { OutputType } from '@types';
 
 async function main() {
@@ -23,7 +23,9 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new PornSevenProvider('https://www.porn7.xxx/v/old-archive/726468/milf-goddess-lauren-shows-handjob?hl=ms%27;video_links_full[%27ko%27]%20=%20%27https://www.porn7.xxx/v/old-archive/726468/milf-goddess-lauren-shows-handjob?hl=ko')
+		await new XDeguProvider(
+			'https://xdegu.com/videos/117571/sharing-bed-with-stepmom-on-cold-winter-night-fucking/?utm_source=pb_web_media&utm_medium=pbwtraffic&utm_campaign=money&subid1=2025'
+		)
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
 			.setOutput(OutputType.JSON, { directoryPath: 'test/providers' })

@@ -100,6 +100,8 @@
 
 			"@provider/xcafe": ["./packages/providers/xcafe/index.ts"],
 
+			"@provider/xdegu": ["./packages/providers/xdegu/index.ts"],
+
 			"@provider/xgroovy": ["./packages/providers/xgroovy/index.ts"],
 
 			"@provider/xhamster": ["./packages/providers/xhamster/index.ts"],

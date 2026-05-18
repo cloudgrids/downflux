@@ -47,6 +47,7 @@ const pipelineFactories: Record<ProviderType, PipelineFactory> = {
 	[ProviderType.TubeVSex]: () => loadPipeline(() => import('@provider/tubevsex'), 'TubeVSexPipeline'),
 	[ProviderType.WallHaven]: () => loadPipeline(() => import('@provider/wallhaven'), 'WallHavenPipeline'),
 	[ProviderType.XCafe]: () => loadPipeline(() => import('@provider/xcafe'), 'XCafePipeline'),
+	[ProviderType.XDegu]: () => loadPipeline(() => import('@provider/xdegu'), 'XDeguPipeline'),
 	[ProviderType.XGroovy]: () => loadPipeline(() => import('@provider/xgroovy'), 'XGroovyPipeline'),
 	[ProviderType.XHamster]: () => loadPipeline(() => import('@provider/xhamster'), 'XHamsterPipeline'),
 	[ProviderType.XnXX]: () => loadPipeline(() => import('@provider/xnxx'), 'XnXXPipeline'),

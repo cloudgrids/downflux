@@ -29,5 +29,5 @@ export const inferVideoQuality = (url: string, defaultQuality?: VideoQuality): V
 	}
 
 	// fallback ONLY if no explicit quality found
-	return defaultQuality ?? VideoQuality.QUnknown;
+	return defaultQuality || VideoQuality.QUnknown;
 };

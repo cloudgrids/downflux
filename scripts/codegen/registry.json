@@ -225,6 +225,14 @@
       "method": true
     },
     {
+      "name": "XDegu",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "XGroovy",
       "parser": true,
       "pipeline": true,

@@ -27,6 +27,7 @@ export class PornSevenProvider extends BaseProvider<PornSevenExecArgs> {
 				requiresBrowser: false,
 				sniSpoofing: 'untested',
 				underGeoRestriction: false,
+				underDevelopment: true,
 				canDownload: false
 			}
 		});

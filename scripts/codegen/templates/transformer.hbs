@@ -3,11 +3,11 @@ import { DefaultExecutionResult } from '@contracts';
 import { {{ArgsName}}, {{OutputName}} } from './{{ProviderName}}Contracts';
 import { {{MethodName}} } from './{{ProviderName}}Types';
 
+type {{ProviderName}}TransformedOutput = DefaultExecutionResult<Partial<{{OutputName}}>>;
 
 export class {{ProviderName}}Transformer extends BaseTransformer<{{ArgsName}}, DefaultExecutionResult> {
 	public async transform(url: string, request?: {{ArgsName}}): Promise<DefaultExecutionResult> {
-		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<{{OutputName}}>>;
-
+		const metadata = (await super.transform(url, request)) as {{ProviderName}}TransformedOutput;
 		if (!request?.transformOutput) return metadata;
 
 		switch (request?.method) {

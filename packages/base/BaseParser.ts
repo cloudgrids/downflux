@@ -1,6 +1,6 @@
 import { DefaultExecutionResult, FlashVarsOutput, VideoSourceOutput } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { KvsResolver } from '@shared';
+import { inferVideoQuality, KvsResolver } from '@shared';
 import { ProviderType, VideoQuality } from '@types';
 
 export class BaseParser {
@@ -83,23 +83,23 @@ export class BaseParser {
 		const alt2VideoTexts = extractFields('video_alt_url2_text');
 
 		const videosRaw = [
-			...videoUrls.map((url, i) => resolveVideo(url, videoUrlTexts[i], licenseCode)),
+			...videoUrls.map((url, i) => resolveVideo(url, videoUrlTexts[i] || inferVideoQuality(url), licenseCode)),
 
-			...altVideoUrls.map((url, i) => resolveVideo(url, altVideoTexts[i], licenseCode)),
+			...altVideoUrls.map((url, i) => resolveVideo(url, altVideoTexts[i] || inferVideoQuality(url), licenseCode)),
 
-			...alt2VideoUrls.map((url, i) => resolveVideo(url, alt2VideoTexts[i], licenseCode))
+			...alt2VideoUrls.map((url, i) => resolveVideo(url, alt2VideoTexts[i] || inferVideoQuality(url), licenseCode))
 		].filter(Boolean) as VideoSourceOutput[];
 
 		const videos = Array.from(new Map(videosRaw.map((v) => [v.url, v])).values());
 
 		const previews = unique(
 			[
-				...extractFields('preview_url'),
-				...extractFields('preview_url1'),
-				...extractFields('preview_url2'),
-				...extractFields('preview_url3'),
-				...extractFields('preview_url4')
-			].filter(Boolean)
+				extractField('preview_url'),
+				extractField('preview_url1'),
+				extractField('preview_url2'),
+				extractField('preview_url3'),
+				extractField('preview_url4')
+			].filter(Boolean) as string[]
 		);
 
 		const timelineScreenUrl = extractField('timeline_screens_url');
@@ -138,6 +138,7 @@ export class BaseParser {
 			previewUrl4: extractField('preview_url4'),
 
 			title: extractField('video_title'),
+			description: extractField('video_description'),
 
 			tags: parseList('video_tags'),
 			categories: parseList('video_categories'),
