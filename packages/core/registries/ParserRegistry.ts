@@ -45,6 +45,7 @@ const parserFactories: Record<ProviderType, ParserFactory> = {
 	[ProviderType.TubeVSex]: () => loadParser(() => import('@provider/tubevsex'), 'TubeVSexParser'),
 	[ProviderType.WallHaven]: () => loadParser(() => import('@provider/wallhaven'), 'WallHavenParser'),
 	[ProviderType.XCafe]: () => loadParser(() => import('@provider/xcafe'), 'XCafeParser'),
+	[ProviderType.XDegu]: () => loadParser(() => import('@provider/xdegu'), 'XDeguParser'),
 	[ProviderType.XGroovy]: () => loadParser(() => import('@provider/xgroovy'), 'XGroovyParser'),
 	[ProviderType.XHamster]: () => loadParser(() => import('@provider/xhamster'), 'XHamsterParser'),
 	[ProviderType.XnXX]: () => loadParser(() => import('@provider/xnxx'), 'XnXXParser'),

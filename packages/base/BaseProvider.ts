@@ -285,7 +285,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	}
 
 	protected async execute<TResult>(
-		overrides: TExec | { executionShape: InferExecutionShape<TResult>; entryUrl?: string }
+		overrides: (TExec | { entryUrl?: string }) & { executionShape: InferExecutionShape<TResult> }
 	): Promise<TResult> {
 		type TItem = TResult extends Array<infer U> ? U : TResult;
 

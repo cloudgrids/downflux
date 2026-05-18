@@ -48,7 +48,7 @@ export interface ProviderMetadata {
 	requiresBrowser: boolean;
 
 	/** Mentioned site is currently under development or has limited functionality */
-	underDevelopment?: boolean;
+	underDevelopment: boolean;
 
 	/** External API integration required */
 	needsExternalAPI?: boolean;

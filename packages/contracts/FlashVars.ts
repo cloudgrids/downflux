@@ -7,6 +7,7 @@ export interface FlashVarsOutput {
 	tags?: string[];
 	models?: string[];
 	licenseCode?: string;
+	description?: string;
 	rnd?: string;
 	postfix?: string;
 	videoUrl?: string;

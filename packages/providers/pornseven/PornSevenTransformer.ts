@@ -3,11 +3,11 @@ import { DefaultExecutionResult } from '@contracts';
 import { PornSevenExecArgs, PornSevenOutput, PornSevenVideoOutput } from './PornSevenContracts';
 import { PornSevenMethods } from './PornSevenTypes';
 
-type PornSevenTransformOutput = DefaultExecutionResult<Partial<PornSevenOutput>>;
+type PornSevenTransformedOutput = DefaultExecutionResult<Partial<PornSevenOutput>>;
 
 export class PornSevenTransformer extends BaseTransformer<PornSevenExecArgs, DefaultExecutionResult | PornSevenVideoOutput> {
 	public async transform(url: string, request?: PornSevenExecArgs): Promise<DefaultExecutionResult | PornSevenVideoOutput> {
-		const metadata = (await super.transform(url, request)) as PornSevenTransformOutput;
+		const metadata = (await super.transform(url, request)) as PornSevenTransformedOutput;
 
 		if (!request?.transformOutput) return metadata;
 
@@ -19,7 +19,7 @@ export class PornSevenTransformer extends BaseTransformer<PornSevenExecArgs, Def
 		}
 	}
 
-	private toVideoOutput(metadata: PornSevenTransformOutput): PornSevenVideoOutput {
+	private toVideoOutput(metadata: PornSevenTransformedOutput): PornSevenVideoOutput {
 		const pornSevenMetadata = metadata.customFields as PornSevenOutput;
 		return {
 			tags: metadata?.keywords,

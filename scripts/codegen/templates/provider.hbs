@@ -16,7 +16,10 @@ export class {{ProviderName}}Provider extends BaseProvider<{{ArgsName}}> {
 				hasKvs: false,
 				requiresBrowser: false,
 				sniSpoofing: 'untested',
-				underGeoRestriction: false
+				underGeoRestriction: false,
+				underDevelopment: true,
+				needsExternalAPI: false,
+				canDownload:false
 			}
 		});
 	}
