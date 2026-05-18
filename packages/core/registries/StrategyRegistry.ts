@@ -23,6 +23,7 @@ const strategyFactories: Record<ProviderType, StrategyFactory> = {
 	[ProviderType.CumLouder]: async () => BaseStrategy,
 	[ProviderType.DaNude]: async () => BaseStrategy,
 	[ProviderType.Default]: async () => BaseStrategy,
+	[ProviderType.EpicGfs]: async () => BaseStrategy,
 	[ProviderType.EPorner]: () => loadStrategy(() => import('@provider/eporner'), 'EPornerStrategy'),
 	[ProviderType.HqPorn]: async () => BaseStrategy,
 	[ProviderType.Lesbian8]: async () => BaseStrategy,
