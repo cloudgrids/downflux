@@ -20,6 +20,7 @@ const parserFactories: Record<ProviderType, ParserFactory> = {
 	[ProviderType.Beeg]: () => loadParser(() => import('@provider/beeg'), 'BeegParser'),
 	[ProviderType.ColliderPorn]: () => loadParser(() => import('@provider/colliderporn'), 'ColliderPornParser'),
 	[ProviderType.CumLouder]: () => loadParser(() => import('@provider/cumlouder'), 'CumLouderParser'),
+	[ProviderType.DaNude]: () => loadParser(() => import('@provider/danude'), 'DaNudeParser'),
 	[ProviderType.Default]: async () => BaseParser,
 	[ProviderType.EPorner]: () => loadParser(() => import('@provider/eporner'), 'EPornerParser'),
 	[ProviderType.HqPorn]: () => loadParser(() => import('@provider/hqporn'), 'HqPornParser'),

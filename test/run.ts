@@ -1,3 +1,4 @@
+import { DaNudeProvider } from '@provider/danude';
 import { XDeguProvider } from '@provider/xdegu';
 import { OutputType } from '@types';
 
@@ -23,8 +24,8 @@ async function main() {
 	const directoryPath = '/Users/arijit/Downloads/';
 
 	try {
-		await new XDeguProvider(
-			'https://xdegu.com/videos/117571/sharing-bed-with-stepmom-on-cold-winter-night-fucking/?utm_source=pb_web_media&utm_medium=pbwtraffic&utm_campaign=money&subid1=2025'
+		await new DaNudeProvider(
+			'https://www.danude.com/videos/55422/step-sis-shows-me-how-to-fuck-then-begs-me-to-give-her-a-creampie/?utm_source=awn-rse&utm_medium=inc&utm_campaign=babestare2020'
 		)
 			.setJobOptions({ logProgress: true })
 			.setTransformOutput(true)
