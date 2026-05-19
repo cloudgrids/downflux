@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType, VideoQuality } from '@types';
 import { SxyPornOutput } from './SxyPornContracts';
 
+/**
+ * Extracts SxyPorn-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class SxyPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<SxyPornOutput>>> {
 		const uploader = this.collectByClassNames(html, 'pes_author_div pes_edit_div transition', { includeInnerHTML: true });

@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { ShamelessExecArgs, ShamelessVideoOutput } from './ShamelessContracts';
 import { ShamelessMethods } from './ShamelessTypes';
 
+/**
+ * Public Shameless provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ */
 export class ShamelessProvider extends BaseProvider<ShamelessExecArgs> {
 	protected readonly provider = ProviderType.Shameless;
 	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?shameless\.(?:com)\/videos\/[^/]+\/$/;

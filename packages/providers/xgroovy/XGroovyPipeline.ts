@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { XGroovyExecArgs, XGroovyOutput } from './XGroovyContracts';
 
+/**
+ * Builds downloadable XGroovy pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class XGroovyPipeline extends BasePipeline<XGroovyExecArgs, XGroovyOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<XGroovyOutput>): string {
 		const { mediaType, id, metadata } = ctx;

@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType, VideoQuality } from '@types';
 import { PornOneOutput } from './PornOneContracts';
 
+/**
+ * Extracts PornOne-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class PornOneParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<PornOneOutput>>> {
 		const col = this.collectByClassNames(html, 'md:mb-2 p-1 font-semibold w-[136px] dark:text-white', {

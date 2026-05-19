@@ -1,5 +1,11 @@
 import { BaseStrategy } from '@base';
 
+/**
+ * Provides EPorner-specific HTTP behavior.
+ *
+ * @remarks
+ * Strategies isolate host fallbacks, headers, and transport quirks from shared HTTP clients.
+ */
 export class EPornerStrategy extends BaseStrategy {
 	private readonly SUB_DOMAINS = [
 		'eporner.com',

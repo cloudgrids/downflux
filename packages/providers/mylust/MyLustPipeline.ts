@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { MyLustExecArgs, MyLustOutput } from './MyLustContracts';
 
+/**
+ * Builds downloadable MyLust pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class MyLustPipeline extends BasePipeline<MyLustExecArgs, MyLustOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<MyLustOutput>): string {
 		const { mediaType, id, metadata } = ctx;

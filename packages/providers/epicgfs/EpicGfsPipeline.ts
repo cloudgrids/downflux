@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { EpicGfsExecArgs, EpicGfsOutput } from './EpicGfsContracts';
 
+/**
+ * Builds downloadable EpicGfs pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class EpicGfsPipeline extends BasePipeline<EpicGfsExecArgs, EpicGfsOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<EpicGfsOutput>): string {
 		const { mediaType, id, metadata } = ctx;

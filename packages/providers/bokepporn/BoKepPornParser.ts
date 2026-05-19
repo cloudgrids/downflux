@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType } from '@types';
 import { BoKepPornOutput } from './BoKepPornContracts';
 
+/**
+ * Extracts BoKepPorn-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class BoKepPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<BoKepPornOutput>>> {
 		const flashVars = this.getFlashVars(html);

@@ -3,6 +3,14 @@
 import { DownloadOptions, ServiceStrategy } from '@contracts';
 import { ProgressManager } from '@core/progress';
 
+/**
+ * Default provider transport strategy.
+ *
+ * @remarks
+ * Strategies exist for provider-specific HTTP behavior that does not belong in
+ * parsers or pipelines, such as host fallbacks, direct URL resolution, expired
+ * URL re-extraction, or text responses that should be treated as redirects.
+ */
 export class BaseStrategy implements ServiceStrategy {
 	constructor(protected readonly progressManager: ProgressManager) {}
 

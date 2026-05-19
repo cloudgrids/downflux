@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMapping } from '@contracts';
 import { MediaType } from '@types';
 import { BeegExecArgs, BeegOutput } from './BeegContracts';
 
+/**
+ * Builds downloadable Beeg pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class BeegPipeline extends BasePipeline<BeegExecArgs, BeegOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<BeegOutput>): string {
 		const { mediaType, id, secondaryId } = ctx;

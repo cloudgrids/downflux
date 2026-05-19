@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType, VideoQuality } from '@types';
 import { SuperPornOutput } from './SuperPornContracts';
 
+/**
+ * Extracts SuperPorn-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class SuperPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<SuperPornOutput>>> {
 		const tags = this.collectByClassNames(html, 'chip-link') as Array<{ text: string }>;

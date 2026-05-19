@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { ZbPornExecArgs, ZbPornVideoOutput } from './ZbPornContracts';
 import { ZbPornMethods } from './ZbPornTypes';
 
+/**
+ * Public ZbPorn provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ */
 export class ZbPornProvider extends BaseProvider<ZbPornExecArgs> {
 	protected readonly provider = ProviderType.ZbPorn;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?zbporn\.(?:tv|com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;

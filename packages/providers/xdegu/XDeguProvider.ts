@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { XDeguExecArgs, XDeguVideoOutput } from './XDeguContracts';
 import { XDeguMethods } from './XDeguTypes';
 
+/**
+ * Public XDegu provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ */
 export class XDeguProvider extends BaseProvider<XDeguExecArgs> {
 	protected readonly provider = ProviderType.XDegu;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?xdegu\.(?:com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;

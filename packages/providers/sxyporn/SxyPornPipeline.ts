@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { SxyPornExecArgs, SxyPornOutput } from './SxyPornContracts';
 
+/**
+ * Builds downloadable SxyPorn pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class SxyPornPipeline extends BasePipeline<SxyPornExecArgs, SxyPornOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<SxyPornOutput>): string {
 		const { mediaType, id, metadata } = ctx;

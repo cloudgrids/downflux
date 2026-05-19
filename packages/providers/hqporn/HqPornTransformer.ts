@@ -3,6 +3,12 @@ import { DefaultExecutionResult } from '@contracts';
 import { HqPornExecArgs, HqPornOutput, HqPornVideoOutput } from './HqPornContracts';
 import { HqPornMethods } from './HqPornTypes';
 
+/**
+ * Normalizes parsed HqPorn metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class HqPornTransformer extends BaseTransformer<HqPornExecArgs, HqPornVideoOutput | DefaultExecutionResult> {
 	public async transform(url: string, request?: HqPornExecArgs): Promise<DefaultExecutionResult | HqPornVideoOutput> {
 		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<HqPornOutput>>;

@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineExtractedItem } from '@contracts';
 import { MediaType } from '@types';
 import { EPornerExecArgs, EPornerOutput } from './EPornerContracts';
 
+/**
+ * Builds downloadable EPorner pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class EPornerPipeline extends BasePipeline<EPornerExecArgs, EPornerOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<EPornerOutput>): string {
 		const { mediaType, id, metadata } = ctx;

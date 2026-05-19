@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { ItsPornExecArgs, ItsPornVideoOutput } from './ItsPornContracts';
 import { ItsPornMethods } from './ItsPornTypes';
 
+/**
+ * Public ItsPorn provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ */
 export class ItsPornProvider extends BaseProvider<ItsPornExecArgs> {
 	protected readonly provider = ProviderType.ItsPorn;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?its\.(?:porn)\/video\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;

@@ -3,6 +3,12 @@ import { DefaultExecutionResult } from '@contracts';
 import { MyLustExecArgs, MyLustOutput, MyLustVideoOutput } from './MyLustContracts';
 import { MyLustMethods } from './MyLustTypes';
 
+/**
+ * Normalizes parsed MyLust metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class MyLustTransformer extends BaseTransformer<MyLustExecArgs, DefaultExecutionResult | MyLustVideoOutput> {
 	public async transform(url: string, request?: MyLustExecArgs): Promise<DefaultExecutionResult | MyLustVideoOutput> {
 		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<MyLustOutput>>;

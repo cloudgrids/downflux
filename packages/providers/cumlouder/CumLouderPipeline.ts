@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { CumLouderExecArgs, CumLouderOutput } from './CumLouderContracts';
 
+/**
+ * Builds downloadable CumLouder pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class CumLouderPipeline extends BasePipeline<CumLouderExecArgs, CumLouderOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<CumLouderOutput>): string {
 		const { mediaType, id } = ctx;

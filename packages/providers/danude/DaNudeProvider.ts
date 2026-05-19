@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { DaNudeExecArgs, DaNudeVideoOutput } from './DaNudeContracts';
 import { DaNudeMethods } from './DaNudeTypes';
 
+/**
+ * Public DaNude provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ */
 export class DaNudeProvider extends BaseProvider<DaNudeExecArgs> {
 	protected readonly provider = ProviderType.DaNude;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?danude\.(?:com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;

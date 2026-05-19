@@ -5,6 +5,14 @@ import { FileManager } from '@storage';
 import { ExecutionShape, OutputType } from '@types';
 import { TransferCoordinator } from './TransferCoordinator';
 
+/**
+ * Coordinates concurrent work within an execution result.
+ *
+ * @remarks
+ * The task coordinator owns concurrency, hooks, progress updates, and output
+ * mode behavior. It keeps download scheduling separate from provider methods
+ * and from the lower-level transfer code that writes individual items.
+ */
 export class TaskCoordinator {
 	private static readonly Default_DOWNLOAD_CONCURRENCY = 5;
 
@@ -124,6 +132,13 @@ export class TaskCoordinator {
 		});
 	}
 
+	/**
+	 * Runs asynchronous workers with a bounded concurrency limit.
+	 *
+	 * @param items Items to process.
+	 * @param concurrency Maximum number of active workers.
+	 * @param worker Async item handler.
+	 */
 	public async runWithConcurrency<T>(items: T[], concurrency: number, worker: (item: T, index: number) => Promise<void>): Promise<void> {
 		if (!items.length) return;
 
@@ -141,6 +156,13 @@ export class TaskCoordinator {
 		await Promise.all(runners);
 	}
 
+	/**
+	 * Persists a JSON execution result.
+	 *
+	 * @param result Execution result to serialize.
+	 * @param options Output options containing directory configuration.
+	 * @returns The original execution result.
+	 */
 	public async handleJsonOutput<T, S extends ExecutionShape>(
 		result: ExecutionResult<T, S>,
 		options: ExecutionOptions
@@ -149,6 +171,15 @@ export class TaskCoordinator {
 		return result;
 	}
 
+	/**
+	 * Starts background download processing for device or buffer output.
+	 *
+	 * @param options Execution options.
+	 * @param outputType Output mode.
+	 * @param request Original execution request.
+	 * @param pipelineHooks Hooks fired around extraction/download events.
+	 * @param result Execution result to update while downloads progress.
+	 */
 	public handleDeviceOutputAsync<T, S extends ExecutionShape>(
 		options: ExecutionOptions,
 		outputType: OutputType,

@@ -3,6 +3,12 @@ import { DownloadOptions } from '@contracts';
 import { VideoQuality } from '@types';
 import { PornHubMediaDefinition } from './PornHubContracts';
 
+/**
+ * Provides PornHub-specific HTTP behavior.
+ *
+ * @remarks
+ * Strategies isolate host fallbacks, headers, and transport quirks from shared HTTP clients.
+ */
 export class PornHubStrategy extends BaseStrategy {
 	private SUB_DOMAINS = [
 		'pornhub.com',

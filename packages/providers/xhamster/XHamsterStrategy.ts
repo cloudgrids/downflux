@@ -1,5 +1,11 @@
 import { BaseStrategy } from '@base';
 
+/**
+ * Provides XHamster-specific HTTP behavior.
+ *
+ * @remarks
+ * Strategies isolate host fallbacks, headers, and transport quirks from shared HTTP clients.
+ */
 export class XHamsterStrategy extends BaseStrategy {
 	private SUB_DOMAINS = ['xhamster.com', 'xhopen.com', 'xhtotal.com', 'xhamster.desi'];
 

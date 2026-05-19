@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType, VideoQuality } from '@types';
 import { MyLustOutput } from './MyLustContracts';
 
+/**
+ * Extracts MyLust-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class MyLustParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<MyLustOutput>>> {
 		const scripts = this.extractScriptsByType(html, 'application/ld+json')?.flatMap((script) => JSON.parse(script))?.[0];

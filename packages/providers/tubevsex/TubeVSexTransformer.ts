@@ -3,6 +3,12 @@ import { DefaultExecutionResult } from '@contracts';
 import { TubeVSexExecArgs, TubeVSexOutput, TubeVSexVideoOutput } from './TubeVSexContracts';
 import { TubeVSexMethods } from './TubeVSexTypes';
 
+/**
+ * Normalizes parsed TubeVSex metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class TubeVSexTransformer extends BaseTransformer<TubeVSexExecArgs, DefaultExecutionResult | TubeVSexVideoOutput> {
 	public async transform(url: string, request?: TubeVSexExecArgs): Promise<DefaultExecutionResult | TubeVSexVideoOutput> {
 		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<TubeVSexOutput>>;

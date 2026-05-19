@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { XozillaExecArgs, XozillaOutput } from './XozillaContracts';
 
+/**
+ * Builds downloadable Xozilla pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class XozillaPipeline extends BasePipeline<XozillaExecArgs, XozillaOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<XozillaOutput>): string {
 		const { mediaType, id, metadata } = ctx;

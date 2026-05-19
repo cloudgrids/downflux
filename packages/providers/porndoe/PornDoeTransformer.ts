@@ -4,6 +4,12 @@ import { OutputType, VideoQuality } from '@types';
 import { PornDoeExecArgs, PornDoeOutput, PornDoeVideoOutput, PornDoeVideoSource } from './PornDoeContracts';
 import { PornDoeMethods } from './PornDoeTypes';
 
+/**
+ * Normalizes parsed PornDoe metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class PornDoeTransformer extends BaseTransformer<PornDoeExecArgs, DefaultExecutionResult | PornDoeVideoOutput> {
 	private readonly MP4_URL = 'https://porndoe.com/service/index.json?device=mobile&height=869&width=1440';
 

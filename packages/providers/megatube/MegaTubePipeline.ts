@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { MegaTubeExecArgs, MegaTubeOutput } from './MegaTubeContracts';
 
+/**
+ * Builds downloadable MegaTube pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class MegaTubePipeline extends BasePipeline<MegaTubeExecArgs, MegaTubeOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<MegaTubeOutput>): string {
 		const { mediaType, id, metadata } = ctx;

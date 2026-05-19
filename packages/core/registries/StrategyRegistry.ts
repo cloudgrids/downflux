@@ -64,6 +64,14 @@ const strategyFactories: Record<ProviderType, StrategyFactory> = {
 	// </auto-generated:entries>
 };
 
+/**
+ * Resolves provider transport strategies for HTTP clients.
+ *
+ * @remarks
+ * The strategy registry keeps HTTP engines generic. Engines ask for the current
+ * provider strategy and then apply provider-specific fallback, redirect, or
+ * re-extraction behavior without importing provider modules themselves.
+ */
 export class StrategyRegistry {
 	private static readonly cache = new Map<ProviderType, StrategyCtor>();
 
@@ -83,6 +91,12 @@ export class StrategyRegistry {
 		return StrategyClass;
 	}
 
+	/**
+	 * Creates a strategy instance for the requested provider.
+	 *
+	 * @param provider Provider whose transport strategy should be loaded.
+	 * @returns Provider strategy, or the default strategy fallback.
+	 */
 	public async getStrategy(provider: ProviderType): Promise<BaseStrategy> {
 		const StrategyClass = await this.resolveStrategy(provider);
 

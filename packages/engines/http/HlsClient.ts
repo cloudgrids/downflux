@@ -11,11 +11,28 @@ export interface ParseKey {
 	iv?: Buffer;
 }
 
+/**
+ * HTTP engine for HLS playlists and media segments.
+ *
+ * @remarks
+ * HLS handling is isolated from generic streaming because playlists require
+ * variant selection, segment stitching, optional AES decryption, and fMP4
+ * detection before storage can finalize the media.
+ */
 export class HlsClient extends BaseHttpClient {
 	constructor(progressManager: ProgressManager) {
 		super(progressManager);
 	}
 
+	/**
+	 * Writes a resolved HLS playlist to a destination stream.
+	 *
+	 * @param manifest Already fetched manifest content.
+	 * @param manifestUrl URL used to resolve relative playlist entries.
+	 * @param timeoutMs Segment request timeout.
+	 * @param stream Destination stream.
+	 * @param opts Download and quality options.
+	 */
 	public async fetchHlsStream(
 		manifest: string,
 		manifestUrl: string,
@@ -45,6 +62,14 @@ export class HlsClient extends BaseHttpClient {
 		await this.stitchSegments(segments, key, keyInfo, timeoutMs, stream, requestHeaders);
 	}
 
+	/**
+	 * Detects whether the selected playlist uses fMP4 initialization segments.
+	 *
+	 * @param manifest Manifest content.
+	 * @param manifestUrl URL used to resolve relative entries.
+	 * @param opts Download and quality options.
+	 * @returns `true` when an fMP4 init segment is present.
+	 */
 	public async isFmp4(manifest: string, manifestUrl: string, opts: DownloadOptions): Promise<boolean> {
 		const variant = this.selectVariant(manifest, manifestUrl, opts);
 		const playlistUrl = variant ?? manifestUrl;
@@ -190,6 +215,13 @@ export class HlsClient extends BaseHttpClient {
 		}
 	}
 
+	/**
+	 * Checks whether a response should be handled as an HLS manifest.
+	 *
+	 * @param contentType Response content type.
+	 * @param url Final response URL.
+	 * @returns `true` when the response appears to be an HLS playlist.
+	 */
 	public isHlsManifest(contentType: string, url: string): boolean {
 		return contentType.includes('application/vnd.apple.mpegurl') || url.includes('.m3u8');
 	}

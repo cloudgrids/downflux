@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { MyLustExecArgs, MyLustVideoOutput } from './MyLustContracts';
 import { MyLustMethods } from './MyLustTypes';
 
+/**
+ * Public MyLust provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
+ */
 export class MyLustProvider extends BaseProvider<MyLustExecArgs> {
 	protected readonly provider = ProviderType.MyLust;
 	private readonly VIDEO_URL_PATTERN = /^https:\/\/(?:(?:www|de|ru)\.)?mylust\.(?:com)\/videos\/\d+\/[^/]+\/(?:\?.*)/i;

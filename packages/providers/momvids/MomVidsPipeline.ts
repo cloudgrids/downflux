@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { MomVidsExecArgs, MomVidsOutput } from './MomVidsContracts';
 
+/**
+ * Builds downloadable MomVids pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class MomVidsPipeline extends BasePipeline<MomVidsExecArgs, MomVidsOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<MomVidsOutput>): string {
 		const { mediaType, id, metadata } = ctx;

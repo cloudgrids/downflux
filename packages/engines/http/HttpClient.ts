@@ -4,12 +4,26 @@ import { ProgressManager } from '@core/progress';
 import { StrategyRegistry } from '@core/registries';
 import { ProviderType } from '@types';
 
+/**
+ * HTTP engine for page and JSON metadata requests.
+ *
+ * @remarks
+ * The client applies provider strategies, retry behavior, cookie persistence,
+ * transport fallback, and response decoding before parsers receive HTML.
+ */
 export class HttpClient extends BaseHttpClient {
 	constructor(progressManager: ProgressManager) {
 		super(progressManager);
 	}
 	private readonly strategyRegistry = new StrategyRegistry(this.progressManager);
 
+	/**
+	 * Fetches a page as HTML using provider-aware transport rules.
+	 *
+	 * @param url Page URL to fetch.
+	 * @param opts Download and HTTP options.
+	 * @returns Decoded HTML, final URL, status, headers, and raw buffer.
+	 */
 	public async fetchHtml(url: string, opts: DownloadOptions): Promise<FetchResult> {
 		const { retries = 3 } = opts;
 		const timeoutMs = opts.timeoutMs ?? 30_000;

@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { PornDoeExecArgs, PornDoeVideoOutput } from './PornDoeContracts';
 import { PornDoeMethods } from './PornDoeTypes';
 
+/**
+ * Public PornDoe provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads. Requires an external API. Marked under development so callers should expect provider-specific changes.
+ */
 export class PornDoeProvider extends BaseProvider<PornDoeExecArgs> {
 	protected readonly provider = ProviderType.PornDoe;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:(?:www|de|en|fs|pt|es|fr|it)\.)?porndoe\.com\/watch\/([A-Za-z0-9]+)$/i;

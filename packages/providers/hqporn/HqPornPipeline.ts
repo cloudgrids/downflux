@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { HqPornExecArgs, HqPornOutput } from './HqPornContracts';
 
+/**
+ * Builds downloadable HqPorn pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class HqPornPipeline extends BasePipeline<HqPornExecArgs, HqPornOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<HqPornOutput>): string {
 		const { mediaType, id, metadata } = ctx;

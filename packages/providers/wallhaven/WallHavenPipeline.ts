@@ -5,6 +5,12 @@ import path from 'path';
 import { WallHavenExecArgs, WallHavenOutput, WallHavenUserFavoriteCollectionsOutput } from './WallHavenContracts';
 import { WallHavenMethods, WallHavenThumbnailQuality } from './WallHavenTypes';
 
+/**
+ * Builds downloadable WallHaven pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class WallHavenPipeline extends BasePipeline<WallHavenExecArgs, WallHavenOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<WallHavenOutput>): string {
 		const { mediaType, metadata, id, username, secondaryId } = ctx;

@@ -4,6 +4,14 @@ import { HEADER_PRESETS } from '@shared';
 import { Agent, Dispatcher, Headers, ProxyAgent, fetch as UFetch } from 'undici';
 import { brotliDecompressSync, gunzipSync, inflateSync } from 'zlib';
 
+/**
+ * Shared HTTP engine foundation.
+ *
+ * @remarks
+ * Engines centralize transport concerns that should not leak into providers:
+ * randomized browser-like headers, cookies, compression decoding, proxy/SNI
+ * dispatchers, retries, and low-level fetch fallback behavior.
+ */
 export abstract class BaseHttpClient {
 	constructor(protected readonly progressManager: ProgressManager) {}
 
@@ -179,6 +187,15 @@ export abstract class BaseHttpClient {
 		].find((c) => c === String(code));
 	}
 
+	/**
+	 * Runs a fetch request with transport fallback for transient TLS/socket failures.
+	 *
+	 * @param url URL to request.
+	 * @param init Fetch options.
+	 * @param options Agent, proxy, and SNI options.
+	 * @param allowFallback Whether fallback dispatchers may be attempted.
+	 * @returns Native fetch response.
+	 */
 	public async fetchWithTransportFallback(
 		url: string,
 		init: Parameters<typeof UFetch>[1],

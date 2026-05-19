@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { ImageExtension, MediaType } from '@types';
 import { Porn300ExecArgs, Porn300Output } from './Porn300Contracts';
 
+/**
+ * Builds downloadable Porn300 pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class Porn300Pipeline extends BasePipeline<Porn300ExecArgs, Porn300Output> {
 	protected override buildIdentifier(ctx: IdentifierContext<Porn300Output>): string {
 		const { mediaType, id } = ctx;

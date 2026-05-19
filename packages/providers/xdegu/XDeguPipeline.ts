@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { XDeguExecArgs, XDeguOutput } from './XDeguContracts';
 
+/**
+ * Builds downloadable XDegu pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class XDeguPipeline extends BasePipeline<XDeguExecArgs, XDeguOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<XDeguOutput>): string {
 		const { mediaType, id, metadata } = ctx;

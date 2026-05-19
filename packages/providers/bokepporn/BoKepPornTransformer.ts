@@ -5,6 +5,12 @@ import { BoKepPornMethods } from './BoKepPornTypes';
 
 type BoKepPornTransformedOutput = DefaultExecutionResult<Partial<BoKepPornOutput>>;
 
+/**
+ * Normalizes parsed BoKepPorn metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class BoKepPornTransformer extends BaseTransformer<BoKepPornExecArgs, DefaultExecutionResult | BoKepPornVideoOutput> {
 	public async transform(url: string, request?: BoKepPornExecArgs): Promise<DefaultExecutionResult | BoKepPornVideoOutput> {
 		const metadata = (await super.transform(url, request)) as BoKepPornTransformedOutput;

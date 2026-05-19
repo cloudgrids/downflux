@@ -14,6 +14,12 @@ import {
 } from './PerfectGirlsContracts';
 import { PerfectGirlsMethods } from './PerfectGirlsTypes';
 
+/**
+ * Normalizes parsed PerfectGirls metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class PerfectGirlsTransformer extends BaseTransformer<
 	PerfectGirlsExecArgs,
 	| PerfectGirlsAlbumOutput

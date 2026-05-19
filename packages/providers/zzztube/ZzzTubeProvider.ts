@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { ZzzTubeExecArgs, ZzzTubeVideoOutput } from './ZzzTubeContracts';
 import { ZzzTubeMethods } from './ZzzTubeTypes';
 
+/**
+ * Public ZzzTube provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
+ */
 export class ZzzTubeProvider extends BaseProvider<ZzzTubeExecArgs> {
 	protected readonly provider = ProviderType.ZzzTube;
 	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?zzztube\.(?:com)\/\d+(?:(?:\?|#).*)?$/i;

@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { XCafeExecArgs, XCafeOutput } from './XCafeContracts';
 
+/**
+ * Builds downloadable XCafe pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class XCafePipeline extends BasePipeline<XCafeExecArgs, XCafeOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<XCafeOutput>): string {
 		const { mediaType, id, metadata } = ctx;

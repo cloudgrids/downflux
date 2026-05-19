@@ -12,12 +12,28 @@ import { Helper } from '@shared';
 import { FileManager, PathBuilder } from '@storage';
 import { MediaType, VideoQuality } from '@types';
 
+/**
+ * Converts extracted metadata into downloadable work items.
+ *
+ * @remarks
+ * Pipelines exist because extraction output is descriptive, while downloads
+ * need concrete URLs, media types, file extensions, and stable identifiers.
+ * Provider pipelines decide which media are eligible and how files should be
+ * grouped on disk.
+ */
 export class BasePipeline<TExec extends ExecutionArgs, TResult extends DefaultExecutionResult = DefaultExecutionResult> {
 	protected readonly pathBuilder = new PathBuilder();
 	protected readonly helper = new Helper();
 
 	constructor(protected fileManager: FileManager) {}
 
+	/**
+	 * Builds filtered, deduplicated pipeline items for a single metadata result.
+	 *
+	 * @param metadata Extracted provider metadata.
+	 * @param request Execution request with filters and provider options.
+	 * @returns Downloadable pipeline items.
+	 */
 	public build(metadata: TResult, request: TExec): PipelineItem[] {
 		return this.uniquePipelines(
 			this.sliceByMaxDownloads(
@@ -53,6 +69,12 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult extends DefaultEx
 		return request.maxDownloads ? items.slice(0, request.maxDownloads) : items;
 	}
 
+	/**
+	 * Builds the storage identifier used as the logical output path.
+	 *
+	 * @param ctx Media item context and source metadata.
+	 * @returns Stable identifier for storage and progress output.
+	 */
 	protected buildIdentifier(ctx: IdentifierContext<TResult>): string {
 		const metadata = ctx.metadata as DefaultExecutionResult;
 
@@ -65,6 +87,13 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult extends DefaultEx
 		return [elements, handler];
 	}
 
+	/**
+	 * Defines which metadata collections should become pipeline items.
+	 *
+	 * @param metadata Extracted provider metadata.
+	 * @param request Execution request with provider filters.
+	 * @returns Mapping definitions used by `extract`.
+	 */
 	protected mappings(metadata: TResult, request: TExec): PipelineMappings {
 		console.log('Resolving to base pipeline mapping:', request);
 
@@ -84,6 +113,13 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult extends DefaultEx
 		return urls;
 	}
 
+	/**
+	 * Applies provider quality filtering without changing source order.
+	 *
+	 * @param items Source records to filter.
+	 * @param options Quality selector and requested quality.
+	 * @returns Sources matching the requested quality, or all sources when no quality is requested.
+	 */
 	protected filterByQuality<T, TEnum = string | number>(
 		items: T[] = [],
 		options: {

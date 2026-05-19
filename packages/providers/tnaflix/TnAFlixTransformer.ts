@@ -3,6 +3,12 @@ import { DefaultExecutionResult } from '@contracts';
 import { TnAFlixExecArgs, TnAFlixOutput, TnAFlixVideoOutput } from './TnAFlixContracts';
 import { TnAFlixMethods } from './TnAFlixTypes';
 
+/**
+ * Normalizes parsed TnAFlix metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class TnAFlixTransformer extends BaseTransformer<TnAFlixExecArgs, TnAFlixVideoOutput | DefaultExecutionResult> {
 	public override async transform(
 		url: string,

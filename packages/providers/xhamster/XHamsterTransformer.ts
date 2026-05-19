@@ -3,6 +3,12 @@ import { DefaultExecutionResult } from '@contracts';
 import { XHamsterExecArgs, XHamsterOutput, XHamsterVideoOutput } from './XHamsterContracts';
 import { XHamsterMethods } from './XHamsterTypes';
 
+/**
+ * Normalizes parsed XHamster metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class XHamsterTransformer extends BaseTransformer<XHamsterExecArgs, DefaultExecutionResult | XHamsterVideoOutput> {
 	private readonly DIRECT_MP4_REGEX = /^https:\/\/video5\.xhpingcdn\.com\/.*\.mp4$/;
 

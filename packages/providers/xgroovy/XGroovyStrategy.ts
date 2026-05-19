@@ -1,5 +1,11 @@
 import { BaseStrategy } from '@base';
 
+/**
+ * Provides XGroovy-specific HTTP behavior.
+ *
+ * @remarks
+ * Strategies isolate host fallbacks, headers, and transport quirks from shared HTTP clients.
+ */
 export class XGroovyStrategy extends BaseStrategy {
 	private SUB_DOMAINS = [
 		'xgroovy.com',

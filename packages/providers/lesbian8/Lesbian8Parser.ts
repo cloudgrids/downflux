@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType } from '@types';
 import { Lesbian8Output } from './Lesbian8Contracts';
 
+/**
+ * Extracts Lesbian8-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class Lesbian8Parser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<Lesbian8Output>>> {
 		const flashVars = this.getFlashVars(html);

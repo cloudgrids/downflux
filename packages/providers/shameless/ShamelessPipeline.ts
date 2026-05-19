@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { ShamelessExecArgs, ShamelessOutput } from './ShamelessContracts';
 
+/**
+ * Builds downloadable Shameless pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class ShamelessPipeline extends BasePipeline<ShamelessExecArgs, ShamelessOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<ShamelessOutput>): string {
 		const { mediaType, id, metadata } = ctx;

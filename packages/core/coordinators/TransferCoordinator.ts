@@ -5,6 +5,14 @@ import { FileManager } from '@storage';
 import { OutputType } from '@types';
 import { finished } from 'stream/promises';
 
+/**
+ * Coordinates one pipeline item transfer into storage.
+ *
+ * @remarks
+ * The transfer coordinator binds streaming and storage together. It resolves
+ * the final media URL, opens the correct sink, streams bytes, finalizes the
+ * stored media, and returns download metadata to the task coordinator.
+ */
 export class TransferCoordinator {
 	constructor(
 		protected readonly fileManager: FileManager,
@@ -12,6 +20,13 @@ export class TransferCoordinator {
 		protected readonly progressManager: ProgressManager
 	) {}
 
+	/**
+	 * Downloads a single pipeline item.
+	 *
+	 * @param item Pipeline item describing the media URL and identifier.
+	 * @param opts Download and output options.
+	 * @returns Final download details including path, size, MIME type, and final URL.
+	 */
 	public async download(item: PipelineItem, opts: DownloadOptions): Promise<DownloadResult> {
 		const { dirConfig, provider, outputType } = opts;
 		const url = item.downloadUrl;

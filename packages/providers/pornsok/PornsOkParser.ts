@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType, VideoQuality } from '@types';
 import { PornsOkOutput } from './PornsOkContracts';
 
+/**
+ * Extracts PornsOk-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class PornsOkParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<PornsOkOutput>>> {
 		const videoUrl = this.extractMetaPropertyContent(html, 'ya:ovs:content_url');

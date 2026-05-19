@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { ColliderPornExecArgs, ColliderPornOutput } from './ColliderPornContracts';
 
+/**
+ * Builds downloadable ColliderPorn pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class ColliderPornPipeline extends BasePipeline<ColliderPornExecArgs, ColliderPornOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<ColliderPornOutput>): string {
 		const { mediaType, id, metadata } = ctx;

@@ -63,6 +63,14 @@ const parserFactories: Record<ProviderType, ParserFactory> = {
 	// </auto-generated:entries>
 };
 
+/**
+ * Resolves and caches parser classes by provider.
+ *
+ * @remarks
+ * Registries keep provider lookup out of the execution flow. They lazy-load
+ * provider modules, cache constructors, and fall back to default behavior when
+ * a provider-specific implementation is absent.
+ */
 export class ParserRegistry {
 	private static readonly cache = new Map<ProviderType, ParserCtor>();
 
@@ -80,6 +88,12 @@ export class ParserRegistry {
 		return ParserClass;
 	}
 
+	/**
+	 * Creates a parser instance for the requested provider.
+	 *
+	 * @param provider Provider whose parser should be loaded.
+	 * @returns Parser instance for the provider, or the default parser fallback.
+	 */
 	public static async getParser(provider: ProviderType): Promise<BaseParser> {
 		const ParserClass = await this.resolveParser(provider);
 

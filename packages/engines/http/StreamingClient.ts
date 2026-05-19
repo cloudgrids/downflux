@@ -8,6 +8,14 @@ import { pipeline } from 'stream/promises';
 import { Response as UResponse } from 'undici';
 import { HlsClient } from './HlsClient';
 
+/**
+ * HTTP engine for downloadable media streams.
+ *
+ * @remarks
+ * Streaming is separate from page fetching because downloads need byte progress,
+ * provider-aware CDN fallback, expired URL re-extraction, direct media redirect
+ * resolution, and HLS delegation.
+ */
 export class StreamHttpClient extends BaseHttpClient {
 	private readonly MAX_CDN_FALLBACK = 1;
 	private readonly MAX_RE_EXTRACT = 1;
@@ -79,6 +87,13 @@ export class StreamHttpClient extends BaseHttpClient {
 		return this.requestStream(directUrl, opts);
 	}
 
+	/**
+	 * Resolves a media URL into a stream starter and final response metadata.
+	 *
+	 * @param url Media URL to request.
+	 * @param opts Download options and provider context.
+	 * @returns Stream start callback with final URL, headers, and media flags.
+	 */
 	public async requestStream(url: string, opts: DownloadOptions): Promise<HLSStreamRequest> {
 		const { timeoutMs = 30_000, retries = 3 } = opts;
 
