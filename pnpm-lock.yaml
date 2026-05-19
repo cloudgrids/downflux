@@ -14,9 +14,6 @@ importers:
       ffmpeg-static:
         specifier: ^5.3.0
         version: 5.3.0
-      radash:
-        specifier: ^12.1.1
-        version: 12.1.1
       undici:
         specifier: ^8.1.0
         version: 8.1.0
@@ -2450,10 +2447,6 @@ packages:
   quick-lru@4.0.1:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
-
-  radash@12.1.1:
-    resolution: {integrity: sha512-h36JMxKRqrAxVD8201FrCpyeNuUY9Y5zZwujr20fFO77tpUtGa6EZzfKw/3WaiBX95fq7+MpsuMLNdSnORAwSA==}
-    engines: {node: '>=14.18.0'}
 
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
@@ -5487,8 +5480,6 @@ snapshots:
   q@1.5.1: {}
 
   quick-lru@4.0.1: {}
-
-  radash@12.1.1: {}
 
   react-is@18.3.1: {}
 
