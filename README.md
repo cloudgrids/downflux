@@ -23,6 +23,39 @@ const result = await provider.getVideo();
 console.log(result);
 ```
 
+## FFmpeg Setup
+
+DownFlux uses ffmpeg when HLS or fragmented media needs to be finalized into a playable file. The package includes `ffmpeg-static`, but some package managers can block its postinstall script.
+
+If you use pnpm in the consuming app, approve the bundled binary build:
+
+```bash
+pnpm approve-builds
+```
+
+Select `ffmpeg-static`, then reinstall dependencies if needed.
+
+You can also install ffmpeg yourself:
+
+```bash
+brew install ffmpeg
+```
+
+Then point DownFlux at that executable:
+
+```ts
+import { BeegProvider, OutputType } from 'downflux';
+
+await new BeegProvider('https://beeg.com/example-video-url')
+	.setOutput(OutputType.DEVICE, { directoryPath: 'downloads' })
+	.setJobOptions({
+		transcodeOptions: {
+			ffmpegPath: '/opt/homebrew/bin/ffmpeg'
+		}
+	})
+	.getVideo();
+```
+
 ## Documentation
 
 The generated Markdown API docs live in [`docs-md`](docs-md/README.md).
