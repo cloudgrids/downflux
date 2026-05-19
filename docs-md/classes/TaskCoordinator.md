@@ -6,7 +6,7 @@
 
 # Class: TaskCoordinator
 
-Defined in: [packages/core/coordinators/TaskCoordinator.ts:16](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TaskCoordinator.ts#L16)
+Defined in: [packages/core/coordinators/TaskCoordinator.ts:16](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TaskCoordinator.ts#L16)
 
 Coordinates concurrent work within an execution result.
 
@@ -22,7 +22,7 @@ and from the lower-level transfer code that writes individual items.
 
 > **new TaskCoordinator**(`transferCoordinator`, `fileManager`, `transformerRegistry`, `progressManager`, `pipelineRegistry`): `TaskCoordinator`
 
-Defined in: [packages/core/coordinators/TaskCoordinator.ts:19](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TaskCoordinator.ts#L19)
+Defined in: [packages/core/coordinators/TaskCoordinator.ts:19](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TaskCoordinator.ts#L19)
 
 #### Parameters
 
@@ -56,7 +56,7 @@ Defined in: [packages/core/coordinators/TaskCoordinator.ts:19](https://github.co
 
 > **runWithConcurrency**\<`T`\>(`items`, `concurrency`, `worker`): `Promise`\<`void`\>
 
-Defined in: [packages/core/coordinators/TaskCoordinator.ts:142](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TaskCoordinator.ts#L142)
+Defined in: [packages/core/coordinators/TaskCoordinator.ts:142](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TaskCoordinator.ts#L142)
 
 Runs asynchronous workers with a bounded concurrency limit.
 
@@ -96,7 +96,7 @@ Async item handler.
 
 > **handleJsonOutput**\<`T`, `S`\>(`result`, `options`): `Promise`\<[`ExecutionResult`](../interfaces/ExecutionResult.md)\<`T`, `S`\>\>
 
-Defined in: [packages/core/coordinators/TaskCoordinator.ts:166](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TaskCoordinator.ts#L166)
+Defined in: [packages/core/coordinators/TaskCoordinator.ts:166](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TaskCoordinator.ts#L166)
 
 Persists a JSON execution result.
 
@@ -136,7 +136,7 @@ The original execution result.
 
 > **handleDeviceOutputAsync**\<`T`, `S`\>(`options`, `outputType`, `request`, `pipelineHooks`, `result`): `void`
 
-Defined in: [packages/core/coordinators/TaskCoordinator.ts:183](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TaskCoordinator.ts#L183)
+Defined in: [packages/core/coordinators/TaskCoordinator.ts:183](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TaskCoordinator.ts#L183)
 
 Starts background download processing for device or buffer output.
 

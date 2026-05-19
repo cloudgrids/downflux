@@ -6,7 +6,7 @@
 
 # Interface: UniqueVideosProps\<T\>
 
-Defined in: [packages/base/BaseTransformer.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L12)
+Defined in: [packages/base/BaseTransformer.ts:12](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L12)
 
 Selectors used to normalize provider-specific video records.
 
@@ -24,7 +24,7 @@ Provider-specific video source record type.
 
 > **getUrl**: (`video`) => `string`
 
-Defined in: [packages/base/BaseTransformer.ts:13](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L13)
+Defined in: [packages/base/BaseTransformer.ts:13](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L13)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: [packages/base/BaseTransformer.ts:13](https://github.com/forkts/down
 
 > **getQuality**: (`video`) => [`VideoQuality`](../enumerations/VideoQuality.md)
 
-Defined in: [packages/base/BaseTransformer.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L14)
+Defined in: [packages/base/BaseTransformer.ts:14](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L14)
 
 #### Parameters
 

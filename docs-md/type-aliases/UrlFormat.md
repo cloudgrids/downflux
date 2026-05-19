@@ -8,4 +8,4 @@
 
 > **UrlFormat** = `"url"` \| `"path"`
 
-Defined in: [packages/types/ExecutionTypes.ts:85](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/types/ExecutionTypes.ts#L85)
+Defined in: [packages/types/ExecutionTypes.ts:85](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ExecutionTypes.ts#L85)

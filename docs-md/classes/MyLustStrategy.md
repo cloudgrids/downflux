@@ -6,7 +6,7 @@
 
 # Class: MyLustStrategy
 
-Defined in: [packages/providers/mylust/MyLustStrategy.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/mylust/MyLustStrategy.ts#L9)
+Defined in: [packages/providers/mylust/MyLustStrategy.ts:9](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/mylust/MyLustStrategy.ts#L9)
 
 Provides MyLust-specific HTTP behavior.
 
@@ -24,7 +24,7 @@ Strategies isolate host fallbacks, headers, and transport quirks from shared HTT
 
 > **new MyLustStrategy**(`progressManager`): `MyLustStrategy`
 
-Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L15)
+Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L15)
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflu
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L15)
+Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L15)
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflu
 
 > **shouldFallback404**(`url`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:17](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L17)
+Defined in: [packages/base/BaseStrategy.ts:17](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L17)
 
 #### Parameters
 
@@ -80,7 +80,7 @@ Defined in: [packages/base/BaseStrategy.ts:17](https://github.com/forkts/downflu
 
 > **getDirectVideoUrlFromText**(`body`, `opts`): `string` \| `null`
 
-Defined in: [packages/base/BaseStrategy.ts:21](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L21)
+Defined in: [packages/base/BaseStrategy.ts:21](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L21)
 
 #### Parameters
 
@@ -106,7 +106,7 @@ Defined in: [packages/base/BaseStrategy.ts:21](https://github.com/forkts/downflu
 
 > **getFallbackUrl**(`url`): `string` \| `null`
 
-Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L37)
+Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L37)
 
 #### Parameters
 
@@ -128,7 +128,7 @@ Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflu
 
 > **shouldReExtract**(`url`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L41)
+Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L41)
 
 #### Parameters
 
@@ -150,7 +150,7 @@ Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflu
 
 > **shouldResolveTextResponse**(`url`, `contentType`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:45](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L45)
+Defined in: [packages/base/BaseStrategy.ts:45](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L45)
 
 #### Parameters
 
@@ -176,7 +176,7 @@ Defined in: [packages/base/BaseStrategy.ts:45](https://github.com/forkts/downflu
 
 > `protected` **constructPathname**(`url`): `string`
 
-Defined in: [packages/base/BaseStrategy.ts:49](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L49)
+Defined in: [packages/base/BaseStrategy.ts:49](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L49)
 
 #### Parameters
 
@@ -198,7 +198,7 @@ Defined in: [packages/base/BaseStrategy.ts:49](https://github.com/forkts/downflu
 
 > **getHostFallbackUrls**(`url`): `string`[]
 
-Defined in: [packages/providers/mylust/MyLustStrategy.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/mylust/MyLustStrategy.ts#L12)
+Defined in: [packages/providers/mylust/MyLustStrategy.ts:12](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/mylust/MyLustStrategy.ts#L12)
 
 #### Parameters
 

@@ -8,4 +8,4 @@
 
 > `const` **cleanBase**: `string`
 
-Defined in: [packages/shared/constants/Headers.ts:44](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/shared/constants/Headers.ts#L44)
+Defined in: [packages/shared/constants/Headers.ts:44](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/shared/constants/Headers.ts#L44)

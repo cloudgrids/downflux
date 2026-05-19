@@ -6,7 +6,7 @@
 
 # Interface: CreateSinkOutput
 
-Defined in: [packages/contracts/StorageContracts.ts:13](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L13)
+Defined in: [packages/contracts/StorageContracts.ts:13](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L13)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/StorageContracts.ts:13](https://github.com/forkt
 
 > **originalFilename**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L14)
+Defined in: [packages/contracts/StorageContracts.ts:14](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L14)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/StorageContracts.ts:14](https://github.com/forkt
 
 > **extension**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L15)
+Defined in: [packages/contracts/StorageContracts.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L15)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/StorageContracts.ts:15](https://github.com/forkt
 
 > **extendedFilename**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:16](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L16)
+Defined in: [packages/contracts/StorageContracts.ts:16](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L16)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/contracts/StorageContracts.ts:16](https://github.com/forkt
 
 > **mimeType**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:17](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L17)
+Defined in: [packages/contracts/StorageContracts.ts:17](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L17)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/contracts/StorageContracts.ts:17](https://github.com/forkt
 
 > **sizeBytes**: `number`
 
-Defined in: [packages/contracts/StorageContracts.ts:18](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L18)
+Defined in: [packages/contracts/StorageContracts.ts:18](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L18)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/contracts/StorageContracts.ts:18](https://github.com/forkt
 
 > **path**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:19](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L19)
+Defined in: [packages/contracts/StorageContracts.ts:19](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L19)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [packages/contracts/StorageContracts.ts:19](https://github.com/forkt
 
 > **buffer**: `Buffer`
 
-Defined in: [packages/contracts/StorageContracts.ts:20](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L20)
+Defined in: [packages/contracts/StorageContracts.ts:20](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L20)
 
 ***
 
@@ -70,4 +70,4 @@ Defined in: [packages/contracts/StorageContracts.ts:20](https://github.com/forkt
 
 > `optional` **isFmp4?**: `boolean`
 
-Defined in: [packages/contracts/StorageContracts.ts:21](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L21)
+Defined in: [packages/contracts/StorageContracts.ts:21](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L21)

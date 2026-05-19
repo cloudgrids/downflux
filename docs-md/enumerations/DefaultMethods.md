@@ -6,7 +6,7 @@
 
 # Enumeration: DefaultMethods
 
-Defined in: [packages/base/BaseTypes.ts:2](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTypes.ts#L2)
+Defined in: [packages/base/BaseTypes.ts:2](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTypes.ts#L2)
 
 Default service methods
 
@@ -16,7 +16,7 @@ Default service methods
 
 > **getLinks**: `"getLinks"`
 
-Defined in: [packages/base/BaseTypes.ts:4](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTypes.ts#L4)
+Defined in: [packages/base/BaseTypes.ts:4](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTypes.ts#L4)
 
 Link extraction
 
@@ -26,7 +26,7 @@ Link extraction
 
 > **getImages**: `"getImages"`
 
-Defined in: [packages/base/BaseTypes.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTypes.ts#L7)
+Defined in: [packages/base/BaseTypes.ts:7](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTypes.ts#L7)
 
 Image extraction
 
@@ -36,7 +36,7 @@ Image extraction
 
 > **getVideos**: `"getVideos"`
 
-Defined in: [packages/base/BaseTypes.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTypes.ts#L10)
+Defined in: [packages/base/BaseTypes.ts:10](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTypes.ts#L10)
 
 Video extraction
 
@@ -46,6 +46,6 @@ Video extraction
 
 > **getAudio**: `"getAudios"`
 
-Defined in: [packages/base/BaseTypes.ts:13](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTypes.ts#L13)
+Defined in: [packages/base/BaseTypes.ts:13](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTypes.ts#L13)
 
 Audio extraction

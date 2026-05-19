@@ -6,7 +6,7 @@
 
 # Class: InvalidRangeException
 
-Defined in: [packages/core/exceptions/InvalidRangeException.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/InvalidRangeException.ts#L9)
+Defined in: [packages/core/exceptions/InvalidRangeException.ts:9](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidRangeException.ts#L9)
 
 InvalidRangeException
 
@@ -25,7 +25,7 @@ Provides a consistent error structure for range related issues across services.
 
 > **new InvalidRangeException**(`start`, `end`, `provider`, `method?`, `context?`, `metadata?`): `InvalidRangeException`
 
-Defined in: [packages/core/exceptions/InvalidRangeException.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/InvalidRangeException.ts#L10)
+Defined in: [packages/core/exceptions/InvalidRangeException.ts:10](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidRangeException.ts#L10)
 
 #### Parameters
 
@@ -89,7 +89,7 @@ not capture any frames.
 
 > `readonly` **errorCode**: [`ErrorCodes`](../enumerations/ErrorCodes.md)
 
-Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L18)
+Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L18)
 
 #### Inherited from
 
@@ -101,7 +101,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/fo
 
 > `readonly` **start**: `number`
 
-Defined in: [packages/core/exceptions/InvalidRangeException.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/InvalidRangeException.ts#L11)
+Defined in: [packages/core/exceptions/InvalidRangeException.ts:11](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidRangeException.ts#L11)
 
 ***
 
@@ -109,7 +109,7 @@ Defined in: [packages/core/exceptions/InvalidRangeException.ts:11](https://githu
 
 > `readonly` **end**: `number`
 
-Defined in: [packages/core/exceptions/InvalidRangeException.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/InvalidRangeException.ts#L12)
+Defined in: [packages/core/exceptions/InvalidRangeException.ts:12](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidRangeException.ts#L12)
 
 ***
 
@@ -117,7 +117,7 @@ Defined in: [packages/core/exceptions/InvalidRangeException.ts:12](https://githu
 
 > `readonly` **provider**: [`ProviderType`](../enumerations/ProviderType.md)
 
-Defined in: [packages/core/exceptions/InvalidRangeException.ts:13](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/InvalidRangeException.ts#L13)
+Defined in: [packages/core/exceptions/InvalidRangeException.ts:13](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidRangeException.ts#L13)
 
 ***
 
@@ -125,7 +125,7 @@ Defined in: [packages/core/exceptions/InvalidRangeException.ts:13](https://githu
 
 > `readonly` `optional` **method?**: `string`
 
-Defined in: [packages/core/exceptions/InvalidRangeException.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/InvalidRangeException.ts#L14)
+Defined in: [packages/core/exceptions/InvalidRangeException.ts:14](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidRangeException.ts#L14)
 
 ***
 
@@ -133,7 +133,7 @@ Defined in: [packages/core/exceptions/InvalidRangeException.ts:14](https://githu
 
 > `readonly` **context**: `Record`\<`string`, `any`\> = `{}`
 
-Defined in: [packages/core/exceptions/InvalidRangeException.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/InvalidRangeException.ts#L15)
+Defined in: [packages/core/exceptions/InvalidRangeException.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidRangeException.ts#L15)
 
 #### Inherited from
 
@@ -145,7 +145,7 @@ Defined in: [packages/core/exceptions/InvalidRangeException.ts:15](https://githu
 
 > `readonly` `optional` **metadata?**: `any`
 
-Defined in: [packages/core/exceptions/InvalidRangeException.ts:16](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/InvalidRangeException.ts#L16)
+Defined in: [packages/core/exceptions/InvalidRangeException.ts:16](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidRangeException.ts#L16)
 
 #### Inherited from
 
@@ -305,7 +305,7 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 > **toJSON**(): `object`
 
-Defined in: [packages/core/exceptions/BaseException.ts:33](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L33)
+Defined in: [packages/core/exceptions/BaseException.ts:33](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L33)
 
 #### Returns
 

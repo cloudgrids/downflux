@@ -8,7 +8,7 @@
 
 > **IndexRange** = `object`
 
-Defined in: [packages/types/StorageTypes.ts:1](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/types/StorageTypes.ts#L1)
+Defined in: [packages/types/StorageTypes.ts:1](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/StorageTypes.ts#L1)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [packages/types/StorageTypes.ts:1](https://github.com/forkts/downflu
 
 > **start**: `number`
 
-Defined in: [packages/types/StorageTypes.ts:1](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/types/StorageTypes.ts#L1)
+Defined in: [packages/types/StorageTypes.ts:1](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/StorageTypes.ts#L1)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [packages/types/StorageTypes.ts:1](https://github.com/forkts/downflu
 
 > **end**: `number`
 
-Defined in: [packages/types/StorageTypes.ts:1](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/types/StorageTypes.ts#L1)
+Defined in: [packages/types/StorageTypes.ts:1](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/StorageTypes.ts#L1)

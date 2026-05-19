@@ -6,7 +6,7 @@
 
 # Interface: ProviderConfig
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:29](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/CoordinatorDependency.ts#L29)
+Defined in: [packages/contracts/CoordinatorDependency.ts:29](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/CoordinatorDependency.ts#L29)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:29](https://github.com/
 
 > **provider**: [`ProviderType`](../enumerations/ProviderType.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:30](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/CoordinatorDependency.ts#L30)
+Defined in: [packages/contracts/CoordinatorDependency.ts:30](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/CoordinatorDependency.ts#L30)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:30](https://github.com/
 
 > **urlPattern**: `RegExp`
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:31](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/CoordinatorDependency.ts#L31)
+Defined in: [packages/contracts/CoordinatorDependency.ts:31](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/CoordinatorDependency.ts#L31)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [packages/contracts/CoordinatorDependency.ts:31](https://github.com/
 
 > **metadata**: [`ProviderMetadata`](ProviderMetadata.md)
 
-Defined in: [packages/contracts/CoordinatorDependency.ts:32](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/CoordinatorDependency.ts#L32)
+Defined in: [packages/contracts/CoordinatorDependency.ts:32](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/CoordinatorDependency.ts#L32)

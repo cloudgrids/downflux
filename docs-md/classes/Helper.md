@@ -6,7 +6,7 @@
 
 # Class: Helper
 
-Defined in: [packages/shared/utils/Helper.ts:1](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/shared/utils/Helper.ts#L1)
+Defined in: [packages/shared/utils/Helper.ts:1](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/shared/utils/Helper.ts#L1)
 
 ## Constructors
 
@@ -24,7 +24,7 @@ Defined in: [packages/shared/utils/Helper.ts:1](https://github.com/forkts/downfl
 
 > **shake**\<`T`\>(`obj`, `filter?`): `Partial`\<`T`\>
 
-Defined in: [packages/shared/utils/Helper.ts:2](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/shared/utils/Helper.ts#L2)
+Defined in: [packages/shared/utils/Helper.ts:2](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/shared/utils/Helper.ts#L2)
 
 #### Type Parameters
 

@@ -6,7 +6,7 @@
 
 # Class: LogManager
 
-Defined in: [packages/core/ui/LogManager.ts:1](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/ui/LogManager.ts#L1)
+Defined in: [packages/core/ui/LogManager.ts:1](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/ui/LogManager.ts#L1)
 
 ## Constructors
 
@@ -24,7 +24,7 @@ Defined in: [packages/core/ui/LogManager.ts:1](https://github.com/forkts/downflu
 
 > **renderBlock**(`lines`): `void`
 
-Defined in: [packages/core/ui/LogManager.ts:116](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/ui/LogManager.ts#L116)
+Defined in: [packages/core/ui/LogManager.ts:116](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/ui/LogManager.ts#L116)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: [packages/core/ui/LogManager.ts:116](https://github.com/forkts/downf
 
 > **destroy**(): `void`
 
-Defined in: [packages/core/ui/LogManager.ts:128](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/ui/LogManager.ts#L128)
+Defined in: [packages/core/ui/LogManager.ts:128](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/ui/LogManager.ts#L128)
 
 #### Returns
 

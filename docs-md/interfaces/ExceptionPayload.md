@@ -6,7 +6,7 @@
 
 # Interface: ExceptionPayload\<TMeta\>
 
-Defined in: [packages/core/exceptions/BaseException.ts:3](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L3)
+Defined in: [packages/core/exceptions/BaseException.ts:3](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L3)
 
 ## Type Parameters
 
@@ -20,7 +20,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:3](https://github.com/for
 
 > **errorCode**: [`ErrorCodes`](../enumerations/ErrorCodes.md)
 
-Defined in: [packages/core/exceptions/BaseException.ts:4](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L4)
+Defined in: [packages/core/exceptions/BaseException.ts:4](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L4)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:4](https://github.com/for
 
 > **message**: `string`
 
-Defined in: [packages/core/exceptions/BaseException.ts:5](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L5)
+Defined in: [packages/core/exceptions/BaseException.ts:5](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L5)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:5](https://github.com/for
 
 > **provider**: [`ProviderType`](../enumerations/ProviderType.md)
 
-Defined in: [packages/core/exceptions/BaseException.ts:6](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L6)
+Defined in: [packages/core/exceptions/BaseException.ts:6](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L6)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:6](https://github.com/for
 
 > `optional` **method?**: `string`
 
-Defined in: [packages/core/exceptions/BaseException.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L7)
+Defined in: [packages/core/exceptions/BaseException.ts:7](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L7)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:7](https://github.com/for
 
 > `optional` **context?**: `Record`\<`string`, `any`\>
 
-Defined in: [packages/core/exceptions/BaseException.ts:8](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L8)
+Defined in: [packages/core/exceptions/BaseException.ts:8](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L8)
 
 ***
 
@@ -60,4 +60,4 @@ Defined in: [packages/core/exceptions/BaseException.ts:8](https://github.com/for
 
 > `optional` **metadata?**: `TMeta`
 
-Defined in: [packages/core/exceptions/BaseException.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L9)
+Defined in: [packages/core/exceptions/BaseException.ts:9](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L9)

@@ -6,7 +6,7 @@
 
 # Interface: XVideosVideoOutput
 
-Defined in: [packages/providers/xvideos/XVideosContracts.ts:13](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/xvideos/XVideosContracts.ts#L13)
+Defined in: [packages/providers/xvideos/XVideosContracts.ts:13](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xvideos/XVideosContracts.ts#L13)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [packages/providers/xvideos/XVideosContracts.ts:13](https://github.c
 
 > **title**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L186)
+Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L186)
 
 #### Inherited from
 
@@ -34,7 +34,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/fo
 
 > **tags**: `string`[]
 
-Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L187)
 
 #### Inherited from
 
@@ -46,7 +46,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/fo
 
 > **description**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L188)
+Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L188)
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/fo
 
 > **pageUrl**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L189)
 
 #### Inherited from
 
@@ -70,7 +70,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/fo
 
 > **duration**: `number`
 
-Defined in: [packages/providers/xvideos/XVideosContracts.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/xvideos/XVideosContracts.ts#L14)
+Defined in: [packages/providers/xvideos/XVideosContracts.ts:14](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xvideos/XVideosContracts.ts#L14)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [packages/providers/xvideos/XVideosContracts.ts:14](https://github.c
 
 > **videoUrl**: [`XVideosVideo`](XVideosVideo.md)
 
-Defined in: [packages/providers/xvideos/XVideosContracts.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/xvideos/XVideosContracts.ts#L15)
+Defined in: [packages/providers/xvideos/XVideosContracts.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xvideos/XVideosContracts.ts#L15)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [packages/providers/xvideos/XVideosContracts.ts:15](https://github.c
 
 > **poster**: `string`
 
-Defined in: [packages/providers/xvideos/XVideosContracts.ts:16](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/xvideos/XVideosContracts.ts#L16)
+Defined in: [packages/providers/xvideos/XVideosContracts.ts:16](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xvideos/XVideosContracts.ts#L16)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [packages/providers/xvideos/XVideosContracts.ts:16](https://github.c
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/xvideos/XVideosContracts.ts:17](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/xvideos/XVideosContracts.ts#L17)
+Defined in: [packages/providers/xvideos/XVideosContracts.ts:17](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xvideos/XVideosContracts.ts#L17)
 
 ***
 
@@ -102,4 +102,4 @@ Defined in: [packages/providers/xvideos/XVideosContracts.ts:17](https://github.c
 
 > **models**: `string`[]
 
-Defined in: [packages/providers/xvideos/XVideosContracts.ts:18](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/xvideos/XVideosContracts.ts#L18)
+Defined in: [packages/providers/xvideos/XVideosContracts.ts:18](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xvideos/XVideosContracts.ts#L18)

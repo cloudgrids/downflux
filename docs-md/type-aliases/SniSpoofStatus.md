@@ -8,4 +8,4 @@
 
 > **SniSpoofStatus** = `"working"` \| `"failed"` \| `"untested"`
 
-Defined in: [packages/base/BaseTypes.ts:16](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTypes.ts#L16)
+Defined in: [packages/base/BaseTypes.ts:16](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTypes.ts#L16)

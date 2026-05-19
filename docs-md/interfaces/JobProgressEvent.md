@@ -6,7 +6,7 @@
 
 # Interface: JobProgressEvent
 
-Defined in: [packages/contracts/ProgressContracts.ts:5](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L5)
+Defined in: [packages/contracts/ProgressContracts.ts:5](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L5)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:5](https://github.com/forkt
 
 > **status**: [`JobProgressStatus`](../type-aliases/JobProgressStatus.md)
 
-Defined in: [packages/contracts/ProgressContracts.ts:6](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L6)
+Defined in: [packages/contracts/ProgressContracts.ts:6](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L6)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:6](https://github.com/forkt
 
 > **progress**: [`ProgressDestination`](../type-aliases/ProgressDestination.md)
 
-Defined in: [packages/contracts/ProgressContracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L7)
+Defined in: [packages/contracts/ProgressContracts.ts:7](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L7)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:7](https://github.com/forkt
 
 > **currentTarget**: `string`
 
-Defined in: [packages/contracts/ProgressContracts.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L10)
+Defined in: [packages/contracts/ProgressContracts.ts:10](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L10)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:10](https://github.com/fork
 
 > **totalTargets**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L11)
+Defined in: [packages/contracts/ProgressContracts.ts:11](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L11)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:11](https://github.com/fork
 
 > **resolvedTargets**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L12)
+Defined in: [packages/contracts/ProgressContracts.ts:12](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L12)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:12](https://github.com/fork
 
 > **currentItem**: `string`
 
-Defined in: [packages/contracts/ProgressContracts.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L15)
+Defined in: [packages/contracts/ProgressContracts.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L15)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:15](https://github.com/fork
 
 > **totalItems**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:16](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L16)
+Defined in: [packages/contracts/ProgressContracts.ts:16](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L16)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:16](https://github.com/fork
 
 > **resolvedItems**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:17](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L17)
+Defined in: [packages/contracts/ProgressContracts.ts:17](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L17)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:17](https://github.com/fork
 
 > **redirectedUrl**: `string`
 
-Defined in: [packages/contracts/ProgressContracts.ts:20](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L20)
+Defined in: [packages/contracts/ProgressContracts.ts:20](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L20)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:20](https://github.com/fork
 
 > **hlsPlaylistUrl**: `string`
 
-Defined in: [packages/contracts/ProgressContracts.ts:23](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L23)
+Defined in: [packages/contracts/ProgressContracts.ts:23](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L23)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:23](https://github.com/fork
 
 > **currentSegment**: `string`
 
-Defined in: [packages/contracts/ProgressContracts.ts:24](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L24)
+Defined in: [packages/contracts/ProgressContracts.ts:24](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L24)
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:24](https://github.com/fork
 
 > **totalSegments**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:25](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L25)
+Defined in: [packages/contracts/ProgressContracts.ts:25](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L25)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:25](https://github.com/fork
 
 > **resolvedSegments**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:26](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L26)
+Defined in: [packages/contracts/ProgressContracts.ts:26](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L26)
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:26](https://github.com/fork
 
 > **downloadProgress**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:29](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L29)
+Defined in: [packages/contracts/ProgressContracts.ts:29](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L29)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:29](https://github.com/fork
 
 > **downloadedBytes**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:30](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L30)
+Defined in: [packages/contracts/ProgressContracts.ts:30](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L30)
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:30](https://github.com/fork
 
 > **totalBytes**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:31](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L31)
+Defined in: [packages/contracts/ProgressContracts.ts:31](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L31)
 
 ***
 
@@ -142,7 +142,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:31](https://github.com/fork
 
 > **startTime**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:34](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L34)
+Defined in: [packages/contracts/ProgressContracts.ts:34](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L34)
 
 ***
 
@@ -150,7 +150,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:34](https://github.com/fork
 
 > **lastUpdateTime**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:35](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L35)
+Defined in: [packages/contracts/ProgressContracts.ts:35](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L35)
 
 ***
 
@@ -158,7 +158,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:35](https://github.com/fork
 
 > **prevBytes**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:38](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L38)
+Defined in: [packages/contracts/ProgressContracts.ts:38](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L38)
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:38](https://github.com/fork
 
 > **speed**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:39](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L39)
+Defined in: [packages/contracts/ProgressContracts.ts:39](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L39)
 
 ***
 
@@ -174,7 +174,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:39](https://github.com/fork
 
 > **eta**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:40](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L40)
+Defined in: [packages/contracts/ProgressContracts.ts:40](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L40)
 
 ***
 
@@ -182,7 +182,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:40](https://github.com/fork
 
 > **failed**: `number`
 
-Defined in: [packages/contracts/ProgressContracts.ts:43](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L43)
+Defined in: [packages/contracts/ProgressContracts.ts:43](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L43)
 
 ***
 
@@ -190,7 +190,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:43](https://github.com/fork
 
 > **error**: `Error`
 
-Defined in: [packages/contracts/ProgressContracts.ts:46](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L46)
+Defined in: [packages/contracts/ProgressContracts.ts:46](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L46)
 
 ***
 
@@ -198,7 +198,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:46](https://github.com/fork
 
 > **message**: `string`
 
-Defined in: [packages/contracts/ProgressContracts.ts:49](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L49)
+Defined in: [packages/contracts/ProgressContracts.ts:49](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L49)
 
 ***
 
@@ -206,7 +206,7 @@ Defined in: [packages/contracts/ProgressContracts.ts:49](https://github.com/fork
 
 > **item**: [`PipelineItem`](PipelineItem.md)
 
-Defined in: [packages/contracts/ProgressContracts.ts:52](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L52)
+Defined in: [packages/contracts/ProgressContracts.ts:52](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L52)
 
 ***
 
@@ -214,4 +214,4 @@ Defined in: [packages/contracts/ProgressContracts.ts:52](https://github.com/fork
 
 > **result**: `Omit`\<[`DownloadResult`](DownloadResult.md), `"buffer"`\>
 
-Defined in: [packages/contracts/ProgressContracts.ts:54](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ProgressContracts.ts#L54)
+Defined in: [packages/contracts/ProgressContracts.ts:54](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ProgressContracts.ts#L54)

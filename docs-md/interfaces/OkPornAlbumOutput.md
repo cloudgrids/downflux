@@ -6,7 +6,7 @@
 
 # Interface: OkPornAlbumOutput
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:21](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L21)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:21](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L21)
 
 Interface representing the output structure for OkPorn album operations.
 Contains album metadata, images, and model context.
@@ -21,7 +21,7 @@ Contains album metadata, images, and model context.
 
 > **modelName**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:23](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L23)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:23](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L23)
 
 Model name associated with the album
 
@@ -31,7 +31,7 @@ Model name associated with the album
 
 > **starredModels**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:26](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L26)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:26](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L26)
 
 Starred models associated with the album
 
@@ -41,7 +41,7 @@ Starred models associated with the album
 
 > **albumId**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:29](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L29)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:29](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L29)
 
 Album identifier
 
@@ -51,7 +51,7 @@ Album identifier
 
 > **albumTitle**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:32](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L32)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:32](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L32)
 
 Album title
 
@@ -61,7 +61,7 @@ Album title
 
 > **albumDescription**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:35](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L35)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:35](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L35)
 
 Album description
 
@@ -71,7 +71,7 @@ Album description
 
 > **albumKeywords**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:38](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L38)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:38](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L38)
 
 Album keywords
 
@@ -81,7 +81,7 @@ Album keywords
 
 > **albumUrl**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:41](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L41)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:41](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L41)
 
 Album page URL
 
@@ -91,7 +91,7 @@ Album page URL
 
 > **albumThumbnail**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:44](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L44)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:44](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L44)
 
 Album thumbnail URL
 
@@ -101,7 +101,7 @@ Album thumbnail URL
 
 > **albumImages**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:47](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L47)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:47](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L47)
 
 Album image URLs
 
@@ -111,6 +111,6 @@ Album image URLs
 
 > **albumImageCount**: `number`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:50](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L50)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:50](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornContracts.ts#L50)
 
 Album image count

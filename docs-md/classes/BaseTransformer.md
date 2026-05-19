@@ -6,7 +6,7 @@
 
 # Class: BaseTransformer\<TExec, TResult\>
 
-Defined in: [packages/base/BaseTransformer.ts:25](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L25)
+Defined in: [packages/base/BaseTransformer.ts:25](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L25)
 
 Fetches a target URL and converts parser output into execution metadata.
 
@@ -77,7 +77,7 @@ subclasses can map those raw fields into stable public result types.
 
 > **new BaseTransformer**\<`TExec`, `TResult`\>(`httpClient`, `progressManager`): `BaseTransformer`\<`TExec`, `TResult`\>
 
-Defined in: [packages/base/BaseTransformer.ts:26](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L26)
+Defined in: [packages/base/BaseTransformer.ts:26](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L26)
 
 #### Parameters
 
@@ -99,7 +99,7 @@ Defined in: [packages/base/BaseTransformer.ts:26](https://github.com/forkts/down
 
 > `protected` `readonly` **httpClient**: [`HttpClient`](HttpClient.md)
 
-Defined in: [packages/base/BaseTransformer.ts:27](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L27)
+Defined in: [packages/base/BaseTransformer.ts:27](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L27)
 
 ***
 
@@ -107,7 +107,7 @@ Defined in: [packages/base/BaseTransformer.ts:27](https://github.com/forkts/down
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseTransformer.ts:28](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L28)
+Defined in: [packages/base/BaseTransformer.ts:28](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L28)
 
 ## Methods
 
@@ -115,7 +115,7 @@ Defined in: [packages/base/BaseTransformer.ts:28](https://github.com/forkts/down
 
 > **transform**(`url`, `request?`): `Promise`\<`TResult`\>
 
-Defined in: [packages/base/BaseTransformer.ts:38](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L38)
+Defined in: [packages/base/BaseTransformer.ts:38](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L38)
 
 Fetches HTML and merges default metadata with provider-specific metadata.
 
@@ -145,7 +145,7 @@ Parsed metadata ready for provider-specific output mapping.
 
 > **requestData**(`url`, `opts`): `Promise`\<`any`\>
 
-Defined in: [packages/base/BaseTransformer.ts:61](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L61)
+Defined in: [packages/base/BaseTransformer.ts:61](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L61)
 
 Fetches JSON data for providers that expose API-backed metadata.
 
@@ -175,7 +175,7 @@ Parsed JSON response.
 
 > `protected` **uniqueVideos**\<`T`\>(`videos`, `options`): [`VideoSourceOutput`](../interfaces/VideoSourceOutput.md)[]
 
-Defined in: [packages/base/BaseTransformer.ts:72](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L72)
+Defined in: [packages/base/BaseTransformer.ts:72](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L72)
 
 Removes duplicate video URLs while preserving quality information.
 
@@ -211,7 +211,7 @@ Unique video sources in the shared shape.
 
 > `protected` **unique**\<`T`\>(`arr`): `T`[]
 
-Defined in: [packages/base/BaseTransformer.ts:89](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L89)
+Defined in: [packages/base/BaseTransformer.ts:89](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseTransformer.ts#L89)
 
 #### Type Parameters
 

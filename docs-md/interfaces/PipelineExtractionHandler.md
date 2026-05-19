@@ -6,7 +6,7 @@
 
 # Interface: PipelineExtractionHandler\<T\>
 
-Defined in: [packages/contracts/PipelineContracts.ts:33](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/PipelineContracts.ts#L33)
+Defined in: [packages/contracts/PipelineContracts.ts:33](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L33)
 
 ## Type Parameters
 
@@ -20,7 +20,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:33](https://github.com/fork
 
 > **getUrl**(`item`): `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:34](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/PipelineContracts.ts#L34)
+Defined in: [packages/contracts/PipelineContracts.ts:34](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L34)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:34](https://github.com/fork
 
 > **getMedia**(`item`): [`MediaType`](../enumerations/MediaType.md)
 
-Defined in: [packages/contracts/PipelineContracts.ts:35](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/PipelineContracts.ts#L35)
+Defined in: [packages/contracts/PipelineContracts.ts:35](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L35)
 
 #### Parameters
 
@@ -56,7 +56,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:35](https://github.com/fork
 
 > `optional` **getMime**(`item`): `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:36](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/PipelineContracts.ts#L36)
+Defined in: [packages/contracts/PipelineContracts.ts:36](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L36)
 
 #### Parameters
 
@@ -74,7 +74,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:36](https://github.com/fork
 
 > `optional` **getExt**(`item`): [`AllowedExtension`](../type-aliases/AllowedExtension.md)
 
-Defined in: [packages/contracts/PipelineContracts.ts:37](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/PipelineContracts.ts#L37)
+Defined in: [packages/contracts/PipelineContracts.ts:37](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L37)
 
 #### Parameters
 
@@ -92,7 +92,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:37](https://github.com/fork
 
 > `optional` **getId**(`item`): `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:38](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/PipelineContracts.ts#L38)
+Defined in: [packages/contracts/PipelineContracts.ts:38](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L38)
 
 #### Parameters
 
@@ -110,7 +110,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:38](https://github.com/fork
 
 > `optional` **getSecondaryId**(`item`): `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:39](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/PipelineContracts.ts#L39)
+Defined in: [packages/contracts/PipelineContracts.ts:39](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L39)
 
 #### Parameters
 
@@ -128,7 +128,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:39](https://github.com/fork
 
 > `optional` **getUsername**(`item`): `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:40](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/PipelineContracts.ts#L40)
+Defined in: [packages/contracts/PipelineContracts.ts:40](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L40)
 
 #### Parameters
 

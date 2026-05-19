@@ -6,7 +6,7 @@
 
 # Interface: DirectoryOutputOptions
 
-Defined in: [packages/contracts/StorageContracts.ts:52](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L52)
+Defined in: [packages/contracts/StorageContracts.ts:52](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L52)
 
 Directory output options.
 Controls where downloaded files are written.
@@ -17,7 +17,7 @@ Controls where downloaded files are written.
 
 > `optional` **directoryPath?**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:57](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L57)
+Defined in: [packages/contracts/StorageContracts.ts:57](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L57)
 
 Directory path for written files
 
@@ -33,6 +33,6 @@ process.cwd()
 
 > `optional` **prefix?**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:60](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/StorageContracts.ts#L60)
+Defined in: [packages/contracts/StorageContracts.ts:60](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L60)
 
 Filename prefix

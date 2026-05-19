@@ -6,7 +6,7 @@
 
 # Interface: ParseKey
 
-Defined in: [packages/engines/http/HlsClient.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/engines/http/HlsClient.ts#L9)
+Defined in: [packages/engines/http/HlsClient.ts:9](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/engines/http/HlsClient.ts#L9)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/engines/http/HlsClient.ts:9](https://github.com/forkts/dow
 
 > **url**: `string`
 
-Defined in: [packages/engines/http/HlsClient.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/engines/http/HlsClient.ts#L10)
+Defined in: [packages/engines/http/HlsClient.ts:10](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/engines/http/HlsClient.ts#L10)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [packages/engines/http/HlsClient.ts:10](https://github.com/forkts/do
 
 > `optional` **iv?**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: [packages/engines/http/HlsClient.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/engines/http/HlsClient.ts#L11)
+Defined in: [packages/engines/http/HlsClient.ts:11](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/engines/http/HlsClient.ts#L11)

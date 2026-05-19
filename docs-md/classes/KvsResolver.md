@@ -6,7 +6,7 @@
 
 # Class: KvsResolver
 
-Defined in: [packages/shared/utils/kvs/KvsResolver.ts:1](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/shared/utils/kvs/KvsResolver.ts#L1)
+Defined in: [packages/shared/utils/kvs/KvsResolver.ts:1](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/shared/utils/kvs/KvsResolver.ts#L1)
 
 ## Constructors
 
@@ -24,7 +24,7 @@ Defined in: [packages/shared/utils/kvs/KvsResolver.ts:1](https://github.com/fork
 
 > **resolveKvsUrl**(`videoUrl`, `licenseCode`): `string`
 
-Defined in: [packages/shared/utils/kvs/KvsResolver.ts:34](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/shared/utils/kvs/KvsResolver.ts#L34)
+Defined in: [packages/shared/utils/kvs/KvsResolver.ts:34](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/shared/utils/kvs/KvsResolver.ts#L34)
 
 #### Parameters
 

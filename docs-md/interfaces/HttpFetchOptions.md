@@ -6,7 +6,7 @@
 
 # Interface: HttpFetchOptions
 
-Defined in: [packages/contracts/DownloadContracts.ts:74](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L74)
+Defined in: [packages/contracts/DownloadContracts.ts:74](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/DownloadContracts.ts#L74)
 
 HTTP fetch options.
 Controls request headers, retries, timeout, and referer.
@@ -26,7 +26,7 @@ Controls request headers, retries, timeout, and referer.
 
 > `optional` **headers?**: `Record`\<`string`, `string`\>
 
-Defined in: [packages/contracts/DownloadContracts.ts:76](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L76)
+Defined in: [packages/contracts/DownloadContracts.ts:76](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/DownloadContracts.ts#L76)
 
 Custom request headers
 
@@ -36,7 +36,7 @@ Custom request headers
 
 > `optional` **timeoutMs?**: `number`
 
-Defined in: [packages/contracts/DownloadContracts.ts:79](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L79)
+Defined in: [packages/contracts/DownloadContracts.ts:79](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/DownloadContracts.ts#L79)
 
 Request timeout in milliseconds
 
@@ -46,7 +46,7 @@ Request timeout in milliseconds
 
 > `optional` **retries?**: `number`
 
-Defined in: [packages/contracts/DownloadContracts.ts:82](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L82)
+Defined in: [packages/contracts/DownloadContracts.ts:82](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/DownloadContracts.ts#L82)
 
 Failed request retry count
 
@@ -56,7 +56,7 @@ Failed request retry count
 
 > `optional` **referer?**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:85](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L85)
+Defined in: [packages/contracts/DownloadContracts.ts:85](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/DownloadContracts.ts#L85)
 
 Request referer URL
 
@@ -66,7 +66,7 @@ Request referer URL
 
 > `optional` **formData?**: `Record`\<`string`, `string`\>
 
-Defined in: [packages/contracts/DownloadContracts.ts:88](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L88)
+Defined in: [packages/contracts/DownloadContracts.ts:88](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/DownloadContracts.ts#L88)
 
 Optional FormData for POST requests
 
@@ -76,7 +76,7 @@ Optional FormData for POST requests
 
 > `optional` **userAgent?**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:105](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L105)
+Defined in: [packages/contracts/ExecutionContracts.ts:105](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L105)
 
 #### Inherited from
 
@@ -88,7 +88,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:105](https://github.com/fo
 
 > `optional` **enableSniSpoofing?**: `boolean`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:107](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L107)
+Defined in: [packages/contracts/ExecutionContracts.ts:107](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L107)
 
 #### Inherited from
 
@@ -100,7 +100,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:107](https://github.com/fo
 
 > `optional` **proxy?**: [`ProxyOptions`](ProxyOptions.md)
 
-Defined in: [packages/contracts/ExecutionContracts.ts:109](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L109)
+Defined in: [packages/contracts/ExecutionContracts.ts:109](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L109)
 
 #### Inherited from
 
@@ -112,7 +112,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:109](https://github.com/fo
 
 > `optional` **dispatcher?**: `Dispatcher`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:111](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L111)
+Defined in: [packages/contracts/ExecutionContracts.ts:111](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L111)
 
 #### Inherited from
 

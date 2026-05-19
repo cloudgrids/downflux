@@ -8,7 +8,7 @@
 
 > **EXTENSION\_BY\_CATEGORY**\<`T`\> = *typeof* [`EXTENSION_MAP`](../variables/EXTENSION_MAP.md)\[`T`\]\[`number`\]
 
-Defined in: [packages/types/StorageTypes.ts:26](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/types/StorageTypes.ts#L26)
+Defined in: [packages/types/StorageTypes.ts:26](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/StorageTypes.ts#L26)
 
 ## Type Parameters
 

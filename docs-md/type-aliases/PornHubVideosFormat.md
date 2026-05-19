@@ -8,4 +8,4 @@
 
 > **PornHubVideosFormat** = `"model"` \| `"channels"` \| `"pornstar"`
 
-Defined in: [packages/providers/pornhub/PornHubTypes.ts:20](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubTypes.ts#L20)
+Defined in: [packages/providers/pornhub/PornHubTypes.ts:20](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/pornhub/PornHubTypes.ts#L20)
