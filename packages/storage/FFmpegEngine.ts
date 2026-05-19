@@ -2,7 +2,7 @@ import { TranscodeOptions } from '@contracts';
 import { ProgressManager } from '@core/progress';
 import { execFile } from 'child_process';
 import ffmpegPath from 'ffmpeg-static';
-import { promises as fs } from 'fs';
+import { accessSync, constants, promises as fs } from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 
@@ -20,7 +20,7 @@ export class FFmpegEngine {
 	constructor(private readonly progressManager: ProgressManager) {}
 
 	public get ffmpeg(): string {
-		return ffmpegPath ?? 'ffmpeg';
+		return ffmpegPath && this.pathExists(ffmpegPath) ? ffmpegPath : 'ffmpeg';
 	}
 
 	/**
@@ -30,8 +30,6 @@ export class FFmpegEngine {
 	 * @returns Final media path, filename, extension, and MIME type.
 	 */
 	public async finalizeMedia(options: TranscodeOptions) {
-		if (!ffmpegPath) throw new Error('ffmpeg-static not found');
-
 		if (!options.inputPath) throw new Error('Input path is required for finalizing media');
 
 		const { inputPath, outputExtension = 'mp4', deleteInput = true, ffmpegArgs = [], videoCodec, audioCodec, crf, preset } = options;
@@ -45,7 +43,9 @@ export class FFmpegEngine {
 		const outputPath = path.join(dir, outputFilename);
 
 		this.progressManager.update({
-			message: `Finalizing media ${inputPath} with options ${JSON.stringify(options)} ` + `to ${outputPath} using ffmpeg...`
+			message:
+				`Finalizing media ${inputPath} with options ${JSON.stringify(options)} ` +
+				`to ${outputPath} using ${this.resolveFfmpeg(options)}...`
 		});
 
 		let args: string[];
@@ -70,7 +70,7 @@ export class FFmpegEngine {
 		}
 
 		try {
-			await execFileAsync(ffmpegPath, args);
+			await execFileAsync(this.resolveFfmpeg(options), args);
 
 			if (deleteInput) await fs.unlink(inputPath);
 
@@ -81,7 +81,29 @@ export class FFmpegEngine {
 				mimeType: `video/${outputExtension}`
 			};
 		} catch (error) {
+			if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+				throw new Error(
+					'Failed to finalize media: ffmpeg executable was not found. Install ffmpeg on your system, allow ffmpeg-static build scripts in your package manager, or pass transcodeOptions.ffmpegPath.',
+					{ cause: error }
+				);
+			}
+
 			throw new Error(`Failed to finalize media: ${(error as Error).message}`, { cause: error });
+		}
+	}
+
+	private resolveFfmpeg(options?: TranscodeOptions): string {
+		if (options?.ffmpegPath) return options.ffmpegPath;
+
+		return this.ffmpeg;
+	}
+
+	private pathExists(filePath: string): boolean {
+		try {
+			accessSync(filePath, constants.X_OK);
+			return true;
+		} catch {
+			return false;
 		}
 	}
 }

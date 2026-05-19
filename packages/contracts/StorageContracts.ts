@@ -28,20 +28,60 @@ export interface ResolvedFile {
 }
 
 export interface TranscodeOptions {
+	/**
+	 * Internal path of the downloaded media file that should be finalized.
+	 * DownFlux sets this automatically when a streamed file needs ffmpeg.
+	 */
 	inputPath?: string;
 
+	/**
+	 * Explicit ffmpeg executable path.
+	 *
+	 * Use this when the consuming project cannot use the bundled `ffmpeg-static`
+	 * binary, for example when pnpm build scripts are disabled.
+	 *
+	 * @example '/opt/homebrew/bin/ffmpeg'
+	 */
+	ffmpegPath?: string;
+
+	/**
+	 * Deletes the intermediate input file after successful finalization.
+	 * @defaultValue true
+	 */
 	deleteInput?: boolean;
 
+	/**
+	 * Complete custom ffmpeg arguments.
+	 * When provided, these replace DownFlux's default remux/transcode arguments.
+	 */
 	ffmpegArgs?: string[];
 
+	/**
+	 * Final media container extension.
+	 * @defaultValue 'mp4'
+	 */
 	outputExtension?: string;
 
+	/**
+	 * ffmpeg encoder preset used when transcoding with an encoder such as libx264.
+	 */
 	preset?: 'ultrafast' | 'superfast' | 'veryfast' | 'faster' | 'fast' | 'medium' | 'slow';
 
+	/**
+	 * Constant Rate Factor used when transcoding with an encoder such as libx264.
+	 */
 	crf?: number;
 
+	/**
+	 * ffmpeg video codec.
+	 * @defaultValue 'copy'
+	 */
 	videoCodec?: string;
 
+	/**
+	 * ffmpeg audio codec.
+	 * @defaultValue 'copy'
+	 */
 	audioCodec?: string;
 }
 
