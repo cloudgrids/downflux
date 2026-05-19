@@ -1,0 +1,45 @@
+import { BaseProvider } from '@base';
+import { GenericException } from '@core/exceptions';
+import { ExtractionTarget, ProviderType } from '@types';
+import { InterracialExecArgs, InterracialVideoOutput } from './InterracialContracts';
+import { InterracialMethods } from './InterracialTypes';
+
+export class InterracialProvider extends BaseProvider<InterracialExecArgs> {
+	protected readonly provider = ProviderType.Interracial;
+	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?interracial\.(?:com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;
+
+	constructor(url: string) {
+		super(url, {
+			provider: ProviderType.Interracial,
+			urlPattern: /(?:www\.)?interracial\.(?:com)$/i,
+			metadata: {
+				hasHls: false,
+				hasMp4: true,
+				hasKvs: true,
+				canDownload: true,
+				hlsIntegrated: false,
+				mp4Integrated: true,
+				underDevelopment: true,
+				requiresBrowser: false,
+				sniSpoofing: 'untested',
+				underGeoRestriction: false
+			}
+		});
+	}
+
+	private get videoUrl(): string {
+		if (this.VIDEO_PATH_REGEX.test(this.url)) return this.url;
+
+		throw new GenericException('Invalid url format', this.provider);
+	}
+
+	public async getVideo(): Promise<InterracialVideoOutput> {
+		return await this.execute<InterracialVideoOutput>({
+			method: InterracialMethods.getVideo,
+			extractionTarget: ExtractionTarget.SOURCES,
+			provider: this.provider,
+			targets: [this.videoUrl],
+			executionShape: 'single'
+		});
+	}
+}

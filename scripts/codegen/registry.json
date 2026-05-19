@@ -9,6 +9,14 @@
       "method": true
     },
     {
+      "name": "BoKepPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "ColliderPorn",
       "parser": true,
       "pipeline": true,
@@ -18,6 +26,14 @@
     },
     {
       "name": "CumLouder",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "DaFreePorn",
       "parser": true,
       "pipeline": true,
       "transformer": true,
@@ -65,6 +81,22 @@
       "method": true
     },
     {
+      "name": "Interracial",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "ItsPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "Lesbian8",
       "parser": true,
       "pipeline": true,
@@ -74,6 +106,14 @@
     },
     {
       "name": "MegaTube",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "MomVids",
       "parser": true,
       "pipeline": true,
       "transformer": true,
@@ -273,11 +313,27 @@
       "method": true
     },
     {
+      "name": "Xozilla",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "XVideos",
       "parser": true,
       "pipeline": true,
       "transformer": true,
       "strategy": true,
+      "method": true
+    },
+    {
+      "name": "ZbPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
       "method": true
     },
     {

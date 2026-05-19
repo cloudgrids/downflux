@@ -22,7 +22,6 @@ export class XDeguTransformer extends BaseTransformer<XDeguExecArgs, DefaultExec
 	private toVideoOutput(metadata: XDeguTransformedOutput): XDeguVideoOutput {
 		const xDeguMetadata = metadata.customFields as XDeguOutput;
 
-		console.log({ xDeguMetadata });
 		return {
 			tags: metadata?.keywords,
 			title: metadata?.title,

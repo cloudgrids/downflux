@@ -168,7 +168,7 @@ export class FileManager {
 
 	public getFileInfo(url: string, prefix?: string): ResolvedFile {
 		try {
-			const parsed = new URL(url);
+			const parsed = new URL(url.startsWith('https://') ? url : `https://${url}`);
 
 			const segments = parsed.pathname.split('/').filter(Boolean);
 
