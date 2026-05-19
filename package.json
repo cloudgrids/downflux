@@ -10,6 +10,9 @@
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.mjs",
 			"require": "./dist/index.js"
+		},
+		"./package.json": {
+			"default": "./package.json"
 		}
 	},
 	"files": [
@@ -21,6 +24,8 @@
 		"build": "tsup",
 		"dev": "tsup --watch",
 		"prepare": "npm run build",
+		"prepublishOnly": "pnpm run build",
+		"pack:dry-run": "npm pack --dry-run",
 		"lint:test": "eslint .",
 		"lint:fix": "eslint --fix .",
 		"test": "TZ=UTC jest --setupFiles dotenv/config --config ./jest.config.json",
@@ -50,6 +55,9 @@
 	"engines": {
 		"node": ">=18.0.0"
 	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"packageManager": "pnpm@10.27.0",
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
@@ -69,16 +77,13 @@
 		"tsx": "^4.21.0",
 		"typedoc": "^0.28.19",
 		"typedoc-plugin-markdown": "^4.11.0",
-		"typescript": "^6.0.3"
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.59.2"
 	},
 	"dependencies": {
 		"execa": "^9.6.1",
 		"ffmpeg-static": "^5.3.0",
-		"https": "^1.0.0",
-		"net": "^1.0.2",
 		"radash": "^12.1.1",
-		"tls": "^0.0.1",
-		"typescript-eslint": "^8.59.2",
 		"undici": "^8.1.0"
 	}
 }

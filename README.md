@@ -2,7 +2,26 @@
 
 Modular TypeScript media extraction and download toolkit. Each site integration is split into a provider, parser, transformer, and pipeline so extraction rules, output mapping, and download planning stay easy to update independently.
 
-> Package status: this project is not published to npm yet. Use the repository directly for local development until a package release is available.
+## Installation
+
+```bash
+npm install downflux
+```
+
+```bash
+pnpm add downflux
+```
+
+## Usage
+
+```ts
+import { BeegProvider } from 'downflux';
+
+const provider = new BeegProvider('https://beeg.com/example-video-url');
+const result = await provider.getVideo();
+
+console.log(result);
+```
 
 ## Documentation
 
@@ -110,3 +129,12 @@ pnpm run docs:md
 ```
 
 The generated docs are intentionally linked from this README so provider and API documentation remain browsable from the repository root.
+
+## Publishing
+
+```bash
+pnpm run pack:dry-run
+pnpm publish
+```
+
+`pnpm run pack:dry-run` rebuilds the package and previews the files that npm will receive.
