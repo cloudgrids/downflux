@@ -6,7 +6,14 @@
 
 # Class: PathBuilder
 
-Defined in: [packages/storage/PathBuilder.ts:3](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/PathBuilder.ts#L3)
+Defined in: [packages/storage/PathBuilder.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/PathBuilder.ts#L10)
+
+Small helper for provider output paths and identifiers.
+
+## Remarks
+
+Path building is centralized so providers can describe logical media groups
+without duplicating path separators, normalization, or filename conventions.
 
 ## Constructors
 
@@ -24,7 +31,7 @@ Defined in: [packages/storage/PathBuilder.ts:3](https://github.com/forkts/downfl
 
 > **buildOutputPath**(`basePath`, `filename`, `identifier?`): `string`
 
-Defined in: [packages/storage/PathBuilder.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/PathBuilder.ts#L4)
+Defined in: [packages/storage/PathBuilder.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/PathBuilder.ts#L11)
 
 #### Parameters
 
@@ -50,7 +57,7 @@ Defined in: [packages/storage/PathBuilder.ts:4](https://github.com/forkts/downfl
 
 > **buildDirectoryPath**(`filename`, `identifier?`): `string`
 
-Defined in: [packages/storage/PathBuilder.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/PathBuilder.ts#L12)
+Defined in: [packages/storage/PathBuilder.ts:19](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/PathBuilder.ts#L19)
 
 #### Parameters
 
@@ -72,7 +79,7 @@ Defined in: [packages/storage/PathBuilder.ts:12](https://github.com/forkts/downf
 
 > **join**(...`segments`): `string`
 
-Defined in: [packages/storage/PathBuilder.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/PathBuilder.ts#L18)
+Defined in: [packages/storage/PathBuilder.ts:25](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/PathBuilder.ts#L25)
 
 #### Parameters
 
@@ -90,7 +97,7 @@ Defined in: [packages/storage/PathBuilder.ts:18](https://github.com/forkts/downf
 
 > **spaceNormalizer**(`input?`): `string`
 
-Defined in: [packages/storage/PathBuilder.ts:22](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/PathBuilder.ts#L22)
+Defined in: [packages/storage/PathBuilder.ts:29](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/PathBuilder.ts#L29)
 
 #### Parameters
 

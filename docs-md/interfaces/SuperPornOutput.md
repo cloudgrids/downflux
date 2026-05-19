@@ -6,11 +6,14 @@
 
 # Interface: SuperPornOutput
 
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L4)
+Defined in: [packages/providers/superporn/SuperPornContracts.ts:4](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/superporn/SuperPornContracts.ts#L4)
+
+Default output structure for extractor operations.
+Represents normalized metadata and extracted resources.
 
 ## Extends
 
-- [`SuperPornVideoOutput`](SuperPornVideoOutput.md)
+- [`DefaultExecutionResult`](DefaultExecutionResult.md).[`SuperPornVideoOutput`](SuperPornVideoOutput.md)
 
 ## Properties
 
@@ -18,23 +21,13 @@ Defined in: [packages/providers/superporn/SuperPornContracts.ts:4](https://githu
 
 > **title**: `string`
 
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L7)
+Defined in: [packages/contracts/ExecutionContracts.ts:140](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L140)
+
+Page title
 
 #### Inherited from
 
-[`SuperPornVideoOutput`](SuperPornVideoOutput.md).[`title`](SuperPornVideoOutput.md#title)
-
-***
-
-### pageUrl
-
-> **pageUrl**: `string`
-
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L8)
-
-#### Inherited from
-
-[`SuperPornVideoOutput`](SuperPornVideoOutput.md).[`pageUrl`](SuperPornVideoOutput.md#pageurl)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`title`](DefaultExecutionResult.md#title)
 
 ***
 
@@ -42,11 +35,219 @@ Defined in: [packages/providers/superporn/SuperPornContracts.ts:8](https://githu
 
 > **description**: `string`
 
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L9)
+Defined in: [packages/contracts/ExecutionContracts.ts:143](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L143)
+
+Page description
 
 #### Inherited from
 
-[`SuperPornVideoOutput`](SuperPornVideoOutput.md).[`description`](SuperPornVideoOutput.md#description)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`description`](DefaultExecutionResult.md#description)
+
+***
+
+### keywords
+
+> **keywords**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:146](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L146)
+
+SEO keywords
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`keywords`](DefaultExecutionResult.md#keywords)
+
+***
+
+### status
+
+> **status**: `number`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:149](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L149)
+
+HTTP status code
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`status`](DefaultExecutionResult.md#status)
+
+***
+
+### sourceUrl
+
+> **sourceUrl**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:152](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L152)
+
+Final resolved URL
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`sourceUrl`](DefaultExecutionResult.md#sourceurl)
+
+***
+
+### anchors
+
+> **anchors**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:155](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L155)
+
+Anchor links
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`anchors`](DefaultExecutionResult.md#anchors)
+
+***
+
+### images
+
+> **images**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:158](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L158)
+
+Image URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`images`](DefaultExecutionResult.md#images)
+
+***
+
+### sources
+
+> **sources**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:161](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L161)
+
+Media source URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`sources`](DefaultExecutionResult.md#sources)
+
+***
+
+### videoSources
+
+> **videoSources**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:164](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L164)
+
+Video URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`videoSources`](DefaultExecutionResult.md#videosources)
+
+***
+
+### links
+
+> **links**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:167](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L167)
+
+Hyper links
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`links`](DefaultExecutionResult.md#links)
+
+***
+
+### videoPosters?
+
+> `optional` **videoPosters?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:170](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L170)
+
+Video poster URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`videoPosters`](DefaultExecutionResult.md#videoposters)
+
+***
+
+### divHREFs?
+
+> `optional` **divHREFs?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:173](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L173)
+
+URLs extracted from div href attributes
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`divHREFs`](DefaultExecutionResult.md#divhrefs)
+
+***
+
+### allUrls?
+
+> `optional` **allUrls?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:176](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L176)
+
+All discovered URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`allUrls`](DefaultExecutionResult.md#allurls)
+
+***
+
+### extractionTarget?
+
+> `optional` **extractionTarget?**: [`ExtractionTarget`](../enumerations/ExtractionTarget.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:179](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L179)
+
+URL category for pipeline routing
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`extractionTarget`](DefaultExecutionResult.md#extractiontarget)
+
+***
+
+### customFields?
+
+> `optional` **customFields?**: `unknown`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:182](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L182)
+
+Extensible service-specific fields
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`customFields`](DefaultExecutionResult.md#customfields)
+
+***
+
+### tags
+
+> **tags**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
+
+#### Inherited from
+
+[`SuperPornVideoOutput`](SuperPornVideoOutput.md).[`tags`](SuperPornVideoOutput.md#tags)
+
+***
+
+### pageUrl
+
+> **pageUrl**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
+
+#### Inherited from
+
+[`SuperPornVideoOutput`](SuperPornVideoOutput.md).[`pageUrl`](SuperPornVideoOutput.md#pageurl)
 
 ***
 
@@ -54,7 +255,7 @@ Defined in: [packages/providers/superporn/SuperPornContracts.ts:9](https://githu
 
 > **poster**: `string`
 
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L10)
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
 
 #### Inherited from
 
@@ -62,11 +263,23 @@ Defined in: [packages/providers/superporn/SuperPornContracts.ts:10](https://gith
 
 ***
 
+### videos
+
+> **videos**: [`VideosFormat`](VideosFormat.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`SuperPornVideoOutput`](SuperPornVideoOutput.md).[`videos`](SuperPornVideoOutput.md#videos)
+
+***
+
 ### duration
 
 > **duration**: `string`
 
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L11)
+Defined in: [packages/providers/superporn/SuperPornContracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/superporn/SuperPornContracts.ts#L7)
 
 #### Inherited from
 
@@ -78,7 +291,7 @@ Defined in: [packages/providers/superporn/SuperPornContracts.ts:11](https://gith
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L12)
+Defined in: [packages/providers/superporn/SuperPornContracts.ts:8](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/superporn/SuperPornContracts.ts#L8)
 
 #### Inherited from
 
@@ -90,7 +303,7 @@ Defined in: [packages/providers/superporn/SuperPornContracts.ts:12](https://gith
 
 > **uploadedAt**: `string`
 
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L13)
+Defined in: [packages/providers/superporn/SuperPornContracts.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/superporn/SuperPornContracts.ts#L9)
 
 #### Inherited from
 
@@ -102,7 +315,7 @@ Defined in: [packages/providers/superporn/SuperPornContracts.ts:13](https://gith
 
 > **width**: `number`
 
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L14)
+Defined in: [packages/providers/superporn/SuperPornContracts.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/superporn/SuperPornContracts.ts#L10)
 
 #### Inherited from
 
@@ -114,7 +327,7 @@ Defined in: [packages/providers/superporn/SuperPornContracts.ts:14](https://gith
 
 > **height**: `number`
 
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L15)
+Defined in: [packages/providers/superporn/SuperPornContracts.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/superporn/SuperPornContracts.ts#L11)
 
 #### Inherited from
 
@@ -126,32 +339,8 @@ Defined in: [packages/providers/superporn/SuperPornContracts.ts:15](https://gith
 
 > **quality**: `string`
 
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L16)
+Defined in: [packages/providers/superporn/SuperPornContracts.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/superporn/SuperPornContracts.ts#L12)
 
 #### Inherited from
 
 [`SuperPornVideoOutput`](SuperPornVideoOutput.md).[`quality`](SuperPornVideoOutput.md#quality)
-
-***
-
-### videos
-
-> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
-
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L17)
-
-#### Inherited from
-
-[`SuperPornVideoOutput`](SuperPornVideoOutput.md).[`videos`](SuperPornVideoOutput.md#videos)
-
-***
-
-### tags
-
-> **tags**: `string`[]
-
-Defined in: [packages/providers/superporn/SuperPornContracts.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/superporn/SuperPornContracts.ts#L18)
-
-#### Inherited from
-
-[`SuperPornVideoOutput`](SuperPornVideoOutput.md).[`tags`](SuperPornVideoOutput.md#tags)

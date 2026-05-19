@@ -6,7 +6,11 @@
 
 # Interface: TnAFlixVideoOutput
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L15)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tnaflix/TnAFlixContracts.ts#L7)
+
+## Extends
+
+- [`DefaultVideoOutput`](DefaultVideoOutput.md)
 
 ## Extended by
 
@@ -18,39 +22,35 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:15](https://github.c
 
 > **title**: `string`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L16)
+Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L186)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`title`](DefaultVideoOutput.md#title)
 
 ***
 
-### uploader
+### tags
 
-> **uploader**: `string`
+> **tags**: `string`[]
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L18)
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
 
-***
+#### Inherited from
 
-### videoId
-
-> **videoId**: `string`
-
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:20](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L20)
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`tags`](DefaultVideoOutput.md#tags)
 
 ***
 
-### videos
+### description
 
-> **videos**: [`TnAFlixVideo`](TnAFlixVideo.md)[]
+> **description**: `string`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:22](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L22)
+Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L188)
 
-***
+#### Inherited from
 
-### videoPoster
-
-> **videoPoster**: `string`
-
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:24](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L24)
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`description`](DefaultVideoOutput.md#description)
 
 ***
 
@@ -58,15 +58,51 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:24](https://github.c
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:26](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L26)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`pageUrl`](DefaultVideoOutput.md#pageurl)
 
 ***
 
-### videoTags?
+### poster
 
-> `optional` **videoTags?**: `string`[]
+> **poster**: `string`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:28](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L28)
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`poster`](DefaultVideoOutput.md#poster)
+
+***
+
+### videos
+
+> **videos**: [`VideosFormat`](VideosFormat.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`videos`](DefaultVideoOutput.md#videos)
+
+***
+
+### uploader
+
+> **uploader**: `string`
+
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:8](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tnaflix/TnAFlixContracts.ts#L8)
+
+***
+
+### videoId
+
+> **videoId**: `string`
+
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tnaflix/TnAFlixContracts.ts#L9)
 
 ***
 
@@ -74,7 +110,7 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:28](https://github.c
 
 > **likes**: `number`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:30](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L30)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tnaflix/TnAFlixContracts.ts#L10)
 
 ***
 
@@ -82,4 +118,4 @@ Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:30](https://github.c
 
 > **disLikes**: `number`
 
-Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:32](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tnaflix/TnAFlixContracts.ts#L32)
+Defined in: [packages/providers/tnaflix/TnAFlixContracts.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tnaflix/TnAFlixContracts.ts#L11)

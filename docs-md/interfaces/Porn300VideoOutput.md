@@ -6,7 +6,11 @@
 
 # Interface: Porn300VideoOutput
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L7)
+Defined in: [packages/providers/porn300/Porn300Contracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/porn300/Porn300Contracts.ts#L7)
+
+## Extends
+
+- [`DefaultVideoOutput`](DefaultVideoOutput.md)
 
 ## Extended by
 
@@ -18,7 +22,23 @@ Defined in: [packages/providers/porn300/Porn300Contracts.ts:7](https://github.co
 
 > **title**: `string`
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L8)
+Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L186)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`title`](DefaultVideoOutput.md#title)
+
+***
+
+### tags
+
+> **tags**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`tags`](DefaultVideoOutput.md#tags)
 
 ***
 
@@ -26,7 +46,11 @@ Defined in: [packages/providers/porn300/Porn300Contracts.ts:8](https://github.co
 
 > **description**: `string`
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L9)
+Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L188)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`description`](DefaultVideoOutput.md#description)
 
 ***
 
@@ -34,7 +58,11 @@ Defined in: [packages/providers/porn300/Porn300Contracts.ts:9](https://github.co
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L10)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`pageUrl`](DefaultVideoOutput.md#pageurl)
 
 ***
 
@@ -42,12 +70,20 @@ Defined in: [packages/providers/porn300/Porn300Contracts.ts:10](https://github.c
 
 > **poster**: `string`
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L11)
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`poster`](DefaultVideoOutput.md#poster)
 
 ***
 
 ### videos
 
-> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
+> **videos**: [`VideosFormat`](VideosFormat.md)
 
-Defined in: [packages/providers/porn300/Porn300Contracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/porn300/Porn300Contracts.ts#L12)
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`videos`](DefaultVideoOutput.md#videos)

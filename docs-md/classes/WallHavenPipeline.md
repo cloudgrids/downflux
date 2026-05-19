@@ -6,7 +6,13 @@
 
 # Class: WallHavenPipeline
 
-Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenPipeline.ts#L8)
+Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenPipeline.ts#L14)
+
+Builds downloadable WallHaven pipeline items from normalized metadata.
+
+## Remarks
+
+Pipelines decide which media URLs become work items and how those items are identified on disk.
 
 ## Extends
 
@@ -18,7 +24,7 @@ Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:8](https://github
 
 > **new WallHavenPipeline**(`fileManager`): `WallHavenPipeline`
 
-Defined in: [packages/base/BasePipeline.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L8)
+Defined in: [packages/base/BasePipeline.ts:28](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L28)
 
 #### Parameters
 
@@ -40,7 +46,7 @@ Defined in: [packages/base/BasePipeline.ts:8](https://github.com/forkts/downflux
 
 > `protected` `readonly` **pathBuilder**: [`PathBuilder`](PathBuilder.md)
 
-Defined in: [packages/base/BasePipeline.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L6)
+Defined in: [packages/base/BasePipeline.ts:25](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L25)
 
 #### Inherited from
 
@@ -48,11 +54,23 @@ Defined in: [packages/base/BasePipeline.ts:6](https://github.com/forkts/downflux
 
 ***
 
+### helper
+
+> `protected` `readonly` **helper**: [`Helper`](Helper.md)
+
+Defined in: [packages/base/BasePipeline.ts:26](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L26)
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`helper`](BasePipeline.md#helper)
+
+***
+
 ### fileManager
 
 > `protected` **fileManager**: [`FileManager`](FileManager.md)
 
-Defined in: [packages/base/BasePipeline.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L8)
+Defined in: [packages/base/BasePipeline.ts:28](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L28)
 
 #### Inherited from
 
@@ -60,11 +78,45 @@ Defined in: [packages/base/BasePipeline.ts:8](https://github.com/forkts/downflux
 
 ## Methods
 
+### build()
+
+> **build**(`metadata`, `request`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+Defined in: [packages/base/BasePipeline.ts:37](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L37)
+
+Builds filtered, deduplicated pipeline items for a single metadata result.
+
+#### Parameters
+
+##### metadata
+
+`WallHavenOutput`
+
+Extracted provider metadata.
+
+##### request
+
+[`WallHavenExecArgs`](../interfaces/WallHavenExecArgs.md)
+
+Execution request with filters and provider options.
+
+#### Returns
+
+[`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+Downloadable pipeline items.
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`build`](BasePipeline.md#build)
+
+***
+
 ### filterByExt()
 
 > `protected` **filterByExt**(`request`, `pipelineItems`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-Defined in: [packages/base/BasePipeline.ts:33](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L33)
+Defined in: [packages/base/BasePipeline.ts:62](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L62)
 
 #### Parameters
 
@@ -90,7 +142,7 @@ Defined in: [packages/base/BasePipeline.ts:33](https://github.com/forkts/downflu
 
 > `protected` **sliceByMaxDownloads**(`request`, `items`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-Defined in: [packages/base/BasePipeline.ts:39](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L39)
+Defined in: [packages/base/BasePipeline.ts:68](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L68)
 
 #### Parameters
 
@@ -112,11 +164,45 @@ Defined in: [packages/base/BasePipeline.ts:39](https://github.com/forkts/downflu
 
 ***
 
+### createMappings()
+
+> `protected` **createMappings**\<`T`\>(`elements`, `handler`): [`PipelineMapping`](../type-aliases/PipelineMapping.md)\<`T`\>
+
+Defined in: [packages/base/BasePipeline.ts:84](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L84)
+
+#### Type Parameters
+
+##### T
+
+`T`
+
+#### Parameters
+
+##### elements
+
+`T`[] \| `undefined`
+
+##### handler
+
+[`PipelineExtractionHandler`](../interfaces/PipelineExtractionHandler.md)\<`T`\>
+
+#### Returns
+
+[`PipelineMapping`](../type-aliases/PipelineMapping.md)\<`T`\>
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`createMappings`](BasePipeline.md#createmappings)
+
+***
+
 ### filterByQuality()
 
-> `protected` **filterByQuality**\<`T`, `TEnum`\>(`items`, `options`): `T`[]
+> `protected` **filterByQuality**\<`T`, `TEnum`\>(`items?`, `options`): `T`[]
 
-Defined in: [packages/base/BasePipeline.ts:75](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BasePipeline.ts#L75)
+Defined in: [packages/base/BasePipeline.ts:123](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L123)
+
+Applies provider quality filtering without changing source order.
 
 #### Type Parameters
 
@@ -130,11 +216,15 @@ Defined in: [packages/base/BasePipeline.ts:75](https://github.com/forkts/downflu
 
 #### Parameters
 
-##### items
+##### items?
 
-`T`[]
+`T`[] = `[]`
+
+Source records to filter.
 
 ##### options
+
+Quality selector and requested quality.
 
 ###### allowedQuality?
 
@@ -148,35 +238,69 @@ Defined in: [packages/base/BasePipeline.ts:75](https://github.com/forkts/downflu
 
 `T`[]
 
+Sources matching the requested quality, or all sources when no quality is requested.
+
 #### Inherited from
 
 [`BasePipeline`](BasePipeline.md).[`filterByQuality`](BasePipeline.md#filterbyquality)
 
 ***
 
-### build()
+### uniquePipelines()
 
-> **build**(`metadata`, `request`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
+> `protected` **uniquePipelines**(`pipelines`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenPipeline.ts#L9)
+Defined in: [packages/base/BasePipeline.ts:137](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L137)
 
 #### Parameters
 
-##### metadata
+##### pipelines
 
-`WallHavenOutput`
-
-##### request
-
-[`WallHavenExecArgs`](../interfaces/WallHavenExecArgs.md)
+[`PipelineItem`](../interfaces/PipelineItem.md)[]
 
 #### Returns
 
 [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-#### Overrides
+#### Inherited from
 
-[`BasePipeline`](BasePipeline.md).[`build`](BasePipeline.md#build)
+[`BasePipeline`](BasePipeline.md).[`uniquePipelines`](BasePipeline.md#uniquepipelines)
+
+***
+
+### extractedItems()
+
+> `protected` **extractedItems**\<`T`\>(`targets`, `handlers`, `elements?`): `never`[] \| `undefined`
+
+Defined in: [packages/base/BasePipeline.ts:149](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BasePipeline.ts#L149)
+
+#### Type Parameters
+
+##### T
+
+`T`
+
+#### Parameters
+
+##### targets
+
+[`PipelineExtractedItem`](../interfaces/PipelineExtractedItem.md)[]
+
+##### handlers
+
+[`PipelineExtractionHandler`](../interfaces/PipelineExtractionHandler.md)\<`T`\>
+
+##### elements?
+
+`T`[]
+
+#### Returns
+
+`never`[] \| `undefined`
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`extractedItems`](BasePipeline.md#extracteditems)
 
 ***
 
@@ -184,7 +308,9 @@ Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:9](https://github
 
 > `protected` **buildIdentifier**(`ctx`): `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:34](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenPipeline.ts#L34)
+Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenPipeline.ts#L15)
+
+Builds the storage identifier used as the logical output path.
 
 #### Parameters
 
@@ -192,9 +318,13 @@ Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:34](https://githu
 
 [`IdentifierContext`](../interfaces/IdentifierContext.md)\<`WallHavenOutput`\>
 
+Media item context and source metadata.
+
 #### Returns
 
 `string`
+
+Stable identifier for storage and progress output.
 
 #### Overrides
 
@@ -202,11 +332,45 @@ Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:34](https://githu
 
 ***
 
+### mappings()
+
+> `protected` **mappings**(`metadata`, `request`): [`PipelineMappings`](../type-aliases/PipelineMappings.md)
+
+Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:43](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenPipeline.ts#L43)
+
+Defines which metadata collections should become pipeline items.
+
+#### Parameters
+
+##### metadata
+
+`WallHavenOutput`
+
+Extracted provider metadata.
+
+##### request
+
+[`WallHavenExecArgs`](../interfaces/WallHavenExecArgs.md)
+
+Execution request with provider filters.
+
+#### Returns
+
+[`PipelineMappings`](../type-aliases/PipelineMappings.md)
+
+Mapping definitions used by `extract`.
+
+#### Overrides
+
+[`BasePipeline`](BasePipeline.md).[`mappings`](BasePipeline.md#mappings)
+
+***
+
 ### extract()
 
 > `protected` **extract**(`request`, `metadata`): [`PipelineExtractedItem`](../interfaces/PipelineExtractedItem.md)[]
 
-Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:62](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenPipeline.ts#L62)
+Defined in: [packages/providers/wallhaven/WallHavenPipeline.ts:76](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenPipeline.ts#L76)
 
 #### Parameters
 

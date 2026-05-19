@@ -6,7 +6,7 @@
 
 # Enumeration: ShamelessMethods
 
-Defined in: [packages/providers/shameless/ShamelessTypes.ts:1](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/shameless/ShamelessTypes.ts#L1)
+Defined in: [packages/providers/shameless/ShamelessTypes.ts:1](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/shameless/ShamelessTypes.ts#L1)
 
 ## Enumeration Members
 
@@ -14,4 +14,4 @@ Defined in: [packages/providers/shameless/ShamelessTypes.ts:1](https://github.co
 
 > **getVideo**: `"getVideo"`
 
-Defined in: [packages/providers/shameless/ShamelessTypes.ts:2](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/shameless/ShamelessTypes.ts#L2)
+Defined in: [packages/providers/shameless/ShamelessTypes.ts:2](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/shameless/ShamelessTypes.ts#L2)

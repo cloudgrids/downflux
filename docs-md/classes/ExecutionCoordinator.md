@@ -6,7 +6,16 @@
 
 # Class: ExecutionCoordinator
 
-Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/ExecutionCoordinator.ts#L7)
+Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:16](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/ExecutionCoordinator.ts#L16)
+
+Coordinates extraction, pipeline creation, and output dispatch.
+
+## Remarks
+
+Coordinators exist to keep providers small. The execution coordinator owns
+the job-level flow: extract metadata from targets, convert metadata into
+pipeline items, build the result shape, and hand output handling to the task
+coordinator.
 
 ## Constructors
 
@@ -14,7 +23,7 @@ Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:7](https://githu
 
 > **new ExecutionCoordinator**(`transformerRegistry`, `taskCoordinator`, `progressManager`, `pipelineRegistry`): `ExecutionCoordinator`
 
-Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/ExecutionCoordinator.ts#L10)
+Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:19](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/ExecutionCoordinator.ts#L19)
 
 #### Parameters
 
@@ -44,7 +53,9 @@ Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:10](https://gith
 
 > **execute**\<`TResult`, `TShape`, `TExec`\>(`request`): `Promise`\<[`ExecutionResult`](../interfaces/ExecutionResult.md)\<`TResult`, `TShape`\>\>
 
-Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/ExecutionCoordinator.ts#L17)
+Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:32](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/ExecutionCoordinator.ts#L32)
+
+Runs an execution request.
 
 #### Type Parameters
 
@@ -66,6 +77,10 @@ Defined in: [packages/core/coordinators/ExecutionCoordinator.ts:17](https://gith
 
 `TExec`
 
+Provider request containing targets, output mode, and execution options.
+
 #### Returns
 
 `Promise`\<[`ExecutionResult`](../interfaces/ExecutionResult.md)\<`TResult`, `TShape`\>\>
+
+Execution result with extracted metadata and generated pipeline items.

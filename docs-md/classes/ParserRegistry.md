@@ -6,7 +6,15 @@
 
 # Class: ParserRegistry
 
-Defined in: [packages/core/registries/ParserRegistry.ts:52](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/ParserRegistry.ts#L52)
+Defined in: [packages/core/registries/ParserRegistry.ts:74](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/registries/ParserRegistry.ts#L74)
+
+Resolves and caches parser classes by provider.
+
+## Remarks
+
+Registries keep provider lookup out of the execution flow. They lazy-load
+provider modules, cache constructors, and fall back to default behavior when
+a provider-specific implementation is absent.
 
 ## Constructors
 
@@ -24,7 +32,9 @@ Defined in: [packages/core/registries/ParserRegistry.ts:52](https://github.com/f
 
 > `static` **getParser**(`provider`): `Promise`\<[`BaseParser`](BaseParser.md)\>
 
-Defined in: [packages/core/registries/ParserRegistry.ts:69](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/registries/ParserRegistry.ts#L69)
+Defined in: [packages/core/registries/ParserRegistry.ts:97](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/registries/ParserRegistry.ts#L97)
+
+Creates a parser instance for the requested provider.
 
 #### Parameters
 
@@ -32,6 +42,10 @@ Defined in: [packages/core/registries/ParserRegistry.ts:69](https://github.com/f
 
 [`ProviderType`](../enumerations/ProviderType.md)
 
+Provider whose parser should be loaded.
+
 #### Returns
 
 `Promise`\<[`BaseParser`](BaseParser.md)\>
+
+Parser instance for the provider, or the default parser fallback.

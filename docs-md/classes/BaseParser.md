@@ -6,16 +6,34 @@
 
 # Class: BaseParser
 
-Defined in: [packages/base/BaseParser.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L6)
+Defined in: [packages/base/BaseParser.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L15)
+
+Default HTML parser shared by provider-specific parsers.
+
+## Remarks
+
+Parsers exist to keep extraction rules close to the HTML they understand.
+The base parser collects common page fields such as anchors, images, meta
+tags, and source URLs, while provider parsers add the site-specific fields
+needed by transformers and pipelines.
 
 ## Extended by
 
 - [`BeegParser`](BeegParser.md)
+- [`BoKepPornParser`](BoKepPornParser.md)
 - [`ColliderPornParser`](ColliderPornParser.md)
 - [`CumLouderParser`](CumLouderParser.md)
+- [`DaFreePornParser`](DaFreePornParser.md)
+- [`DaNudeParser`](DaNudeParser.md)
+- [`EpicGfsParser`](EpicGfsParser.md)
+- [`EPornerParser`](EPornerParser.md)
 - [`HqPornParser`](HqPornParser.md)
+- [`InterracialParser`](InterracialParser.md)
+- [`ItsPornParser`](ItsPornParser.md)
 - [`Lesbian8Parser`](Lesbian8Parser.md)
 - [`MegaTubeParser`](MegaTubeParser.md)
+- [`MomVidsParser`](MomVidsParser.md)
+- [`MyLustParser`](MyLustParser.md)
 - [`OkPornParser`](OkPornParser.md)
 - [`PerfectGirlsParser`](PerfectGirlsParser.md)
 - [`Porn300Parser`](Porn300Parser.md)
@@ -23,6 +41,7 @@ Defined in: [packages/base/BaseParser.ts:6](https://github.com/forkts/downflux/b
 - [`PornHubParser`](PornHubParser.md)
 - [`PornIdParser`](PornIdParser.md)
 - [`PornOneParser`](PornOneParser.md)
+- [`PornSevenParser`](PornSevenParser.md)
 - [`PornsOkParser`](PornsOkParser.md)
 - [`PussySpaceParser`](PussySpaceParser.md)
 - [`SexVidParser`](SexVidParser.md)
@@ -33,10 +52,15 @@ Defined in: [packages/base/BaseParser.ts:6](https://github.com/forkts/downflux/b
 - [`TnAFlixParser`](TnAFlixParser.md)
 - [`TubeVSexParser`](TubeVSexParser.md)
 - [`WallHavenParser`](WallHavenParser.md)
+- [`XCafeParser`](XCafeParser.md)
+- [`XDeguParser`](XDeguParser.md)
 - [`XGroovyParser`](XGroovyParser.md)
 - [`XHamsterParser`](XHamsterParser.md)
 - [`XnXXParser`](XnXXParser.md)
+- [`XozillaParser`](XozillaParser.md)
 - [`XVideosParser`](XVideosParser.md)
+- [`ZbPornParser`](ZbPornParser.md)
+- [`ZzzTubeParser`](ZzzTubeParser.md)
 
 ## Constructors
 
@@ -54,7 +78,7 @@ Defined in: [packages/base/BaseParser.ts:6](https://github.com/forkts/downflux/b
 
 > `protected` **kvsResolver**: [`KvsResolver`](KvsResolver.md)
 
-Defined in: [packages/base/BaseParser.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L7)
+Defined in: [packages/base/BaseParser.ts:16](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L16)
 
 ## Methods
 
@@ -62,7 +86,9 @@ Defined in: [packages/base/BaseParser.ts:7](https://github.com/forkts/downflux/b
 
 > **transform**(`html`, `sourceUrl`): `Partial`\<[`DefaultExecutionResult`](../interfaces/DefaultExecutionResult.md)\>
 
-Defined in: [packages/base/BaseParser.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L8)
+Defined in: [packages/base/BaseParser.ts:25](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L25)
+
+Extracts common metadata from a fetched HTML document.
 
 #### Parameters
 
@@ -70,21 +96,29 @@ Defined in: [packages/base/BaseParser.ts:8](https://github.com/forkts/downflux/b
 
 `string`
 
+Raw HTML returned by the HTTP engine.
+
 ##### sourceUrl
 
 `string`
+
+Final URL used as the metadata source.
 
 #### Returns
 
 `Partial`\<[`DefaultExecutionResult`](../interfaces/DefaultExecutionResult.md)\>
 
+Common extracted fields used as the base provider result.
+
 ***
 
 ### extractScriptMethodInput()
 
-> **extractScriptMethodInput**(`fnName`, `html`): `string` \| `null`
+> `protected` **extractScriptMethodInput**(`fnName`, `html`): `string` \| `null`
 
-Defined in: [packages/base/BaseParser.ts:27](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L27)
+Defined in: [packages/base/BaseParser.ts:51](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L51)
+
+Extracts the first string argument passed to a named script function.
 
 #### Parameters
 
@@ -92,21 +126,29 @@ Defined in: [packages/base/BaseParser.ts:27](https://github.com/forkts/downflux/
 
 `string`
 
+Function name to search for.
+
 ##### html
 
 `string`
+
+HTML or script text to inspect.
 
 #### Returns
 
 `string` \| `null`
 
+The first string argument, or `null` when the call is absent.
+
 ***
 
 ### getFlashVars()
 
-> **getFlashVars**(`html`): [`FlashVarsOutput`](../interfaces/FlashVarsOutput.md)
+> `protected` **getFlashVars**(`html`): [`FlashVarsOutput`](../interfaces/FlashVarsOutput.md)
 
-Defined in: [packages/base/BaseParser.ts:33](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L33)
+Defined in: [packages/base/BaseParser.ts:63](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L63)
+
+Extracts KVS `flashVars` video metadata from inline scripts.
 
 #### Parameters
 
@@ -114,17 +156,21 @@ Defined in: [packages/base/BaseParser.ts:33](https://github.com/forkts/downflux/
 
 `string`
 
+HTML containing one or more KVS `flashVars` blocks.
+
 #### Returns
 
 [`FlashVarsOutput`](../interfaces/FlashVarsOutput.md)
+
+Normalized KVS fields, video sources, previews, and timelines.
 
 ***
 
 ### extractElementText()
 
-> **extractElementText**(`html`, `begin`, `end`, `fallback?`): `string`
+> `protected` **extractElementText**(`html`, `begin`, `end`, `fallback?`): `string`
 
-Defined in: [packages/base/BaseParser.ts:150](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L150)
+Defined in: [packages/base/BaseParser.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L187)
 
 #### Parameters
 
@@ -152,9 +198,9 @@ Defined in: [packages/base/BaseParser.ts:150](https://github.com/forkts/downflux
 
 ### extractElementTextPair()
 
-> **extractElementTextPair**(`html`, `begin`, `end`, `pos?`): \[`string` \| `null`, `number`\]
+> `protected` **extractElementTextPair**(`html`, `begin`, `end`, `pos?`): \[`string` \| `null`, `number`\]
 
-Defined in: [packages/base/BaseParser.ts:159](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L159)
+Defined in: [packages/base/BaseParser.ts:196](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L196)
 
 #### Parameters
 
@@ -182,9 +228,9 @@ Defined in: [packages/base/BaseParser.ts:159](https://github.com/forkts/downflux
 
 ### extractAllPairs()
 
-> **extractAllPairs**(`html`, `begin`, `end`): `Generator`\<`string`\>
+> `protected` **extractAllPairs**(`html`, `begin`, `end`): `Generator`\<`string`\>
 
-Defined in: [packages/base/BaseParser.ts:168](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L168)
+Defined in: [packages/base/BaseParser.ts:205](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L205)
 
 #### Parameters
 
@@ -208,9 +254,9 @@ Defined in: [packages/base/BaseParser.ts:168](https://github.com/forkts/downflux
 
 ### extractAll()
 
-> **extractAll**(`html`, `rules`, `startPos?`): \[`Record`\<`string`, `string`\>, `number`\]
+> `protected` **extractAll**(`html`, `rules`, `startPos?`): \[`Record`\<`string`, `string`\>, `number`\]
 
-Defined in: [packages/base/BaseParser.ts:188](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L188)
+Defined in: [packages/base/BaseParser.ts:225](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L225)
 
 #### Parameters
 
@@ -234,9 +280,9 @@ Defined in: [packages/base/BaseParser.ts:188](https://github.com/forkts/downflux
 
 ### extractAnchors()
 
-> **extractAnchors**(`html`, `sourceUrl?`): `string`[]
+> `protected` **extractAnchors**(`html`, `sourceUrl?`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:203](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L203)
+Defined in: [packages/base/BaseParser.ts:240](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L240)
 
 #### Parameters
 
@@ -256,9 +302,9 @@ Defined in: [packages/base/BaseParser.ts:203](https://github.com/forkts/downflux
 
 ### extractAnchorTextsByHref()
 
-> **extractAnchorTextsByHref**(`html`, `hrefPattern`): `string`[]
+> `protected` **extractAnchorTextsByHref**(`html`, `hrefPattern`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:218](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L218)
+Defined in: [packages/base/BaseParser.ts:255](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L255)
 
 #### Parameters
 
@@ -278,9 +324,9 @@ Defined in: [packages/base/BaseParser.ts:218](https://github.com/forkts/downflux
 
 ### extractImageUrls()
 
-> **extractImageUrls**(`html`): `string`[]
+> `protected` **extractImageUrls**(`html`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:237](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L237)
+Defined in: [packages/base/BaseParser.ts:274](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L274)
 
 #### Parameters
 
@@ -296,9 +342,9 @@ Defined in: [packages/base/BaseParser.ts:237](https://github.com/forkts/downflux
 
 ### extractSourceUrls()
 
-> **extractSourceUrls**(`html`): `string`[]
+> `protected` **extractSourceUrls**(`html`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:253](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L253)
+Defined in: [packages/base/BaseParser.ts:290](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L290)
 
 #### Parameters
 
@@ -312,11 +358,37 @@ Defined in: [packages/base/BaseParser.ts:253](https://github.com/forkts/downflux
 
 ***
 
+### collectElements()
+
+> `protected` **collectElements**(`html`, `type`, `className?`): `Record`\<`string`, `string`\>[]
+
+Defined in: [packages/base/BaseParser.ts:303](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L303)
+
+#### Parameters
+
+##### html
+
+`string`
+
+##### type
+
+`string`
+
+##### className?
+
+`string`
+
+#### Returns
+
+`Record`\<`string`, `string`\>[]
+
+***
+
 ### extractVideoPosters()
 
-> **extractVideoPosters**(`html`): `string`[]
+> `protected` **extractVideoPosters**(`html`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:266](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L266)
+Defined in: [packages/base/BaseParser.ts:324](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L324)
 
 #### Parameters
 
@@ -332,9 +404,9 @@ Defined in: [packages/base/BaseParser.ts:266](https://github.com/forkts/downflux
 
 ### extractDivHrefs()
 
-> **extractDivHrefs**(`html`): `string`[]
+> `protected` **extractDivHrefs**(`html`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:279](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L279)
+Defined in: [packages/base/BaseParser.ts:337](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L337)
 
 #### Parameters
 
@@ -350,9 +422,9 @@ Defined in: [packages/base/BaseParser.ts:279](https://github.com/forkts/downflux
 
 ### extractVideoUrls()
 
-> **extractVideoUrls**(`html`): `string`[]
+> `protected` **extractVideoUrls**(`html`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:289](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L289)
+Defined in: [packages/base/BaseParser.ts:347](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L347)
 
 #### Parameters
 
@@ -368,9 +440,9 @@ Defined in: [packages/base/BaseParser.ts:289](https://github.com/forkts/downflux
 
 ### extractAllUrls()
 
-> **extractAllUrls**(`html`): `string`[]
+> `protected` **extractAllUrls**(`html`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:299](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L299)
+Defined in: [packages/base/BaseParser.ts:357](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L357)
 
 #### Parameters
 
@@ -386,9 +458,9 @@ Defined in: [packages/base/BaseParser.ts:299](https://github.com/forkts/downflux
 
 ### extractLinks()
 
-> **extractLinks**(`html`): `string`[]
+> `protected` **extractLinks**(`html`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:303](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L303)
+Defined in: [packages/base/BaseParser.ts:361](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L361)
 
 #### Parameters
 
@@ -404,9 +476,9 @@ Defined in: [packages/base/BaseParser.ts:303](https://github.com/forkts/downflux
 
 ### extractMetaDescription()
 
-> **extractMetaDescription**(`html`): `string`
+> `protected` **extractMetaDescription**(`html`): `string`
 
-Defined in: [packages/base/BaseParser.ts:315](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L315)
+Defined in: [packages/base/BaseParser.ts:373](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L373)
 
 #### Parameters
 
@@ -422,9 +494,9 @@ Defined in: [packages/base/BaseParser.ts:315](https://github.com/forkts/downflux
 
 ### extractMetaNameContent()
 
-> **extractMetaNameContent**(`html`, `value`): `string`
+> `protected` **extractMetaNameContent**(`html`, `value`): `string`
 
-Defined in: [packages/base/BaseParser.ts:323](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L323)
+Defined in: [packages/base/BaseParser.ts:381](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L381)
 
 #### Parameters
 
@@ -444,9 +516,9 @@ Defined in: [packages/base/BaseParser.ts:323](https://github.com/forkts/downflux
 
 ### extractMetaPropertyContent()
 
-> **extractMetaPropertyContent**(`html`, `value`): `string`
+> `protected` **extractMetaPropertyContent**(`html`, `value`): `string`
 
-Defined in: [packages/base/BaseParser.ts:331](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L331)
+Defined in: [packages/base/BaseParser.ts:389](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L389)
 
 #### Parameters
 
@@ -466,9 +538,9 @@ Defined in: [packages/base/BaseParser.ts:331](https://github.com/forkts/downflux
 
 ### collectAnchors()
 
-> **collectAnchors**(`html`, `options?`): `object`[]
+> `protected` **collectAnchors**(`html`, `options?`): `object`[]
 
-Defined in: [packages/base/BaseParser.ts:339](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L339)
+Defined in: [packages/base/BaseParser.ts:397](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L397)
 
 #### Parameters
 
@@ -498,9 +570,9 @@ Defined in: [packages/base/BaseParser.ts:339](https://github.com/forkts/downflux
 
 ### extractMetaKeywords()
 
-> **extractMetaKeywords**(`html`): `string`[]
+> `protected` **extractMetaKeywords**(`html`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:391](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L391)
+Defined in: [packages/base/BaseParser.ts:449](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L449)
 
 #### Parameters
 
@@ -516,9 +588,9 @@ Defined in: [packages/base/BaseParser.ts:391](https://github.com/forkts/downflux
 
 ### extractTitle()
 
-> **extractTitle**(`html`): `string`
+> `protected` **extractTitle**(`html`): `string`
 
-Defined in: [packages/base/BaseParser.ts:401](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L401)
+Defined in: [packages/base/BaseParser.ts:459](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L459)
 
 #### Parameters
 
@@ -534,9 +606,9 @@ Defined in: [packages/base/BaseParser.ts:401](https://github.com/forkts/downflux
 
 ### resolveUrl()
 
-> **resolveUrl**(`raw`, `base?`): `string` \| `null`
+> `protected` **resolveUrl**(`raw`, `base?`): `string` \| `null`
 
-Defined in: [packages/base/BaseParser.ts:405](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L405)
+Defined in: [packages/base/BaseParser.ts:463](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L463)
 
 #### Parameters
 
@@ -556,9 +628,9 @@ Defined in: [packages/base/BaseParser.ts:405](https://github.com/forkts/downflux
 
 ### decodeHtmlEntities()
 
-> **decodeHtmlEntities**(`str`): `string`
+> `protected` **decodeHtmlEntities**(`str`): `string`
 
-Defined in: [packages/base/BaseParser.ts:414](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L414)
+Defined in: [packages/base/BaseParser.ts:472](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L472)
 
 #### Parameters
 
@@ -574,9 +646,9 @@ Defined in: [packages/base/BaseParser.ts:414](https://github.com/forkts/downflux
 
 ### extractByTag()
 
-> **extractByTag**(`html`, `tag`, `options?`): `string`[]
+> `protected` **extractByTag**(`html`, `tag`, `options?`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:425](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L425)
+Defined in: [packages/base/BaseParser.ts:483](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L483)
 
 #### Parameters
 
@@ -606,9 +678,9 @@ Defined in: [packages/base/BaseParser.ts:425](https://github.com/forkts/downflux
 
 ### extractOneByTag()
 
-> **extractOneByTag**(`html`, `tag`, `options?`): `string` \| `null`
+> `protected` **extractOneByTag**(`html`, `tag`, `options?`): `string` \| `null`
 
-Defined in: [packages/base/BaseParser.ts:451](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L451)
+Defined in: [packages/base/BaseParser.ts:509](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L509)
 
 #### Parameters
 
@@ -634,9 +706,9 @@ Defined in: [packages/base/BaseParser.ts:451](https://github.com/forkts/downflux
 
 ### extractScriptsByType()
 
-> **extractScriptsByType**(`html`, `type`): `string`[]
+> `protected` **extractScriptsByType**(`html`, `type`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:455](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L455)
+Defined in: [packages/base/BaseParser.ts:513](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L513)
 
 #### Parameters
 
@@ -656,9 +728,9 @@ Defined in: [packages/base/BaseParser.ts:455](https://github.com/forkts/downflux
 
 ### extractByClass()
 
-> **extractByClass**(`html`, `className`): `string`[]
+> `protected` **extractByClass**(`html`, `className`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:473](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L473)
+Defined in: [packages/base/BaseParser.ts:531](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L531)
 
 #### Parameters
 
@@ -678,9 +750,9 @@ Defined in: [packages/base/BaseParser.ts:473](https://github.com/forkts/downflux
 
 ### extractAttributes()
 
-> **extractAttributes**(`html`, `tag`, `attr`): `string`[]
+> `protected` **extractAttributes**(`html`, `tag`, `attr`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:487](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L487)
+Defined in: [packages/base/BaseParser.ts:545](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L545)
 
 #### Parameters
 
@@ -704,9 +776,9 @@ Defined in: [packages/base/BaseParser.ts:487](https://github.com/forkts/downflux
 
 ### extractSpans()
 
-> **extractSpans**(`html`, `className?`): `string`[]
+> `protected` **extractSpans**(`html`, `className?`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:500](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L500)
+Defined in: [packages/base/BaseParser.ts:558](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L558)
 
 #### Parameters
 
@@ -726,9 +798,9 @@ Defined in: [packages/base/BaseParser.ts:500](https://github.com/forkts/downflux
 
 ### extractDivs()
 
-> **extractDivs**(`html`, `className?`): `string`[]
+> `protected` **extractDivs**(`html`, `className?`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:504](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L504)
+Defined in: [packages/base/BaseParser.ts:562](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L562)
 
 #### Parameters
 
@@ -748,9 +820,9 @@ Defined in: [packages/base/BaseParser.ts:504](https://github.com/forkts/downflux
 
 ### extractAnchorsContent()
 
-> **extractAnchorsContent**(`html`, `className?`): `string`[]
+> `protected` **extractAnchorsContent**(`html`, `className?`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:508](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L508)
+Defined in: [packages/base/BaseParser.ts:566](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L566)
 
 #### Parameters
 
@@ -770,9 +842,9 @@ Defined in: [packages/base/BaseParser.ts:508](https://github.com/forkts/downflux
 
 ### extractH2s()
 
-> **extractH2s**(`html`, `className?`): `string`[]
+> `protected` **extractH2s**(`html`, `className?`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:512](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L512)
+Defined in: [packages/base/BaseParser.ts:570](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L570)
 
 #### Parameters
 
@@ -792,9 +864,9 @@ Defined in: [packages/base/BaseParser.ts:512](https://github.com/forkts/downflux
 
 ### extractH3s()
 
-> **extractH3s**(`html`, `className?`): `string`[]
+> `protected` **extractH3s**(`html`, `className?`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:516](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L516)
+Defined in: [packages/base/BaseParser.ts:574](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L574)
 
 #### Parameters
 
@@ -814,9 +886,9 @@ Defined in: [packages/base/BaseParser.ts:516](https://github.com/forkts/downflux
 
 ### extractLists()
 
-> **extractLists**(`html`, `className?`): `string`[]
+> `protected` **extractLists**(`html`, `className?`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:520](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L520)
+Defined in: [packages/base/BaseParser.ts:578](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L578)
 
 #### Parameters
 
@@ -836,9 +908,9 @@ Defined in: [packages/base/BaseParser.ts:520](https://github.com/forkts/downflux
 
 ### extractBlocks()
 
-> **extractBlocks**(`html`, `tag`, `className?`): `string`[]
+> `protected` **extractBlocks**(`html`, `tag`, `className?`): `string`[]
 
-Defined in: [packages/base/BaseParser.ts:524](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L524)
+Defined in: [packages/base/BaseParser.ts:582](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L582)
 
 #### Parameters
 
@@ -862,9 +934,9 @@ Defined in: [packages/base/BaseParser.ts:524](https://github.com/forkts/downflux
 
 ### extractKeyValue()
 
-> **extractKeyValue**(`html`, `keyPattern`, `valuePattern`): `Record`\<`string`, `string`\>
+> `protected` **extractKeyValue**(`html`, `keyPattern`, `valuePattern`): `Record`\<`string`, `string`\>
 
-Defined in: [packages/base/BaseParser.ts:532](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L532)
+Defined in: [packages/base/BaseParser.ts:590](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L590)
 
 #### Parameters
 
@@ -888,9 +960,9 @@ Defined in: [packages/base/BaseParser.ts:532](https://github.com/forkts/downflux
 
 ### collectByClassNames()
 
-> **collectByClassNames**(`html`, `classNames`, `options?`): `any`[]
+> `protected` **collectByClassNames**(`html`, `classNames`, `options?`): `any`[]
 
-Defined in: [packages/base/BaseParser.ts:547](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseParser.ts#L547)
+Defined in: [packages/base/BaseParser.ts:605](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseParser.ts#L605)
 
 #### Parameters
 

@@ -6,7 +6,7 @@
 
 # Interface: DownloadResult
 
-Defined in: [packages/contracts/DownloadContracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L17)
+Defined in: [packages/contracts/DownloadContracts.ts:22](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L22)
 
 Result of a download operation.
 Contains file metadata and the downloaded buffer.
@@ -17,7 +17,7 @@ Contains file metadata and the downloaded buffer.
 
 > **url**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:19](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L19)
+Defined in: [packages/contracts/DownloadContracts.ts:24](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L24)
 
 Requested download URL
 
@@ -27,7 +27,7 @@ Requested download URL
 
 > **buffer**: `Buffer`
 
-Defined in: [packages/contracts/DownloadContracts.ts:22](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L22)
+Defined in: [packages/contracts/DownloadContracts.ts:27](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L27)
 
 Downloaded file buffer
 
@@ -37,7 +37,7 @@ Downloaded file buffer
 
 > **finalUrl**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:25](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L25)
+Defined in: [packages/contracts/DownloadContracts.ts:30](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L30)
 
 Final URL after redirects
 
@@ -47,7 +47,7 @@ Final URL after redirects
 
 > **extendedFilename**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:28](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L28)
+Defined in: [packages/contracts/DownloadContracts.ts:33](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L33)
 
 Generated filename with metadata
 
@@ -57,7 +57,7 @@ Generated filename with metadata
 
 > **originalFilename**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:31](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L31)
+Defined in: [packages/contracts/DownloadContracts.ts:36](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L36)
 
 Original filename from URL or response
 
@@ -67,7 +67,7 @@ Original filename from URL or response
 
 > **extension**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:34](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L34)
+Defined in: [packages/contracts/DownloadContracts.ts:39](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L39)
 
 File extension
 
@@ -77,7 +77,7 @@ File extension
 
 > **mimeType**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:37](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L37)
+Defined in: [packages/contracts/DownloadContracts.ts:42](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L42)
 
 MIME type
 
@@ -87,7 +87,7 @@ MIME type
 
 > **sizeBytes**: `number`
 
-Defined in: [packages/contracts/DownloadContracts.ts:40](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L40)
+Defined in: [packages/contracts/DownloadContracts.ts:45](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L45)
 
 File size in bytes
 
@@ -97,7 +97,7 @@ File size in bytes
 
 > **path**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:43](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L43)
+Defined in: [packages/contracts/DownloadContracts.ts:48](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L48)
 
 Path of the downloaded file
 
@@ -107,6 +107,6 @@ Path of the downloaded file
 
 > **provider**: [`ProviderType`](../enumerations/ProviderType.md)
 
-Defined in: [packages/contracts/DownloadContracts.ts:46](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L46)
+Defined in: [packages/contracts/DownloadContracts.ts:51](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L51)
 
 Service used for the download

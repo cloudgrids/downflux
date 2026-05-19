@@ -6,7 +6,15 @@
 
 # Class: FFmpegEngine
 
-Defined in: [packages/storage/FFmpegEngine.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FFmpegEngine.ts#L11)
+Defined in: [packages/storage/FFmpegEngine.ts:19](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FFmpegEngine.ts#L19)
+
+Media finalization wrapper around ffmpeg.
+
+## Remarks
+
+FFmpeg support lives in storage because container repair and transcoding are
+output concerns. Downloaders write bytes first, then this engine remuxes or
+transcodes formats such as HLS `.ts`/fMP4 into a playable final file.
 
 ## Constructors
 
@@ -14,7 +22,7 @@ Defined in: [packages/storage/FFmpegEngine.ts:11](https://github.com/forkts/down
 
 > **new FFmpegEngine**(`progressManager`): `FFmpegEngine`
 
-Defined in: [packages/storage/FFmpegEngine.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FFmpegEngine.ts#L12)
+Defined in: [packages/storage/FFmpegEngine.ts:20](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FFmpegEngine.ts#L20)
 
 #### Parameters
 
@@ -34,7 +42,7 @@ Defined in: [packages/storage/FFmpegEngine.ts:12](https://github.com/forkts/down
 
 > **get** **ffmpeg**(): `string`
 
-Defined in: [packages/storage/FFmpegEngine.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FFmpegEngine.ts#L14)
+Defined in: [packages/storage/FFmpegEngine.ts:22](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FFmpegEngine.ts#L22)
 
 ##### Returns
 
@@ -46,7 +54,9 @@ Defined in: [packages/storage/FFmpegEngine.ts:14](https://github.com/forkts/down
 
 > **finalizeMedia**(`options`): `Promise`\<\{ `path`: `string`; `filename`: `string`; `extension`: `string`; `mimeType`: `string`; \}\>
 
-Defined in: [packages/storage/FFmpegEngine.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FFmpegEngine.ts#L18)
+Defined in: [packages/storage/FFmpegEngine.ts:32](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FFmpegEngine.ts#L32)
+
+Finalizes a downloaded media file with ffmpeg.
 
 #### Parameters
 
@@ -54,6 +64,10 @@ Defined in: [packages/storage/FFmpegEngine.ts:18](https://github.com/forkts/down
 
 [`TranscodeOptions`](../interfaces/TranscodeOptions.md)
 
+Input path and optional codec/transcode settings.
+
 #### Returns
 
 `Promise`\<\{ `path`: `string`; `filename`: `string`; `extension`: `string`; `mimeType`: `string`; \}\>
+
+Final media path, filename, extension, and MIME type.

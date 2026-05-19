@@ -6,7 +6,13 @@
 
 # Class: XHamsterTransformer
 
-Defined in: [packages/providers/xhamster/XHamsterTransformer.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xhamster/XHamsterTransformer.ts#L6)
+Defined in: [packages/providers/xhamster/XHamsterTransformer.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/xhamster/XHamsterTransformer.ts#L12)
+
+Normalizes parsed XHamster metadata into the public output shape.
+
+## Remarks
+
+Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
 
 ## Extends
 
@@ -18,7 +24,7 @@ Defined in: [packages/providers/xhamster/XHamsterTransformer.ts:6](https://githu
 
 > **new XHamsterTransformer**(`httpClient`, `progressManager`): `XHamsterTransformer`
 
-Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L8)
+Defined in: [packages/base/BaseTransformer.ts:26](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L26)
 
 #### Parameters
 
@@ -44,7 +50,7 @@ Defined in: [packages/base/BaseTransformer.ts:8](https://github.com/forkts/downf
 
 > `protected` `readonly` **httpClient**: [`HttpClient`](HttpClient.md)
 
-Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L9)
+Defined in: [packages/base/BaseTransformer.ts:27](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L27)
 
 #### Inherited from
 
@@ -56,7 +62,7 @@ Defined in: [packages/base/BaseTransformer.ts:9](https://github.com/forkts/downf
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L10)
+Defined in: [packages/base/BaseTransformer.ts:28](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L28)
 
 #### Inherited from
 
@@ -68,7 +74,9 @@ Defined in: [packages/base/BaseTransformer.ts:10](https://github.com/forkts/down
 
 > **requestData**(`url`, `opts`): `Promise`\<`any`\>
 
-Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseTransformer.ts#L29)
+Defined in: [packages/base/BaseTransformer.ts:61](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L61)
+
+Fetches JSON data for providers that expose API-backed metadata.
 
 #### Parameters
 
@@ -76,13 +84,19 @@ Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/down
 
 `string`
 
+API endpoint to request.
+
 ##### opts
 
 [`DownloadOptions`](../interfaces/DownloadOptions.md)
 
+HTTP and provider options.
+
 #### Returns
 
 `Promise`\<`any`\>
+
+Parsed JSON response.
 
 #### Inherited from
 
@@ -90,11 +104,81 @@ Defined in: [packages/base/BaseTransformer.ts:29](https://github.com/forkts/down
 
 ***
 
+### uniqueVideos()
+
+> `protected` **uniqueVideos**\<`T`\>(`videos`, `options`): [`VideoSourceOutput`](../interfaces/VideoSourceOutput.md)[]
+
+Defined in: [packages/base/BaseTransformer.ts:72](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L72)
+
+Removes duplicate video URLs while preserving quality information.
+
+#### Type Parameters
+
+##### T
+
+`T`
+
+#### Parameters
+
+##### videos
+
+`T`[]
+
+Provider-specific video source records.
+
+##### options
+
+[`UniqueVideosProps`](../interfaces/UniqueVideosProps.md)\<`T`\>
+
+URL and quality selectors.
+
+#### Returns
+
+[`VideoSourceOutput`](../interfaces/VideoSourceOutput.md)[]
+
+Unique video sources in the shared shape.
+
+#### Inherited from
+
+[`BaseTransformer`](BaseTransformer.md).[`uniqueVideos`](BaseTransformer.md#uniquevideos)
+
+***
+
+### unique()
+
+> `protected` **unique**\<`T`\>(`arr`): `T`[]
+
+Defined in: [packages/base/BaseTransformer.ts:89](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseTransformer.ts#L89)
+
+#### Type Parameters
+
+##### T
+
+`T`
+
+#### Parameters
+
+##### arr
+
+`T`[]
+
+#### Returns
+
+`T`[]
+
+#### Inherited from
+
+[`BaseTransformer`](BaseTransformer.md).[`unique`](BaseTransformer.md#unique)
+
+***
+
 ### transform()
 
 > **transform**(`url`, `request?`): `Promise`\<[`DefaultExecutionResult`](../interfaces/DefaultExecutionResult.md)\<`unknown`\> \| [`XHamsterVideoOutput`](../interfaces/XHamsterVideoOutput.md)\>
 
-Defined in: [packages/providers/xhamster/XHamsterTransformer.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/xhamster/XHamsterTransformer.ts#L9)
+Defined in: [packages/providers/xhamster/XHamsterTransformer.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/xhamster/XHamsterTransformer.ts#L15)
+
+Fetches HTML and merges default metadata with provider-specific metadata.
 
 #### Parameters
 
@@ -102,13 +186,19 @@ Defined in: [packages/providers/xhamster/XHamsterTransformer.ts:9](https://githu
 
 `string`
 
+Target page to fetch.
+
 ##### request?
 
 [`XHamsterExecArgs`](../interfaces/XHamsterExecArgs.md)
 
+Execution request that identifies the provider and options.
+
 #### Returns
 
 `Promise`\<[`DefaultExecutionResult`](../interfaces/DefaultExecutionResult.md)\<`unknown`\> \| [`XHamsterVideoOutput`](../interfaces/XHamsterVideoOutput.md)\>
+
+Parsed metadata ready for provider-specific output mapping.
 
 #### Overrides
 

@@ -6,7 +6,7 @@
 
 # Interface: ServiceStrategy
 
-Defined in: [packages/contracts/DownloadContracts.ts:93](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L93)
+Defined in: [packages/contracts/DownloadContracts.ts:98](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L98)
 
 ## Methods
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:93](https://github.com/fork
 
 > `optional` **shouldFallback404**(`url`): `boolean`
 
-Defined in: [packages/contracts/DownloadContracts.ts:94](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L94)
+Defined in: [packages/contracts/DownloadContracts.ts:99](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L99)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:94](https://github.com/fork
 
 > `optional` **getFallbackUrl**(`url`): `string` \| `null`
 
-Defined in: [packages/contracts/DownloadContracts.ts:95](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L95)
+Defined in: [packages/contracts/DownloadContracts.ts:100](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L100)
 
 #### Parameters
 
@@ -50,7 +50,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:95](https://github.com/fork
 
 > `optional` **shouldReExtract**(`url`): `boolean`
 
-Defined in: [packages/contracts/DownloadContracts.ts:96](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L96)
+Defined in: [packages/contracts/DownloadContracts.ts:101](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L101)
 
 #### Parameters
 
@@ -68,7 +68,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:96](https://github.com/fork
 
 > `optional` **shouldResolveTextResponse**(`url`, `contentType`): `boolean`
 
-Defined in: [packages/contracts/DownloadContracts.ts:97](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L97)
+Defined in: [packages/contracts/DownloadContracts.ts:102](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L102)
 
 #### Parameters
 
@@ -90,7 +90,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:97](https://github.com/fork
 
 > `optional` **getDirectVideoUrlFromText**(`body`, `opts`): `string` \| `null`
 
-Defined in: [packages/contracts/DownloadContracts.ts:98](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L98)
+Defined in: [packages/contracts/DownloadContracts.ts:103](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L103)
 
 #### Parameters
 
@@ -112,7 +112,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:98](https://github.com/fork
 
 > `optional` **getHostFallbackUrls**(`url`): `string`[]
 
-Defined in: [packages/contracts/DownloadContracts.ts:99](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L99)
+Defined in: [packages/contracts/DownloadContracts.ts:104](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L104)
 
 #### Parameters
 

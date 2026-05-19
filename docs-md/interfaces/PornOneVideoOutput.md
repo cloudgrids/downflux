@@ -6,7 +6,11 @@
 
 # Interface: PornOneVideoOutput
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L9)
+Defined in: [packages/providers/pornone/PornOneContracts.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornone/PornOneContracts.ts#L9)
+
+## Extends
+
+- [`DefaultVideoOutput`](DefaultVideoOutput.md)
 
 ## Extended by
 
@@ -18,7 +22,23 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:9](https://github.co
 
 > **title**: `string`
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L10)
+Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L186)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`title`](DefaultVideoOutput.md#title)
+
+***
+
+### tags
+
+> **tags**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`tags`](DefaultVideoOutput.md#tags)
 
 ***
 
@@ -26,47 +46,11 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:10](https://github.c
 
 > **description**: `string`
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L11)
+Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L188)
 
-***
+#### Inherited from
 
-### tags?
-
-> `optional` **tags?**: `string`[]
-
-Defined in: [packages/providers/pornone/PornOneContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L12)
-
-***
-
-### poster
-
-> **poster**: `string`
-
-Defined in: [packages/providers/pornone/PornOneContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L13)
-
-***
-
-### categories?
-
-> `optional` **categories?**: `string`[]
-
-Defined in: [packages/providers/pornone/PornOneContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L14)
-
-***
-
-### uploader
-
-> **uploader**: `string`
-
-Defined in: [packages/providers/pornone/PornOneContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L15)
-
-***
-
-### pornStars?
-
-> `optional` **pornStars?**: `string`[]
-
-Defined in: [packages/providers/pornone/PornOneContracts.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L16)
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`description`](DefaultVideoOutput.md#description)
 
 ***
 
@@ -74,12 +58,56 @@ Defined in: [packages/providers/pornone/PornOneContracts.ts:16](https://github.c
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L17)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`pageUrl`](DefaultVideoOutput.md#pageurl)
+
+***
+
+### poster
+
+> **poster**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`poster`](DefaultVideoOutput.md#poster)
 
 ***
 
 ### videos
 
-> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
+> **videos**: [`VideosFormat`](VideosFormat.md)
 
-Defined in: [packages/providers/pornone/PornOneContracts.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornone/PornOneContracts.ts#L18)
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`videos`](DefaultVideoOutput.md#videos)
+
+***
+
+### categories?
+
+> `optional` **categories?**: `string`[]
+
+Defined in: [packages/providers/pornone/PornOneContracts.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornone/PornOneContracts.ts#L10)
+
+***
+
+### uploader
+
+> **uploader**: `string`
+
+Defined in: [packages/providers/pornone/PornOneContracts.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornone/PornOneContracts.ts#L11)
+
+***
+
+### pornStars?
+
+> `optional` **pornStars?**: `string`[]
+
+Defined in: [packages/providers/pornone/PornOneContracts.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornone/PornOneContracts.ts#L12)

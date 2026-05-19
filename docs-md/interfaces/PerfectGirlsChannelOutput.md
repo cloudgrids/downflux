@@ -6,7 +6,7 @@
 
 # Interface: PerfectGirlsChannelOutput
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:111](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L111)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:93](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L93)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:111](https
 
 > **channelUrls**: `string`[]
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:112](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L112)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:94](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L94)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:112](https
 
 > **channelCount**: `number`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:113](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L113)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:95](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L95)

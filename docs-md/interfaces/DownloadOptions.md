@@ -6,28 +6,38 @@
 
 # Interface: DownloadOptions
 
-Defined in: [packages/contracts/DownloadContracts.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L6)
+Defined in: [packages/contracts/DownloadContracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L7)
 
-Configuration options for a DownFlux ExecutionCoordinator.
-Combines fetch, extraction, pipeline, and output settings.
+HTTP fetch options.
+Controls request headers, retries, timeout, and referer.
 
 ## Extends
 
-- [`ExecutionOptions`](ExecutionOptions.md)
+- [`HttpFetchOptions`](HttpFetchOptions.md)
 
 ## Properties
+
+### dirConfig?
+
+> `optional` **dirConfig?**: [`DirectoryOutputOptions`](DirectoryOutputOptions.md)
+
+Defined in: [packages/contracts/DownloadContracts.ts:8](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L8)
+
+***
+
+### transcodeOptions?
+
+> `optional` **transcodeOptions?**: [`TranscodeOptions`](TranscodeOptions.md)
+
+Defined in: [packages/contracts/DownloadContracts.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L9)
+
+***
 
 ### outputType
 
 > **outputType**: [`OutputType`](../enumerations/OutputType.md)
 
-Defined in: [packages/contracts/DownloadContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L7)
-
-Output format for ExecutionCoordinator results
-
-#### Overrides
-
-[`ExecutionOptions`](ExecutionOptions.md).[`outputType`](ExecutionOptions.md#outputtype)
+Defined in: [packages/contracts/DownloadContracts.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L10)
 
 ***
 
@@ -35,7 +45,7 @@ Output format for ExecutionCoordinator results
 
 > **provider**: [`ProviderType`](../enumerations/ProviderType.md)
 
-Defined in: [packages/contracts/DownloadContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L8)
+Defined in: [packages/contracts/DownloadContracts.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L11)
 
 ***
 
@@ -43,7 +53,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:8](https://github.com/forkt
 
 > `optional` **reExtract?**: (`item`) => `Promise`\<[`PipelineItem`](PipelineItem.md) \| `null`\>
 
-Defined in: [packages/contracts/DownloadContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L9)
+Defined in: [packages/contracts/DownloadContracts.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L12)
 
 #### Parameters
 
@@ -61,175 +71,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:9](https://github.com/forkt
 
 > `optional` **pipelineItem?**: [`PipelineItem`](PipelineItem.md)
 
-Defined in: [packages/contracts/DownloadContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L10)
-
-***
-
-### headers?
-
-> `optional` **headers?**: `Record`\<`string`, `string`\>
-
-Defined in: [packages/contracts/DownloadContracts.ts:71](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L71)
-
-Custom request headers
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`headers`](ExecutionOptions.md#headers)
-
-***
-
-### timeoutMs?
-
-> `optional` **timeoutMs?**: `number`
-
-Defined in: [packages/contracts/DownloadContracts.ts:74](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L74)
-
-Request timeout in milliseconds
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`timeoutMs`](ExecutionOptions.md#timeoutms)
-
-***
-
-### retries?
-
-> `optional` **retries?**: `number`
-
-Defined in: [packages/contracts/DownloadContracts.ts:77](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L77)
-
-Failed request retry count
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`retries`](ExecutionOptions.md#retries)
-
-***
-
-### referer?
-
-> `optional` **referer?**: `string`
-
-Defined in: [packages/contracts/DownloadContracts.ts:80](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L80)
-
-Request referer URL
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`referer`](ExecutionOptions.md#referer)
-
-***
-
-### formData?
-
-> `optional` **formData?**: `Record`\<`string`, `string`\>
-
-Defined in: [packages/contracts/DownloadContracts.ts:83](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/DownloadContracts.ts#L83)
-
-Optional FormData for POST requests
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`formData`](ExecutionOptions.md#formdata)
-
-***
-
-### dirConfig?
-
-> `optional` **dirConfig?**: [`DirectoryOutputOptions`](DirectoryOutputOptions.md)
-
-Defined in: [packages/contracts/ExecutionContracts.ts:41](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L41)
-
-Directory output configuration
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`dirConfig`](ExecutionOptions.md#dirconfig)
-
-***
-
-### allowedExtensions?
-
-> `optional` **allowedExtensions?**: [`AllowedExtension`](../type-aliases/AllowedExtension.md)[]
-
-Defined in: [packages/contracts/ExecutionContracts.ts:44](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L44)
-
-Allowed file extensions
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`allowedExtensions`](ExecutionOptions.md#allowedextensions)
-
-***
-
-### allowedVideoQuality?
-
-> `optional` **allowedVideoQuality?**: [`VideoQuality`](../enumerations/VideoQuality.md)
-
-Defined in: [packages/contracts/ExecutionContracts.ts:47](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L47)
-
-Allowed video quality
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`allowedVideoQuality`](ExecutionOptions.md#allowedvideoquality)
-
-***
-
-### tagFilterOptions?
-
-> `optional` **tagFilterOptions?**: [`TagFilterOptions`](TagFilterOptions.md)
-
-Defined in: [packages/contracts/ExecutionContracts.ts:50](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L50)
-
-Tag filtering options
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`tagFilterOptions`](ExecutionOptions.md#tagfilteroptions)
-
-***
-
-### maxDownloads?
-
-> `optional` **maxDownloads?**: `number`
-
-Defined in: [packages/contracts/ExecutionContracts.ts:53](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L53)
-
-Maximum number of items to download
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`maxDownloads`](ExecutionOptions.md#maxdownloads)
-
-***
-
-### transformOutput?
-
-> `optional` **transformOutput?**: `boolean`
-
-Defined in: [packages/contracts/ExecutionContracts.ts:56](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L56)
-
-Transform output to service-specific result type
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`transformOutput`](ExecutionOptions.md#transformoutput)
-
-***
-
-### concurrency?
-
-> `optional` **concurrency?**: `number`
-
-Defined in: [packages/contracts/ExecutionContracts.ts:59](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L59)
-
-Download phase concurrency
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`concurrency`](ExecutionOptions.md#concurrency)
+Defined in: [packages/contracts/DownloadContracts.ts:13](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L13)
 
 ***
 
@@ -237,146 +79,130 @@ Download phase concurrency
 
 > `optional` **noDownload?**: `boolean`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:62](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L62)
-
-Iterate only-- this prop is only used for logging http-services
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`noDownload`](ExecutionOptions.md#nodownload)
+Defined in: [packages/contracts/DownloadContracts.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L14)
 
 ***
 
-### extractConcurrency?
+### allowedVideoQuality?
 
-> `optional` **extractConcurrency?**: `number`
+> `optional` **allowedVideoQuality?**: [`VideoQuality`](../enumerations/VideoQuality.md)
 
-Defined in: [packages/contracts/ExecutionContracts.ts:65](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L65)
-
-Extraction phase concurrency
-
-#### Inherited from
-
-[`ExecutionOptions`](ExecutionOptions.md).[`extractConcurrency`](ExecutionOptions.md#extractconcurrency)
+Defined in: [packages/contracts/DownloadContracts.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L15)
 
 ***
 
-### transcodeOptions?
+### headers?
 
-> `optional` **transcodeOptions?**: [`TranscodeOptions`](TranscodeOptions.md)
+> `optional` **headers?**: `Record`\<`string`, `string`\>
 
-Defined in: [packages/contracts/ExecutionContracts.ts:68](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L68)
+Defined in: [packages/contracts/DownloadContracts.ts:76](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L76)
 
-Transcoding options
+Custom request headers
 
 #### Inherited from
 
-[`ExecutionOptions`](ExecutionOptions.md).[`transcodeOptions`](ExecutionOptions.md#transcodeoptions)
+[`HttpFetchOptions`](HttpFetchOptions.md).[`headers`](HttpFetchOptions.md#headers)
 
 ***
 
-### downloadRetries?
+### timeoutMs?
 
-> `optional` **downloadRetries?**: `number`
+> `optional` **timeoutMs?**: `number`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:71](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L71)
+Defined in: [packages/contracts/DownloadContracts.ts:79](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L79)
 
-Download retry count
+Request timeout in milliseconds
 
 #### Inherited from
 
-[`ExecutionOptions`](ExecutionOptions.md).[`downloadRetries`](ExecutionOptions.md#downloadretries)
+[`HttpFetchOptions`](HttpFetchOptions.md).[`timeoutMs`](HttpFetchOptions.md#timeoutms)
 
 ***
 
-### retryDelayMs?
+### retries?
 
-> `optional` **retryDelayMs?**: `number`
+> `optional` **retries?**: `number`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:74](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L74)
+Defined in: [packages/contracts/DownloadContracts.ts:82](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L82)
 
-Delay between download retries in milliseconds
+Failed request retry count
 
 #### Inherited from
 
-[`ExecutionOptions`](ExecutionOptions.md).[`retryDelayMs`](ExecutionOptions.md#retrydelayms)
+[`HttpFetchOptions`](HttpFetchOptions.md).[`retries`](HttpFetchOptions.md#retries)
 
 ***
 
-### pipelineHooks?
+### referer?
 
-> `optional` **pipelineHooks?**: [`PipelineHook`](PipelineHook.md)[]
+> `optional` **referer?**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:77](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L77)
+Defined in: [packages/contracts/DownloadContracts.ts:85](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L85)
 
-PipelineRegistry lifecycle hooks
+Request referer URL
 
 #### Inherited from
 
-[`ExecutionOptions`](ExecutionOptions.md).[`pipelineHooks`](ExecutionOptions.md#pipelinehooks)
+[`HttpFetchOptions`](HttpFetchOptions.md).[`referer`](HttpFetchOptions.md#referer)
 
 ***
 
-### onProgress?
+### formData?
 
-> `optional` **onProgress?**: (`event`) => `void`
+> `optional` **formData?**: `Record`\<`string`, `string`\>
 
-Defined in: [packages/contracts/ExecutionContracts.ts:80](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L80)
+Defined in: [packages/contracts/DownloadContracts.ts:88](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/DownloadContracts.ts#L88)
 
-Progress event handler
-
-#### Parameters
-
-##### event
-
-[`JobProgressEvent`](JobProgressEvent.md)
-
-#### Returns
-
-`void`
+Optional FormData for POST requests
 
 #### Inherited from
 
-[`ExecutionOptions`](ExecutionOptions.md).[`onProgress`](ExecutionOptions.md#onprogress)
+[`HttpFetchOptions`](HttpFetchOptions.md).[`formData`](HttpFetchOptions.md#formdata)
 
 ***
 
-### logProgress?
+### userAgent?
 
-> `optional` **logProgress?**: `boolean`
+> `optional` **userAgent?**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:83](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L83)
-
-Enables console progress logging
+Defined in: [packages/contracts/ExecutionContracts.ts:105](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L105)
 
 #### Inherited from
 
-[`ExecutionOptions`](ExecutionOptions.md).[`logProgress`](ExecutionOptions.md#logprogress)
+[`HttpFetchOptions`](HttpFetchOptions.md).[`userAgent`](HttpFetchOptions.md#useragent)
 
 ***
 
-### executionType?
+### enableSniSpoofing?
 
-> `optional` **executionType?**: [`ExecutionType`](../enumerations/ExecutionType.md)
+> `optional` **enableSniSpoofing?**: `boolean`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:89](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L89)
-
-Job execution strategy
+Defined in: [packages/contracts/ExecutionContracts.ts:107](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L107)
 
 #### Inherited from
 
-[`ExecutionOptions`](ExecutionOptions.md).[`executionType`](ExecutionOptions.md#executiontype)
+[`HttpFetchOptions`](HttpFetchOptions.md).[`enableSniSpoofing`](HttpFetchOptions.md#enablesnispoofing)
 
 ***
 
-### signal?
+### proxy?
 
-> `optional` **signal?**: `AbortSignal`
+> `optional` **proxy?**: [`ProxyOptions`](ProxyOptions.md)
 
-Defined in: [packages/contracts/ExecutionContracts.ts:92](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/contracts/ExecutionContracts.ts#L92)
-
-Abort signal for cancelling the ExecutionCoordinator
+Defined in: [packages/contracts/ExecutionContracts.ts:109](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L109)
 
 #### Inherited from
 
-[`ExecutionOptions`](ExecutionOptions.md).[`signal`](ExecutionOptions.md#signal)
+[`HttpFetchOptions`](HttpFetchOptions.md).[`proxy`](HttpFetchOptions.md#proxy)
+
+***
+
+### dispatcher?
+
+> `optional` **dispatcher?**: `Dispatcher`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:111](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L111)
+
+#### Inherited from
+
+[`HttpFetchOptions`](HttpFetchOptions.md).[`dispatcher`](HttpFetchOptions.md#dispatcher)

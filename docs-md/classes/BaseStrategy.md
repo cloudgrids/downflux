@@ -6,10 +6,20 @@
 
 # Class: BaseStrategy
 
-Defined in: [packages/base/BaseStrategy.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L6)
+Defined in: [packages/base/BaseStrategy.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L14)
+
+Default provider transport strategy.
+
+## Remarks
+
+Strategies exist for provider-specific HTTP behavior that does not belong in
+parsers or pipelines, such as host fallbacks, direct URL resolution, expired
+URL re-extraction, or text responses that should be treated as redirects.
 
 ## Extended by
 
+- [`EPornerStrategy`](EPornerStrategy.md)
+- [`MyLustStrategy`](MyLustStrategy.md)
 - [`PerfectGirlsStrategy`](PerfectGirlsStrategy.md)
 - [`Porn300Strategy`](Porn300Strategy.md)
 - [`PornDoeStrategy`](PornDoeStrategy.md)
@@ -30,7 +40,7 @@ Defined in: [packages/base/BaseStrategy.ts:6](https://github.com/forkts/downflux
 
 > **new BaseStrategy**(`progressManager`): `BaseStrategy`
 
-Defined in: [packages/base/BaseStrategy.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L7)
+Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L15)
 
 #### Parameters
 
@@ -48,7 +58,7 @@ Defined in: [packages/base/BaseStrategy.ts:7](https://github.com/forkts/downflux
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseStrategy.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L7)
+Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L15)
 
 ## Methods
 
@@ -56,7 +66,7 @@ Defined in: [packages/base/BaseStrategy.ts:7](https://github.com/forkts/downflux
 
 > **shouldFallback404**(`url`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L9)
+Defined in: [packages/base/BaseStrategy.ts:17](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L17)
 
 #### Parameters
 
@@ -78,7 +88,7 @@ Defined in: [packages/base/BaseStrategy.ts:9](https://github.com/forkts/downflux
 
 > **getDirectVideoUrlFromText**(`body`, `opts`): `string` \| `null`
 
-Defined in: [packages/base/BaseStrategy.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L13)
+Defined in: [packages/base/BaseStrategy.ts:21](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L21)
 
 #### Parameters
 
@@ -104,7 +114,7 @@ Defined in: [packages/base/BaseStrategy.ts:13](https://github.com/forkts/downflu
 
 > **getHostFallbackUrls**(`url`, `subDomains?`): `string`[]
 
-Defined in: [packages/base/BaseStrategy.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L17)
+Defined in: [packages/base/BaseStrategy.ts:25](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L25)
 
 #### Parameters
 
@@ -130,7 +140,7 @@ Defined in: [packages/base/BaseStrategy.ts:17](https://github.com/forkts/downflu
 
 > **getFallbackUrl**(`url`): `string` \| `null`
 
-Defined in: [packages/base/BaseStrategy.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L29)
+Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L37)
 
 #### Parameters
 
@@ -152,7 +162,7 @@ Defined in: [packages/base/BaseStrategy.ts:29](https://github.com/forkts/downflu
 
 > **shouldReExtract**(`url`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:33](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L33)
+Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L41)
 
 #### Parameters
 
@@ -174,7 +184,7 @@ Defined in: [packages/base/BaseStrategy.ts:33](https://github.com/forkts/downflu
 
 > **shouldResolveTextResponse**(`url`, `contentType`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L37)
+Defined in: [packages/base/BaseStrategy.ts:45](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L45)
 
 #### Parameters
 
@@ -200,7 +210,7 @@ Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflu
 
 > `protected` **constructPathname**(`url`): `string`
 
-Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/base/BaseStrategy.ts#L41)
+Defined in: [packages/base/BaseStrategy.ts:49](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseStrategy.ts#L49)
 
 #### Parameters
 

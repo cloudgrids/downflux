@@ -6,7 +6,11 @@
 
 # Interface: TubeVSexVideoOutput
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L6)
+Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:6](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tubevsex/TubeVSexContracts.ts#L6)
+
+## Extends
+
+- [`DefaultVideoOutput`](DefaultVideoOutput.md)
 
 ## Extended by
 
@@ -14,19 +18,39 @@ Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:6](https://github.
 
 ## Properties
 
-### videoId
-
-> **videoId**: `string`
-
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L7)
-
-***
-
 ### title
 
 > **title**: `string`
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L8)
+Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L186)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`title`](DefaultVideoOutput.md#title)
+
+***
+
+### tags
+
+> **tags**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`tags`](DefaultVideoOutput.md#tags)
+
+***
+
+### description
+
+> **description**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L188)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`description`](DefaultVideoOutput.md#description)
 
 ***
 
@@ -34,7 +58,11 @@ Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:8](https://github.
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L9)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`pageUrl`](DefaultVideoOutput.md#pageurl)
 
 ***
 
@@ -42,7 +70,31 @@ Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:9](https://github.
 
 > **poster**: `string`
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L10)
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`poster`](DefaultVideoOutput.md#poster)
+
+***
+
+### videos
+
+> **videos**: [`VideosFormat`](VideosFormat.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`videos`](DefaultVideoOutput.md#videos)
+
+***
+
+### videoId
+
+> **videoId**: `string`
+
+Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tubevsex/TubeVSexContracts.ts#L7)
 
 ***
 
@@ -50,7 +102,7 @@ Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:10](https://github
 
 > **width**: `string`
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L11)
+Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:8](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tubevsex/TubeVSexContracts.ts#L8)
 
 ***
 
@@ -58,7 +110,7 @@ Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:11](https://github
 
 > **height**: `string`
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L12)
+Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tubevsex/TubeVSexContracts.ts#L9)
 
 ***
 
@@ -66,7 +118,7 @@ Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:12](https://github
 
 > **duration**: `string`
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L13)
+Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tubevsex/TubeVSexContracts.ts#L10)
 
 ***
 
@@ -74,15 +126,7 @@ Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:13](https://github
 
 > **quality**: `string`
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L14)
-
-***
-
-### videos
-
-> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
-
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L15)
+Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tubevsex/TubeVSexContracts.ts#L11)
 
 ***
 
@@ -90,7 +134,7 @@ Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:15](https://github
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L16)
+Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tubevsex/TubeVSexContracts.ts#L12)
 
 ***
 
@@ -98,7 +142,7 @@ Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:16](https://github
 
 > **uploadedAt**: `string`
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L17)
+Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:13](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tubevsex/TubeVSexContracts.ts#L13)
 
 ***
 
@@ -106,4 +150,4 @@ Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:17](https://github
 
 > **categories**: `string`[]
 
-Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/tubevsex/TubeVSexContracts.ts#L18)
+Defined in: [packages/providers/tubevsex/TubeVSexContracts.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/tubevsex/TubeVSexContracts.ts#L14)

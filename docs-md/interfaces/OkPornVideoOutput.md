@@ -6,10 +6,14 @@
 
 # Interface: OkPornVideoOutput
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:57](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L57)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:57](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L57)
 
 Output structure for OkPorn video operations.
 Contains video metadata, sources, poster, and album context.
+
+## Extends
+
+- [`DefaultVideoOutput`](DefaultVideoOutput.md)
 
 ## Extended by
 
@@ -17,53 +21,85 @@ Contains video metadata, sources, poster, and album context.
 
 ## Properties
 
+### title
+
+> **title**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L186)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`title`](DefaultVideoOutput.md#title)
+
+***
+
+### tags
+
+> **tags**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`tags`](DefaultVideoOutput.md#tags)
+
+***
+
+### description
+
+> **description**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L188)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`description`](DefaultVideoOutput.md#description)
+
+***
+
+### pageUrl
+
+> **pageUrl**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`pageUrl`](DefaultVideoOutput.md#pageurl)
+
+***
+
+### poster
+
+> **poster**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`poster`](DefaultVideoOutput.md#poster)
+
+***
+
+### videos
+
+> **videos**: [`VideosFormat`](VideosFormat.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`videos`](DefaultVideoOutput.md#videos)
+
+***
+
 ### videoId
 
 > **videoId**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:59](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L59)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:59](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L59)
 
 Video identifier
-
-***
-
-### videoTitle
-
-> **videoTitle**: `string`
-
-Defined in: [packages/providers/okporn/OkPornContracts.ts:62](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L62)
-
-Video title
-
-***
-
-### videoUrl
-
-> **videoUrl**: `string`
-
-Defined in: [packages/providers/okporn/OkPornContracts.ts:65](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L65)
-
-Video page URL
-
-***
-
-### videoKeywords
-
-> **videoKeywords**: `string`[]
-
-Defined in: [packages/providers/okporn/OkPornContracts.ts:68](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L68)
-
-Video keywords
-
-***
-
-### videoDescription
-
-> **videoDescription**: `string`
-
-Defined in: [packages/providers/okporn/OkPornContracts.ts:71](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L71)
-
-Video description
 
 ***
 
@@ -71,29 +107,9 @@ Video description
 
 > **videoScreenshot**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:74](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L74)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:62](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L62)
 
 Screenshot image URL
-
-***
-
-### videoSources
-
-> **videoSources**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
-
-Defined in: [packages/providers/okporn/OkPornContracts.ts:77](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L77)
-
-Video source URLs with detected quality
-
-***
-
-### videoPoster
-
-> **videoPoster**: `string`
-
-Defined in: [packages/providers/okporn/OkPornContracts.ts:80](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L80)
-
-Poster image URL
 
 ***
 
@@ -101,7 +117,7 @@ Poster image URL
 
 > `optional` **videoCreatedAt?**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:83](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L83)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:65](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L65)
 
 Video creation date text
 
@@ -111,7 +127,7 @@ Video creation date text
 
 > **author**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:86](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L86)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:68](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L68)
 
 Author name associated with the video
 
@@ -121,7 +137,7 @@ Author name associated with the video
 
 > `optional` **fullVideoSource?**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:89](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L89)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:71](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L71)
 
 Full source URL when available
 
@@ -131,7 +147,7 @@ Full source URL when available
 
 > `optional` **videoAlbumId?**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:92](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L92)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:74](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L74)
 
 Album identifier linked to the video
 
@@ -141,7 +157,7 @@ Album identifier linked to the video
 
 > `optional` **videoAlbum?**: [`OkPornAlbumOutput`](OkPornAlbumOutput.md)
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:95](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L95)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:77](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L77)
 
 Album metadata linked to the video
 
@@ -151,6 +167,6 @@ Album metadata linked to the video
 
 > **starredBy**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:98](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L98)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:80](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L80)
 
 Starred by list

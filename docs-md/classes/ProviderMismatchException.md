@@ -6,7 +6,7 @@
 
 # Class: ProviderMismatchException
 
-Defined in: [packages/core/exceptions/ProviderMismatchException.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/ProviderMismatchException.ts#L9)
+Defined in: [packages/core/exceptions/ProviderMismatchException.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/ProviderMismatchException.ts#L9)
 
 ProviderMismatchException
 
@@ -25,7 +25,7 @@ Provides a consistent error structure for provider mismatch issues across servic
 
 > **new ProviderMismatchException**(`url`, `provider`, `method?`, `context?`, `metadata?`): `ProviderMismatchException`
 
-Defined in: [packages/core/exceptions/ProviderMismatchException.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/ProviderMismatchException.ts#L10)
+Defined in: [packages/core/exceptions/ProviderMismatchException.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/ProviderMismatchException.ts#L10)
 
 #### Parameters
 
@@ -85,7 +85,7 @@ not capture any frames.
 
 > `readonly` **errorCode**: [`ErrorCodes`](../enumerations/ErrorCodes.md)
 
-Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/BaseException.ts#L18)
+Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L18)
 
 #### Inherited from
 
@@ -97,7 +97,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/fo
 
 > `readonly` **url**: `string`
 
-Defined in: [packages/core/exceptions/ProviderMismatchException.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/ProviderMismatchException.ts#L11)
+Defined in: [packages/core/exceptions/ProviderMismatchException.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/ProviderMismatchException.ts#L11)
 
 ***
 
@@ -105,7 +105,7 @@ Defined in: [packages/core/exceptions/ProviderMismatchException.ts:11](https://g
 
 > `readonly` **provider**: [`ProviderType`](../enumerations/ProviderType.md)
 
-Defined in: [packages/core/exceptions/ProviderMismatchException.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/ProviderMismatchException.ts#L12)
+Defined in: [packages/core/exceptions/ProviderMismatchException.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/ProviderMismatchException.ts#L12)
 
 ***
 
@@ -113,7 +113,7 @@ Defined in: [packages/core/exceptions/ProviderMismatchException.ts:12](https://g
 
 > `readonly` `optional` **method?**: `string`
 
-Defined in: [packages/core/exceptions/ProviderMismatchException.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/ProviderMismatchException.ts#L13)
+Defined in: [packages/core/exceptions/ProviderMismatchException.ts:13](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/ProviderMismatchException.ts#L13)
 
 ***
 
@@ -121,7 +121,7 @@ Defined in: [packages/core/exceptions/ProviderMismatchException.ts:13](https://g
 
 > `readonly` **context**: `Record`\<`string`, `any`\> = `{}`
 
-Defined in: [packages/core/exceptions/ProviderMismatchException.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/ProviderMismatchException.ts#L14)
+Defined in: [packages/core/exceptions/ProviderMismatchException.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/ProviderMismatchException.ts#L14)
 
 #### Inherited from
 
@@ -133,7 +133,7 @@ Defined in: [packages/core/exceptions/ProviderMismatchException.ts:14](https://g
 
 > `readonly` `optional` **metadata?**: `any`
 
-Defined in: [packages/core/exceptions/ProviderMismatchException.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/ProviderMismatchException.ts#L15)
+Defined in: [packages/core/exceptions/ProviderMismatchException.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/ProviderMismatchException.ts#L15)
 
 #### Inherited from
 
@@ -293,7 +293,7 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 > **toJSON**(): `object`
 
-Defined in: [packages/core/exceptions/BaseException.ts:33](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/BaseException.ts#L33)
+Defined in: [packages/core/exceptions/BaseException.ts:33](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L33)
 
 #### Returns
 

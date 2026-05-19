@@ -6,7 +6,11 @@
 
 # Interface: Lesbian8VideoOutput
 
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L6)
+Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:6](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/lesbian8/Lesbian8Contracts.ts#L6)
+
+## Extends
+
+- [`DefaultVideoOutput`](DefaultVideoOutput.md)
 
 ## Extended by
 
@@ -14,67 +18,15 @@ Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:6](https://github.
 
 ## Properties
 
-### id
-
-> **id**: `string`
-
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L7)
-
-***
-
 ### title
 
 > **title**: `string`
 
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L8)
+Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L186)
 
-***
+#### Inherited from
 
-### starred
-
-> **starred**: `string`[]
-
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L9)
-
-***
-
-### videos
-
-> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
-
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L10)
-
-***
-
-### description
-
-> **description**: `string`
-
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L11)
-
-***
-
-### timelineScreenCount
-
-> **timelineScreenCount**: `number`
-
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L12)
-
-***
-
-### timelineScreens
-
-> **timelineScreens**: `string`[]
-
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L13)
-
-***
-
-### categories
-
-> **categories**: `string`[]
-
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L14)
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`title`](DefaultVideoOutput.md#title)
 
 ***
 
@@ -82,15 +34,23 @@ Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:14](https://github
 
 > **tags**: `string`[]
 
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L15)
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`tags`](DefaultVideoOutput.md#tags)
 
 ***
 
-### poster
+### description
 
-> **poster**: `string`
+> **description**: `string`
 
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L16)
+Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L188)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`description`](DefaultVideoOutput.md#description)
 
 ***
 
@@ -98,4 +58,72 @@ Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:16](https://github
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/lesbian8/Lesbian8Contracts.ts#L17)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`pageUrl`](DefaultVideoOutput.md#pageurl)
+
+***
+
+### poster
+
+> **poster**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`poster`](DefaultVideoOutput.md#poster)
+
+***
+
+### videos
+
+> **videos**: [`VideosFormat`](VideosFormat.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`videos`](DefaultVideoOutput.md#videos)
+
+***
+
+### id
+
+> **id**: `string`
+
+Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/lesbian8/Lesbian8Contracts.ts#L7)
+
+***
+
+### starred
+
+> **starred**: `string`[]
+
+Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:8](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/lesbian8/Lesbian8Contracts.ts#L8)
+
+***
+
+### timelineScreenCount
+
+> **timelineScreenCount**: `number`
+
+Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/lesbian8/Lesbian8Contracts.ts#L9)
+
+***
+
+### timelineScreens
+
+> **timelineScreens**: `string`[]
+
+Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/lesbian8/Lesbian8Contracts.ts#L10)
+
+***
+
+### categories
+
+> **categories**: `string`[]
+
+Defined in: [packages/providers/lesbian8/Lesbian8Contracts.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/lesbian8/Lesbian8Contracts.ts#L11)

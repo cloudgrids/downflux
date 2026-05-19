@@ -6,11 +6,14 @@
 
 # Interface: ColliderPornOutput
 
-Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/colliderporn/ColliderPornContracts.ts#L4)
+Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:4](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/colliderporn/ColliderPornContracts.ts#L4)
+
+Default output structure for extractor operations.
+Represents normalized metadata and extracted resources.
 
 ## Extends
 
-- [`ColliderPornVideoOutput`](ColliderPornVideoOutput.md)
+- [`DefaultExecutionResult`](DefaultExecutionResult.md).[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md)
 
 ## Properties
 
@@ -18,11 +21,13 @@ Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:4](https:/
 
 > **title**: `string`
 
-Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/colliderporn/ColliderPornContracts.ts#L7)
+Defined in: [packages/contracts/ExecutionContracts.ts:140](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L140)
+
+Page title
 
 #### Inherited from
 
-[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md).[`title`](ColliderPornVideoOutput.md#title)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`title`](DefaultExecutionResult.md#title)
 
 ***
 
@@ -30,11 +35,13 @@ Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:7](https:/
 
 > **description**: `string`
 
-Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/colliderporn/ColliderPornContracts.ts#L8)
+Defined in: [packages/contracts/ExecutionContracts.ts:143](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L143)
+
+Page description
 
 #### Inherited from
 
-[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md).[`description`](ColliderPornVideoOutput.md#description)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`description`](DefaultExecutionResult.md#description)
 
 ***
 
@@ -42,59 +49,193 @@ Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:8](https:/
 
 > **keywords**: `string`[]
 
-Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/colliderporn/ColliderPornContracts.ts#L9)
+Defined in: [packages/contracts/ExecutionContracts.ts:146](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L146)
+
+SEO keywords
 
 #### Inherited from
 
-[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md).[`keywords`](ColliderPornVideoOutput.md#keywords)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`keywords`](DefaultExecutionResult.md#keywords)
 
 ***
 
-### videoId
+### status
 
-> **videoId**: `string`
+> **status**: `number`
 
-Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/colliderporn/ColliderPornContracts.ts#L10)
+Defined in: [packages/contracts/ExecutionContracts.ts:149](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L149)
+
+HTTP status code
 
 #### Inherited from
 
-[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md).[`videoId`](ColliderPornVideoOutput.md#videoid)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`status`](DefaultExecutionResult.md#status)
 
 ***
 
-### videoUrl
+### sourceUrl
 
-> **videoUrl**: `object`
+> **sourceUrl**: `string`
 
-Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/colliderporn/ColliderPornContracts.ts#L11)
+Defined in: [packages/contracts/ExecutionContracts.ts:152](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L152)
 
-#### low
-
-> **low**: `string`
-
-#### high
-
-> **high**: `string`
-
-#### hls
-
-> **hls**: `string`
+Final resolved URL
 
 #### Inherited from
 
-[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md).[`videoUrl`](ColliderPornVideoOutput.md#videourl)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`sourceUrl`](DefaultExecutionResult.md#sourceurl)
 
 ***
 
-### poster
+### anchors
 
-> **poster**: `string`
+> **anchors**: `string`[]
 
-Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/colliderporn/ColliderPornContracts.ts#L16)
+Defined in: [packages/contracts/ExecutionContracts.ts:155](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L155)
+
+Anchor links
 
 #### Inherited from
 
-[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md).[`poster`](ColliderPornVideoOutput.md#poster)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`anchors`](DefaultExecutionResult.md#anchors)
+
+***
+
+### images
+
+> **images**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:158](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L158)
+
+Image URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`images`](DefaultExecutionResult.md#images)
+
+***
+
+### sources
+
+> **sources**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:161](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L161)
+
+Media source URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`sources`](DefaultExecutionResult.md#sources)
+
+***
+
+### videoSources
+
+> **videoSources**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:164](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L164)
+
+Video URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`videoSources`](DefaultExecutionResult.md#videosources)
+
+***
+
+### links
+
+> **links**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:167](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L167)
+
+Hyper links
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`links`](DefaultExecutionResult.md#links)
+
+***
+
+### videoPosters?
+
+> `optional` **videoPosters?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:170](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L170)
+
+Video poster URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`videoPosters`](DefaultExecutionResult.md#videoposters)
+
+***
+
+### divHREFs?
+
+> `optional` **divHREFs?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:173](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L173)
+
+URLs extracted from div href attributes
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`divHREFs`](DefaultExecutionResult.md#divhrefs)
+
+***
+
+### allUrls?
+
+> `optional` **allUrls?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:176](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L176)
+
+All discovered URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`allUrls`](DefaultExecutionResult.md#allurls)
+
+***
+
+### extractionTarget?
+
+> `optional` **extractionTarget?**: [`ExtractionTarget`](../enumerations/ExtractionTarget.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:179](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L179)
+
+URL category for pipeline routing
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`extractionTarget`](DefaultExecutionResult.md#extractiontarget)
+
+***
+
+### customFields?
+
+> `optional` **customFields?**: `unknown`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:182](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L182)
+
+Extensible service-specific fields
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`customFields`](DefaultExecutionResult.md#customfields)
+
+***
+
+### tags
+
+> **tags**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
+
+#### Inherited from
+
+[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md).[`tags`](ColliderPornVideoOutput.md#tags)
 
 ***
 
@@ -102,7 +243,7 @@ Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:16](https:
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/colliderporn/ColliderPornContracts.ts#L17)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
 
 #### Inherited from
 
@@ -110,11 +251,47 @@ Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:17](https:
 
 ***
 
+### poster
+
+> **poster**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
+
+#### Inherited from
+
+[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md).[`poster`](ColliderPornVideoOutput.md#poster)
+
+***
+
+### videos
+
+> **videos**: [`VideosFormat`](VideosFormat.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md).[`videos`](ColliderPornVideoOutput.md#videos)
+
+***
+
+### videoId
+
+> **videoId**: `string`
+
+Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/colliderporn/ColliderPornContracts.ts#L7)
+
+#### Inherited from
+
+[`ColliderPornVideoOutput`](ColliderPornVideoOutput.md).[`videoId`](ColliderPornVideoOutput.md#videoid)
+
+***
+
 ### uploader
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/colliderporn/ColliderPornContracts.ts#L18)
+Defined in: [packages/providers/colliderporn/ColliderPornContracts.ts:8](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/colliderporn/ColliderPornContracts.ts#L8)
 
 #### Inherited from
 

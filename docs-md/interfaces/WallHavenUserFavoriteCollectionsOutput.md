@@ -6,7 +6,7 @@
 
 # Interface: WallHavenUserFavoriteCollectionsOutput
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:195](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L195)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:196](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenContracts.ts#L196)
 
 Interface for WallHaven user favorite collection metadata and thumbnails.
 
@@ -16,7 +16,7 @@ Interface for WallHaven user favorite collection metadata and thumbnails.
 
 > **name**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:197](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L197)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenContracts.ts#L198)
 
 Collection name
 
@@ -26,7 +26,7 @@ Collection name
 
 > **url**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:200](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L200)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:201](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenContracts.ts#L201)
 
 Collection URL
 
@@ -36,7 +36,7 @@ Collection URL
 
 > **id**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:203](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L203)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:204](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenContracts.ts#L204)
 
 Collection ID
 
@@ -46,7 +46,7 @@ Collection ID
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:206](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L206)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:207](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenContracts.ts#L207)
 
 Collection uploader username
 
@@ -56,7 +56,7 @@ Collection uploader username
 
 > **backgroundUrl**: `string` \| `null`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:209](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L209)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:210](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenContracts.ts#L210)
 
 Background image URL
 
@@ -66,7 +66,7 @@ Background image URL
 
 > **thumbnails**: [`WallHavenThumbnail`](WallHavenThumbnail.md)[]
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:212](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L212)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:213](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenContracts.ts#L213)
 
 Collection thumbnail URLs (up to 3)
 
@@ -76,7 +76,7 @@ Collection thumbnail URLs (up to 3)
 
 > **wallPaperCount**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:215](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L215)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:216](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenContracts.ts#L216)
 
 Total wallpapers in the collection
 
@@ -86,7 +86,7 @@ Total wallpapers in the collection
 
 > **viewCount**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:218](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L218)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:219](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenContracts.ts#L219)
 
 Total views for the collection
 
@@ -96,6 +96,6 @@ Total views for the collection
 
 > **subscriberCount**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:221](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/wallhaven/WallHavenContracts.ts#L221)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:222](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/wallhaven/WallHavenContracts.ts#L222)
 
 Total subscribers for the collection

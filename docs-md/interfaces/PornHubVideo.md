@@ -6,7 +6,7 @@
 
 # Interface: PornHubVideo
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:111](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L111)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:96](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L96)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:111](https://github.
 
 > **group**: `number`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:112](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L112)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:97](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L97)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:112](https://github.
 
 > **height**: `number`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:113](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L113)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:98](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L98)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:113](https://github.
 
 > **width**: `number`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:114](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L114)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:99](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L99)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:114](https://github.
 
 > **defaultQuality**: `boolean`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:115](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L115)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:100](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L100)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:115](https://github.
 
 > **format**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:116](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L116)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:101](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L101)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:116](https://github.
 
 > **videoUrl**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:117](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L117)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:102](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L102)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:117](https://github.
 
 > **quality**: `string` \| `string`[]
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:118](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L118)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:103](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L103)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:118](https://github.
 
 > **remote**: `boolean`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:119](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L119)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:104](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L104)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:119](https://github.
 
 > `optional` **segmentFormats?**: `object`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:120](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L120)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:105](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L105)
 
 #### audio
 

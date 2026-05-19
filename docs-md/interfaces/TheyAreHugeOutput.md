@@ -6,11 +6,14 @@
 
 # Interface: TheyAreHugeOutput
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:4](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L4)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:4](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L4)
+
+Default output structure for extractor operations.
+Represents normalized metadata and extracted resources.
 
 ## Extends
 
-- [`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md)
+- [`DefaultExecutionResult`](DefaultExecutionResult.md).[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md)
 
 ## Properties
 
@@ -18,11 +21,13 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:4](https://g
 
 > **title**: `string`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L7)
+Defined in: [packages/contracts/ExecutionContracts.ts:140](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L140)
+
+Page title
 
 #### Inherited from
 
-[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`title`](TheyAreHugeVideoOutput.md#title)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`title`](DefaultExecutionResult.md#title)
 
 ***
 
@@ -30,35 +35,195 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:7](https://g
 
 > **description**: `string`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L8)
+Defined in: [packages/contracts/ExecutionContracts.ts:143](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L143)
+
+Page description
 
 #### Inherited from
 
-[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`description`](TheyAreHugeVideoOutput.md#description)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`description`](DefaultExecutionResult.md#description)
 
 ***
 
-### poster
+### keywords
 
-> **poster**: `string`
+> **keywords**: `string`[]
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L9)
+Defined in: [packages/contracts/ExecutionContracts.ts:146](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L146)
+
+SEO keywords
 
 #### Inherited from
 
-[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`poster`](TheyAreHugeVideoOutput.md#poster)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`keywords`](DefaultExecutionResult.md#keywords)
 
 ***
 
-### videoId
+### status
 
-> **videoId**: `string`
+> **status**: `number`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L10)
+Defined in: [packages/contracts/ExecutionContracts.ts:149](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L149)
+
+HTTP status code
 
 #### Inherited from
 
-[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`videoId`](TheyAreHugeVideoOutput.md#videoid)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`status`](DefaultExecutionResult.md#status)
+
+***
+
+### sourceUrl
+
+> **sourceUrl**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:152](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L152)
+
+Final resolved URL
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`sourceUrl`](DefaultExecutionResult.md#sourceurl)
+
+***
+
+### anchors
+
+> **anchors**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:155](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L155)
+
+Anchor links
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`anchors`](DefaultExecutionResult.md#anchors)
+
+***
+
+### images
+
+> **images**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:158](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L158)
+
+Image URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`images`](DefaultExecutionResult.md#images)
+
+***
+
+### sources
+
+> **sources**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:161](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L161)
+
+Media source URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`sources`](DefaultExecutionResult.md#sources)
+
+***
+
+### videoSources
+
+> **videoSources**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:164](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L164)
+
+Video URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`videoSources`](DefaultExecutionResult.md#videosources)
+
+***
+
+### links
+
+> **links**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:167](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L167)
+
+Hyper links
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`links`](DefaultExecutionResult.md#links)
+
+***
+
+### videoPosters?
+
+> `optional` **videoPosters?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:170](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L170)
+
+Video poster URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`videoPosters`](DefaultExecutionResult.md#videoposters)
+
+***
+
+### divHREFs?
+
+> `optional` **divHREFs?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:173](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L173)
+
+URLs extracted from div href attributes
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`divHREFs`](DefaultExecutionResult.md#divhrefs)
+
+***
+
+### allUrls?
+
+> `optional` **allUrls?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:176](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L176)
+
+All discovered URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`allUrls`](DefaultExecutionResult.md#allurls)
+
+***
+
+### extractionTarget?
+
+> `optional` **extractionTarget?**: [`ExtractionTarget`](../enumerations/ExtractionTarget.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:179](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L179)
+
+URL category for pipeline routing
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`extractionTarget`](DefaultExecutionResult.md#extractiontarget)
+
+***
+
+### customFields?
+
+> `optional` **customFields?**: `unknown`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:182](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L182)
+
+Extensible service-specific fields
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`customFields`](DefaultExecutionResult.md#customfields)
 
 ***
 
@@ -66,7 +231,7 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:10](https://
 
 > **tags**: `string`[]
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L11)
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
 
 #### Inherited from
 
@@ -74,23 +239,11 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:11](https://
 
 ***
 
-### videos
-
-> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
-
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L12)
-
-#### Inherited from
-
-[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`videos`](TheyAreHugeVideoOutput.md#videos)
-
-***
-
 ### pageUrl
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L13)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
 
 #### Inherited from
 
@@ -98,11 +251,47 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:13](https://
 
 ***
 
+### poster
+
+> **poster**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
+
+#### Inherited from
+
+[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`poster`](TheyAreHugeVideoOutput.md#poster)
+
+***
+
+### videos
+
+> **videos**: [`VideosFormat`](VideosFormat.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`videos`](TheyAreHugeVideoOutput.md#videos)
+
+***
+
+### videoId
+
+> **videoId**: `string`
+
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L7)
+
+#### Inherited from
+
+[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`videoId`](TheyAreHugeVideoOutput.md#videoid)
+
+***
+
 ### uploader
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L14)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:8](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L8)
 
 #### Inherited from
 
@@ -114,8 +303,32 @@ Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:14](https://
 
 > **models**: `string`[]
 
-Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L15)
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L9)
 
 #### Inherited from
 
 [`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`models`](TheyAreHugeVideoOutput.md#models)
+
+***
+
+### timelineScreenCount
+
+> **timelineScreenCount**: `number`
+
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L10)
+
+#### Inherited from
+
+[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`timelineScreenCount`](TheyAreHugeVideoOutput.md#timelinescreencount)
+
+***
+
+### timelineScreens
+
+> **timelineScreens**: `string`[]
+
+Defined in: [packages/providers/theyarehuge/TheyAreHugeContracts.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/theyarehuge/TheyAreHugeContracts.ts#L11)
+
+#### Inherited from
+
+[`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md).[`timelineScreens`](TheyAreHugeVideoOutput.md#timelinescreens)

@@ -6,7 +6,11 @@
 
 # Interface: PornIdVideoOutput
 
-Defined in: [packages/providers/pornid/PornIdContracts.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L6)
+Defined in: [packages/providers/pornid/PornIdContracts.ts:6](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornid/PornIdContracts.ts#L6)
+
+## Extends
+
+- [`DefaultVideoOutput`](DefaultVideoOutput.md)
 
 ## Extended by
 
@@ -14,19 +18,15 @@ Defined in: [packages/providers/pornid/PornIdContracts.ts:6](https://github.com/
 
 ## Properties
 
-### id
+### title
 
-> **id**: `string`
+> **title**: `string`
 
-Defined in: [packages/providers/pornid/PornIdContracts.ts:7](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L7)
+Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L186)
 
-***
+#### Inherited from
 
-### categories
-
-> **categories**: `string`[]
-
-Defined in: [packages/providers/pornid/PornIdContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L8)
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`title`](DefaultVideoOutput.md#title)
 
 ***
 
@@ -34,15 +34,11 @@ Defined in: [packages/providers/pornid/PornIdContracts.ts:8](https://github.com/
 
 > **tags**: `string`[]
 
-Defined in: [packages/providers/pornid/PornIdContracts.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L9)
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
 
-***
+#### Inherited from
 
-### title
-
-> **title**: `string`
-
-Defined in: [packages/providers/pornid/PornIdContracts.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L10)
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`tags`](DefaultVideoOutput.md#tags)
 
 ***
 
@@ -50,63 +46,11 @@ Defined in: [packages/providers/pornid/PornIdContracts.ts:10](https://github.com
 
 > **description**: `string`
 
-Defined in: [packages/providers/pornid/PornIdContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L11)
+Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L188)
 
-***
+#### Inherited from
 
-### keywords
-
-> **keywords**: `string`[]
-
-Defined in: [packages/providers/pornid/PornIdContracts.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L12)
-
-***
-
-### poster
-
-> **poster**: `string`
-
-Defined in: [packages/providers/pornid/PornIdContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L13)
-
-***
-
-### previews
-
-> **previews**: `string`[]
-
-Defined in: [packages/providers/pornid/PornIdContracts.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L14)
-
-***
-
-### videos
-
-> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
-
-Defined in: [packages/providers/pornid/PornIdContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L15)
-
-***
-
-### timelineScreenCount?
-
-> `optional` **timelineScreenCount?**: `number`
-
-Defined in: [packages/providers/pornid/PornIdContracts.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L16)
-
-***
-
-### timelineScreens?
-
-> `optional` **timelineScreens?**: `string`[]
-
-Defined in: [packages/providers/pornid/PornIdContracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L17)
-
-***
-
-### uploader
-
-> **uploader**: `string`
-
-Defined in: [packages/providers/pornid/PornIdContracts.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L18)
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`description`](DefaultVideoOutput.md#description)
 
 ***
 
@@ -114,4 +58,80 @@ Defined in: [packages/providers/pornid/PornIdContracts.ts:18](https://github.com
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/pornid/PornIdContracts.ts:19](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornid/PornIdContracts.ts#L19)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`pageUrl`](DefaultVideoOutput.md#pageurl)
+
+***
+
+### poster
+
+> **poster**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`poster`](DefaultVideoOutput.md#poster)
+
+***
+
+### videos
+
+> **videos**: [`VideosFormat`](VideosFormat.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`DefaultVideoOutput`](DefaultVideoOutput.md).[`videos`](DefaultVideoOutput.md#videos)
+
+***
+
+### id
+
+> **id**: `string`
+
+Defined in: [packages/providers/pornid/PornIdContracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornid/PornIdContracts.ts#L7)
+
+***
+
+### categories
+
+> **categories**: `string`[]
+
+Defined in: [packages/providers/pornid/PornIdContracts.ts:8](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornid/PornIdContracts.ts#L8)
+
+***
+
+### previews
+
+> **previews**: `string`[]
+
+Defined in: [packages/providers/pornid/PornIdContracts.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornid/PornIdContracts.ts#L9)
+
+***
+
+### timelineScreenCount?
+
+> `optional` **timelineScreenCount?**: `number`
+
+Defined in: [packages/providers/pornid/PornIdContracts.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornid/PornIdContracts.ts#L10)
+
+***
+
+### timelineScreens?
+
+> `optional` **timelineScreens?**: `string`[]
+
+Defined in: [packages/providers/pornid/PornIdContracts.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornid/PornIdContracts.ts#L11)
+
+***
+
+### uploader
+
+> **uploader**: `string`
+
+Defined in: [packages/providers/pornid/PornIdContracts.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornid/PornIdContracts.ts#L12)

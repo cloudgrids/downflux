@@ -8,4 +8,4 @@
 
 > **OkPornIdType** = `"path"` \| `"url"`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:5](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/okporn/OkPornContracts.ts#L5)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:5](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/okporn/OkPornContracts.ts#L5)

@@ -6,7 +6,7 @@
 
 # Class: GenericException
 
-Defined in: [packages/core/exceptions/GenericException.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/GenericException.ts#L9)
+Defined in: [packages/core/exceptions/GenericException.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/GenericException.ts#L9)
 
 GenericException
 
@@ -25,7 +25,7 @@ Provides a consistent error structure for argument-related issues across service
 
 > **new GenericException**(`message`, `provider`, `method?`, `context?`, `metadata?`): `GenericException`
 
-Defined in: [packages/core/exceptions/GenericException.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/GenericException.ts#L10)
+Defined in: [packages/core/exceptions/GenericException.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/GenericException.ts#L10)
 
 #### Parameters
 
@@ -85,7 +85,7 @@ not capture any frames.
 
 > `readonly` **errorCode**: [`ErrorCodes`](../enumerations/ErrorCodes.md)
 
-Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/BaseException.ts#L18)
+Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L18)
 
 #### Inherited from
 
@@ -97,7 +97,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/fo
 
 > `readonly` **message**: `string`
 
-Defined in: [packages/core/exceptions/GenericException.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/GenericException.ts#L11)
+Defined in: [packages/core/exceptions/GenericException.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/GenericException.ts#L11)
 
 #### Inherited from
 
@@ -109,7 +109,7 @@ Defined in: [packages/core/exceptions/GenericException.ts:11](https://github.com
 
 > `readonly` **provider**: [`ProviderType`](../enumerations/ProviderType.md)
 
-Defined in: [packages/core/exceptions/GenericException.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/GenericException.ts#L12)
+Defined in: [packages/core/exceptions/GenericException.ts:12](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/GenericException.ts#L12)
 
 ***
 
@@ -117,7 +117,7 @@ Defined in: [packages/core/exceptions/GenericException.ts:12](https://github.com
 
 > `readonly` `optional` **method?**: `string`
 
-Defined in: [packages/core/exceptions/GenericException.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/GenericException.ts#L13)
+Defined in: [packages/core/exceptions/GenericException.ts:13](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/GenericException.ts#L13)
 
 ***
 
@@ -125,7 +125,7 @@ Defined in: [packages/core/exceptions/GenericException.ts:13](https://github.com
 
 > `readonly` **context**: `Record`\<`string`, `any`\> = `{}`
 
-Defined in: [packages/core/exceptions/GenericException.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/GenericException.ts#L14)
+Defined in: [packages/core/exceptions/GenericException.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/GenericException.ts#L14)
 
 #### Inherited from
 
@@ -137,7 +137,7 @@ Defined in: [packages/core/exceptions/GenericException.ts:14](https://github.com
 
 > `readonly` `optional` **metadata?**: `any`
 
-Defined in: [packages/core/exceptions/GenericException.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/GenericException.ts#L15)
+Defined in: [packages/core/exceptions/GenericException.ts:15](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/GenericException.ts#L15)
 
 #### Inherited from
 
@@ -285,7 +285,7 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 > **toJSON**(): `object`
 
-Defined in: [packages/core/exceptions/BaseException.ts:33](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/exceptions/BaseException.ts#L33)
+Defined in: [packages/core/exceptions/BaseException.ts:33](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/exceptions/BaseException.ts#L33)
 
 #### Returns
 

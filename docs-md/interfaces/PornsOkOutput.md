@@ -6,11 +6,14 @@
 
 # Interface: PornsOkOutput
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:28](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L28)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:14](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornsok/PornsOkContracts.ts#L14)
+
+Default output structure for extractor operations.
+Represents normalized metadata and extracted resources.
 
 ## Extends
 
-- [`PornsOkVideoOutput`](PornsOkVideoOutput.md)
+- [`DefaultExecutionResult`](DefaultExecutionResult.md).[`PornsOkVideoOutput`](PornsOkVideoOutput.md)
 
 ## Properties
 
@@ -18,35 +21,221 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:28](https://github.c
 
 > **title**: `string`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:6](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L6)
+Defined in: [packages/contracts/ExecutionContracts.ts:140](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L140)
+
+Page title
 
 #### Inherited from
 
-[`PornsOkVideoOutput`](PornsOkVideoOutput.md).[`title`](PornsOkVideoOutput.md#title)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`title`](DefaultExecutionResult.md#title)
 
 ***
 
-### poster
+### description
 
-> **poster**: `string`
+> **description**: `string`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L8)
+Defined in: [packages/contracts/ExecutionContracts.ts:143](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L143)
+
+Page description
 
 #### Inherited from
 
-[`PornsOkVideoOutput`](PornsOkVideoOutput.md).[`poster`](PornsOkVideoOutput.md#poster)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`description`](DefaultExecutionResult.md#description)
 
 ***
 
-### duration
+### keywords
 
-> **duration**: `number`
+> **keywords**: `string`[]
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L11)
+Defined in: [packages/contracts/ExecutionContracts.ts:146](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L146)
+
+SEO keywords
 
 #### Inherited from
 
-[`PornsOkVideoOutput`](PornsOkVideoOutput.md).[`duration`](PornsOkVideoOutput.md#duration)
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`keywords`](DefaultExecutionResult.md#keywords)
+
+***
+
+### status
+
+> **status**: `number`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:149](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L149)
+
+HTTP status code
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`status`](DefaultExecutionResult.md#status)
+
+***
+
+### sourceUrl
+
+> **sourceUrl**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:152](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L152)
+
+Final resolved URL
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`sourceUrl`](DefaultExecutionResult.md#sourceurl)
+
+***
+
+### anchors
+
+> **anchors**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:155](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L155)
+
+Anchor links
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`anchors`](DefaultExecutionResult.md#anchors)
+
+***
+
+### images
+
+> **images**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:158](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L158)
+
+Image URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`images`](DefaultExecutionResult.md#images)
+
+***
+
+### sources
+
+> **sources**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:161](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L161)
+
+Media source URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`sources`](DefaultExecutionResult.md#sources)
+
+***
+
+### videoSources
+
+> **videoSources**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:164](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L164)
+
+Video URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`videoSources`](DefaultExecutionResult.md#videosources)
+
+***
+
+### links
+
+> **links**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:167](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L167)
+
+Hyper links
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`links`](DefaultExecutionResult.md#links)
+
+***
+
+### videoPosters?
+
+> `optional` **videoPosters?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:170](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L170)
+
+Video poster URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`videoPosters`](DefaultExecutionResult.md#videoposters)
+
+***
+
+### divHREFs?
+
+> `optional` **divHREFs?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:173](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L173)
+
+URLs extracted from div href attributes
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`divHREFs`](DefaultExecutionResult.md#divhrefs)
+
+***
+
+### allUrls?
+
+> `optional` **allUrls?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:176](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L176)
+
+All discovered URLs
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`allUrls`](DefaultExecutionResult.md#allurls)
+
+***
+
+### extractionTarget?
+
+> `optional` **extractionTarget?**: [`ExtractionTarget`](../enumerations/ExtractionTarget.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:179](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L179)
+
+URL category for pipeline routing
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`extractionTarget`](DefaultExecutionResult.md#extractiontarget)
+
+***
+
+### customFields?
+
+> `optional` **customFields?**: `unknown`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:182](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L182)
+
+Extensible service-specific fields
+
+#### Inherited from
+
+[`DefaultExecutionResult`](DefaultExecutionResult.md).[`customFields`](DefaultExecutionResult.md#customfields)
+
+***
+
+### tags
+
+> **tags**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L187)
+
+#### Inherited from
+
+[`PornsOkVideoOutput`](PornsOkVideoOutput.md).[`tags`](PornsOkVideoOutput.md#tags)
 
 ***
 
@@ -54,7 +243,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:11](https://github.c
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:13](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L13)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L189)
 
 #### Inherited from
 
@@ -62,11 +251,47 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:13](https://github.c
 
 ***
 
+### poster
+
+> **poster**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L198)
+
+#### Inherited from
+
+[`PornsOkVideoOutput`](PornsOkVideoOutput.md).[`poster`](PornsOkVideoOutput.md#poster)
+
+***
+
+### videos
+
+> **videos**: [`VideosFormat`](VideosFormat.md)
+
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/contracts/ExecutionContracts.ts#L199)
+
+#### Inherited from
+
+[`PornsOkVideoOutput`](PornsOkVideoOutput.md).[`videos`](PornsOkVideoOutput.md#videos)
+
+***
+
+### duration
+
+> **duration**: `number`
+
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:6](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornsok/PornsOkContracts.ts#L6)
+
+#### Inherited from
+
+[`PornsOkVideoOutput`](PornsOkVideoOutput.md).[`duration`](PornsOkVideoOutput.md#duration)
+
+***
+
 ### uploadedAt
 
 > **uploadedAt**: `string`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L15)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:7](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornsok/PornsOkContracts.ts#L7)
 
 #### Inherited from
 
@@ -78,7 +303,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:15](https://github.c
 
 > **totalViews**: `number`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:17](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L17)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:8](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornsok/PornsOkContracts.ts#L8)
 
 #### Inherited from
 
@@ -90,7 +315,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:17](https://github.c
 
 > **type**: `string`
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:19](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L19)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:9](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornsok/PornsOkContracts.ts#L9)
 
 #### Inherited from
 
@@ -98,23 +323,11 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:19](https://github.c
 
 ***
 
-### videos
-
-> **videos**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
-
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:21](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L21)
-
-#### Inherited from
-
-[`PornsOkVideoOutput`](PornsOkVideoOutput.md).[`videos`](PornsOkVideoOutput.md#videos)
-
-***
-
 ### starredBy?
 
 > `optional` **starredBy?**: `string`[]
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:23](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L23)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:10](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornsok/PornsOkContracts.ts#L10)
 
 #### Inherited from
 
@@ -126,7 +339,7 @@ Defined in: [packages/providers/pornsok/PornsOkContracts.ts:23](https://github.c
 
 > `optional` **categories?**: `string`[]
 
-Defined in: [packages/providers/pornsok/PornsOkContracts.ts:25](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornsok/PornsOkContracts.ts#L25)
+Defined in: [packages/providers/pornsok/PornsOkContracts.ts:11](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornsok/PornsOkContracts.ts#L11)
 
 #### Inherited from
 

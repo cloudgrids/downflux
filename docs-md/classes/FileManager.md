@@ -6,7 +6,16 @@
 
 # Class: FileManager
 
-Defined in: [packages/storage/FileManager.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L11)
+Defined in: [packages/storage/FileManager.ts:20](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FileManager.ts#L20)
+
+Storage service for JSON results, buffers, and files on disk.
+
+## Remarks
+
+Storage is isolated because output handling needs path safety, filename
+normalization, resource type inference, stream sinks, JSON serialization, and
+post-processing for media containers. Keeping this here prevents providers
+and coordinators from duplicating filesystem rules.
 
 ## Constructors
 
@@ -14,7 +23,7 @@ Defined in: [packages/storage/FileManager.ts:11](https://github.com/forkts/downf
 
 > **new FileManager**(`ffmpegEngine`, `progressManager`): `FileManager`
 
-Defined in: [packages/storage/FileManager.ts:16](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L16)
+Defined in: [packages/storage/FileManager.ts:25](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FileManager.ts#L25)
 
 #### Parameters
 
@@ -36,7 +45,9 @@ Defined in: [packages/storage/FileManager.ts:16](https://github.com/forkts/downf
 
 > **createSink**(`sinkInput`): `object`
 
-Defined in: [packages/storage/FileManager.ts:21](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L21)
+Defined in: [packages/storage/FileManager.ts:36](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FileManager.ts#L36)
+
+Creates the output sink for a download.
 
 #### Parameters
 
@@ -44,9 +55,13 @@ Defined in: [packages/storage/FileManager.ts:21](https://github.com/forkts/downf
 
 [`CreateSinkInput`](../interfaces/CreateSinkInput.md)
 
+Output mode, provider, identifier, and transcode options.
+
 #### Returns
 
 `object`
+
+Writable stream and finalize callback for the selected output mode.
 
 ##### stream
 
@@ -80,7 +95,9 @@ Defined in: [packages/storage/FileManager.ts:21](https://github.com/forkts/downf
 
 > **finalizeStream**(`finalPath`, `tOptions?`, `isFmp4?`, `opts?`): `Promise`\<\{ `path`: `string`; `filename`: `string`; `extension`: `string`; `mimeType`: `any`; \}\>
 
-Defined in: [packages/storage/FileManager.ts:124](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L124)
+Defined in: [packages/storage/FileManager.ts:148](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FileManager.ts#L148)
+
+Finalizes a file after streaming completes.
 
 #### Parameters
 
@@ -88,15 +105,23 @@ Defined in: [packages/storage/FileManager.ts:124](https://github.com/forkts/down
 
 `string`
 
+Path of the streamed file.
+
 ##### tOptions?
 
 [`TranscodeOptions`](../interfaces/TranscodeOptions.md)
+
+Optional ffmpeg transcode options.
 
 ##### isFmp4?
 
 `boolean`
 
+Whether the stream came from an fMP4 HLS playlist.
+
 ##### opts?
+
+Resolved extension and MIME type hints.
 
 ###### extension?
 
@@ -110,13 +135,17 @@ Defined in: [packages/storage/FileManager.ts:124](https://github.com/forkts/down
 
 `Promise`\<\{ `path`: `string`; `filename`: `string`; `extension`: `string`; `mimeType`: `any`; \}\>
 
+Final path, filename, extension, and MIME type.
+
 ***
 
 ### toJSON()
 
 > **toJSON**\<`T`, `S`\>(`result`, `directoryPath?`): `string`
 
-Defined in: [packages/storage/FileManager.ts:145](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L145)
+Defined in: [packages/storage/FileManager.ts:176](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FileManager.ts#L176)
+
+Writes an execution result as JSON.
 
 #### Type Parameters
 
@@ -134,13 +163,19 @@ Defined in: [packages/storage/FileManager.ts:145](https://github.com/forkts/down
 
 [`ExecutionResult`](../interfaces/ExecutionResult.md)\<`T`, `S`\>
 
+Execution result to serialize.
+
 ##### directoryPath?
 
 `string` = `...`
 
+Destination directory.
+
 #### Returns
 
 `string`
+
+Path to the written JSON file.
 
 ***
 
@@ -148,7 +183,7 @@ Defined in: [packages/storage/FileManager.ts:145](https://github.com/forkts/down
 
 > **getFileInfo**(`url`, `prefix?`): [`ResolvedFile`](../interfaces/ResolvedFile.md)
 
-Defined in: [packages/storage/FileManager.ts:169](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L169)
+Defined in: [packages/storage/FileManager.ts:200](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FileManager.ts#L200)
 
 Extracts filename and extension from URL.
 
@@ -178,7 +213,10 @@ path undefined => fud_timestamp
 
 > **sanitizeFilename**(`name`): `string`
 
-Defined in: [packages/storage/FileManager.ts:193](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L193)
+Defined in: [packages/storage/FileManager.ts:226](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FileManager.ts#L226)
+
+Sanitize filename by replacing invalid characters with underscores mostly for
+Windows OS which has a lot of reserved characters for filenames such as < > : " / \ | ? *
 
 #### Parameters
 
@@ -196,7 +234,9 @@ Defined in: [packages/storage/FileManager.ts:193](https://github.com/forkts/down
 
 > **detectResourceType**(`url`, `request`): `object`
 
-Defined in: [packages/storage/FileManager.ts:229](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L229)
+Defined in: [packages/storage/FileManager.ts:269](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FileManager.ts#L269)
+
+Infers MIME type and extension for a media URL.
 
 #### Parameters
 
@@ -204,13 +244,19 @@ Defined in: [packages/storage/FileManager.ts:229](https://github.com/forkts/down
 
 `string`
 
+Media URL to inspect.
+
 ##### request
 
 [`ExecutionArgs`](../interfaces/ExecutionArgs.md)
 
+Provider request used for fallback decisions.
+
 #### Returns
 
 `object`
+
+Detected or provider-default resource type.
 
 ##### mimeType
 
@@ -226,7 +272,9 @@ Defined in: [packages/storage/FileManager.ts:229](https://github.com/forkts/down
 
 > **deriveResolvedFile**(`initial`, `finalUrl`, `headers`, `isFmp4?`, `prefix?`): [`ResolvedFile`](../interfaces/ResolvedFile.md)
 
-Defined in: [packages/storage/FileManager.ts:256](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/storage/FileManager.ts#L256)
+Defined in: [packages/storage/FileManager.ts:307](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/storage/FileManager.ts#L307)
+
+Reconciles the initial file guess with the final response URL and headers.
 
 #### Parameters
 
@@ -234,22 +282,34 @@ Defined in: [packages/storage/FileManager.ts:256](https://github.com/forkts/down
 
 [`ResolvedFile`](../interfaces/ResolvedFile.md)
 
+Filename inferred before requesting the stream.
+
 ##### finalUrl
 
 `string`
+
+Final URL returned by the stream request.
 
 ##### headers
 
 `Record`\<`string`, `string`\>
 
+Response headers.
+
 ##### isFmp4?
 
 `boolean`
+
+Whether the media is fMP4 HLS.
 
 ##### prefix?
 
 `string`
 
+Optional filename prefix.
+
 #### Returns
 
 [`ResolvedFile`](../interfaces/ResolvedFile.md)
+
+Resolved filename and extension for the actual media.

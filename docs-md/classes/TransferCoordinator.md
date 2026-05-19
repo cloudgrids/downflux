@@ -6,7 +6,15 @@
 
 # Class: TransferCoordinator
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L8)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:16](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TransferCoordinator.ts#L16)
+
+Coordinates one pipeline item transfer into storage.
+
+## Remarks
+
+The transfer coordinator binds streaming and storage together. It resolves
+the final media URL, opens the correct sink, streams bytes, finalizes the
+stored media, and returns download metadata to the task coordinator.
 
 ## Constructors
 
@@ -14,7 +22,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:8](https://github
 
 > **new TransferCoordinator**(`fileManager`, `streamHttpClient`, `progressManager`): `TransferCoordinator`
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:9](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L9)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:17](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TransferCoordinator.ts#L17)
 
 #### Parameters
 
@@ -40,7 +48,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:9](https://github
 
 > `protected` `readonly` **fileManager**: [`FileManager`](FileManager.md)
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L10)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:18](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TransferCoordinator.ts#L18)
 
 ***
 
@@ -48,7 +56,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:10](https://githu
 
 > `protected` `readonly` **streamHttpClient**: [`StreamHttpClient`](StreamHttpClient.md)
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L11)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:19](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TransferCoordinator.ts#L19)
 
 ***
 
@@ -56,7 +64,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:11](https://githu
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:12](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L12)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:20](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TransferCoordinator.ts#L20)
 
 ## Methods
 
@@ -64,7 +72,9 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:12](https://githu
 
 > **download**(`item`, `opts`): `Promise`\<[`DownloadResult`](../interfaces/DownloadResult.md)\>
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/core/coordinators/TransferCoordinator.ts#L15)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:30](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/core/coordinators/TransferCoordinator.ts#L30)
+
+Downloads a single pipeline item.
 
 #### Parameters
 
@@ -72,10 +82,16 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:15](https://githu
 
 [`PipelineItem`](../interfaces/PipelineItem.md)
 
+Pipeline item describing the media URL and identifier.
+
 ##### opts
 
 [`DownloadOptions`](../interfaces/DownloadOptions.md)
 
+Download and output options.
+
 #### Returns
 
 `Promise`\<[`DownloadResult`](../interfaces/DownloadResult.md)\>
+
+Final download details including path, size, MIME type, and final URL.

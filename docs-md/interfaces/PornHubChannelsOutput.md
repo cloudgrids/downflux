@@ -6,7 +6,7 @@
 
 # Interface: PornHubChannelsOutput
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:36](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L36)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:36](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L36)
 
 Interface representing the output structure for OkPorn channel operations.
 Contains channel links and count metadata.
@@ -17,7 +17,7 @@ Contains channel links and count metadata.
 
 > **channelName**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:37](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L37)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:37](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L37)
 
 ***
 
@@ -25,15 +25,15 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:37](https://github.c
 
 > **subscribers**: `number`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:38](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L38)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:38](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L38)
 
 ***
 
-### videos
+### channelVideos
 
-> **videos**: `number`
+> **channelVideos**: `number`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:39](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L39)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:39](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L39)
 
 ***
 
@@ -41,7 +41,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:39](https://github.c
 
 > **videosViews**: `number`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:40](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L40)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:40](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L40)
 
 ***
 
@@ -49,7 +49,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:40](https://github.c
 
 > **channelThumbnail**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:41](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L41)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:41](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L41)
 
 ***
 
@@ -57,7 +57,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:41](https://github.c
 
 > **channelUrl**: `string`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:42](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L42)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:42](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L42)
 
 ***
 
@@ -65,7 +65,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:42](https://github.c
 
 > **rank**: `number`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:43](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L43)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:43](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L43)
 
 ***
 
@@ -73,4 +73,4 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:43](https://github.c
 
 > **isAwarded**: `boolean`
 
-Defined in: [packages/providers/pornhub/PornHubContracts.ts:44](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/providers/pornhub/PornHubContracts.ts#L44)
+Defined in: [packages/providers/pornhub/PornHubContracts.ts:44](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/providers/pornhub/PornHubContracts.ts#L44)

@@ -6,7 +6,15 @@
 
 # Class: HlsClient
 
-Defined in: [packages/engines/http/HlsClient.ts:14](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/HlsClient.ts#L14)
+Defined in: [packages/engines/http/HlsClient.ts:22](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/engines/http/HlsClient.ts#L22)
+
+HTTP engine for HLS playlists and media segments.
+
+## Remarks
+
+HLS handling is isolated from generic streaming because playlists require
+variant selection, segment stitching, optional AES decryption, and fMP4
+detection before storage can finalize the media.
 
 ## Extends
 
@@ -18,7 +26,7 @@ Defined in: [packages/engines/http/HlsClient.ts:14](https://github.com/forkts/do
 
 > **new HlsClient**(`progressManager`): `HlsClient`
 
-Defined in: [packages/engines/http/HlsClient.ts:15](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/HlsClient.ts#L15)
+Defined in: [packages/engines/http/HlsClient.ts:23](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/engines/http/HlsClient.ts#L23)
 
 #### Parameters
 
@@ -40,11 +48,11 @@ Defined in: [packages/engines/http/HlsClient.ts:15](https://github.com/forkts/do
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:8](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L8)
+Defined in: [packages/base/BaseHttpClient.ts:16](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L16)
 
 #### Inherited from
 
-[`BaseHttpClient`](BaseHttpClient.md).[`progressManager`](BaseHttpClient.md#progressmanager)
+[`StreamHttpClient`](StreamHttpClient.md).[`progressManager`](StreamHttpClient.md#progressmanager)
 
 ***
 
@@ -52,7 +60,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:8](https://github.com/forkt
 
 > `protected` `readonly` **cookieJar**: `Map`\<`string`, `Map`\<`string`, `string`\>\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:10](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L10)
+Defined in: [packages/base/BaseHttpClient.ts:18](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L18)
 
 #### Inherited from
 
@@ -64,7 +72,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:10](https://github.com/fork
 
 > `protected` `readonly` **CHROME\_CIPHERS**: `string`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:11](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L11)
+Defined in: [packages/base/BaseHttpClient.ts:19](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L19)
 
 #### Inherited from
 
@@ -76,11 +84,23 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:11](https://github.com/fork
 
 > `protected` `readonly` **agent**: `Agent`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:29](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L29)
+Defined in: [packages/base/BaseHttpClient.ts:37](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L37)
 
 #### Inherited from
 
 [`BaseHttpClient`](BaseHttpClient.md).[`agent`](BaseHttpClient.md#agent)
+
+***
+
+### spoofAgent
+
+> `protected` `readonly` **spoofAgent**: `Agent`
+
+Defined in: [packages/base/BaseHttpClient.ts:47](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L47)
+
+#### Inherited from
+
+[`BaseHttpClient`](BaseHttpClient.md).[`spoofAgent`](BaseHttpClient.md#spoofagent)
 
 ## Methods
 
@@ -88,7 +108,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:29](https://github.com/fork
 
 > `protected` **randomHeaders**(`extra?`): `object`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:39](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L39)
+Defined in: [packages/base/BaseHttpClient.ts:60](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L60)
 
 #### Parameters
 
@@ -110,7 +130,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:39](https://github.com/fork
 
 > `protected` **delay**(`attempt`): `Promise`\<`unknown`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:48](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L48)
+Defined in: [packages/base/BaseHttpClient.ts:85](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L85)
 
 #### Parameters
 
@@ -132,7 +152,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:48](https://github.com/fork
 
 > `protected` **readBody**(`body`): `Promise`\<`Buffer`\<`ArrayBufferLike`\>\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:55](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L55)
+Defined in: [packages/base/BaseHttpClient.ts:92](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L92)
 
 #### Parameters
 
@@ -154,7 +174,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:55](https://github.com/fork
 
 > `protected` **decodeBody**(`buffer`, `headers`): `Buffer`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:70](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L70)
+Defined in: [packages/base/BaseHttpClient.ts:107](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L107)
 
 #### Parameters
 
@@ -180,7 +200,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:70](https://github.com/fork
 
 > `protected` **applyCookieWithHeader**(`url`, `headers`): `Record`\<`string`, `string`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:86](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L86)
+Defined in: [packages/base/BaseHttpClient.ts:123](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L123)
 
 #### Parameters
 
@@ -206,7 +226,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:86](https://github.com/fork
 
 > `protected` **storeCookies**(`url`, `headers`): `void`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:101](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L101)
+Defined in: [packages/base/BaseHttpClient.ts:138](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L138)
 
 #### Parameters
 
@@ -232,7 +252,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:101](https://github.com/for
 
 > `protected` **addOriginWithHeader**(`headers`, `referer?`): `Record`\<`string`, `string`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:124](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L124)
+Defined in: [packages/base/BaseHttpClient.ts:161](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L161)
 
 #### Parameters
 
@@ -258,7 +278,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:124](https://github.com/for
 
 > `protected` **headers**(`headers`): `Record`\<`string`, `string`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:135](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L135)
+Defined in: [packages/base/BaseHttpClient.ts:172](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L172)
 
 #### Parameters
 
@@ -280,7 +300,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:135](https://github.com/for
 
 > `protected` **isTransportError**(`error`): `string` \| `undefined`
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:139](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L139)
+Defined in: [packages/base/BaseHttpClient.ts:176](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L176)
 
 #### Parameters
 
@@ -300,9 +320,11 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:139](https://github.com/for
 
 ### fetchWithTransportFallback()
 
-> `protected` **fetchWithTransportFallback**(`url`, `init`, `allowFallback?`): `Promise`\<`Response`\>
+> **fetchWithTransportFallback**(`url`, `init`, `options`, `allowFallback?`): `Promise`\<`Response`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:153](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L153)
+Defined in: [packages/base/BaseHttpClient.ts:199](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L199)
+
+Runs a fetch request with transport fallback for transient TLS/socket failures.
 
 #### Parameters
 
@@ -310,17 +332,31 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:153](https://github.com/for
 
 `string`
 
+URL to request.
+
 ##### init
 
 `RequestInit` \| `undefined`
+
+Fetch options.
+
+##### options
+
+[`HttpAgentOptions`](../interfaces/HttpAgentOptions.md)
+
+Agent, proxy, and SNI options.
 
 ##### allowFallback?
 
 `boolean` = `true`
 
+Whether fallback dispatchers may be attempted.
+
 #### Returns
 
 `Promise`\<`Response`\>
+
+Native fetch response.
 
 #### Inherited from
 
@@ -332,7 +368,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:153](https://github.com/for
 
 > **fetchText**(`url`, `timeoutMs`, `headers`): `Promise`\<`string`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:169](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L169)
+Defined in: [packages/base/BaseHttpClient.ts:222](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L222)
 
 #### Parameters
 
@@ -362,7 +398,7 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:169](https://github.com/for
 
 > **fetchJson**(`url`, `opts`): `Promise`\<`any`\>
 
-Defined in: [packages/engines/http/BaseHttpClient.ts:173](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/BaseHttpClient.ts#L173)
+Defined in: [packages/base/BaseHttpClient.ts:226](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/base/BaseHttpClient.ts#L226)
 
 #### Parameters
 
@@ -388,7 +424,9 @@ Defined in: [packages/engines/http/BaseHttpClient.ts:173](https://github.com/for
 
 > **fetchHlsStream**(`manifest`, `manifestUrl`, `timeoutMs`, `stream`, `opts`): `Promise`\<`void`\>
 
-Defined in: [packages/engines/http/HlsClient.ts:19](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/HlsClient.ts#L19)
+Defined in: [packages/engines/http/HlsClient.ts:36](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/engines/http/HlsClient.ts#L36)
+
+Writes a resolved HLS playlist to a destination stream.
 
 #### Parameters
 
@@ -396,21 +434,31 @@ Defined in: [packages/engines/http/HlsClient.ts:19](https://github.com/forkts/do
 
 `string`
 
+Already fetched manifest content.
+
 ##### manifestUrl
 
 `string`
+
+URL used to resolve relative playlist entries.
 
 ##### timeoutMs
 
 `number`
 
+Segment request timeout.
+
 ##### stream
 
 `Writable`
 
+Destination stream.
+
 ##### opts
 
 [`DownloadOptions`](../interfaces/DownloadOptions.md)
+
+Download and quality options.
 
 #### Returns
 
@@ -422,7 +470,9 @@ Defined in: [packages/engines/http/HlsClient.ts:19](https://github.com/forkts/do
 
 > **isFmp4**(`manifest`, `manifestUrl`, `opts`): `Promise`\<`boolean`\>
 
-Defined in: [packages/engines/http/HlsClient.ts:48](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/HlsClient.ts#L48)
+Defined in: [packages/engines/http/HlsClient.ts:73](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/engines/http/HlsClient.ts#L73)
+
+Detects whether the selected playlist uses fMP4 initialization segments.
 
 #### Parameters
 
@@ -430,17 +480,25 @@ Defined in: [packages/engines/http/HlsClient.ts:48](https://github.com/forkts/do
 
 `string`
 
+Manifest content.
+
 ##### manifestUrl
 
 `string`
+
+URL used to resolve relative entries.
 
 ##### opts
 
 [`DownloadOptions`](../interfaces/DownloadOptions.md)
 
+Download and quality options.
+
 #### Returns
 
 `Promise`\<`boolean`\>
+
+`true` when an fMP4 init segment is present.
 
 ***
 
@@ -448,7 +506,9 @@ Defined in: [packages/engines/http/HlsClient.ts:48](https://github.com/forkts/do
 
 > **isHlsManifest**(`contentType`, `url`): `boolean`
 
-Defined in: [packages/engines/http/HlsClient.ts:193](https://github.com/forkts/downflux/blob/f8a54ddab8a05646f24423a746e1b208eecdecca/packages/engines/http/HlsClient.ts#L193)
+Defined in: [packages/engines/http/HlsClient.ts:225](https://github.com/forkts/downflux/blob/ace180dbba52910f63b8b484be2b990bfedaa08c/packages/engines/http/HlsClient.ts#L225)
+
+Checks whether a response should be handled as an HLS manifest.
 
 #### Parameters
 
@@ -456,10 +516,16 @@ Defined in: [packages/engines/http/HlsClient.ts:193](https://github.com/forkts/d
 
 `string`
 
+Response content type.
+
 ##### url
 
 `string`
 
+Final response URL.
+
 #### Returns
 
 `boolean`
+
+`true` when the response appears to be an HLS playlist.
