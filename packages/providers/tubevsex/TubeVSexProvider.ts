@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { TubeVSexExecArgs, TubeVSexVideoOutput } from './TubeVSexContracts';
 import { TubeVSexMethods } from './TubeVSexTypes';
 
+/**
+ * Public TubeVSex provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
+ */
 export class TubeVSexProvider extends BaseProvider<TubeVSexExecArgs> {
 	protected readonly provider = ProviderType.TubeVSex;
 	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?tubev\.(?:sex)\/(?:video-archive|video)\/[\d]+\/[^/]+$/i;

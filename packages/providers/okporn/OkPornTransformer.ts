@@ -14,6 +14,12 @@ import {
 } from './OkPornContracts';
 import { OkPornMethods } from './OkPornTypes';
 
+/**
+ * Normalizes parsed OkPorn metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class OkPornTransformer extends BaseTransformer<
 	OkPornExecArgs,
 	| OkPornAlbumOutput

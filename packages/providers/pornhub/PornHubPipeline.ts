@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { PornHubExecArgs, PornHubOutput } from './PornHubContracts';
 
+/**
+ * Builds downloadable PornHub pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class PornHubPipeline extends BasePipeline<PornHubExecArgs, PornHubOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<PornHubOutput>): string {
 		const { mediaType, metadata, id } = ctx;

@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType } from '@types';
 import { PornDoeOutput } from './PornDoeContracts';
 
+/**
+ * Extracts PornDoe-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class PornDoeParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<PornDoeOutput>>> {
 		const variablesMatch = html.match(/window\.variables\s*=\s*({[\s\S]*?});/);

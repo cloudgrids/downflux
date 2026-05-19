@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { XozillaExecArgs, XozillaVideoOutput } from './XozillaContracts';
 import { XozillaMethods } from './XozillaTypes';
 
+/**
+ * Public Xozilla provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ */
 export class XozillaProvider extends BaseProvider<XozillaExecArgs> {
 	protected readonly provider = ProviderType.Xozilla;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?xozilla\.(?:com|xxx)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;

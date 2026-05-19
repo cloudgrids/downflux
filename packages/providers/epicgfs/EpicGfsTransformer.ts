@@ -5,6 +5,12 @@ import { EpicGfsMethods } from './EpicGfsTypes';
 
 type EpicGfsTransformedOutput = DefaultExecutionResult<Partial<EpicGfsOutput>>;
 
+/**
+ * Normalizes parsed EpicGfs metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class EpicGfsTransformer extends BaseTransformer<EpicGfsExecArgs, DefaultExecutionResult | EpicGfsVideoOutput> {
 	public async transform(url: string, request?: EpicGfsExecArgs): Promise<DefaultExecutionResult | EpicGfsVideoOutput> {
 		const metadata = (await super.transform(url, request)) as EpicGfsTransformedOutput;

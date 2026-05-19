@@ -3,8 +3,25 @@ import { GenericException } from '@core/exceptions';
 import { inferVideoQuality, KvsResolver } from '@shared';
 import { ProviderType, VideoQuality } from '@types';
 
+/**
+ * Default HTML parser shared by provider-specific parsers.
+ *
+ * @remarks
+ * Parsers exist to keep extraction rules close to the HTML they understand.
+ * The base parser collects common page fields such as anchors, images, meta
+ * tags, and source URLs, while provider parsers add the site-specific fields
+ * needed by transformers and pipelines.
+ */
 export class BaseParser {
 	protected kvsResolver = new KvsResolver();
+
+	/**
+	 * Extracts common metadata from a fetched HTML document.
+	 *
+	 * @param html Raw HTML returned by the HTTP engine.
+	 * @param sourceUrl Final URL used as the metadata source.
+	 * @returns Common extracted fields used as the base provider result.
+	 */
 	public transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult> {
 		try {
 			return {
@@ -24,12 +41,25 @@ export class BaseParser {
 		}
 	}
 
+	/**
+	 * Extracts the first string argument passed to a named script function.
+	 *
+	 * @param fnName Function name to search for.
+	 * @param html HTML or script text to inspect.
+	 * @returns The first string argument, or `null` when the call is absent.
+	 */
 	protected extractScriptMethodInput(fnName: string, html: string): string | null {
 		const re = new RegExp(`${fnName}\\s*\\(\\s*['"]([^'"]+)['"]\\s*\\)`, 'i');
 		const m = re.exec(html);
 		return m ? m[1] : null;
 	}
 
+	/**
+	 * Extracts KVS `flashVars` video metadata from inline scripts.
+	 *
+	 * @param html HTML containing one or more KVS `flashVars` blocks.
+	 * @returns Normalized KVS fields, video sources, previews, and timelines.
+	 */
 	protected getFlashVars(html: string): FlashVarsOutput {
 		const flashVarsBlocks = [...html.matchAll(/var\s+flashVars\s*=\s*\{([\s\S]*?)\};/gi)].map((m) => m[1]);
 

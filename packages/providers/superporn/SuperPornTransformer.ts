@@ -4,6 +4,12 @@ import { VideoQuality } from '@types';
 import { SuperPornExecArgs, SuperPornOutput, SuperPornVideoOutput } from './SuperPornContracts';
 import { SuperPornMethods } from './SuperPornTypes';
 
+/**
+ * Normalizes parsed SuperPorn metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class SuperPornTransformer extends BaseTransformer<SuperPornExecArgs, DefaultExecutionResult | SuperPornVideoOutput> {
 	public async transform(url: string, request?: SuperPornExecArgs): Promise<DefaultExecutionResult | SuperPornVideoOutput> {
 		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<SuperPornOutput>>;

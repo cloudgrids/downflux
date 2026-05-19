@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { SexVidExecArgs, SexVidOutput } from './SexVidContracts';
 
+/**
+ * Builds downloadable SexVid pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class SexVidPipeline extends BasePipeline<SexVidExecArgs, SexVidOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<SexVidOutput>): string {
 		const { mediaType, id, metadata } = ctx;

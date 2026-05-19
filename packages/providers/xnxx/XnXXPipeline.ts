@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { XnXXExecArgs, XnXXOutput } from './XnXXContracts';
 
+/**
+ * Builds downloadable XnXX pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class XnXXPipeline extends BasePipeline<XnXXExecArgs, XnXXOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<XnXXOutput>): string {
 		const { mediaType, id, metadata } = ctx;

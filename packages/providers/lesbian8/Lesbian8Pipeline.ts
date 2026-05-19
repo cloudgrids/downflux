@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { Lesbian8ExecArgs, Lesbian8Output } from './Lesbian8Contracts';
 
+/**
+ * Builds downloadable Lesbian8 pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class Lesbian8Pipeline extends BasePipeline<Lesbian8ExecArgs, Lesbian8Output> {
 	protected override buildIdentifier(ctx: IdentifierContext<Lesbian8Output>): string {
 		const { mediaType, id, metadata } = ctx;

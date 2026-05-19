@@ -17,54 +17,61 @@ export interface TagFilterOptions {
 }
 
 /**
- * Metadata describing provider capabilities and restrictions.
+ * Describes provider capabilities, integration status, and access restrictions.
+ *
+ * @remarks
+ * Provider metadata lets the execution layer make conservative decisions without
+ * hard-coding site behavior into registries, engines, or storage code. It also
+ * documents which parts of a provider are verified, still experimental, or
+ * blocked by external requirements such as login, browser automation, or geo
+ * restrictions.
  */
 export interface ProviderMetadata {
-	/** Mentioned site supports HLS streaming */
+	/** Whether the site exposes HLS playlist sources. */
 	hasHls: boolean;
 
-	/** Integrated HLS support for better compatibility */
+	/** Whether HLS sources are wired into the download pipeline. */
 	hlsIntegrated?: boolean;
 
-	/** Mentioned site supports direct MP4 progressive download */
+	/** Whether the site exposes direct MP4/progressive sources. */
 	hasMp4: boolean;
 
-	/** Integrated MP4 support for better compatibility */
+	/** Whether MP4 sources are wired into the download pipeline. */
 	mp4Integrated?: boolean;
 
-	/** Mentioned site is integrated with KVS (Kernel Video Sharing) */
+	/** Whether the site uses KVS/Kernel Video Sharing page variables. */
 	hasKvs: boolean;
 
-	/** Mentioned site has embeddable videos available */
+	/** Whether the site exposes embeddable video pages. */
 	hasEmbeddableVideos?: boolean;
 
-	/** Mentioned site is subject to geographic restrictions */
+	/** Whether access may vary by region. */
 	underGeoRestriction: boolean;
 
-	/** Mentioned site is protected by Cloudflare anti-bot measures */
+	/** Whether Cloudflare or similar anti-bot handling is expected. */
 	cloudflareChallenge?: boolean;
 
-	/** Mentioned site requires browser automation (e.g. Playwright) */
+	/** Whether extraction requires browser automation instead of plain HTTP. */
 	requiresBrowser: boolean;
 
-	/** Mentioned site is currently under development or has limited functionality */
+	/** Whether the provider is still changing or only partially supported. */
 	underDevelopment: boolean;
 
-	/** External API integration required */
+	/** Whether extraction depends on an external API. */
 	needsExternalAPI?: boolean;
 
-	/** Currently available for download */
+	/** Whether downloads are expected to work for supported methods. */
 	canDownload?: boolean;
 
-	/** Mentioned site is currently non-functional or has critical issues */
+	/** Whether the provider is known to be non-functional. */
 	nonFunctional?: boolean;
 
-	/** Mentioned site is known to have issues with SNI spoofing */
+	/** Whether SNI spoofing is known to cause issues for this site. */
 	sniSpoofingIssues?: boolean;
 
-	/** Mentioned site requires user login for content access */
+	/** Whether content access requires an authenticated user session. */
 	requiresLogin?: boolean;
 
-	/** Mentioned site supports SNI spoofing for bypassing geo-restrictions */
+	/** Current support status for SNI spoofing on this provider. */
 	sniSpoofing: SniSpoofStatus;
 }

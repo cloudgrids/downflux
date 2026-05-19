@@ -26,8 +26,13 @@ import {
 import { ProviderMetadata } from './BaseContracts';
 
 /**
- * Base provider API.
- * Shared fluent configuration and execution helpers.
+ * Base provider API for every supported site.
+ *
+ * @remarks
+ * Providers are the public entry points because callers should not need to know
+ * about parsers, transformers, pipelines, or transport details. A provider owns
+ * URL validation, provider metadata, fluent job configuration, and the typed
+ * methods that turn a site URL into an execution request.
  */
 export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> {
 	protected executionOptions: ExecutionOptions = {};
@@ -37,7 +42,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	protected readonly urlPattern: RegExp;
 	protected readonly providerMetadata: ProviderMetadata;
 
-	/** Provider capabilities and restrictions */
+	/** Provider capabilities, integration status, and access restrictions. */
 	protected get metadata(): ProviderMetadata {
 		return this.providerMetadata;
 	}
@@ -193,7 +198,8 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 		return this;
 	}
 
-	/** Sets HTTP agent options.
+	/**
+	 * Sets HTTP agent options.
 	 * @param opts HTTP agent options to merge
 	 */
 	public setAgentOptions(opts: HttpAgentOptions): this {
@@ -270,6 +276,12 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 		return this;
 	}
 
+	/**
+	 * Builds the execution request passed to the coordinator layer.
+	 *
+	 * @param overrides Provider method options that should override defaults.
+	 * @returns A typed request containing provider metadata and execution options.
+	 */
 	protected buildRequest(overrides?: Partial<TExec>): TExec {
 		return {
 			provider: overrides?.provider as ProviderType,
@@ -284,6 +296,12 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 		} as TExec;
 	}
 
+	/**
+	 * Runs extraction and optional downloads through the shared coordinator.
+	 *
+	 * @param overrides Provider method request data, including execution shape.
+	 * @returns Extracted output in the shape requested by the provider method.
+	 */
 	protected async execute<TResult>(
 		overrides: (TExec | { entryUrl?: string }) & { executionShape: InferExecutionShape<TResult> }
 	): Promise<TResult> {
@@ -303,6 +321,16 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 		return result.extracted as TResult;
 	}
 
+	/**
+	 * Builds paginated target URLs for list-like provider methods.
+	 *
+	 * @param sourceUrl Base URL before the page number.
+	 * @param range Page or start/end range to expand.
+	 * @param provider Provider used for range validation errors.
+	 * @param method Provider method used for range validation errors.
+	 * @param addTrailingSlash Whether generated target URLs should end with `/`.
+	 * @returns Provider, method, and generated target URLs.
+	 */
 	protected makeTargets(sourceUrl: string, range: Range, provider: ProviderType, method: string, addTrailingSlash: boolean = true) {
 		const isIndexRange = 'start' in range;
 

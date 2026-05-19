@@ -3,6 +3,12 @@ import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
 import { VideoQuality } from '@types';
 import { TnAFlixOutput } from './TnAFlixContracts';
 
+/**
+ * Extracts TnAFlix-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class TnAFlixParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<TnAFlixOutput>>> {
 		const [disLikes, likes] = this.extractSpans(html, 'thumb-count') ?? ['0', '0'];

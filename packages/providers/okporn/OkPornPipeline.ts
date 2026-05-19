@@ -4,6 +4,12 @@ import { inferVideoQuality } from '@shared';
 import { MediaType } from '@types';
 import { OkPornExecArgs, OkPornOutput } from './OkPornContracts';
 
+/**
+ * Builds downloadable OkPorn pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class OkPornPipeline extends BasePipeline<OkPornExecArgs, OkPornOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<OkPornOutput>): string {
 		const { mediaType, metadata, id, url } = ctx;

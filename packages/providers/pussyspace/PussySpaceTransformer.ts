@@ -3,6 +3,12 @@ import { DefaultExecutionResult } from '@contracts';
 import { PussySpaceExecArgs, PussySpaceOutput, PussySpaceVideoOutput } from './PussySpaceContracts';
 import { PussySpaceMethods } from './PussySpaceTypes';
 
+/**
+ * Normalizes parsed PussySpace metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class PussySpaceTransformer extends BaseTransformer<PussySpaceExecArgs, DefaultExecutionResult | PussySpaceVideoOutput> {
 	private readonly playerUrl = 'https://www.pussyspace.com/get/player/sb/';
 

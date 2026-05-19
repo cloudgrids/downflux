@@ -5,6 +5,12 @@ import { PornSevenMethods } from './PornSevenTypes';
 
 type PornSevenTransformedOutput = DefaultExecutionResult<Partial<PornSevenOutput>>;
 
+/**
+ * Normalizes parsed PornSeven metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class PornSevenTransformer extends BaseTransformer<PornSevenExecArgs, DefaultExecutionResult | PornSevenVideoOutput> {
 	public async transform(url: string, request?: PornSevenExecArgs): Promise<DefaultExecutionResult | PornSevenVideoOutput> {
 		const metadata = (await super.transform(url, request)) as PornSevenTransformedOutput;

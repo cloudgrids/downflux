@@ -3,6 +3,12 @@ import { IdentifierContext } from '@contracts';
 import { MediaType } from '@types';
 import { PornsOkExecArgs, PornsOkOutput } from './PornsOkContracts';
 
+/**
+ * Builds downloadable PornsOk pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class PornsOkPipeline extends BasePipeline<PornsOkExecArgs, PornsOkOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<PornsOkOutput>): string {
 		const { mediaType, id, metadata } = ctx;

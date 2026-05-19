@@ -3,6 +3,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { EPornerExecArgs, EPornerVideoOutput } from './EPornerContracts';
 import { EPornerMethods } from './EPornerTypes';
 
+/**
+ * Public EPorner provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads, integrated HLS downloads. Requires an external API, geo-aware access. Marked under development so callers should expect provider-specific changes. SNI spoofing status: working.
+ */
 export class EPornerProvider extends BaseProvider<EPornerExecArgs> {
 	protected readonly provider = ProviderType.EPorner;
 

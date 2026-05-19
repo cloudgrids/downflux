@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { PornDoeExecArgs, PornDoeOutput } from './PornDoeContracts';
 
+/**
+ * Builds downloadable PornDoe pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class PornDoePipeline extends BasePipeline<PornDoeExecArgs, PornDoeOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<PornDoeOutput>): string {
 		const { mediaType, id, metadata } = ctx;

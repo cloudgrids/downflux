@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { MomVidsExecArgs, MomVidsVideoOutput } from './MomVidsContracts';
 import { MomVidsMethods } from './MomVidsTypes';
 
+/**
+ * Public MomVids provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ */
 export class MomVidsProvider extends BaseProvider<MomVidsExecArgs> {
 	protected readonly provider = ProviderType.MomVids;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?momvids\.(?:com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;

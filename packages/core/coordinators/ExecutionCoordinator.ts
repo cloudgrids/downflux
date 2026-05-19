@@ -4,6 +4,15 @@ import { PipelineRegistry, TransformerRegistry } from '@core/registries';
 import { ExecutionShape, OutputType, ShapeOutput } from '@types';
 import { TaskCoordinator } from './TaskCoordinator';
 
+/**
+ * Coordinates extraction, pipeline creation, and output dispatch.
+ *
+ * @remarks
+ * Coordinators exist to keep providers small. The execution coordinator owns
+ * the job-level flow: extract metadata from targets, convert metadata into
+ * pipeline items, build the result shape, and hand output handling to the task
+ * coordinator.
+ */
 export class ExecutionCoordinator {
 	private static readonly DEFAULT_EXTRACT_CONCURRENCY = 3;
 
@@ -14,6 +23,12 @@ export class ExecutionCoordinator {
 		private readonly pipelineRegistry: PipelineRegistry
 	) {}
 
+	/**
+	 * Runs an execution request.
+	 *
+	 * @param request Provider request containing targets, output mode, and execution options.
+	 * @returns Execution result with extracted metadata and generated pipeline items.
+	 */
 	public async execute<TResult, TShape extends ExecutionShape, TExec extends ExecutionArgs<TShape>>(
 		request: TExec
 	): Promise<ExecutionResult<TResult, TShape>> {

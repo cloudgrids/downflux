@@ -65,6 +65,14 @@ const pipelineFactories: Record<ProviderType, PipelineFactory> = {
 	// </auto-generated:entries>
 };
 
+/**
+ * Resolves provider pipelines and builds download work items.
+ *
+ * @remarks
+ * The pipeline registry separates provider lookup from coordinator logic. It
+ * lazy-loads the provider pipeline, injects storage support, and returns the
+ * concrete items that the download coordinator can process.
+ */
 export class PipelineRegistry {
 	private static readonly cache = new Map<ProviderType, PipelineCtor>();
 
@@ -84,6 +92,13 @@ export class PipelineRegistry {
 		return PipelineClass;
 	}
 
+	/**
+	 * Builds pipeline items with the matching provider pipeline.
+	 *
+	 * @param metadata Extracted provider metadata.
+	 * @param request Execution request containing the provider.
+	 * @returns Downloadable pipeline items.
+	 */
 	public async build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): Promise<PipelineItem[]> {
 		const provider = request.provider ?? ProviderType.Default;
 

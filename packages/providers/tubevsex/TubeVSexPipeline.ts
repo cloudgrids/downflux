@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineExtractedItem, PipelineMappings } from '@con
 import { MediaType } from '@types';
 import { TubeVSexExecArgs, TubeVSexOutput } from './TubeVSexContracts';
 
+/**
+ * Builds downloadable TubeVSex pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class TubeVSexPipeline extends BasePipeline<TubeVSexExecArgs, TubeVSexOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<TubeVSexOutput>): string {
 		const { mediaType, id, metadata } = ctx;

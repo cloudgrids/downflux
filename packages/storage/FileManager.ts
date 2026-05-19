@@ -8,6 +8,15 @@ import { Writable } from 'stream';
 import { FFmpegEngine } from './FFmpegEngine';
 import { PathBuilder } from './PathBuilder';
 
+/**
+ * Storage service for JSON results, buffers, and files on disk.
+ *
+ * @remarks
+ * Storage is isolated because output handling needs path safety, filename
+ * normalization, resource type inference, stream sinks, JSON serialization, and
+ * post-processing for media containers. Keeping this here prevents providers
+ * and coordinators from duplicating filesystem rules.
+ */
 export class FileManager {
 	private readonly pathBuilder = new PathBuilder();
 
@@ -18,6 +27,12 @@ export class FileManager {
 		private readonly progressManager: ProgressManager
 	) {}
 
+	/**
+	 * Creates the output sink for a download.
+	 *
+	 * @param sinkInput Output mode, provider, identifier, and transcode options.
+	 * @returns Writable stream and finalize callback for the selected output mode.
+	 */
 	public createSink(sinkInput: CreateSinkInput) {
 		if (sinkInput.noDownload) return this.createNoDownloadSink(sinkInput);
 
@@ -121,6 +136,15 @@ export class FileManager {
 		};
 	}
 
+	/**
+	 * Finalizes a file after streaming completes.
+	 *
+	 * @param finalPath Path of the streamed file.
+	 * @param tOptions Optional ffmpeg transcode options.
+	 * @param isFmp4 Whether the stream came from an fMP4 HLS playlist.
+	 * @param opts Resolved extension and MIME type hints.
+	 * @returns Final path, filename, extension, and MIME type.
+	 */
 	public async finalizeStream(
 		finalPath: string,
 		tOptions?: TranscodeOptions,
@@ -142,6 +166,13 @@ export class FileManager {
 		};
 	}
 
+	/**
+	 * Writes an execution result as JSON.
+	 *
+	 * @param result Execution result to serialize.
+	 * @param directoryPath Destination directory.
+	 * @returns Path to the written JSON file.
+	 */
 	public toJSON<T, S extends ExecutionShape>(result: ExecutionResult<T, S>, directoryPath: string = this.baseDir): string {
 		const finalPath = this.getFilePath(result.provider, directoryPath, `${result.provider}_${Date.now()}.json`);
 
@@ -188,8 +219,10 @@ export class FileManager {
 		}
 	}
 
-	// Sanitize filename by replacing invalid characters with underscores mostly for
-	// Windows OS which has a lot of reserved characters for filenames such as < > : " / \ | ? *
+	/**
+	 * Sanitize filename by replacing invalid characters with underscores mostly for
+	 * Windows OS which has a lot of reserved characters for filenames such as < > : " / \ | ? *
+	 */
 	public sanitizeFilename(name: string): string {
 		return name.replace(/[^a-z0-9._-]/gi, '_');
 	}
@@ -226,6 +259,13 @@ export class FileManager {
 		return finalPath;
 	}
 
+	/**
+	 * Infers MIME type and extension for a media URL.
+	 *
+	 * @param url Media URL to inspect.
+	 * @param request Provider request used for fallback decisions.
+	 * @returns Detected or provider-default resource type.
+	 */
 	public detectResourceType(url: string, request: ExecutionArgs): { mimeType: string; extension: AllowedExtension } {
 		const extension = this.getFileInfo(url).extension as AllowedExtension;
 
@@ -254,6 +294,16 @@ export class FileManager {
 		}
 	}
 
+	/**
+	 * Reconciles the initial file guess with the final response URL and headers.
+	 *
+	 * @param initial Filename inferred before requesting the stream.
+	 * @param finalUrl Final URL returned by the stream request.
+	 * @param headers Response headers.
+	 * @param isFmp4 Whether the media is fMP4 HLS.
+	 * @param prefix Optional filename prefix.
+	 * @returns Resolved filename and extension for the actual media.
+	 */
 	public deriveResolvedFile(
 		initial: ResolvedFile,
 		finalUrl: string,

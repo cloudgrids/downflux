@@ -3,6 +3,12 @@ import { DefaultExecutionResult } from '@contracts';
 import { SxyPornExecArgs, SxyPornOutput, SxyPornVideoOutput } from './SxyPornContracts';
 import { SxyPornMethods } from './SxyPornTypes';
 
+/**
+ * Normalizes parsed SxyPorn metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class SxyPornTransformer extends BaseTransformer<SxyPornExecArgs, DefaultExecutionResult | SxyPornVideoOutput> {
 	public async transform(url: string, request?: SxyPornExecArgs): Promise<DefaultExecutionResult | SxyPornVideoOutput> {
 		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<SxyPornOutput>>;

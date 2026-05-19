@@ -4,6 +4,12 @@ import { inferVideoQuality } from '@shared';
 import { MediaType } from '@types';
 import { PerfectGirlsExecArgs, PerfectGirlsOutput } from './PerfectGirlsContracts';
 
+/**
+ * Builds downloadable PerfectGirls pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class PerfectGirlsPipeline extends BasePipeline<PerfectGirlsExecArgs, PerfectGirlsOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<PerfectGirlsOutput>): string {
 		const { mediaType, metadata, id, url } = ctx;

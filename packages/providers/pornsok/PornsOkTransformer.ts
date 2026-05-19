@@ -3,6 +3,12 @@ import { DefaultExecutionResult } from '@contracts';
 import { PornsOkExecArgs, PornsOkOutput, PornsOkVideoOutput } from './PornsOkContracts';
 import { PornsOkMethods } from './PornsOkTypes';
 
+/**
+ * Normalizes parsed PornsOk metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class PornsOkTransformer extends BaseTransformer<PornsOkExecArgs, DefaultExecutionResult | PornsOkVideoOutput> {
 	public async transform(url: string, request?: PornsOkExecArgs): Promise<DefaultExecutionResult | PornsOkVideoOutput> {
 		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<PornsOkOutput>>;

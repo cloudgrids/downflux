@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType } from '@types';
 import { EPornerOutput } from './EPornerContracts';
 
+/**
+ * Extracts EPorner-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class EPornerParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<EPornerOutput>>> {
 		const hash = html.match(/EP\.video\.player\.hash\s*=\s*['"](.*?)['"]/)?.[1];

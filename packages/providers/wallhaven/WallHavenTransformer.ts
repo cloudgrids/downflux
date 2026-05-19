@@ -13,6 +13,12 @@ import {
 } from './WallHavenContracts';
 import { WallHavenMethods, WallHavenThumbnailQuality } from './WallHavenTypes';
 
+/**
+ * Normalizes parsed WallHaven metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class WallHavenTransformer extends BaseTransformer<
 	WallHavenExecArgs,
 	| WallHavenWallPaperOutput

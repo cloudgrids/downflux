@@ -8,6 +8,14 @@ import { promisify } from 'util';
 
 const execFileAsync = promisify(execFile);
 
+/**
+ * Media finalization wrapper around ffmpeg.
+ *
+ * @remarks
+ * FFmpeg support lives in storage because container repair and transcoding are
+ * output concerns. Downloaders write bytes first, then this engine remuxes or
+ * transcodes formats such as HLS `.ts`/fMP4 into a playable final file.
+ */
 export class FFmpegEngine {
 	constructor(private readonly progressManager: ProgressManager) {}
 
@@ -15,6 +23,12 @@ export class FFmpegEngine {
 		return ffmpegPath ?? 'ffmpeg';
 	}
 
+	/**
+	 * Finalizes a downloaded media file with ffmpeg.
+	 *
+	 * @param options Input path and optional codec/transcode settings.
+	 * @returns Final media path, filename, extension, and MIME type.
+	 */
 	public async finalizeMedia(options: TranscodeOptions) {
 		if (!ffmpegPath) throw new Error('ffmpeg-static not found');
 

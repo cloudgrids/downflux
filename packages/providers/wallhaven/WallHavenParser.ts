@@ -6,6 +6,12 @@ import path from 'path';
 import { WallHavenOutput, WallHavenUserFavoriteCollectionsOutput } from './WallHavenContracts';
 import { WallHavenThumbnailQuality } from './WallHavenTypes';
 
+/**
+ * Extracts WallHaven-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class WallHavenParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<WallHavenOutput>>> {
 		const descriptionParts = this.extractMetaDescription(html)?.split('|');

@@ -5,6 +5,12 @@ import { inferVideoQuality } from '@shared';
 import { ProviderType } from '@types';
 import { OkPornModelVideoCard, OkPornOutput } from './OkPornContracts';
 
+/**
+ * Extracts OkPorn-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class OkPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<OkPornOutput>>> {
 		const videoInfo = this.getVideoInfo(html);

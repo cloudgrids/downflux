@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { ZbPornExecArgs, ZbPornOutput } from './ZbPornContracts';
 
+/**
+ * Builds downloadable ZbPorn pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class ZbPornPipeline extends BasePipeline<ZbPornExecArgs, ZbPornOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<ZbPornOutput>): string {
 		const { mediaType, id, metadata } = ctx;

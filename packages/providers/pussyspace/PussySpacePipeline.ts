@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { PussySpaceExecArgs, PussySpaceOutput } from './PussySpaceContracts';
 
+/**
+ * Builds downloadable PussySpace pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class PussySpacePipeline extends BasePipeline<PussySpaceExecArgs, PussySpaceOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<PussySpaceOutput>): string {
 		const { mediaType, id } = ctx;

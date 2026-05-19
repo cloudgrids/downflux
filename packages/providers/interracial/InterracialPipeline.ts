@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { InterracialExecArgs, InterracialOutput } from './InterracialContracts';
 
+/**
+ * Builds downloadable Interracial pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class InterracialPipeline extends BasePipeline<InterracialExecArgs, InterracialOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<InterracialOutput>): string {
 		const { mediaType, id, metadata } = ctx;

@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { ZzzTubeExecArgs, ZzzTubeOutput } from './ZzzTubeContracts';
 
+/**
+ * Builds downloadable ZzzTube pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class ZzzTubePipeline extends BasePipeline<ZzzTubeExecArgs, ZzzTubeOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<ZzzTubeOutput>): string {
 		const { mediaType, id, metadata } = ctx;

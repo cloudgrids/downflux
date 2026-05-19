@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType } from '@types';
 import { PornIdOutput } from './PornIdContracts';
 
+/**
+ * Extracts PornId-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class PornIdParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<PornIdOutput>>> {
 		const flashVars = this.getFlashVars(html);

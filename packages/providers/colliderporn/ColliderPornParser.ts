@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType, VideoQuality } from '@types';
 import { ColliderPornOutput } from './ColliderPornContracts';
 
+/**
+ * Extracts ColliderPorn-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class ColliderPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<ColliderPornOutput>>> {
 		const mp4s = [this.extractScriptMethodInput('setVideoUrlLow', html), this.extractScriptMethodInput('setVideoUrlHigh', html)]?.map(

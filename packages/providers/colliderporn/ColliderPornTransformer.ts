@@ -3,6 +3,12 @@ import { DefaultExecutionResult } from '@contracts';
 import { ColliderPornExecArgs, ColliderPornOutput, ColliderPornVideoOutput } from './ColliderPornContracts';
 import { ColliderPornMethods } from './ColliderPornTypes';
 
+/**
+ * Normalizes parsed ColliderPorn metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class ColliderPornTransformer extends BaseTransformer<ColliderPornExecArgs, DefaultExecutionResult | ColliderPornVideoOutput> {
 	public async transform(url: string, request?: ColliderPornExecArgs): Promise<DefaultExecutionResult | ColliderPornVideoOutput> {
 		const metadata = (await super.transform(url, request)) as DefaultExecutionResult<Partial<ColliderPornOutput>>;

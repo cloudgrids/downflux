@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { Lesbian8ExecArgs, Lesbian8VideoOutput } from './Lesbian8Contracts';
 import { Lesbian8Methods } from './Lesbian8Types';
 
+/**
+ * Public Lesbian8 provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ */
 export class Lesbian8Provider extends BaseProvider<Lesbian8ExecArgs> {
 	protected readonly provider = ProviderType.Lesbian8;
 	private VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?lesbian8\.(?:com|net)\/videos\/[\d]+\/[^/]+\/(?:\?.*?)?$/i;

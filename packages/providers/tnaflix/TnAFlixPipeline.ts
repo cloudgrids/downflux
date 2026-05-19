@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { TnAFlixExecArgs, TnAFlixOutput } from './TnAFlixContracts';
 
+/**
+ * Builds downloadable TnAFlix pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class TnAFlixPipeline extends BasePipeline<TnAFlixExecArgs, TnAFlixOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<TnAFlixOutput>): string {
 		const { mediaType, metadata } = ctx;

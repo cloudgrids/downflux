@@ -4,6 +4,12 @@ import { GenericException } from '@core/exceptions';
 import { ProviderType } from '@types';
 import { XHamsterOutput } from './XHamsterContracts';
 
+/**
+ * Extracts XHamster-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ */
 export class XHamsterParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<XHamsterOutput>>> {
 		try {

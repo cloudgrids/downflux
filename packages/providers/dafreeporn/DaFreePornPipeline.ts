@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { DaFreePornExecArgs, DaFreePornOutput } from './DaFreePornContracts';
 
+/**
+ * Builds downloadable DaFreePorn pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class DaFreePornPipeline extends BasePipeline<DaFreePornExecArgs, DaFreePornOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<DaFreePornOutput>): string {
 		const { mediaType, id, metadata } = ctx;

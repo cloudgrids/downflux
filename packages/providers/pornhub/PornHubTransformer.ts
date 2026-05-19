@@ -3,6 +3,12 @@ import { DefaultExecutionResult } from '@contracts';
 import { PornHubChannelsOutput, PornHubExecArgs, PornHubOutput, PornHubVideoOutput, PornHubVideosOutput } from './PornHubContracts';
 import { PornHubMethods } from './PornHubTypes';
 
+/**
+ * Normalizes parsed PornHub metadata into the public output shape.
+ *
+ * @remarks
+ * Transformers bridge raw parser fields and typed provider results, including method-specific output mapping.
+ */
 export class PornHubTransformer extends BaseTransformer<
 	PornHubExecArgs,
 	PornHubVideoOutput | PornHubVideosOutput | DefaultExecutionResult | PornHubChannelsOutput[]

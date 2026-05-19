@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType, VideoQuality } from '@types';
 import { XHamsterExecArgs, XHamsterOutput } from './XHamsterContracts';
 
+/**
+ * Builds downloadable XHamster pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class XHamsterPipeline extends BasePipeline<XHamsterExecArgs, XHamsterOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<XHamsterOutput>): string {
 		const { mediaType, id, metadata } = ctx;

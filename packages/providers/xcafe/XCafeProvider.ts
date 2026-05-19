@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { XCafeExecArgs, XCafeVideoOutput } from './XCafeContracts';
 import { XCafeMethods } from './XCafeTypes';
 
+/**
+ * Public XCafe provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
+ */
 export class XCafeProvider extends BaseProvider<XCafeExecArgs> {
 	protected readonly provider = ProviderType.XCafe;
 	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?xcafe\.(?:com)\/\d+\/(?:\?.*)?/i;

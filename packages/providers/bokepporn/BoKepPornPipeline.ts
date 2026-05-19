@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { BoKepPornExecArgs, BoKepPornOutput } from './BoKepPornContracts';
 
+/**
+ * Builds downloadable BoKepPorn pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class BoKepPornPipeline extends BasePipeline<BoKepPornExecArgs, BoKepPornOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<BoKepPornOutput>): string {
 		const { mediaType, id, metadata } = ctx;

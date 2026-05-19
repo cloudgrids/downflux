@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { XVideosExecArgs, XVideosOutput } from './XVideosContracts';
 
+/**
+ * Builds downloadable XVideos pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class XVideosPipeline extends BasePipeline<XVideosExecArgs, XVideosOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<XVideosOutput>): string {
 		const { mediaType, id, metadata } = ctx;

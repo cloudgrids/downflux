@@ -3,6 +3,12 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { TheyAreHugeExecArgs, TheyAreHugeOutput } from './TheyAreHugeContracts';
 
+/**
+ * Builds downloadable TheyAreHuge pipeline items from normalized metadata.
+ *
+ * @remarks
+ * Pipelines decide which media URLs become work items and how those items are identified on disk.
+ */
 export class TheyAreHugePipeline extends BasePipeline<TheyAreHugeExecArgs, TheyAreHugeOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<TheyAreHugeOutput>): string {
 		const { mediaType, id, metadata } = ctx;

@@ -4,6 +4,13 @@ import { ExtractionTarget, ProviderType } from '@types';
 import { PussySpaceExecArgs, PussySpaceVideoOutput } from './PussySpaceContracts';
 import { PussySpaceMethods } from './PussySpaceTypes';
 
+/**
+ * Public PussySpace provider entry point.
+ *
+ * @remarks
+ * The provider owns URL validation, fluent execution options, and provider metadata.
+ * Supports integrated MP4 downloads. Requires an external API. Marked under development so callers should expect provider-specific changes.
+ */
 export class PussySpaceProvider extends BaseProvider<PussySpaceExecArgs> {
 	protected readonly provider = ProviderType.PussySpace;
 	private readonly VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?pussyspace\.(?:com)\/vid-([a-z-0-9A-Z-.]+)\/(?:\?.*)?/i;

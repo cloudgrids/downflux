@@ -66,6 +66,14 @@ const transformerFactories: Record<ProviderType, TransformerFactory> = {
 	// </auto-generated:entries>
 };
 
+/**
+ * Resolves provider transformers and runs metadata extraction.
+ *
+ * @remarks
+ * The transformer registry lets coordinators ask for "the transformer for this
+ * provider" without importing provider modules directly. This keeps startup
+ * lighter and preserves a single place for provider-to-class mapping.
+ */
 export class TransformerRegistry {
 	private static readonly cache = new Map<ProviderType, TransformerCtor>();
 
@@ -88,6 +96,13 @@ export class TransformerRegistry {
 		return TransformerClass;
 	}
 
+	/**
+	 * Runs the matching transformer for a URL and request.
+	 *
+	 * @param url Target URL to transform.
+	 * @param request Execution request containing the provider.
+	 * @returns Provider metadata in the requested result shape.
+	 */
 	public async transform<TArgs extends ExecutionArgs, TResult>(url: string, request: TArgs): Promise<TResult> {
 		const provider = request.provider ?? ProviderType.Default;
 
