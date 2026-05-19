@@ -199,6 +199,15 @@ export interface DefaultVideoOutput extends DefaultMetadata {
 	videos: VideosFormat;
 }
 
+export interface DefaultFlashVarsVideoOutput extends DefaultVideoOutput {
+	videoId: string;
+	previews: string[];
+	timelineScreenCount?: number;
+	timelineScreens?: string[];
+	starred?: string[];
+	uploader?: string;
+}
+
 export type TagKeys =
 	| '#'
 	| 'A'

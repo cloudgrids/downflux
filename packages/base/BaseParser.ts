@@ -67,7 +67,7 @@ export class BaseParser {
 
 			return {
 				url: licenseCode ? this.kvsResolver.resolveKvsUrl(cleaned, licenseCode) : cleaned,
-				quality: (quality?.replace(/[^0-9p]+/gi, '') as VideoQuality) ?? VideoQuality.QUnknown
+				quality: (quality?.replace(/[^0-9p]+/gi, '') as VideoQuality) || VideoQuality.QUnknown
 			};
 		};
 
@@ -100,7 +100,7 @@ export class BaseParser {
 				extractField('preview_url3'),
 				extractField('preview_url4')
 			].filter(Boolean) as string[]
-		);
+		).map((url) => (url.startsWith('https://') ? url : `https:${url}`));
 
 		const timelineScreenUrl = extractField('timeline_screens_url');
 
@@ -270,8 +270,10 @@ export class BaseParser {
 		}
 	}
 
-	protected collectElements(html: string, type: string): Record<string, string>[] {
-		const regex = new RegExp(`<${type}\\b([^>]+)>`, 'gi');
+	protected collectElements(html: string, type: string, className?: string): Record<string, string>[] {
+		const regex = className
+			? new RegExp(`<${type}\\b[^>]*class\\s*=\\s*["']${className}["'][^>]*>`, 'gi')
+			: new RegExp(`<${type}\\b([^>]+)>`, 'gi');
 		const results: Array<Record<string, string>> = [];
 		let match: RegExpExecArray | null;
 
