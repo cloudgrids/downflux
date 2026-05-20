@@ -1,0 +1,132 @@
+[
+  {
+    "provider": "XnXXProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.xnxx.com/video-1c05nb7f/lesbiansexuality_cherie_deville_judy_jolie"
+    ],
+    "entryUrl": "https://www.xnxx.com/video-1c05nb7f/lesbiansexuality_cherie_deville_judy_jolie",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "hasMp4": true,
+      "hlsIntegrated": true,
+      "mp4Integrated": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "sniSpoofing": "working"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "title": "LESBIANSEXUALITY CHERIE DEVILLE   JUDY JOLIE - XNXX.COM",
+      "duration": 540,
+      "description": "LESBIANSEXUALITY CHERIE DEVILLE   JUDY JOLIE, free sex video",
+      "videoUrl": {
+        "low": "https://mp4-cdn77.xnxx-cdn.com/547049da-c8d8-422b-8bf4-04e88414eba2/0/video_240p.mp4?secure=tmThYqrfni8t3uT3xQhvHQ==,1778880471",
+        "high": "https://mp4-cdn77.xnxx-cdn.com/547049da-c8d8-422b-8bf4-04e88414eba2/0/video_360p.mp4?secure=uD4Jq-pJYPeC9vqt5CnAKw==,1778880471",
+        "hls": "https://hls-cdn77.xnxx-cdn.com/YA7esk8qfxZL5dg8niR6DA==,1778880471/547049da-c8d8-422b-8bf4-04e88414eba2/0/hls.m3u8"
+      },
+      "tags": [
+        "porn",
+        "porn movies",
+        "free porn",
+        "free porn movies",
+        "sex",
+        "porno",
+        "free sex",
+        "tube porn",
+        "tube",
+        "videos",
+        "full porn",
+        "xxnx",
+        "xnxxx",
+        "xxx",
+        "pussy",
+        "porn",
+        "porn movies",
+        "free porn",
+        "free porn movies",
+        "sex",
+        "porno",
+        "free sex",
+        "tube porn",
+        "tube",
+        "videos",
+        "full porn",
+        "xxnx",
+        "xnxxx",
+        "xxx",
+        "pussy",
+        "lesbian",
+        "licking",
+        "blonde",
+        "babe",
+        "milf",
+        "brunette",
+        "tattoo",
+        "squirting",
+        "lingerie",
+        "pussy-licking",
+        "cunnilingus",
+        "pussy-eating",
+        "scissoring",
+        "small-tits",
+        "girl-on-girl",
+        "step-mom",
+        "natural-tits",
+        "girls-kissing",
+        "mature-woman",
+        "lesbian-pussy-licking",
+        "xnxx",
+        "xnxx.com",
+        "Porn Video",
+        "XXX Porn",
+        "xnxx",
+        "xnxxx",
+        "xxx",
+        "x nxx",
+        "xmxx"
+      ],
+      "poster": "https://thumb-cdn77.xnxx-cdn.com/547049da-c8d8-422b-8bf4-04e88414eba2/0/xn_3_t.jpg",
+      "uploader": "unknown",
+      "models": [],
+      "pageUrl": "https://xnxx.health/video-1c05nb7f/lesbiansexuality_cherie_deville_judy_jolie"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://thumb-cdn77.xnxx-cdn.com/547049da-c8d8-422b-8bf4-04e88414eba2/0/xn_3_t.jpg",
+        "sourceUrl": "https://www.xnxx.com/video-1c05nb7f/lesbiansexuality_cherie_deville_judy_jolie",
+        "provider": "XnXXProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "xnxx/unknown/videos/lesbiansexuality_cherie_deville_judy_jolie"
+        }
+      },
+      {
+        "downloadUrl": "https://hls-cdn77.xnxx-cdn.com/YA7esk8qfxZL5dg8niR6DA==,1778880471/547049da-c8d8-422b-8bf4-04e88414eba2/0/hls.m3u8",
+        "sourceUrl": "https://www.xnxx.com/video-1c05nb7f/lesbiansexuality_cherie_deville_judy_jolie",
+        "provider": "XnXXProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "xnxx/unknown/videos/lesbiansexuality_cherie_deville_judy_jolie"
+        }
+      }
+    ]
+  }
+]

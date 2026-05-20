@@ -1,0 +1,135 @@
+[
+  {
+    "provider": "PornDoeProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://porndoe.com/watch/pd7l5f7f6n2c"
+    ],
+    "entryUrl": "https://porndoe.com/watch/pd7l5f7f6n2c",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "needsExternalAPI": true,
+      "requiresLogin": false,
+      "hasMp4": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "description": "Watch the 'Bride Gets Cold Feet And Cheats With Bbc' 12:22 scene produced by Blacked, for free.",
+      "pageUrl": "https://porndoe.com/watch/pd7l5f7f6n2c",
+      "title": "Bride Gets Cold Feet And Cheats With Bbc on PornDoe.com",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://pr.cdnc.porndoe.com/movie/1/1/4/3/6/4/0/5bc981467cc77-373-720p-hd-2500.mp4?l=55&ip=45.112.68.109&expires=1779006628&token=ee5d05a5dda13db802558611eac37c00",
+            "quality": "720p"
+          },
+          {
+            "url": "https://pr.cdnc.porndoe.com/movie/1/1/4/3/6/4/0/5bc981467cc77-373-480p-1000.mp4?l=52&ip=45.112.68.109&expires=1779006628&token=01cfce052885d7a378c046b309c8c7c1",
+            "quality": "480p"
+          },
+          {
+            "url": "https://pr.cdnc.porndoe.com/movie/1/1/4/3/6/4/0/5bc981467cc77-373-240p-400.mp4?l=51&ip=45.112.68.109&expires=1779006628&token=f59be6223ca3b3f63f153a57d492a49a",
+            "quality": "240p"
+          },
+          {
+            "url": "https://pr.cdnc.porndoe.com/movie/1/1/4/3/6/4/0/5bc981467cc77-373-1080p-hd-4498.mp4?l=56&ip=45.112.68.109&expires=1779006628&token=0110c250a75e1d48171b7b0749ce09c6",
+            "quality": "1080p"
+          }
+        ]
+      },
+      "preview": "https://p.cdnc.porndoe.com/movie/1/1/4/3/6/4/0/5bc981467cc77-373-preview.mp4",
+      "poster": "https://p.cdnc.porndoe.com/image/movie/crop/0x1080/1/1/4/3/6/4/0/5bc981467cc77-373_19.jpg",
+      "tags": [],
+      "uploader": "Blacked"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://p.cdnc.porndoe.com/image/movie/crop/0x1080/1/1/4/3/6/4/0/5bc981467cc77-373_19.jpg",
+        "sourceUrl": "https://porndoe.com/watch/pd7l5f7f6n2c",
+        "provider": "PornDoeProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "PornDoe/Blacked/videos/pd7l5f7f6n2c/video_poster"
+        }
+      },
+      {
+        "downloadUrl": "https://p.cdnc.porndoe.com/movie/1/1/4/3/6/4/0/5bc981467cc77-373-preview.mp4",
+        "sourceUrl": "https://porndoe.com/watch/pd7l5f7f6n2c",
+        "provider": "PornDoeProvider",
+        "identifier": {
+          "mediaType": "video_preview",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornDoe/Blacked/videos/pd7l5f7f6n2c/video_preview"
+        }
+      },
+      {
+        "downloadUrl": "https://pr.cdnc.porndoe.com/movie/1/1/4/3/6/4/0/5bc981467cc77-373-720p-hd-2500.mp4?l=55&ip=45.112.68.109&expires=1779006628&token=ee5d05a5dda13db802558611eac37c00",
+        "sourceUrl": "https://porndoe.com/watch/pd7l5f7f6n2c",
+        "provider": "PornDoeProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornDoe/Blacked/videos/pd7l5f7f6n2c"
+        }
+      },
+      {
+        "downloadUrl": "https://pr.cdnc.porndoe.com/movie/1/1/4/3/6/4/0/5bc981467cc77-373-480p-1000.mp4?l=52&ip=45.112.68.109&expires=1779006628&token=01cfce052885d7a378c046b309c8c7c1",
+        "sourceUrl": "https://porndoe.com/watch/pd7l5f7f6n2c",
+        "provider": "PornDoeProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornDoe/Blacked/videos/pd7l5f7f6n2c"
+        }
+      },
+      {
+        "downloadUrl": "https://pr.cdnc.porndoe.com/movie/1/1/4/3/6/4/0/5bc981467cc77-373-240p-400.mp4?l=51&ip=45.112.68.109&expires=1779006628&token=f59be6223ca3b3f63f153a57d492a49a",
+        "sourceUrl": "https://porndoe.com/watch/pd7l5f7f6n2c",
+        "provider": "PornDoeProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornDoe/Blacked/videos/pd7l5f7f6n2c"
+        }
+      },
+      {
+        "downloadUrl": "https://pr.cdnc.porndoe.com/movie/1/1/4/3/6/4/0/5bc981467cc77-373-1080p-hd-4498.mp4?l=56&ip=45.112.68.109&expires=1779006628&token=0110c250a75e1d48171b7b0749ce09c6",
+        "sourceUrl": "https://porndoe.com/watch/pd7l5f7f6n2c",
+        "provider": "PornDoeProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornDoe/Blacked/videos/pd7l5f7f6n2c"
+        }
+      }
+    ]
+  }
+]

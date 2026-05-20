@@ -1,0 +1,156 @@
+[
+  {
+    "provider": "PornHubProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397"
+    ],
+    "entryUrl": "https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "hasMp4": true,
+      "hasKvs": true,
+      "hlsIntegrated": true,
+      "mp4Integrated": true,
+      "requiresLogin": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "working"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "pageUrl": "https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397",
+      "title": "Colombian Tiny Pussy CREAMPIED for the first Time - Pornhub.com",
+      "duration": "1790",
+      "uploadDate": "6 days ago",
+      "views": "1.5M",
+      "likes": "5K",
+      "poster": "https://pix-fl.phncdn.com/c6371/videos/202605/10/48397565/original_48397565.mov/plain/ex:1:no/bg:0:0:0/rs:fit:640:360/vts:454?hdnea=st=1778915492~exp=1779001892~hdl=-1~hmac=7e2cea5a12af8c0aba007330918bdf3a460e9ad1",
+      "description": "Watch Colombian Tiny Pussy CREAMPIED for the first time on Pornhub.com, the best hardcore porn site. Pornhub is home to the widest selection of free Babe sex videos full of the hottest pornstars. If you're craving colombian XXX movies you'll find them here.",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://www.pornhub.org/video/get_media?s=eyJrIjoiMDQ4N2I5NTIxZDA5NWRlOWUwOGYyZTM4YzdkYWM2MzI1MWM5NjFmYWRlYTcxNDU4OTUzNDk5YzI0MmJmODc3YSIsInQiOjE3Nzg5MTU0OTJ9&v=69ffe0ee27397&e=0&t=p",
+            "quality": "unknown"
+          }
+        ],
+        "hls": [
+          {
+            "url": "https://ev-h.phncdn.com/hls/c6251/videos/202605/10/48397565/1080P_4000K_48397565.mp4/master.m3u8?validfrom=1778911892&validto=1778919092&ipa=1&hdl=-1&hash=UADFrJb9OcvKqLggxrZ2ZquH%2FF0%3D",
+            "quality": "1080p"
+          },
+          {
+            "url": "https://ev-h.phncdn.com/hls/c6251/videos/202605/10/48397565/240P_1000K_48397565.mp4/master.m3u8?validfrom=1778911892&validto=1778919092&ipa=1&hdl=-1&hash=4l6692SshpvGRAHUlc8cGEbW1g0%3D",
+            "quality": "240p"
+          },
+          {
+            "url": "https://ev-h.phncdn.com/hls/c6251/videos/202605/10/48397565/480P_2000K_48397565.mp4/master.m3u8?validfrom=1778911892&validto=1778919092&ipa=1&hdl=-1&hash=KjhBBp6dJfYcl3WQ7PpAaK9s6FA%3D",
+            "quality": "480p"
+          },
+          {
+            "url": "https://ev-h.phncdn.com/hls/c6251/videos/202605/10/48397565/720P_4000K_48397565.mp4/master.m3u8?validfrom=1778911892&validto=1778919092&ipa=1&hdl=-1&hash=5RKC8BbL73hfNAR8i%2FpYyWkD6gU%3D",
+            "quality": "720p"
+          }
+        ]
+      },
+      "user": "gattouz0",
+      "userAvatar": "https://ei.phncdn.com/pics/users/0021/3814/6981/avatar95796115/(m=ewILGCjadOf)(mh=44uNYPk5pH1HTbuV)200x200.jpg",
+      "totalVideos": "102",
+      "totalSubscribers": "676K"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://www.pornhub.org/video/get_media?s=eyJrIjoiMDQ4N2I5NTIxZDA5NWRlOWUwOGYyZTM4YzdkYWM2MzI1MWM5NjFmYWRlYTcxNDU4OTUzNDk5YzI0MmJmODc3YSIsInQiOjE3Nzg5MTU0OTJ9&v=69ffe0ee27397&e=0&t=p",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "pornhub/gattouz0/videos/69ffe0ee27397"
+        }
+      },
+      {
+        "downloadUrl": "https://ev-h.phncdn.com/hls/c6251/videos/202605/10/48397565/1080P_4000K_48397565.mp4/master.m3u8?validfrom=1778911892&validto=1778919092&ipa=1&hdl=-1&hash=UADFrJb9OcvKqLggxrZ2ZquH%2FF0%3D",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "pornhub/gattouz0/videos/69ffe0ee27397"
+        }
+      },
+      {
+        "downloadUrl": "https://ev-h.phncdn.com/hls/c6251/videos/202605/10/48397565/240P_1000K_48397565.mp4/master.m3u8?validfrom=1778911892&validto=1778919092&ipa=1&hdl=-1&hash=4l6692SshpvGRAHUlc8cGEbW1g0%3D",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "pornhub/gattouz0/videos/69ffe0ee27397"
+        }
+      },
+      {
+        "downloadUrl": "https://ev-h.phncdn.com/hls/c6251/videos/202605/10/48397565/480P_2000K_48397565.mp4/master.m3u8?validfrom=1778911892&validto=1778919092&ipa=1&hdl=-1&hash=KjhBBp6dJfYcl3WQ7PpAaK9s6FA%3D",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "pornhub/gattouz0/videos/69ffe0ee27397"
+        }
+      },
+      {
+        "downloadUrl": "https://ev-h.phncdn.com/hls/c6251/videos/202605/10/48397565/720P_4000K_48397565.mp4/master.m3u8?validfrom=1778911892&validto=1778919092&ipa=1&hdl=-1&hash=5RKC8BbL73hfNAR8i%2FpYyWkD6gU%3D",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "pornhub/gattouz0/videos/69ffe0ee27397"
+        }
+      },
+      {
+        "downloadUrl": "https://ei.phncdn.com/pics/users/0021/3814/6981/avatar95796115/(m=ewILGCjadOf)(mh=44uNYPk5pH1HTbuV)200x200.jpg",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "avatar",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "pornhub/gattouz0/avatar"
+        }
+      },
+      {
+        "downloadUrl": "https://pix-fl.phncdn.com/c6371/videos/202605/10/48397565/original_48397565.mov/plain/ex:1:no/bg:0:0:0/rs:fit:640:360/vts:454?hdnea=st=1778915492~exp=1779001892~hdl=-1~hmac=7e2cea5a12af8c0aba007330918bdf3a460e9ad1",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=69ffe0ee27397",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "video/mov",
+          "extension": "mov",
+          "key": "pornhub/gattouz0/videos/69ffe0ee27397"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,111 @@
+[
+  {
+    "provider": "MyLustProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://mylust.com/videos/969432/pretty-fit-busty-brunette-gal-fulfills-her-step-bro-s-dreams-amazes-him-with-hot-dick-riding/?promoid=15163716308817"
+    ],
+    "entryUrl": "https://mylust.com/videos/969432/pretty-fit-busty-brunette-gal-fulfills-her-step-bro-s-dreams-amazes-him-with-hot-dick-riding/?promoid=15163716308817",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "hasMp4": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "pageUrl": "https://mylust.com/videos/969432/pretty-fit-busty-brunette-gal-fulfills-her-step-bro-s-dreams-amazes-him-with-hot-dick-riding/?promoid=15163716308817",
+      "actors": [
+        "Nikky Dandelion",
+        "Mark"
+      ],
+      "uploader": "gutscher",
+      "videoId": "969432",
+      "poster": "https://i.mylust.com/videos_screenshots/969000/969432/preview.jpg",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://mylust.com/get_file/1/31ed5633665eaef8c48a8f08513750a1645d9f7c63/969000/969432/969432_1080p.mp4/?br=1961",
+            "quality": "1080p"
+          },
+          {
+            "url": "https://mylust.com/get_file/1/7c048dfbe2a1e582fe3ff71a2c9b78d73109ddd736/969000/969432/969432_720p.mp4/?br=1168",
+            "quality": "720p"
+          },
+          {
+            "url": "https://mylust.com/get_file/1/640b9d4e886d2e62ee09102580b77f8f9a5f360753/969000/969432/969432.mp4/?br=534",
+            "quality": "360p"
+          }
+        ]
+      },
+      "title": "Pretty Fit Busty Brunette Gal Fulfills Her Step-bro's Dreams &  Amazes Him With Hot Dick-riding",
+      "tags": [],
+      "description": "'Why do you need to use an app to see me naked if I'm here?' - asked a pretty, sexy, buxom, brunette hottie - Nikky Dandelion - and hurried to please her step-bro with the sex he's been dreaming of for much too long. The gal excited him with a nice handjob, then straddled his cock and rode it wildly, till getting a creampie."
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://mylust.com/get_file/1/31ed5633665eaef8c48a8f08513750a1645d9f7c63/969000/969432/969432_1080p.mp4/?br=1961",
+        "sourceUrl": "https://mylust.com/videos/969432/pretty-fit-busty-brunette-gal-fulfills-her-step-bro-s-dreams-amazes-him-with-hot-dick-riding/?promoid=15163716308817",
+        "provider": "MyLustProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "MyLust/gutscher/videos/969432"
+        }
+      },
+      {
+        "downloadUrl": "https://mylust.com/get_file/1/7c048dfbe2a1e582fe3ff71a2c9b78d73109ddd736/969000/969432/969432_720p.mp4/?br=1168",
+        "sourceUrl": "https://mylust.com/videos/969432/pretty-fit-busty-brunette-gal-fulfills-her-step-bro-s-dreams-amazes-him-with-hot-dick-riding/?promoid=15163716308817",
+        "provider": "MyLustProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "MyLust/gutscher/videos/969432"
+        }
+      },
+      {
+        "downloadUrl": "https://mylust.com/get_file/1/640b9d4e886d2e62ee09102580b77f8f9a5f360753/969000/969432/969432.mp4/?br=534",
+        "sourceUrl": "https://mylust.com/videos/969432/pretty-fit-busty-brunette-gal-fulfills-her-step-bro-s-dreams-amazes-him-with-hot-dick-riding/?promoid=15163716308817",
+        "provider": "MyLustProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "MyLust/gutscher/videos/969432"
+        }
+      },
+      {
+        "downloadUrl": "https://i.mylust.com/videos_screenshots/969000/969432/preview.jpg",
+        "sourceUrl": "https://mylust.com/videos/969432/pretty-fit-busty-brunette-gal-fulfills-her-step-bro-s-dreams-amazes-him-with-hot-dick-riding/?promoid=15163716308817",
+        "provider": "MyLustProvider",
+        "identifier": {
+          "mediaType": "images",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "MyLust/gutscher/images/969432"
+        }
+      }
+    ]
+  }
+]

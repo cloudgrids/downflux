@@ -1,0 +1,103 @@
+[
+  {
+    "provider": "SexVidProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.sexvid1.com/kelsey-jones-having-intense-hardcore-with-some-very-gifted-hunk.html"
+    ],
+    "entryUrl": "https://www.sexvid1.com/kelsey-jones-having-intense-hardcore-with-some-very-gifted-hunk.html",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "requiresLogin": false,
+      "hasMp4": true,
+      "hasKvs": true,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "actor": "Kelsey Jones",
+      "description": "Voluptuous petite princess Kelsey Jones likes rubbing her clitoris while being plowed by some dude. This amazing little hottie is more than happy while being fucked harshly.",
+      "duration": 544,
+      "pageUrl": "https://www.sexvid1.com/kelsey-jones-having-intense-hardcore-with-some-very-gifted-hunk.html",
+      "poster": "https://cdn1.sexvid1.com/contents/videos_screenshots/1000/1085/preview.jpg",
+      "releasedAt": "2013-11-18 22:55:00",
+      "tags": [
+        "Kelsey Jones",
+        "Pervs On Patrol",
+        "Close-Ups",
+        "Fingering",
+        "Hardcore",
+        "HD Videos",
+        "Lingerie",
+        "ass fingering"
+      ],
+      "title": "Kelsey Jones having intense hardcore with some very gifted hunk - SexVid.xxx",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://www.sexvid1.com/get_file/9/732ea5a9d47888a923ab45bf18a57d47f428845a0b/1000/1085/1085_720p.mp4/?br=2404",
+            "quality": "720p"
+          },
+          {
+            "url": "https://www.sexvid1.com/get_file/9/efc709415ad5a7229c3aa1e17d8be977f5789314e3/1000/1085/1085_480p.mp4/?br=1322",
+            "quality": "480p"
+          }
+        ]
+      }
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://www.sexvid1.com/get_file/9/732ea5a9d47888a923ab45bf18a57d47f428845a0b/1000/1085/1085_720p.mp4/?br=2404",
+        "sourceUrl": "https://www.sexvid1.com/kelsey-jones-having-intense-hardcore-with-some-very-gifted-hunk.html",
+        "provider": "SexVidProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "SexVid/Kelsey_Jones/videos"
+        }
+      },
+      {
+        "downloadUrl": "https://www.sexvid1.com/get_file/9/efc709415ad5a7229c3aa1e17d8be977f5789314e3/1000/1085/1085_480p.mp4/?br=1322",
+        "sourceUrl": "https://www.sexvid1.com/kelsey-jones-having-intense-hardcore-with-some-very-gifted-hunk.html",
+        "provider": "SexVidProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "SexVid/Kelsey_Jones/videos"
+        }
+      },
+      {
+        "downloadUrl": "https://cdn1.sexvid1.com/contents/videos_screenshots/1000/1085/preview.jpg",
+        "sourceUrl": "https://www.sexvid1.com/kelsey-jones-having-intense-hardcore-with-some-very-gifted-hunk.html",
+        "provider": "SexVidProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "SexVid/Kelsey_Jones/videos/video_poster"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "provider": "ItsPornProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.its.porn/video/naughty-stepsisters-give-it-up-to-family-friend/?utm_source=pbw"
+    ],
+    "entryUrl": "https://www.its.porn/video/naughty-stepsisters-give-it-up-to-family-friend/?utm_source=pbw",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hasKvs": true,
+      "canDownload": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "underDevelopment": true,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested",
+      "underGeoRestriction": false
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "tags": [
+        "Massage",
+        "pure tabo",
+        "stepuncle",
+        "2 on 1",
+        "d min more",
+        "free use",
+        "swap",
+        "stepsister",
+        "cogidas",
+        "massage",
+        "stepsister share bed",
+        "jaye summer",
+        "padrastro",
+        "jay summers",
+        "jonny sins",
+        "ffm",
+        "pure",
+        "anl maif",
+        "Jaye Summers",
+        "Emily Willis",
+        "Charles Dera"
+      ],
+      "title": "Its.PORN - Naughty Stepsisters Give It Up To Family Friend",
+      "description": "Free HD porn videos - ItsPorn! Best XXX movies on the web, new sex videos added to our porn site every day.",
+      "pageUrl": "https://www.its.porn/video/naughty-stepsisters-give-it-up-to-family-friend/?utm_source=pbw",
+      "poster": "//img.itsthumb.com/contents/videos_screenshots/356000/356865/preview.jpg",
+      "videos": {
+        "mp4": []
+      },
+      "videoId": "356865",
+      "previews": [
+        "https://img.itsthumb.com/contents/videos_screenshots/356000/356865/preview.jpg"
+      ],
+      "timelineScreens": [],
+      "starred": [
+        "Jaye Summers",
+        "Emily Willis",
+        "Charles Dera"
+      ]
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "//img.itsthumb.com/contents/videos_screenshots/356000/356865/preview.jpg",
+        "sourceUrl": "https://www.its.porn/video/naughty-stepsisters-give-it-up-to-family-friend/?utm_source=pbw",
+        "provider": "ItsPornProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "ItsPorn/unknown_uploader/videos/356865/video_poster"
+        }
+      },
+      {
+        "downloadUrl": "https://img.itsthumb.com/contents/videos_screenshots/356000/356865/preview.jpg",
+        "sourceUrl": "https://www.its.porn/video/naughty-stepsisters-give-it-up-to-family-friend/?utm_source=pbw",
+        "provider": "ItsPornProvider",
+        "identifier": {
+          "mediaType": "video_previews",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "ItsPorn/unknown_uploader/videos/356865/video_previews"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "provider": "TubeVSexProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.tubev.sex/video-archive/2049013/carolina-lorca-with-your-hairy"
+    ],
+    "entryUrl": "https://www.tubev.sex/video-archive/2049013/carolina-lorca-with-your-hairy",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "height": "360",
+      "pageUrl": "https://www.tubev.sex/video-archive/2049013/carolina-lorca-with-your-hairy",
+      "quality": "360p",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://vcdn1.tubev.sex/01/video01/279/1750517312/1746667378.mp4?utc=3hZjqC7DvxXEJ94InqEbHQ&e=1778958508",
+            "quality": "360p"
+          }
+        ]
+      },
+      "uploadedAt": "2025-10-29T09:10:25+00:00",
+      "videoId": "2049013",
+      "poster": "https://cdn-pic.tubev.sex/static/thumbs/p/41/2049013.jpg",
+      "width": "640",
+      "duration": "PT00H05M27S",
+      "title": "Carolina Lorca, with your hairy pussy, are you still as innocent as ever?",
+      "description": "",
+      "tags": []
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://cdn-pic.tubev.sex/static/thumbs/p/41/2049013.jpg",
+        "sourceUrl": "https://www.tubev.sex/video-archive/2049013/carolina-lorca-with-your-hairy",
+        "provider": "TubeVSexProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "TubeVSex/unknown/videos/2049013/video_poster"
+        }
+      },
+      {
+        "downloadUrl": "https://vcdn1.tubev.sex/01/video01/279/1750517312/1746667378.mp4?utc=3hZjqC7DvxXEJ94InqEbHQ&e=1778958508",
+        "sourceUrl": "https://www.tubev.sex/video-archive/2049013/carolina-lorca-with-your-hairy",
+        "provider": "TubeVSexProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "TubeVSex/unknown/videos/2049013"
+        }
+      }
+    ]
+  }
+]

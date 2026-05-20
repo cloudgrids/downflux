@@ -1,0 +1,118 @@
+[
+  {
+    "provider": "XGroovyProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://xgroovy.com/videos/714032/horny-babe-regrets-wild-night-with-friend-and-hopes-it-doesnt-go-viral-online/"
+    ],
+    "entryUrl": "https://xgroovy.com/videos/714032/horny-babe-regrets-wild-night-with-friend-and-hopes-it-doesnt-go-viral-online/",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "description": "Sultry Babe Has Passionate Risky Fuck After Leaving With Friend She Moans Loudly Taking Deep Hard Pounding In Hot Session Now Worried About Going Viral On Social Media",
+      "pageUrl": "https://xgroovy.com/videos/714032/horny-babe-regrets-wild-night-with-friend-and-hopes-it-doesnt-go-viral-online/",
+      "uploaderId": "319948",
+      "title": "Horny Babe Regrets Wild Night With Friend And Hopes It Doesnt Go Viral Online",
+      "poster": "https://i.xgroovy.com/contents/videos_screenshots/714000/714032/preview.jpg",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://xgroovy.com/get_file/1/63df39744d5e08a9bc5a77716140d4ba332f8abcd1/714000/714032/714032_1080p.mp4/?br=2244",
+            "quality": "1080p"
+          },
+          {
+            "url": "https://xgroovy.com/get_file/1/c83899a92ab9088480f5c339f8d91c9c1f033df927/714000/714032/714032_720p.mp4/?br=1339",
+            "quality": "720p"
+          },
+          {
+            "url": "https://xgroovy.com/get_file/1/eb33421ad62ecff43f0955506ae3ce5387dbf2e8e7/714000/714032/714032.mp4/?br=810",
+            "quality": "480p"
+          },
+          {
+            "url": "https://xgroovy.com/get_file/1/fbb3dc82c0f89249a8f5b8ac99480e579f33f74866/714000/714032/714032_240p.mp4/?br=428",
+            "quality": "240p"
+          }
+        ]
+      },
+      "tags": []
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://xgroovy.com/get_file/1/63df39744d5e08a9bc5a77716140d4ba332f8abcd1/714000/714032/714032_1080p.mp4/?br=2244",
+        "sourceUrl": "https://xgroovy.com/videos/714032/horny-babe-regrets-wild-night-with-friend-and-hopes-it-doesnt-go-viral-online/",
+        "provider": "XGroovyProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "XGroovy/319948/videos/Horny_Babe_Regrets_Wild_Night_With_Friend_And_Hopes_It_Doesnt_Go_Viral_Online"
+        }
+      },
+      {
+        "downloadUrl": "https://xgroovy.com/get_file/1/c83899a92ab9088480f5c339f8d91c9c1f033df927/714000/714032/714032_720p.mp4/?br=1339",
+        "sourceUrl": "https://xgroovy.com/videos/714032/horny-babe-regrets-wild-night-with-friend-and-hopes-it-doesnt-go-viral-online/",
+        "provider": "XGroovyProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "XGroovy/319948/videos/Horny_Babe_Regrets_Wild_Night_With_Friend_And_Hopes_It_Doesnt_Go_Viral_Online"
+        }
+      },
+      {
+        "downloadUrl": "https://xgroovy.com/get_file/1/eb33421ad62ecff43f0955506ae3ce5387dbf2e8e7/714000/714032/714032.mp4/?br=810",
+        "sourceUrl": "https://xgroovy.com/videos/714032/horny-babe-regrets-wild-night-with-friend-and-hopes-it-doesnt-go-viral-online/",
+        "provider": "XGroovyProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "XGroovy/319948/videos/Horny_Babe_Regrets_Wild_Night_With_Friend_And_Hopes_It_Doesnt_Go_Viral_Online"
+        }
+      },
+      {
+        "downloadUrl": "https://xgroovy.com/get_file/1/fbb3dc82c0f89249a8f5b8ac99480e579f33f74866/714000/714032/714032_240p.mp4/?br=428",
+        "sourceUrl": "https://xgroovy.com/videos/714032/horny-babe-regrets-wild-night-with-friend-and-hopes-it-doesnt-go-viral-online/",
+        "provider": "XGroovyProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "XGroovy/319948/videos/Horny_Babe_Regrets_Wild_Night_With_Friend_And_Hopes_It_Doesnt_Go_Viral_Online"
+        }
+      },
+      {
+        "downloadUrl": "https://i.xgroovy.com/contents/videos_screenshots/714000/714032/preview.jpg",
+        "sourceUrl": "https://xgroovy.com/videos/714032/horny-babe-regrets-wild-night-with-friend-and-hopes-it-doesnt-go-viral-online/",
+        "provider": "XGroovyProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "XGroovy/319948/videos/Horny_Babe_Regrets_Wild_Night_With_Friend_And_Hopes_It_Doesnt_Go_Viral_Online/video_poster"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,85 @@
+[
+  {
+    "provider": "SuperPornProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.superporn.com/video/dude-did-we-impregnate-our-mothers-2"
+    ],
+    "entryUrl": "https://www.superporn.com/video/dude-did-we-impregnate-our-mothers-2",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "requiresLogin": false,
+      "hasMp4": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "title": "Dude, did we impregnate our mothers?",
+      "description": "Sophia Locke and Anya Olsen decide to show how horny they are by fucking their stepchildren. The plan was for each of these stepmothers to fuck the other&amp;#39;s stepson. But in sex, improvisation and excitement go hand in hand and soon the two women find themselves tasting their own stepsons&amp;#39; cocks as well. A family taboo foursome that I&amp;#39;m sure many of you would love to experience... Especially if it ends in creampie!",
+      "pageUrl": "https://www.superporn.com/video/dude-did-we-impregnate-our-mothers-2",
+      "poster": "https://img7.superporn.com/videos/127/127790/previews/previews_0012_custom_1737364677.3756.jpg",
+      "tags": [
+        "Mom and Son",
+        "Creampie"
+      ],
+      "uploader": "fresxxximooye",
+      "width": 852,
+      "height": 480,
+      "duration": "P0DT0H32M23S",
+      "uploadedAt": "2026-05-15",
+      "quality": "480p",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://cdnst7.superporn.com/videos/127/127790/mp4/74aa0366212d2dc830112215739de7da55ca634a17db8e9efd149839b5009262.mp4?secure=f07U-ZH_mwhrLm7RmKXhcw%3D%3D%2C1778990229",
+            "quality": "480p"
+          }
+        ]
+      }
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://cdnst7.superporn.com/videos/127/127790/mp4/74aa0366212d2dc830112215739de7da55ca634a17db8e9efd149839b5009262.mp4?secure=f07U-ZH_mwhrLm7RmKXhcw%3D%3D%2C1778990229",
+        "sourceUrl": "https://www.superporn.com/video/dude-did-we-impregnate-our-mothers-2",
+        "provider": "SuperPornProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "SuperPorn/fresxxximooye/videos/Dude__did_we_impregnate_our_mothers_"
+        }
+      },
+      {
+        "downloadUrl": "https://img7.superporn.com/videos/127/127790/previews/previews_0012_custom_1737364677.3756.jpg",
+        "sourceUrl": "https://www.superporn.com/video/dude-did-we-impregnate-our-mothers-2",
+        "provider": "SuperPornProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "SuperPorn/fresxxximooye/videos/Dude__did_we_impregnate_our_mothers_/video_poster"
+        }
+      }
+    ]
+  }
+]

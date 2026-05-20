@@ -1,0 +1,58 @@
+[
+  {
+    "provider": "ColliderPornProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://colliderporn.com/en/look/32048344/close_up.php"
+    ],
+    "entryUrl": "https://colliderporn.com/en/look/32048344/close_up.php",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "hasMp4": true,
+      "hlsIntegrated": true,
+      "mp4Integrated": true,
+      "hasKvs": false,
+      "hasEmbeddableVideos": true,
+      "underGeoRestriction": true,
+      "requiresBrowser": false,
+      "canDownload": false,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "tags": [
+        "adult",
+        "collider porn",
+        "free porn",
+        "free sex",
+        "porn tube",
+        "porn clips"
+      ],
+      "description": "ColliderPorn Free Sex Videos free",
+      "pageUrl": "https://colliderporn.com/en/look/32048344/close_up.php",
+      "poster": null,
+      "videos": {
+        "mp4": [],
+        "hls": []
+      },
+      "title": "Close Up - Collider Porn",
+      "uploader": null,
+      "videoId": null
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": []
+  }
+]

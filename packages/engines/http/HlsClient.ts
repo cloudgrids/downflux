@@ -78,7 +78,7 @@ export class HlsClient extends BaseHttpClient {
 		const requestHeaders = this.buildHlsHeaders(opts);
 
 		const mediaManifest =
-			variant && variant !== manifestUrl ? await this.fetchText(variant, opts?.timeoutMs ?? 30_0000, requestHeaders) : manifest;
+			variant && variant !== manifestUrl ? await this.fetchText(variant, opts?.timeoutMs || 30_0000, requestHeaders) : manifest;
 
 		const initUrl = this.parseInitSegment(mediaManifest, playlistUrl);
 		return !!initUrl;

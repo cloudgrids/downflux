@@ -1,0 +1,41 @@
+[
+  {
+    "provider": "PornSevenProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.porn7.xxx/v/old-archive/726468/milf-goddess-lauren-shows-handjob"
+    ],
+    "entryUrl": "https://www.porn7.xxx/v/old-archive/726468/milf-goddess-lauren-shows-handjob",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hasKvs": false,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested",
+      "underGeoRestriction": false
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "tags": [],
+      "title": "Milf goddess lauren shows handjob in gloves",
+      "description": "",
+      "pageUrl": "https://www.porn7.xxx/v/old-archive/726468/milf-goddess-lauren-shows-handjob",
+      "videos": {},
+      "videoId": "726468",
+      "uploader": "xvideos_com"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": []
+  }
+]

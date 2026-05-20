@@ -1,0 +1,144 @@
+[
+  {
+    "provider": "BeegProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://beeg.com/-0777761605151844"
+    ],
+    "entryUrl": "https://beeg.com/-0777761605151844",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "hasMp4": true,
+      "hlsIntegrated": true,
+      "mp4Integrated": true,
+      "hasKvs": false,
+      "underGeoRestriction": true,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "working"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "id": "777761605151844",
+    "extracted": {
+      "description": "Stepsister Awakens to Irresistible Impulse",
+      "username": "unknown",
+      "title": "",
+      "poster": "",
+      "tags": [],
+      "videoId": "777761605151844",
+      "pageUrl": "https://beeg.com/-0777761605151844",
+      "videos": {
+        "hls": [
+          {
+            "quality": "240p",
+            "url": "https://video.beeg.com/key=I6-7p6dHog4E5tjVBAXBog,end=1779016449,limit=3/data=bjhKYEMwhb/media=hls4A/240p/777761605151844.mp4.m3u8"
+          },
+          {
+            "quality": "360p",
+            "url": "https://video.beeg.com/key=I4G+T3B0Gh2LYsUqCkNWEQ,end=1779016449,limit=3/data=cL0zzcD3OE/media=hls4A/360p/777761605151844.mp4.m3u8"
+          },
+          {
+            "quality": "480p",
+            "url": "https://video.beeg.com/key=VT7ijS1njETxSEeZwrTwmQ,end=1779016449,limit=3/data=3BEYh79Hlx/media=hls4A/480p/777761605151844.mp4.m3u8"
+          },
+          {
+            "quality": "720p",
+            "url": "https://video.beeg.com/key=-gGWtk3PN-9EJUhOVxFSiA,end=1779016449,limit=3/data=57pfmajc2A/media=hls4A/720p/777761605151844.mp4.m3u8"
+          },
+          {
+            "quality": "1080p",
+            "url": "https://video.beeg.com/key=h+HIO02txg7nSKjXZLnGpA,end=1779016449,limit=3/data=BA5ypCJMyO/media=hls4A/1080p/777761605151844.mp4.m3u8"
+          }
+        ],
+        "mp4": [
+          {
+            "url": "https://video.beeg.com/key=gtJVaFQ14BKTcHMHbXR+-w,end=1779016449,limit=3/data=DPp4rMsfZA/480p/777761605151844.mp4",
+            "quality": "480p"
+          }
+        ]
+      }
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://video.beeg.com/key=gtJVaFQ14BKTcHMHbXR+-w,end=1779016449,limit=3/data=DPp4rMsfZA/480p/777761605151844.mp4",
+        "sourceUrl": "https://beeg.com/-0777761605151844",
+        "provider": "BeegProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "Beeg/videos/777761605151844/480p"
+        }
+      },
+      {
+        "downloadUrl": "https://video.beeg.com/key=I6-7p6dHog4E5tjVBAXBog,end=1779016449,limit=3/data=bjhKYEMwhb/media=hls4A/240p/777761605151844.mp4.m3u8",
+        "sourceUrl": "https://beeg.com/-0777761605151844",
+        "provider": "BeegProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "Beeg/videos/777761605151844/240p"
+        }
+      },
+      {
+        "downloadUrl": "https://video.beeg.com/key=I4G+T3B0Gh2LYsUqCkNWEQ,end=1779016449,limit=3/data=cL0zzcD3OE/media=hls4A/360p/777761605151844.mp4.m3u8",
+        "sourceUrl": "https://beeg.com/-0777761605151844",
+        "provider": "BeegProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "Beeg/videos/777761605151844/360p"
+        }
+      },
+      {
+        "downloadUrl": "https://video.beeg.com/key=VT7ijS1njETxSEeZwrTwmQ,end=1779016449,limit=3/data=3BEYh79Hlx/media=hls4A/480p/777761605151844.mp4.m3u8",
+        "sourceUrl": "https://beeg.com/-0777761605151844",
+        "provider": "BeegProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "Beeg/videos/777761605151844/480p"
+        }
+      },
+      {
+        "downloadUrl": "https://video.beeg.com/key=-gGWtk3PN-9EJUhOVxFSiA,end=1779016449,limit=3/data=57pfmajc2A/media=hls4A/720p/777761605151844.mp4.m3u8",
+        "sourceUrl": "https://beeg.com/-0777761605151844",
+        "provider": "BeegProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "Beeg/videos/777761605151844/720p"
+        }
+      },
+      {
+        "downloadUrl": "https://video.beeg.com/key=h+HIO02txg7nSKjXZLnGpA,end=1779016449,limit=3/data=BA5ypCJMyO/media=hls4A/1080p/777761605151844.mp4.m3u8",
+        "sourceUrl": "https://beeg.com/-0777761605151844",
+        "provider": "BeegProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "Beeg/videos/777761605151844/1080p"
+        }
+      }
+    ]
+  }
+]

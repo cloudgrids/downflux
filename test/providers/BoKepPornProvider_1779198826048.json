@@ -1,0 +1,140 @@
+[
+  {
+    "provider": "BoKepPornProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://bokep.porn/videos/125976/?link=video_mainpage"
+    ],
+    "entryUrl": "https://bokep.porn/videos/125976/?link=video_mainpage",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hasKvs": true,
+      "canDownload": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "underDevelopment": true,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested",
+      "underGeoRestriction": false
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "tags": [
+        "cum in mouth",
+        "hardcore",
+        "european",
+        "stockings",
+        "milf",
+        "big tits",
+        "ddfnetwork",
+        "glamour",
+        "taylor jaclyn",
+        "premium porn",
+        "ddf hardcore",
+        "curvy",
+        "ddf porn",
+        "high heels",
+        "brunette",
+        "ddf glamour",
+        "titty play",
+        "Mick Blue",
+        "Jaclyn Taylor"
+      ],
+      "title": "DDF Network - Extra Beautiful Fitness Milf Bangs Huge Cock",
+      "description": "Bokep.PORN - the ultimate free porn website featuring the most popular xxx clips and hottest porn videos. Watch thousands of sex videos with the hottest porn stars and amateurs.",
+      "pageUrl": "https://bokep.porn/videos/125976/?link=video_mainpage",
+      "poster": "https://img.bokep.porn/contents/videos_screenshots/125000/125976/preview.jpg",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://bokep.porn/get_file/1/c2e7b15d50a009a9cd6baf5aaa3bc2a8/125000/125976/125976_720p.mp4/",
+            "quality": "720p"
+          }
+        ]
+      },
+      "videoId": "125976",
+      "previews": [
+        "https://img.bokep.porn/contents/videos_screenshots/125000/125976/preview.jpg",
+        "https://img.bokep.porn/contents/videos_screenshots/125000/125976/preview_720p.mp4.jpg",
+        "https://img.bokep.porn/contents/videos_screenshots/125000/125976/preview_preview.mp4.jpg",
+        "https://img.bokep.porn/contents/videos_screenshots/125000/125976/preview_480p.mp4.jpg"
+      ],
+      "timelineScreens": [],
+      "uploader": "78adf",
+      "starred": [
+        "Mick Blue",
+        "Jaclyn Taylor"
+      ]
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://bokep.porn/get_file/1/c2e7b15d50a009a9cd6baf5aaa3bc2a8/125000/125976/125976_720p.mp4/",
+        "sourceUrl": "https://bokep.porn/videos/125976/?link=video_mainpage",
+        "provider": "BoKepPornProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "BoKepPorn/78adf/videos/125976"
+        }
+      },
+      {
+        "downloadUrl": "https://img.bokep.porn/contents/videos_screenshots/125000/125976/preview.jpg",
+        "sourceUrl": "https://bokep.porn/videos/125976/?link=video_mainpage",
+        "provider": "BoKepPornProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "BoKepPorn/78adf/videos/125976/video_poster"
+        }
+      },
+      {
+        "downloadUrl": "https://img.bokep.porn/contents/videos_screenshots/125000/125976/preview_720p.mp4.jpg",
+        "sourceUrl": "https://bokep.porn/videos/125976/?link=video_mainpage",
+        "provider": "BoKepPornProvider",
+        "identifier": {
+          "mediaType": "video_previews",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "BoKepPorn/78adf/videos/125976/video_previews"
+        }
+      },
+      {
+        "downloadUrl": "https://img.bokep.porn/contents/videos_screenshots/125000/125976/preview_preview.mp4.jpg",
+        "sourceUrl": "https://bokep.porn/videos/125976/?link=video_mainpage",
+        "provider": "BoKepPornProvider",
+        "identifier": {
+          "mediaType": "video_previews",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "BoKepPorn/78adf/videos/125976/video_previews"
+        }
+      },
+      {
+        "downloadUrl": "https://img.bokep.porn/contents/videos_screenshots/125000/125976/preview_480p.mp4.jpg",
+        "sourceUrl": "https://bokep.porn/videos/125976/?link=video_mainpage",
+        "provider": "BoKepPornProvider",
+        "identifier": {
+          "mediaType": "video_previews",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "BoKepPorn/78adf/videos/125976/video_previews"
+        }
+      }
+    ]
+  }
+]

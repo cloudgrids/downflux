@@ -1,0 +1,136 @@
+[
+  {
+    "provider": "TnAFlixProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign"
+    ],
+    "entryUrl": "https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "disLikes": 66,
+      "likes": 31,
+      "pageUrl": "https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign",
+      "title": "big_ass722 best big natural boobs at all - Tnaflix.com",
+      "poster": "https://cdnl.tnaflix.com/thumb/a16:8q80w500r/218/43/99/4399835/12.jpg",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://cdnl.tnaflix.com/218/43/99/4399835/big_ass722-best-big-natural-boobs-at-all-720p.mp4?rs=269k&rb=3935k&secure=PHQ39ebe6JBTscnSwTyxrg==,1778883842",
+            "quality": "720p"
+          },
+          {
+            "url": "https://cdnl.tnaflix.com/218/43/99/4399835/big_ass722-best-big-natural-boobs-at-all-480p.mp4?rs=118k&rb=1716k&secure=clZS2ne1X2uvf7Ek-dcH9A==,1778883842",
+            "quality": "480p"
+          },
+          {
+            "url": "https://cdnl.tnaflix.com/218/43/99/4399835/big_ass722-best-big-natural-boobs-at-all-360p.mp4?rs=118k&rb=1716k&secure=c_ijkEYKJ8zaR0V3w29FpA==,1778883842",
+            "quality": "360p"
+          },
+          {
+            "url": "https://cdnl.tnaflix.com/218/43/99/4399835/big_ass722-best-big-natural-boobs-at-all-240p.mp4?rs=118k&rb=1716k&secure=c29MT3kj-i2g9vFDARTO3w==,1778883842",
+            "quality": "240p"
+          },
+          {
+            "url": "https://cdnl.tnaflix.com/218/43/99/4399835/big_ass722-best-big-natural-boobs-at-all-144p.mp4?rs=118k&rb=1716k&secure=H7F-OEncg6DTUgnJGKFC4A==,1778883842",
+            "quality": "144p"
+          }
+        ]
+      },
+      "tags": [],
+      "uploader": "kevon_farrell",
+      "videoId": "4399835",
+      "description": "TNAFLIX 'big_ass722 best big natural boobs at all'"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://cdnl.tnaflix.com/218/43/99/4399835/big_ass722-best-big-natural-boobs-at-all-720p.mp4?rs=269k&rb=3935k&secure=PHQ39ebe6JBTscnSwTyxrg==,1778883842",
+        "sourceUrl": "https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign",
+        "provider": "TnAFlixProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "tnaflix/kevon_farrell/videos/4399835"
+        }
+      },
+      {
+        "downloadUrl": "https://cdnl.tnaflix.com/218/43/99/4399835/big_ass722-best-big-natural-boobs-at-all-480p.mp4?rs=118k&rb=1716k&secure=clZS2ne1X2uvf7Ek-dcH9A==,1778883842",
+        "sourceUrl": "https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign",
+        "provider": "TnAFlixProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "tnaflix/kevon_farrell/videos/4399835"
+        }
+      },
+      {
+        "downloadUrl": "https://cdnl.tnaflix.com/218/43/99/4399835/big_ass722-best-big-natural-boobs-at-all-360p.mp4?rs=118k&rb=1716k&secure=c_ijkEYKJ8zaR0V3w29FpA==,1778883842",
+        "sourceUrl": "https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign",
+        "provider": "TnAFlixProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "tnaflix/kevon_farrell/videos/4399835"
+        }
+      },
+      {
+        "downloadUrl": "https://cdnl.tnaflix.com/218/43/99/4399835/big_ass722-best-big-natural-boobs-at-all-240p.mp4?rs=118k&rb=1716k&secure=c29MT3kj-i2g9vFDARTO3w==,1778883842",
+        "sourceUrl": "https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign",
+        "provider": "TnAFlixProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "tnaflix/kevon_farrell/videos/4399835"
+        }
+      },
+      {
+        "downloadUrl": "https://cdnl.tnaflix.com/218/43/99/4399835/big_ass722-best-big-natural-boobs-at-all-144p.mp4?rs=118k&rb=1716k&secure=H7F-OEncg6DTUgnJGKFC4A==,1778883842",
+        "sourceUrl": "https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign",
+        "provider": "TnAFlixProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "tnaflix/kevon_farrell/videos/4399835"
+        }
+      },
+      {
+        "downloadUrl": "https://cdnl.tnaflix.com/thumb/a16:8q80w500r/218/43/99/4399835/12.jpg",
+        "sourceUrl": "https://www.tnaflix.com/hd-videos/big_ass722-best-big-natural-boobs-at-all/video4399835?utm_source=pornolaba&utm_medium=General&utm_campaign=pornolaba+Campaign",
+        "provider": "TnAFlixProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "tnaflix/kevon_farrell/videos/4399835/video_poster"
+        }
+      }
+    ]
+  }
+]
