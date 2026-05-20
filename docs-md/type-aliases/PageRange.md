@@ -8,7 +8,7 @@
 
 > **PageRange** = `object`
 
-Defined in: [packages/types/StorageTypes.ts:2](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/StorageTypes.ts#L2)
+Defined in: [packages/types/StorageTypes.ts:2](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/StorageTypes.ts#L2)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [packages/types/StorageTypes.ts:2](https://github.com/forkts/downflu
 
 > **page**: `number`
 
-Defined in: [packages/types/StorageTypes.ts:2](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/StorageTypes.ts#L2)
+Defined in: [packages/types/StorageTypes.ts:2](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/StorageTypes.ts#L2)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [packages/types/StorageTypes.ts:2](https://github.com/forkts/downflu
 
 > **limit**: `number`
 
-Defined in: [packages/types/StorageTypes.ts:2](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/StorageTypes.ts#L2)
+Defined in: [packages/types/StorageTypes.ts:2](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/StorageTypes.ts#L2)

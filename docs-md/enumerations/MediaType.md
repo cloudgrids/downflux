@@ -6,7 +6,7 @@
 
 # Enumeration: MediaType
 
-Defined in: [packages/types/PipelineTypes.ts:1](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L1)
+Defined in: [packages/types/PipelineTypes.ts:1](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L1)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [packages/types/PipelineTypes.ts:1](https://github.com/forkts/downfl
 
 > **VIDEOS**: `"videos"`
 
-Defined in: [packages/types/PipelineTypes.ts:2](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L2)
+Defined in: [packages/types/PipelineTypes.ts:2](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L2)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/types/PipelineTypes.ts:2](https://github.com/forkts/downfl
 
 > **IMAGES**: `"images"`
 
-Defined in: [packages/types/PipelineTypes.ts:3](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L3)
+Defined in: [packages/types/PipelineTypes.ts:3](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L3)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/types/PipelineTypes.ts:3](https://github.com/forkts/downfl
 
 > **AUDIOS**: `"audios"`
 
-Defined in: [packages/types/PipelineTypes.ts:4](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L4)
+Defined in: [packages/types/PipelineTypes.ts:4](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L4)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/types/PipelineTypes.ts:4](https://github.com/forkts/downfl
 
 > **ALBUMS**: `"albums"`
 
-Defined in: [packages/types/PipelineTypes.ts:5](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L5)
+Defined in: [packages/types/PipelineTypes.ts:5](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L5)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/types/PipelineTypes.ts:5](https://github.com/forkts/downfl
 
 > **SCREENSHOT**: `"screenshot"`
 
-Defined in: [packages/types/PipelineTypes.ts:6](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L6)
+Defined in: [packages/types/PipelineTypes.ts:6](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L6)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/types/PipelineTypes.ts:6](https://github.com/forkts/downfl
 
 > **VIDEO\_SCREENSHOT**: `"video_screenshot"`
 
-Defined in: [packages/types/PipelineTypes.ts:7](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L7)
+Defined in: [packages/types/PipelineTypes.ts:7](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L7)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [packages/types/PipelineTypes.ts:7](https://github.com/forkts/downfl
 
 > **VIDEO\_TIMELINES**: `"video_timelines"`
 
-Defined in: [packages/types/PipelineTypes.ts:8](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L8)
+Defined in: [packages/types/PipelineTypes.ts:8](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L8)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [packages/types/PipelineTypes.ts:8](https://github.com/forkts/downfl
 
 > **VIDEO\_POSTER**: `"video_poster"`
 
-Defined in: [packages/types/PipelineTypes.ts:9](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L9)
+Defined in: [packages/types/PipelineTypes.ts:9](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L9)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [packages/types/PipelineTypes.ts:9](https://github.com/forkts/downfl
 
 > **ALBUM\_PREVIEW**: `"album_preview"`
 
-Defined in: [packages/types/PipelineTypes.ts:10](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L10)
+Defined in: [packages/types/PipelineTypes.ts:10](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L10)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [packages/types/PipelineTypes.ts:10](https://github.com/forkts/downf
 
 > **VIDEO\_ALBUM**: `"video_album"`
 
-Defined in: [packages/types/PipelineTypes.ts:11](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L11)
+Defined in: [packages/types/PipelineTypes.ts:11](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L11)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [packages/types/PipelineTypes.ts:11](https://github.com/forkts/downf
 
 > **VIDEO\_PREVIEW**: `"video_preview"`
 
-Defined in: [packages/types/PipelineTypes.ts:12](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L12)
+Defined in: [packages/types/PipelineTypes.ts:12](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L12)
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: [packages/types/PipelineTypes.ts:12](https://github.com/forkts/downf
 
 > **VIDEO\_PREVIEWS**: `"video_previews"`
 
-Defined in: [packages/types/PipelineTypes.ts:13](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L13)
+Defined in: [packages/types/PipelineTypes.ts:13](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L13)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: [packages/types/PipelineTypes.ts:13](https://github.com/forkts/downf
 
 > **THUMBNAILS**: `"thumbnails"`
 
-Defined in: [packages/types/PipelineTypes.ts:14](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L14)
+Defined in: [packages/types/PipelineTypes.ts:14](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L14)
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: [packages/types/PipelineTypes.ts:14](https://github.com/forkts/downf
 
 > **FAVORITES**: `"favorites"`
 
-Defined in: [packages/types/PipelineTypes.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L15)
+Defined in: [packages/types/PipelineTypes.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L15)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: [packages/types/PipelineTypes.ts:15](https://github.com/forkts/downf
 
 > **COLLECTION**: `"collection"`
 
-Defined in: [packages/types/PipelineTypes.ts:16](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L16)
+Defined in: [packages/types/PipelineTypes.ts:16](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L16)
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: [packages/types/PipelineTypes.ts:16](https://github.com/forkts/downf
 
 > **UPLOADS**: `"uploads"`
 
-Defined in: [packages/types/PipelineTypes.ts:17](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L17)
+Defined in: [packages/types/PipelineTypes.ts:17](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L17)
 
 ***
 
@@ -142,7 +142,7 @@ Defined in: [packages/types/PipelineTypes.ts:17](https://github.com/forkts/downf
 
 > **AVATAR**: `"avatar"`
 
-Defined in: [packages/types/PipelineTypes.ts:18](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L18)
+Defined in: [packages/types/PipelineTypes.ts:18](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L18)
 
 ***
 
@@ -150,7 +150,7 @@ Defined in: [packages/types/PipelineTypes.ts:18](https://github.com/forkts/downf
 
 > **COVER**: `"cover"`
 
-Defined in: [packages/types/PipelineTypes.ts:19](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L19)
+Defined in: [packages/types/PipelineTypes.ts:19](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L19)
 
 ***
 
@@ -158,7 +158,7 @@ Defined in: [packages/types/PipelineTypes.ts:19](https://github.com/forkts/downf
 
 > **CHANNELS**: `"channels"`
 
-Defined in: [packages/types/PipelineTypes.ts:20](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L20)
+Defined in: [packages/types/PipelineTypes.ts:20](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L20)
 
 ***
 
@@ -166,4 +166,4 @@ Defined in: [packages/types/PipelineTypes.ts:20](https://github.com/forkts/downf
 
 > **OTHER**: `"other"`
 
-Defined in: [packages/types/PipelineTypes.ts:21](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/PipelineTypes.ts#L21)
+Defined in: [packages/types/PipelineTypes.ts:21](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/PipelineTypes.ts#L21)

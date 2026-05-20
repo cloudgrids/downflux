@@ -6,7 +6,7 @@
 
 # Interface: XnXXVideo
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:7](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xnxx/XnXXContracts.ts#L7)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:7](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/xnxx/XnXXContracts.ts#L7)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:7](https://github.com/fork
 
 > **low**: `string`
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:8](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xnxx/XnXXContracts.ts#L8)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:8](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/xnxx/XnXXContracts.ts#L8)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:8](https://github.com/fork
 
 > **high**: `string`
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:9](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xnxx/XnXXContracts.ts#L9)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:9](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/xnxx/XnXXContracts.ts#L9)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [packages/providers/xnxx/XnXXContracts.ts:9](https://github.com/fork
 
 > **hls**: `string`
 
-Defined in: [packages/providers/xnxx/XnXXContracts.ts:10](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xnxx/XnXXContracts.ts#L10)
+Defined in: [packages/providers/xnxx/XnXXContracts.ts:10](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/xnxx/XnXXContracts.ts#L10)

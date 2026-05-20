@@ -6,7 +6,7 @@
 
 # Enumeration: BoKepPornMethods
 
-Defined in: [packages/providers/bokepporn/BoKepPornTypes.ts:1](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/bokepporn/BoKepPornTypes.ts#L1)
+Defined in: [packages/providers/bokepporn/BoKepPornTypes.ts:1](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/bokepporn/BoKepPornTypes.ts#L1)
 
 ## Enumeration Members
 
@@ -14,4 +14,4 @@ Defined in: [packages/providers/bokepporn/BoKepPornTypes.ts:1](https://github.co
 
 > **getVideo**: `"getVideo"`
 
-Defined in: [packages/providers/bokepporn/BoKepPornTypes.ts:2](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/bokepporn/BoKepPornTypes.ts#L2)
+Defined in: [packages/providers/bokepporn/BoKepPornTypes.ts:2](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/bokepporn/BoKepPornTypes.ts#L2)

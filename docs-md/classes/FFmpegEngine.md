@@ -6,7 +6,7 @@
 
 # Class: FFmpegEngine
 
-Defined in: [packages/storage/FFmpegEngine.ts:19](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/storage/FFmpegEngine.ts#L19)
+Defined in: [packages/storage/FFmpegEngine.ts:19](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FFmpegEngine.ts#L19)
 
 Media finalization wrapper around ffmpeg.
 
@@ -22,7 +22,7 @@ transcodes formats such as HLS `.ts`/fMP4 into a playable final file.
 
 > **new FFmpegEngine**(`progressManager`): `FFmpegEngine`
 
-Defined in: [packages/storage/FFmpegEngine.ts:20](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/storage/FFmpegEngine.ts#L20)
+Defined in: [packages/storage/FFmpegEngine.ts:20](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FFmpegEngine.ts#L20)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: [packages/storage/FFmpegEngine.ts:20](https://github.com/forkts/down
 
 > **get** **ffmpeg**(): `string`
 
-Defined in: [packages/storage/FFmpegEngine.ts:22](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/storage/FFmpegEngine.ts#L22)
+Defined in: [packages/storage/FFmpegEngine.ts:22](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FFmpegEngine.ts#L22)
 
 ##### Returns
 
@@ -54,7 +54,7 @@ Defined in: [packages/storage/FFmpegEngine.ts:22](https://github.com/forkts/down
 
 > **finalizeMedia**(`options`): `Promise`\<\{ `path`: `string`; `filename`: `string`; `extension`: `string`; `mimeType`: `string`; \}\>
 
-Defined in: [packages/storage/FFmpegEngine.ts:32](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/storage/FFmpegEngine.ts#L32)
+Defined in: [packages/storage/FFmpegEngine.ts:32](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FFmpegEngine.ts#L32)
 
 Finalizes a downloaded media file with ffmpeg.
 

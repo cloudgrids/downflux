@@ -512,7 +512,6 @@
 ## Variables
 
 - [DOMAINS](variables/DOMAINS.md)
-- [VIDEO\_DOMAINS](variables/VIDEO_DOMAINS.md)
 - [HEADER\_PRESETS](variables/HEADER_PRESETS.md)
 - [cleanBase](variables/cleanBase.md)
 - [EXTENSION\_MAP](variables/EXTENSION_MAP.md)
@@ -523,3 +522,4 @@
 
 - [createDefaultDependencies](functions/createDefaultDependencies.md)
 - [inferVideoQuality](functions/inferVideoQuality.md)
+- [mapQualityToHeight](functions/mapQualityToHeight.md)

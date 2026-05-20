@@ -6,7 +6,7 @@
 
 # Class: CliManager
 
-Defined in: [packages/core/ui/CliManager.ts:5](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/ui/CliManager.ts#L5)
+Defined in: [packages/core/ui/CliManager.ts:5](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/ui/CliManager.ts#L5)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/ui/CliManager.ts:5](https://github.com/forkts/downflu
 
 > **new CliManager**(`progressManager`): `CliManager`
 
-Defined in: [packages/core/ui/CliManager.ts:7](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/ui/CliManager.ts#L7)
+Defined in: [packages/core/ui/CliManager.ts:7](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/ui/CliManager.ts#L7)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [packages/core/ui/CliManager.ts:7](https://github.com/forkts/downflu
 
 > **destroy**(): `void`
 
-Defined in: [packages/core/ui/CliManager.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/ui/CliManager.ts#L15)
+Defined in: [packages/core/ui/CliManager.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/ui/CliManager.ts#L15)
 
 #### Returns
 

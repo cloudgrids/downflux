@@ -6,7 +6,7 @@
 
 # Interface: DefaultVideoOutput
 
-Defined in: [packages/contracts/ExecutionContracts.ts:197](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L197)
+Defined in: [packages/contracts/ExecutionContracts.ts:197](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L197)
 
 ## Extends
 
@@ -18,32 +18,23 @@ Defined in: [packages/contracts/ExecutionContracts.ts:197](https://github.com/fo
 - [`BeegVideoOutput`](BeegVideoOutput.md)
 - [`ColliderPornVideoOutput`](ColliderPornVideoOutput.md)
 - [`CumLouderVideoOutput`](CumLouderVideoOutput.md)
-- [`DaNudeVideoOutput`](DaNudeVideoOutput.md)
-- [`EpicGfsVideoOutput`](EpicGfsVideoOutput.md)
 - [`EPornerVideoOutput`](EPornerVideoOutput.md)
 - [`HqPornVideoOutput`](HqPornVideoOutput.md)
-- [`Lesbian8VideoOutput`](Lesbian8VideoOutput.md)
-- [`MegaTubeVideoOutput`](MegaTubeVideoOutput.md)
 - [`MyLustVideoOutput`](MyLustVideoOutput.md)
 - [`OkPornVideoOutput`](OkPornVideoOutput.md)
 - [`PerfectGirlsVideoOutput`](PerfectGirlsVideoOutput.md)
 - [`Porn300VideoOutput`](Porn300VideoOutput.md)
 - [`PornDoeVideoOutput`](PornDoeVideoOutput.md)
 - [`PornHubVideoOutput`](PornHubVideoOutput.md)
-- [`PornIdVideoOutput`](PornIdVideoOutput.md)
 - [`PornOneVideoOutput`](PornOneVideoOutput.md)
 - [`PornSevenVideoOutput`](PornSevenVideoOutput.md)
 - [`PornsOkVideoOutput`](PornsOkVideoOutput.md)
 - [`PussySpaceVideoOutput`](PussySpaceVideoOutput.md)
-- [`SexVidVideoOutput`](SexVidVideoOutput.md)
-- [`ShamelessVideoOutput`](ShamelessVideoOutput.md)
 - [`SuperPornVideoOutput`](SuperPornVideoOutput.md)
 - [`SxyPornVideoOutput`](SxyPornVideoOutput.md)
-- [`TheyAreHugeVideoOutput`](TheyAreHugeVideoOutput.md)
 - [`TnAFlixVideoOutput`](TnAFlixVideoOutput.md)
 - [`TubeVSexVideoOutput`](TubeVSexVideoOutput.md)
 - [`XCafeVideoOutput`](XCafeVideoOutput.md)
-- [`XDeguVideoOutput`](XDeguVideoOutput.md)
 - [`XGroovyVideoOutput`](XGroovyVideoOutput.md)
 - [`ZzzTubeVideoOutput`](ZzzTubeVideoOutput.md)
 
@@ -53,7 +44,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:197](https://github.com/fo
 
 > **title**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L186)
+Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L186)
 
 #### Inherited from
 
@@ -65,7 +56,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/fo
 
 > **tags**: `string`[]
 
-Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L187)
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L187)
 
 #### Inherited from
 
@@ -77,7 +68,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/fo
 
 > **description**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L188)
+Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L188)
 
 #### Inherited from
 
@@ -89,7 +80,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/fo
 
 > **pageUrl**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L189)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L189)
 
 #### Inherited from
 
@@ -101,7 +92,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/fo
 
 > **poster**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L198)
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L198)
 
 ***
 
@@ -109,4 +100,4 @@ Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/fo
 
 > **videos**: [`VideosFormat`](VideosFormat.md)
 
-Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L199)
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L199)

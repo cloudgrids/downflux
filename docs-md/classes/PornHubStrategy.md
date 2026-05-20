@@ -6,7 +6,7 @@
 
 # Class: PornHubStrategy
 
-Defined in: [packages/providers/pornhub/PornHubStrategy.ts:12](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/pornhub/PornHubStrategy.ts#L12)
+Defined in: [packages/providers/pornhub/PornHubStrategy.ts:12](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/pornhub/PornHubStrategy.ts#L12)
 
 Provides PornHub-specific HTTP behavior.
 
@@ -24,7 +24,7 @@ Strategies isolate host fallbacks, headers, and transport quirks from shared HTT
 
 > **new PornHubStrategy**(`progressManager`): `PornHubStrategy`
 
-Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L15)
+Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseStrategy.ts#L15)
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflu
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L15)
+Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseStrategy.ts#L15)
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflu
 
 > `protected` **constructPathname**(`url`): `string`
 
-Defined in: [packages/base/BaseStrategy.ts:49](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BaseStrategy.ts#L49)
+Defined in: [packages/base/BaseStrategy.ts:49](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseStrategy.ts#L49)
 
 #### Parameters
 
@@ -80,7 +80,7 @@ Defined in: [packages/base/BaseStrategy.ts:49](https://github.com/forkts/downflu
 
 > **getHostFallbackUrls**(`url`): `string`[]
 
-Defined in: [packages/providers/pornhub/PornHubStrategy.ts:25](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/pornhub/PornHubStrategy.ts#L25)
+Defined in: [packages/providers/pornhub/PornHubStrategy.ts:25](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/pornhub/PornHubStrategy.ts#L25)
 
 #### Parameters
 
@@ -102,7 +102,7 @@ Defined in: [packages/providers/pornhub/PornHubStrategy.ts:25](https://github.co
 
 > **shouldFallback404**(`url`): `boolean`
 
-Defined in: [packages/providers/pornhub/PornHubStrategy.ts:29](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/pornhub/PornHubStrategy.ts#L29)
+Defined in: [packages/providers/pornhub/PornHubStrategy.ts:29](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/pornhub/PornHubStrategy.ts#L29)
 
 #### Parameters
 
@@ -124,7 +124,7 @@ Defined in: [packages/providers/pornhub/PornHubStrategy.ts:29](https://github.co
 
 > **getFallbackUrl**(`url`): `string` \| `null`
 
-Defined in: [packages/providers/pornhub/PornHubStrategy.ts:33](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/pornhub/PornHubStrategy.ts#L33)
+Defined in: [packages/providers/pornhub/PornHubStrategy.ts:33](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/pornhub/PornHubStrategy.ts#L33)
 
 #### Parameters
 
@@ -146,7 +146,7 @@ Defined in: [packages/providers/pornhub/PornHubStrategy.ts:33](https://github.co
 
 > **shouldReExtract**(`url`): `boolean`
 
-Defined in: [packages/providers/pornhub/PornHubStrategy.ts:41](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/pornhub/PornHubStrategy.ts#L41)
+Defined in: [packages/providers/pornhub/PornHubStrategy.ts:41](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/pornhub/PornHubStrategy.ts#L41)
 
 #### Parameters
 
@@ -168,7 +168,7 @@ Defined in: [packages/providers/pornhub/PornHubStrategy.ts:41](https://github.co
 
 > **shouldResolveTextResponse**(`url`, `contentType`): `boolean`
 
-Defined in: [packages/providers/pornhub/PornHubStrategy.ts:47](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/pornhub/PornHubStrategy.ts#L47)
+Defined in: [packages/providers/pornhub/PornHubStrategy.ts:47](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/pornhub/PornHubStrategy.ts#L47)
 
 #### Parameters
 
@@ -194,7 +194,7 @@ Defined in: [packages/providers/pornhub/PornHubStrategy.ts:47](https://github.co
 
 > **getDirectVideoUrlFromText**(`body`, `opts`): `string` \| `null`
 
-Defined in: [packages/providers/pornhub/PornHubStrategy.ts:54](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/pornhub/PornHubStrategy.ts#L54)
+Defined in: [packages/providers/pornhub/PornHubStrategy.ts:54](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/pornhub/PornHubStrategy.ts#L54)
 
 #### Parameters
 

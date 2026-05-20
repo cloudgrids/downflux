@@ -6,7 +6,7 @@
 
 # Enumeration: OkPornMethods
 
-Defined in: [packages/providers/okporn/OkPornTypes.ts:4](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornTypes.ts#L4)
+Defined in: [packages/providers/okporn/OkPornTypes.ts:4](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornTypes.ts#L4)
 
 OkPorn service methods
 
@@ -16,7 +16,7 @@ OkPorn service methods
 
 > **getAlbums**: `"getAlbums"`
 
-Defined in: [packages/providers/okporn/OkPornTypes.ts:6](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornTypes.ts#L6)
+Defined in: [packages/providers/okporn/OkPornTypes.ts:6](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornTypes.ts#L6)
 
 Album page extraction
 
@@ -26,7 +26,7 @@ Album page extraction
 
 > **getAlbum**: `"getAlbum"`
 
-Defined in: [packages/providers/okporn/OkPornTypes.ts:9](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornTypes.ts#L9)
+Defined in: [packages/providers/okporn/OkPornTypes.ts:9](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornTypes.ts#L9)
 
 Single album extraction
 
@@ -36,7 +36,7 @@ Single album extraction
 
 > **getModels**: `"getModels"`
 
-Defined in: [packages/providers/okporn/OkPornTypes.ts:12](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornTypes.ts#L12)
+Defined in: [packages/providers/okporn/OkPornTypes.ts:12](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornTypes.ts#L12)
 
 Model page extraction
 
@@ -46,7 +46,7 @@ Model page extraction
 
 > **getTags**: `"getTags"`
 
-Defined in: [packages/providers/okporn/OkPornTypes.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornTypes.ts#L15)
+Defined in: [packages/providers/okporn/OkPornTypes.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornTypes.ts#L15)
 
 Tag group extraction
 
@@ -56,7 +56,7 @@ Tag group extraction
 
 > **getChannels**: `"getChannels"`
 
-Defined in: [packages/providers/okporn/OkPornTypes.ts:18](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornTypes.ts#L18)
+Defined in: [packages/providers/okporn/OkPornTypes.ts:18](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornTypes.ts#L18)
 
 Channel page extraction
 
@@ -66,7 +66,7 @@ Channel page extraction
 
 > **getVideos**: `"getVideos"`
 
-Defined in: [packages/providers/okporn/OkPornTypes.ts:21](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornTypes.ts#L21)
+Defined in: [packages/providers/okporn/OkPornTypes.ts:21](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornTypes.ts#L21)
 
 Video page extraction
 
@@ -76,7 +76,7 @@ Video page extraction
 
 > **getVideo**: `"getVideo"`
 
-Defined in: [packages/providers/okporn/OkPornTypes.ts:24](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornTypes.ts#L24)
+Defined in: [packages/providers/okporn/OkPornTypes.ts:24](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornTypes.ts#L24)
 
 Single video extraction
 
@@ -86,6 +86,6 @@ Single video extraction
 
 > **getModelVideoIds**: `"getModelVideoIds"`
 
-Defined in: [packages/providers/okporn/OkPornTypes.ts:27](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/okporn/OkPornTypes.ts#L27)
+Defined in: [packages/providers/okporn/OkPornTypes.ts:27](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornTypes.ts#L27)
 
 Model video card extraction

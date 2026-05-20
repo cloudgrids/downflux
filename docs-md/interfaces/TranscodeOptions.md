@@ -6,7 +6,7 @@
 
 # Interface: TranscodeOptions
 
-Defined in: [packages/contracts/StorageContracts.ts:30](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L30)
+Defined in: [packages/contracts/StorageContracts.ts:30](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/StorageContracts.ts#L30)
 
 ## Properties
 
@@ -14,7 +14,29 @@ Defined in: [packages/contracts/StorageContracts.ts:30](https://github.com/forkt
 
 > `optional` **inputPath?**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:31](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L31)
+Defined in: [packages/contracts/StorageContracts.ts:35](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/StorageContracts.ts#L35)
+
+Internal path of the downloaded media file that should be finalized.
+DownFlux sets this automatically when a streamed file needs ffmpeg.
+
+***
+
+### ffmpegPath?
+
+> `optional` **ffmpegPath?**: `string`
+
+Defined in: [packages/contracts/StorageContracts.ts:45](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/StorageContracts.ts#L45)
+
+Explicit ffmpeg executable path.
+
+Use this when the consuming project cannot use the bundled `ffmpeg-static`
+binary, for example when pnpm build scripts are disabled.
+
+#### Example
+
+```ts
+'/opt/homebrew/bin/ffmpeg'
+```
 
 ***
 
@@ -22,7 +44,15 @@ Defined in: [packages/contracts/StorageContracts.ts:31](https://github.com/forkt
 
 > `optional` **deleteInput?**: `boolean`
 
-Defined in: [packages/contracts/StorageContracts.ts:33](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L33)
+Defined in: [packages/contracts/StorageContracts.ts:51](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/StorageContracts.ts#L51)
+
+Deletes the intermediate input file after successful finalization.
+
+#### Default Value
+
+```ts
+true
+```
 
 ***
 
@@ -30,7 +60,10 @@ Defined in: [packages/contracts/StorageContracts.ts:33](https://github.com/forkt
 
 > `optional` **ffmpegArgs?**: `string`[]
 
-Defined in: [packages/contracts/StorageContracts.ts:35](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L35)
+Defined in: [packages/contracts/StorageContracts.ts:57](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/StorageContracts.ts#L57)
+
+Complete custom ffmpeg arguments.
+When provided, these replace DownFlux's default remux/transcode arguments.
 
 ***
 
@@ -38,7 +71,15 @@ Defined in: [packages/contracts/StorageContracts.ts:35](https://github.com/forkt
 
 > `optional` **outputExtension?**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:37](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L37)
+Defined in: [packages/contracts/StorageContracts.ts:63](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/StorageContracts.ts#L63)
+
+Final media container extension.
+
+#### Default Value
+
+```ts
+'mp4'
+```
 
 ***
 
@@ -46,7 +87,9 @@ Defined in: [packages/contracts/StorageContracts.ts:37](https://github.com/forkt
 
 > `optional` **preset?**: `"medium"` \| `"ultrafast"` \| `"superfast"` \| `"veryfast"` \| `"faster"` \| `"fast"` \| `"slow"`
 
-Defined in: [packages/contracts/StorageContracts.ts:39](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L39)
+Defined in: [packages/contracts/StorageContracts.ts:68](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/StorageContracts.ts#L68)
+
+ffmpeg encoder preset used when transcoding with an encoder such as libx264.
 
 ***
 
@@ -54,7 +97,9 @@ Defined in: [packages/contracts/StorageContracts.ts:39](https://github.com/forkt
 
 > `optional` **crf?**: `number`
 
-Defined in: [packages/contracts/StorageContracts.ts:41](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L41)
+Defined in: [packages/contracts/StorageContracts.ts:73](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/StorageContracts.ts#L73)
+
+Constant Rate Factor used when transcoding with an encoder such as libx264.
 
 ***
 
@@ -62,7 +107,15 @@ Defined in: [packages/contracts/StorageContracts.ts:41](https://github.com/forkt
 
 > `optional` **videoCodec?**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:43](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L43)
+Defined in: [packages/contracts/StorageContracts.ts:79](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/StorageContracts.ts#L79)
+
+ffmpeg video codec.
+
+#### Default Value
+
+```ts
+'copy'
+```
 
 ***
 
@@ -70,4 +123,12 @@ Defined in: [packages/contracts/StorageContracts.ts:43](https://github.com/forkt
 
 > `optional` **audioCodec?**: `string`
 
-Defined in: [packages/contracts/StorageContracts.ts:45](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/StorageContracts.ts#L45)
+Defined in: [packages/contracts/StorageContracts.ts:85](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/StorageContracts.ts#L85)
+
+ffmpeg audio codec.
+
+#### Default Value
+
+```ts
+'copy'
+```

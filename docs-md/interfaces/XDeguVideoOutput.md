@@ -6,11 +6,11 @@
 
 # Interface: XDeguVideoOutput
 
-Defined in: [packages/providers/xdegu/XDeguContracts.ts:6](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xdegu/XDeguContracts.ts#L6)
+Defined in: [packages/providers/xdegu/XDeguContracts.ts:6](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/xdegu/XDeguContracts.ts#L6)
 
 ## Extends
 
-- [`DefaultVideoOutput`](DefaultVideoOutput.md)
+- [`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md)
 
 ## Extended by
 
@@ -22,11 +22,11 @@ Defined in: [packages/providers/xdegu/XDeguContracts.ts:6](https://github.com/fo
 
 > **title**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L186)
+Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L186)
 
 #### Inherited from
 
-[`DefaultVideoOutput`](DefaultVideoOutput.md).[`title`](DefaultVideoOutput.md#title)
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`title`](DefaultFlashVarsVideoOutput.md#title)
 
 ***
 
@@ -34,11 +34,11 @@ Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/fo
 
 > **tags**: `string`[]
 
-Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L187)
+Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L187)
 
 #### Inherited from
 
-[`DefaultVideoOutput`](DefaultVideoOutput.md).[`tags`](DefaultVideoOutput.md#tags)
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`tags`](DefaultFlashVarsVideoOutput.md#tags)
 
 ***
 
@@ -46,11 +46,11 @@ Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/fo
 
 > **description**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L188)
+Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L188)
 
 #### Inherited from
 
-[`DefaultVideoOutput`](DefaultVideoOutput.md).[`description`](DefaultVideoOutput.md#description)
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`description`](DefaultFlashVarsVideoOutput.md#description)
 
 ***
 
@@ -58,11 +58,11 @@ Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/fo
 
 > **pageUrl**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L189)
+Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L189)
 
 #### Inherited from
 
-[`DefaultVideoOutput`](DefaultVideoOutput.md).[`pageUrl`](DefaultVideoOutput.md#pageurl)
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`pageUrl`](DefaultFlashVarsVideoOutput.md#pageurl)
 
 ***
 
@@ -70,11 +70,11 @@ Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/fo
 
 > **poster**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L198)
+Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L198)
 
 #### Inherited from
 
-[`DefaultVideoOutput`](DefaultVideoOutput.md).[`poster`](DefaultVideoOutput.md#poster)
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`poster`](DefaultFlashVarsVideoOutput.md#poster)
 
 ***
 
@@ -82,11 +82,11 @@ Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/fo
 
 > **videos**: [`VideosFormat`](VideosFormat.md)
 
-Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/ExecutionContracts.ts#L199)
+Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L199)
 
 #### Inherited from
 
-[`DefaultVideoOutput`](DefaultVideoOutput.md).[`videos`](DefaultVideoOutput.md#videos)
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`videos`](DefaultFlashVarsVideoOutput.md#videos)
 
 ***
 
@@ -94,15 +94,11 @@ Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/fo
 
 > **videoId**: `string`
 
-Defined in: [packages/providers/xdegu/XDeguContracts.ts:7](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xdegu/XDeguContracts.ts#L7)
+Defined in: [packages/contracts/ExecutionContracts.ts:203](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L203)
 
-***
+#### Inherited from
 
-### starred
-
-> **starred**: `string`[]
-
-Defined in: [packages/providers/xdegu/XDeguContracts.ts:8](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xdegu/XDeguContracts.ts#L8)
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`videoId`](DefaultFlashVarsVideoOutput.md#videoid)
 
 ***
 
@@ -110,4 +106,56 @@ Defined in: [packages/providers/xdegu/XDeguContracts.ts:8](https://github.com/fo
 
 > **previews**: `string`[]
 
-Defined in: [packages/providers/xdegu/XDeguContracts.ts:9](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/xdegu/XDeguContracts.ts#L9)
+Defined in: [packages/contracts/ExecutionContracts.ts:204](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L204)
+
+#### Inherited from
+
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`previews`](DefaultFlashVarsVideoOutput.md#previews)
+
+***
+
+### timelineScreenCount?
+
+> `optional` **timelineScreenCount?**: `number`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:205](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L205)
+
+#### Inherited from
+
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`timelineScreenCount`](DefaultFlashVarsVideoOutput.md#timelinescreencount)
+
+***
+
+### timelineScreens?
+
+> `optional` **timelineScreens?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:206](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L206)
+
+#### Inherited from
+
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`timelineScreens`](DefaultFlashVarsVideoOutput.md#timelinescreens)
+
+***
+
+### starred?
+
+> `optional` **starred?**: `string`[]
+
+Defined in: [packages/contracts/ExecutionContracts.ts:207](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L207)
+
+#### Inherited from
+
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`starred`](DefaultFlashVarsVideoOutput.md#starred)
+
+***
+
+### uploader?
+
+> `optional` **uploader?**: `string`
+
+Defined in: [packages/contracts/ExecutionContracts.ts:208](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L208)
+
+#### Inherited from
+
+[`DefaultFlashVarsVideoOutput`](DefaultFlashVarsVideoOutput.md).[`uploader`](DefaultFlashVarsVideoOutput.md#uploader)

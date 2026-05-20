@@ -6,7 +6,7 @@
 
 # Class: BasePipeline\<TExec, TResult\>
 
-Defined in: [packages/base/BasePipeline.ts:24](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L24)
+Defined in: [packages/base/BasePipeline.ts:24](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L24)
 
 Converts extracted metadata into downloadable work items.
 
@@ -78,7 +78,7 @@ grouped on disk.
 
 > **new BasePipeline**\<`TExec`, `TResult`\>(`fileManager`): `BasePipeline`\<`TExec`, `TResult`\>
 
-Defined in: [packages/base/BasePipeline.ts:28](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L28)
+Defined in: [packages/base/BasePipeline.ts:28](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L28)
 
 #### Parameters
 
@@ -96,7 +96,7 @@ Defined in: [packages/base/BasePipeline.ts:28](https://github.com/forkts/downflu
 
 > `protected` `readonly` **pathBuilder**: [`PathBuilder`](PathBuilder.md)
 
-Defined in: [packages/base/BasePipeline.ts:25](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L25)
+Defined in: [packages/base/BasePipeline.ts:25](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L25)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: [packages/base/BasePipeline.ts:25](https://github.com/forkts/downflu
 
 > `protected` `readonly` **helper**: [`Helper`](Helper.md)
 
-Defined in: [packages/base/BasePipeline.ts:26](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L26)
+Defined in: [packages/base/BasePipeline.ts:26](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L26)
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: [packages/base/BasePipeline.ts:26](https://github.com/forkts/downflu
 
 > `protected` **fileManager**: [`FileManager`](FileManager.md)
 
-Defined in: [packages/base/BasePipeline.ts:28](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L28)
+Defined in: [packages/base/BasePipeline.ts:28](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L28)
 
 ## Methods
 
@@ -120,7 +120,7 @@ Defined in: [packages/base/BasePipeline.ts:28](https://github.com/forkts/downflu
 
 > **build**(`metadata`, `request`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-Defined in: [packages/base/BasePipeline.ts:37](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L37)
+Defined in: [packages/base/BasePipeline.ts:37](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L37)
 
 Builds filtered, deduplicated pipeline items for a single metadata result.
 
@@ -150,7 +150,7 @@ Downloadable pipeline items.
 
 > `protected` **filterByExt**(`request`, `pipelineItems`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-Defined in: [packages/base/BasePipeline.ts:62](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L62)
+Defined in: [packages/base/BasePipeline.ts:62](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L62)
 
 #### Parameters
 
@@ -172,7 +172,7 @@ Defined in: [packages/base/BasePipeline.ts:62](https://github.com/forkts/downflu
 
 > `protected` **sliceByMaxDownloads**(`request`, `items`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-Defined in: [packages/base/BasePipeline.ts:68](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L68)
+Defined in: [packages/base/BasePipeline.ts:68](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L68)
 
 #### Parameters
 
@@ -194,7 +194,7 @@ Defined in: [packages/base/BasePipeline.ts:68](https://github.com/forkts/downflu
 
 > `protected` **buildIdentifier**(`ctx`): `string`
 
-Defined in: [packages/base/BasePipeline.ts:78](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L78)
+Defined in: [packages/base/BasePipeline.ts:78](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L78)
 
 Builds the storage identifier used as the logical output path.
 
@@ -218,7 +218,7 @@ Stable identifier for storage and progress output.
 
 > `protected` **createMappings**\<`T`\>(`elements`, `handler`): [`PipelineMapping`](../type-aliases/PipelineMapping.md)\<`T`\>
 
-Defined in: [packages/base/BasePipeline.ts:84](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L84)
+Defined in: [packages/base/BasePipeline.ts:84](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L84)
 
 #### Type Parameters
 
@@ -246,7 +246,7 @@ Defined in: [packages/base/BasePipeline.ts:84](https://github.com/forkts/downflu
 
 > `protected` **mappings**(`metadata`, `request`): [`PipelineMappings`](../type-aliases/PipelineMappings.md)
 
-Defined in: [packages/base/BasePipeline.ts:97](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L97)
+Defined in: [packages/base/BasePipeline.ts:97](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L97)
 
 Defines which metadata collections should become pipeline items.
 
@@ -276,7 +276,7 @@ Mapping definitions used by `extract`.
 
 > `protected` **extract**(`request`, `metadata`): [`PipelineExtractedItem`](../interfaces/PipelineExtractedItem.md)[]
 
-Defined in: [packages/base/BasePipeline.ts:106](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L106)
+Defined in: [packages/base/BasePipeline.ts:106](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L106)
 
 #### Parameters
 
@@ -298,7 +298,7 @@ Defined in: [packages/base/BasePipeline.ts:106](https://github.com/forkts/downfl
 
 > `protected` **filterByQuality**\<`T`, `TEnum`\>(`items?`, `options`): `T`[]
 
-Defined in: [packages/base/BasePipeline.ts:123](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L123)
+Defined in: [packages/base/BasePipeline.ts:123](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L123)
 
 Applies provider quality filtering without changing source order.
 
@@ -344,7 +344,7 @@ Sources matching the requested quality, or all sources when no quality is reques
 
 > `protected` **uniquePipelines**(`pipelines`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
 
-Defined in: [packages/base/BasePipeline.ts:137](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L137)
+Defined in: [packages/base/BasePipeline.ts:137](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L137)
 
 #### Parameters
 
@@ -362,7 +362,7 @@ Defined in: [packages/base/BasePipeline.ts:137](https://github.com/forkts/downfl
 
 > `protected` **extractedItems**\<`T`\>(`targets`, `handlers`, `elements?`): `never`[] \| `undefined`
 
-Defined in: [packages/base/BasePipeline.ts:149](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/base/BasePipeline.ts#L149)
+Defined in: [packages/base/BasePipeline.ts:149](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BasePipeline.ts#L149)
 
 #### Type Parameters
 

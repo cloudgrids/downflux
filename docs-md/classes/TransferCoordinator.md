@@ -6,7 +6,7 @@
 
 # Class: TransferCoordinator
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:16](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TransferCoordinator.ts#L16)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:16](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/coordinators/TransferCoordinator.ts#L16)
 
 Coordinates one pipeline item transfer into storage.
 
@@ -22,7 +22,7 @@ stored media, and returns download metadata to the task coordinator.
 
 > **new TransferCoordinator**(`fileManager`, `streamHttpClient`, `progressManager`): `TransferCoordinator`
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:17](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TransferCoordinator.ts#L17)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:17](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/coordinators/TransferCoordinator.ts#L17)
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:17](https://githu
 
 > `protected` `readonly` **fileManager**: [`FileManager`](FileManager.md)
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:18](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TransferCoordinator.ts#L18)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:18](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/coordinators/TransferCoordinator.ts#L18)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:18](https://githu
 
 > `protected` `readonly` **streamHttpClient**: [`StreamHttpClient`](StreamHttpClient.md)
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:19](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TransferCoordinator.ts#L19)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:19](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/coordinators/TransferCoordinator.ts#L19)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:19](https://githu
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:20](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TransferCoordinator.ts#L20)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:20](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/coordinators/TransferCoordinator.ts#L20)
 
 ## Methods
 
@@ -72,7 +72,7 @@ Defined in: [packages/core/coordinators/TransferCoordinator.ts:20](https://githu
 
 > **download**(`item`, `opts`): `Promise`\<[`DownloadResult`](../interfaces/DownloadResult.md)\>
 
-Defined in: [packages/core/coordinators/TransferCoordinator.ts:30](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/coordinators/TransferCoordinator.ts#L30)
+Defined in: [packages/core/coordinators/TransferCoordinator.ts:30](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/coordinators/TransferCoordinator.ts#L30)
 
 Downloads a single pipeline item.
 

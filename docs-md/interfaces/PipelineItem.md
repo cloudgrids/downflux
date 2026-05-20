@@ -6,7 +6,7 @@
 
 # Interface: PipelineItem
 
-Defined in: [packages/contracts/PipelineContracts.ts:11](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L11)
+Defined in: [packages/contracts/PipelineContracts.ts:11](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L11)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:11](https://github.com/fork
 
 > **downloadUrl**: `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:12](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L12)
+Defined in: [packages/contracts/PipelineContracts.ts:12](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L12)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:12](https://github.com/fork
 
 > **sourceUrl**: `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:13](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L13)
+Defined in: [packages/contracts/PipelineContracts.ts:13](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L13)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:13](https://github.com/fork
 
 > **identifier**: [`PipelineIdentifier`](PipelineIdentifier.md)
 
-Defined in: [packages/contracts/PipelineContracts.ts:14](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L14)
+Defined in: [packages/contracts/PipelineContracts.ts:14](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L14)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [packages/contracts/PipelineContracts.ts:14](https://github.com/fork
 
 > **provider**: [`ProviderType`](../enumerations/ProviderType.md)
 
-Defined in: [packages/contracts/PipelineContracts.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/contracts/PipelineContracts.ts#L15)
+Defined in: [packages/contracts/PipelineContracts.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L15)

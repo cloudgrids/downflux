@@ -6,7 +6,7 @@
 
 # Enumeration: ErrorCodes
 
-Defined in: [packages/types/ErrorTypes.ts:1](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L1)
+Defined in: [packages/types/ErrorTypes.ts:1](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L1)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [packages/types/ErrorTypes.ts:1](https://github.com/forkts/downflux/
 
 > **INVALID\_URL**: `"ERR_INVALID_URL"`
 
-Defined in: [packages/types/ErrorTypes.ts:2](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L2)
+Defined in: [packages/types/ErrorTypes.ts:2](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L2)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/types/ErrorTypes.ts:2](https://github.com/forkts/downflux/
 
 > **SERVICE\_MISMATCH**: `"ERR_SERVICE_MISMATCH"`
 
-Defined in: [packages/types/ErrorTypes.ts:3](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L3)
+Defined in: [packages/types/ErrorTypes.ts:3](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L3)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/types/ErrorTypes.ts:3](https://github.com/forkts/downflux/
 
 > **INVALID\_RANGE**: `"ERR_INVALID_RANGE"`
 
-Defined in: [packages/types/ErrorTypes.ts:4](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L4)
+Defined in: [packages/types/ErrorTypes.ts:4](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L4)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/types/ErrorTypes.ts:4](https://github.com/forkts/downflux/
 
 > **EXTRACTION\_FAILED**: `"ERR_EXTRACTION_FAILED"`
 
-Defined in: [packages/types/ErrorTypes.ts:5](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L5)
+Defined in: [packages/types/ErrorTypes.ts:5](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L5)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/types/ErrorTypes.ts:5](https://github.com/forkts/downflux/
 
 > **DOWNLOAD\_FAILED**: `"ERR_DOWNLOAD_FAILED"`
 
-Defined in: [packages/types/ErrorTypes.ts:6](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L6)
+Defined in: [packages/types/ErrorTypes.ts:6](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L6)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/types/ErrorTypes.ts:6](https://github.com/forkts/downflux/
 
 > **UNKNOWN\_ERROR**: `"ERR_UNKNOWN_ERROR"`
 
-Defined in: [packages/types/ErrorTypes.ts:7](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L7)
+Defined in: [packages/types/ErrorTypes.ts:7](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L7)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [packages/types/ErrorTypes.ts:7](https://github.com/forkts/downflux/
 
 > **UNSUPPORTED\_METHOD**: `"ERR_UNSUPPORTED_METHOD"`
 
-Defined in: [packages/types/ErrorTypes.ts:8](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L8)
+Defined in: [packages/types/ErrorTypes.ts:8](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L8)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [packages/types/ErrorTypes.ts:8](https://github.com/forkts/downflux/
 
 > **REQUIRED\_FIELD\_MISSING**: `"ERR_REQUIRED_FIELD_MISSING"`
 
-Defined in: [packages/types/ErrorTypes.ts:9](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L9)
+Defined in: [packages/types/ErrorTypes.ts:9](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L9)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [packages/types/ErrorTypes.ts:9](https://github.com/forkts/downflux/
 
 > **INVALID\_SERVICE**: `"ERR_INVALID_SERVICE"`
 
-Defined in: [packages/types/ErrorTypes.ts:10](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L10)
+Defined in: [packages/types/ErrorTypes.ts:10](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L10)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [packages/types/ErrorTypes.ts:10](https://github.com/forkts/downflux
 
 > **GENERIC\_ERROR**: `"ERR_GENERIC_ERROR"`
 
-Defined in: [packages/types/ErrorTypes.ts:11](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L11)
+Defined in: [packages/types/ErrorTypes.ts:11](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L11)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [packages/types/ErrorTypes.ts:11](https://github.com/forkts/downflux
 
 > **ENOENT**: `"ENOENT_NO_SUCH_FILE_OR_DIRECTORY"`
 
-Defined in: [packages/types/ErrorTypes.ts:12](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L12)
+Defined in: [packages/types/ErrorTypes.ts:12](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L12)
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: [packages/types/ErrorTypes.ts:12](https://github.com/forkts/downflux
 
 > **HTTP\_404**: `"HTTP_404"`
 
-Defined in: [packages/types/ErrorTypes.ts:13](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L13)
+Defined in: [packages/types/ErrorTypes.ts:13](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L13)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: [packages/types/ErrorTypes.ts:13](https://github.com/forkts/downflux
 
 > **URL\_INVALID**: `"URL_INVALID"`
 
-Defined in: [packages/types/ErrorTypes.ts:14](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L14)
+Defined in: [packages/types/ErrorTypes.ts:14](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L14)
 
 ***
 
@@ -118,4 +118,4 @@ Defined in: [packages/types/ErrorTypes.ts:14](https://github.com/forkts/downflux
 
 > **HLS\_TOKEN\_EXPIRED**: `"HLS_TOKEN_EXPIRED"`
 
-Defined in: [packages/types/ErrorTypes.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/ErrorTypes.ts#L15)
+Defined in: [packages/types/ErrorTypes.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/ErrorTypes.ts#L15)

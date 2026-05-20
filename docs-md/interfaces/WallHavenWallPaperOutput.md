@@ -6,7 +6,7 @@
 
 # Interface: WallHavenWallPaperOutput
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:69](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L69)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:69](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L69)
 
 Interface representing the output structure for WallHaven wallpaper operations.
 Contains wallpaper metadata, dimensions, uploader, and thumbnails.
@@ -17,7 +17,7 @@ Contains wallpaper metadata, dimensions, uploader, and thumbnails.
 
 > **id**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:71](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L71)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:71](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L71)
 
 Wallpaper identifier
 
@@ -27,7 +27,7 @@ Wallpaper identifier
 
 > **title**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:74](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L74)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:74](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L74)
 
 Wallpaper title
 
@@ -37,7 +37,7 @@ Wallpaper title
 
 > **description**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:77](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L77)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:77](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L77)
 
 Wallpaper description
 
@@ -47,7 +47,7 @@ Wallpaper description
 
 > **tags**: `string`[]
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:80](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L80)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:80](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L80)
 
 Wallpaper tags
 
@@ -57,7 +57,7 @@ Wallpaper tags
 
 > **views**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:83](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L83)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:83](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L83)
 
 View count
 
@@ -67,7 +67,7 @@ View count
 
 > **favorites**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:86](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L86)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:86](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L86)
 
 Favorite count
 
@@ -77,7 +77,7 @@ Favorite count
 
 > **purity**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:89](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L89)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:89](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L89)
 
 Purity label
 
@@ -87,7 +87,7 @@ Purity label
 
 > **category**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:92](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L92)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:92](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L92)
 
 Category label
 
@@ -97,7 +97,7 @@ Category label
 
 > **dimensionX**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:95](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L95)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:95](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L95)
 
 Wallpaper width in pixels
 
@@ -107,7 +107,7 @@ Wallpaper width in pixels
 
 > **dimensionY**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:98](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L98)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:98](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L98)
 
 Wallpaper height in pixels
 
@@ -117,7 +117,7 @@ Wallpaper height in pixels
 
 > **resolution**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:101](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L101)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:101](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L101)
 
 Resolution text
 
@@ -127,7 +127,7 @@ Resolution text
 
 > **ratio**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:104](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L104)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:104](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L104)
 
 Aspect ratio text
 
@@ -137,7 +137,7 @@ Aspect ratio text
 
 > **size**: `number`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:107](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L107)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:107](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L107)
 
 File size in bytes
 
@@ -147,7 +147,7 @@ File size in bytes
 
 > **uploader**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:110](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L110)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:110](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L110)
 
 Uploader username
 
@@ -157,7 +157,7 @@ Uploader username
 
 > **createdAt**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:113](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L113)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:113](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L113)
 
 Creation date text
 
@@ -167,7 +167,7 @@ Creation date text
 
 > **updatedAt**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:116](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L116)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:116](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L116)
 
 Update date text
 
@@ -177,6 +177,6 @@ Update date text
 
 > **thumbnails**: [`WallHavenThumbnail`](WallHavenThumbnail.md)[]
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:119](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/providers/wallhaven/WallHavenContracts.ts#L119)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:119](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L119)
 
 Wallpaper thumbnails

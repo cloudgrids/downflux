@@ -8,4 +8,4 @@
 
 > **VideoExtension** = [`EXTENSION_BY_CATEGORY`](EXTENSION_BY_CATEGORY.md)\<`"video"`\>
 
-Defined in: [packages/types/StorageTypes.ts:28](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/types/StorageTypes.ts#L28)
+Defined in: [packages/types/StorageTypes.ts:28](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/types/StorageTypes.ts#L28)

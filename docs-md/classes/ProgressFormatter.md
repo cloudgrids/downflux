@@ -6,7 +6,7 @@
 
 # Class: ProgressFormatter
 
-Defined in: [packages/core/progress/ProgressFormatter.ts:1](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/progress/ProgressFormatter.ts#L1)
+Defined in: [packages/core/progress/ProgressFormatter.ts:1](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/progress/ProgressFormatter.ts#L1)
 
 ## Constructors
 
@@ -24,7 +24,7 @@ Defined in: [packages/core/progress/ProgressFormatter.ts:1](https://github.com/f
 
 > `static` **createTrack**(`type`, `downloaded?`, `total?`): `string`
 
-Defined in: [packages/core/progress/ProgressFormatter.ts:29](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/progress/ProgressFormatter.ts#L29)
+Defined in: [packages/core/progress/ProgressFormatter.ts:29](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/progress/ProgressFormatter.ts#L29)
 
 #### Parameters
 

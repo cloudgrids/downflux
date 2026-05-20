@@ -6,7 +6,7 @@
 
 # Class: PipelineRegistry
 
-Defined in: [packages/core/registries/PipelineRegistry.ts:76](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/registries/PipelineRegistry.ts#L76)
+Defined in: [packages/core/registries/PipelineRegistry.ts:76](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/registries/PipelineRegistry.ts#L76)
 
 Resolves provider pipelines and builds download work items.
 
@@ -22,7 +22,7 @@ concrete items that the download coordinator can process.
 
 > **new PipelineRegistry**(`fileManager`): `PipelineRegistry`
 
-Defined in: [packages/core/registries/PipelineRegistry.ts:79](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/registries/PipelineRegistry.ts#L79)
+Defined in: [packages/core/registries/PipelineRegistry.ts:79](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/registries/PipelineRegistry.ts#L79)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [packages/core/registries/PipelineRegistry.ts:79](https://github.com
 
 > `protected` `readonly` **fileManager**: [`FileManager`](FileManager.md)
 
-Defined in: [packages/core/registries/PipelineRegistry.ts:79](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/registries/PipelineRegistry.ts#L79)
+Defined in: [packages/core/registries/PipelineRegistry.ts:79](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/registries/PipelineRegistry.ts#L79)
 
 ## Methods
 
@@ -48,7 +48,7 @@ Defined in: [packages/core/registries/PipelineRegistry.ts:79](https://github.com
 
 > **build**\<`TResult`, `TExec`\>(`metadata`, `request`): `Promise`\<[`PipelineItem`](../interfaces/PipelineItem.md)[]\>
 
-Defined in: [packages/core/registries/PipelineRegistry.ts:102](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/registries/PipelineRegistry.ts#L102)
+Defined in: [packages/core/registries/PipelineRegistry.ts:102](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/registries/PipelineRegistry.ts#L102)
 
 Builds pipeline items with the matching provider pipeline.
 

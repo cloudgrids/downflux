@@ -6,7 +6,7 @@
 
 # Class: InvalidUrlException
 
-Defined in: [packages/core/exceptions/InvalidUrlException.ts:9](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidUrlException.ts#L9)
+Defined in: [packages/core/exceptions/InvalidUrlException.ts:9](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/InvalidUrlException.ts#L9)
 
 InvalidUrlException
 
@@ -25,7 +25,7 @@ Provides a consistent error structure for URL related issues across services.
 
 > **new InvalidUrlException**(`url`, `provider`, `method?`, `context?`, `metadata?`): `InvalidUrlException`
 
-Defined in: [packages/core/exceptions/InvalidUrlException.ts:10](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidUrlException.ts#L10)
+Defined in: [packages/core/exceptions/InvalidUrlException.ts:10](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/InvalidUrlException.ts#L10)
 
 #### Parameters
 
@@ -85,7 +85,7 @@ not capture any frames.
 
 > `readonly` **errorCode**: [`ErrorCodes`](../enumerations/ErrorCodes.md)
 
-Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L18)
+Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/BaseException.ts#L18)
 
 #### Inherited from
 
@@ -97,7 +97,7 @@ Defined in: [packages/core/exceptions/BaseException.ts:18](https://github.com/fo
 
 > `readonly` **url**: `string`
 
-Defined in: [packages/core/exceptions/InvalidUrlException.ts:11](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidUrlException.ts#L11)
+Defined in: [packages/core/exceptions/InvalidUrlException.ts:11](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/InvalidUrlException.ts#L11)
 
 ***
 
@@ -105,7 +105,7 @@ Defined in: [packages/core/exceptions/InvalidUrlException.ts:11](https://github.
 
 > `readonly` **provider**: [`ProviderType`](../enumerations/ProviderType.md)
 
-Defined in: [packages/core/exceptions/InvalidUrlException.ts:12](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidUrlException.ts#L12)
+Defined in: [packages/core/exceptions/InvalidUrlException.ts:12](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/InvalidUrlException.ts#L12)
 
 ***
 
@@ -113,7 +113,7 @@ Defined in: [packages/core/exceptions/InvalidUrlException.ts:12](https://github.
 
 > `readonly` `optional` **method?**: `string`
 
-Defined in: [packages/core/exceptions/InvalidUrlException.ts:13](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidUrlException.ts#L13)
+Defined in: [packages/core/exceptions/InvalidUrlException.ts:13](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/InvalidUrlException.ts#L13)
 
 ***
 
@@ -121,7 +121,7 @@ Defined in: [packages/core/exceptions/InvalidUrlException.ts:13](https://github.
 
 > `readonly` **context**: `Record`\<`string`, `any`\> = `{}`
 
-Defined in: [packages/core/exceptions/InvalidUrlException.ts:14](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidUrlException.ts#L14)
+Defined in: [packages/core/exceptions/InvalidUrlException.ts:14](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/InvalidUrlException.ts#L14)
 
 #### Inherited from
 
@@ -133,7 +133,7 @@ Defined in: [packages/core/exceptions/InvalidUrlException.ts:14](https://github.
 
 > `readonly` `optional` **metadata?**: `any`
 
-Defined in: [packages/core/exceptions/InvalidUrlException.ts:15](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/InvalidUrlException.ts#L15)
+Defined in: [packages/core/exceptions/InvalidUrlException.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/InvalidUrlException.ts#L15)
 
 #### Inherited from
 
@@ -293,7 +293,7 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 > **toJSON**(): `object`
 
-Defined in: [packages/core/exceptions/BaseException.ts:33](https://github.com/forkts/downflux/blob/ea0716b3769041592f3a1959127c59bd812df780/packages/core/exceptions/BaseException.ts#L33)
+Defined in: [packages/core/exceptions/BaseException.ts:33](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/BaseException.ts#L33)
 
 #### Returns
 
