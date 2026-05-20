@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult, VideoSourceOutput } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { ProviderType, VideoQuality } from '@types';
 import { XGroovyOutput } from './XGroovyContracts';
 
 /**
@@ -33,7 +33,7 @@ export class XGroovyParser extends BaseParser {
 		while ((match = sourceRegex.exec(html)) !== null) {
 			videos.push({
 				url: match[1],
-				quality: match[3]
+				quality: match[3] || VideoQuality.QUnknown
 			});
 		}
 

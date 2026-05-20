@@ -12,21 +12,11 @@ import { DaNudeOutput } from './DaNudeContracts';
  */
 export class DaNudeParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<DaNudeOutput>>> {
-		const flashVars = this.getFlashVars(html);
-
+		const uploader = this.extractSpans(html, 'name')?.[0];
 		try {
 			return {
 				customFields: {
-					pageUrl: sourceUrl,
-					videos: {
-						mp4: flashVars?.videos
-					},
-					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					videoId: flashVars?.videoId,
-					previews: flashVars?.previews,
-					uploader: this.extractSpans(html, 'name')?.[0],
-					timelineScreenCount: flashVars?.timelineScreenCount,
-					timelineScreens: flashVars?.timelineScreens
+					...this.getFlashVarsVideo(html, sourceUrl, uploader)
 				} as DaNudeOutput
 			};
 		} catch (error) {

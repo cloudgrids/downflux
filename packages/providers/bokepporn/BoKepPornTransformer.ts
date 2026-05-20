@@ -18,28 +18,12 @@ export class BoKepPornTransformer extends BaseTransformer<BoKepPornExecArgs, Def
 
 		switch (request?.method) {
 			case BoKepPornMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as BoKepPornVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: BoKepPornTransformedOutput): BoKepPornVideoOutput {
-		const boKepPornMetadata = metadata.customFields as BoKepPornOutput;
-
-		return {
-			tags: metadata?.keywords,
-			title: metadata?.title,
-			description: metadata?.description,
-			pageUrl: boKepPornMetadata?.pageUrl,
-			poster: boKepPornMetadata?.poster,
-			videos: boKepPornMetadata?.videos,
-			videoId: boKepPornMetadata?.videoId,
-			previews: boKepPornMetadata?.previews,
-			timelineScreenCount: boKepPornMetadata?.timelineScreenCount,
-			timelineScreens: boKepPornMetadata?.timelineScreens,
-			uploader: boKepPornMetadata?.uploader,
-			starred: boKepPornMetadata?.starred
-		};
 	}
 }

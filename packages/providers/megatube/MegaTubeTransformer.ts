@@ -17,32 +17,12 @@ export class MegaTubeTransformer extends BaseTransformer<MegaTubeExecArgs, Defau
 
 		switch (request?.method) {
 			case MegaTubeMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as MegaTubeVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: DefaultExecutionResult<Partial<MegaTubeOutput>>): MegaTubeVideoOutput {
-		const megaTubeFields = metadata.customFields as MegaTubeOutput;
-		return {
-			pageUrl: megaTubeFields.pageUrl,
-			videos: {
-				mp4: this.uniqueVideos(megaTubeFields.videos?.mp4 ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				}),
-				hls: this.uniqueVideos(megaTubeFields.videos?.hls ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				})
-			},
-			poster: megaTubeFields.poster,
-			videoId: megaTubeFields.videoId,
-			description: metadata.description,
-			tags: metadata.keywords,
-			title: metadata.title,
-			uploader: megaTubeFields.uploader
-		};
 	}
 }

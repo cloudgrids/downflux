@@ -19,27 +19,12 @@ export class DaNudeTransformer extends BaseTransformer<DaNudeExecArgs, DefaultEx
 
 		switch (request?.method) {
 			case DaNudeMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as DaNudeVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: DaNudeTransformedOutput): DaNudeVideoOutput {
-		const daNudeMetadata = metadata.customFields as DaNudeOutput;
-
-		return {
-			tags: metadata?.keywords,
-			title: metadata?.title,
-			description: metadata?.description,
-			pageUrl: daNudeMetadata?.pageUrl,
-			poster: daNudeMetadata?.poster,
-			videos: daNudeMetadata?.videos,
-			videoId: daNudeMetadata?.videoId,
-			previews: daNudeMetadata?.previews,
-			timelineScreenCount: daNudeMetadata?.timelineScreenCount,
-			timelineScreens: daNudeMetadata?.timelineScreens,
-			uploader: daNudeMetadata?.uploader
-		};
 	}
 }

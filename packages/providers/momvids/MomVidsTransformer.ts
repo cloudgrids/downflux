@@ -18,28 +18,12 @@ export class MomVidsTransformer extends BaseTransformer<MomVidsExecArgs, Default
 
 		switch (request?.method) {
 			case MomVidsMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as MomVidsVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: MomVidsTransformedOutput): MomVidsVideoOutput {
-		const momVidsMetadata = metadata.customFields as MomVidsOutput;
-
-		return {
-			tags: metadata?.keywords,
-			title: metadata?.title,
-			description: metadata?.description,
-			pageUrl: momVidsMetadata?.pageUrl,
-			poster: momVidsMetadata?.poster,
-			videos: momVidsMetadata?.videos,
-			videoId: momVidsMetadata?.videoId,
-			previews: momVidsMetadata?.previews,
-			timelineScreenCount: momVidsMetadata?.timelineScreenCount,
-			timelineScreens: momVidsMetadata?.timelineScreens,
-			uploader: momVidsMetadata?.uploader,
-			starred: momVidsMetadata?.starred
-		};
 	}
 }

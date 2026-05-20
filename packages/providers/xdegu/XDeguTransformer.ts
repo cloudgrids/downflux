@@ -19,25 +19,12 @@ export class XDeguTransformer extends BaseTransformer<XDeguExecArgs, DefaultExec
 
 		switch (request?.method) {
 			case XDeguMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as XDeguVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: XDeguTransformedOutput): XDeguVideoOutput {
-		const xDeguMetadata = metadata.customFields as XDeguOutput;
-
-		return {
-			tags: metadata?.keywords,
-			title: metadata?.title,
-			description: metadata?.description,
-			pageUrl: xDeguMetadata?.pageUrl,
-			poster: xDeguMetadata?.poster,
-			videos: xDeguMetadata?.videos,
-			videoId: xDeguMetadata?.videoId,
-			starred: xDeguMetadata?.starred,
-			previews: xDeguMetadata?.previews
-		};
 	}
 }

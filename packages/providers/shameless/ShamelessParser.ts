@@ -12,7 +12,6 @@ import { ShamelessOutput } from './ShamelessContracts';
  */
 export class ShamelessParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<ShamelessOutput>>> {
-		const flashVars = this.getFlashVars(html);
 		const uploaderHTML =
 			this.collectByClassNames(html, 'model-subscribe__group', {
 				includeInnerHTML: true,
@@ -23,17 +22,8 @@ export class ShamelessParser extends BaseParser {
 		try {
 			return {
 				customFields: {
-					uploader: uploaderHTML.match(/^[^\n]*/)?.[0] ?? 'unknown',
-					videos: { mp4: flashVars?.videos ?? [] },
-					pageUrl: sourceUrl,
-					poster: flashVars?.previewUrl,
-					title: flashVars?.title,
-					id: flashVars?.videoId,
-					categories: flashVars?.categories,
-					tags: flashVars?.tags,
-					previews: flashVars?.previews,
-					timelineScreenCount: flashVars?.timelineScreenCount,
-					timelineScreens: flashVars?.timelineScreens
+					...this.getFlashVarsVideo(html, sourceUrl),
+					uploader: uploaderHTML.match(/^[^\n]*/)?.[0] ?? 'unknown'
 				} as ShamelessOutput
 			};
 		} catch (error) {

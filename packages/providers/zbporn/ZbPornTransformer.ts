@@ -18,28 +18,12 @@ export class ZbPornTransformer extends BaseTransformer<ZbPornExecArgs, DefaultEx
 
 		switch (request?.method) {
 			case ZbPornMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as ZbPornVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: ZbPornTransformedOutput): ZbPornVideoOutput {
-		const zbPornMetadata = metadata.customFields as ZbPornOutput;
-
-		return {
-			tags: metadata?.keywords,
-			title: metadata?.title,
-			description: metadata?.description,
-			pageUrl: zbPornMetadata?.pageUrl,
-			poster: zbPornMetadata?.poster,
-			videos: zbPornMetadata?.videos,
-			videoId: zbPornMetadata?.videoId,
-			previews: zbPornMetadata?.previews,
-			timelineScreenCount: zbPornMetadata?.timelineScreenCount,
-			timelineScreens: zbPornMetadata?.timelineScreens,
-			uploader: zbPornMetadata?.uploader,
-			starred: zbPornMetadata?.starred
-		};
 	}
 }

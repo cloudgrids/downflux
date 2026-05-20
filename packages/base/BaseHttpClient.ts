@@ -66,6 +66,15 @@ export abstract class BaseHttpClient {
 		};
 	}
 
+	protected buildHlsHeaders(opts: DownloadOptions) {
+		return {
+			'User-Agent': 'Mozilla/5.0',
+			'Accept': '*/*',
+			'Referer': opts?.referer || '',
+			'Origin': opts?.referer ? new URL(opts.referer).origin : ''
+		};
+	}
+
 	private createDispatcher(options?: HttpAgentOptions): Dispatcher {
 		if (options?.dispatcher) return options.dispatcher;
 

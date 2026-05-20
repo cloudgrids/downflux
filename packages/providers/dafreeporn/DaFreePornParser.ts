@@ -12,21 +12,10 @@ import { DaFreePornOutput } from './DaFreePornContracts';
  */
 export class DaFreePornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<DaFreePornOutput>>> {
-		const flashVars = this.getFlashVars(html);
-
 		try {
 			return {
 				customFields: {
-					pageUrl: sourceUrl,
-					videos: {
-						mp4: flashVars?.videos
-					},
-					title: flashVars?.title,
-					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					videoId: flashVars?.videoId,
-					previews: flashVars?.previews,
-					timelineScreenCount: flashVars?.timelineScreenCount,
-					timelineScreens: flashVars?.timelineScreens
+					...this.getFlashVarsVideo(html, sourceUrl)
 				} as DaFreePornOutput
 			};
 		} catch (error) {

@@ -12,17 +12,11 @@ import { SexVidOutput } from './SexVidContracts';
  */
 export class SexVidParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<SexVidOutput>>> {
-		const flashVars = this.getFlashVars(html);
-
+		const uploader = this.extractMetaPropertyContent(html, 'og:video:actor');
 		try {
 			return {
 				customFields: {
-					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					actor: this.extractMetaPropertyContent(html, 'og:video:actor'),
-					duration: parseInt(this.extractMetaPropertyContent(html, 'og:video:duration') ?? '0', 10),
-					releasedAt: this.extractMetaPropertyContent(html, 'og:video:release_date'),
-					pageUrl: sourceUrl,
-					videos: { mp4: flashVars?.videos ?? [] }
+					...this.getFlashVarsVideo(html, sourceUrl, uploader)
 				} as SexVidOutput
 			};
 		} catch (error) {

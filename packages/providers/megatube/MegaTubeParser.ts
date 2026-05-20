@@ -12,17 +12,12 @@ import { MegaTubeOutput } from './MegaTubeContracts';
  */
 export class MegaTubeParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<MegaTubeOutput>>> {
-		const flashVars = this.getFlashVars(html);
-
 		const detail = this.collectByClassNames(html, 'video_info-content', { includeInnerHTML: true })?.[0]?.text || 'unknown';
 
 		try {
 			return {
 				customFields: {
-					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					videos: { mp4: flashVars?.videos },
-					pageUrl: sourceUrl,
-					videoId: flashVars.videoId,
+					...this.getFlashVarsVideo(html, sourceUrl),
 					uploader: detail?.replace(/\s*Title:.*$/, '')?.trim() || 'Unknown'
 				} as MegaTubeOutput
 			};

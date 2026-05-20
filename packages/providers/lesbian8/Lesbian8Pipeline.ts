@@ -32,7 +32,7 @@ export class Lesbian8Pipeline extends BasePipeline<Lesbian8ExecArgs, Lesbian8Out
 				mediaSegment = `${mediaType}/${id}`;
 		}
 
-		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata.starred.join('_')), mediaSegment);
+		return this.pathBuilder.join(prefix, this.pathBuilder.spaceNormalizer(metadata?.starred?.join('_')), mediaSegment);
 	}
 
 	protected override mappings(metadata: Lesbian8Output, request: Lesbian8ExecArgs): PipelineMappings {
@@ -45,13 +45,13 @@ export class Lesbian8Pipeline extends BasePipeline<Lesbian8ExecArgs, Lesbian8Out
 				{
 					getMedia: () => MediaType.VIDEOS,
 					getUrl: (video) => video.url,
-					getId: () => metadata.id
+					getId: () => metadata.videoId
 				}
 			),
 			this.createMappings(metadata?.poster ? [metadata.poster] : undefined, {
 				getMedia: () => MediaType.VIDEO_POSTER,
 				getUrl: (poster) => poster,
-				getId: () => metadata.id
+				getId: () => metadata.videoId
 			}),
 			this.createMappings(
 				this.filterByQuality(metadata.videos?.hls, {
@@ -61,18 +61,18 @@ export class Lesbian8Pipeline extends BasePipeline<Lesbian8ExecArgs, Lesbian8Out
 				{
 					getMedia: () => MediaType.VIDEOS,
 					getUrl: (video) => video.url,
-					getId: () => metadata.id
+					getId: () => metadata.videoId
 				}
 			),
 			this.createMappings(metadata?.timelineScreens, {
 				getMedia: () => MediaType.VIDEO_TIMELINES,
 				getUrl: (screen) => screen,
-				getId: () => metadata.id
+				getId: () => metadata.videoId
 			}),
 			this.createMappings(metadata?.timelineScreens, {
 				getMedia: () => MediaType.VIDEO_TIMELINES,
 				getUrl: (screen) => screen,
-				getId: () => metadata.id
+				getId: () => metadata.videoId
 			})
 		];
 	}

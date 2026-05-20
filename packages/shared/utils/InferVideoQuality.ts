@@ -31,3 +31,28 @@ export const inferVideoQuality = (url: string, defaultQuality?: VideoQuality): V
 	// fallback ONLY if no explicit quality found
 	return defaultQuality || VideoQuality.QUnknown;
 };
+
+export const mapQualityToHeight = (q: VideoQuality): number => {
+	switch (q) {
+		case VideoQuality.Q144:
+			return 144;
+		case VideoQuality.Q240:
+			return 240;
+		case VideoQuality.Q360:
+			return 360;
+		case VideoQuality.Q480:
+			return 480;
+		case VideoQuality.Q720:
+			return 720;
+		case VideoQuality.Q1080:
+			return 1080;
+		case VideoQuality.Q1440:
+			return 1440;
+		case VideoQuality.Q2160:
+			return 2160;
+		case VideoQuality.Q4320:
+			return 4320;
+		default:
+			return 0;
+	}
+};
