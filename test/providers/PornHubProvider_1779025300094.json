@@ -1,0 +1,156 @@
+[
+  {
+    "provider": "PornHubProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.pornhub.com/view_video.php?viewkey=68aad3eadaaca"
+    ],
+    "entryUrl": "https://www.pornhub.com/view_video.php?viewkey=68aad3eadaaca",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "hasMp4": true,
+      "hasKvs": true,
+      "hlsIntegrated": true,
+      "mp4Integrated": true,
+      "requiresLogin": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "working"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "pageUrl": "https://pornhub.org/view_video.php?viewkey=68aad3eadaaca",
+      "title": "AMAZING FRENCH JUICY CHICK GETS FUCKED IN THE MORNING AND RECORDED FROM 3 DIFFERENT CAMERAS - Pornhub.com",
+      "duration": "1099",
+      "uploadDate": "8 months ago",
+      "views": "54.4K",
+      "likes": "111",
+      "poster": "https://pix-cdn77.phncdn.com/c6371/videos/202508/24/20297575/original_20297575.mp4/plain/ex:1:no/bg:0:0:0/rs:fit:640:360/vts:374?hash=YWY-_GHdLpYDmvyfwRRtrNocCHY=&validto=1779111699",
+      "description": "Watch AMAZING FRENCH JUICY CHICK GETS FUCKED IN THE MORNING AND RECORDED FROM 3 DIFFERENT CAMERAS on Pornhub.com, the best hardcore porn site. Pornhub is home to the widest selection of free Squirt sex videos full of the hottest pornstars. If you're craving brazzers milf XXX movies you'll find them here.",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://www.pornhub.org/video/get_media?s=eyJrIjoiNTRmZjIzZWVhZjNiZWU0OTczMTcxZTM0M2I2OTBiYjI0ZWRjNGNlNTI3NDYwMmQ2ZmEwNmQ0MzRkMzkzYjUyYSIsInQiOjE3NzkwMjUyOTl9&v=68aad3eadaaca&e=0&t=p",
+            "quality": "unknown"
+          }
+        ],
+        "hls": [
+          {
+            "url": "https://hv-h.phncdn.com/hls/c6251/videos/202508/24/20297575/1080P_4000K_20297575.mp4/master.m3u8?h=lZFk%2BuA%2F%2F2sLUJgS%2BWjSQLW%2F1AU%3D&e=1779028899&f=1",
+            "quality": "1080p"
+          },
+          {
+            "url": "https://hv-h.phncdn.com/hls/c6251/videos/202508/24/20297575/240P_1000K_20297575.mp4/master.m3u8?h=lOlzhsw5tpHjpy774wEutHAx1LM%3D&e=1779028899&f=1",
+            "quality": "240p"
+          },
+          {
+            "url": "https://hv-h.phncdn.com/hls/c6251/videos/202508/24/20297575/480P_2000K_20297575.mp4/master.m3u8?h=gXEMC1NyEdgFE4JO%2F6ujYQTenys%3D&e=1779028899&f=1",
+            "quality": "480p"
+          },
+          {
+            "url": "https://hv-h.phncdn.com/hls/c6251/videos/202508/24/20297575/720P_4000K_20297575.mp4/master.m3u8?h=jOmFErK2z%2B%2BxoSpnmIs6j5tlG%2Bk%3D&e=1779028899&f=1",
+            "quality": "720p"
+          }
+        ]
+      },
+      "user": "onlyfanswaldemaria",
+      "userAvatar": "https://ei.phncdn.com/(m=bLWsSeKlbyaT)(mh=DddY3INa1Pylj8rk)30c46558-960c-492f-b486-6567bc49f6ce.jpg",
+      "totalVideos": "60",
+      "totalSubscribers": "20.7K"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://www.pornhub.org/video/get_media?s=eyJrIjoiNTRmZjIzZWVhZjNiZWU0OTczMTcxZTM0M2I2OTBiYjI0ZWRjNGNlNTI3NDYwMmQ2ZmEwNmQ0MzRkMzkzYjUyYSIsInQiOjE3NzkwMjUyOTl9&v=68aad3eadaaca&e=0&t=p",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=68aad3eadaaca",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornHub/onlyfanswaldemaria/videos/68aad3eadaaca"
+        }
+      },
+      {
+        "downloadUrl": "https://pix-cdn77.phncdn.com/c6371/videos/202508/24/20297575/original_20297575.mp4/plain/ex:1:no/bg:0:0:0/rs:fit:640:360/vts:374?hash=YWY-_GHdLpYDmvyfwRRtrNocCHY=&validto=1779111699",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=68aad3eadaaca",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornHub/onlyfanswaldemaria/videos/68aad3eadaaca"
+        }
+      },
+      {
+        "downloadUrl": "https://hv-h.phncdn.com/hls/c6251/videos/202508/24/20297575/1080P_4000K_20297575.mp4/master.m3u8?h=lZFk%2BuA%2F%2F2sLUJgS%2BWjSQLW%2F1AU%3D&e=1779028899&f=1",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=68aad3eadaaca",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornHub/onlyfanswaldemaria/videos/68aad3eadaaca"
+        }
+      },
+      {
+        "downloadUrl": "https://hv-h.phncdn.com/hls/c6251/videos/202508/24/20297575/240P_1000K_20297575.mp4/master.m3u8?h=lOlzhsw5tpHjpy774wEutHAx1LM%3D&e=1779028899&f=1",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=68aad3eadaaca",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornHub/onlyfanswaldemaria/videos/68aad3eadaaca"
+        }
+      },
+      {
+        "downloadUrl": "https://hv-h.phncdn.com/hls/c6251/videos/202508/24/20297575/480P_2000K_20297575.mp4/master.m3u8?h=gXEMC1NyEdgFE4JO%2F6ujYQTenys%3D&e=1779028899&f=1",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=68aad3eadaaca",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornHub/onlyfanswaldemaria/videos/68aad3eadaaca"
+        }
+      },
+      {
+        "downloadUrl": "https://hv-h.phncdn.com/hls/c6251/videos/202508/24/20297575/720P_4000K_20297575.mp4/master.m3u8?h=jOmFErK2z%2B%2BxoSpnmIs6j5tlG%2Bk%3D&e=1779028899&f=1",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=68aad3eadaaca",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornHub/onlyfanswaldemaria/videos/68aad3eadaaca"
+        }
+      },
+      {
+        "downloadUrl": "https://ei.phncdn.com/(m=bLWsSeKlbyaT)(mh=DddY3INa1Pylj8rk)30c46558-960c-492f-b486-6567bc49f6ce.jpg",
+        "sourceUrl": "https://www.pornhub.com/view_video.php?viewkey=68aad3eadaaca",
+        "provider": "PornHubProvider",
+        "identifier": {
+          "mediaType": "avatar",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "PornHub/onlyfanswaldemaria/avatar"
+        }
+      }
+    ]
+  }
+]

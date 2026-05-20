@@ -1,0 +1,77 @@
+[
+  {
+    "provider": "MegaTubeProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.megatube.xxx/videos/186206/sex-in-the-bedroom-with-insatiable-bitch-amelia-ost/"
+    ],
+    "entryUrl": "https://www.megatube.xxx/videos/186206/sex-in-the-bedroom-with-insatiable-bitch-amelia-ost/",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "hasKvs": true,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "pageUrl": "https://www.megatube.xxx/videos/186206/sex-in-the-bedroom-with-insatiable-bitch-amelia-ost/",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://www.megatube.xxx/get_file/11/ee651bf0a9cc8355aaf13cdd729fb93f/186000/186206/186206.mp4/",
+            "quality": "unknown"
+          }
+        ]
+      },
+      "poster": "https://www.megatube.xxx/contents/videos_screenshots/186000/186206/400x225/7.jpg",
+      "videoId": "186206",
+      "description": "❤️ Juicy Amelia Ost helps her older friend update his laptop. She feels hot and goes to take a shower, but, unfortunately, she forgets to take a towel. She asks her friend to fetch her a towel. He enters the bathroom thinking she is still clothed, but she is naked. Her natural beauty strikes and even mesmerizes the dude. They move from the bathroom into the bedroom and satisfy each other’s desires to the full.",
+      "tags": [],
+      "title": "Sex in the bedroom with insatiable bitch Amelia Ost (🔥 Amelia Ost in ⚡ Old And Young)",
+      "uploader": "Old And Young"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://www.megatube.xxx/get_file/11/ee651bf0a9cc8355aaf13cdd729fb93f/186000/186206/186206.mp4/",
+        "sourceUrl": "https://www.megatube.xxx/videos/186206/sex-in-the-bedroom-with-insatiable-bitch-amelia-ost/",
+        "provider": "MegaTubeProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "MegaTube/Old_And_Young/videos/186206"
+        }
+      },
+      {
+        "downloadUrl": "https://www.megatube.xxx/contents/videos_screenshots/186000/186206/400x225/7.jpg",
+        "sourceUrl": "https://www.megatube.xxx/videos/186206/sex-in-the-bedroom-with-insatiable-bitch-amelia-ost/",
+        "provider": "MegaTubeProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "MegaTube/Old_And_Young/videos/186206/video_poster"
+        }
+      }
+    ]
+  }
+]

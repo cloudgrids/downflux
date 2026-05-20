@@ -1,0 +1,102 @@
+[
+  {
+    "provider": "HqPornProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://hqporn.xxx/casual-teen-sex-teen-chick-ariana-marie-cumshot-scene_911820.html"
+    ],
+    "entryUrl": "https://hqporn.xxx/casual-teen-sex-teen-chick-ariana-marie-cumshot-scene_911820.html",
+    "extractionTarget": "ANCHORS",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "title": "Casual Teen Sex: Teen chick Ariana Marie cumshot scene  - HQporn.xxx",
+      "poster": "https://icdn05.hqporn.xxx/44097/2204839_1_2x.webp",
+      "pageUrl": "https://hqporn.xxx/casual-teen-sex-teen-chick-ariana-marie-cumshot-scene_911820.html",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://vcdn02.hqporn.xxx/key%3DO-7%2B5DISyOR-gLINJYMR7w%2Cend%3D1779246633%2Fvideo5%2F7%2F79%2F431f26c6fda19f7da67cc039ecf9ec79.mp4",
+            "quality": "unknown"
+          }
+        ]
+      },
+      "tags": [
+        "ariana marie",
+        "big cock",
+        "skinny",
+        "teen",
+        "hd",
+        "blowjob",
+        "brunette",
+        "doggy",
+        "pussy",
+        "cumshot",
+        "shaved",
+        "girl",
+        "18",
+        "fingering",
+        "big-cock",
+        "riding",
+        "young",
+        "bed",
+        "style",
+        "kissing",
+        "cute",
+        "european",
+        "cunnilingus",
+        "old",
+        "glasses"
+      ],
+      "description": "\tWatch Casual Teen Sex: Teen chick Ariana Marie cumshot scene - Hqporn.xxx\n",
+      "uploader": "Casual Teen Sex"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://vcdn02.hqporn.xxx/key%3DO-7%2B5DISyOR-gLINJYMR7w%2Cend%3D1779246633%2Fvideo5%2F7%2F79%2F431f26c6fda19f7da67cc039ecf9ec79.mp4",
+        "sourceUrl": "https://hqporn.xxx/casual-teen-sex-teen-chick-ariana-marie-cumshot-scene_911820.html",
+        "provider": "HqPornProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "HqPorn/Casual_Teen_Sex/videos/Teen"
+        }
+      },
+      {
+        "downloadUrl": "https://icdn05.hqporn.xxx/44097/2204839_1_2x.webp",
+        "sourceUrl": "https://hqporn.xxx/casual-teen-sex-teen-chick-ariana-marie-cumshot-scene_911820.html",
+        "provider": "HqPornProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/webp",
+          "extension": "webp",
+          "key": "HqPorn/Casual_Teen_Sex/video_poster/Teen"
+        }
+      }
+    ]
+  }
+]

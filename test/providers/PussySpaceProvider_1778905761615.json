@@ -1,0 +1,123 @@
+[
+  {
+    "provider": "PussySpaceProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.pussyspace.com/vid-6055999-naughty-babe-eva-nyx-gets-fucked-by-monster-dick/"
+    ],
+    "entryUrl": "https://www.pussyspace.com/vid-6055999-naughty-babe-eva-nyx-gets-fucked-by-monster-dick/",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "requiresLogin": false,
+      "needsExternalAPI": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "videos": {
+        "mp4": [
+          {
+            "quality": "1080p",
+            "url": "https://www.pussyspace.com/reversebuffer?u64hash=ZGE4ZTdoSVlnYmxIejB5bHhZcEhmSVdRMWpZMWNQbWcrUDhoWUVOdkF3elRJelJGcHZwM3ZGUGswdUpxY21wNHhSdDNCbEE2cWl3Y05ZMVJITGJLUXJ3TjF6Q1hTR2JkMGJJSVU3S3dkS0lEd0F6N2ZmYWJackVreHlvNTl0RU9VQVZLcmdyUDkzRDlKSnlWajNHWkVpRGdOck9PbGRqRFgyY0JLL1A4d3NrPTo6dpUxzkRDZC9i3k8UP%2Bc%2F%2Bg%3D%3D&qvid.mp4"
+          },
+          {
+            "quality": "720p",
+            "url": "https://www.pussyspace.com/reversebuffer?u64hash=eE92Q2pCd1R4UHJjdnEza3VmNUFnTVZwY2Y4Zmo0NElmTnRhTkNlTVg4bW5lY214eVVNQUlpRWZacFJZeFJMUDYrUGE5bnhVUmlYVXpneVhnUjJCTmRwNXZySTVxRHhEa3lnLzhGcnlvL1V0VCtpMDBsb0g5WUxXajY2eWRJVnJ6clUrZHVBQ2greEZzM3pweldSYktBTnpjQUtFOCtncWc1T25tK2o3V0lzPTo64BCothf12UHdbLGFqOP55A%3D%3D&qvid.mp4"
+          },
+          {
+            "quality": "480p",
+            "url": "https://www.pussyspace.com/reversebuffer?u64hash=cmxxRDNjZXVSakpKZVBxbklWcFdPOEkyQzhsWFV2UWovclNQbFB1ZmtINXlmOTZndVdpcTRza1lTbkZGZ2tKNHNMTUhndHYySHhMbjBrc1Z5UU5kMWNvemxONmV1bHcrUnVXRllyQi9sNlQ2VFZ4SXc2Y1Ztd2tnRTc1aDJycS96SUlUb3dQcERnWm9ReVdremdRY1BFR1g0clZCTlhSTWJ2YmdrQXlqOFE4PTo6gpH0H6Vvf1mxR%2Bg7kc%2BI7A%3D%3D&qvid.mp4"
+          },
+          {
+            "quality": "240p",
+            "url": "https://www.pussyspace.com/reversebuffer?u64hash=alVjLzJkT1F5bXBnV3BPU0dZZDNOUXdOU1VNZ29TS3pic2FPQ0srYjVLNEc4ZnVsakdzWXZ1ODhGOTdLVDV1aDdLZThZb1RWNTAzd0Mvd2ZpNUxnckRqSlhzT0lmbnltb0NXWGFWUy9VUUh2czhIamxOMVlLMmkyanppWmJWbTQ4K1ZFQjBrUmdPakxJWklneDVjcm5qT3BhYUhXdElGR09OR3ZwYVVWRW1NPTo6v%2FxNanwU%2BZw5xM32K4gmcg%3D%3D&qvid.mp4"
+          }
+        ]
+      },
+      "token": "B2yH4NJ9cU5PONHCcHAeJkJ_XDNmalS2XcDkJ_NEzS",
+      "pageUrl": "https://www.pussyspace.com/vid-6055999-naughty-babe-eva-nyx-gets-fucked-by-monster-dick/",
+      "poster": "https://tbi.sb-cd.com/t/17007926/9b/0f/w:800/t8-enh/naughty-babe-eva-nyx-gets-fuck.jpg",
+      "description": "New Naughty Babe Eva Nyx Gets Fucked by (6 min), can be watched for free on PussySpace.com, You will see a Eva Nyx Richard Mann and passionate Spizoo Big ass movies in hd, now!",
+      "title": "Naughty Babe Eva Nyx Gets Fucked by Monster Dick HD (6 min) Big Dick Video | PussySpace",
+      "tags": []
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://tbi.sb-cd.com/t/17007926/9b/0f/w:800/t8-enh/naughty-babe-eva-nyx-gets-fuck.jpg",
+        "sourceUrl": "https://www.pussyspace.com/vid-6055999-naughty-babe-eva-nyx-gets-fucked-by-monster-dick/",
+        "provider": "PussySpaceProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "PussySpace/videos/6055999_naughty_babe_eva_nyx_gets_fucked_by_monster_dick/video_poster"
+        }
+      },
+      {
+        "downloadUrl": "https://www.pussyspace.com/reversebuffer?u64hash=ZGE4ZTdoSVlnYmxIejB5bHhZcEhmSVdRMWpZMWNQbWcrUDhoWUVOdkF3elRJelJGcHZwM3ZGUGswdUpxY21wNHhSdDNCbEE2cWl3Y05ZMVJITGJLUXJ3TjF6Q1hTR2JkMGJJSVU3S3dkS0lEd0F6N2ZmYWJackVreHlvNTl0RU9VQVZLcmdyUDkzRDlKSnlWajNHWkVpRGdOck9PbGRqRFgyY0JLL1A4d3NrPTo6dpUxzkRDZC9i3k8UP%2Bc%2F%2Bg%3D%3D&qvid.mp4",
+        "sourceUrl": "https://www.pussyspace.com/vid-6055999-naughty-babe-eva-nyx-gets-fucked-by-monster-dick/",
+        "provider": "PussySpaceProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PussySpace/videos/6055999_naughty_babe_eva_nyx_gets_fucked_by_monster_dick"
+        }
+      },
+      {
+        "downloadUrl": "https://www.pussyspace.com/reversebuffer?u64hash=eE92Q2pCd1R4UHJjdnEza3VmNUFnTVZwY2Y4Zmo0NElmTnRhTkNlTVg4bW5lY214eVVNQUlpRWZacFJZeFJMUDYrUGE5bnhVUmlYVXpneVhnUjJCTmRwNXZySTVxRHhEa3lnLzhGcnlvL1V0VCtpMDBsb0g5WUxXajY2eWRJVnJ6clUrZHVBQ2greEZzM3pweldSYktBTnpjQUtFOCtncWc1T25tK2o3V0lzPTo64BCothf12UHdbLGFqOP55A%3D%3D&qvid.mp4",
+        "sourceUrl": "https://www.pussyspace.com/vid-6055999-naughty-babe-eva-nyx-gets-fucked-by-monster-dick/",
+        "provider": "PussySpaceProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PussySpace/videos/6055999_naughty_babe_eva_nyx_gets_fucked_by_monster_dick"
+        }
+      },
+      {
+        "downloadUrl": "https://www.pussyspace.com/reversebuffer?u64hash=cmxxRDNjZXVSakpKZVBxbklWcFdPOEkyQzhsWFV2UWovclNQbFB1ZmtINXlmOTZndVdpcTRza1lTbkZGZ2tKNHNMTUhndHYySHhMbjBrc1Z5UU5kMWNvemxONmV1bHcrUnVXRllyQi9sNlQ2VFZ4SXc2Y1Ztd2tnRTc1aDJycS96SUlUb3dQcERnWm9ReVdremdRY1BFR1g0clZCTlhSTWJ2YmdrQXlqOFE4PTo6gpH0H6Vvf1mxR%2Bg7kc%2BI7A%3D%3D&qvid.mp4",
+        "sourceUrl": "https://www.pussyspace.com/vid-6055999-naughty-babe-eva-nyx-gets-fucked-by-monster-dick/",
+        "provider": "PussySpaceProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PussySpace/videos/6055999_naughty_babe_eva_nyx_gets_fucked_by_monster_dick"
+        }
+      },
+      {
+        "downloadUrl": "https://www.pussyspace.com/reversebuffer?u64hash=alVjLzJkT1F5bXBnV3BPU0dZZDNOUXdOU1VNZ29TS3pic2FPQ0srYjVLNEc4ZnVsakdzWXZ1ODhGOTdLVDV1aDdLZThZb1RWNTAzd0Mvd2ZpNUxnckRqSlhzT0lmbnltb0NXWGFWUy9VUUh2czhIamxOMVlLMmkyanppWmJWbTQ4K1ZFQjBrUmdPakxJWklneDVjcm5qT3BhYUhXdElGR09OR3ZwYVVWRW1NPTo6v%2FxNanwU%2BZw5xM32K4gmcg%3D%3D&qvid.mp4",
+        "sourceUrl": "https://www.pussyspace.com/vid-6055999-naughty-babe-eva-nyx-gets-fucked-by-monster-dick/",
+        "provider": "PussySpaceProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PussySpace/videos/6055999_naughty_babe_eva_nyx_gets_fucked_by_monster_dick"
+        }
+      }
+    ]
+  }
+]

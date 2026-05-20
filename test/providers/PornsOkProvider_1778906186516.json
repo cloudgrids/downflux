@@ -1,0 +1,98 @@
+[
+  {
+    "provider": "PornsOkProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://pornsok.com/video/victoria-rae-cumshot-and-orgasm-compilation-onlyfans.html"
+    ],
+    "entryUrl": "https://pornsok.com/video/victoria-rae-cumshot-and-orgasm-compilation-onlyfans.html",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "requiresLogin": false,
+      "hasMp4": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "title": "Victoria Rae Cumshot and Orgasm Compilation - OnlyFans",
+      "poster": "https://c.foxporn.tv/fox-images/videos/victoria-rae-cumshot-and-orgasm-compilation-onlyfans.jpg",
+      "duration": 480,
+      "pageUrl": "https://pornsok.com/video/victoria-rae-cumshot-and-orgasm-compilation-onlyfans.html",
+      "uploadedAt": "2026-03-09",
+      "totalViews": 48416,
+      "type": "video/mp4",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://pornsok.com/videofile/WyJwb3JuaHViIiwicGg2MGY0ZTZiZGMyMTk1IiwwXQ%3D%3D",
+            "quality": "unknown"
+          }
+        ]
+      },
+      "starredBy": [
+        "Victoria Rae"
+      ],
+      "categories": [
+        "Blowjob",
+        "Cumshot",
+        "Big Dick",
+        "Big Tits",
+        "Amateur",
+        "POV",
+        "Facial",
+        "Female Orgasm",
+        "Compilation",
+        "HD",
+        "big cock",
+        "oral sex",
+        "Victoria Rae"
+      ],
+      "tags": [],
+      "description": "Watch Victoria Rae Cumshot and Orgasm Compilation - OnlyFans on PornsOK, the best porn site. We have the biggest selection of pov porn videos & oral sex sex movies."
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://pornsok.com/videofile/WyJwb3JuaHViIiwicGg2MGY0ZTZiZGMyMTk1IiwwXQ%3D%3D",
+        "sourceUrl": "https://pornsok.com/video/victoria-rae-cumshot-and-orgasm-compilation-onlyfans.html",
+        "provider": "PornsOkProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "PornsOk/Victoria_Rae/videos/Victoria Rae Cumshot and Orgasm Compilation - OnlyFans"
+        }
+      },
+      {
+        "downloadUrl": "https://c.foxporn.tv/fox-images/videos/victoria-rae-cumshot-and-orgasm-compilation-onlyfans.jpg",
+        "sourceUrl": "https://pornsok.com/video/victoria-rae-cumshot-and-orgasm-compilation-onlyfans.html",
+        "provider": "PornsOkProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "PornsOk/Victoria_Rae/videos/Victoria Rae Cumshot and Orgasm Compilation - OnlyFans/video_poster"
+        }
+      }
+    ]
+  }
+]

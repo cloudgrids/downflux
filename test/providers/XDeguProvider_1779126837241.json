@@ -1,0 +1,117 @@
+[
+  {
+    "provider": "XDeguProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://xdegu.com/videos/117571/sharing-bed-with-stepmom-on-cold-winter-night-fucking/?utm_source=pb_web_media&utm_medium=pbwtraffic&utm_campaign=money&subid1=2025"
+    ],
+    "entryUrl": "https://xdegu.com/videos/117571/sharing-bed-with-stepmom-on-cold-winter-night-fucking/?utm_source=pb_web_media&utm_medium=pbwtraffic&utm_campaign=money&subid1=2025",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hasKvs": true,
+      "canDownload": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "underDevelopment": true,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested",
+      "underGeoRestriction": false
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "tags": [
+        "one on one",
+        "step mom",
+        "one on",
+        "hot mom",
+        "hot stepmom",
+        "outside",
+        "hot",
+        "bed",
+        "Eva Keks",
+        "Alex Becker"
+      ],
+      "title": "Sharing Bed With Stepmom On Cold Winter Night Fucking | xDEGU™",
+      "description": "Watch Sharing Bed With Stepmom On Cold Winter Night Fucking In Stunning HD On xDEGUacirc�cent, Your Go-To Hub For Free Porn Videos Online.",
+      "pageUrl": "https://xdegu.com/videos/117571/sharing-bed-with-stepmom-on-cold-winter-night-fucking/?utm_source=pb_web_media&utm_medium=pbwtraffic&utm_campaign=money&subid1=2025",
+      "poster": "https://xdegu.com/contents/videos_screenshots/117000/117571/preview.jpg",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://xdegu.com/get_file/1/1cdb5fa75bc47f6286f8d5ab0463d22b/117000/117571/117571_720p.mp4/",
+            "quality": "unknown"
+          }
+        ]
+      },
+      "videoId": "117571",
+      "starred": [
+        "Eva Keks",
+        "Alex Becker"
+      ],
+      "previews": [
+        "https://xdegu.com/contents/videos_screenshots/117000/117571/preview.jpg",
+        "https://xdegu.com/contents/videos_screenshots/117000/117571/preview_720p.mp4.jpg",
+        "https://xdegu.com/contents/videos_screenshots/117000/117571/preview_preview.mp4.jpg"
+      ]
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://xdegu.com/get_file/1/1cdb5fa75bc47f6286f8d5ab0463d22b/117000/117571/117571_720p.mp4/",
+        "sourceUrl": "https://xdegu.com/videos/117571/sharing-bed-with-stepmom-on-cold-winter-night-fucking/?utm_source=pb_web_media&utm_medium=pbwtraffic&utm_campaign=money&subid1=2025",
+        "provider": "XDeguProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "XDegu/Eva_Keks_Alex_Becker/videos/117571"
+        }
+      },
+      {
+        "downloadUrl": "https://xdegu.com/contents/videos_screenshots/117000/117571/preview.jpg",
+        "sourceUrl": "https://xdegu.com/videos/117571/sharing-bed-with-stepmom-on-cold-winter-night-fucking/?utm_source=pb_web_media&utm_medium=pbwtraffic&utm_campaign=money&subid1=2025",
+        "provider": "XDeguProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "XDegu/Eva_Keks_Alex_Becker/videos/117571/video_poster"
+        }
+      },
+      {
+        "downloadUrl": "https://xdegu.com/contents/videos_screenshots/117000/117571/preview_720p.mp4.jpg",
+        "sourceUrl": "https://xdegu.com/videos/117571/sharing-bed-with-stepmom-on-cold-winter-night-fucking/?utm_source=pb_web_media&utm_medium=pbwtraffic&utm_campaign=money&subid1=2025",
+        "provider": "XDeguProvider",
+        "identifier": {
+          "mediaType": "video_previews",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "XDegu/Eva_Keks_Alex_Becker/videos/117571/video_previews"
+        }
+      },
+      {
+        "downloadUrl": "https://xdegu.com/contents/videos_screenshots/117000/117571/preview_preview.mp4.jpg",
+        "sourceUrl": "https://xdegu.com/videos/117571/sharing-bed-with-stepmom-on-cold-winter-night-fucking/?utm_source=pb_web_media&utm_medium=pbwtraffic&utm_campaign=money&subid1=2025",
+        "provider": "XDeguProvider",
+        "identifier": {
+          "mediaType": "video_previews",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "XDegu/Eva_Keks_Alex_Becker/videos/117571/video_previews"
+        }
+      }
+    ]
+  }
+]

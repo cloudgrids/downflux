@@ -1,0 +1,135 @@
+[
+  {
+    "provider": "PerfectGirlsProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://perfectgirls.xxx/video/738945/"
+    ],
+    "entryUrl": "https://www.perfectgirls.xxx/video/738945/",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "hasMp4": false,
+      "hlsIntegrated": true,
+      "mp4Integrated": false,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "videoArgs": {},
+    "executionShape": "single",
+    "extracted": {
+      "title": "Delicate Kristof Cale and Lika Star at couple friendly movie - PerfectGirls.XXX",
+      "pageUrl": "https://perfectgirls.xxx/video/738945/",
+      "tags": [
+        "hd",
+        "blowjob",
+        "big cock",
+        "doggystyle",
+        "hardcore",
+        "pornstar",
+        "blonde",
+        "cumshot",
+        "fingering",
+        "massage",
+        "riding",
+        "oiled",
+        "sensual",
+        "erotica",
+        "cum on ass",
+        "fantasy",
+        "ukrainian",
+        "couple friendly",
+        "models fucking",
+        "european pornstar"
+      ],
+      "description": "Delicate Kristof Cale and Lika Star at couple friendly movie",
+      "videoId": "738945",
+      "poster": "https://static.perfectgirls.xxx/contents/videos_screenshots/738000/738945/640x360/1.jpg",
+      "videos": {
+        "hls": [
+          {
+            "url": "https://www.perfectgirls.xxx/get_file/13/4ad183fd163c16cd3b2f35d7cab8652b/738000/738945/738945_360p.mp4/",
+            "quality": "360p"
+          },
+          {
+            "url": "https://www.perfectgirls.xxx/get_file/13/f6cbecdf049ac5c99ea26d68628874a7/738000/738945/738945.mp4/",
+            "quality": "unknown"
+          },
+          {
+            "url": "https://www.perfectgirls.xxx/get_file/13/42cd28ece7a058445ef277389c0cbac4/738000/738945/738945_720p.mp4/",
+            "quality": "720p"
+          }
+        ]
+      },
+      "videoScreenshot": "https://static.perfectgirls.xxx/contents/videos_screenshots/738000/738945/640x360/1.jpg",
+      "videoCreatedAt": "2026-05-16T00:30:12+00:00",
+      "author": "Let'sDoeIt",
+      "starredBy": [
+        "Kristof Cale",
+        "Lika Star"
+      ]
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://www.perfectgirls.xxx/get_file/13/4ad183fd163c16cd3b2f35d7cab8652b/738000/738945/738945_360p.mp4/",
+        "sourceUrl": "https://www.perfectgirls.xxx/video/738945/",
+        "provider": "PerfectGirlsProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "perfectgirls/Let_sDoeIt/videos/738945"
+        }
+      },
+      {
+        "downloadUrl": "https://www.perfectgirls.xxx/get_file/13/f6cbecdf049ac5c99ea26d68628874a7/738000/738945/738945.mp4/",
+        "sourceUrl": "https://www.perfectgirls.xxx/video/738945/",
+        "provider": "PerfectGirlsProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "perfectgirls/Let_sDoeIt/videos/738945"
+        }
+      },
+      {
+        "downloadUrl": "https://www.perfectgirls.xxx/get_file/13/42cd28ece7a058445ef277389c0cbac4/738000/738945/738945_720p.mp4/",
+        "sourceUrl": "https://www.perfectgirls.xxx/video/738945/",
+        "provider": "PerfectGirlsProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "perfectgirls/Let_sDoeIt/videos/738945"
+        }
+      },
+      {
+        "downloadUrl": "https://static.perfectgirls.xxx/contents/videos_screenshots/738000/738945/640x360/1.jpg",
+        "sourceUrl": "https://www.perfectgirls.xxx/video/738945/",
+        "provider": "PerfectGirlsProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "perfectgirls/Let_sDoeIt/videos/738945/video_poster"
+        }
+      }
+    ]
+  }
+]

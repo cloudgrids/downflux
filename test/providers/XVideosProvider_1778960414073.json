@@ -1,0 +1,75 @@
+[
+  {
+    "provider": "XVideosProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.xvideos.com/video.ookcptk0aa3/cute_teen_student_gives_her_pussy_for_creampie"
+    ],
+    "entryUrl": "https://www.xvideos.com/video.ookcptk0aa3/cute_teen_student_gives_her_pussy_for_creampie",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "hasMp4": true,
+      "hlsIntegrated": true,
+      "mp4Integrated": false,
+      "hasKvs": true,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "failed"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "title": "Cute Teen Student Gives Her Pussy For Creampie - XVIDEOS.COM",
+      "duration": 748,
+      "description": "XVIDEOS Cute Teen Student Gives Her Pussy For Creampie free",
+      "videoUrl": {
+        "low": "https://mp4-cdn77.xvideos-cdn.com/d4d7f7c2-077a-462f-a353-57327089db60/3/mp4_sd.mp4?secure=itF2_Sv45rCtLGd71fcIng==,1778971213",
+        "high": "https://mp4-cdn77.xvideos-cdn.com/d4d7f7c2-077a-462f-a353-57327089db60/3/mp4_sd.mp4?secure=itF2_Sv45rCtLGd71fcIng==,1778971213",
+        "hls": "https://hls-cdn77.xvideos-cdn.com/hKwXiW_96EAKKmYgmwrnJA==,1778971213/d4d7f7c2-077a-462f-a353-57327089db60/3/hls_low.m3u8"
+      },
+      "tags": [],
+      "poster": "https://thumbs-gcore.xvideos-cdn.com/d4d7f7c2-077a-462f-a353-57327089db60/3/xv_29_t.jpg",
+      "uploader": "miradavid_official",
+      "models": [],
+      "pageUrl": "https://www.xvideos.com/video.ookcptk0aa3/cute_teen_student_gives_her_pussy_for_creampie"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://thumbs-gcore.xvideos-cdn.com/d4d7f7c2-077a-462f-a353-57327089db60/3/xv_29_t.jpg",
+        "sourceUrl": "https://www.xvideos.com/video.ookcptk0aa3/cute_teen_student_gives_her_pussy_for_creampie",
+        "provider": "XVideosProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "xvideos/miradavid_official/videos/cute_teen_student_gives_her_pussy_for_creampie"
+        }
+      },
+      {
+        "downloadUrl": "https://hls-cdn77.xvideos-cdn.com/hKwXiW_96EAKKmYgmwrnJA==,1778971213/d4d7f7c2-077a-462f-a353-57327089db60/3/hls_low.m3u8",
+        "sourceUrl": "https://www.xvideos.com/video.ookcptk0aa3/cute_teen_student_gives_her_pussy_for_creampie",
+        "provider": "XVideosProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "xvideos/miradavid_official/videos/cute_teen_student_gives_her_pussy_for_creampie"
+        }
+      }
+    ]
+  }
+]

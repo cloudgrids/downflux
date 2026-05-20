@@ -1,0 +1,79 @@
+[
+  {
+    "provider": "TubeVSexProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.tubev.sex/video/949770/take-a-chance-buddy-to-see-this"
+    ],
+    "entryUrl": "https://www.tubev.sex/video/949770/take-a-chance-buddy-to-see-this",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "height": "360",
+      "pageUrl": "https://www.tubev.sex/video/949770/take-a-chance-buddy-to-see-this",
+      "quality": "360p",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://vcdn1.tubev.sex/12/video01/04/1632018396/47060.mp4?utc=4-uviCsXshK_tgqFBjWg1A&e=1778958714",
+            "quality": "360p"
+          }
+        ]
+      },
+      "uploadedAt": "2021-07-14T02:07:25+00:00",
+      "videoId": "949770",
+      "poster": "https://cdn-pic.tubev.sex/static/thumbs/p/19/949770.jpg",
+      "width": "640",
+      "duration": "PT00H08M00S",
+      "uploader": "teamskeet",
+      "title": "Take a chance, buddy, to see this young sexy student getting pounded hard by a huge cock at university.",
+      "description": "Explore Young student pounded hard on TubeV Sex! Hot Pussy, Cute, Big cock spicy HD moments. Jump into this steamy scene now!",
+      "tags": []
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://cdn-pic.tubev.sex/static/thumbs/p/19/949770.jpg",
+        "sourceUrl": "https://www.tubev.sex/video/949770/take-a-chance-buddy-to-see-this",
+        "provider": "TubeVSexProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "TubeVSex/teamskeet/videos/949770/video_poster"
+        }
+      },
+      {
+        "downloadUrl": "https://vcdn1.tubev.sex/12/video01/04/1632018396/47060.mp4?utc=4-uviCsXshK_tgqFBjWg1A&e=1778958714",
+        "sourceUrl": "https://www.tubev.sex/video/949770/take-a-chance-buddy-to-see-this",
+        "provider": "TubeVSexProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "TubeVSex/teamskeet/videos/949770"
+        }
+      }
+    ]
+  }
+]

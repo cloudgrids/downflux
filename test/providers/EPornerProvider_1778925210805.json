@@ -1,0 +1,141 @@
+[
+  {
+    "provider": "EPornerProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.eporner.com/video-tpuMqMUvR6d/i-wanna-impregnate-her/"
+    ],
+    "entryUrl": "https://www.eporner.com/video-tpuMqMUvR6d/i-wanna-impregnate-her/",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "hasMp4": true,
+      "hlsIntegrated": true,
+      "mp4Integrated": true,
+      "needsExternalAPI": true,
+      "hasKvs": false,
+      "underGeoRestriction": true,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "working"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "videoId": "tpuMqMUvR6d",
+      "uploader": "CurvyAriel",
+      "hash": "17b35dae953bd6bed6db8a06ad7610ac",
+      "pageUrl": "https://www.eporner.com/video-tpuMqMUvR6d/i-wanna-impregnate-her/",
+      "poster": "https://static-eu-cdn.eporner.com/thumbs/static4/1/13/135/13545921/15_240.jpg",
+      "description": "Watch I Wanna Impregnate Her - Abigaiil Morris. Starring: Abigaiil Morris. Duration: 42:37, available in: 720p, 480p, 360p, 240p. Eporner is the largest hd porn source.",
+      "tags": [],
+      "title": "I Wanna Impregnate Her - Abigaiil Morris - EPORNER",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://vid-s6-n50-fr-cdn.eporner.com/v1/M5bNO16n3VTC-vj51FVhpQ/1778932410_45.112.68.109_538/13545921-720p.mp4",
+            "quality": "720p"
+          },
+          {
+            "url": "https://vid-s6-n50-fr-cdn.eporner.com/v1/M5bNO16n3VTC-vj51FVhpQ/1778932410_45.112.68.109_538/13545921-480p.mp4",
+            "quality": "480p"
+          },
+          {
+            "url": "https://vid-s3-c50-fr-cdn.eporner.com/v2/M5bNO16n3VTC-vj51FVhpQ/1778932410_45.112.68.109_538/13545921-360p.mp4",
+            "quality": "360p"
+          },
+          {
+            "url": "https://vid-s6-n50-fr-cdn.eporner.com/v1/M5bNO16n3VTC-vj51FVhpQ/1778932410_45.112.68.109_538/13545921-240p.mp4",
+            "quality": "240p"
+          }
+        ],
+        "hls": [
+          {
+            "url": "https://dash-s3-c50-fr-cdn.eporner.com/hls/v2/13545921-,240p-av1,360p-av1,480p-av1,720p-av1,.mp4.urlset/master.m3u8?hash=Sik7YBatPjXIsNE9tUAR7Q&expires=1779011610&ip=45.112.68.109",
+            "quality": "unknown"
+          }
+        ]
+      }
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://vid-s6-n50-fr-cdn.eporner.com/v1/M5bNO16n3VTC-vj51FVhpQ/1778932410_45.112.68.109_538/13545921-720p.mp4",
+        "sourceUrl": "https://www.eporner.com/video-tpuMqMUvR6d/i-wanna-impregnate-her/",
+        "provider": "EPornerProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "EPorner/CurvyAriel/videos/tpuMqMUvR6d"
+        }
+      },
+      {
+        "downloadUrl": "https://vid-s6-n50-fr-cdn.eporner.com/v1/M5bNO16n3VTC-vj51FVhpQ/1778932410_45.112.68.109_538/13545921-480p.mp4",
+        "sourceUrl": "https://www.eporner.com/video-tpuMqMUvR6d/i-wanna-impregnate-her/",
+        "provider": "EPornerProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "EPorner/CurvyAriel/videos/tpuMqMUvR6d"
+        }
+      },
+      {
+        "downloadUrl": "https://vid-s3-c50-fr-cdn.eporner.com/v2/M5bNO16n3VTC-vj51FVhpQ/1778932410_45.112.68.109_538/13545921-360p.mp4",
+        "sourceUrl": "https://www.eporner.com/video-tpuMqMUvR6d/i-wanna-impregnate-her/",
+        "provider": "EPornerProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "EPorner/CurvyAriel/videos/tpuMqMUvR6d"
+        }
+      },
+      {
+        "downloadUrl": "https://vid-s6-n50-fr-cdn.eporner.com/v1/M5bNO16n3VTC-vj51FVhpQ/1778932410_45.112.68.109_538/13545921-240p.mp4",
+        "sourceUrl": "https://www.eporner.com/video-tpuMqMUvR6d/i-wanna-impregnate-her/",
+        "provider": "EPornerProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "EPorner/CurvyAriel/videos/tpuMqMUvR6d"
+        }
+      },
+      {
+        "downloadUrl": "https://dash-s3-c50-fr-cdn.eporner.com/hls/v2/13545921-,240p-av1,360p-av1,480p-av1,720p-av1,.mp4.urlset/master.m3u8?hash=Sik7YBatPjXIsNE9tUAR7Q&expires=1779011610&ip=45.112.68.109",
+        "sourceUrl": "https://www.eporner.com/video-tpuMqMUvR6d/i-wanna-impregnate-her/",
+        "provider": "EPornerProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "application/octet-stream",
+          "extension": "bin",
+          "key": "EPorner/CurvyAriel/videos/tpuMqMUvR6d"
+        }
+      },
+      {
+        "downloadUrl": "https://static-eu-cdn.eporner.com/thumbs/static4/1/13/135/13545921/15_240.jpg",
+        "sourceUrl": "https://www.eporner.com/video-tpuMqMUvR6d/i-wanna-impregnate-her/",
+        "provider": "EPornerProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "EPorner/CurvyAriel/videos/tpuMqMUvR6d/video_poster"
+        }
+      }
+    ]
+  }
+]

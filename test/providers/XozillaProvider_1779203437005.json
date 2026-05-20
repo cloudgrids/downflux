@@ -1,0 +1,143 @@
+[
+  {
+    "provider": "XozillaProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.xozilla.xxx/videos/63473/milf-and-son-share-bed/"
+    ],
+    "entryUrl": "https://www.xozilla.xxx/videos/63473/milf-and-son-share-bed/",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hasKvs": true,
+      "canDownload": true,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "underDevelopment": true,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested",
+      "underGeoRestriction": false
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "tags": [
+        "Anal",
+        "Big Ass",
+        "Blowjob",
+        "Creampie",
+        "Fetish",
+        "Hardcore",
+        "Mature",
+        "MILF",
+        "Son",
+        "Mom",
+        "mature"
+      ],
+      "title": "Milf and son share bed / Xozilla.com ",
+      "description": "Xozilla HD Free Porn Videos and Sex Movies",
+      "pageUrl": "https://www.xozilla.xxx/videos/63473/milf-and-son-share-bed/",
+      "poster": "https://www.xozilla.xxx/contents/videos_screenshots/63000/63473/preview.jpg",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://www.xozilla.xxx/get_file/5/8117faa752b8a177cf5eab9dddd7ab8f/63000/63473/63473.mp4/",
+            "quality": "540p"
+          },
+          {
+            "url": "https://www.xozilla.xxx/get_file/5/056478ec1b46b8171da35d90de407315/63000/63473/63473hd.mp4/",
+            "quality": "720p"
+          }
+        ]
+      },
+      "videoId": "63473",
+      "previews": [
+        "https://www.xozilla.xxx/contents/videos_screenshots/63000/63473/preview.jpg",
+        "https://www.xozilla.xxx/contents/videos_screenshots/63000/63473/preview.mp4.jpg",
+        "https://www.xozilla.xxx/contents/videos_screenshots/63000/63473/previewhd.mp4.jpg",
+        "https://www.xozilla.xxx/contents/videos_screenshots/63000/63473/preview_vthumb.mp4.jpg"
+      ],
+      "timelineScreens": [],
+      "starred": []
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://www.xozilla.xxx/get_file/5/8117faa752b8a177cf5eab9dddd7ab8f/63000/63473/63473.mp4/",
+        "sourceUrl": "https://www.xozilla.xxx/videos/63473/milf-and-son-share-bed/",
+        "provider": "XozillaProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "Xozilla/Milf_and_son_share_bed___Xozilla_com_/videos/63473"
+        }
+      },
+      {
+        "downloadUrl": "https://www.xozilla.xxx/get_file/5/056478ec1b46b8171da35d90de407315/63000/63473/63473hd.mp4/",
+        "sourceUrl": "https://www.xozilla.xxx/videos/63473/milf-and-son-share-bed/",
+        "provider": "XozillaProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "Xozilla/Milf_and_son_share_bed___Xozilla_com_/videos/63473"
+        }
+      },
+      {
+        "downloadUrl": "https://www.xozilla.xxx/contents/videos_screenshots/63000/63473/preview.jpg",
+        "sourceUrl": "https://www.xozilla.xxx/videos/63473/milf-and-son-share-bed/",
+        "provider": "XozillaProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "Xozilla/Milf_and_son_share_bed___Xozilla_com_/videos/63473/video_poster"
+        }
+      },
+      {
+        "downloadUrl": "https://www.xozilla.xxx/contents/videos_screenshots/63000/63473/preview.mp4.jpg",
+        "sourceUrl": "https://www.xozilla.xxx/videos/63473/milf-and-son-share-bed/",
+        "provider": "XozillaProvider",
+        "identifier": {
+          "mediaType": "video_previews",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "Xozilla/Milf_and_son_share_bed___Xozilla_com_/videos/63473/video_previews"
+        }
+      },
+      {
+        "downloadUrl": "https://www.xozilla.xxx/contents/videos_screenshots/63000/63473/previewhd.mp4.jpg",
+        "sourceUrl": "https://www.xozilla.xxx/videos/63473/milf-and-son-share-bed/",
+        "provider": "XozillaProvider",
+        "identifier": {
+          "mediaType": "video_previews",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "Xozilla/Milf_and_son_share_bed___Xozilla_com_/videos/63473/video_previews"
+        }
+      },
+      {
+        "downloadUrl": "https://www.xozilla.xxx/contents/videos_screenshots/63000/63473/preview_vthumb.mp4.jpg",
+        "sourceUrl": "https://www.xozilla.xxx/videos/63473/milf-and-son-share-bed/",
+        "provider": "XozillaProvider",
+        "identifier": {
+          "mediaType": "video_previews",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "Xozilla/Milf_and_son_share_bed___Xozilla_com_/videos/63473/video_previews"
+        }
+      }
+    ]
+  }
+]

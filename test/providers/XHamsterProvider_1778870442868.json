@@ -1,0 +1,67 @@
+[
+  {
+    "provider": "XHamsterProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://xhamster.com/videos/step-mom-takes-off-the-condom-and-gets-multiple-bbc-creampies-xhIkh2D"
+    ],
+    "entryUrl": "https://xhamster.com/videos/step-mom-takes-off-the-condom-and-gets-multiple-bbc-creampies-xhIkh2D",
+    "extractionTarget": "ANCHORS",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "hasMp4": true,
+      "hlsIntegrated": true,
+      "mp4Integrated": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "sniSpoofing": "working"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "description": "Watch Step Mom Takes Off The Condom And Gets MULTIPLE BBC Creampies!!! porn. Starring: Kenziee Jayy. Category: MILF, Big Tits, Big Ass, Big Cock, American. Enjoy this Full Video 4K XXX sex video and more!",
+      "title": "Step Mom Takes Off The Condom And Gets MULTIPLE BBC Creampies!!!",
+      "pageUrl": "https://xhopen.com/videos/step-mom-takes-off-the-condom-and-gets-multiple-bbc-creampies-xhIkh2D",
+      "thumbnailUrl": "https://ic-vt-nss.xhpingcdn.com/a/OTdhNDYyZmE3OTVjZGJhNTUxZTc2OWRkOTgzYTNlN2Q/s(w:1280,h:720),webp/027/497/793/1280x720.17584322.jpg",
+      "username": "Kenziee Jayy",
+      "tags": [],
+      "masterPlaylistUrl": "https://video-nss.xhpingcdn.com/ItEYtOnIO8jkhCBZtnxhOA==,1778882400/media=hls4/multi=256x144:144p:,426x240:240p:,854x480:480p:,1280x720:720p:,1920x1080:1080p:,3840x2160:2160p:/027/497/793/_TPL_.av1.mp4.m3u8",
+      "defaultVideoUrl": "https://video5.xhpingcdn.com/key=NNNfGqjR4yOeAc56JTgf4Q,end=1778882400,limit=3/data=45.112.68.109-dvp/referer=force,.xhcdn.com,.xhopen.com/speed=0/027/497/793/480p.h264.mp4"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://ic-vt-nss.xhpingcdn.com/a/OTdhNDYyZmE3OTVjZGJhNTUxZTc2OWRkOTgzYTNlN2Q/s(w:1280,h:720),webp/027/497/793/1280x720.17584322.jpg",
+        "sourceUrl": "https://xhamster.com/videos/step-mom-takes-off-the-condom-and-gets-multiple-bbc-creampies-xhIkh2D",
+        "provider": "XHamsterProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "xhamster/Kenziee_Jayy/video_poster/Step_Mom_Takes_Off_The_Condom_And_Gets_MULTIPLE_BBC_Creampies___"
+        }
+      },
+      {
+        "downloadUrl": "https://video-nss.xhpingcdn.com/ItEYtOnIO8jkhCBZtnxhOA==,1778882400/media=hls4/multi=256x144:144p:,426x240:240p:,854x480:480p:,1280x720:720p:,1920x1080:1080p:,3840x2160:2160p:/027/497/793/_TPL_.av1.mp4.m3u8",
+        "sourceUrl": "https://xhamster.com/videos/step-mom-takes-off-the-condom-and-gets-multiple-bbc-creampies-xhIkh2D",
+        "provider": "XHamsterProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "xhamster/Kenziee_Jayy/videos/Step_Mom_Takes_Off_The_Condom_And_Gets_MULTIPLE_BBC_Creampies___"
+        }
+      }
+    ]
+  }
+]

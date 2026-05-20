@@ -1,0 +1,35 @@
+[
+  {
+    "provider": "CumLouderProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://www.cumlouder.com/es/videos/marta-lacroft-esta-de-vuelta/"
+    ],
+    "entryUrl": "https://www.cumlouder.com/es/videos/marta-lacroft-esta-de-vuelta/",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "failed"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": []
+  }
+]

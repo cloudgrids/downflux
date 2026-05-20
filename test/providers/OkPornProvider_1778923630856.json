@@ -1,0 +1,131 @@
+[
+  {
+    "provider": "OkPornProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://ok.porn/video/742207/"
+    ],
+    "entryUrl": "https://ok.porn/video/742207/",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "hasMp4": false,
+      "hlsIntegrated": true,
+      "mp4Integrated": false,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "videoArgs": {},
+    "executionShape": "single",
+    "extracted": {
+      "title": "Elite Lucky's orgasm trailer - OK.PORN",
+      "pageUrl": "https://ok.porn/video/742207/",
+      "tags": [
+        "hd",
+        "big tits",
+        "big ass",
+        "big cock",
+        "brunette",
+        "doggystyle",
+        "pornstar",
+        "pussy licking",
+        "female orgasm",
+        "orgasm",
+        "chubby",
+        "czech",
+        "romantic",
+        "big natural tits",
+        "massage",
+        "eating pussy",
+        "taylee wood"
+      ],
+      "description": "Elite Lucky's orgasm trailer",
+      "videoId": "742207",
+      "poster": "https://static.ok.porn/contents/videos_screenshots/742000/742207/640x360/1.jpg",
+      "videos": {
+        "hls": [
+          {
+            "url": "https://ok.porn/get_file/13/1c01b07ffea55b8bbe57cbc3735bc77b/742000/742207/742207_360p.mp4/",
+            "quality": "360p"
+          },
+          {
+            "url": "https://ok.porn/get_file/13/354486a0fd176cca2fe3b057b78911c3/742000/742207/742207.mp4/",
+            "quality": "unknown"
+          },
+          {
+            "url": "https://ok.porn/get_file/13/061581484becee136918d87b4345895d/742000/742207/742207_720p.mp4/",
+            "quality": "720p"
+          }
+        ]
+      },
+      "videoScreenshot": "https://static.ok.porn/contents/videos_screenshots/742000/742207/640x360/1.jpg",
+      "videoCreatedAt": "2026-05-16T00:19:32+00:00",
+      "author": "Sexy Hub",
+      "starredBy": [
+        "Lucky Lutro"
+      ]
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://ok.porn/get_file/13/1c01b07ffea55b8bbe57cbc3735bc77b/742000/742207/742207_360p.mp4/",
+        "sourceUrl": "https://ok.porn/video/742207/",
+        "provider": "OkPornProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "okporn/Sexy_Hub/videos/742207"
+        }
+      },
+      {
+        "downloadUrl": "https://ok.porn/get_file/13/354486a0fd176cca2fe3b057b78911c3/742000/742207/742207.mp4/",
+        "sourceUrl": "https://ok.porn/video/742207/",
+        "provider": "OkPornProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "okporn/Sexy_Hub/videos/742207"
+        }
+      },
+      {
+        "downloadUrl": "https://ok.porn/get_file/13/061581484becee136918d87b4345895d/742000/742207/742207_720p.mp4/",
+        "sourceUrl": "https://ok.porn/video/742207/",
+        "provider": "OkPornProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "okporn/Sexy_Hub/videos/742207"
+        }
+      },
+      {
+        "downloadUrl": "https://static.ok.porn/contents/videos_screenshots/742000/742207/640x360/1.jpg",
+        "sourceUrl": "https://ok.porn/video/742207/",
+        "provider": "OkPornProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "okporn/Sexy_Hub/videos/742207/video_poster"
+        }
+      }
+    ]
+  }
+]
