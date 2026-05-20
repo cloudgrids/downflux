@@ -61,4 +61,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Playwright
 node_modules/
-/test/*.ts
+/test/common.ts
+/test/test.ts
+
+
