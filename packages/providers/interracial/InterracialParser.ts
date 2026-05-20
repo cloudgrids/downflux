@@ -12,22 +12,12 @@ import { InterracialOutput } from './InterracialContracts';
  */
 export class InterracialParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<InterracialOutput>>> {
-		const flashVars = this.getFlashVars(html);
+		const uploader = this.extractAnchorTextsByHref(html, /\/members\//)?.[0];
 
 		try {
 			return {
 				customFields: {
-					pageUrl: sourceUrl,
-					videos: {
-						mp4: flashVars?.videos
-					},
-					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					videoId: flashVars?.videoId,
-					previews: flashVars?.previews,
-					starred: flashVars?.models,
-					uploader: this.extractAnchorTextsByHref(html, /\/members\//)?.[0],
-					timelineScreenCount: flashVars?.timelineScreenCount,
-					timelineScreens: flashVars?.timelineScreens
+					...this.getFlashVarsVideo(html, sourceUrl, uploader)
 				} as InterracialOutput
 			};
 		} catch (error) {

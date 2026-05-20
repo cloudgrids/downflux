@@ -17,27 +17,12 @@ export class Lesbian8Transformer extends BaseTransformer<Lesbian8ExecArgs, Defau
 
 		switch (request?.method) {
 			case Lesbian8Methods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as Lesbian8VideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: DefaultExecutionResult<Partial<Lesbian8Output>>): Lesbian8VideoOutput {
-		const lesbian8Fields = metadata.customFields as Lesbian8Output;
-		return {
-			...lesbian8Fields,
-			videos: {
-				mp4: this.uniqueVideos(lesbian8Fields.videos?.mp4 ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				}),
-				hls: this.uniqueVideos(lesbian8Fields.videos?.hls ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				})
-			},
-			description: metadata.description
-		};
 	}
 }

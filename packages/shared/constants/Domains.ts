@@ -254,37 +254,3 @@ export const DOMAINS = [
 	'ytdl',
 	'zerochan'
 ];
-
-export const VIDEO_DOMAINS = [
-	'beeg',
-	'colliderporn',
-	'cumlouder',
-	'hqporn',
-	'lesbian8',
-	'megatube',
-	'okporn',
-	'okxxx',
-	'perfectgirls',
-	'porn300',
-	'porndoe',
-	'pornhub',
-	'pornid',
-	'pornone',
-	'pornsok',
-	'pussyspace',
-	'sexvid',
-	'shameless',
-	'superporn',
-	'sxyporn',
-	'theyAreHuge',
-	'tnaflix',
-	'tubevsex',
-	'wallhaven',
-	'xgroovy',
-	'xhmaster',
-	'xnxx',
-	'xvideos',
-	'mylust',
-	'zzztube',
-	'xcafe'
-];

@@ -17,29 +17,12 @@ export class ShamelessTransformer extends BaseTransformer<ShamelessExecArgs, Def
 
 		switch (request?.method) {
 			case ShamelessMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as ShamelessVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: DefaultExecutionResult<Partial<ShamelessOutput>>): ShamelessVideoOutput {
-		const customFields = metadata.customFields as ShamelessOutput;
-		return {
-			...customFields,
-			videos: {
-				mp4: this.uniqueVideos(customFields.videos?.mp4 ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				}),
-				hls: this.uniqueVideos(customFields.videos?.hls ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				})
-			},
-			description: metadata?.description,
-			tags: metadata?.keywords,
-			title: metadata?.title
-		};
 	}
 }

@@ -17,27 +17,12 @@ export class TheyAreHugeTransformer extends BaseTransformer<TheyAreHugeExecArgs,
 
 		switch (request?.method) {
 			case TheyAreHugeMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as TheyAreHugeVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: DefaultExecutionResult<Partial<TheyAreHugeOutput>>): TheyAreHugeVideoOutput {
-		const theyAreHugeFields = metadata.customFields as TheyAreHugeOutput;
-		return {
-			...theyAreHugeFields,
-			videos: {
-				mp4: this.uniqueVideos(theyAreHugeFields.videos?.mp4 ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				}),
-				hls: this.uniqueVideos(theyAreHugeFields.videos?.hls ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				})
-			},
-			description: metadata.description
-		};
 	}
 }

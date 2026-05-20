@@ -1,10 +1,6 @@
-import { DefaultExecutionResult, DefaultVideoOutput, ExecutionArgs } from '@contracts';
+import { DefaultExecutionResult, DefaultFlashVarsVideoOutput, ExecutionArgs } from '@contracts';
 
 export interface XDeguExecArgs extends ExecutionArgs {}
 export interface XDeguOutput extends DefaultExecutionResult, XDeguVideoOutput {}
 
-export interface XDeguVideoOutput extends DefaultVideoOutput {
-	videoId: string;
-	starred: string[];
-	previews: string[];
-}
+export interface XDeguVideoOutput extends DefaultFlashVarsVideoOutput {}

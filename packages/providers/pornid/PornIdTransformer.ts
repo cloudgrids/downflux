@@ -17,29 +17,12 @@ export class PornIdTransformer extends BaseTransformer<PornIdExecArgs, DefaultEx
 
 		switch (request?.method) {
 			case PornIdMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as PornIdVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: DefaultExecutionResult<Partial<PornIdOutput>>): PornIdVideoOutput {
-		const customFields = metadata.customFields as PornIdOutput;
-		return {
-			...customFields,
-			videos: {
-				mp4: this.uniqueVideos(customFields.videos?.mp4 ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				}),
-				hls: this.uniqueVideos(customFields.videos?.hls ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				})
-			},
-			description: metadata?.description,
-			tags: metadata?.keywords,
-			title: metadata?.title
-		};
 	}
 }

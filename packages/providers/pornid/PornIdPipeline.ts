@@ -49,23 +49,23 @@ export class PornIdPipeline extends BasePipeline<PornIdExecArgs, PornIdOutput> {
 				{
 					getMedia: () => MediaType.VIDEOS,
 					getUrl: (video) => video.url,
-					getId: () => metadata.id
+					getId: () => metadata.videoId
 				}
 			),
 			this.createMappings(metadata?.poster ? [metadata.poster] : undefined, {
 				getMedia: () => MediaType.VIDEO_POSTER,
 				getUrl: (poster) => poster,
-				getId: () => metadata.id
+				getId: () => metadata.videoId
 			}),
 			this.createMappings(metadata?.previews ? metadata.previews : undefined, {
 				getMedia: () => MediaType.VIDEO_PREVIEWS,
 				getUrl: (preview) => preview,
-				getId: () => metadata.id
+				getId: () => metadata.videoId
 			}),
 			this.createMappings(metadata?.timelineScreens ? metadata.timelineScreens : undefined, {
 				getMedia: () => MediaType.VIDEO_TIMELINES,
 				getUrl: (timeline) => timeline,
-				getId: () => metadata.id
+				getId: () => metadata.videoId
 			}),
 			this.createMappings(
 				this.filterByQuality(metadata.videos?.hls, {
@@ -75,7 +75,7 @@ export class PornIdPipeline extends BasePipeline<PornIdExecArgs, PornIdOutput> {
 				{
 					getMedia: () => MediaType.VIDEOS,
 					getUrl: (video) => video.url,
-					getId: () => metadata.id
+					getId: () => metadata.videoId
 				}
 			)
 		];

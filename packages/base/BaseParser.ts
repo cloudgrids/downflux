@@ -1,4 +1,4 @@
-import { DefaultExecutionResult, FlashVarsOutput, VideoSourceOutput } from '@contracts';
+import { DefaultExecutionResult, DefaultFlashVarsVideoOutput, FlashVarsOutput, VideoSourceOutput } from '@contracts';
 import { GenericException } from '@core/exceptions';
 import { inferVideoQuality, KvsResolver } from '@shared';
 import { ProviderType, VideoQuality } from '@types';
@@ -298,6 +298,29 @@ export class BaseParser {
 		} catch {
 			throw new Error('Unable to extract image urls');
 		}
+	}
+
+	protected getFlashVarsVideo(html: string, sourceUrl: string, uploader?: string, starred?: string[]): DefaultFlashVarsVideoOutput {
+		const flashVars = this.getFlashVars(html);
+		const poster = this.extractMetaPropertyContent(html, 'og:image');
+
+		return {
+			pageUrl: sourceUrl,
+			videos: {
+				mp4: flashVars?.videos
+			},
+			poster: poster?.startsWith('http://') ? poster : `https:${poster}`,
+			videoId: flashVars?.videoId as string,
+			previews: flashVars?.previews || [],
+			uploader,
+			starred,
+			timelineScreenCount: flashVars?.timelineScreenCount,
+			timelineScreens: flashVars?.timelineScreens,
+			tags: flashVars?.tags || [],
+			title: flashVars?.title || this.extractMetaPropertyContent(html, 'og:title') || this.extractTitle(html),
+			description:
+				flashVars?.description || this.extractMetaDescription(html) || this.extractMetaPropertyContent(html, 'og:description')
+		};
 	}
 
 	protected collectElements(html: string, type: string, className?: string): Record<string, string>[] {

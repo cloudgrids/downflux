@@ -1,4 +1,4 @@
-import { DefaultExecutionResult, DownloadOptions, ExecutionArgs, VideoSourceOutput } from '@contracts';
+import { DefaultExecutionResult, DefaultFlashVarsVideoOutput, DownloadOptions, ExecutionArgs, VideoSourceOutput } from '@contracts';
 import { ProgressManager } from '@core/progress';
 import { ParserRegistry } from '@core/registries';
 import { HttpClient } from '@engine/http';
@@ -89,5 +89,25 @@ export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExecu
 	protected unique<T>(arr: T[]): T[] {
 		if (!arr || arr?.length === 0) return [];
 		return [...new Set(arr)];
+	}
+
+	protected defaultFlashVarsVideoOutput<T extends DefaultExecutionResult<DefaultFlashVarsVideoOutput>>(
+		metadata: T
+	): DefaultFlashVarsVideoOutput {
+		const customFields = metadata?.customFields as DefaultFlashVarsVideoOutput;
+		return {
+			tags: customFields.tags || metadata?.keywords,
+			title: customFields?.title || metadata?.title,
+			description: metadata?.description || customFields?.description,
+			pageUrl: customFields?.pageUrl,
+			poster: customFields?.poster,
+			videos: customFields?.videos,
+			videoId: customFields?.videoId as string,
+			previews: customFields?.previews,
+			timelineScreenCount: customFields?.timelineScreenCount,
+			timelineScreens: customFields?.timelineScreens,
+			uploader: customFields?.uploader,
+			starred: customFields?.starred
+		};
 	}
 }

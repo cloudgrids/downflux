@@ -12,23 +12,10 @@ import { Lesbian8Output } from './Lesbian8Contracts';
  */
 export class Lesbian8Parser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<Lesbian8Output>>> {
-		const flashVars = this.getFlashVars(html);
-
 		try {
 			return {
 				customFields: {
-					pageUrl: sourceUrl,
-					videos: {
-						mp4: flashVars?.videos
-					},
-					categories: flashVars?.categories,
-					tags: flashVars?.tags,
-					id: flashVars?.videoId,
-					poster: flashVars?.previewUrl,
-					starred: flashVars?.models,
-					timelineScreenCount: flashVars?.timelineScreenCount,
-					timelineScreens: flashVars?.timelineScreens,
-					title: flashVars?.title
+					...this.getFlashVarsVideo(html, sourceUrl)
 				} as Lesbian8Output
 			};
 		} catch (error) {

@@ -19,28 +19,12 @@ export class InterracialTransformer extends BaseTransformer<InterracialExecArgs,
 
 		switch (request?.method) {
 			case InterracialMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as InterracialVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: InterracialTransformedOutput): InterracialVideoOutput {
-		const interracialMetadata = metadata.customFields as InterracialOutput;
-
-		return {
-			tags: metadata?.keywords,
-			title: metadata?.title,
-			description: metadata?.description,
-			pageUrl: interracialMetadata?.pageUrl,
-			poster: interracialMetadata?.poster,
-			videos: interracialMetadata?.videos,
-			videoId: interracialMetadata?.videoId,
-			previews: interracialMetadata?.previews,
-			timelineScreenCount: interracialMetadata?.timelineScreenCount,
-			timelineScreens: interracialMetadata?.timelineScreens,
-			uploader: interracialMetadata?.uploader,
-			starred: interracialMetadata?.starred
-		};
 	}
 }

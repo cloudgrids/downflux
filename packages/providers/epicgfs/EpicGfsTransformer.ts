@@ -19,27 +19,12 @@ export class EpicGfsTransformer extends BaseTransformer<EpicGfsExecArgs, Default
 
 		switch (request?.method) {
 			case EpicGfsMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as EpicGfsVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: EpicGfsTransformedOutput): EpicGfsVideoOutput {
-		const epicGfsMetadata = metadata.customFields as EpicGfsOutput;
-
-		return {
-			tags: metadata?.keywords,
-			title: metadata?.title,
-			description: metadata?.description,
-			pageUrl: epicGfsMetadata?.pageUrl,
-			poster: epicGfsMetadata?.poster,
-			videos: epicGfsMetadata?.videos,
-			videoId: epicGfsMetadata?.videoId,
-			uploader: epicGfsMetadata?.uploader,
-			previews: epicGfsMetadata?.previews,
-			timelineScreenCount: epicGfsMetadata?.timelineScreenCount,
-			timelineScreens: epicGfsMetadata?.timelineScreens
-		};
 	}
 }

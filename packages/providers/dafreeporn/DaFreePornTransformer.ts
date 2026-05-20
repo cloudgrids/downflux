@@ -18,26 +18,12 @@ export class DaFreePornTransformer extends BaseTransformer<DaFreePornExecArgs, D
 
 		switch (request?.method) {
 			case DaFreePornMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as DaFreePornVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: DaFreePornTransformedOutput): DaFreePornVideoOutput {
-		const daFreePornMetadata = metadata.customFields as DaFreePornOutput;
-
-		return {
-			tags: metadata?.keywords,
-			title: metadata?.title,
-			description: metadata?.description,
-			pageUrl: daFreePornMetadata?.pageUrl,
-			poster: daFreePornMetadata?.poster,
-			videos: daFreePornMetadata?.videos,
-			videoId: daFreePornMetadata?.videoId,
-			previews: daFreePornMetadata?.previews,
-			timelineScreenCount: daFreePornMetadata?.timelineScreenCount,
-			timelineScreens: daFreePornMetadata?.timelineScreens
-		};
 	}
 }

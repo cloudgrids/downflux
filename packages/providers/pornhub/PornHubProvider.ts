@@ -7,8 +7,6 @@ import { PornHubChannelsQueryArgsType, PornHubMethods, PornHubVideosFormat } fro
 /**
  * @class PornHub provider.
  * Operations: operations related to PornHub.
- * Due to the dynamic nature of PornHub's webpage and potential anti-scraping measures,
- * The `getVideo` method may not work reliably for all videos or may require frequent updates to the extraction logic.
  * Please report any issues you encounter to help improve the provider.
  * Provides mp4 links
  */

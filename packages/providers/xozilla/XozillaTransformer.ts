@@ -19,28 +19,12 @@ export class XozillaTransformer extends BaseTransformer<XozillaExecArgs, Default
 
 		switch (request?.method) {
 			case XozillaMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultFlashVarsVideoOutput({
+					...metadata,
+					customFields: metadata.customFields as XozillaVideoOutput
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: XozillaTransformedOutput): XozillaVideoOutput {
-		const xozillaMetadata = metadata.customFields as XozillaOutput;
-
-		return {
-			tags: metadata?.keywords,
-			title: metadata?.title,
-			description: metadata?.description,
-			pageUrl: xozillaMetadata?.pageUrl,
-			poster: xozillaMetadata?.poster,
-			videos: xozillaMetadata?.videos,
-			videoId: xozillaMetadata?.videoId,
-			previews: xozillaMetadata?.previews,
-			timelineScreenCount: xozillaMetadata?.timelineScreenCount,
-			timelineScreens: xozillaMetadata?.timelineScreens,
-			uploader: xozillaMetadata?.uploader,
-			starred: xozillaMetadata?.starred
-		};
 	}
 }

@@ -31,6 +31,7 @@ export class BeegProvider extends BaseProvider<BeegExecArgs> {
 				canDownload: true,
 				underDevelopment: true,
 				cloudflareChallenge: false,
+				needsExternalAPI: true,
 				sniSpoofing: 'working'
 			}
 		});

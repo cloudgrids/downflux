@@ -12,18 +12,10 @@ import { XDeguOutput } from './XDeguContracts';
  */
 export class XDeguParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<XDeguOutput>>> {
-		const flashVars = this.getFlashVars(html);
 		try {
 			return {
 				customFields: {
-					pageUrl: sourceUrl,
-					videos: {
-						mp4: flashVars.videos
-					},
-					poster: this.extractMetaPropertyContent(html, 'og:image'),
-					videoId: flashVars.videoId,
-					starred: flashVars.models,
-					previews: flashVars.previews
+					...this.getFlashVarsVideo(html, sourceUrl)
 				} as XDeguOutput
 			};
 		} catch (error) {

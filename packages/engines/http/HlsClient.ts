@@ -1,6 +1,7 @@
 import { BaseHttpClient } from '@base';
 import { DownloadOptions, M3U8Variant } from '@contracts';
 import { ProgressManager } from '@core/progress';
+import { mapQualityToHeight } from '@shared';
 import { VideoQuality } from '@types';
 import { createDecipheriv } from 'crypto';
 import { once } from 'events';
@@ -43,7 +44,7 @@ export class HlsClient extends BaseHttpClient {
 		const variant = this.selectVariant(manifest, manifestUrl, opts);
 		const playlistUrl = variant ?? manifestUrl;
 
-		const requestHeaders = this.buildHeaders(opts);
+		const requestHeaders = this.buildHlsHeaders(opts);
 
 		const mediaManifest = variant && variant !== manifestUrl ? await this.fetchText(variant, timeoutMs, requestHeaders) : manifest;
 
@@ -74,47 +75,13 @@ export class HlsClient extends BaseHttpClient {
 		const variant = this.selectVariant(manifest, manifestUrl, opts);
 		const playlistUrl = variant ?? manifestUrl;
 
-		const requestHeaders = this.buildHeaders(opts);
+		const requestHeaders = this.buildHlsHeaders(opts);
 
 		const mediaManifest =
 			variant && variant !== manifestUrl ? await this.fetchText(variant, opts?.timeoutMs ?? 30_0000, requestHeaders) : manifest;
 
 		const initUrl = this.parseInitSegment(mediaManifest, playlistUrl);
 		return !!initUrl;
-	}
-
-	private buildHeaders(opts: DownloadOptions) {
-		return {
-			'User-Agent': 'Mozilla/5.0',
-			'Accept': '*/*',
-			'Referer': opts?.referer || '',
-			'Origin': opts?.referer ? new URL(opts.referer).origin : ''
-		};
-	}
-
-	private mapQualityToHeight(q: VideoQuality): number {
-		switch (q) {
-			case VideoQuality.Q144:
-				return 144;
-			case VideoQuality.Q240:
-				return 240;
-			case VideoQuality.Q360:
-				return 360;
-			case VideoQuality.Q480:
-				return 480;
-			case VideoQuality.Q720:
-				return 720;
-			case VideoQuality.Q1080:
-				return 1080;
-			case VideoQuality.Q1440:
-				return 1440;
-			case VideoQuality.Q2160:
-				return 2160;
-			case VideoQuality.Q4320:
-				return 4320;
-			default:
-				return 0;
-		}
 	}
 
 	private parseInitSegment(manifest: string, base: string): string | null {
@@ -282,7 +249,7 @@ export class HlsClient extends BaseHttpClient {
 		// If no preference, return best
 		if (!allowedVideoQuality || allowedVideoQuality === VideoQuality.QUnknown) return variants[0].url;
 
-		const targetHeight = this.mapQualityToHeight(allowedVideoQuality);
+		const targetHeight = mapQualityToHeight(allowedVideoQuality);
 
 		// 1. Best match <= target
 		const belowOrEqual = variants.find((v) => v.height <= targetHeight && v.height > 0);
