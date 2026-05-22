@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { MomVidsExecArgs, MomVidsVideoOutput } from './MomVidsContracts';
 import { MomVidsMethods } from './MomVidsTypes';
 
@@ -12,15 +12,16 @@ import { MomVidsMethods } from './MomVidsTypes';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class MomVidsProvider extends BaseProvider<MomVidsExecArgs> {
-	protected readonly provider = ProviderType.MomVids;
+	protected readonly provider = Provider.MomVids;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?momvids\.(?:com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.MomVids,
+			provider: Provider.MomVids,
 			urlPattern: /(?:www\.)?momvids\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: true,
 				canDownload: true,

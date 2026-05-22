@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { SuperPornExecArgs, SuperPornVideoOutput } from './SuperPornContracts';
 import { SuperPornMethods } from './SuperPornTypes';
 
@@ -11,15 +11,16 @@ import { SuperPornMethods } from './SuperPornTypes';
  * Provides direct mp4 links
  */
 export class SuperPornProvider extends BaseProvider<SuperPornExecArgs> {
-	protected readonly provider = ProviderType.SuperPorn;
+	protected readonly provider = Provider.SuperPorn;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?superporn\.(?:com)\/video\/([a-zA-Z0-9-]+)$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.SuperPorn,
+			provider: Provider.SuperPorn,
 			urlPattern: /^(?:www\.)?superporn\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hlsIntegrated: false,
 				mp4Integrated: true,
 				requiresLogin: false,

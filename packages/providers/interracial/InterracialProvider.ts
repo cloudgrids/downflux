@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { InterracialExecArgs, InterracialVideoOutput } from './InterracialContracts';
 import { InterracialMethods } from './InterracialTypes';
 
@@ -12,15 +12,16 @@ import { InterracialMethods } from './InterracialTypes';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class InterracialProvider extends BaseProvider<InterracialExecArgs> {
-	protected readonly provider = ProviderType.Interracial;
+	protected readonly provider = Provider.Interracial;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?interracial\.(?:com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.Interracial,
+			provider: Provider.Interracial,
 			urlPattern: /(?:www\.)?interracial\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: true,
 				canDownload: true,

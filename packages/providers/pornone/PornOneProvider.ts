@@ -1,5 +1,5 @@
 import { BaseProvider } from '@base';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { PornOneExecArgs, PornOneVideoOutput } from './PornOneContracts';
 import { PornOneMethods } from './PornOneTypes';
 
@@ -11,14 +11,15 @@ import { PornOneMethods } from './PornOneTypes';
  * Currently it does not downloads
  */
 export class PornOneProvider extends BaseProvider<PornOneExecArgs> {
-	protected readonly provider = ProviderType.PornOne;
+	protected readonly provider = Provider.PornOne;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.PornOne,
+			provider: Provider.PornOne,
 			urlPattern: /^(?:www\.)?pornone\.(?:com|net)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,

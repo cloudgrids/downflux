@@ -1,17 +1,18 @@
 import { BaseProvider } from '@base';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { {{ArgsName}} } from './{{ProviderName}}Contracts';
 
 
 export class {{ProviderName}}Provider extends BaseProvider<{{ArgsName}}> {
-	protected readonly provider = ProviderType.{{ProviderName}}
+	protected readonly provider = Provider.{{ProviderName}}
 
 	constructor(url: string) {
 		super(url,{
-			provider:ProviderType.{{ProviderName}},
+			provider:Provider.{{ProviderName}},
 			urlPattern:/implementation$/i,
 			metadata: {
 			    hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: false,
 				requiresBrowser: false,

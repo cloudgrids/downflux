@@ -1,6 +1,6 @@
 **downflux**
 
-***
+---
 
 # downflux
 
@@ -54,7 +54,7 @@
 - [ErrorCodes](enumerations/ErrorCodes.md)
 - [ExecutionType](enumerations/ExecutionType.md)
 - [ExtractionTarget](enumerations/ExtractionTarget.md)
-- [ProviderType](enumerations/ProviderType.md)
+- [Provider](enumerations/Provider.md)
 - [VideoQuality](enumerations/VideoQuality.md)
 - [VideoFormat](enumerations/VideoFormat.md)
 - [VideoCodec](enumerations/VideoCodec.md)
@@ -494,9 +494,9 @@
 - [IndexRange](type-aliases/IndexRange.md)
 - [PageRange](type-aliases/PageRange.md)
 - [Range](type-aliases/Range.md)
-- [EXTENSION\_CATEGORY](type-aliases/EXTENSION_CATEGORY.md)
+- [EXTENSION_CATEGORY](type-aliases/EXTENSION_CATEGORY.md)
 - [EXTENSION](type-aliases/EXTENSION.md)
-- [EXTENSION\_BY\_CATEGORY](type-aliases/EXTENSION_BY_CATEGORY.md)
+- [EXTENSION_BY_CATEGORY](type-aliases/EXTENSION_BY_CATEGORY.md)
 - [VideoExtension](type-aliases/VideoExtension.md)
 - [ImageExtension](type-aliases/ImageExtension.md)
 - [AudioExtension](type-aliases/AudioExtension.md)
@@ -512,11 +512,11 @@
 ## Variables
 
 - [DOMAINS](variables/DOMAINS.md)
-- [HEADER\_PRESETS](variables/HEADER_PRESETS.md)
+- [HEADER_PRESETS](variables/HEADER_PRESETS.md)
 - [cleanBase](variables/cleanBase.md)
-- [EXTENSION\_MAP](variables/EXTENSION_MAP.md)
+- [EXTENSION_MAP](variables/EXTENSION_MAP.md)
 - [EXTENSIONS](variables/EXTENSIONS.md)
-- [MIME\_TYPE](variables/MIME_TYPE.md)
+- [MIME_TYPE](variables/MIME_TYPE.md)
 
 ## Functions
 

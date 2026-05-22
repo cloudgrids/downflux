@@ -1,5 +1,5 @@
 import { BaseProvider, DefaultMethods } from '@base';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { DefaultExecArgs } from './DefaultContracts';
 
 /**
@@ -7,14 +7,15 @@ import { DefaultExecArgs } from './DefaultContracts';
  * Supports generic URL extraction.
  */
 export class DefaultProvider extends BaseProvider<DefaultExecArgs> {
-	protected readonly provider = ProviderType.Default;
+	protected readonly provider = Provider.Default;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.Default,
+			provider: Provider.Default,
 			urlPattern: /\*/i,
 			metadata: {
 				hasHls: true,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: false,
 				underGeoRestriction: false,

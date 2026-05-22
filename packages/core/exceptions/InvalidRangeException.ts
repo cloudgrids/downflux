@@ -1,4 +1,4 @@
-import { ErrorCodes, ProviderType } from '@types';
+import { ErrorCodes, Provider } from '@types';
 import { BaseException } from './BaseException';
 
 /**
@@ -10,7 +10,7 @@ export class InvalidRangeException extends BaseException {
 	constructor(
 		public readonly start: number,
 		public readonly end: number,
-		public readonly provider: ProviderType,
+		public readonly provider: Provider,
 		public readonly method?: string,
 		public readonly context: Record<string, any> = {},
 		public readonly metadata?: any
@@ -25,7 +25,7 @@ export class InvalidRangeException extends BaseException {
 		});
 	}
 
-	private static buildMessage(start: number, end: number, provider?: ProviderType, method?: string): string {
+	private static buildMessage(start: number, end: number, provider?: Provider, method?: string): string {
 		return [
 			`Invalid range encountered`,
 			`ERROR_CODE=${ErrorCodes.INVALID_RANGE}`,

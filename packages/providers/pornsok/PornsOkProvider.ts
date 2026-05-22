@@ -1,5 +1,5 @@
 import { BaseProvider } from '@base';
-import { ExtractionTarget, ProviderType, VideoQuality } from '@types';
+import { ExtractionTarget, Provider, VideoQuality } from '@types';
 import { PornsOkExecArgs, PornsOkVideoOutput } from './PornsOkContracts';
 import { PornsOkMethods } from './PornsOkTypes';
 
@@ -10,14 +10,15 @@ import { PornsOkMethods } from './PornsOkTypes';
  * Provides direct mp4 links
  */
 export class PornsOkProvider extends BaseProvider<PornsOkExecArgs> {
-	protected readonly provider = ProviderType.PornsOk;
+	protected readonly provider = Provider.PornsOk;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.PornsOk,
+			provider: Provider.PornsOk,
 			urlPattern: /^(?:www\.)?pornsok\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hlsIntegrated: false,
 				mp4Integrated: true,
 				requiresLogin: false,

@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { InterracialOutput } from './InterracialContracts';
 
 /**
@@ -21,7 +21,7 @@ export class InterracialParser extends BaseParser {
 				} as InterracialOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.Interracial, 'InterracialParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.Interracial, 'InterracialParser', { cause: error });
 		}
 	}
 }

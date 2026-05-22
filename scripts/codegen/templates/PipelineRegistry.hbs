@@ -1,5 +1,5 @@
 import { ExecutionArgs, PipelineItem } from '@contracts';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { FileManager } from '@storage';
 import { BasePipeline } from '@base';
 {{imports}}
@@ -9,14 +9,14 @@ type PipelineCtor = new (fileManager: FileManager) => BasePipeline<any, any>;
 export class PipelineRegistry {
 	constructor(protected fileManager: FileManager) {}
 
-	private readonly pipelines: Map<ProviderType, PipelineCtor> = new Map<ProviderType, PipelineCtor>([
+	private readonly pipelines: Map<Provider, PipelineCtor> = new Map<Provider, PipelineCtor>([
 		{{entries}}
 	]);
 
 	public build<TResult, TExec extends ExecutionArgs>(metadata: TResult, request: TExec): PipelineItem[] {
-		const provider = request.provider ?? ProviderType.Default;
+		const provider = request.provider ?? Provider.Default;
 
-		const PipelineClass = this.pipelines.get(provider) ?? this.pipelines.get(ProviderType.Default)!;
+		const PipelineClass = this.pipelines.get(provider) ?? this.pipelines.get(Provider.Default)!;
 
 		const pipeline = new PipelineClass(this.fileManager);
 

@@ -1,6 +1,6 @@
 [**downflux**](../README.md)
 
-***
+---
 
 [downflux](../README.md) / DownloadOptions
 
@@ -23,7 +23,7 @@ Controls request headers, retries, timeout, and referer.
 
 Defined in: [packages/contracts/DownloadContracts.ts:8](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L8)
 
-***
+---
 
 ### transcodeOptions?
 
@@ -31,7 +31,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:8](https://github.com/forkt
 
 Defined in: [packages/contracts/DownloadContracts.ts:9](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L9)
 
-***
+---
 
 ### outputType
 
@@ -39,15 +39,15 @@ Defined in: [packages/contracts/DownloadContracts.ts:9](https://github.com/forkt
 
 Defined in: [packages/contracts/DownloadContracts.ts:10](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L10)
 
-***
+---
 
 ### provider
 
-> **provider**: [`ProviderType`](../enumerations/ProviderType.md)
+> **provider**: [`Provider`](../enumerations/Provider.md)
 
 Defined in: [packages/contracts/DownloadContracts.ts:11](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L11)
 
-***
+---
 
 ### reExtract?
 
@@ -65,7 +65,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:12](https://github.com/fork
 
 `Promise`\<[`PipelineItem`](PipelineItem.md) \| `null`\>
 
-***
+---
 
 ### pipelineItem?
 
@@ -73,7 +73,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:12](https://github.com/fork
 
 Defined in: [packages/contracts/DownloadContracts.ts:13](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L13)
 
-***
+---
 
 ### noDownload?
 
@@ -81,7 +81,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:13](https://github.com/fork
 
 Defined in: [packages/contracts/DownloadContracts.ts:14](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L14)
 
-***
+---
 
 ### allowedVideoQuality?
 
@@ -89,7 +89,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:14](https://github.com/fork
 
 Defined in: [packages/contracts/DownloadContracts.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L15)
 
-***
+---
 
 ### headers?
 
@@ -103,7 +103,7 @@ Custom request headers
 
 [`HttpFetchOptions`](HttpFetchOptions.md).[`headers`](HttpFetchOptions.md#headers)
 
-***
+---
 
 ### timeoutMs?
 
@@ -117,7 +117,7 @@ Request timeout in milliseconds
 
 [`HttpFetchOptions`](HttpFetchOptions.md).[`timeoutMs`](HttpFetchOptions.md#timeoutms)
 
-***
+---
 
 ### retries?
 
@@ -131,7 +131,7 @@ Failed request retry count
 
 [`HttpFetchOptions`](HttpFetchOptions.md).[`retries`](HttpFetchOptions.md#retries)
 
-***
+---
 
 ### referer?
 
@@ -145,7 +145,7 @@ Request referer URL
 
 [`HttpFetchOptions`](HttpFetchOptions.md).[`referer`](HttpFetchOptions.md#referer)
 
-***
+---
 
 ### formData?
 
@@ -159,7 +159,7 @@ Optional FormData for POST requests
 
 [`HttpFetchOptions`](HttpFetchOptions.md).[`formData`](HttpFetchOptions.md#formdata)
 
-***
+---
 
 ### userAgent?
 
@@ -171,7 +171,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:105](https://github.com/fo
 
 [`HttpFetchOptions`](HttpFetchOptions.md).[`userAgent`](HttpFetchOptions.md#useragent)
 
-***
+---
 
 ### enableSniSpoofing?
 
@@ -183,7 +183,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:107](https://github.com/fo
 
 [`HttpFetchOptions`](HttpFetchOptions.md).[`enableSniSpoofing`](HttpFetchOptions.md#enablesnispoofing)
 
-***
+---
 
 ### proxy?
 
@@ -195,7 +195,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:109](https://github.com/fo
 
 [`HttpFetchOptions`](HttpFetchOptions.md).[`proxy`](HttpFetchOptions.md#proxy)
 
-***
+---
 
 ### dispatcher?
 

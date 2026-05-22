@@ -1,5 +1,5 @@
 import { TagKeys } from '@contracts';
-import { SniSpoofStatus } from './BaseTypes';
+import { ProviderType, SniSpoofStatus } from './BaseTypes';
 
 /**
  * Options for filtering tag output.
@@ -74,4 +74,7 @@ export interface ProviderMetadata {
 
 	/** Current support status for SNI spoofing on this provider. */
 	sniSpoofing: SniSpoofStatus;
+
+	/** The type of the provider. */
+	type: ProviderType;
 }

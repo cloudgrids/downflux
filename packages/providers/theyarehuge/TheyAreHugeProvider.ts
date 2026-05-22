@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { TheyAreHugeExecArgs, TheyAreHugeVideoOutput } from './TheyAreHugeContracts';
 import { TheyAreHugeMethods } from './TheyAreHugeTypes';
 
@@ -14,15 +14,16 @@ import { TheyAreHugeMethods } from './TheyAreHugeTypes';
  * Under development.
  */
 export class TheyAreHugeProvider extends BaseProvider<TheyAreHugeExecArgs> {
-	protected readonly provider = ProviderType.TheyAreHuge;
+	protected readonly provider = Provider.TheyAreHuge;
 	private readonly VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?theyarehuge\.(?:com)\/v\/([a-zA-Z-0-9.]+)(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.TheyAreHuge,
+			provider: Provider.TheyAreHuge,
 			urlPattern: /^(?:www\.)?theyarehuge\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,

@@ -18,7 +18,7 @@ import {
 	ExtractionTarget,
 	InferExecutionShape,
 	OutputType,
-	ProviderType,
+	Provider,
 	Range,
 	VideoCodec,
 	VideoFormat
@@ -38,7 +38,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	protected executionOptions: ExecutionOptions = {};
 	protected httpOptions: HttpFetchOptions = {};
 	protected readonly deps: CoordinatorDependencies;
-	protected readonly provider: ProviderType;
+	protected readonly provider: Provider;
 	protected readonly urlPattern: RegExp;
 	protected readonly providerMetadata: ProviderMetadata;
 
@@ -55,6 +55,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 		this.urlPattern = config.urlPattern;
 		this.providerMetadata = config.metadata ?? {
 			hasHls: true,
+			type: 'adult',
 			hasMp4: true,
 			hasKvs: false,
 			underGeoRestriction: false,
@@ -284,7 +285,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	 */
 	protected buildRequest(overrides?: Partial<TExec>): TExec {
 		return {
-			provider: overrides?.provider as ProviderType,
+			provider: overrides?.provider as Provider,
 			method: overrides?.method as string,
 			targets: overrides?.targets as string[],
 			entryUrl: this.url,
@@ -331,7 +332,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 	 * @param addTrailingSlash Whether generated target URLs should end with `/`.
 	 * @returns Provider, method, and generated target URLs.
 	 */
-	protected makeTargets(sourceUrl: string, range: Range, provider: ProviderType, method: string, addTrailingSlash: boolean = true) {
+	protected makeTargets(sourceUrl: string, range: Range, provider: Provider, method: string, addTrailingSlash: boolean = true) {
 		const isIndexRange = 'start' in range;
 
 		if (isIndexRange) {

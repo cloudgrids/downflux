@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { DaNudeExecArgs, DaNudeVideoOutput } from './DaNudeContracts';
 import { DaNudeMethods } from './DaNudeTypes';
 
@@ -12,15 +12,16 @@ import { DaNudeMethods } from './DaNudeTypes';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class DaNudeProvider extends BaseProvider<DaNudeExecArgs> {
-	protected readonly provider = ProviderType.DaNude;
+	protected readonly provider = Provider.DaNude;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?danude\.(?:com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.DaNude,
+			provider: Provider.DaNude,
 			urlPattern: /(?:www\.)?danude\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: true,
 				canDownload: true,

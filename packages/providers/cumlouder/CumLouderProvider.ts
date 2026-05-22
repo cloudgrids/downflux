@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { CumLouderExecArgs, CumLouderVideoOutput } from './CumLouderContracts';
 import { CumLouderMethods } from './CumLouderTypes';
 
@@ -12,16 +12,17 @@ import { CumLouderMethods } from './CumLouderTypes';
  * but this may be refined in the future as the provider is further developed and improved.
  */
 export class CumLouderProvider extends BaseProvider<CumLouderExecArgs> {
-	protected readonly provider = ProviderType.CumLouder;
+	protected readonly provider = Provider.CumLouder;
 	private readonly VIDEO_REGEX_PATH =
 		/^https:\/\/(?:www\.)?cumlouder\.(?:com)\/(?:(?:es|it|fr|de|nl|br)\/)?(?:porn-video|videos)\/([^./]+)\/$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.CumLouder,
+			provider: Provider.CumLouder,
 			urlPattern: /^(?:www\.)?cumlouder\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: false,
 				underGeoRestriction: false,

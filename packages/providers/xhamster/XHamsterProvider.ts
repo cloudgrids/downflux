@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { XHamsterExecArgs, XHamsterVideoOutput } from './XHamsterContracts';
 import { XHamsterMethods } from './XHamsterTypes';
 
@@ -15,15 +15,16 @@ import { XHamsterMethods } from './XHamsterTypes';
  * Provides mp4 links
  */
 export class XHamsterProvider extends BaseProvider<XHamsterExecArgs> {
-	protected readonly provider = ProviderType.XHamster;
+	protected readonly provider = Provider.XHamster;
 	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:xhamster|xhopen|xhtotal)(?:\d+)?(?:\.com|\.desi)\/videos\/[\w-]+\/?$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.XHamster,
+			provider: Provider.XHamster,
 			urlPattern: /^(?:xhamster|xhopen|xhtotal)(?:\d+)?(?:\.com|\.desi)$/i,
 			metadata: {
 				hasHls: true,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: true,
 				mp4Integrated: true,

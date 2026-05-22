@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType, VideoQuality } from '@types';
+import { Provider, VideoQuality } from '@types';
 import { XCafeOutput } from './XCafeContracts';
 
 /**
@@ -22,7 +22,7 @@ export class XCafeParser extends BaseParser {
 				} as XCafeOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.XCafe, 'XCafeParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.XCafe, 'XCafeParser', { cause: error });
 		}
 	}
 }

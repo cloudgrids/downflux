@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { TheyAreHugeOutput } from './TheyAreHugeContracts';
 
 /**
@@ -19,7 +19,7 @@ export class TheyAreHugeParser extends BaseParser {
 				} as TheyAreHugeOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.TheyAreHuge, 'TheyAreHugeParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.TheyAreHuge, 'TheyAreHugeParser', { cause: error });
 		}
 	}
 }

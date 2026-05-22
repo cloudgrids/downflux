@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { EpicGfsExecArgs, EpicGfsVideoOutput } from './EpicGfsContracts';
 import { EpicGfsMethods } from './EpicGfsTypes';
 
@@ -12,15 +12,16 @@ import { EpicGfsMethods } from './EpicGfsTypes';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class EpicGfsProvider extends BaseProvider<EpicGfsExecArgs> {
-	protected readonly provider = ProviderType.EpicGfs;
+	protected readonly provider = Provider.EpicGfs;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?epicgfs\.(?:com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.EpicGfs,
+			provider: Provider.EpicGfs,
 			urlPattern: /(?:www\.)?epicgfs\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: true,
 				canDownload: true,

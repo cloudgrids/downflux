@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { ZzzTubeOutput } from './ZzzTubeContracts';
 
 /**
@@ -25,7 +25,7 @@ export class ZzzTubeParser extends BaseParser {
 				} as ZzzTubeOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.ZzzTube, 'ZzzTubeParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.ZzzTube, 'ZzzTubeParser', { cause: error });
 		}
 	}
 }

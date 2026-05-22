@@ -4,7 +4,7 @@ import { ProgressManager } from '@core/progress';
 import { StrategyRegistry, TransformerRegistry } from '@core/registries';
 import { CliManager } from '@core/ui';
 import { HttpClient, StreamHttpClient } from '@engine/http';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 
 export interface CoordinatorDependencies {
 	httpClient: HttpClient;
@@ -27,7 +27,7 @@ export interface RegistryCoordinator {
 }
 
 export interface ProviderConfig {
-	provider: ProviderType;
+	provider: Provider;
 	urlPattern: RegExp;
 	metadata: ProviderMetadata;
 }

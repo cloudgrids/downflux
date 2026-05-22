@@ -11,6 +11,7 @@
     "providerMetadata": {
       "hasHls": false,
       "hasMp4": true,
+			"type": "adult",
       "hlsIntegrated": false,
       "mp4Integrated": true,
       "hasKvs": true,

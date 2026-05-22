@@ -5,7 +5,7 @@ import {
 	ExecutionType,
 	ExtractionTarget,
 	OutputType,
-	ProviderType,
+	Provider,
 	ShapeOutput,
 	VideoCodec,
 	VideoFormat,
@@ -18,7 +18,7 @@ import { JobProgressEvent } from './ProgressContracts';
 import { DirectoryOutputOptions, TranscodeOptions } from './StorageContracts';
 
 export interface ExecutionArgs<S extends ExecutionShape = ExecutionShape> extends ExecutionOptions {
-	provider: ProviderType;
+	provider: Provider;
 	method: string;
 	entryUrl: string;
 	targets: string[];

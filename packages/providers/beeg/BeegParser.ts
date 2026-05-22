@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { BeegOutput } from './BeegContracts';
 
 /**
@@ -22,7 +22,7 @@ export class BeegParser extends BaseParser {
 				} as BeegOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.Beeg, 'BeegParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.Beeg, 'BeegParser', { cause: error });
 		}
 	}
 }

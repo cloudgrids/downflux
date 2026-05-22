@@ -10,6 +10,7 @@
     "executionType": "SEQUENTIAL",
     "providerMetadata": {
       "hasHls": false,
+			"type": "adult",
       "hasMp4": true,
       "hlsIntegrated": false,
       "mp4Integrated": true,

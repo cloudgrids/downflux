@@ -1,13 +1,13 @@
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { BaseParser } from '@base';
 {{imports}}
 
 export class ParserRegistry {
-	private static readonly parsers: Record<ProviderType, BaseParser> = {
+	private static readonly parsers: Record<Provider, BaseParser> = {
 		{{entries}}
 	};
 
-	public static getParser(providerType: ProviderType): BaseParser {
-		return this.parsers[providerType] ?? this.parsers[ProviderType.Default];
+	public static getParser(Provider: Provider): BaseParser {
+		return this.parsers[Provider] ?? this.parsers[Provider.Default];
 	}
 }

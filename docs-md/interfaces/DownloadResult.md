@@ -1,6 +1,6 @@
 [**downflux**](../README.md)
 
-***
+---
 
 [downflux](../README.md) / DownloadResult
 
@@ -21,7 +21,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:24](https://github.com/fork
 
 Requested download URL
 
-***
+---
 
 ### buffer
 
@@ -31,7 +31,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:27](https://github.com/fork
 
 Downloaded file buffer
 
-***
+---
 
 ### finalUrl
 
@@ -41,7 +41,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:30](https://github.com/fork
 
 Final URL after redirects
 
-***
+---
 
 ### extendedFilename
 
@@ -51,7 +51,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:33](https://github.com/fork
 
 Generated filename with metadata
 
-***
+---
 
 ### originalFilename
 
@@ -61,7 +61,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:36](https://github.com/fork
 
 Original filename from URL or response
 
-***
+---
 
 ### extension
 
@@ -71,7 +71,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:39](https://github.com/fork
 
 File extension
 
-***
+---
 
 ### mimeType
 
@@ -81,7 +81,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:42](https://github.com/fork
 
 MIME type
 
-***
+---
 
 ### sizeBytes
 
@@ -91,7 +91,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:45](https://github.com/fork
 
 File size in bytes
 
-***
+---
 
 ### path
 
@@ -101,11 +101,11 @@ Defined in: [packages/contracts/DownloadContracts.ts:48](https://github.com/fork
 
 Path of the downloaded file
 
-***
+---
 
 ### provider
 
-> **provider**: [`ProviderType`](../enumerations/ProviderType.md)
+> **provider**: [`Provider`](../enumerations/Provider.md)
 
 Defined in: [packages/contracts/DownloadContracts.ts:51](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L51)
 

@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { PussySpaceExecArgs, PussySpaceVideoOutput } from './PussySpaceContracts';
 import { PussySpaceMethods } from './PussySpaceTypes';
 
@@ -12,15 +12,16 @@ import { PussySpaceMethods } from './PussySpaceTypes';
  * Supports integrated MP4 downloads. Requires an external API. Marked under development so callers should expect provider-specific changes.
  */
 export class PussySpaceProvider extends BaseProvider<PussySpaceExecArgs> {
-	protected readonly provider = ProviderType.PussySpace;
+	protected readonly provider = Provider.PussySpace;
 	private readonly VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?pussyspace\.(?:com)\/vid-([a-z-0-9A-Z-.]+)\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.PussySpace,
+			provider: Provider.PussySpace,
 			urlPattern: /^(?:www\.)?pussyspace\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,

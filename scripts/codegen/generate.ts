@@ -134,7 +134,7 @@ const resolvePath = (service: any, type: string) => {
 const parserPath = 'packages/core/registries/ParserRegistry.ts';
 let parserReg = read(parserPath);
 const pEntries = registry.services
-	.map((s) => `\t\t[ProviderType.${s.name}]: ${s.parser ? resolvePath(s, 'Parser') : 'async () => BaseParser'}`)
+	.map((s) => `\t\t[Provider.${s.name}]: ${s.parser ? resolvePath(s, 'Parser') : 'async () => BaseParser'}`)
 	.sort((a, b) => a.localeCompare(b))
 	.join(',\n');
 parserReg = patchRegion(parserReg, 'entries', pEntries);
@@ -144,7 +144,7 @@ write(parserPath, parserReg);
 const pipelinePath = 'packages/core/registries/PipelineRegistry.ts';
 let pipelineReg = read(pipelinePath);
 const pipEntries = registry.services
-	.map((s) => `\t\t[ProviderType.${s.name}]: ${s.pipeline ? resolvePath(s, 'Pipeline') : 'async () => BasePipeline'}`)
+	.map((s) => `\t\t[Provider.${s.name}]: ${s.pipeline ? resolvePath(s, 'Pipeline') : 'async () => BasePipeline'}`)
 	.sort((a, b) => a.localeCompare(b))
 	.join(',\n');
 pipelineReg = patchRegion(pipelineReg, 'entries', pipEntries);
@@ -154,7 +154,7 @@ write(pipelinePath, pipelineReg);
 const strategyPath = 'packages/core/registries/StrategyRegistry.ts';
 let strategyReg = read(strategyPath);
 const sEntries = registry.services
-	.map((s) => `\t\t[ProviderType.${s.name}]: ${s.strategy ? resolvePath(s, 'Strategy') : 'async () => BaseStrategy'}`)
+	.map((s) => `\t\t[Provider.${s.name}]: ${s.strategy ? resolvePath(s, 'Strategy') : 'async () => BaseStrategy'}`)
 	.sort((a, b) => a.localeCompare(b))
 	.join(',\n');
 strategyReg = patchRegion(strategyReg, 'entries', sEntries);
@@ -164,7 +164,7 @@ write(strategyPath, strategyReg);
 const transPath = 'packages/core/registries/TransformerRegistry.ts';
 let transReg = read(transPath);
 const tEntries = registry.services
-	.map((s) => `\t\t[ProviderType.${s.name}]: ${s.transformer ? resolvePath(s, 'Transformer') : 'async () => BaseTransformer'}`)
+	.map((s) => `\t\t[Provider.${s.name}]: ${s.transformer ? resolvePath(s, 'Transformer') : 'async () => BaseTransformer'}`)
 	.sort((a, b) => a.localeCompare(b))
 	.join(',\n');
 transReg = patchRegion(transReg, 'entries', tEntries);

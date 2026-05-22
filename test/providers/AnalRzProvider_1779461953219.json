@@ -9,6 +9,7 @@
     "extractionTarget": "SOURCES",
     "executionType": "SEQUENTIAL",
     "providerMetadata": {
+			"type": "adult",
       "hasHls": false,
       "hasMp4": true,
       "hasKvs": false,

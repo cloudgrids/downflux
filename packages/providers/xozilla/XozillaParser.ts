@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { XozillaOutput } from './XozillaContracts';
 
 /**
@@ -21,7 +21,7 @@ export class XozillaParser extends BaseParser {
 				} as XozillaOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.Xozilla, 'XozillaParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.Xozilla, 'XozillaParser', { cause: error });
 		}
 	}
 }

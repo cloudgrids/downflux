@@ -1,6 +1,6 @@
 [**downflux**](../README.md)
 
-***
+---
 
 [downflux](../README.md) / StrategyRegistry
 
@@ -48,7 +48,7 @@ Creates a strategy instance for the requested provider.
 
 ##### provider
 
-[`ProviderType`](../enumerations/ProviderType.md)
+[`Provider`](../enumerations/Provider.md)
 
 Provider whose transport strategy should be loaded.
 

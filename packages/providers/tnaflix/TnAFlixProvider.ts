@@ -1,5 +1,5 @@
 import { BaseProvider } from '@base';
-import { ExtractionTarget, ProviderType, VideoQuality } from '@types';
+import { ExtractionTarget, Provider, VideoQuality } from '@types';
 import { TnAFlixExecArgs, TnAFlixVideoOutput } from './TnAFlixContracts';
 import { TnAFlixMethods } from './TnAFlixTypes';
 
@@ -13,14 +13,15 @@ import { TnAFlixMethods } from './TnAFlixTypes';
  * Provides mp4 links
  */
 export class TnAFlixProvider extends BaseProvider<TnAFlixExecArgs> {
-	protected readonly provider = ProviderType.TnAFlix;
+	protected readonly provider = Provider.TnAFlix;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.TnAFlix,
+			provider: Provider.TnAFlix,
 			urlPattern: /^(?:www\.)?tnaflix\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,

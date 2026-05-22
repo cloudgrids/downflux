@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { ColliderPornExecArgs, ColliderPornVideoOutput } from './ColliderPornContracts';
 import { ColliderPornMethods } from './ColliderPornTypes';
 
@@ -11,7 +11,7 @@ import { ColliderPornMethods } from './ColliderPornTypes';
  * It might not work as to collect the metadata and video URLs, as the embedded video data can be geo-restricted or removed by the original host.
  */
 export class ColliderPornProvider extends BaseProvider<ColliderPornExecArgs> {
-	protected readonly provider = ProviderType.ColliderPorn;
+	protected readonly provider = Provider.ColliderPorn;
 	private readonly SUPPORTED_LANGUAGES =
 		'en|af|ar|az|be|bg|ca|cs|da|de|el|es|et|fa|ai|fr|he|hi|hr|hu|id|it|ja|ko|lv|nl|no|pl|pt|ro|ru|sk|sl|sq|sr|sv|tl|tr|uk|vi|zh-CN|zh-TW';
 
@@ -21,10 +21,11 @@ export class ColliderPornProvider extends BaseProvider<ColliderPornExecArgs> {
 	);
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.ColliderPorn,
+			provider: Provider.ColliderPorn,
 			urlPattern: /^(?:www\.)?colliderporn\.(?:com)$/i,
 			metadata: {
 				hasHls: true,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: true,
 				mp4Integrated: true,

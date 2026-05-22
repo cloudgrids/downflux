@@ -48,6 +48,8 @@
 
 			"@provider/beeg": ["./packages/providers/beeg/index.ts"],
 
+			"@provider/blackporn": ["./packages/providers/blackporn/index.ts"],
+
 			"@provider/bokepporn": ["./packages/providers/bokepporn/index.ts"],
 
 			"@provider/colliderporn": ["./packages/providers/colliderporn/index.ts"],

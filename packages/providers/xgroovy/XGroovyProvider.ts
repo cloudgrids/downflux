@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { XGroovyExecArgs, XGroovyVideoOutput } from './XGroovyContracts';
 import { XGroovyMethods } from './XGroovyTypes';
 
@@ -11,16 +11,17 @@ import { XGroovyMethods } from './XGroovyTypes';
  * Provides direct mp4 links
  */
 export class XGroovyProvider extends BaseProvider<XGroovyExecArgs> {
-	protected readonly provider = ProviderType.XGroovy;
+	protected readonly provider = Provider.XGroovy;
 	private readonly VIDEO_PATH_REGEX =
 		/^https:\/\/(?:(?:www|rt|pt|de|es|pl|it|cn|jp|ko|nl)?\.)?xgroovy(?:-fr)?\.(?:com)\/videos\/(\d+)\/([-a-zA-z0-9]+)\/$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.XGroovy,
+			provider: Provider.XGroovy,
 			urlPattern: /^(?:(?:www|rt|pt|de|es|pl|it|cn|jp|ko|nl)?\.)?xgroovy(?:-fr)?\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,

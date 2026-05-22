@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { ShamelessExecArgs, ShamelessVideoOutput } from './ShamelessContracts';
 import { ShamelessMethods } from './ShamelessTypes';
 
@@ -12,15 +12,16 @@ import { ShamelessMethods } from './ShamelessTypes';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class ShamelessProvider extends BaseProvider<ShamelessExecArgs> {
-	protected readonly provider = ProviderType.Shameless;
+	protected readonly provider = Provider.Shameless;
 	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?shameless\.(?:com)\/videos\/[^/]+\/$/;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.Shameless,
+			provider: Provider.Shameless,
 			urlPattern: /^(?:www\.)?shameless\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,

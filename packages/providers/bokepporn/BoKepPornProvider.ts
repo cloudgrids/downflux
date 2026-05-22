@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { BoKepPornExecArgs, BoKepPornVideoOutput } from './BoKepPornContracts';
 import { BoKepPornMethods } from './BoKepPornTypes';
 
@@ -12,15 +12,16 @@ import { BoKepPornMethods } from './BoKepPornTypes';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class BoKepPornProvider extends BaseProvider<BoKepPornExecArgs> {
-	protected readonly provider = ProviderType.BoKepPorn;
+	protected readonly provider = Provider.BoKepPorn;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?bokep\.(?:porn)\/videos\/\d+\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.BoKepPorn,
+			provider: Provider.BoKepPorn,
 			urlPattern: /(?:www\.)?bokep\.(?:porn)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: true,
 				canDownload: true,

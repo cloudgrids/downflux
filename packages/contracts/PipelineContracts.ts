@@ -1,4 +1,4 @@
-import { AllowedExtension, MediaType, ProviderType } from '@types';
+import { AllowedExtension, MediaType, Provider } from '@types';
 import { DownloadResult } from './DownloadContracts';
 
 export interface PipelineIdentifier {
@@ -12,7 +12,7 @@ export interface PipelineItem {
 	downloadUrl: string;
 	sourceUrl: string;
 	identifier: PipelineIdentifier;
-	provider: ProviderType;
+	provider: Provider;
 }
 
 export interface PipelineHook {

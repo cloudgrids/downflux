@@ -1,6 +1,6 @@
 [**downflux**](../README.md)
 
-***
+---
 
 [downflux](../README.md) / BeegProvider
 
@@ -48,7 +48,7 @@ Defined in: [packages/base/BaseProvider.ts:38](https://github.com/forkts/downflu
 
 [`BaseProvider`](BaseProvider.md).[`executionOptions`](BaseProvider.md#executionoptions)
 
-***
+---
 
 ### httpOptions
 
@@ -60,7 +60,7 @@ Defined in: [packages/base/BaseProvider.ts:39](https://github.com/forkts/downflu
 
 [`DefaultProvider`](DefaultProvider.md).[`httpOptions`](DefaultProvider.md#httpoptions)
 
-***
+---
 
 ### deps
 
@@ -72,7 +72,7 @@ Defined in: [packages/base/BaseProvider.ts:40](https://github.com/forkts/downflu
 
 [`DefaultProvider`](DefaultProvider.md).[`deps`](DefaultProvider.md#deps)
 
-***
+---
 
 ### urlPattern
 
@@ -84,7 +84,7 @@ Defined in: [packages/base/BaseProvider.ts:42](https://github.com/forkts/downflu
 
 [`DefaultProvider`](DefaultProvider.md).[`urlPattern`](DefaultProvider.md#urlpattern)
 
-***
+---
 
 ### providerMetadata
 
@@ -96,7 +96,7 @@ Defined in: [packages/base/BaseProvider.ts:43](https://github.com/forkts/downflu
 
 [`DefaultProvider`](DefaultProvider.md).[`providerMetadata`](DefaultProvider.md#providermetadata)
 
-***
+---
 
 ### url
 
@@ -108,7 +108,7 @@ Defined in: [packages/base/BaseProvider.ts:51](https://github.com/forkts/downflu
 
 [`BaseProvider`](BaseProvider.md).[`url`](BaseProvider.md#url)
 
-***
+---
 
 ### config
 
@@ -120,11 +120,11 @@ Defined in: [packages/base/BaseProvider.ts:52](https://github.com/forkts/downflu
 
 [`DefaultProvider`](DefaultProvider.md).[`config`](DefaultProvider.md#config)
 
-***
+---
 
 ### provider
 
-> `protected` `readonly` **provider**: [`Beeg`](../enumerations/ProviderType.md#beeg) = `ProviderType.Beeg`
+> `protected` `readonly` **provider**: [`Beeg`](../enumerations/Provider.md#beeg) = `Provider.Beeg`
 
 Defined in: [packages/providers/beeg/BeegProvider.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/beeg/BeegProvider.ts#L15)
 
@@ -152,7 +152,7 @@ Provider capabilities, integration status, and access restrictions.
 
 [`DefaultProvider`](DefaultProvider.md).[`metadata`](DefaultProvider.md#metadata)
 
-***
+---
 
 ### ORIGIN
 
@@ -170,13 +170,13 @@ Defined in: [packages/base/BaseProvider.ts:79](https://github.com/forkts/downflu
 
 [`BaseProvider`](BaseProvider.md).[`ORIGIN`](BaseProvider.md#origin)
 
-***
+---
 
-### HOST\_NAME
+### HOST_NAME
 
 #### Get Signature
 
-> **get** `protected` **HOST\_NAME**(): `string`
+> **get** `protected` **HOST_NAME**(): `string`
 
 Defined in: [packages/base/BaseProvider.ts:83](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L83)
 
@@ -204,7 +204,7 @@ Defined in: [packages/base/BaseProvider.ts:87](https://github.com/forkts/downflu
 
 [`BaseProvider`](BaseProvider.md).[`isValidHostName`](BaseProvider.md#isvalidhostname)
 
-***
+---
 
 ### setHeaders()
 
@@ -230,7 +230,7 @@ Request header map
 
 [`BaseProvider`](BaseProvider.md).[`setHeaders`](BaseProvider.md#setheaders)
 
-***
+---
 
 ### setTimeout()
 
@@ -256,7 +256,7 @@ Timeout in milliseconds
 
 [`BaseProvider`](BaseProvider.md).[`setTimeout`](BaseProvider.md#settimeout)
 
-***
+---
 
 ### setRetries()
 
@@ -282,7 +282,7 @@ Retry attempt count
 
 [`BaseProvider`](BaseProvider.md).[`setRetries`](BaseProvider.md#setretries)
 
-***
+---
 
 ### setTransformOutput()
 
@@ -308,7 +308,7 @@ Default is true, which applies the default transformation. Set to false to retur
 
 [`BaseProvider`](BaseProvider.md).[`setTransformOutput`](BaseProvider.md#settransformoutput)
 
-***
+---
 
 ### setHttpOptions()
 
@@ -334,7 +334,7 @@ HTTP options to merge
 
 [`BaseProvider`](BaseProvider.md).[`setHttpOptions`](BaseProvider.md#sethttpoptions)
 
-***
+---
 
 ### setNoDownload()
 
@@ -366,7 +366,7 @@ false - set to true to skip the download phase and only perform extraction (usef
 
 [`BaseProvider`](BaseProvider.md).[`setNoDownload`](BaseProvider.md#setnodownload)
 
-***
+---
 
 ### setTranscodeOptions()
 
@@ -395,7 +395,7 @@ Make sure your OS can handle it
 
 [`BaseProvider`](BaseProvider.md).[`setTranscodeOptions`](BaseProvider.md#settranscodeoptions)
 
-***
+---
 
 ### setPreferredFormat()
 
@@ -421,7 +421,7 @@ Video format (hls or mp4)
 
 [`BaseProvider`](BaseProvider.md).[`setPreferredFormat`](BaseProvider.md#setpreferredformat)
 
-***
+---
 
 ### setPreferredCodec()
 
@@ -452,7 +452,7 @@ If the provider supports it, it will try to download the video in the specified 
 
 [`BaseProvider`](BaseProvider.md).[`setPreferredCodec`](BaseProvider.md#setpreferredcodec)
 
-***
+---
 
 ### setJobOptions()
 
@@ -478,7 +478,7 @@ Job options to merge
 
 [`BaseProvider`](BaseProvider.md).[`setJobOptions`](BaseProvider.md#setjoboptions)
 
-***
+---
 
 ### setAgentOptions()
 
@@ -504,7 +504,7 @@ HTTP agent options to merge
 
 [`BaseProvider`](BaseProvider.md).[`setAgentOptions`](BaseProvider.md#setagentoptions)
 
-***
+---
 
 ### setMaxDownloads()
 
@@ -530,7 +530,7 @@ Download limit
 
 [`BaseProvider`](BaseProvider.md).[`setMaxDownloads`](BaseProvider.md#setmaxdownloads)
 
-***
+---
 
 ### setAllowedExtensions()
 
@@ -556,7 +556,7 @@ File extensions such as `jpg` or `png`
 
 [`BaseProvider`](BaseProvider.md).[`setAllowedExtensions`](BaseProvider.md#setallowedextensions)
 
-***
+---
 
 ### onProgress()
 
@@ -582,7 +582,7 @@ Progress event callback
 
 [`BaseProvider`](BaseProvider.md).[`onProgress`](BaseProvider.md#onprogress)
 
-***
+---
 
 ### setProgressLogging()
 
@@ -607,14 +607,14 @@ Console logging flag
 #### Default Value
 
 ```ts
-true
+true;
 ```
 
 #### Inherited from
 
 [`BaseProvider`](BaseProvider.md).[`setProgressLogging`](BaseProvider.md#setprogresslogging)
 
-***
+---
 
 ### setOutput()
 
@@ -645,14 +645,14 @@ Directory output configuration
 #### Default Value
 
 ```ts
-OutputType.JSON
+OutputType.JSON;
 ```
 
 #### Inherited from
 
 [`BaseProvider`](BaseProvider.md).[`setOutput`](BaseProvider.md#setoutput)
 
-***
+---
 
 ### setExecutionType()
 
@@ -682,17 +682,17 @@ This feature is still `experimental` and not yet implemented for all providers.
 It allows you to specify the execution strategy for the extraction and download process.
 
 - `SEQUENTIAL`: Extracts and downloads items one by one.
- This is the most compatible mode and should work with all providers, but can be slower for large batches.
+  This is the most compatible mode and should work with all providers, but can be slower for large batches.
 
 - `PARALLEL`: Extracts all items first, then downloads them in parallel.
- This can be faster for large batches, but may cause issues with providers that have strict rate limits or anti-bot measures.
-Use with caution and test thoroughly if you choose to use `PARALLEL` execution.
+  This can be faster for large batches, but may cause issues with providers that have strict rate limits or anti-bot measures.
+  Use with caution and test thoroughly if you choose to use `PARALLEL` execution.
 
 #### Inherited from
 
 [`BaseProvider`](BaseProvider.md).[`setExecutionType`](BaseProvider.md#setexecutiontype)
 
-***
+---
 
 ### buildRequest()
 
@@ -720,7 +720,7 @@ A typed request containing provider metadata and execution options.
 
 [`BaseProvider`](BaseProvider.md).[`buildRequest`](BaseProvider.md#buildrequest)
 
-***
+---
 
 ### execute()
 
@@ -754,7 +754,7 @@ Extracted output in the shape requested by the provider method.
 
 [`BaseProvider`](BaseProvider.md).[`execute`](BaseProvider.md#execute)
 
-***
+---
 
 ### makeTargets()
 
@@ -780,7 +780,7 @@ Page or start/end range to expand.
 
 ##### provider
 
-[`ProviderType`](../enumerations/ProviderType.md)
+[`Provider`](../enumerations/Provider.md)
 
 Provider used for range validation errors.
 
@@ -808,7 +808,7 @@ Provider, method, and generated target URLs.
 
 ##### provider
 
-> **provider**: [`ProviderType`](../enumerations/ProviderType.md)
+> **provider**: [`Provider`](../enumerations/Provider.md)
 
 ##### method
 
@@ -818,7 +818,7 @@ Provider, method, and generated target URLs.
 
 [`BaseProvider`](BaseProvider.md).[`makeTargets`](BaseProvider.md#maketargets)
 
-***
+---
 
 ### getVideo()
 

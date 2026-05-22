@@ -1,6 +1,6 @@
 [**downflux**](../README.md)
 
-***
+---
 
 [downflux](../README.md) / ParserRegistry
 
@@ -40,7 +40,7 @@ Creates a parser instance for the requested provider.
 
 ##### provider
 
-[`ProviderType`](../enumerations/ProviderType.md)
+[`Provider`](../enumerations/Provider.md)
 
 Provider whose parser should be loaded.
 

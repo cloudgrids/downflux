@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { XHamsterOutput } from './XHamsterContracts';
 
 /**
@@ -24,7 +24,7 @@ export class XHamsterParser extends BaseParser {
 				}
 			};
 		} catch {
-			throw new GenericException('Unable to parse some fields', ProviderType.XHamster, 'XHamsterProvider');
+			throw new GenericException('Unable to parse some fields', Provider.XHamster, 'XHamsterProvider');
 		}
 	}
 }

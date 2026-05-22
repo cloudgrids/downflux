@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { Lesbian8ExecArgs, Lesbian8VideoOutput } from './Lesbian8Contracts';
 import { Lesbian8Methods } from './Lesbian8Types';
 
@@ -12,15 +12,16 @@ import { Lesbian8Methods } from './Lesbian8Types';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class Lesbian8Provider extends BaseProvider<Lesbian8ExecArgs> {
-	protected readonly provider = ProviderType.Lesbian8;
+	protected readonly provider = Provider.Lesbian8;
 	private VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?lesbian8\.(?:com|net)\/videos\/[\d]+\/[^/]+\/(?:\?.*?)?$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.Lesbian8,
+			provider: Provider.Lesbian8,
 			urlPattern: /(?:www\.)?lesbian8\.(?:com|net)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: true,
 				hlsIntegrated: false,

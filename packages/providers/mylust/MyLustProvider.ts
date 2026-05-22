@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { MyLustExecArgs, MyLustVideoOutput } from './MyLustContracts';
 import { MyLustMethods } from './MyLustTypes';
 
@@ -12,15 +12,16 @@ import { MyLustMethods } from './MyLustTypes';
  * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
  */
 export class MyLustProvider extends BaseProvider<MyLustExecArgs> {
-	protected readonly provider = ProviderType.MyLust;
+	protected readonly provider = Provider.MyLust;
 	private readonly VIDEO_URL_PATTERN = /^https:\/\/(?:(?:www|de|ru)\.)?mylust\.(?:com)\/videos\/\d+\/[^/]+\/(?:\?.*)/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.MyLust,
+			provider: Provider.MyLust,
 			urlPattern: /^(?:(?:www|de|ru)\.)?mylust\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hlsIntegrated: false,
 				mp4Integrated: true,
 				hasMp4: true,

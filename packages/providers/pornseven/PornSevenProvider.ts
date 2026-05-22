@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { PornSevenExecArgs, PornSevenVideoOutput } from './PornSevenContracts';
 import { PornSevenMethods } from './PornSevenTypes';
 
@@ -11,15 +11,16 @@ import { PornSevenMethods } from './PornSevenTypes';
  * We will resolve this later.
  */
 export class PornSevenProvider extends BaseProvider<PornSevenExecArgs> {
-	protected readonly provider = ProviderType.PornSeven;
+	protected readonly provider = Provider.PornSeven;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?porn7\.(?:xxx)\/v\/(?:old|new)-archive\/\d+\/.*$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.PornSeven,
+			provider: Provider.PornSeven,
 			urlPattern: /^(?:www\.)?porn7\.(?:xxx)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				mp4Integrated: false,
 				hlsIntegrated: false,

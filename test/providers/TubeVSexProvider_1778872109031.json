@@ -16,6 +16,7 @@
       "hasKvs": false,
       "underGeoRestriction": false,
       "requiresBrowser": false,
+			"type": "adult",
       "sniSpoofing": "untested"
     },
     "outputType": "JSON",

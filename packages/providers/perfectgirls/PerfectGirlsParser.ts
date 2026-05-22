@@ -2,7 +2,7 @@ import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
 import { inferVideoQuality } from '@shared';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { PerfectGirlsModelVideoCard, PerfectGirlsOutput } from './PerfectGirlsContracts';
 
 /**
@@ -42,7 +42,7 @@ export class PerfectGirlsParser extends BaseParser {
 				sourceUrl
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.PerfectGirls, 'PerfectGirlsParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.PerfectGirls, 'PerfectGirlsParser', { cause: error });
 		}
 	}
 

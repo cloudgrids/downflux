@@ -1,14 +1,14 @@
 import { HttpClient } from '@engines/http';
 import { ExecutionArgs } from '@contracts';
 import { ProgressManager } from '@core/progress';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { BaseTransformer } from '@base';
 {{imports}}
 
 type TransformerCtor = new (html: HttpClient, progress: ProgressManager) => BaseTransformer<any, any>;
 
 export class TransformerRegistry {
-	private readonly transformers: Record<ProviderType, TransformerCtor> = {
+	private readonly transformers: Record<Provider, TransformerCtor> = {
 		{{entries}}
 	};
 
@@ -19,9 +19,9 @@ export class TransformerRegistry {
 
 
 	public async transform<TArgs extends ExecutionArgs, TResult>(url: string, request: TArgs): Promise<TResult> {
-		const provider = request.provider ?? ProviderType.Default;
+		const provider = request.provider ?? Provider.Default;
 
-		const TransformerClass = this.transformers[provider] ?? this.transformers[ProviderType.Default];
+		const TransformerClass = this.transformers[provider] ?? this.transformers[Provider.Default];
 
 		const transformer = new TransformerClass(this.httpClient, this.progressManager);
 

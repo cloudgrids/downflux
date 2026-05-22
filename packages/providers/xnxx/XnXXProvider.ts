@@ -1,5 +1,5 @@
 import { BaseProvider } from '@base';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { XnXXExecArgs, XnXXVideoOutput } from './XnXXContracts';
 import { XnXXMethods } from './XnXXTypes';
 
@@ -11,14 +11,15 @@ import { XnXXMethods } from './XnXXTypes';
  * Dependencies: ffmpeg (for m3u8 to mp4 conversion)
  */
 export class XnXXProvider extends BaseProvider<XnXXExecArgs> {
-	protected readonly provider = ProviderType.XnXX;
+	protected readonly provider = Provider.XnXX;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.XnXX,
+			provider: Provider.XnXX,
 			urlPattern: /^(?:www\.)?xnxx(?:\d+)?\.(?:com|health)$/i,
 			metadata: {
 				hasHls: true,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: true,
 				mp4Integrated: true,

@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { SxyPornExecArgs, SxyPornVideoOutput } from './SxyPornContracts';
 import { SxyPornMethods } from './SxyPornTypes';
 
@@ -12,15 +12,16 @@ import { SxyPornMethods } from './SxyPornTypes';
  * Provides mp4 links
  */
 export class SxyPornProvider extends BaseProvider<SxyPornExecArgs> {
-	protected readonly provider = ProviderType.SxyPorn;
+	protected readonly provider = Provider.SxyPorn;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/sxyprn\.com\/post\/([a-z-0-9A-Z]+)\.html$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.SxyPorn,
+			provider: Provider.SxyPorn,
 			urlPattern: /^(?:www\.)?sxyprn\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,
@@ -38,7 +39,7 @@ export class SxyPornProvider extends BaseProvider<SxyPornExecArgs> {
 
 	private get videoUrl(): string {
 		if (this.VIDEO_PATH_REGEX.test(this.url)) return this.url;
-		throw new GenericException('Invalid URL for SxyPorn video', ProviderType.SxyPorn, SxyPornMethods.getVideo);
+		throw new GenericException('Invalid URL for SxyPorn video', Provider.SxyPorn, SxyPornMethods.getVideo);
 	}
 
 	/**

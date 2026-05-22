@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { MomVidsOutput } from './MomVidsContracts';
 
 /**
@@ -21,7 +21,7 @@ export class MomVidsParser extends BaseParser {
 				} as MomVidsOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.MomVids, 'MomVidsParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.MomVids, 'MomVidsParser', { cause: error });
 		}
 	}
 }
