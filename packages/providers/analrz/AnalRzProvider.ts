@@ -1,19 +1,20 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { AnalRzExecArgs, AnalRzVideoOutput } from './AnalRzContracts';
 import { AnalRzMethods } from './AnalRzTypes';
 
 export class AnalRzProvider extends BaseProvider<AnalRzExecArgs> {
-	protected readonly provider = ProviderType.AnalRz;
+	protected readonly provider = Provider.AnalRz;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?analrz\.(?:com)\/video\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.AnalRz,
+			provider: Provider.AnalRz,
 			urlPattern: /^(?:www\.)?analrz\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: false,
 				hlsIntegrated: false,
@@ -23,7 +24,7 @@ export class AnalRzProvider extends BaseProvider<AnalRzExecArgs> {
 				underGeoRestriction: false,
 				underDevelopment: true,
 				needsExternalAPI: false,
-				canDownload: false
+				canDownload: true
 			}
 		});
 	}

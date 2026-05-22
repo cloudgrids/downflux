@@ -1,6 +1,6 @@
 [**downflux**](../README.md)
 
-***
+---
 
 [downflux](../README.md) / BaseProvider
 
@@ -67,7 +67,7 @@ methods that turn a site URL into an execution request.
 
 ### TExec
 
-`TExec` *extends* [`ExecutionArgs`](../interfaces/ExecutionArgs.md)\<[`ExecutionShape`](../type-aliases/ExecutionShape.md)\>
+`TExec` _extends_ [`ExecutionArgs`](../interfaces/ExecutionArgs.md)\<[`ExecutionShape`](../type-aliases/ExecutionShape.md)\>
 
 ## Constructors
 
@@ -99,7 +99,7 @@ Defined in: [packages/base/BaseProvider.ts:50](https://github.com/forkts/downflu
 
 Defined in: [packages/base/BaseProvider.ts:38](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L38)
 
-***
+---
 
 ### httpOptions
 
@@ -107,7 +107,7 @@ Defined in: [packages/base/BaseProvider.ts:38](https://github.com/forkts/downflu
 
 Defined in: [packages/base/BaseProvider.ts:39](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L39)
 
-***
+---
 
 ### deps
 
@@ -115,15 +115,15 @@ Defined in: [packages/base/BaseProvider.ts:39](https://github.com/forkts/downflu
 
 Defined in: [packages/base/BaseProvider.ts:40](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L40)
 
-***
+---
 
 ### provider
 
-> `protected` `readonly` **provider**: [`ProviderType`](../enumerations/ProviderType.md)
+> `protected` `readonly` **provider**: [`Provider`](../enumerations/Provider.md)
 
 Defined in: [packages/base/BaseProvider.ts:41](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L41)
 
-***
+---
 
 ### urlPattern
 
@@ -131,7 +131,7 @@ Defined in: [packages/base/BaseProvider.ts:41](https://github.com/forkts/downflu
 
 Defined in: [packages/base/BaseProvider.ts:42](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L42)
 
-***
+---
 
 ### providerMetadata
 
@@ -139,7 +139,7 @@ Defined in: [packages/base/BaseProvider.ts:42](https://github.com/forkts/downflu
 
 Defined in: [packages/base/BaseProvider.ts:43](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L43)
 
-***
+---
 
 ### url
 
@@ -147,7 +147,7 @@ Defined in: [packages/base/BaseProvider.ts:43](https://github.com/forkts/downflu
 
 Defined in: [packages/base/BaseProvider.ts:51](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L51)
 
-***
+---
 
 ### config
 
@@ -171,7 +171,7 @@ Provider capabilities, integration status, and access restrictions.
 
 [`ProviderMetadata`](../interfaces/ProviderMetadata.md)
 
-***
+---
 
 ### ORIGIN
 
@@ -185,13 +185,13 @@ Defined in: [packages/base/BaseProvider.ts:79](https://github.com/forkts/downflu
 
 `string`
 
-***
+---
 
-### HOST\_NAME
+### HOST_NAME
 
 #### Get Signature
 
-> **get** `protected` **HOST\_NAME**(): `string`
+> **get** `protected` **HOST_NAME**(): `string`
 
 Defined in: [packages/base/BaseProvider.ts:83](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L83)
 
@@ -211,7 +211,7 @@ Defined in: [packages/base/BaseProvider.ts:87](https://github.com/forkts/downflu
 
 `boolean`
 
-***
+---
 
 ### setHeaders()
 
@@ -233,7 +233,7 @@ Request header map
 
 `this`
 
-***
+---
 
 ### setTimeout()
 
@@ -255,7 +255,7 @@ Timeout in milliseconds
 
 `this`
 
-***
+---
 
 ### setRetries()
 
@@ -277,7 +277,7 @@ Retry attempt count
 
 `this`
 
-***
+---
 
 ### setTransformOutput()
 
@@ -299,7 +299,7 @@ Default is true, which applies the default transformation. Set to false to retur
 
 `this`
 
-***
+---
 
 ### setHttpOptions()
 
@@ -321,7 +321,7 @@ HTTP options to merge
 
 `this`
 
-***
+---
 
 ### setNoDownload()
 
@@ -349,7 +349,7 @@ No download flag
 false - set to true to skip the download phase and only perform extraction (useful for debugging or when you only need metadata)
 ```
 
-***
+---
 
 ### setTranscodeOptions()
 
@@ -374,7 +374,7 @@ Make sure your OS can handle it
 
 `this`
 
-***
+---
 
 ### setPreferredFormat()
 
@@ -396,7 +396,7 @@ Video format (hls or mp4)
 
 `this`
 
-***
+---
 
 ### setPreferredCodec()
 
@@ -423,7 +423,7 @@ If the provider supports it, it will try to download the video in the specified 
 
 `this`
 
-***
+---
 
 ### setJobOptions()
 
@@ -445,7 +445,7 @@ Job options to merge
 
 `this`
 
-***
+---
 
 ### setAgentOptions()
 
@@ -467,7 +467,7 @@ HTTP agent options to merge
 
 `this`
 
-***
+---
 
 ### setMaxDownloads()
 
@@ -489,7 +489,7 @@ Download limit
 
 `this`
 
-***
+---
 
 ### setAllowedExtensions()
 
@@ -511,7 +511,7 @@ File extensions such as `jpg` or `png`
 
 `this`
 
-***
+---
 
 ### onProgress()
 
@@ -533,7 +533,7 @@ Progress event callback
 
 `this`
 
-***
+---
 
 ### setProgressLogging()
 
@@ -558,10 +558,10 @@ Console logging flag
 #### Default Value
 
 ```ts
-true
+true;
 ```
 
-***
+---
 
 ### setOutput()
 
@@ -592,10 +592,10 @@ Directory output configuration
 #### Default Value
 
 ```ts
-OutputType.JSON
+OutputType.JSON;
 ```
 
-***
+---
 
 ### setExecutionType()
 
@@ -625,13 +625,13 @@ This feature is still `experimental` and not yet implemented for all providers.
 It allows you to specify the execution strategy for the extraction and download process.
 
 - `SEQUENTIAL`: Extracts and downloads items one by one.
- This is the most compatible mode and should work with all providers, but can be slower for large batches.
+  This is the most compatible mode and should work with all providers, but can be slower for large batches.
 
 - `PARALLEL`: Extracts all items first, then downloads them in parallel.
- This can be faster for large batches, but may cause issues with providers that have strict rate limits or anti-bot measures.
-Use with caution and test thoroughly if you choose to use `PARALLEL` execution.
+  This can be faster for large batches, but may cause issues with providers that have strict rate limits or anti-bot measures.
+  Use with caution and test thoroughly if you choose to use `PARALLEL` execution.
 
-***
+---
 
 ### buildRequest()
 
@@ -655,7 +655,7 @@ Provider method options that should override defaults.
 
 A typed request containing provider metadata and execution options.
 
-***
+---
 
 ### execute()
 
@@ -685,7 +685,7 @@ Provider method request data, including execution shape.
 
 Extracted output in the shape requested by the provider method.
 
-***
+---
 
 ### makeTargets()
 
@@ -711,7 +711,7 @@ Page or start/end range to expand.
 
 ##### provider
 
-[`ProviderType`](../enumerations/ProviderType.md)
+[`Provider`](../enumerations/Provider.md)
 
 Provider used for range validation errors.
 
@@ -739,7 +739,7 @@ Provider, method, and generated target URLs.
 
 ##### provider
 
-> **provider**: [`ProviderType`](../enumerations/ProviderType.md)
+> **provider**: [`Provider`](../enumerations/Provider.md)
 
 ##### method
 

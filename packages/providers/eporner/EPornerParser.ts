@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { EPornerOutput } from './EPornerContracts';
 
 /**
@@ -27,7 +27,7 @@ export class EPornerParser extends BaseParser {
 				} as EPornerOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.EPorner, 'EPornerParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.EPorner, 'EPornerParser', { cause: error });
 		}
 	}
 }

@@ -12,6 +12,7 @@
       "hasHls": true,
       "hasMp4": true,
       "hasKvs": true,
+			"type": "adult",
       "hlsIntegrated": true,
       "mp4Integrated": true,
       "requiresLogin": false,

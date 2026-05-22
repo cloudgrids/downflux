@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType, VideoQuality } from '@types';
+import { Provider, VideoQuality } from '@types';
 import { ColliderPornOutput } from './ColliderPornContracts';
 
 /**
@@ -35,7 +35,7 @@ export class ColliderPornParser extends BaseParser {
 				} as ColliderPornOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.ColliderPorn, 'ColliderPornParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.ColliderPorn, 'ColliderPornParser', { cause: error });
 		}
 	}
 }

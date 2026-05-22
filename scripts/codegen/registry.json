@@ -17,6 +17,14 @@
       "method": true
     },
     {
+      "name": "BlackPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "BoKepPorn",
       "parser": true,
       "pipeline": true,

@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { XozillaExecArgs, XozillaVideoOutput } from './XozillaContracts';
 import { XozillaMethods } from './XozillaTypes';
 
@@ -12,15 +12,16 @@ import { XozillaMethods } from './XozillaTypes';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class XozillaProvider extends BaseProvider<XozillaExecArgs> {
-	protected readonly provider = ProviderType.Xozilla;
+	protected readonly provider = Provider.Xozilla;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?xozilla\.(?:com|xxx)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.Xozilla,
+			provider: Provider.Xozilla,
 			urlPattern: /(?:www\.)?xozilla\.(?:com|xxx)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: true,
 				canDownload: true,

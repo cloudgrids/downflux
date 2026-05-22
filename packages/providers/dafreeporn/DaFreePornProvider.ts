@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { DaFreePornExecArgs, DaFreePornVideoOutput } from './DaFreePornContracts';
 import { DaFreePornMethods } from './DaFreePornTypes';
 
@@ -12,15 +12,16 @@ import { DaFreePornMethods } from './DaFreePornTypes';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class DaFreePornProvider extends BaseProvider<DaFreePornExecArgs> {
-	protected readonly provider = ProviderType.DaFreePorn;
+	protected readonly provider = Provider.DaFreePorn;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?dafreeporn\.(?:com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.DaFreePorn,
+			provider: Provider.DaFreePorn,
 			urlPattern: /(?:www\.)?dafreeporn\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: true,
 				canDownload: true,

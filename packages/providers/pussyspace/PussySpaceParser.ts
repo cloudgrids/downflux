@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { PussySpaceOutput } from './PussySpaceContracts';
 
 /**
@@ -31,7 +31,7 @@ export class PussySpaceParser extends BaseParser {
 				} as PussySpaceOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.PussySpace, 'PussySpaceParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.PussySpace, 'PussySpaceParser', { cause: error });
 		}
 	}
 }

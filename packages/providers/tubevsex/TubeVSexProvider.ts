@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { TubeVSexExecArgs, TubeVSexVideoOutput } from './TubeVSexContracts';
 import { TubeVSexMethods } from './TubeVSexTypes';
 
@@ -12,15 +12,16 @@ import { TubeVSexMethods } from './TubeVSexTypes';
  * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
  */
 export class TubeVSexProvider extends BaseProvider<TubeVSexExecArgs> {
-	protected readonly provider = ProviderType.TubeVSex;
+	protected readonly provider = Provider.TubeVSex;
 	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?tubev\.(?:sex)\/(?:video-archive|video)\/[\d]+\/[^/]+$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.TubeVSex,
+			provider: Provider.TubeVSex,
 			urlPattern: /^(?:www\.)?tubev\.(?:sex)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,

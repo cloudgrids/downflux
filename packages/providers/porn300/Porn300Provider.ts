@@ -1,5 +1,5 @@
 import { BaseProvider } from '@base';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { Porn300ExecArgs, Porn300VideoOutput } from './Porn300Contracts';
 import { Porn300Methods } from './Porn300Types';
 
@@ -10,14 +10,15 @@ import { Porn300Methods } from './Porn300Types';
  * Provides mp4 links
  */
 export class Porn300Provider extends BaseProvider<Porn300ExecArgs> {
-	protected readonly provider = ProviderType.Porn300;
+	protected readonly provider = Provider.Porn300;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.Porn300,
+			provider: Provider.Porn300,
 			urlPattern: /^(?:www\.)?porn300(?:\d+)?\.(?:com|net)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: false,
 				underGeoRestriction: false,

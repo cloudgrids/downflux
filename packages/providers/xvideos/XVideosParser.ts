@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { XVideosOutput, XVideosVideo } from './XVideosContracts';
 
 /**
@@ -28,7 +28,7 @@ export class XVideosParser extends BaseParser {
 				} as XVideosOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.XVideos, 'XVideosParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.XVideos, 'XVideosParser', { cause: error });
 		}
 	}
 

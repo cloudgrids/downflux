@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { ZzzTubeExecArgs, ZzzTubeVideoOutput } from './ZzzTubeContracts';
 import { ZzzTubeMethods } from './ZzzTubeTypes';
 
@@ -12,15 +12,16 @@ import { ZzzTubeMethods } from './ZzzTubeTypes';
  * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
  */
 export class ZzzTubeProvider extends BaseProvider<ZzzTubeExecArgs> {
-	protected readonly provider = ProviderType.ZzzTube;
+	protected readonly provider = Provider.ZzzTube;
 	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?zzztube\.(?:com)\/\d+(?:(?:\?|#).*)?$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.ZzzTube,
+			provider: Provider.ZzzTube,
 			urlPattern: /^(?:www\.)?zzztube\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,

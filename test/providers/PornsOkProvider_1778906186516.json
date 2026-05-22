@@ -14,6 +14,7 @@
       "mp4Integrated": true,
       "requiresLogin": false,
       "hasMp4": true,
+			"type": "adult",
       "hasKvs": false,
       "underGeoRestriction": false,
       "requiresBrowser": false,

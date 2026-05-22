@@ -1,6 +1,6 @@
 [**downflux**](../README.md)
 
-***
+---
 
 [downflux](../README.md) / PornHubExecArgs
 
@@ -28,7 +28,7 @@ Custom request headers
 
 [`ExecutionArgs`](ExecutionArgs.md).[`headers`](ExecutionArgs.md#headers)
 
-***
+---
 
 ### timeoutMs?
 
@@ -42,7 +42,7 @@ Request timeout in milliseconds
 
 [`ExecutionArgs`](ExecutionArgs.md).[`timeoutMs`](ExecutionArgs.md#timeoutms)
 
-***
+---
 
 ### retries?
 
@@ -56,7 +56,7 @@ Failed request retry count
 
 [`ExecutionArgs`](ExecutionArgs.md).[`retries`](ExecutionArgs.md#retries)
 
-***
+---
 
 ### referer?
 
@@ -70,7 +70,7 @@ Request referer URL
 
 [`ExecutionArgs`](ExecutionArgs.md).[`referer`](ExecutionArgs.md#referer)
 
-***
+---
 
 ### formData?
 
@@ -84,11 +84,11 @@ Optional FormData for POST requests
 
 [`ExecutionArgs`](ExecutionArgs.md).[`formData`](ExecutionArgs.md#formdata)
 
-***
+---
 
 ### provider
 
-> **provider**: [`ProviderType`](../enumerations/ProviderType.md)
+> **provider**: [`Provider`](../enumerations/Provider.md)
 
 Defined in: [packages/contracts/ExecutionContracts.ts:21](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L21)
 
@@ -96,7 +96,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:21](https://github.com/for
 
 [`ExecutionArgs`](ExecutionArgs.md).[`provider`](ExecutionArgs.md#provider)
 
-***
+---
 
 ### method
 
@@ -108,7 +108,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:22](https://github.com/for
 
 [`ExecutionArgs`](ExecutionArgs.md).[`method`](ExecutionArgs.md#method)
 
-***
+---
 
 ### entryUrl
 
@@ -120,7 +120,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:23](https://github.com/for
 
 [`ExecutionArgs`](ExecutionArgs.md).[`entryUrl`](ExecutionArgs.md#entryurl)
 
-***
+---
 
 ### targets
 
@@ -132,7 +132,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:24](https://github.com/for
 
 [`ExecutionArgs`](ExecutionArgs.md).[`targets`](ExecutionArgs.md#targets)
 
-***
+---
 
 ### executionShape
 
@@ -147,7 +147,7 @@ single -> TResult; multiple -> TResult[]
 
 [`ExecutionArgs`](ExecutionArgs.md).[`executionShape`](ExecutionArgs.md#executionshape)
 
-***
+---
 
 ### executionType?
 
@@ -161,7 +161,7 @@ Job execution strategy
 
 [`ExecutionArgs`](ExecutionArgs.md).[`executionType`](ExecutionArgs.md#executiontype)
 
-***
+---
 
 ### extractionTarget
 
@@ -173,7 +173,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:32](https://github.com/for
 
 [`ExecutionArgs`](ExecutionArgs.md).[`extractionTarget`](ExecutionArgs.md#extractiontarget)
 
-***
+---
 
 ### providerMetadata?
 
@@ -187,7 +187,7 @@ Provider capabilities and restrictions
 
 [`ExecutionArgs`](ExecutionArgs.md).[`providerMetadata`](ExecutionArgs.md#providermetadata)
 
-***
+---
 
 ### dirConfig?
 
@@ -201,7 +201,7 @@ Directory output configuration
 
 [`ExecutionArgs`](ExecutionArgs.md).[`dirConfig`](ExecutionArgs.md#dirconfig)
 
-***
+---
 
 ### allowedExtensions?
 
@@ -215,7 +215,7 @@ Allowed file extensions
 
 [`ExecutionArgs`](ExecutionArgs.md).[`allowedExtensions`](ExecutionArgs.md#allowedextensions)
 
-***
+---
 
 ### allowedVideoQuality?
 
@@ -229,7 +229,7 @@ Allowed video quality
 
 [`ExecutionArgs`](ExecutionArgs.md).[`allowedVideoQuality`](ExecutionArgs.md#allowedvideoquality)
 
-***
+---
 
 ### preferredVideoFormat?
 
@@ -243,7 +243,7 @@ Preferred video format (e.g. hls, mp4)
 
 [`ExecutionArgs`](ExecutionArgs.md).[`preferredVideoFormat`](ExecutionArgs.md#preferredvideoformat)
 
-***
+---
 
 ### preferredVideoCodec?
 
@@ -257,7 +257,7 @@ Preferred video codec (e.g. h264, av1)
 
 [`ExecutionArgs`](ExecutionArgs.md).[`preferredVideoCodec`](ExecutionArgs.md#preferredvideocodec)
 
-***
+---
 
 ### tagFilterOptions?
 
@@ -271,7 +271,7 @@ Tag filtering options
 
 [`ExecutionArgs`](ExecutionArgs.md).[`tagFilterOptions`](ExecutionArgs.md#tagfilteroptions)
 
-***
+---
 
 ### maxDownloads?
 
@@ -285,7 +285,7 @@ Maximum number of items to download
 
 [`ExecutionArgs`](ExecutionArgs.md).[`maxDownloads`](ExecutionArgs.md#maxdownloads)
 
-***
+---
 
 ### transformOutput?
 
@@ -299,7 +299,7 @@ Transform output to service-specific result type
 
 [`ExecutionArgs`](ExecutionArgs.md).[`transformOutput`](ExecutionArgs.md#transformoutput)
 
-***
+---
 
 ### concurrency?
 
@@ -313,7 +313,7 @@ Download phase concurrency
 
 [`ExecutionArgs`](ExecutionArgs.md).[`concurrency`](ExecutionArgs.md#concurrency)
 
-***
+---
 
 ### noDownload?
 
@@ -327,7 +327,7 @@ Iterate only-- this prop is only used for logging http-services
 
 [`ExecutionArgs`](ExecutionArgs.md).[`noDownload`](ExecutionArgs.md#nodownload)
 
-***
+---
 
 ### extractConcurrency?
 
@@ -341,7 +341,7 @@ Extraction phase concurrency
 
 [`ExecutionArgs`](ExecutionArgs.md).[`extractConcurrency`](ExecutionArgs.md#extractconcurrency)
 
-***
+---
 
 ### transcodeOptions?
 
@@ -355,7 +355,7 @@ Transcoding options
 
 [`ExecutionArgs`](ExecutionArgs.md).[`transcodeOptions`](ExecutionArgs.md#transcodeoptions)
 
-***
+---
 
 ### downloadRetries?
 
@@ -369,7 +369,7 @@ Download retry count
 
 [`ExecutionArgs`](ExecutionArgs.md).[`downloadRetries`](ExecutionArgs.md#downloadretries)
 
-***
+---
 
 ### retryDelayMs?
 
@@ -383,7 +383,7 @@ Delay between download retries in milliseconds
 
 [`ExecutionArgs`](ExecutionArgs.md).[`retryDelayMs`](ExecutionArgs.md#retrydelayms)
 
-***
+---
 
 ### pipelineHooks?
 
@@ -397,7 +397,7 @@ PipelineRegistry lifecycle hooks
 
 [`ExecutionArgs`](ExecutionArgs.md).[`pipelineHooks`](ExecutionArgs.md#pipelinehooks)
 
-***
+---
 
 ### onProgress?
 
@@ -421,7 +421,7 @@ Progress event handler
 
 [`ExecutionArgs`](ExecutionArgs.md).[`onProgress`](ExecutionArgs.md#onprogress)
 
-***
+---
 
 ### logProgress?
 
@@ -435,7 +435,7 @@ Enables console progress logging
 
 [`ExecutionArgs`](ExecutionArgs.md).[`logProgress`](ExecutionArgs.md#logprogress)
 
-***
+---
 
 ### outputType?
 
@@ -449,7 +449,7 @@ Output format for ExecutionCoordinator results
 
 [`ExecutionArgs`](ExecutionArgs.md).[`outputType`](ExecutionArgs.md#outputtype)
 
-***
+---
 
 ### signal?
 
@@ -463,7 +463,7 @@ Abort signal for cancelling the ExecutionCoordinator
 
 [`ExecutionArgs`](ExecutionArgs.md).[`signal`](ExecutionArgs.md#signal)
 
-***
+---
 
 ### userAgent?
 
@@ -475,7 +475,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:105](https://github.com/fo
 
 [`ExecutionArgs`](ExecutionArgs.md).[`userAgent`](ExecutionArgs.md#useragent)
 
-***
+---
 
 ### enableSniSpoofing?
 
@@ -487,7 +487,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:107](https://github.com/fo
 
 [`ExecutionArgs`](ExecutionArgs.md).[`enableSniSpoofing`](ExecutionArgs.md#enablesnispoofing)
 
-***
+---
 
 ### proxy?
 
@@ -499,7 +499,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:109](https://github.com/fo
 
 [`ExecutionArgs`](ExecutionArgs.md).[`proxy`](ExecutionArgs.md#proxy)
 
-***
+---
 
 ### dispatcher?
 
@@ -511,7 +511,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:111](https://github.com/fo
 
 [`ExecutionArgs`](ExecutionArgs.md).[`dispatcher`](ExecutionArgs.md#dispatcher)
 
-***
+---
 
 ### username?
 
@@ -521,7 +521,7 @@ Defined in: [packages/providers/pornhub/PornHubContracts.ts:11](https://github.c
 
 username of the model/channel/pornstar
 
-***
+---
 
 ### videosArgs?
 

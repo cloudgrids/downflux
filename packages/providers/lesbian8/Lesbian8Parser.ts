@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { Lesbian8Output } from './Lesbian8Contracts';
 
 /**
@@ -19,7 +19,7 @@ export class Lesbian8Parser extends BaseParser {
 				} as Lesbian8Output
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.Lesbian8, 'Lesbian8Parser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.Lesbian8, 'Lesbian8Parser', { cause: error });
 		}
 	}
 }

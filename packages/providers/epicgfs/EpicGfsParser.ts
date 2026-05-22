@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { EpicGfsOutput } from './EpicGfsContracts';
 
 /**
@@ -20,7 +20,7 @@ export class EpicGfsParser extends BaseParser {
 				} as EpicGfsOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.EpicGfs, 'EpicGfsParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.EpicGfs, 'EpicGfsParser', { cause: error });
 		}
 	}
 }

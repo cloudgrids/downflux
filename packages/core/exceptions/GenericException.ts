@@ -1,4 +1,4 @@
-import { ErrorCodes, ProviderType } from '@types';
+import { ErrorCodes, Provider } from '@types';
 import { BaseException } from './BaseException';
 
 /**
@@ -9,7 +9,7 @@ import { BaseException } from './BaseException';
 export class GenericException extends BaseException {
 	constructor(
 		public readonly message: string,
-		public readonly provider: ProviderType,
+		public readonly provider: Provider,
 		public readonly method?: string,
 		public readonly context: Record<string, any> = {},
 		public readonly metadata?: any
@@ -24,7 +24,7 @@ export class GenericException extends BaseException {
 		});
 	}
 
-	private static buildMessage(message: string, provider?: ProviderType, method?: string): string {
+	private static buildMessage(message: string, provider?: Provider, method?: string): string {
 		return [
 			`ENOENT: Invalid arguments`,
 			`ERROR_CODE=${ErrorCodes.GENERIC_ERROR}`,

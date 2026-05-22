@@ -1,6 +1,6 @@
 import { BaseTransformer } from '@base';
 import { DefaultExecutionResult, VideosFormat } from '@contracts';
-import { OutputType, ProviderType, VideoQuality } from '@types';
+import { OutputType, Provider, VideoQuality } from '@types';
 import { EPornerExecArgs, EPornerOutput, EPornerVideoOutput } from './EPornerContracts';
 import { EPornerMethods } from './EPornerTypes';
 
@@ -54,7 +54,7 @@ export class EPornerTransformer extends BaseTransformer<EPornerExecArgs, Default
 
 		const json = await this.httpClient.fetchJson(videoJSON, {
 			outputType: OutputType.JSON,
-			provider: ProviderType.EPorner,
+			provider: Provider.EPorner,
 			referer: request.entryUrl
 		});
 

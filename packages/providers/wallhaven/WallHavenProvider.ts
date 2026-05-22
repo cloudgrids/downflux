@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, IndexRange, OutputType, ProviderType } from '@types';
+import { ExtractionTarget, IndexRange, OutputType, Provider } from '@types';
 import {
 	WallHavenExecArgs,
 	WallHavenUserExecArgs,
@@ -18,7 +18,7 @@ import { WallHavenMethods, WallHavenThumbnailQuality } from './WallHavenTypes';
  * Provides wallpaper and user upload operations.
  */
 export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
-	protected readonly provider = ProviderType.WallHaven;
+	protected readonly provider = Provider.WallHaven;
 	private readonly BASE_URL = 'https://wallhaven.cc';
 	private readonly WALLPAPER_URL = `${this.BASE_URL}/w`;
 	private readonly USER_URL = `${this.BASE_URL}/user`;
@@ -26,10 +26,11 @@ export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.WallHaven,
+			provider: Provider.WallHaven,
 			urlPattern: /^(?:(?:www|th|w)\.)?wallhaven\.cc$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: false,
 				hasKvs: false,
 				underGeoRestriction: false,

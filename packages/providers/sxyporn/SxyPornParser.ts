@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType, VideoQuality } from '@types';
+import { Provider, VideoQuality } from '@types';
 import { SxyPornOutput } from './SxyPornContracts';
 
 /**
@@ -31,7 +31,7 @@ export class SxyPornParser extends BaseParser {
 				} as SxyPornOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.SxyPorn, 'SxyPornParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.SxyPorn, 'SxyPornParser', { cause: error });
 		}
 	}
 }

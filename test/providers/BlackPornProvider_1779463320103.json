@@ -1,0 +1,47 @@
+[
+  {
+    "provider": "BlackPornProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://blackporn.tube/video/10465497/step-sis-sharing-bed-with-sneaky-best-friend-cums-hard-on-stepbros-cock/?campaign=10146"
+    ],
+    "entryUrl": "https://blackporn.tube/video/10465497/step-sis-sharing-bed-with-sneaky-best-friend-cums-hard-on-stepbros-cock/?campaign=10146",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+			"type": "adult",
+      "hasKvs": false,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested",
+      "underGeoRestriction": false,
+      "underDevelopment": true,
+      "needsExternalAPI": false,
+      "canDownload": false
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "pageUrl": "https://blackporn.tube/video/10465497/step-sis-sharing-bed-with-sneaky-best-friend-cums-hard-on-stepbros-cock/?campaign=10146",
+      "title": "",
+      "description": "",
+      "tags": [],
+      "videos": {
+        "mp4": []
+      },
+      "videoId": "10465497",
+      "uploader": "Unknown Uploader"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": []
+  }
+]

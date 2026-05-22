@@ -2,7 +2,7 @@ import { BaseHttpClient } from '@base';
 import { DownloadOptions, FetchResult } from '@contracts';
 import { ProgressManager } from '@core/progress';
 import { StrategyRegistry } from '@core/registries';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 
 /**
  * HTTP engine for page and JSON metadata requests.
@@ -27,7 +27,7 @@ export class HttpClient extends BaseHttpClient {
 	public async fetchHtml(url: string, opts: DownloadOptions): Promise<FetchResult> {
 		const { retries = 3 } = opts;
 		const timeoutMs = opts.timeoutMs ?? 30_000;
-		const strategy = await this.strategyRegistry.getStrategy(opts.provider ?? ProviderType.Default);
+		const strategy = await this.strategyRegistry.getStrategy(opts.provider ?? Provider.Default);
 		const candidateUrls = strategy.getHostFallbackUrls?.(url) ?? [url];
 
 		let lastError: Error | null = null;

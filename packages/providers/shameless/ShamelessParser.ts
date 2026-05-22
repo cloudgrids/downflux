@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { ShamelessOutput } from './ShamelessContracts';
 
 /**
@@ -27,7 +27,7 @@ export class ShamelessParser extends BaseParser {
 				} as ShamelessOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.Shameless, 'ShamelessParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.Shameless, 'ShamelessParser', { cause: error });
 		}
 	}
 }

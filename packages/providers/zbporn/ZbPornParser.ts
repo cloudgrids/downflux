@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { ZbPornOutput } from './ZbPornContracts';
 
 /**
@@ -21,7 +21,7 @@ export class ZbPornParser extends BaseParser {
 				} as ZbPornOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.ZbPorn, 'ZbPornParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.ZbPorn, 'ZbPornParser', { cause: error });
 		}
 	}
 }

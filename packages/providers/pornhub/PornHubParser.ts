@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType, VideoQuality } from '@types';
+import { Provider, VideoQuality } from '@types';
 import { PornHubChannelsOutput, PornHubOutput, PornHubVideo } from './PornHubContracts';
 
 /**
@@ -47,7 +47,7 @@ export class PornHubParser extends BaseParser {
 				}
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.PornHub, 'PornHubParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.PornHub, 'PornHubParser', { cause: error });
 		}
 	}
 

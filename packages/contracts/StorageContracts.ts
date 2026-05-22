@@ -1,7 +1,7 @@
-import { OutputType, ProviderType } from '@types';
+import { OutputType, Provider } from '@types';
 
 export interface CreateSinkInput {
-	provider: ProviderType;
+	provider: Provider;
 	type: OutputType;
 	transCodeOptions?: TranscodeOptions;
 	directoryPath?: string;

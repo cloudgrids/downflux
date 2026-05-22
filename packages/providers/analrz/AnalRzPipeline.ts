@@ -46,17 +46,6 @@ export class AnalRzPipeline extends BasePipeline<AnalRzExecArgs, AnalRzOutput> {
 				}
 			),
 
-			this.createMappings(
-				this.filterByQuality(metadata?.videos?.hls, {
-					allowedQuality: request.allowedVideoQuality,
-					getQuality: (item) => item.quality
-				}),
-				{
-					getUrl: (item) => item.url,
-					getId: () => metadata.videoId,
-					getMedia: () => MediaType.VIDEOS
-				}
-			),
 			this.createMappings(metadata?.poster ? [metadata.poster] : undefined, {
 				getUrl: (item) => item,
 				getId: () => metadata.videoId,

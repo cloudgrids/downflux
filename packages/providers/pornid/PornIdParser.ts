@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { PornIdOutput } from './PornIdContracts';
 
 /**
@@ -21,7 +21,7 @@ export class PornIdParser extends BaseParser {
 				} as PornIdOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.PornId, 'PornIdParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.PornId, 'PornIdParser', { cause: error });
 		}
 	}
 }

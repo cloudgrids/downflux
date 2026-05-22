@@ -1,6 +1,6 @@
 [**downflux**](../README.md)
 
-***
+---
 
 [downflux](../README.md) / ExecutionArgs
 
@@ -66,7 +66,7 @@ Combines fetch, extraction, pipeline, and output settings.
 
 ### S
 
-`S` *extends* [`ExecutionShape`](../type-aliases/ExecutionShape.md) = [`ExecutionShape`](../type-aliases/ExecutionShape.md)
+`S` _extends_ [`ExecutionShape`](../type-aliases/ExecutionShape.md) = [`ExecutionShape`](../type-aliases/ExecutionShape.md)
 
 ## Properties
 
@@ -82,7 +82,7 @@ Custom request headers
 
 [`ExecutionOptions`](ExecutionOptions.md).[`headers`](ExecutionOptions.md#headers)
 
-***
+---
 
 ### timeoutMs?
 
@@ -96,7 +96,7 @@ Request timeout in milliseconds
 
 [`ExecutionOptions`](ExecutionOptions.md).[`timeoutMs`](ExecutionOptions.md#timeoutms)
 
-***
+---
 
 ### retries?
 
@@ -110,7 +110,7 @@ Failed request retry count
 
 [`ExecutionOptions`](ExecutionOptions.md).[`retries`](ExecutionOptions.md#retries)
 
-***
+---
 
 ### referer?
 
@@ -124,7 +124,7 @@ Request referer URL
 
 [`ExecutionOptions`](ExecutionOptions.md).[`referer`](ExecutionOptions.md#referer)
 
-***
+---
 
 ### formData?
 
@@ -138,15 +138,15 @@ Optional FormData for POST requests
 
 [`ExecutionOptions`](ExecutionOptions.md).[`formData`](ExecutionOptions.md#formdata)
 
-***
+---
 
 ### provider
 
-> **provider**: [`ProviderType`](../enumerations/ProviderType.md)
+> **provider**: [`Provider`](../enumerations/Provider.md)
 
 Defined in: [packages/contracts/ExecutionContracts.ts:21](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L21)
 
-***
+---
 
 ### method
 
@@ -154,7 +154,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:21](https://github.com/for
 
 Defined in: [packages/contracts/ExecutionContracts.ts:22](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L22)
 
-***
+---
 
 ### entryUrl
 
@@ -162,7 +162,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:22](https://github.com/for
 
 Defined in: [packages/contracts/ExecutionContracts.ts:23](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L23)
 
-***
+---
 
 ### targets
 
@@ -170,7 +170,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:23](https://github.com/for
 
 Defined in: [packages/contracts/ExecutionContracts.ts:24](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L24)
 
-***
+---
 
 ### executionShape
 
@@ -181,7 +181,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:29](https://github.com/for
 Internal runtime metadata describing the structural shape of extracted output.
 single -> TResult; multiple -> TResult[]
 
-***
+---
 
 ### executionType?
 
@@ -195,7 +195,7 @@ Job execution strategy
 
 [`ExecutionOptions`](ExecutionOptions.md).[`executionType`](ExecutionOptions.md#executiontype)
 
-***
+---
 
 ### extractionTarget
 
@@ -203,7 +203,7 @@ Job execution strategy
 
 Defined in: [packages/contracts/ExecutionContracts.ts:32](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L32)
 
-***
+---
 
 ### providerMetadata?
 
@@ -213,7 +213,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:35](https://github.com/for
 
 Provider capabilities and restrictions
 
-***
+---
 
 ### dirConfig?
 
@@ -227,7 +227,7 @@ Directory output configuration
 
 [`ExecutionOptions`](ExecutionOptions.md).[`dirConfig`](ExecutionOptions.md#dirconfig)
 
-***
+---
 
 ### allowedExtensions?
 
@@ -241,7 +241,7 @@ Allowed file extensions
 
 [`ExecutionOptions`](ExecutionOptions.md).[`allowedExtensions`](ExecutionOptions.md#allowedextensions)
 
-***
+---
 
 ### allowedVideoQuality?
 
@@ -255,7 +255,7 @@ Allowed video quality
 
 [`ExecutionOptions`](ExecutionOptions.md).[`allowedVideoQuality`](ExecutionOptions.md#allowedvideoquality)
 
-***
+---
 
 ### preferredVideoFormat?
 
@@ -269,7 +269,7 @@ Preferred video format (e.g. hls, mp4)
 
 [`ExecutionOptions`](ExecutionOptions.md).[`preferredVideoFormat`](ExecutionOptions.md#preferredvideoformat)
 
-***
+---
 
 ### preferredVideoCodec?
 
@@ -283,7 +283,7 @@ Preferred video codec (e.g. h264, av1)
 
 [`ExecutionOptions`](ExecutionOptions.md).[`preferredVideoCodec`](ExecutionOptions.md#preferredvideocodec)
 
-***
+---
 
 ### tagFilterOptions?
 
@@ -297,7 +297,7 @@ Tag filtering options
 
 [`ExecutionOptions`](ExecutionOptions.md).[`tagFilterOptions`](ExecutionOptions.md#tagfilteroptions)
 
-***
+---
 
 ### maxDownloads?
 
@@ -311,7 +311,7 @@ Maximum number of items to download
 
 [`ExecutionOptions`](ExecutionOptions.md).[`maxDownloads`](ExecutionOptions.md#maxdownloads)
 
-***
+---
 
 ### transformOutput?
 
@@ -325,7 +325,7 @@ Transform output to service-specific result type
 
 [`ExecutionOptions`](ExecutionOptions.md).[`transformOutput`](ExecutionOptions.md#transformoutput)
 
-***
+---
 
 ### concurrency?
 
@@ -339,7 +339,7 @@ Download phase concurrency
 
 [`ExecutionOptions`](ExecutionOptions.md).[`concurrency`](ExecutionOptions.md#concurrency)
 
-***
+---
 
 ### noDownload?
 
@@ -353,7 +353,7 @@ Iterate only-- this prop is only used for logging http-services
 
 [`ExecutionOptions`](ExecutionOptions.md).[`noDownload`](ExecutionOptions.md#nodownload)
 
-***
+---
 
 ### extractConcurrency?
 
@@ -367,7 +367,7 @@ Extraction phase concurrency
 
 [`ExecutionOptions`](ExecutionOptions.md).[`extractConcurrency`](ExecutionOptions.md#extractconcurrency)
 
-***
+---
 
 ### transcodeOptions?
 
@@ -381,7 +381,7 @@ Transcoding options
 
 [`ExecutionOptions`](ExecutionOptions.md).[`transcodeOptions`](ExecutionOptions.md#transcodeoptions)
 
-***
+---
 
 ### downloadRetries?
 
@@ -395,7 +395,7 @@ Download retry count
 
 [`ExecutionOptions`](ExecutionOptions.md).[`downloadRetries`](ExecutionOptions.md#downloadretries)
 
-***
+---
 
 ### retryDelayMs?
 
@@ -409,7 +409,7 @@ Delay between download retries in milliseconds
 
 [`ExecutionOptions`](ExecutionOptions.md).[`retryDelayMs`](ExecutionOptions.md#retrydelayms)
 
-***
+---
 
 ### pipelineHooks?
 
@@ -423,7 +423,7 @@ PipelineRegistry lifecycle hooks
 
 [`ExecutionOptions`](ExecutionOptions.md).[`pipelineHooks`](ExecutionOptions.md#pipelinehooks)
 
-***
+---
 
 ### onProgress?
 
@@ -447,7 +447,7 @@ Progress event handler
 
 [`ExecutionOptions`](ExecutionOptions.md).[`onProgress`](ExecutionOptions.md#onprogress)
 
-***
+---
 
 ### logProgress?
 
@@ -461,7 +461,7 @@ Enables console progress logging
 
 [`ExecutionOptions`](ExecutionOptions.md).[`logProgress`](ExecutionOptions.md#logprogress)
 
-***
+---
 
 ### outputType?
 
@@ -475,7 +475,7 @@ Output format for ExecutionCoordinator results
 
 [`ExecutionOptions`](ExecutionOptions.md).[`outputType`](ExecutionOptions.md#outputtype)
 
-***
+---
 
 ### signal?
 
@@ -489,7 +489,7 @@ Abort signal for cancelling the ExecutionCoordinator
 
 [`ExecutionOptions`](ExecutionOptions.md).[`signal`](ExecutionOptions.md#signal)
 
-***
+---
 
 ### userAgent?
 
@@ -501,7 +501,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:105](https://github.com/fo
 
 [`ExecutionOptions`](ExecutionOptions.md).[`userAgent`](ExecutionOptions.md#useragent)
 
-***
+---
 
 ### enableSniSpoofing?
 
@@ -513,7 +513,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:107](https://github.com/fo
 
 [`ExecutionOptions`](ExecutionOptions.md).[`enableSniSpoofing`](ExecutionOptions.md#enablesnispoofing)
 
-***
+---
 
 ### proxy?
 
@@ -525,7 +525,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:109](https://github.com/fo
 
 [`ExecutionOptions`](ExecutionOptions.md).[`proxy`](ExecutionOptions.md#proxy)
 
-***
+---
 
 ### dispatcher?
 

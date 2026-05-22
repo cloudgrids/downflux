@@ -1,7 +1,7 @@
 import { DefaultExecutionResult, DefaultFlashVarsVideoOutput, FlashVarsOutput, VideoSourceOutput } from '@contracts';
 import { GenericException } from '@core/exceptions';
 import { inferVideoQuality, KvsResolver } from '@shared';
-import { ProviderType, VideoQuality } from '@types';
+import { Provider, VideoQuality } from '@types';
 
 /**
  * Default HTML parser shared by provider-specific parsers.
@@ -37,7 +37,7 @@ export class BaseParser {
 				status: 200
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.Default, 'BaseParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.Default, 'BaseParser', { cause: error });
 		}
 	}
 
@@ -533,7 +533,7 @@ export class BaseParser {
 		return this.extractByTag(html, tag, options)[0] ?? null;
 	}
 
-	protected extractScriptsByType(html: string, type: string): Record<string, any>[] {
+	protected extractScriptsByType(html: string, type: string, objectType?: string): Record<string, any>[] {
 		const results = new Set<string>();
 		const scriptTagPattern = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
 		const typePattern = new RegExp(`(?:^|\\s)type\\s*=\\s*(["'])${type.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\1(?:\\s|$)`, 'i');
@@ -548,7 +548,9 @@ export class BaseParser {
 			if (content) results.add(content);
 		}
 
-		return [...results]?.flatMap((c) => JSON.parse(c));
+		return objectType
+			? ([...results]?.flatMap((c) => JSON.parse(c))?.find((o) => o['@type'] === objectType) ?? [])
+			: [...results].map((c) => JSON.parse(c));
 	}
 
 	protected extractByClass(html: string, className: string): string[] {

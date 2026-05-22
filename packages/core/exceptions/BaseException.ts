@@ -1,9 +1,9 @@
-import { ErrorCodes, ProviderType } from '@types';
+import { ErrorCodes, Provider } from '@types';
 
 export interface ExceptionPayload<TMeta = any> {
 	errorCode: ErrorCodes;
 	message: string;
-	provider: ProviderType;
+	provider: Provider;
 	method?: string;
 	context?: Record<string, any>;
 	metadata?: TMeta;

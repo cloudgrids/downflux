@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType, VideoQuality } from '@types';
+import { Provider, VideoQuality } from '@types';
 import { MyLustOutput } from './MyLustContracts';
 
 /**
@@ -12,7 +12,7 @@ import { MyLustOutput } from './MyLustContracts';
  */
 export class MyLustParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<MyLustOutput>>> {
-		const scripts = this.extractScriptsByType(html, 'application/ld+json')?.[0];
+		const scripts = this.extractScriptsByType(html, 'application/ld+json', 'VideoObject')?.[0];
 
 		const mp4 = this.collectElements(html, 'source')?.map((source) => {
 			return {
@@ -33,7 +33,7 @@ export class MyLustParser extends BaseParser {
 				} as MyLustOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.MyLust, 'MyLustParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.MyLust, 'MyLustParser', { cause: error });
 		}
 	}
 }

@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { DaNudeOutput } from './DaNudeContracts';
 
 /**
@@ -20,7 +20,7 @@ export class DaNudeParser extends BaseParser {
 				} as DaNudeOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.DaNude, 'DaNudeParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.DaNude, 'DaNudeParser', { cause: error });
 		}
 	}
 }

@@ -1,12 +1,12 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { AnalRzOutput } from './AnalRzContracts';
 
 export class AnalRzParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<AnalRzOutput>>> {
-		const script = this.extractScriptsByType(html, 'application/ld+json')?.find((s) => s?.['@type'] === 'VideoObject');
+		const script = this.extractScriptsByType(html, 'application/ld+json', 'VideoObject')?.[0];
 		const actors = script?.actor?.map((a) => a?.name);
 
 		try {
@@ -25,7 +25,7 @@ export class AnalRzParser extends BaseParser {
 				} as AnalRzOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.AnalRz, 'AnalRzParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.AnalRz, 'AnalRzParser', { cause: error });
 		}
 	}
 }

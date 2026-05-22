@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { PornDoeExecArgs, PornDoeVideoOutput } from './PornDoeContracts';
 import { PornDoeMethods } from './PornDoeTypes';
 
@@ -12,15 +12,16 @@ import { PornDoeMethods } from './PornDoeTypes';
  * Supports integrated MP4 downloads. Requires an external API. Marked under development so callers should expect provider-specific changes.
  */
 export class PornDoeProvider extends BaseProvider<PornDoeExecArgs> {
-	protected readonly provider = ProviderType.PornDoe;
+	protected readonly provider = Provider.PornDoe;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:(?:www|de|en|fs|pt|es|fr|it)\.)?porndoe\.com\/watch\/([A-Za-z0-9]+)$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.PornDoe,
+			provider: Provider.PornDoe,
 			urlPattern: /^(?:(?:www|de|en|fs|pt|es|fr|it)\.)?porndoe\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hlsIntegrated: false,
 				mp4Integrated: true,
 				needsExternalAPI: true,

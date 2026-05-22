@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { {{ProviderName}}Output } from './{{ProviderName}}Contracts';
 
 export class {{ProviderName}}Parser extends BaseParser {
@@ -12,7 +12,7 @@ export class {{ProviderName}}Parser extends BaseParser {
 				customFields: {} as {{ProviderName}}Output
 				};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.{{ProviderName}}, '{{ProviderName}}Parser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.{{ProviderName}}, '{{ProviderName}}Parser', { cause: error });
 		}
 	}
 }

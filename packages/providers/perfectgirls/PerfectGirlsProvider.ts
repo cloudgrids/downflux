@@ -1,6 +1,6 @@
 import { BaseProvider, TagFilterOptions } from '@base';
 import { GenericException, InvalidRangeException } from '@core/exceptions';
-import { ExtractionTarget, IndexRange, PageRange, ProviderType, VideoQuality } from '@types';
+import { ExtractionTarget, IndexRange, PageRange, Provider, VideoQuality } from '@types';
 import {
 	PerfectGirlsAlbumOutput,
 	PerfectGirlsChannelOutput,
@@ -21,7 +21,7 @@ import { PerfectGirlsMethods } from './PerfectGirlsTypes';
  * Dependencies: - ffmpeg (for m3u8 to mp4 conversion)
  */
 export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
-	protected readonly provider = ProviderType.PerfectGirls;
+	protected readonly provider = Provider.PerfectGirls;
 	private readonly BASE_URLS = {
 		PORN: 'https://perfectdamen.co',
 		XXX: 'https://perfectgirls.xxx'
@@ -36,10 +36,11 @@ export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.PerfectGirls,
+			provider: Provider.PerfectGirls,
 			urlPattern: /^(?:www\.)?(?:perfectgirls|perfectdamen)\.(?:co|xxx)$/i,
 			metadata: {
 				hasHls: true,
+				type: 'adult',
 				hasMp4: false,
 				hlsIntegrated: true,
 				mp4Integrated: false,

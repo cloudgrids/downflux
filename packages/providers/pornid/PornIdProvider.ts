@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { PornIdExecArgs, PornIdVideoOutput } from './PornIdContracts';
 import { PornIdMethods } from './PornIdTypes';
 
@@ -12,15 +12,16 @@ import { PornIdMethods } from './PornIdTypes';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class PornIdProvider extends BaseProvider<PornIdExecArgs> {
-	protected readonly provider = ProviderType.PornId;
+	protected readonly provider = Provider.PornId;
 	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?pornid\.(?:xxx|name)\/.*\.html(?:\?.*)?$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.PornId,
+			provider: Provider.PornId,
 			urlPattern: /(?:www\.)?pornid\.(?:xxx|name)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hlsIntegrated: false,
 				mp4Integrated: true,
 				hasMp4: true,

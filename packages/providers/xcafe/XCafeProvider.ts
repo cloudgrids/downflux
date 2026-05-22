@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { XCafeExecArgs, XCafeVideoOutput } from './XCafeContracts';
 import { XCafeMethods } from './XCafeTypes';
 
@@ -12,15 +12,16 @@ import { XCafeMethods } from './XCafeTypes';
  * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
  */
 export class XCafeProvider extends BaseProvider<XCafeExecArgs> {
-	protected readonly provider = ProviderType.XCafe;
+	protected readonly provider = Provider.XCafe;
 	private readonly VIDEO_URL_REGEX = /^https:\/\/(?:www\.)?xcafe\.(?:com)\/\d+\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.XCafe,
+			provider: Provider.XCafe,
 			urlPattern: /^(?:www\.)?xcafe\.(?:com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,

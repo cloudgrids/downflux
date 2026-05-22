@@ -1,4 +1,4 @@
-import { ErrorCodes, ProviderType } from '@types';
+import { ErrorCodes, Provider } from '@types';
 import { BaseException } from './BaseException';
 
 /**
@@ -9,7 +9,7 @@ import { BaseException } from './BaseException';
 export class DownloadException extends BaseException {
 	constructor(
 		public readonly url: string,
-		public readonly provider: ProviderType,
+		public readonly provider: Provider,
 		public readonly method?: string,
 		public readonly context: Record<string, any> = {},
 		public readonly metadata?: any
@@ -24,7 +24,7 @@ export class DownloadException extends BaseException {
 		});
 	}
 
-	private static buildMessage(path: string, provider?: ProviderType, method?: string): string {
+	private static buildMessage(path: string, provider?: Provider, method?: string): string {
 		return [
 			`Unable to download resource`,
 			`ERROR_CODE=${ErrorCodes.DOWNLOAD_FAILED}`,

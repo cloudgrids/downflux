@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { MegaTubeExecArgs, MegaTubeVideoOutput } from './MegaTubeContracts';
 import { MegaTubeMethods } from './MegaTubeTypes';
 
@@ -10,15 +10,16 @@ import { MegaTubeMethods } from './MegaTubeTypes';
  * but provides all available video URLs along with posters.
  */
 export class MegaTubeProvider extends BaseProvider<MegaTubeExecArgs> {
-	protected readonly provider = ProviderType.MegaTube;
+	protected readonly provider = Provider.MegaTube;
 	private readonly VIDEO_REGEX_PATH = /^https:\/\/(?:www\.)?megatube\.(?:xxx)\/videos\/[\d]+\/[^/]+\/$/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.MegaTube,
+			provider: Provider.MegaTube,
 			urlPattern: /^(?:www\.)?megatube\.(?:xxx)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: false,
 				mp4Integrated: true,

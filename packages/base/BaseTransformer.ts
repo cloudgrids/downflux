@@ -10,7 +10,7 @@ import {
 import { ProgressManager } from '@core/progress';
 import { ParserRegistry } from '@core/registries';
 import { HttpClient } from '@engine/http';
-import { ProviderType, VideoQuality } from '@types';
+import { Provider, VideoQuality } from '@types';
 
 /**
  * Selectors used to normalize provider-specific video records.
@@ -46,13 +46,10 @@ export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExecu
 	public async transform(url: string, request?: TExec): Promise<TResult> {
 		const fetched = await this.httpClient.fetchHtml(url, request as DownloadOptions);
 
-		const base = (await ParserRegistry.getParser(ProviderType.Default)).transform(fetched.html, fetched.finalUrl);
+		const base = (await ParserRegistry.getParser(Provider.Default)).transform(fetched.html, fetched.finalUrl);
 
-		if (request?.provider !== ProviderType.Default) {
-			const transformed = (await ParserRegistry.getParser(request?.provider as ProviderType)).transform(
-				fetched.html,
-				fetched.finalUrl
-			);
+		if (request?.provider !== Provider.Default) {
+			const transformed = (await ParserRegistry.getParser(request?.provider as Provider)).transform(fetched.html, fetched.finalUrl);
 			return { ...base, ...transformed, request } as TResult;
 		}
 

@@ -1,5 +1,5 @@
 import { BaseProvider } from '@base';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { SexVidExecArgs, SexVidVideoOutput } from './SexVidContracts';
 import { SexVidMethods } from './SexVidTypes';
 
@@ -10,14 +10,15 @@ import { SexVidMethods } from './SexVidTypes';
  * Provides mp4 links
  */
 export class SexVidProvider extends BaseProvider<SexVidExecArgs> {
-	protected readonly provider = ProviderType.SexVid;
+	protected readonly provider = Provider.SexVid;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.SexVid,
+			provider: Provider.SexVid,
 			urlPattern: /^(?:www\.)?sexvid(?:\d+)?\.(?:xxx|com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hlsIntegrated: false,
 				mp4Integrated: true,
 				requiresLogin: false,

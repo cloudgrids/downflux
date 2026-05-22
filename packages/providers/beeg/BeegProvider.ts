@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { BeegExecArgs, BeegVideoOutput } from './BeegContracts';
 import { BeegMethods } from './BeegTypes';
 
@@ -12,16 +12,17 @@ import { BeegMethods } from './BeegTypes';
  * Dependencies: - ffmpeg (for m3u8 to mp4 conversion)
  */
 export class BeegProvider extends BaseProvider<BeegExecArgs> {
-	protected readonly provider = ProviderType.Beeg;
+	protected readonly provider = Provider.Beeg;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?beeg\.com\/-0([0-9]+)\/?$/i;
 	private VIDEO_ID: string = '';
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.Beeg,
+			provider: Provider.Beeg,
 			urlPattern: /^(?:www\.)?beeg\.(?:com)$/i,
 			metadata: {
 				hasHls: true,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: true,
 				mp4Integrated: true,

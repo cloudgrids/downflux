@@ -1,6 +1,6 @@
 [**downflux**](../README.md)
 
-***
+---
 
 [downflux](../README.md) / PipelineItem
 
@@ -16,7 +16,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:11](https://github.com/fork
 
 Defined in: [packages/contracts/PipelineContracts.ts:12](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L12)
 
-***
+---
 
 ### sourceUrl
 
@@ -24,7 +24,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:12](https://github.com/fork
 
 Defined in: [packages/contracts/PipelineContracts.ts:13](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L13)
 
-***
+---
 
 ### identifier
 
@@ -32,10 +32,10 @@ Defined in: [packages/contracts/PipelineContracts.ts:13](https://github.com/fork
 
 Defined in: [packages/contracts/PipelineContracts.ts:14](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L14)
 
-***
+---
 
 ### provider
 
-> **provider**: [`ProviderType`](../enumerations/ProviderType.md)
+> **provider**: [`Provider`](../enumerations/Provider.md)
 
 Defined in: [packages/contracts/PipelineContracts.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L15)

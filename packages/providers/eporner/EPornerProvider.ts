@@ -1,5 +1,5 @@
 import { BaseProvider } from '@base';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { EPornerExecArgs, EPornerVideoOutput } from './EPornerContracts';
 import { EPornerMethods } from './EPornerTypes';
 
@@ -11,14 +11,15 @@ import { EPornerMethods } from './EPornerTypes';
  * Supports integrated MP4 downloads, integrated HLS downloads. Requires an external API, geo-aware access. Marked under development so callers should expect provider-specific changes. SNI spoofing status: working.
  */
 export class EPornerProvider extends BaseProvider<EPornerExecArgs> {
-	protected readonly provider = ProviderType.EPorner;
+	protected readonly provider = Provider.EPorner;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.EPorner,
+			provider: Provider.EPorner,
 			urlPattern: /(?:(?:www|pl|en|fr|es|pt|it|de|nl|ph|jp)\.)?eporner\.(?:com)$/i,
 			metadata: {
 				hasHls: true,
+				type: 'adult',
 				hasMp4: true,
 				hlsIntegrated: true,
 				mp4Integrated: true,

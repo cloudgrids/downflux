@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, PageRange, ProviderType, UrlFormat, VideoQuality } from '@types';
+import { ExtractionTarget, PageRange, Provider, UrlFormat, VideoQuality } from '@types';
 import { PornHubChannelsOutput, PornHubExecArgs, PornHubVideoOutput, PornHubVideosExecArgs, PornHubVideosOutput } from './PornHubContracts';
 import { PornHubChannelsQueryArgsType, PornHubMethods, PornHubVideosFormat } from './PornHubTypes';
 
@@ -11,7 +11,7 @@ import { PornHubChannelsQueryArgsType, PornHubMethods, PornHubVideosFormat } fro
  * Provides mp4 links
  */
 export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
-	protected readonly provider = ProviderType.PornHub;
+	protected readonly provider = Provider.PornHub;
 	private readonly CHANNELS_PATH_REGEX = /^https:\/\/(?:www\.)?pornhub\.(?:com|net|org)\/channels(?:\?.*)?$/i;
 	private readonly Default_PAGE_RANGE: PageRange = { page: 1, limit: 1 };
 	private readonly PORN_HUB_FORMATS = ['pornstar', 'model', 'channels'] as const;
@@ -26,10 +26,11 @@ export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.PornHub,
+			provider: Provider.PornHub,
 			urlPattern: /^(?:www\.)?pornhub\.(?:com|net|org)$/i,
 			metadata: {
 				hasHls: true,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: true,
 				hlsIntegrated: true,

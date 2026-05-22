@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType } from '@types';
+import { Provider } from '@types';
 import { XnXXOutput } from './XnXXContracts';
 
 /**
@@ -29,7 +29,7 @@ export class XnXXParser extends BaseParser {
 				} as XnXXOutput
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.XnXX, 'XnXXParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.XnXX, 'XnXXParser', { cause: error });
 		}
 	}
 

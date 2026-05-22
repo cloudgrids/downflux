@@ -1,4 +1,4 @@
-import { OutputType, ProviderType, VideoQuality } from '@types';
+import { OutputType, Provider, VideoQuality } from '@types';
 import { Writable } from 'stream';
 import { HttpAgentOptions } from './ExecutionContracts';
 import { PipelineItem } from './PipelineContracts';
@@ -8,7 +8,7 @@ export interface DownloadOptions extends HttpFetchOptions {
 	dirConfig?: DirectoryOutputOptions;
 	transcodeOptions?: TranscodeOptions;
 	outputType: OutputType;
-	provider: ProviderType;
+	provider: Provider;
 	reExtract?: (item: PipelineItem) => Promise<PipelineItem | null>;
 	pipelineItem?: PipelineItem;
 	noDownload?: boolean;
@@ -48,7 +48,7 @@ export interface DownloadResult {
 	path: string;
 
 	/** Service used for the download */
-	provider: ProviderType;
+	provider: Provider;
 }
 
 export interface FetchResult {

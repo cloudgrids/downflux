@@ -1,7 +1,7 @@
 import { BaseParser } from '@base';
 import { DefaultExecutionResult } from '@contracts';
 import { GenericException } from '@core/exceptions';
-import { ProviderType, VideoQuality } from '@types';
+import { Provider, VideoQuality } from '@types';
 import { HqPornOutput } from './HqPornContracts';
 
 /**
@@ -26,7 +26,7 @@ export class HqPornParser extends BaseParser {
 				}
 			};
 		} catch (error) {
-			throw new GenericException('Unable to parse some fields:', ProviderType.HqPorn, 'HqPornParser', { cause: error });
+			throw new GenericException('Unable to parse some fields:', Provider.HqPorn, 'HqPornParser', { cause: error });
 		}
 	}
 }

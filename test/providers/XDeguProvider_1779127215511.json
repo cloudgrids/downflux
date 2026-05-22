@@ -17,6 +17,7 @@
       "mp4Integrated": true,
       "underDevelopment": true,
       "requiresBrowser": false,
+			"type": "adult",
       "sniSpoofing": "untested",
       "underGeoRestriction": false
     },

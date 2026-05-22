@@ -1,6 +1,6 @@
 import { BaseProvider, TagFilterOptions } from '@base';
 import { GenericException, InvalidRangeException } from '@core/exceptions';
-import { ExtractionTarget, IndexRange, PageRange, ProviderType, VideoQuality } from '@types';
+import { ExtractionTarget, IndexRange, PageRange, Provider, VideoQuality } from '@types';
 import {
 	OkPornAlbumOutput,
 	OkPornChannelOutput,
@@ -22,7 +22,7 @@ import { OkPornMethods } from './OkPornTypes';
  * Dependencies: - ffmpeg (for m3u8 to mp4 conversion)
  */
 export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
-	protected readonly provider = ProviderType.OkPorn;
+	protected readonly provider = Provider.OkPorn;
 	private readonly BASE_URLS = {
 		PORN: 'https://ok.porn',
 		XXX: 'https://ok.xxx'
@@ -37,10 +37,11 @@ export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.OkPorn,
+			provider: Provider.OkPorn,
 			urlPattern: /^(?:www\.)?ok\.(?:porn|xxx)$/i,
 			metadata: {
 				hasHls: true,
+				type: 'adult',
 				hasMp4: false,
 				hlsIntegrated: true,
 				mp4Integrated: false,

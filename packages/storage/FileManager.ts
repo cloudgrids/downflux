@@ -1,7 +1,7 @@
 import { CreateSinkInput, CreateSinkOutput, ExecutionArgs, ExecutionResult, ResolvedFile, TranscodeOptions } from '@contracts';
 import { InvalidDestinationException } from '@core/exceptions';
 import { ProgressManager } from '@core/progress';
-import { AllowedExtension, ExecutionShape, MIME_TYPE, OutputType, ProviderType } from '@types';
+import { AllowedExtension, ExecutionShape, MIME_TYPE, OutputType, Provider } from '@types';
 import { createWriteStream, promises as fs, mkdirSync, writeFileSync } from 'fs';
 import { basename, dirname, extname, isAbsolute, relative, resolve } from 'path';
 import { Writable } from 'stream';
@@ -227,7 +227,7 @@ export class FileManager {
 		return name.replace(/[^a-z0-9._-]/gi, '_');
 	}
 
-	private getFilePath(provider: ProviderType, directoryPath: string, filename: string, identifier?: string): string {
+	private getFilePath(provider: Provider, directoryPath: string, filename: string, identifier?: string): string {
 		if (!filename || filename.trim() === '') {
 			throw new InvalidDestinationException(directoryPath, provider, identifier ?? filename, { reason: 'Invalid filename' });
 		}
@@ -276,13 +276,13 @@ export class FileManager {
 		const message = { message: `[${request.provider}]Resolving resource type to default` };
 
 		switch (request.provider) {
-			case ProviderType.XnXX:
-			case ProviderType.PornHub:
-			case ProviderType.XVideos:
-			case ProviderType.XHamster:
-			case ProviderType.Beeg:
-			case ProviderType.PussySpace:
-			case ProviderType.PornsOk: {
+			case Provider.XnXX:
+			case Provider.PornHub:
+			case Provider.XVideos:
+			case Provider.XHamster:
+			case Provider.Beeg:
+			case Provider.PussySpace:
+			case Provider.PornsOk: {
 				this.progressManager.update(message);
 				return { mimeType: 'video/mp4', extension: 'mp4' };
 			}

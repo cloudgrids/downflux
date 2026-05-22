@@ -14,6 +14,7 @@
       "hlsIntegrated": true,
       "mp4Integrated": false,
       "hasKvs": false,
+			"type": "adult",
       "underGeoRestriction": false,
       "requiresBrowser": false,
       "canDownload": true,

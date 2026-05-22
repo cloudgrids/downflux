@@ -1,6 +1,6 @@
 import { BaseProvider } from '@base';
 import { GenericException } from '@core/exceptions';
-import { ExtractionTarget, ProviderType } from '@types';
+import { ExtractionTarget, Provider } from '@types';
 import { ZbPornExecArgs, ZbPornVideoOutput } from './ZbPornContracts';
 import { ZbPornMethods } from './ZbPornTypes';
 
@@ -12,15 +12,16 @@ import { ZbPornMethods } from './ZbPornTypes';
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
  */
 export class ZbPornProvider extends BaseProvider<ZbPornExecArgs> {
-	protected readonly provider = ProviderType.ZbPorn;
+	protected readonly provider = Provider.ZbPorn;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?zbporn\.(?:tv|com)\/videos\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?/i;
 
 	constructor(url: string) {
 		super(url, {
-			provider: ProviderType.ZbPorn,
+			provider: Provider.ZbPorn,
 			urlPattern: /(?:www\.)?zbporn\.(?:tv|com)$/i,
 			metadata: {
 				hasHls: false,
+				type: 'adult',
 				hasMp4: true,
 				hasKvs: true,
 				canDownload: true,
