@@ -533,7 +533,7 @@ export class BaseParser {
 		return this.extractByTag(html, tag, options)[0] ?? null;
 	}
 
-	protected extractScriptsByType(html: string, type: string): string[] {
+	protected extractScriptsByType(html: string, type: string): Record<string, any>[] {
 		const results = new Set<string>();
 		const scriptTagPattern = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
 		const typePattern = new RegExp(`(?:^|\\s)type\\s*=\\s*(["'])${type.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\1(?:\\s|$)`, 'i');
@@ -548,7 +548,7 @@ export class BaseParser {
 			if (content) results.add(content);
 		}
 
-		return [...results];
+		return [...results]?.flatMap((c) => JSON.parse(c));
 	}
 
 	protected extractByClass(html: string, className: string): string[] {

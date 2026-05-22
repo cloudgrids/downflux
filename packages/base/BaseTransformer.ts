@@ -1,4 +1,12 @@
-import { DefaultExecutionResult, DefaultFlashVarsVideoOutput, DownloadOptions, ExecutionArgs, VideoSourceOutput } from '@contracts';
+import {
+	DefaultExecutionResult,
+	DefaultFlashVarsVideoOutput,
+	DefaultVideoOutput,
+	DownloadOptions,
+	ExecutionArgs,
+	VideosFormat,
+	VideoSourceOutput
+} from '@contracts';
 import { ProgressManager } from '@core/progress';
 import { ParserRegistry } from '@core/registries';
 import { HttpClient } from '@engine/http';
@@ -109,5 +117,45 @@ export class BaseTransformer<TExec extends ExecutionArgs, TResult = DefaultExecu
 			uploader: customFields?.uploader,
 			starred: customFields?.starred
 		};
+	}
+
+	protected mapSources(sources: string[], quality: string = VideoQuality.QUnknown, filter?: (src: string) => boolean): VideosFormat {
+		return {
+			mp4: this.uniqueVideos(
+				this.filterAndMapSources(sources, filter).map((video) => ({
+					url: video,
+					quality
+				})) as VideoSourceOutput[],
+				{
+					getUrl: (video) => video.url,
+					getQuality: (video) => video.quality
+				}
+			)
+		};
+	}
+	private filterAndMapSources(sources: string[], testFunc?: (src: string) => boolean) {
+		return testFunc ? sources?.filter(testFunc) : sources;
+	}
+
+	protected defaultVideoOutput<T extends Partial<DefaultVideoOutput> = Partial<DefaultVideoOutput>>(
+		metadata: DefaultExecutionResult<Partial<T>>,
+		options?: {
+			filter?: (src: string) => boolean;
+			quality?: string;
+			extraFields?: Partial<T>;
+		}
+	): T {
+		const { filter, quality, extraFields } = options || {};
+		const customFields = metadata?.customFields as DefaultVideoOutput;
+
+		return {
+			pageUrl: customFields?.pageUrl,
+			poster: customFields?.poster,
+			title: metadata.title,
+			description: metadata.description,
+			tags: metadata.keywords || [],
+			videos: this.mapSources(metadata?.sources || [], quality, filter),
+			...extraFields
+		} as T;
 	}
 }

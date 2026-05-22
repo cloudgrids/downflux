@@ -1,6 +1,14 @@
 {
   "services": [
     {
+      "name": "AnalRz",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "Beeg",
       "parser": true,
       "pipeline": true,

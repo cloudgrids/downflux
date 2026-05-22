@@ -13,7 +13,7 @@ import { PerfectGirlsModelVideoCard, PerfectGirlsOutput } from './PerfectGirlsCo
  */
 export class PerfectGirlsParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<PerfectGirlsOutput>>> {
-		const videoInfo = this.getVideoInfo(html);
+		const videoInfo = this.extractScriptsByType(html, 'application/ld+json')?.[0];
 
 		const hls = this.collectElements(html, 'source')?.map((source) => ({
 			url: source?.src,
@@ -92,9 +92,5 @@ export class PerfectGirlsParser extends BaseParser {
 				}))
 				.filter((m) => m.name && m.url) ?? []
 		);
-	}
-
-	private getVideoInfo(html: string) {
-		return this.extractScriptsByType(html, 'application/ld+json').map((script) => JSON.parse(script))?.[0];
 	}
 }

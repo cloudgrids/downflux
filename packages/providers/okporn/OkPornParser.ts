@@ -13,7 +13,7 @@ import { OkPornModelVideoCard, OkPornOutput } from './OkPornContracts';
  */
 export class OkPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<OkPornOutput>>> {
-		const videoInfo = this.getVideoInfo(html);
+		const videoInfo = this.extractScriptsByType(html, 'application/ld+json')?.[0];
 
 		const hls = this.collectElements(html, 'source').map((source) => ({
 			url: source?.src,
@@ -92,9 +92,5 @@ export class OkPornParser extends BaseParser {
 				}))
 				.filter((m) => m.name && m.url) ?? []
 		);
-	}
-
-	public getVideoInfo(html: string) {
-		return this.extractScriptsByType(html, 'application/ld+json').map((script) => JSON.parse(script))?.[0];
 	}
 }

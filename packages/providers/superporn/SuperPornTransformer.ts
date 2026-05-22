@@ -1,5 +1,5 @@
 import { BaseTransformer } from '@base';
-import { DefaultExecutionResult, VideosFormat, VideoSourceOutput } from '@contracts';
+import { DefaultExecutionResult } from '@contracts';
 import { VideoQuality } from '@types';
 import { SuperPornExecArgs, SuperPornOutput, SuperPornVideoOutput } from './SuperPornContracts';
 import { SuperPornMethods } from './SuperPornTypes';
@@ -18,7 +18,11 @@ export class SuperPornTransformer extends BaseTransformer<SuperPornExecArgs, Def
 
 		switch (request?.method) {
 			case SuperPornMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultVideoOutput(metadata, {
+					filter: (src) => /^https:\/\/cdnst(?:\d+)?\.superporn\.com\/.*/i.test(src),
+					quality: metadata?.customFields?.quality as VideoQuality,
+					extraFields: this.toVideoOutput(metadata)
+				});
 			default:
 				return metadata;
 		}
@@ -27,38 +31,14 @@ export class SuperPornTransformer extends BaseTransformer<SuperPornExecArgs, Def
 	private toVideoOutput(metadata: DefaultExecutionResult<Partial<SuperPornOutput>>): SuperPornVideoOutput {
 		const superPornFields = metadata.customFields as SuperPornOutput;
 
-		const videos = this.mapSources(metadata.sources, superPornFields?.quality as VideoQuality);
-
 		return {
 			...superPornFields,
 			pageUrl: superPornFields.pageUrl,
 			tags: superPornFields?.tags,
 			uploader: superPornFields?.uploader,
-			videos: {
-				mp4: this.uniqueVideos(videos?.mp4 ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				}),
-				hls: this.uniqueVideos(videos?.hls ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				})
-			},
 			poster: superPornFields?.poster,
 			title: superPornFields?.title || metadata.title,
 			description: superPornFields?.description || metadata.description
-		};
-	}
-
-	private mapSources(sources: string[], quality: VideoQuality): VideosFormat {
-		return {
-			mp4: sources?.map((src) => {
-				const isVideoCdn = /^https:\/\/cdnst(?:\d+)?\.superporn\.com\/.*/i.test(src);
-				return {
-					url: src,
-					quality: isVideoCdn ? quality : VideoQuality.QUnknown
-				};
-			}) as VideoSourceOutput[]
 		};
 	}
 }
