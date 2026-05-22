@@ -3,6 +3,14 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { AnalRzExecArgs, AnalRzOutput } from './AnalRzContracts';
 
+/**
+ * Pipeline for organizing AnalRz video media files.
+ * Manages the routing and organization of different media types (videos, posters, etc.).
+ *
+ * @remarks
+ * Pipelines handle the organization of extracted media files into a structured
+ * hierarchy. They determine how files are mapped, identified, and stored for later retrieval.
+ */
 export class AnalRzPipeline extends BasePipeline<AnalRzExecArgs, AnalRzOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<AnalRzOutput>): string {
 		const { mediaType, id, metadata } = ctx;

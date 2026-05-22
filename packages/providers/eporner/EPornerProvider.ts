@@ -9,6 +9,7 @@ import { EPornerMethods } from './EPornerTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, integrated HLS downloads. Requires an external API, geo-aware access. Marked under development so callers should expect provider-specific changes. SNI spoofing status: working.
+ * EPorner supports video downloading (canDownload: true).
  */
 export class EPornerProvider extends BaseProvider<EPornerExecArgs> {
 	protected readonly provider = Provider.EPorner;

@@ -10,6 +10,7 @@ import { XozillaMethods } from './XozillaTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * Xozilla supports video downloading (canDownload: true).
  */
 export class XozillaProvider extends BaseProvider<XozillaExecArgs> {
 	protected readonly provider = Provider.Xozilla;

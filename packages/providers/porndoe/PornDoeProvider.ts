@@ -10,6 +10,7 @@ import { PornDoeMethods } from './PornDoeTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads. Requires an external API. Marked under development so callers should expect provider-specific changes.
+ * PornDoe supports video downloading (canDownload: true).
  */
 export class PornDoeProvider extends BaseProvider<PornDoeExecArgs> {
 	protected readonly provider = Provider.PornDoe;

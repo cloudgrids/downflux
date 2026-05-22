@@ -9,6 +9,9 @@ import { ColliderPornMethods } from './ColliderPornTypes';
  * as ColliderPorn is a front for XVideos and multiple other sites and doesn't have its own video hosting.
  * So the video metadata is quite limited and we rely on the embedded video data for most of the information.
  * It might not work as to collect the metadata and video URLs, as the embedded video data can be geo-restricted or removed by the original host.
+ *
+ * @remarks
+ * ColliderPorn does not support video downloading (canDownload: false).
  */
 export class ColliderPornProvider extends BaseProvider<ColliderPornExecArgs> {
 	protected readonly provider = Provider.ColliderPorn;

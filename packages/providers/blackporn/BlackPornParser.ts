@@ -4,6 +4,13 @@ import { GenericException } from '@core/exceptions';
 import { Provider } from '@types';
 import { BlackPornOutput } from './BlackPornContracts';
 
+/**
+ * Extracts BlackPorn-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ * Handles extraction of video metadata from HTML elements and structured data.
+ */
 export class BlackPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<BlackPornOutput>>> {
 		try {

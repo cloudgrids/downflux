@@ -12,6 +12,9 @@ import { TheyAreHugeMethods } from './TheyAreHugeTypes';
  *
  * Currently, it can't fetch the video qualities over 720p due to login requirement, but it can fetch 240p and 480p qualities without login.
  * Under development.
+ *
+ * @remarks
+ * TheyAreHuge supports video downloading (canDownload: true).
  */
 export class TheyAreHugeProvider extends BaseProvider<TheyAreHugeExecArgs> {
 	protected readonly provider = Provider.TheyAreHuge;

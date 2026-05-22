@@ -10,6 +10,7 @@ import { ZbPornMethods } from './ZbPornTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * ZbPorn supports video downloading (canDownload: true).
  */
 export class ZbPornProvider extends BaseProvider<ZbPornExecArgs> {
 	protected readonly provider = Provider.ZbPorn;

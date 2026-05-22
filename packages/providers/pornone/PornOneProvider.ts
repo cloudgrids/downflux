@@ -9,6 +9,9 @@ import { PornOneMethods } from './PornOneTypes';
  * Still under `development` due to cloudflare challenge.
  * Provides direct mp4 links
  * Currently it does not downloads
+ *
+ * @remarks
+ * PornOne does not support video downloading (canDownload: false).
  */
 export class PornOneProvider extends BaseProvider<PornOneExecArgs> {
 	protected readonly provider = Provider.PornOne;

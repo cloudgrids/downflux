@@ -6,6 +6,14 @@ import { AnalRzMethods } from './AnalRzTypes';
 
 type AnalRzTransformedOutput = DefaultExecutionResult<Partial<AnalRzOutput>>;
 
+/**
+ * Transforms AnalRz metadata into standardized video output format.
+ * Handles conversion of extracted metadata to the final video output structure.
+ *
+ * @remarks
+ * Transformers handle the conversion of raw extracted data into the standardized
+ * output format used by the application. This includes quality mapping and field normalization.
+ */
 export class AnalRzTransformer extends BaseTransformer<AnalRzExecArgs, DefaultExecutionResult> {
 	public async transform(url: string, request?: AnalRzExecArgs): Promise<DefaultExecutionResult> {
 		const metadata = (await super.transform(url, request)) as AnalRzTransformedOutput;

@@ -10,6 +10,7 @@ import { DaFreePornMethods } from './DaFreePornTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * DaFreePorn supports video downloading (canDownload: true).
  */
 export class DaFreePornProvider extends BaseProvider<DaFreePornExecArgs> {
 	protected readonly provider = Provider.DaFreePorn;

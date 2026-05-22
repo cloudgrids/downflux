@@ -4,6 +4,13 @@ import { GenericException } from '@core/exceptions';
 import { Provider } from '@types';
 import { AnalRzOutput } from './AnalRzContracts';
 
+/**
+ * Extracts AnalRz-specific metadata from fetched HTML.
+ *
+ * @remarks
+ * Parsers keep DOM/string extraction separate from network and download code so provider page changes can be fixed in one place.
+ * Handles extraction of video metadata from JSON-LD structured data and HTML elements.
+ */
 export class AnalRzParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<AnalRzOutput>>> {
 		const script = this.extractScriptsByType(html, 'application/ld+json', 'VideoObject')?.[0];

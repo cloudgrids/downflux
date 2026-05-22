@@ -10,6 +10,7 @@ import { PussySpaceMethods } from './PussySpaceTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads. Requires an external API. Marked under development so callers should expect provider-specific changes.
+ * PussySpace supports video downloading (canDownload: true).
  */
 export class PussySpaceProvider extends BaseProvider<PussySpaceExecArgs> {
 	protected readonly provider = Provider.PussySpace;

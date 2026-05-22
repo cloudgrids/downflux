@@ -10,6 +10,7 @@ import { TubeVSexMethods } from './TubeVSexTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
+ * TubeVSex supports video downloading (canDownload: true).
  */
 export class TubeVSexProvider extends BaseProvider<TubeVSexExecArgs> {
 	protected readonly provider = Provider.TubeVSex;

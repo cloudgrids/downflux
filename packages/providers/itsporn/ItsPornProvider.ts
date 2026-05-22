@@ -10,6 +10,7 @@ import { ItsPornMethods } from './ItsPornTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * ItsPorn supports video downloading (canDownload: true).
  */
 export class ItsPornProvider extends BaseProvider<ItsPornExecArgs> {
 	protected readonly provider = Provider.ItsPorn;

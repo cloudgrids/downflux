@@ -10,6 +10,7 @@ import { InterracialMethods } from './InterracialTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * Interracial supports video downloading (canDownload: true).
  */
 export class InterracialProvider extends BaseProvider<InterracialExecArgs> {
 	protected readonly provider = Provider.Interracial;

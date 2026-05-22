@@ -8,6 +8,9 @@ import { Porn300Methods } from './Porn300Types';
  * @extends BaseProvider
  * Provider for Porn300 video downloader.
  * Provides mp4 links
+ *
+ * @remarks
+ * Porn300 supports video downloading (canDownload: true).
  */
 export class Porn300Provider extends BaseProvider<Porn300ExecArgs> {
 	protected readonly provider = Provider.Porn300;

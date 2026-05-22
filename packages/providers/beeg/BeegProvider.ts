@@ -10,6 +10,9 @@ import { BeegMethods } from './BeegTypes';
  * Provider for Beeg video downloader.
  * Provides m3u8 files and converts them to mp4 using ffmpeg
  * Dependencies: - ffmpeg (for m3u8 to mp4 conversion)
+ *
+ * @remarks
+ * Beeg supports video downloading (canDownload: true).
  */
 export class BeegProvider extends BaseProvider<BeegExecArgs> {
 	protected readonly provider = Provider.Beeg;

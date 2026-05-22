@@ -8,6 +8,9 @@ import { MegaTubeMethods } from './MegaTubeTypes';
  * @class `MegaTubeProvider`
  * Does not exposes video quality information due to limitations in the source HTML,
  * but provides all available video URLs along with posters.
+ *
+ * @remarks
+ * MegaTube supports video downloading (canDownload: true).
  */
 export class MegaTubeProvider extends BaseProvider<MegaTubeExecArgs> {
 	protected readonly provider = Provider.MegaTube;

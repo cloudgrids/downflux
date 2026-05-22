@@ -20,6 +20,7 @@ import { OkPornMethods } from './OkPornTypes';
  * Provides: album, video, model, tag, and channel operations.
  * Provides m3u8 links
  * Dependencies: - ffmpeg (for m3u8 to mp4 conversion)
+ * OkPorn supports video downloading (canDownload: true).
  */
 export class OkPornProvider extends BaseProvider<OkPornExecArgs> {
 	protected readonly provider = Provider.OkPorn;

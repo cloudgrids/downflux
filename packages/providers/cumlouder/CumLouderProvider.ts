@@ -10,6 +10,9 @@ import { CumLouderMethods } from './CumLouderTypes';
  * The provider is still under development and may not support all video formats or qualities available on CumLouder.
  * Default video quality is set to `QUnknown` due to limitations in the source HTML,
  * but this may be refined in the future as the provider is further developed and improved.
+ *
+ * @remarks
+ * CumLouder supports video downloading (canDownload: true).
  */
 export class CumLouderProvider extends BaseProvider<CumLouderExecArgs> {
 	protected readonly provider = Provider.CumLouder;

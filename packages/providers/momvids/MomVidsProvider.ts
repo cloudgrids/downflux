@@ -10,6 +10,7 @@ import { MomVidsMethods } from './MomVidsTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * MomVids supports video downloading (canDownload: true).
  */
 export class MomVidsProvider extends BaseProvider<MomVidsExecArgs> {
 	protected readonly provider = Provider.MomVids;
