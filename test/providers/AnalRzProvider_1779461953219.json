@@ -1,0 +1,83 @@
+[
+  {
+    "provider": "AnalRzProvider",
+    "method": "getVideo",
+    "targets": [
+      "https://analrz.com/video/305129/mature-milf-paris-lincoln-tries-anal-sex-with-her-boyfriend-alex-adams/"
+    ],
+    "entryUrl": "https://analrz.com/video/305129/mature-milf-paris-lincoln-tries-anal-sex-with-her-boyfriend-alex-adams/",
+    "extractionTarget": "SOURCES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": false,
+      "hasMp4": true,
+      "hasKvs": false,
+      "hlsIntegrated": false,
+      "mp4Integrated": true,
+      "requiresBrowser": false,
+      "sniSpoofing": "untested",
+      "underGeoRestriction": false,
+      "underDevelopment": true,
+      "needsExternalAPI": false,
+      "canDownload": false
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "single",
+    "extracted": {
+      "pageUrl": "https://analrz.com/video/305129/mature-milf-paris-lincoln-tries-anal-sex-with-her-boyfriend-alex-adams/",
+      "poster": "https://cdnstatic.analrz.com/contents/videos_screenshots/305000/305129/1280x720/1.jpg",
+      "title": "Mature mature Paris Lincoln tries butt sex sex with her boyfriend Alex Adams -",
+      "description": "The scene opens with a close-up of Paris Lincoln's face as she looks at the camera with a mischievous smile. The setting is a dimly lit bedroom with a large bed in the center. Paris is a beautiful brunette mature with huge tits and a busty body. She's wearing a sexy negligee that barely covers her ample bosom. Alex Adams, her boyfriend, is lying on the bed next to her, stroking his massive cock. He's a muscular man with a chiseled jawline and piercing eyes. Paris leans over and starts sucking Alex's huge dick, her lips stretched wide around his chunky shaft. She bobs her head up and down, savoring the taste of his cock. Alex groans with pleasure, his hands tangled in her hair. After a few minutes of intense blow job action, Paris climbs on top of Alex and straddles his hips. She lowers herself onto his cock, moaning as he stretches her tight pussy. She starts riding him in missionary position, her huge tits jumping with each thrust. Alex grips her hips, pounding into her hard. Paris throws her head back, lost in ecstasy. She's never felt a cock this huge before, and the sensation is overwhelming. Alex pistons his hips, slamming his cock deep into her dripping wet pussy. Paris cums hard, her pussy clenching around his shaft. Alex keeps pounding her, determined to give her the creampie she craves. With a final thrust, he explodes inside her, filling her with his hot cum. Paris collapses on top of him, both of them panting and sweating. The scene fades to black, leaving the viewer with a lasting impression of Paris' butt sex adventure and the intense satisfaction on both performers' faces.",
+      "tags": "anal, milf, blowjob, brunette, riding, cheating, big as, missionary, big tit, taboo, rimming, big cock, pawg, share bed",
+      "videos": {
+        "mp4": [
+          {
+            "url": "https://media.analrz.com/get_file/5/25beb81d6c133ae2ce28ff15f9fa30fb/305000/305129/305129.mp4/",
+            "quality": "1080p"
+          }
+        ]
+      },
+      "videoId": "305129",
+      "actors": [
+        "Alex Adams",
+        "Paris Lincoln"
+      ],
+      "uploader": "Alex Adams_Paris Lincoln",
+      "width": "1920",
+      "height": "1080"
+    },
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": [
+      {
+        "downloadUrl": "https://media.analrz.com/get_file/5/25beb81d6c133ae2ce28ff15f9fa30fb/305000/305129/305129.mp4/",
+        "sourceUrl": "https://analrz.com/video/305129/mature-milf-paris-lincoln-tries-anal-sex-with-her-boyfriend-alex-adams/",
+        "provider": "AnalRzProvider",
+        "identifier": {
+          "mediaType": "videos",
+          "mimeType": "video/mp4",
+          "extension": "mp4",
+          "key": "AnalRz/Alex_Adams_Paris_Lincoln/videos/305129"
+        }
+      },
+      {
+        "downloadUrl": "https://cdnstatic.analrz.com/contents/videos_screenshots/305000/305129/1280x720/1.jpg",
+        "sourceUrl": "https://analrz.com/video/305129/mature-milf-paris-lincoln-tries-anal-sex-with-her-boyfriend-alex-adams/",
+        "provider": "AnalRzProvider",
+        "identifier": {
+          "mediaType": "video_poster",
+          "mimeType": "image/jpg",
+          "extension": "jpg",
+          "key": "AnalRz/Alex_Adams_Paris_Lincoln/videos/305129/video_poster"
+        }
+      }
+    ]
+  }
+]

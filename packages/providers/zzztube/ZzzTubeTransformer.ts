@@ -1,6 +1,5 @@
 import { BaseTransformer } from '@base';
-import { DefaultExecutionResult, VideosFormat, VideoSourceOutput } from '@contracts';
-import { VideoQuality } from '@types';
+import { DefaultExecutionResult } from '@contracts';
 import { ZzzTubeExecArgs, ZzzTubeOutput, ZzzTubeVideoOutput } from './ZzzTubeContracts';
 import { ZzzTubeMethods } from './ZzzTubeTypes';
 
@@ -18,46 +17,11 @@ export class ZzzTubeTransformer extends BaseTransformer<ZzzTubeExecArgs, Default
 
 		switch (request?.method) {
 			case ZzzTubeMethods.getVideo:
-				return this.toVideoOutput(metadata);
+				return this.defaultVideoOutput(metadata, {
+					filter: (url) => /^https:\/\/(?:vcdn(?:\d+)\.)?zzztube\.(?:com)\/key.*_\.mp4$/i.test(url)
+				});
 			default:
 				return metadata;
 		}
-	}
-
-	private toVideoOutput(metadata: DefaultExecutionResult<Partial<ZzzTubeOutput>>): ZzzTubeVideoOutput {
-		const zzzTubeFields = metadata.customFields as ZzzTubeOutput;
-
-		const videos = this.mapSources(metadata.sources);
-
-		return {
-			...zzzTubeFields,
-			title: metadata?.title,
-			description: metadata?.description,
-			tags: metadata?.keywords || [],
-			videos: {
-				mp4: this.uniqueVideos(videos?.mp4 ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				}),
-				hls: this.uniqueVideos(videos?.hls ?? [], {
-					getUrl: (video) => video.url,
-					getQuality: (video) => video.quality
-				})
-			}
-		};
-	}
-
-	private mapSources(sources: string[]): VideosFormat {
-		return {
-			mp4: sources?.map((src) => {
-				const match = src.match(/^https:\/\/(?:vcdn(?:\d+)\.)?zzztube\.(?:com)\/key.*_(\d{3,4})?\.mp4$/i);
-				if (match) {
-					return {
-						url: src,
-						quality: match?.[1] ? (`${match?.[1]}p` as VideoQuality) : VideoQuality.QUnknown
-					};
-				}
-			}) as VideoSourceOutput[]
-		};
 	}
 }

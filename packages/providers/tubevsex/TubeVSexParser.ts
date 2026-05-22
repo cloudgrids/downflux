@@ -12,7 +12,7 @@ import { TubeVSexOutput } from './TubeVSexContracts';
  */
 export class TubeVSexParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<TubeVSexOutput>>> {
-		const jsonContent = this.extractScriptsByType(html, 'application/ld+json')?.map((s) => JSON.parse(s))?.[0];
+		const jsonContent = this.extractScriptsByType(html, 'application/ld+json')?.[0];
 
 		const channelInfo = this.collectByClassNames(html, 'channel-info-det')?.[0]?.text;
 		const height = this.extractMetaPropertyContent(html, 'og:video:height');

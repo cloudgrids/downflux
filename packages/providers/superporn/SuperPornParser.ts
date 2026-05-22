@@ -14,7 +14,7 @@ export class SuperPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<SuperPornOutput>>> {
 		const tags = this.collectByClassNames(html, 'chip-link') as Array<{ text: string }>;
 
-		const videoInfo = this.extractScriptsByType(html, 'application/ld+json').flatMap((script) => JSON.parse(script))?.[0];
+		const videoInfo = this.extractScriptsByType(html, 'application/ld+json')?.[0];
 
 		try {
 			return {

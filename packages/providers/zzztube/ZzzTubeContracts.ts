@@ -5,6 +5,5 @@ export interface ZzzTubeOutput extends DefaultExecutionResult, ZzzTubeVideoOutpu
 
 export interface ZzzTubeVideoOutput extends DefaultVideoOutput {
 	uploader: string;
-	actors: string[];
 	videoId: string;
 }
