@@ -10,6 +10,7 @@ import { XDeguMethods } from './XDeguTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * XDegu supports video downloading (canDownload: true).
  */
 export class XDeguProvider extends BaseProvider<XDeguExecArgs> {
 	protected readonly provider = Provider.XDegu;

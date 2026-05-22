@@ -16,6 +16,9 @@ import { WallHavenMethods, WallHavenThumbnailQuality } from './WallHavenTypes';
 /**
  * WallHaven provider.
  * Provides wallpaper and user upload operations.
+ *
+ * @remarks
+ * WallHaven supports video downloading (canDownload: true).
  */
 export class WallHavenProvider extends BaseProvider<WallHavenExecArgs> {
 	protected readonly provider = Provider.WallHaven;

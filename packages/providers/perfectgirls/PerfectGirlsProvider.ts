@@ -19,6 +19,9 @@ import { PerfectGirlsMethods } from './PerfectGirlsTypes';
  * Provides: album, video, model, tag, and channel operations.
  * Provides m3u8 links
  * Dependencies: - ffmpeg (for m3u8 to mp4 conversion)
+ *
+ * @remarks
+ * PerfectGirls supports video downloading (canDownload: true).
  */
 export class PerfectGirlsProvider extends BaseProvider<PerfectGirlsExecArgs> {
 	protected readonly provider = Provider.PerfectGirls;

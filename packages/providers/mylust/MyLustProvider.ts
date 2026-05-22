@@ -10,6 +10,7 @@ import { MyLustMethods } from './MyLustTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
+ * MyLust supports video downloading (canDownload: true).
  */
 export class MyLustProvider extends BaseProvider<MyLustExecArgs> {
 	protected readonly provider = Provider.MyLust;

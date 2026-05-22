@@ -9,6 +9,9 @@ import { XGroovyMethods } from './XGroovyTypes';
  * @extends BaseProvider
  * Provider for XGroovy video downloader.
  * Provides direct mp4 links
+ *
+ * @remarks
+ * XGroovy supports video downloading (canDownload: true).
  */
 export class XGroovyProvider extends BaseProvider<XGroovyExecArgs> {
 	protected readonly provider = Provider.XGroovy;

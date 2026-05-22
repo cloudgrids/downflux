@@ -10,6 +10,9 @@ import { HqPornMethods } from './HqPornTypes';
  * Provides mp4 links
  * Does not exposes video quality or poster information due to limitations in the source HTML,
  * but these may be added in the future as the provider is further developed and refined.
+ *
+ * @remarks
+ * HqPorn supports video downloading (canDownload: true).
  */
 export class HqPornProvider extends BaseProvider<HqPornExecArgs> {
 	protected readonly provider = Provider.HqPorn;

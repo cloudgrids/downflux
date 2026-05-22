@@ -8,6 +8,9 @@ import { SexVidMethods } from './SexVidTypes';
  * @extends BaseProvider
  * Provider for SexVid video downloader.
  * Provides mp4 links
+ *
+ * @remarks
+ * SexVid supports video downloading (canDownload: true).
  */
 export class SexVidProvider extends BaseProvider<SexVidExecArgs> {
 	protected readonly provider = Provider.SexVid;

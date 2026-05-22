@@ -4,6 +4,15 @@ import { ExtractionTarget, Provider } from '@types';
 import { BlackPornExecArgs, BlackPornVideoOutput } from './BlackPornContracts';
 import { BlackPornMethods } from './BlackPornTypes';
 
+/**
+ * Provider for BlackPorn video platform.
+ * Handles URL validation and video extraction for blackporn.com domain.
+ *
+ * @remarks
+ * This provider manages the interaction with BlackPorn's platform and handles specific URL patterns
+ * for video identification and metadata retrieval.
+ * BlackPorn does not support video downloading (canDownload: false).
+ */
 export class BlackPornProvider extends BaseProvider<BlackPornExecArgs> {
 	protected readonly provider = Provider.BlackPorn;
 	private readonly VIDEO_PATH_REGEX = /^https:\/\/(?:www\.)?blackporn\.(?:tube)\/video\/\d+\/[a-zA-Z0-9_-]+\/(?:\?.*)?$/i;

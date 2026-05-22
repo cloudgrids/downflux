@@ -10,6 +10,7 @@ import { XCafeMethods } from './XCafeTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
+ * XCafe supports video downloading (canDownload: true).
  */
 export class XCafeProvider extends BaseProvider<XCafeExecArgs> {
 	protected readonly provider = Provider.XCafe;

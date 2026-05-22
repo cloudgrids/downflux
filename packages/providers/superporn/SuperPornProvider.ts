@@ -9,6 +9,9 @@ import { SuperPornMethods } from './SuperPornTypes';
  * @extends BaseProvider
  * Provider for SuperPorn video downloader.
  * Provides direct mp4 links
+ *
+ * @remarks
+ * SuperPorn supports video downloading (canDownload: true).
  */
 export class SuperPornProvider extends BaseProvider<SuperPornExecArgs> {
 	protected readonly provider = Provider.SuperPorn;

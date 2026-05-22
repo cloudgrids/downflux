@@ -10,6 +10,7 @@ import { PornIdMethods } from './PornIdTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * PornId supports video downloading (canDownload: true).
  */
 export class PornIdProvider extends BaseProvider<PornIdExecArgs> {
 	protected readonly provider = Provider.PornId;

@@ -13,6 +13,8 @@ import { XVideosMethods } from './XVideosTypes';
  * The `xvideos.com` does not have any flashVars but for subdomains like `xvideos2` has flashVars which contains the video sources.
  * So we have to handle both cases in the extractor.
  *
+ * @remarks
+ * XVideos supports video downloading (canDownload: true).
  * Dependencies: ffmpeg (for m3u8 to mp4 conversion)
  */
 export class XVideosProvider extends BaseProvider<XVideosExecArgs> {

@@ -10,6 +10,7 @@ import { BoKepPornMethods } from './BoKepPornTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * BoKepPorn supports video downloading (canDownload: true).
  */
 export class BoKepPornProvider extends BaseProvider<BoKepPornExecArgs> {
 	protected readonly provider = Provider.BoKepPorn;

@@ -9,6 +9,9 @@ import { XnXXMethods } from './XnXXTypes';
  * Provider for XnXX video downloader.
  * Provides m3u8 links
  * Dependencies: ffmpeg (for m3u8 to mp4 conversion)
+ *
+ * @remarks
+ * XnXX supports video downloading (canDownload: true).
  */
 export class XnXXProvider extends BaseProvider<XnXXExecArgs> {
 	protected readonly provider = Provider.XnXX;

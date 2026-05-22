@@ -10,6 +10,7 @@ import { DaNudeMethods } from './DaNudeTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * DaNude supports video downloading (canDownload: true).
  */
 export class DaNudeProvider extends BaseProvider<DaNudeExecArgs> {
 	protected readonly provider = Provider.DaNude;

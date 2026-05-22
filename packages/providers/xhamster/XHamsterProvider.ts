@@ -13,6 +13,8 @@ import { XHamsterMethods } from './XHamsterTypes';
  *
  * Also it will be CPU intensive, make sure your OS can handle it
  * Provides mp4 links
+ *
+ * XHamster supports video downloading (canDownload: true).
  */
 export class XHamsterProvider extends BaseProvider<XHamsterExecArgs> {
 	protected readonly provider = Provider.XHamster;

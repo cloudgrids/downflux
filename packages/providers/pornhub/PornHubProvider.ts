@@ -9,6 +9,9 @@ import { PornHubChannelsQueryArgsType, PornHubMethods, PornHubVideosFormat } fro
  * Operations: operations related to PornHub.
  * Please report any issues you encounter to help improve the provider.
  * Provides mp4 links
+ *
+ * @remarks
+ * PornHub supports video downloading (canDownload: true).
  */
 export class PornHubProvider extends BaseProvider<PornHubExecArgs> {
 	protected readonly provider = Provider.PornHub;

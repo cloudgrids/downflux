@@ -10,6 +10,7 @@ import { Lesbian8Methods } from './Lesbian8Types';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+ * Lesbian8 supports video downloading (canDownload: true).
  */
 export class Lesbian8Provider extends BaseProvider<Lesbian8ExecArgs> {
 	protected readonly provider = Provider.Lesbian8;

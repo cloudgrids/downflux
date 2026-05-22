@@ -11,6 +11,7 @@ import { TnAFlixMethods } from './TnAFlixTypes';
  * remarks The provider is expected to work without VPN as well, but it is not tested yet.
  * It might not work in some regions due to the mentioned restriction, but it should work in most regions.
  * Provides mp4 links
+ * TnAFlix supports video downloading (canDownload: true).
  */
 export class TnAFlixProvider extends BaseProvider<TnAFlixExecArgs> {
 	protected readonly provider = Provider.TnAFlix;

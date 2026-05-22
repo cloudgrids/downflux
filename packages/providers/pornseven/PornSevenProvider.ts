@@ -9,6 +9,9 @@ import { PornSevenMethods } from './PornSevenTypes';
  * The player is also heavily obfuscated, making it hard to reverse engineer.
  *
  * We will resolve this later.
+ *
+ * @remarks
+ * PornSeven does not support video downloading (canDownload: false).
  */
 export class PornSevenProvider extends BaseProvider<PornSevenExecArgs> {
 	protected readonly provider = Provider.PornSeven;

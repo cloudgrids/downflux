@@ -10,6 +10,9 @@ import { SxyPornMethods } from './SxyPornTypes';
  * Provider for SxyPorn video downloader.
  * This provider is still in `development` due to Cloudflare challenge
  * Provides mp4 links
+ *
+ * @remarks
+ * SxyPorn does not support video downloading (canDownload: false).
  */
 export class SxyPornProvider extends BaseProvider<SxyPornExecArgs> {
 	protected readonly provider = Provider.SxyPorn;

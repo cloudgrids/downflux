@@ -3,6 +3,14 @@ import { IdentifierContext, PipelineMappings } from '@contracts';
 import { MediaType } from '@types';
 import { BlackPornExecArgs, BlackPornOutput } from './BlackPornContracts';
 
+/**
+ * Pipeline for organizing BlackPorn video media files.
+ * Manages the routing and organization of different media types (videos, posters, etc.).
+ *
+ * @remarks
+ * Pipelines handle the organization of extracted media files into a structured
+ * hierarchy. They determine how files are mapped, identified, and stored for later retrieval.
+ */
 export class BlackPornPipeline extends BasePipeline<BlackPornExecArgs, BlackPornOutput> {
 	protected override buildIdentifier(ctx: IdentifierContext<BlackPornOutput>): string {
 		const { mediaType, id, metadata } = ctx;

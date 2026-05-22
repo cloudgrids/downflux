@@ -10,6 +10,7 @@ import { ZzzTubeMethods } from './ZzzTubeTypes';
  * @remarks
  * The provider owns URL validation, fluent execution options, and provider metadata.
  * Supports integrated MP4 downloads. Marked under development so callers should expect provider-specific changes.
+ * ZzzTube supports video downloading (canDownload: true).
  */
 export class ZzzTubeProvider extends BaseProvider<ZzzTubeExecArgs> {
 	protected readonly provider = Provider.ZzzTube;
