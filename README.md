@@ -274,8 +274,10 @@ pnpm run docs:md
 
 ## Add new Provider
 
-To add a new provider you can run this following commands
-Use the --no-[registryCoordinatorType] to exclude that file
+To add a new provider you can run this following commands.
+
+Use the --no-[registryCoordinatorType] to exclude that file.
+
 Available flags: strategy | transformer | pipeline | method
 
 ```bash
@@ -283,7 +285,7 @@ pnpm run make:registry [registryName] OR
 pnpm run make:registry --no-strategy Twitter
 ```
 
-After running this command, run this commands also for barrel imports and auto entries
+After running the previous command, run this commands sequentially for barrel imports and auto entries
 
 ```bash
 pnpm run make:index
