@@ -36,6 +36,30 @@ export interface ExecutionArgs<S extends ExecutionShape = ExecutionShape> extend
 }
 
 /**
+ * Optional credentials/session material for providers that need authenticated
+ * or API-backed crawling.
+ */
+export interface AuthenticatedCrawlOptions {
+	/** Raw Cookie header value copied from an authenticated browser session. */
+	cookie?: string;
+
+	/** Bearer token for API-backed providers. */
+	bearerToken?: string;
+
+	/** CSRF token header value when the provider requires one. */
+	csrfToken?: string;
+
+	/** API key for providers with public/private API access. */
+	apiKey?: string;
+
+	/** Provider-specific app/client identifier. */
+	clientId?: string;
+
+	/** User agent to pair with the authenticated session. */
+	userAgent?: string;
+}
+
+/**
  * Configuration options for a DownFlux ExecutionCoordinator.
  * Combines fetch, extraction, pipeline, and output settings.
  */

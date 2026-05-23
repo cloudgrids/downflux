@@ -1,4 +1,5 @@
 import {
+	AuthenticatedCrawlOptions,
 	CoordinatorDependencies,
 	DirectoryOutputOptions,
 	ExecutionArgs,
@@ -97,6 +98,28 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 		}
 
 		if (!this.isValidHostName()) throw new InvalidUrlException(this.url, this.provider);
+	}
+
+	/**
+	 * Sets authentication credentials for the provider.
+	 * @param auth Authentication options including cookie, bearer token, CSRF token, API key, client ID, and user agent
+	 * @remarks
+	 * Configures HTTP headers and user agent based on provided authentication credentials.
+	 * Supports multiple authentication methods: cookies, bearer tokens, CSRF tokens, API keys, and client IDs.
+	 */
+	public setAuth(auth: AuthenticatedCrawlOptions): this {
+		const headers: Record<string, string> = {};
+
+		if (auth.cookie) headers.Cookie = auth.cookie;
+		if (auth.bearerToken) headers.Authorization = `Bearer ${auth.bearerToken}`;
+		if (auth.csrfToken) headers['X-CSRF-Token'] = auth.csrfToken;
+		if (auth.apiKey) headers['X-API-Key'] = auth.apiKey;
+		if (auth.clientId) headers['X-Client-ID'] = auth.clientId;
+		if (auth.userAgent) this.setAgentOptions({ userAgent: auth.userAgent });
+
+		this.setHeaders({ ...(this.httpOptions.headers ?? {}), ...headers });
+
+		return this;
 	}
 
 	/**
@@ -292,6 +315,7 @@ export abstract class BaseProvider<TExec extends ExecutionArgs<ExecutionShape>> 
 			extractionTarget: ExtractionTarget.ANCHORS,
 			executionType: ExecutionType.SEQUENTIAL,
 			providerMetadata: this.metadata,
+			...this.httpOptions,
 			...this.executionOptions,
 			...overrides
 		} as TExec;

@@ -9,6 +9,14 @@
       "method": true
     },
     {
+      "name": "ArtStation",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "Beeg",
       "parser": true,
       "pipeline": true,
@@ -17,7 +25,23 @@
       "method": true
     },
     {
+      "name": "Behance",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "BlackPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Bluesky",
       "parser": true,
       "pipeline": true,
       "transformer": true,
@@ -57,6 +81,14 @@
       "method": true
     },
     {
+      "name": "Danbooru",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "DaNude",
       "parser": true,
       "pipeline": true,
@@ -71,6 +103,14 @@
       "transformer": false,
       "strategy": false,
       "method": false
+    },
+    {
+      "name": "DeviantArt",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
     },
     {
       "name": "EpicGfs",
@@ -89,7 +129,39 @@
       "method": true
     },
     {
+      "name": "Flickr",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Gelbooru",
+      "parser": true,
+      "pipeline": false,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "HqPorn",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Imgur",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Instagram",
       "parser": true,
       "pipeline": true,
       "transformer": true,
@@ -121,6 +193,22 @@
       "method": true
     },
     {
+      "name": "MangaDex",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Mastodon",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "MegaTube",
       "parser": true,
       "pipeline": true,
@@ -145,6 +233,14 @@
       "method": true
     },
     {
+      "name": "Newgrounds",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "OkPorn",
       "parser": true,
       "pipeline": true,
@@ -158,6 +254,30 @@
       "pipeline": true,
       "transformer": true,
       "strategy": true,
+      "method": true
+    },
+    {
+      "name": "Pexels",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Pinterest",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Pixiv",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
       "method": true
     },
     {
@@ -225,6 +345,14 @@
       "method": true
     },
     {
+      "name": "Reddit",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "SexVid",
       "parser": true,
       "pipeline": true,
@@ -265,6 +393,14 @@
       "method": true
     },
     {
+      "name": "TikTok",
+      "parser": true,
+      "pipeline": false,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "TnAFlix",
       "parser": true,
       "pipeline": true,
@@ -281,7 +417,47 @@
       "method": true
     },
     {
+      "name": "Tumblr",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Twitter",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Unsplash",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
       "name": "WallHaven",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "WikiArt",
+      "parser": true,
+      "pipeline": true,
+      "transformer": true,
+      "strategy": false,
+      "method": true
+    },
+    {
+      "name": "Wikimedia",
       "parser": true,
       "pipeline": true,
       "transformer": true,

@@ -13,13 +13,18 @@ import { BlackPornOutput } from './BlackPornContracts';
  */
 export class BlackPornParser extends BaseParser {
 	public override transform(html: string, sourceUrl: string): Partial<DefaultExecutionResult<Partial<BlackPornOutput>>> {
+		const script = this.extractScriptsByType(html, 'application/ld+json', 'VideoObject')?.[0];
+
 		try {
 			return {
 				customFields: {
 					pageUrl: sourceUrl,
 					videoId: sourceUrl.match(/\/video\/(\d+)\//)?.[1] ?? 'unknown_id',
 					uploader: this.extractAnchorTextsByHref(html, /\/members\//)?.[0] ?? 'Unknown Uploader',
-					poster: this.extractScriptsByType(html, 'application/ld+json', 'VideoObject')?.[0]?.thumbnailUrl
+					title: script?.name ?? '',
+					description: script?.description ?? '',
+					tags: script?.keywords ?? [],
+					poster: script?.thumbnailUrl ?? this.extractMetaPropertyContent(html, 'og:image')
 				} as BlackPornOutput
 			};
 		} catch (error) {
