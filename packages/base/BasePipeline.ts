@@ -99,7 +99,9 @@ export class BasePipeline<TExec extends ExecutionArgs, TResult extends DefaultEx
 
 		return [
 			this.createMappings(metadata?.sources, { getUrl: (x) => x, getMedia: () => MediaType.VIDEOS }),
-			this.createMappings(metadata?.images, { getUrl: (x) => x, getMedia: () => MediaType.IMAGES })
+			this.createMappings(metadata?.videoSources, { getUrl: (x) => x, getMedia: () => MediaType.VIDEOS }),
+			this.createMappings(metadata?.images, { getUrl: (x) => x, getMedia: () => MediaType.IMAGES }),
+			this.createMappings(metadata?.videoPosters, { getUrl: (x) => x, getMedia: () => MediaType.IMAGES })
 		];
 	}
 

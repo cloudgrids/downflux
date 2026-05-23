@@ -26,13 +26,16 @@ export class BaseParser {
 		try {
 			return {
 				anchors: this.extractAnchors(html, sourceUrl),
-				images: this.extractImageUrls(html),
-				sources: this.extractSourceUrls(html),
+				images: this.extractImageUrls(html, sourceUrl),
+				sources: this.extractSourceUrls(html, sourceUrl),
 				title: this.extractTitle(html) || this.extractMetaPropertyContent(html, 'og:title'),
 				description: this.extractMetaDescription(html) || this.extractMetaPropertyContent(html, 'og:description'),
 				keywords: this.extractMetaKeywords(html),
 				links: this.extractLinks(html),
 				videoSources: this.extractVideoUrls(html),
+				videoPosters: this.extractVideoPosters(html, sourceUrl),
+				divHREFs: this.extractDivHrefs(html, sourceUrl),
+				allUrls: this.extractAllUrls(html),
 				sourceUrl,
 				status: 200
 			};
@@ -271,28 +274,55 @@ export class BaseParser {
 		return [...seen];
 	}
 
-	protected extractImageUrls(html: string): string[] {
-		const attrs = ['data-original="', 'data-src="', 'data-lazy="', 'src="'];
+	protected extractImageUrls(html: string, sourceUrl?: string): string[] {
+		const attrs = ['data-original', 'data-src', 'data-lazy', 'src'];
 		const seen = new Set<string>();
 
 		try {
 			for (const attr of attrs) {
-				for (const url of this.extractAllPairs(html, attr, '"')) {
-					if (url.startsWith('http')) seen.add(url);
+				const regex = new RegExp(`\\b${attr}\\s*=\\s*(["'])(.*?)\\1`, 'gi');
+				let match: RegExpExecArray | null;
+
+				while ((match = regex.exec(html)) !== null) {
+					const url = this.resolveUrl(match[2].trim(), sourceUrl);
+					if (this.isHttpUrl(url)) seen.add(url);
 				}
 			}
+
+			for (const attr of ['srcset', 'data-srcset']) {
+				const regex = new RegExp(`\\b${attr}\\s*=\\s*(["'])(.*?)\\1`, 'gi');
+				let match: RegExpExecArray | null;
+
+				while ((match = regex.exec(html)) !== null) {
+					for (const candidate of match[2].split(',')) {
+						const raw = candidate.trim().split(/\s+/)[0];
+						const url = this.resolveUrl(raw, sourceUrl);
+						if (this.isHttpUrl(url)) seen.add(url);
+					}
+				}
+			}
+
+			for (const property of ['og:image', 'twitter:image']) {
+				const url = this.resolveUrl(this.extractMetaPropertyContent(html, property), sourceUrl);
+				if (this.isHttpUrl(url)) seen.add(url);
+			}
+
 			return [...seen];
 		} catch {
 			throw new Error('Unable to extract image urls');
 		}
 	}
 
-	protected extractSourceUrls(html: string): string[] {
+	protected extractSourceUrls(html: string, sourceUrl?: string): string[] {
 		const urls: string[] = [];
 
 		try {
-			for (const url of this.extractAllPairs(html, '<source src="', '"')) {
-				if (url.startsWith('http')) urls.push(url);
+			const regex = /<source\b[^>]*\bsrc\s*=\s*(["'])(.*?)\1/gi;
+			let match: RegExpExecArray | null;
+
+			while ((match = regex.exec(html)) !== null) {
+				const url = this.resolveUrl(match[2].trim(), sourceUrl);
+				if (this.isHttpUrl(url)) urls.push(url);
 			}
 			return [...new Set(urls)];
 		} catch {
@@ -344,12 +374,16 @@ export class BaseParser {
 		return results;
 	}
 
-	protected extractVideoPosters(html: string): string[] {
+	protected extractVideoPosters(html: string, sourceUrl?: string): string[] {
 		const urls: string[] = [];
 
 		try {
-			for (const url of this.extractAllPairs(html, 'poster="', '"')) {
-				if (url.startsWith('http')) urls.push(url);
+			const regex = /\bposter\s*=\s*(["'])(.*?)\1/gi;
+			let match: RegExpExecArray | null;
+
+			while ((match = regex.exec(html)) !== null) {
+				const url = this.resolveUrl(match[2].trim(), sourceUrl);
+				if (this.isHttpUrl(url)) urls.push(url);
 			}
 			return [...new Set(urls)];
 		} catch {
@@ -357,12 +391,13 @@ export class BaseParser {
 		}
 	}
 
-	protected extractDivHrefs(html: string): string[] {
+	protected extractDivHrefs(html: string, sourceUrl?: string): string[] {
 		const urls: string[] = [];
-		const re = /<div[^>]+href="([^"]+)"/g;
+		const re = /<div[^>]+href\s*=\s*(["'])(.*?)\1/gi;
 		let m: RegExpExecArray | null;
 		while ((m = re.exec(html)) !== null) {
-			if (m[1]) urls.push(m[1]);
+			const url = this.resolveUrl(m[2], sourceUrl);
+			if (this.isHttpUrl(url)) urls.push(url);
 		}
 		return [...new Set(urls)];
 	}
@@ -490,6 +525,10 @@ export class BaseParser {
 		} catch {
 			return null;
 		}
+	}
+
+	protected isHttpUrl(url?: string | null): url is string {
+		return Boolean(url && /^https?:\/\//i.test(url));
 	}
 
 	protected decodeHtmlEntities(str: string): string {
