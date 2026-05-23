@@ -6,7 +6,7 @@
 
 # Interface: PerfectGirlsVideoOutput
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:58](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L58)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:58](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L58)
 
 Output structure for PerfectGirls video operations.
 Contains video metadata, sources, poster, and album context.
@@ -25,7 +25,7 @@ Contains video metadata, sources, poster, and album context.
 
 > **title**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L186)
+Defined in: [packages/contracts/ExecutionContracts.ts:210](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/ExecutionContracts.ts#L210)
 
 #### Inherited from
 
@@ -37,7 +37,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:186](https://github.com/fo
 
 > **tags**: `string`[]
 
-Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L187)
+Defined in: [packages/contracts/ExecutionContracts.ts:211](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/ExecutionContracts.ts#L211)
 
 #### Inherited from
 
@@ -49,7 +49,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:187](https://github.com/fo
 
 > **description**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L188)
+Defined in: [packages/contracts/ExecutionContracts.ts:212](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/ExecutionContracts.ts#L212)
 
 #### Inherited from
 
@@ -61,7 +61,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:188](https://github.com/fo
 
 > **pageUrl**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L189)
+Defined in: [packages/contracts/ExecutionContracts.ts:213](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/ExecutionContracts.ts#L213)
 
 #### Inherited from
 
@@ -73,7 +73,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:189](https://github.com/fo
 
 > **poster**: `string`
 
-Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L198)
+Defined in: [packages/contracts/ExecutionContracts.ts:222](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/ExecutionContracts.ts#L222)
 
 #### Inherited from
 
@@ -85,7 +85,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:198](https://github.com/fo
 
 > **videos**: [`VideosFormat`](VideosFormat.md)
 
-Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L199)
+Defined in: [packages/contracts/ExecutionContracts.ts:223](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/ExecutionContracts.ts#L223)
 
 #### Inherited from
 
@@ -97,7 +97,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:199](https://github.com/fo
 
 > **videoId**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:60](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L60)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:60](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L60)
 
 Video identifier
 
@@ -107,7 +107,7 @@ Video identifier
 
 > **videoScreenshot**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:63](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L63)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:63](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L63)
 
 Screenshot image URL
 
@@ -117,7 +117,7 @@ Screenshot image URL
 
 > `optional` **videoCreatedAt?**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:66](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L66)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:66](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L66)
 
 Video creation date text
 
@@ -127,7 +127,7 @@ Video creation date text
 
 > **author**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:69](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L69)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:69](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L69)
 
 Author name associated with the video
 
@@ -137,7 +137,7 @@ Author name associated with the video
 
 > `optional` **fullVideoSource?**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:72](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L72)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:72](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L72)
 
 Full source URL when available
 
@@ -147,7 +147,7 @@ Full source URL when available
 
 > `optional` **videoAlbumId?**: `string`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:75](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L75)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:75](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L75)
 
 Album identifier linked to the video
 
@@ -157,7 +157,7 @@ Album identifier linked to the video
 
 > `optional` **videoAlbum?**: [`PerfectGirlsAlbumOutput`](PerfectGirlsAlbumOutput.md)
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:78](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L78)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:78](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L78)
 
 Album metadata linked to the video
 
@@ -167,6 +167,6 @@ Album metadata linked to the video
 
 > **starredBy**: `string`[]
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:81](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L81)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsContracts.ts:81](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsContracts.ts#L81)
 
 Starred by list

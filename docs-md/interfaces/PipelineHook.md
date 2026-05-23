@@ -6,7 +6,7 @@
 
 # Interface: PipelineHook
 
-Defined in: [packages/contracts/PipelineContracts.ts:18](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L18)
+Defined in: [packages/contracts/PipelineContracts.ts:18](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L18)
 
 ## Methods
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:18](https://github.com/fork
 
 > `optional` **onExtract**(`item`): `void` \| `Promise`\<`void`\>
 
-Defined in: [packages/contracts/PipelineContracts.ts:19](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L19)
+Defined in: [packages/contracts/PipelineContracts.ts:19](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L19)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:19](https://github.com/fork
 
 > `optional` **onDownload**(`payload`): `void` \| `Promise`\<`void`\>
 
-Defined in: [packages/contracts/PipelineContracts.ts:20](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L20)
+Defined in: [packages/contracts/PipelineContracts.ts:20](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L20)
 
 #### Parameters
 

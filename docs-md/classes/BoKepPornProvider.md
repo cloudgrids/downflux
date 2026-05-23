@@ -1,12 +1,12 @@
 [**downflux**](../README.md)
 
----
+***
 
 [downflux](../README.md) / BoKepPornProvider
 
 # Class: BoKepPornProvider
 
-Defined in: [packages/providers/bokepporn/BoKepPornProvider.ts:14](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/bokepporn/BoKepPornProvider.ts#L14)
+Defined in: [packages/providers/bokepporn/BoKepPornProvider.ts:15](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/bokepporn/BoKepPornProvider.ts#L15)
 
 Public BoKepPorn provider entry point.
 
@@ -14,6 +14,7 @@ Public BoKepPorn provider entry point.
 
 The provider owns URL validation, fluent execution options, and provider metadata.
 Supports integrated MP4 downloads, KVS video fields. Marked under development so callers should expect provider-specific changes.
+BoKepPorn supports video downloading (canDownload: true).
 
 ## Extends
 
@@ -25,7 +26,7 @@ Supports integrated MP4 downloads, KVS video fields. Marked under development so
 
 > **new BoKepPornProvider**(`url`): `BoKepPornProvider`
 
-Defined in: [packages/providers/bokepporn/BoKepPornProvider.ts:18](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/bokepporn/BoKepPornProvider.ts#L18)
+Defined in: [packages/providers/bokepporn/BoKepPornProvider.ts:19](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/bokepporn/BoKepPornProvider.ts#L19)
 
 #### Parameters
 
@@ -47,91 +48,91 @@ Defined in: [packages/providers/bokepporn/BoKepPornProvider.ts:18](https://githu
 
 > `protected` **executionOptions**: [`ExecutionOptions`](../interfaces/ExecutionOptions.md) = `{}`
 
-Defined in: [packages/base/BaseProvider.ts:38](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L38)
+Defined in: [packages/base/BaseProvider.ts:39](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L39)
 
 #### Inherited from
 
 [`BaseProvider`](BaseProvider.md).[`executionOptions`](BaseProvider.md#executionoptions)
 
----
+***
 
 ### httpOptions
 
 > `protected` **httpOptions**: [`HttpFetchOptions`](../interfaces/HttpFetchOptions.md) = `{}`
 
-Defined in: [packages/base/BaseProvider.ts:39](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L39)
+Defined in: [packages/base/BaseProvider.ts:40](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L40)
 
 #### Inherited from
 
 [`DefaultProvider`](DefaultProvider.md).[`httpOptions`](DefaultProvider.md#httpoptions)
 
----
+***
 
 ### deps
 
 > `protected` `readonly` **deps**: [`CoordinatorDependencies`](../interfaces/CoordinatorDependencies.md)
 
-Defined in: [packages/base/BaseProvider.ts:40](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L40)
+Defined in: [packages/base/BaseProvider.ts:41](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L41)
 
 #### Inherited from
 
 [`DefaultProvider`](DefaultProvider.md).[`deps`](DefaultProvider.md#deps)
 
----
+***
 
 ### urlPattern
 
 > `protected` `readonly` **urlPattern**: `RegExp`
 
-Defined in: [packages/base/BaseProvider.ts:42](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L42)
+Defined in: [packages/base/BaseProvider.ts:43](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L43)
 
 #### Inherited from
 
 [`DefaultProvider`](DefaultProvider.md).[`urlPattern`](DefaultProvider.md#urlpattern)
 
----
+***
 
 ### providerMetadata
 
 > `protected` `readonly` **providerMetadata**: [`ProviderMetadata`](../interfaces/ProviderMetadata.md)
 
-Defined in: [packages/base/BaseProvider.ts:43](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L43)
+Defined in: [packages/base/BaseProvider.ts:44](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L44)
 
 #### Inherited from
 
 [`DefaultProvider`](DefaultProvider.md).[`providerMetadata`](DefaultProvider.md#providermetadata)
 
----
+***
 
 ### url
 
 > `protected` `readonly` **url**: `string`
 
-Defined in: [packages/base/BaseProvider.ts:51](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L51)
+Defined in: [packages/base/BaseProvider.ts:52](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L52)
 
 #### Inherited from
 
 [`BaseProvider`](BaseProvider.md).[`url`](BaseProvider.md#url)
 
----
+***
 
 ### config
 
 > `protected` **config**: [`ProviderConfig`](../interfaces/ProviderConfig.md)
 
-Defined in: [packages/base/BaseProvider.ts:52](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L52)
+Defined in: [packages/base/BaseProvider.ts:53](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L53)
 
 #### Inherited from
 
 [`DefaultProvider`](DefaultProvider.md).[`config`](DefaultProvider.md#config)
 
----
+***
 
 ### provider
 
 > `protected` `readonly` **provider**: [`BoKepPorn`](../enumerations/Provider.md#bokepporn) = `Provider.BoKepPorn`
 
-Defined in: [packages/providers/bokepporn/BoKepPornProvider.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/bokepporn/BoKepPornProvider.ts#L15)
+Defined in: [packages/providers/bokepporn/BoKepPornProvider.ts:16](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/bokepporn/BoKepPornProvider.ts#L16)
 
 #### Overrides
 
@@ -145,7 +146,7 @@ Defined in: [packages/providers/bokepporn/BoKepPornProvider.ts:15](https://githu
 
 > **get** `protected` **metadata**(): [`ProviderMetadata`](../interfaces/ProviderMetadata.md)
 
-Defined in: [packages/base/BaseProvider.ts:46](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L46)
+Defined in: [packages/base/BaseProvider.ts:47](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L47)
 
 Provider capabilities, integration status, and access restrictions.
 
@@ -157,7 +158,7 @@ Provider capabilities, integration status, and access restrictions.
 
 [`DefaultProvider`](DefaultProvider.md).[`metadata`](DefaultProvider.md#metadata)
 
----
+***
 
 ### ORIGIN
 
@@ -165,7 +166,7 @@ Provider capabilities, integration status, and access restrictions.
 
 > **get** `protected` **ORIGIN**(): `string`
 
-Defined in: [packages/base/BaseProvider.ts:79](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L79)
+Defined in: [packages/base/BaseProvider.ts:81](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L81)
 
 ##### Returns
 
@@ -175,15 +176,15 @@ Defined in: [packages/base/BaseProvider.ts:79](https://github.com/forkts/downflu
 
 [`BaseProvider`](BaseProvider.md).[`ORIGIN`](BaseProvider.md#origin)
 
----
+***
 
-### HOST_NAME
+### HOST\_NAME
 
 #### Get Signature
 
-> **get** `protected` **HOST_NAME**(): `string`
+> **get** `protected` **HOST\_NAME**(): `string`
 
-Defined in: [packages/base/BaseProvider.ts:83](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L83)
+Defined in: [packages/base/BaseProvider.ts:85](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L85)
 
 ##### Returns
 
@@ -199,7 +200,7 @@ Defined in: [packages/base/BaseProvider.ts:83](https://github.com/forkts/downflu
 
 > `protected` **isValidHostName**(): `boolean`
 
-Defined in: [packages/base/BaseProvider.ts:87](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L87)
+Defined in: [packages/base/BaseProvider.ts:89](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L89)
 
 #### Returns
 
@@ -209,13 +210,44 @@ Defined in: [packages/base/BaseProvider.ts:87](https://github.com/forkts/downflu
 
 [`BaseProvider`](BaseProvider.md).[`isValidHostName`](BaseProvider.md#isvalidhostname)
 
----
+***
+
+### setAuth()
+
+> **setAuth**(`auth`): `this`
+
+Defined in: [packages/base/BaseProvider.ts:110](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L110)
+
+Sets authentication credentials for the provider.
+
+#### Parameters
+
+##### auth
+
+[`AuthenticatedCrawlOptions`](../interfaces/AuthenticatedCrawlOptions.md)
+
+Authentication options including cookie, bearer token, CSRF token, API key, client ID, and user agent
+
+#### Returns
+
+`this`
+
+#### Remarks
+
+Configures HTTP headers and user agent based on provided authentication credentials.
+Supports multiple authentication methods: cookies, bearer tokens, CSRF tokens, API keys, and client IDs.
+
+#### Inherited from
+
+[`BaseProvider`](BaseProvider.md).[`setAuth`](BaseProvider.md#setauth)
+
+***
 
 ### setHeaders()
 
 > **setHeaders**(`headers`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:105](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L105)
+Defined in: [packages/base/BaseProvider.ts:129](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L129)
 
 Sets custom HTTP headers.
 
@@ -235,13 +267,13 @@ Request header map
 
 [`BaseProvider`](BaseProvider.md).[`setHeaders`](BaseProvider.md#setheaders)
 
----
+***
 
 ### setTimeout()
 
 > **setTimeout**(`timeoutMs`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:114](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L114)
+Defined in: [packages/base/BaseProvider.ts:138](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L138)
 
 Sets HTTP timeout.
 
@@ -261,13 +293,13 @@ Timeout in milliseconds
 
 [`BaseProvider`](BaseProvider.md).[`setTimeout`](BaseProvider.md#settimeout)
 
----
+***
 
 ### setRetries()
 
 > **setRetries**(`retries`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:123](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L123)
+Defined in: [packages/base/BaseProvider.ts:147](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L147)
 
 Sets fetch retry count.
 
@@ -287,13 +319,13 @@ Retry attempt count
 
 [`BaseProvider`](BaseProvider.md).[`setRetries`](BaseProvider.md#setretries)
 
----
+***
 
 ### setTransformOutput()
 
 > **setTransformOutput**(`transform?`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:132](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L132)
+Defined in: [packages/base/BaseProvider.ts:156](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L156)
 
 Transform output to provider-specific result type.
 
@@ -313,13 +345,13 @@ Default is true, which applies the default transformation. Set to false to retur
 
 [`BaseProvider`](BaseProvider.md).[`setTransformOutput`](BaseProvider.md#settransformoutput)
 
----
+***
 
 ### setHttpOptions()
 
 > **setHttpOptions**(`opts`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:141](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L141)
+Defined in: [packages/base/BaseProvider.ts:165](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L165)
 
 Sets HTTP fetch options.
 
@@ -339,13 +371,13 @@ HTTP options to merge
 
 [`BaseProvider`](BaseProvider.md).[`setHttpOptions`](BaseProvider.md#sethttpoptions)
 
----
+***
 
 ### setNoDownload()
 
 > **setNoDownload**(`noDownload?`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:151](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L151)
+Defined in: [packages/base/BaseProvider.ts:175](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L175)
 
 Sets no download flag.
 
@@ -371,13 +403,13 @@ false - set to true to skip the download phase and only perform extraction (usef
 
 [`BaseProvider`](BaseProvider.md).[`setNoDownload`](BaseProvider.md#setnodownload)
 
----
+***
 
 ### setTranscodeOptions()
 
 > **setTranscodeOptions**(`opts`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:164](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L164)
+Defined in: [packages/base/BaseProvider.ts:188](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L188)
 
 Sets transcode options.
 
@@ -400,13 +432,13 @@ Make sure your OS can handle it
 
 [`BaseProvider`](BaseProvider.md).[`setTranscodeOptions`](BaseProvider.md#settranscodeoptions)
 
----
+***
 
 ### setPreferredFormat()
 
 > **setPreferredFormat**(`format`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:173](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L173)
+Defined in: [packages/base/BaseProvider.ts:197](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L197)
 
 Sets preferred video format.
 
@@ -426,13 +458,13 @@ Video format (hls or mp4)
 
 [`BaseProvider`](BaseProvider.md).[`setPreferredFormat`](BaseProvider.md#setpreferredformat)
 
----
+***
 
 ### setPreferredCodec()
 
 > **setPreferredCodec**(`codec`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:187](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L187)
+Defined in: [packages/base/BaseProvider.ts:211](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L211)
 
 Sets preferred video codec.
 
@@ -457,13 +489,13 @@ If the provider supports it, it will try to download the video in the specified 
 
 [`BaseProvider`](BaseProvider.md).[`setPreferredCodec`](BaseProvider.md#setpreferredcodec)
 
----
+***
 
 ### setJobOptions()
 
 > **setJobOptions**(`opts`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:196](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L196)
+Defined in: [packages/base/BaseProvider.ts:220](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L220)
 
 Sets ExecutionCoordinator options.
 
@@ -483,13 +515,13 @@ Job options to merge
 
 [`BaseProvider`](BaseProvider.md).[`setJobOptions`](BaseProvider.md#setjoboptions)
 
----
+***
 
 ### setAgentOptions()
 
 > **setAgentOptions**(`opts`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:205](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L205)
+Defined in: [packages/base/BaseProvider.ts:229](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L229)
 
 Sets HTTP agent options.
 
@@ -509,13 +541,13 @@ HTTP agent options to merge
 
 [`BaseProvider`](BaseProvider.md).[`setAgentOptions`](BaseProvider.md#setagentoptions)
 
----
+***
 
 ### setMaxDownloads()
 
 > **setMaxDownloads**(`maxDownloads`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:214](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L214)
+Defined in: [packages/base/BaseProvider.ts:238](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L238)
 
 Sets maximum downloads.
 
@@ -535,13 +567,13 @@ Download limit
 
 [`BaseProvider`](BaseProvider.md).[`setMaxDownloads`](BaseProvider.md#setmaxdownloads)
 
----
+***
 
 ### setAllowedExtensions()
 
 > **setAllowedExtensions**(...`extensions`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:223](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L223)
+Defined in: [packages/base/BaseProvider.ts:247](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L247)
 
 Sets allowed file extensions.
 
@@ -561,13 +593,13 @@ File extensions such as `jpg` or `png`
 
 [`BaseProvider`](BaseProvider.md).[`setAllowedExtensions`](BaseProvider.md#setallowedextensions)
 
----
+***
 
 ### onProgress()
 
 > **onProgress**(`handler`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:232](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L232)
+Defined in: [packages/base/BaseProvider.ts:256](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L256)
 
 Sets progress handler.
 
@@ -587,13 +619,13 @@ Progress event callback
 
 [`BaseProvider`](BaseProvider.md).[`onProgress`](BaseProvider.md#onprogress)
 
----
+***
 
 ### setProgressLogging()
 
 > **setProgressLogging**(`enabled?`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:242](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L242)
+Defined in: [packages/base/BaseProvider.ts:266](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L266)
 
 Enables console progress logging.
 
@@ -612,20 +644,20 @@ Console logging flag
 #### Default Value
 
 ```ts
-true;
+true
 ```
 
 #### Inherited from
 
 [`BaseProvider`](BaseProvider.md).[`setProgressLogging`](BaseProvider.md#setprogresslogging)
 
----
+***
 
 ### setOutput()
 
 > **setOutput**(`type`, `config?`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:253](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L253)
+Defined in: [packages/base/BaseProvider.ts:277](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L277)
 
 Sets output type.
 
@@ -650,20 +682,20 @@ Directory output configuration
 #### Default Value
 
 ```ts
-OutputType.JSON;
+OutputType.JSON
 ```
 
 #### Inherited from
 
 [`BaseProvider`](BaseProvider.md).[`setOutput`](BaseProvider.md#setoutput)
 
----
+***
 
 ### setExecutionType()
 
 > **setExecutionType**(`type`): `this`
 
-Defined in: [packages/base/BaseProvider.ts:274](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L274)
+Defined in: [packages/base/BaseProvider.ts:298](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L298)
 
 Sets execution strategy.
 
@@ -687,23 +719,23 @@ This feature is still `experimental` and not yet implemented for all providers.
 It allows you to specify the execution strategy for the extraction and download process.
 
 - `SEQUENTIAL`: Extracts and downloads items one by one.
-  This is the most compatible mode and should work with all providers, but can be slower for large batches.
+ This is the most compatible mode and should work with all providers, but can be slower for large batches.
 
 - `PARALLEL`: Extracts all items first, then downloads them in parallel.
-  This can be faster for large batches, but may cause issues with providers that have strict rate limits or anti-bot measures.
-  Use with caution and test thoroughly if you choose to use `PARALLEL` execution.
+ This can be faster for large batches, but may cause issues with providers that have strict rate limits or anti-bot measures.
+Use with caution and test thoroughly if you choose to use `PARALLEL` execution.
 
 #### Inherited from
 
 [`BaseProvider`](BaseProvider.md).[`setExecutionType`](BaseProvider.md#setexecutiontype)
 
----
+***
 
 ### buildRequest()
 
 > `protected` **buildRequest**(`overrides?`): [`BoKepPornExecArgs`](../interfaces/BoKepPornExecArgs.md)
 
-Defined in: [packages/base/BaseProvider.ts:285](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L285)
+Defined in: [packages/base/BaseProvider.ts:309](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L309)
 
 Builds the execution request passed to the coordinator layer.
 
@@ -725,13 +757,13 @@ A typed request containing provider metadata and execution options.
 
 [`BaseProvider`](BaseProvider.md).[`buildRequest`](BaseProvider.md#buildrequest)
 
----
+***
 
 ### execute()
 
 > `protected` **execute**\<`TResult`\>(`overrides`): `Promise`\<`TResult`\>
 
-Defined in: [packages/base/BaseProvider.ts:305](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L305)
+Defined in: [packages/base/BaseProvider.ts:330](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L330)
 
 Runs extraction and optional downloads through the shared coordinator.
 
@@ -759,13 +791,13 @@ Extracted output in the shape requested by the provider method.
 
 [`BaseProvider`](BaseProvider.md).[`execute`](BaseProvider.md#execute)
 
----
+***
 
 ### makeTargets()
 
 > `protected` **makeTargets**(`sourceUrl`, `range`, `provider`, `method`, `addTrailingSlash?`): `object`
 
-Defined in: [packages/base/BaseProvider.ts:334](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseProvider.ts#L334)
+Defined in: [packages/base/BaseProvider.ts:359](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseProvider.ts#L359)
 
 Builds paginated target URLs for list-like provider methods.
 
@@ -823,13 +855,13 @@ Provider, method, and generated target URLs.
 
 [`BaseProvider`](BaseProvider.md).[`makeTargets`](BaseProvider.md#maketargets)
 
----
+***
 
 ### getVideo()
 
 > **getVideo**(): `Promise`\<[`BoKepPornVideoOutput`](../interfaces/BoKepPornVideoOutput.md)\>
 
-Defined in: [packages/providers/bokepporn/BoKepPornProvider.ts:43](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/bokepporn/BoKepPornProvider.ts#L43)
+Defined in: [packages/providers/bokepporn/BoKepPornProvider.ts:45](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/bokepporn/BoKepPornProvider.ts#L45)
 
 #### Returns
 

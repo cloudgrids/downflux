@@ -6,7 +6,7 @@
 
 # Interface: OkPornModelOutput
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:142](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L142)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:142](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L142)
 
 Output structure for OkPorn model operations.
 Contains model page metadata and model links.
@@ -21,7 +21,7 @@ Contains model page metadata and model links.
 
 > **pageTitle**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:144](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L144)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:144](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L144)
 
 Model listing page title
 
@@ -31,7 +31,7 @@ Model listing page title
 
 > **pageUrl**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:147](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L147)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:147](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L147)
 
 Model listing page URL
 
@@ -41,7 +41,7 @@ Model listing page URL
 
 > **modelUrls**: `string`[]
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:150](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L150)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:150](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L150)
 
 Model URLs or path values
 
@@ -51,6 +51,6 @@ Model URLs or path values
 
 > **modelCount**: `number`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:153](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L153)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:153](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L153)
 
 Number of models found

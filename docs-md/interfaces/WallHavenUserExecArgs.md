@@ -6,7 +6,7 @@
 
 # Interface: WallHavenUserExecArgs
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:25](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L25)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:25](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenContracts.ts#L25)
 
 Execution arguments for WallHaven user uploads.
 Controls uploader, purity, and metadata expansion.
@@ -21,7 +21,7 @@ Controls uploader, purity, and metadata expansion.
 
 > **username**: `string`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:27](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L27)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:27](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenContracts.ts#L27)
 
 Uploader username
 
@@ -31,7 +31,7 @@ Uploader username
 
 > `optional` **purity?**: `boolean`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:30](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L30)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:30](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenContracts.ts#L30)
 
 Purity-safe upload listing flag, default is false
 
@@ -41,6 +41,6 @@ Purity-safe upload listing flag, default is false
 
 > `optional` **includeMetadata?**: `boolean`
 
-Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:33](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenContracts.ts#L33)
+Defined in: [packages/providers/wallhaven/WallHavenContracts.ts:33](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenContracts.ts#L33)
 
 Includes full wallpaper metadata for each thumbnail

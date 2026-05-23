@@ -6,7 +6,7 @@
 
 # Interface: M3U8Variant
 
-Defined in: [packages/contracts/DownloadContracts.ts:91](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L91)
+Defined in: [packages/contracts/DownloadContracts.ts:91](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L91)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:91](https://github.com/fork
 
 > **url**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:92](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L92)
+Defined in: [packages/contracts/DownloadContracts.ts:92](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L92)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:92](https://github.com/fork
 
 > **width**: `number`
 
-Defined in: [packages/contracts/DownloadContracts.ts:93](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L93)
+Defined in: [packages/contracts/DownloadContracts.ts:93](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L93)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:93](https://github.com/fork
 
 > **height**: `number`
 
-Defined in: [packages/contracts/DownloadContracts.ts:94](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L94)
+Defined in: [packages/contracts/DownloadContracts.ts:94](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L94)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [packages/contracts/DownloadContracts.ts:94](https://github.com/fork
 
 > **bw**: `number`
 
-Defined in: [packages/contracts/DownloadContracts.ts:95](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L95)
+Defined in: [packages/contracts/DownloadContracts.ts:95](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L95)

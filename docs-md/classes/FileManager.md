@@ -6,7 +6,7 @@
 
 # Class: FileManager
 
-Defined in: [packages/storage/FileManager.ts:20](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FileManager.ts#L20)
+Defined in: [packages/storage/FileManager.ts:20](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/storage/FileManager.ts#L20)
 
 Storage service for JSON results, buffers, and files on disk.
 
@@ -23,7 +23,7 @@ and coordinators from duplicating filesystem rules.
 
 > **new FileManager**(`ffmpegEngine`, `progressManager`): `FileManager`
 
-Defined in: [packages/storage/FileManager.ts:25](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FileManager.ts#L25)
+Defined in: [packages/storage/FileManager.ts:25](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/storage/FileManager.ts#L25)
 
 #### Parameters
 
@@ -45,7 +45,7 @@ Defined in: [packages/storage/FileManager.ts:25](https://github.com/forkts/downf
 
 > **createSink**(`sinkInput`): `object`
 
-Defined in: [packages/storage/FileManager.ts:36](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FileManager.ts#L36)
+Defined in: [packages/storage/FileManager.ts:36](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/storage/FileManager.ts#L36)
 
 Creates the output sink for a download.
 
@@ -95,7 +95,7 @@ Writable stream and finalize callback for the selected output mode.
 
 > **finalizeStream**(`finalPath`, `tOptions?`, `isFmp4?`, `opts?`): `Promise`\<\{ `path`: `string`; `filename`: `string`; `extension`: `string`; `mimeType`: `any`; \}\>
 
-Defined in: [packages/storage/FileManager.ts:148](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FileManager.ts#L148)
+Defined in: [packages/storage/FileManager.ts:148](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/storage/FileManager.ts#L148)
 
 Finalizes a file after streaming completes.
 
@@ -143,7 +143,7 @@ Final path, filename, extension, and MIME type.
 
 > **toJSON**\<`T`, `S`\>(`result`, `directoryPath?`): `string`
 
-Defined in: [packages/storage/FileManager.ts:176](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FileManager.ts#L176)
+Defined in: [packages/storage/FileManager.ts:176](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/storage/FileManager.ts#L176)
 
 Writes an execution result as JSON.
 
@@ -183,7 +183,7 @@ Path to the written JSON file.
 
 > **getFileInfo**(`url`, `prefix?`): [`ResolvedFile`](../interfaces/ResolvedFile.md)
 
-Defined in: [packages/storage/FileManager.ts:200](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FileManager.ts#L200)
+Defined in: [packages/storage/FileManager.ts:200](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/storage/FileManager.ts#L200)
 
 Extracts filename and extension from URL.
 
@@ -213,7 +213,7 @@ path undefined => fud_timestamp
 
 > **sanitizeFilename**(`name`): `string`
 
-Defined in: [packages/storage/FileManager.ts:226](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FileManager.ts#L226)
+Defined in: [packages/storage/FileManager.ts:226](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/storage/FileManager.ts#L226)
 
 Sanitize filename by replacing invalid characters with underscores mostly for
 Windows OS which has a lot of reserved characters for filenames such as < > : " / \ | ? *
@@ -234,7 +234,7 @@ Windows OS which has a lot of reserved characters for filenames such as < > : " 
 
 > **detectResourceType**(`url`, `request`): `object`
 
-Defined in: [packages/storage/FileManager.ts:269](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FileManager.ts#L269)
+Defined in: [packages/storage/FileManager.ts:269](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/storage/FileManager.ts#L269)
 
 Infers MIME type and extension for a media URL.
 
@@ -272,7 +272,7 @@ Detected or provider-default resource type.
 
 > **deriveResolvedFile**(`initial`, `finalUrl`, `headers`, `isFmp4?`, `prefix?`): [`ResolvedFile`](../interfaces/ResolvedFile.md)
 
-Defined in: [packages/storage/FileManager.ts:307](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/storage/FileManager.ts#L307)
+Defined in: [packages/storage/FileManager.ts:307](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/storage/FileManager.ts#L307)
 
 Reconciles the initial file guess with the final response URL and headers.
 

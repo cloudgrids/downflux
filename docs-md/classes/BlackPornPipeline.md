@@ -1,0 +1,393 @@
+[**downflux**](../README.md)
+
+***
+
+[downflux](../README.md) / BlackPornPipeline
+
+# Class: BlackPornPipeline
+
+Defined in: [packages/providers/blackporn/BlackPornPipeline.ts:14](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/blackporn/BlackPornPipeline.ts#L14)
+
+Pipeline for organizing BlackPorn video media files.
+Manages the routing and organization of different media types (videos, posters, etc.).
+
+## Remarks
+
+Pipelines handle the organization of extracted media files into a structured
+hierarchy. They determine how files are mapped, identified, and stored for later retrieval.
+
+## Extends
+
+- [`BasePipeline`](BasePipeline.md)\<[`BlackPornExecArgs`](../interfaces/BlackPornExecArgs.md), [`BlackPornOutput`](../interfaces/BlackPornOutput.md)\>
+
+## Constructors
+
+### Constructor
+
+> **new BlackPornPipeline**(`fileManager`): `BlackPornPipeline`
+
+Defined in: [packages/base/BasePipeline.ts:28](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L28)
+
+#### Parameters
+
+##### fileManager
+
+[`FileManager`](FileManager.md)
+
+#### Returns
+
+`BlackPornPipeline`
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`constructor`](BasePipeline.md#constructor)
+
+## Properties
+
+### pathBuilder
+
+> `protected` `readonly` **pathBuilder**: [`PathBuilder`](PathBuilder.md)
+
+Defined in: [packages/base/BasePipeline.ts:25](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L25)
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`pathBuilder`](BasePipeline.md#pathbuilder)
+
+***
+
+### helper
+
+> `protected` `readonly` **helper**: [`Helper`](Helper.md)
+
+Defined in: [packages/base/BasePipeline.ts:26](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L26)
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`helper`](BasePipeline.md#helper)
+
+***
+
+### fileManager
+
+> `protected` **fileManager**: [`FileManager`](FileManager.md)
+
+Defined in: [packages/base/BasePipeline.ts:28](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L28)
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`fileManager`](BasePipeline.md#filemanager)
+
+## Methods
+
+### build()
+
+> **build**(`metadata`, `request`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+Defined in: [packages/base/BasePipeline.ts:37](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L37)
+
+Builds filtered, deduplicated pipeline items for a single metadata result.
+
+#### Parameters
+
+##### metadata
+
+[`BlackPornOutput`](../interfaces/BlackPornOutput.md)
+
+Extracted provider metadata.
+
+##### request
+
+[`BlackPornExecArgs`](../interfaces/BlackPornExecArgs.md)
+
+Execution request with filters and provider options.
+
+#### Returns
+
+[`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+Downloadable pipeline items.
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`build`](BasePipeline.md#build)
+
+***
+
+### filterByExt()
+
+> `protected` **filterByExt**(`request`, `pipelineItems`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+Defined in: [packages/base/BasePipeline.ts:62](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L62)
+
+#### Parameters
+
+##### request
+
+[`BlackPornExecArgs`](../interfaces/BlackPornExecArgs.md)
+
+##### pipelineItems
+
+[`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+#### Returns
+
+[`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`filterByExt`](BasePipeline.md#filterbyext)
+
+***
+
+### sliceByMaxDownloads()
+
+> `protected` **sliceByMaxDownloads**(`request`, `items`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+Defined in: [packages/base/BasePipeline.ts:68](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L68)
+
+#### Parameters
+
+##### request
+
+[`BlackPornExecArgs`](../interfaces/BlackPornExecArgs.md)
+
+##### items
+
+[`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+#### Returns
+
+[`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`sliceByMaxDownloads`](BasePipeline.md#slicebymaxdownloads)
+
+***
+
+### createMappings()
+
+> `protected` **createMappings**\<`T`\>(`elements`, `handler`): [`PipelineMapping`](../type-aliases/PipelineMapping.md)\<`T`\>
+
+Defined in: [packages/base/BasePipeline.ts:84](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L84)
+
+#### Type Parameters
+
+##### T
+
+`T`
+
+#### Parameters
+
+##### elements
+
+`T`[] \| `undefined`
+
+##### handler
+
+[`PipelineExtractionHandler`](../interfaces/PipelineExtractionHandler.md)\<`T`\>
+
+#### Returns
+
+[`PipelineMapping`](../type-aliases/PipelineMapping.md)\<`T`\>
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`createMappings`](BasePipeline.md#createmappings)
+
+***
+
+### extract()
+
+> `protected` **extract**(`request`, `metadata`): [`PipelineExtractedItem`](../interfaces/PipelineExtractedItem.md)[]
+
+Defined in: [packages/base/BasePipeline.ts:108](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L108)
+
+#### Parameters
+
+##### request
+
+[`BlackPornExecArgs`](../interfaces/BlackPornExecArgs.md)
+
+##### metadata
+
+[`BlackPornOutput`](../interfaces/BlackPornOutput.md)
+
+#### Returns
+
+[`PipelineExtractedItem`](../interfaces/PipelineExtractedItem.md)[]
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`extract`](BasePipeline.md#extract)
+
+***
+
+### filterByQuality()
+
+> `protected` **filterByQuality**\<`T`, `TEnum`\>(`items?`, `options`): `T`[]
+
+Defined in: [packages/base/BasePipeline.ts:125](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L125)
+
+Applies provider quality filtering without changing source order.
+
+#### Type Parameters
+
+##### T
+
+`T`
+
+##### TEnum
+
+`TEnum` = `string` \| `number`
+
+#### Parameters
+
+##### items?
+
+`T`[] = `[]`
+
+Source records to filter.
+
+##### options
+
+Quality selector and requested quality.
+
+###### allowedQuality?
+
+`TEnum`
+
+###### getQuality
+
+(`item`) => `TEnum`
+
+#### Returns
+
+`T`[]
+
+Sources matching the requested quality, or all sources when no quality is requested.
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`filterByQuality`](BasePipeline.md#filterbyquality)
+
+***
+
+### uniquePipelines()
+
+> `protected` **uniquePipelines**(`pipelines`): [`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+Defined in: [packages/base/BasePipeline.ts:139](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L139)
+
+#### Parameters
+
+##### pipelines
+
+[`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+#### Returns
+
+[`PipelineItem`](../interfaces/PipelineItem.md)[]
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`uniquePipelines`](BasePipeline.md#uniquepipelines)
+
+***
+
+### extractedItems()
+
+> `protected` **extractedItems**\<`T`\>(`targets`, `handlers`, `elements?`): `never`[] \| `undefined`
+
+Defined in: [packages/base/BasePipeline.ts:151](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BasePipeline.ts#L151)
+
+#### Type Parameters
+
+##### T
+
+`T`
+
+#### Parameters
+
+##### targets
+
+[`PipelineExtractedItem`](../interfaces/PipelineExtractedItem.md)[]
+
+##### handlers
+
+[`PipelineExtractionHandler`](../interfaces/PipelineExtractionHandler.md)\<`T`\>
+
+##### elements?
+
+`T`[]
+
+#### Returns
+
+`never`[] \| `undefined`
+
+#### Inherited from
+
+[`BasePipeline`](BasePipeline.md).[`extractedItems`](BasePipeline.md#extracteditems)
+
+***
+
+### buildIdentifier()
+
+> `protected` **buildIdentifier**(`ctx`): `string`
+
+Defined in: [packages/providers/blackporn/BlackPornPipeline.ts:15](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/blackporn/BlackPornPipeline.ts#L15)
+
+Builds the storage identifier used as the logical output path.
+
+#### Parameters
+
+##### ctx
+
+[`IdentifierContext`](../interfaces/IdentifierContext.md)\<[`BlackPornOutput`](../interfaces/BlackPornOutput.md)\>
+
+Media item context and source metadata.
+
+#### Returns
+
+`string`
+
+Stable identifier for storage and progress output.
+
+#### Overrides
+
+[`BasePipeline`](BasePipeline.md).[`buildIdentifier`](BasePipeline.md#buildidentifier)
+
+***
+
+### mappings()
+
+> `protected` **mappings**(`metadata`, `request`): [`PipelineMappings`](../type-aliases/PipelineMappings.md)
+
+Defined in: [packages/providers/blackporn/BlackPornPipeline.ts:43](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/blackporn/BlackPornPipeline.ts#L43)
+
+Defines which metadata collections should become pipeline items.
+
+#### Parameters
+
+##### metadata
+
+[`BlackPornOutput`](../interfaces/BlackPornOutput.md)
+
+Extracted provider metadata.
+
+##### request
+
+[`BlackPornExecArgs`](../interfaces/BlackPornExecArgs.md)
+
+Execution request with provider filters.
+
+#### Returns
+
+[`PipelineMappings`](../type-aliases/PipelineMappings.md)
+
+Mapping definitions used by `extract`.
+
+#### Overrides
+
+[`BasePipeline`](BasePipeline.md).[`mappings`](BasePipeline.md#mappings)

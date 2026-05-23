@@ -6,7 +6,7 @@
 
 # Interface: ProviderMetadata
 
-Defined in: [packages/base/BaseContracts.ts:29](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L29)
+Defined in: [packages/base/BaseContracts.ts:29](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L29)
 
 Describes provider capabilities, integration status, and access restrictions.
 
@@ -24,7 +24,7 @@ restrictions.
 
 > **hasHls**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:31](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L31)
+Defined in: [packages/base/BaseContracts.ts:31](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L31)
 
 Whether the site exposes HLS playlist sources.
 
@@ -34,7 +34,7 @@ Whether the site exposes HLS playlist sources.
 
 > `optional` **hlsIntegrated?**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:34](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L34)
+Defined in: [packages/base/BaseContracts.ts:34](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L34)
 
 Whether HLS sources are wired into the download pipeline.
 
@@ -44,7 +44,7 @@ Whether HLS sources are wired into the download pipeline.
 
 > **hasMp4**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:37](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L37)
+Defined in: [packages/base/BaseContracts.ts:37](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L37)
 
 Whether the site exposes direct MP4/progressive sources.
 
@@ -54,7 +54,7 @@ Whether the site exposes direct MP4/progressive sources.
 
 > `optional` **mp4Integrated?**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:40](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L40)
+Defined in: [packages/base/BaseContracts.ts:40](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L40)
 
 Whether MP4 sources are wired into the download pipeline.
 
@@ -64,7 +64,7 @@ Whether MP4 sources are wired into the download pipeline.
 
 > **hasKvs**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:43](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L43)
+Defined in: [packages/base/BaseContracts.ts:43](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L43)
 
 Whether the site uses KVS/Kernel Video Sharing page variables.
 
@@ -74,7 +74,7 @@ Whether the site uses KVS/Kernel Video Sharing page variables.
 
 > `optional` **hasEmbeddableVideos?**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:46](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L46)
+Defined in: [packages/base/BaseContracts.ts:46](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L46)
 
 Whether the site exposes embeddable video pages.
 
@@ -84,7 +84,7 @@ Whether the site exposes embeddable video pages.
 
 > **underGeoRestriction**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:49](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L49)
+Defined in: [packages/base/BaseContracts.ts:49](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L49)
 
 Whether access may vary by region.
 
@@ -94,7 +94,7 @@ Whether access may vary by region.
 
 > `optional` **cloudflareChallenge?**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:52](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L52)
+Defined in: [packages/base/BaseContracts.ts:52](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L52)
 
 Whether Cloudflare or similar anti-bot handling is expected.
 
@@ -104,7 +104,7 @@ Whether Cloudflare or similar anti-bot handling is expected.
 
 > **requiresBrowser**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:55](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L55)
+Defined in: [packages/base/BaseContracts.ts:55](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L55)
 
 Whether extraction requires browser automation instead of plain HTTP.
 
@@ -114,7 +114,7 @@ Whether extraction requires browser automation instead of plain HTTP.
 
 > **underDevelopment**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:58](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L58)
+Defined in: [packages/base/BaseContracts.ts:58](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L58)
 
 Whether the provider is still changing or only partially supported.
 
@@ -124,7 +124,7 @@ Whether the provider is still changing or only partially supported.
 
 > `optional` **needsExternalAPI?**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:61](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L61)
+Defined in: [packages/base/BaseContracts.ts:61](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L61)
 
 Whether extraction depends on an external API.
 
@@ -134,7 +134,7 @@ Whether extraction depends on an external API.
 
 > `optional` **canDownload?**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:64](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L64)
+Defined in: [packages/base/BaseContracts.ts:64](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L64)
 
 Whether downloads are expected to work for supported methods.
 
@@ -144,7 +144,7 @@ Whether downloads are expected to work for supported methods.
 
 > `optional` **nonFunctional?**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:67](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L67)
+Defined in: [packages/base/BaseContracts.ts:67](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L67)
 
 Whether the provider is known to be non-functional.
 
@@ -154,7 +154,7 @@ Whether the provider is known to be non-functional.
 
 > `optional` **sniSpoofingIssues?**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:70](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L70)
+Defined in: [packages/base/BaseContracts.ts:70](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L70)
 
 Whether SNI spoofing is known to cause issues for this site.
 
@@ -164,7 +164,7 @@ Whether SNI spoofing is known to cause issues for this site.
 
 > `optional` **requiresLogin?**: `boolean`
 
-Defined in: [packages/base/BaseContracts.ts:73](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L73)
+Defined in: [packages/base/BaseContracts.ts:73](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L73)
 
 Whether content access requires an authenticated user session.
 
@@ -174,6 +174,16 @@ Whether content access requires an authenticated user session.
 
 > **sniSpoofing**: [`SniSpoofStatus`](../type-aliases/SniSpoofStatus.md)
 
-Defined in: [packages/base/BaseContracts.ts:76](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseContracts.ts#L76)
+Defined in: [packages/base/BaseContracts.ts:76](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L76)
 
 Current support status for SNI spoofing on this provider.
+
+***
+
+### type
+
+> **type**: [`ProviderType`](../type-aliases/ProviderType.md)
+
+Defined in: [packages/base/BaseContracts.ts:79](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseContracts.ts#L79)
+
+The type of the provider.

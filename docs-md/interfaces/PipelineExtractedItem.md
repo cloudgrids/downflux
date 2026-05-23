@@ -6,7 +6,7 @@
 
 # Interface: PipelineExtractedItem
 
-Defined in: [packages/contracts/PipelineContracts.ts:23](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L23)
+Defined in: [packages/contracts/PipelineContracts.ts:23](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L23)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:23](https://github.com/fork
 
 > **mediaType**: [`MediaType`](../enumerations/MediaType.md)
 
-Defined in: [packages/contracts/PipelineContracts.ts:24](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L24)
+Defined in: [packages/contracts/PipelineContracts.ts:24](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L24)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:24](https://github.com/fork
 
 > **url**: `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:25](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L25)
+Defined in: [packages/contracts/PipelineContracts.ts:25](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L25)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:25](https://github.com/fork
 
 > `optional` **mimeType?**: `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:26](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L26)
+Defined in: [packages/contracts/PipelineContracts.ts:26](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L26)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:26](https://github.com/fork
 
 > `optional` **extension?**: [`AllowedExtension`](../type-aliases/AllowedExtension.md)
 
-Defined in: [packages/contracts/PipelineContracts.ts:27](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L27)
+Defined in: [packages/contracts/PipelineContracts.ts:27](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L27)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:27](https://github.com/fork
 
 > `optional` **id?**: `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:28](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L28)
+Defined in: [packages/contracts/PipelineContracts.ts:28](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L28)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/contracts/PipelineContracts.ts:28](https://github.com/fork
 
 > `optional` **username?**: `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:29](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L29)
+Defined in: [packages/contracts/PipelineContracts.ts:29](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L29)
 
 ***
 
@@ -62,4 +62,4 @@ Defined in: [packages/contracts/PipelineContracts.ts:29](https://github.com/fork
 
 > `optional` **secondaryId?**: `string`
 
-Defined in: [packages/contracts/PipelineContracts.ts:30](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/PipelineContracts.ts#L30)
+Defined in: [packages/contracts/PipelineContracts.ts:30](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/PipelineContracts.ts#L30)

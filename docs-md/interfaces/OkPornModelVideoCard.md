@@ -6,7 +6,7 @@
 
 # Interface: OkPornModelVideoCard
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:104](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L104)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:104](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L104)
 
 Video card from an OkPorn model page.
 Contains preview metadata for a model video.
@@ -17,7 +17,7 @@ Contains preview metadata for a model video.
 
 > **videoId**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:106](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L106)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:106](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L106)
 
 Video identifier
 
@@ -27,7 +27,7 @@ Video identifier
 
 > **customTitle**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:109](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L109)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:109](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L109)
 
 Video card title
 
@@ -37,7 +37,7 @@ Video card title
 
 > **preview**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:112](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L112)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:112](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L112)
 
 Preview video URL
 
@@ -47,7 +47,7 @@ Preview video URL
 
 > **screenShot**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:115](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L115)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:115](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L115)
 
 Screenshot image URL
 
@@ -57,6 +57,6 @@ Screenshot image URL
 
 > **duration**: `string`
 
-Defined in: [packages/providers/okporn/OkPornContracts.ts:118](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/okporn/OkPornContracts.ts#L118)
+Defined in: [packages/providers/okporn/OkPornContracts.ts:118](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/okporn/OkPornContracts.ts#L118)
 
 Video duration text

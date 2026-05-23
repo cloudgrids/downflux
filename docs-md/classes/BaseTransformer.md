@@ -6,7 +6,7 @@
 
 # Class: BaseTransformer\<TExec, TResult\>
 
-Defined in: [packages/base/BaseTransformer.ts:25](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L25)
+Defined in: [packages/base/BaseTransformer.ts:33](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L33)
 
 Fetches a target URL and converts parser output into execution metadata.
 
@@ -18,23 +18,40 @@ subclasses can map those raw fields into stable public result types.
 
 ## Extended by
 
+- [`AnalRzTransformer`](AnalRzTransformer.md)
+- [`ArtStationTransformer`](ArtStationTransformer.md)
 - [`BeegTransformer`](BeegTransformer.md)
+- [`BehanceTransformer`](BehanceTransformer.md)
+- [`BlackPornTransformer`](BlackPornTransformer.md)
+- [`BlueskyTransformer`](BlueskyTransformer.md)
 - [`BoKepPornTransformer`](BoKepPornTransformer.md)
 - [`ColliderPornTransformer`](ColliderPornTransformer.md)
 - [`CumLouderTransformer`](CumLouderTransformer.md)
 - [`DaFreePornTransformer`](DaFreePornTransformer.md)
+- [`DanbooruTransformer`](DanbooruTransformer.md)
 - [`DaNudeTransformer`](DaNudeTransformer.md)
+- [`DeviantArtTransformer`](DeviantArtTransformer.md)
 - [`EpicGfsTransformer`](EpicGfsTransformer.md)
 - [`EPornerTransformer`](EPornerTransformer.md)
+- [`FlickrTransformer`](FlickrTransformer.md)
+- [`GelbooruTransformer`](GelbooruTransformer.md)
 - [`HqPornTransformer`](HqPornTransformer.md)
+- [`ImgurTransformer`](ImgurTransformer.md)
+- [`InstagramTransformer`](InstagramTransformer.md)
 - [`InterracialTransformer`](InterracialTransformer.md)
 - [`ItsPornTransformer`](ItsPornTransformer.md)
 - [`Lesbian8Transformer`](Lesbian8Transformer.md)
+- [`MangaDexTransformer`](MangaDexTransformer.md)
+- [`MastodonTransformer`](MastodonTransformer.md)
 - [`MegaTubeTransformer`](MegaTubeTransformer.md)
 - [`MomVidsTransformer`](MomVidsTransformer.md)
 - [`MyLustTransformer`](MyLustTransformer.md)
+- [`NewgroundsTransformer`](NewgroundsTransformer.md)
 - [`OkPornTransformer`](OkPornTransformer.md)
 - [`PerfectGirlsTransformer`](PerfectGirlsTransformer.md)
+- [`PexelsTransformer`](PexelsTransformer.md)
+- [`PinterestTransformer`](PinterestTransformer.md)
+- [`PixivTransformer`](PixivTransformer.md)
 - [`Porn300Transformer`](Porn300Transformer.md)
 - [`PornDoeTransformer`](PornDoeTransformer.md)
 - [`PornHubTransformer`](PornHubTransformer.md)
@@ -43,14 +60,21 @@ subclasses can map those raw fields into stable public result types.
 - [`PornSevenTransformer`](PornSevenTransformer.md)
 - [`PornsOkTransformer`](PornsOkTransformer.md)
 - [`PussySpaceTransformer`](PussySpaceTransformer.md)
+- [`RedditTransformer`](RedditTransformer.md)
 - [`SexVidTransformer`](SexVidTransformer.md)
 - [`ShamelessTransformer`](ShamelessTransformer.md)
 - [`SuperPornTransformer`](SuperPornTransformer.md)
 - [`SxyPornTransformer`](SxyPornTransformer.md)
 - [`TheyAreHugeTransformer`](TheyAreHugeTransformer.md)
+- [`TikTokTransformer`](TikTokTransformer.md)
 - [`TnAFlixTransformer`](TnAFlixTransformer.md)
 - [`TubeVSexTransformer`](TubeVSexTransformer.md)
+- [`TumblrTransformer`](TumblrTransformer.md)
+- [`TwitterTransformer`](TwitterTransformer.md)
+- [`UnsplashTransformer`](UnsplashTransformer.md)
 - [`WallHavenTransformer`](WallHavenTransformer.md)
+- [`WikiArtTransformer`](WikiArtTransformer.md)
+- [`WikimediaTransformer`](WikimediaTransformer.md)
 - [`XCafeTransformer`](XCafeTransformer.md)
 - [`XDeguTransformer`](XDeguTransformer.md)
 - [`XGroovyTransformer`](XGroovyTransformer.md)
@@ -77,7 +101,7 @@ subclasses can map those raw fields into stable public result types.
 
 > **new BaseTransformer**\<`TExec`, `TResult`\>(`httpClient`, `progressManager`): `BaseTransformer`\<`TExec`, `TResult`\>
 
-Defined in: [packages/base/BaseTransformer.ts:26](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L26)
+Defined in: [packages/base/BaseTransformer.ts:34](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L34)
 
 #### Parameters
 
@@ -99,7 +123,7 @@ Defined in: [packages/base/BaseTransformer.ts:26](https://github.com/forkts/down
 
 > `protected` `readonly` **httpClient**: [`HttpClient`](HttpClient.md)
 
-Defined in: [packages/base/BaseTransformer.ts:27](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L27)
+Defined in: [packages/base/BaseTransformer.ts:35](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L35)
 
 ***
 
@@ -107,7 +131,7 @@ Defined in: [packages/base/BaseTransformer.ts:27](https://github.com/forkts/down
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseTransformer.ts:28](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L28)
+Defined in: [packages/base/BaseTransformer.ts:36](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L36)
 
 ## Methods
 
@@ -115,7 +139,7 @@ Defined in: [packages/base/BaseTransformer.ts:28](https://github.com/forkts/down
 
 > **transform**(`url`, `request?`): `Promise`\<`TResult`\>
 
-Defined in: [packages/base/BaseTransformer.ts:38](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L38)
+Defined in: [packages/base/BaseTransformer.ts:46](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L46)
 
 Fetches HTML and merges default metadata with provider-specific metadata.
 
@@ -145,7 +169,7 @@ Parsed metadata ready for provider-specific output mapping.
 
 > **requestData**(`url`, `opts`): `Promise`\<`any`\>
 
-Defined in: [packages/base/BaseTransformer.ts:61](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L61)
+Defined in: [packages/base/BaseTransformer.ts:66](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L66)
 
 Fetches JSON data for providers that expose API-backed metadata.
 
@@ -175,7 +199,7 @@ Parsed JSON response.
 
 > `protected` **uniqueVideos**\<`T`\>(`videos`, `options`): [`VideoSourceOutput`](../interfaces/VideoSourceOutput.md)[]
 
-Defined in: [packages/base/BaseTransformer.ts:72](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L72)
+Defined in: [packages/base/BaseTransformer.ts:77](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L77)
 
 Removes duplicate video URLs while preserving quality information.
 
@@ -211,7 +235,7 @@ Unique video sources in the shared shape.
 
 > `protected` **unique**\<`T`\>(`arr`): `T`[]
 
-Defined in: [packages/base/BaseTransformer.ts:89](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L89)
+Defined in: [packages/base/BaseTransformer.ts:94](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L94)
 
 #### Type Parameters
 
@@ -235,7 +259,7 @@ Defined in: [packages/base/BaseTransformer.ts:89](https://github.com/forkts/down
 
 > `protected` **defaultFlashVarsVideoOutput**\<`T`\>(`metadata`): [`DefaultFlashVarsVideoOutput`](../interfaces/DefaultFlashVarsVideoOutput.md)
 
-Defined in: [packages/base/BaseTransformer.ts:94](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L94)
+Defined in: [packages/base/BaseTransformer.ts:99](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L99)
 
 #### Type Parameters
 
@@ -252,3 +276,67 @@ Defined in: [packages/base/BaseTransformer.ts:94](https://github.com/forkts/down
 #### Returns
 
 [`DefaultFlashVarsVideoOutput`](../interfaces/DefaultFlashVarsVideoOutput.md)
+
+***
+
+### mapSources()
+
+> `protected` **mapSources**(`sources`, `quality?`, `filter?`): [`VideosFormat`](../interfaces/VideosFormat.md)
+
+Defined in: [packages/base/BaseTransformer.ts:119](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L119)
+
+#### Parameters
+
+##### sources
+
+`string`[]
+
+##### quality?
+
+`string` = `VideoQuality.QUnknown`
+
+##### filter?
+
+(`src`) => `boolean`
+
+#### Returns
+
+[`VideosFormat`](../interfaces/VideosFormat.md)
+
+***
+
+### defaultVideoOutput()
+
+> `protected` **defaultVideoOutput**\<`T`\>(`metadata`, `options?`): `T`
+
+Defined in: [packages/base/BaseTransformer.ts:137](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L137)
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* `Partial`\<[`DefaultVideoOutput`](../interfaces/DefaultVideoOutput.md)\> = `Partial`\<[`DefaultVideoOutput`](../interfaces/DefaultVideoOutput.md)\>
+
+#### Parameters
+
+##### metadata
+
+[`DefaultExecutionResult`](../interfaces/DefaultExecutionResult.md)\<`Partial`\<`T`\>\>
+
+##### options?
+
+###### filter?
+
+(`src`) => `boolean`
+
+###### quality?
+
+`string`
+
+###### extraFields?
+
+`Partial`\<`T`\>
+
+#### Returns
+
+`T`

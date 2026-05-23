@@ -1,12 +1,12 @@
 [**downflux**](../README.md)
 
----
+***
 
 [downflux](../README.md) / ExceptionPayload
 
 # Interface: ExceptionPayload\<TMeta\>
 
-Defined in: [packages/core/exceptions/BaseException.ts:3](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/BaseException.ts#L3)
+Defined in: [packages/core/exceptions/BaseException.ts:3](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/exceptions/BaseException.ts#L3)
 
 ## Type Parameters
 
@@ -20,44 +20,44 @@ Defined in: [packages/core/exceptions/BaseException.ts:3](https://github.com/for
 
 > **errorCode**: [`ErrorCodes`](../enumerations/ErrorCodes.md)
 
-Defined in: [packages/core/exceptions/BaseException.ts:4](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/BaseException.ts#L4)
+Defined in: [packages/core/exceptions/BaseException.ts:4](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/exceptions/BaseException.ts#L4)
 
----
+***
 
 ### message
 
 > **message**: `string`
 
-Defined in: [packages/core/exceptions/BaseException.ts:5](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/BaseException.ts#L5)
+Defined in: [packages/core/exceptions/BaseException.ts:5](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/exceptions/BaseException.ts#L5)
 
----
+***
 
 ### provider
 
 > **provider**: [`Provider`](../enumerations/Provider.md)
 
-Defined in: [packages/core/exceptions/BaseException.ts:6](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/BaseException.ts#L6)
+Defined in: [packages/core/exceptions/BaseException.ts:6](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/exceptions/BaseException.ts#L6)
 
----
+***
 
 ### method?
 
 > `optional` **method?**: `string`
 
-Defined in: [packages/core/exceptions/BaseException.ts:7](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/BaseException.ts#L7)
+Defined in: [packages/core/exceptions/BaseException.ts:7](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/exceptions/BaseException.ts#L7)
 
----
+***
 
 ### context?
 
 > `optional` **context?**: `Record`\<`string`, `any`\>
 
-Defined in: [packages/core/exceptions/BaseException.ts:8](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/BaseException.ts#L8)
+Defined in: [packages/core/exceptions/BaseException.ts:8](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/exceptions/BaseException.ts#L8)
 
----
+***
 
 ### metadata?
 
 > `optional` **metadata?**: `TMeta`
 
-Defined in: [packages/core/exceptions/BaseException.ts:9](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/exceptions/BaseException.ts#L9)
+Defined in: [packages/core/exceptions/BaseException.ts:9](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/exceptions/BaseException.ts#L9)

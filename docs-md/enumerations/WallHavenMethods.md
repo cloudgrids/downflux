@@ -6,7 +6,7 @@
 
 # Enumeration: WallHavenMethods
 
-Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:4](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenTypes.ts#L4)
+Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:4](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenTypes.ts#L4)
 
 WallHaven service methods
 
@@ -16,7 +16,7 @@ WallHaven service methods
 
 > **getWallPapers**: `"getWallPapers"`
 
-Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:6](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenTypes.ts#L6)
+Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:6](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenTypes.ts#L6)
 
 Wallpaper page extraction
 
@@ -26,7 +26,7 @@ Wallpaper page extraction
 
 > **getWallPaper**: `"getWallPaper"`
 
-Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:9](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenTypes.ts#L9)
+Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:9](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenTypes.ts#L9)
 
 Single wallpaper extraction
 
@@ -36,7 +36,7 @@ Single wallpaper extraction
 
 > **getUserUploads**: `"getUserUploads"`
 
-Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:12](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenTypes.ts#L12)
+Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:12](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenTypes.ts#L12)
 
 User upload extraction
 
@@ -46,7 +46,7 @@ User upload extraction
 
 > **getUserUploadsInfo**: `"getUserUploadsInfo"`
 
-Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenTypes.ts#L15)
+Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:15](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenTypes.ts#L15)
 
 User uploads info extraction
 
@@ -56,7 +56,7 @@ User uploads info extraction
 
 > **getUserFavorites**: `"getUserFavorites"`
 
-Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:18](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenTypes.ts#L18)
+Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:18](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenTypes.ts#L18)
 
 User favorites extraction
 
@@ -66,7 +66,7 @@ User favorites extraction
 
 > **getUserFavoriteCollections**: `"getUserFavoriteCollections"`
 
-Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:21](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenTypes.ts#L21)
+Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:21](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenTypes.ts#L21)
 
 User favorite collections extraction
 
@@ -76,6 +76,6 @@ User favorite collections extraction
 
 > **getUserFavoriteCollection**: `"getUserFavoriteCollection"`
 
-Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:24](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/wallhaven/WallHavenTypes.ts#L24)
+Defined in: [packages/providers/wallhaven/WallHavenTypes.ts:24](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/wallhaven/WallHavenTypes.ts#L24)
 
 User favorite collections extraction

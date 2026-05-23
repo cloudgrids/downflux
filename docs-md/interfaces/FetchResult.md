@@ -6,7 +6,7 @@
 
 # Interface: FetchResult
 
-Defined in: [packages/contracts/DownloadContracts.ts:54](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L54)
+Defined in: [packages/contracts/DownloadContracts.ts:54](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L54)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:54](https://github.com/fork
 
 > **html**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:55](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L55)
+Defined in: [packages/contracts/DownloadContracts.ts:55](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L55)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:55](https://github.com/fork
 
 > **buffer**: `Buffer`
 
-Defined in: [packages/contracts/DownloadContracts.ts:56](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L56)
+Defined in: [packages/contracts/DownloadContracts.ts:56](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L56)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:56](https://github.com/fork
 
 > **finalUrl**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:57](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L57)
+Defined in: [packages/contracts/DownloadContracts.ts:57](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L57)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:57](https://github.com/fork
 
 > **status**: `number`
 
-Defined in: [packages/contracts/DownloadContracts.ts:58](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L58)
+Defined in: [packages/contracts/DownloadContracts.ts:58](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L58)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:58](https://github.com/fork
 
 > **ok**: `boolean`
 
-Defined in: [packages/contracts/DownloadContracts.ts:59](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L59)
+Defined in: [packages/contracts/DownloadContracts.ts:59](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L59)
 
 ***
 
@@ -54,4 +54,4 @@ Defined in: [packages/contracts/DownloadContracts.ts:59](https://github.com/fork
 
 > **headers**: `Record`\<`string`, `string`\>
 
-Defined in: [packages/contracts/DownloadContracts.ts:60](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L60)
+Defined in: [packages/contracts/DownloadContracts.ts:60](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L60)

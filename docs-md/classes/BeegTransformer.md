@@ -6,7 +6,7 @@
 
 # Class: BeegTransformer
 
-Defined in: [packages/providers/beeg/BeegTransformer.ts:13](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/beeg/BeegTransformer.ts#L13)
+Defined in: [packages/providers/beeg/BeegTransformer.ts:13](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/beeg/BeegTransformer.ts#L13)
 
 `BeegTransformer`
 Transforms raw data fetched from the Beeg API into a structured format suitable for video downloading.
@@ -23,7 +23,7 @@ Provides all quality videos along with posters
 
 > **new BeegTransformer**(`httpClient`, `progressManager`): `BeegTransformer`
 
-Defined in: [packages/base/BaseTransformer.ts:26](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L26)
+Defined in: [packages/base/BaseTransformer.ts:34](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L34)
 
 #### Parameters
 
@@ -49,7 +49,7 @@ Defined in: [packages/base/BaseTransformer.ts:26](https://github.com/forkts/down
 
 > `protected` `readonly` **httpClient**: [`HttpClient`](HttpClient.md)
 
-Defined in: [packages/base/BaseTransformer.ts:27](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L27)
+Defined in: [packages/base/BaseTransformer.ts:35](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L35)
 
 #### Inherited from
 
@@ -61,7 +61,7 @@ Defined in: [packages/base/BaseTransformer.ts:27](https://github.com/forkts/down
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseTransformer.ts:28](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L28)
+Defined in: [packages/base/BaseTransformer.ts:36](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L36)
 
 #### Inherited from
 
@@ -73,7 +73,7 @@ Defined in: [packages/base/BaseTransformer.ts:28](https://github.com/forkts/down
 
 > **requestData**(`url`, `opts`): `Promise`\<`any`\>
 
-Defined in: [packages/base/BaseTransformer.ts:61](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L61)
+Defined in: [packages/base/BaseTransformer.ts:66](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L66)
 
 Fetches JSON data for providers that expose API-backed metadata.
 
@@ -107,7 +107,7 @@ Parsed JSON response.
 
 > `protected` **uniqueVideos**\<`T`\>(`videos`, `options`): [`VideoSourceOutput`](../interfaces/VideoSourceOutput.md)[]
 
-Defined in: [packages/base/BaseTransformer.ts:72](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L72)
+Defined in: [packages/base/BaseTransformer.ts:77](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L77)
 
 Removes duplicate video URLs while preserving quality information.
 
@@ -147,7 +147,7 @@ Unique video sources in the shared shape.
 
 > `protected` **unique**\<`T`\>(`arr`): `T`[]
 
-Defined in: [packages/base/BaseTransformer.ts:89](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L89)
+Defined in: [packages/base/BaseTransformer.ts:94](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L94)
 
 #### Type Parameters
 
@@ -175,7 +175,7 @@ Defined in: [packages/base/BaseTransformer.ts:89](https://github.com/forkts/down
 
 > `protected` **defaultFlashVarsVideoOutput**\<`T`\>(`metadata`): [`DefaultFlashVarsVideoOutput`](../interfaces/DefaultFlashVarsVideoOutput.md)
 
-Defined in: [packages/base/BaseTransformer.ts:94](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseTransformer.ts#L94)
+Defined in: [packages/base/BaseTransformer.ts:99](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L99)
 
 #### Type Parameters
 
@@ -199,11 +199,83 @@ Defined in: [packages/base/BaseTransformer.ts:94](https://github.com/forkts/down
 
 ***
 
+### mapSources()
+
+> `protected` **mapSources**(`sources`, `quality?`, `filter?`): [`VideosFormat`](../interfaces/VideosFormat.md)
+
+Defined in: [packages/base/BaseTransformer.ts:119](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L119)
+
+#### Parameters
+
+##### sources
+
+`string`[]
+
+##### quality?
+
+`string` = `VideoQuality.QUnknown`
+
+##### filter?
+
+(`src`) => `boolean`
+
+#### Returns
+
+[`VideosFormat`](../interfaces/VideosFormat.md)
+
+#### Inherited from
+
+[`BaseTransformer`](BaseTransformer.md).[`mapSources`](BaseTransformer.md#mapsources)
+
+***
+
+### defaultVideoOutput()
+
+> `protected` **defaultVideoOutput**\<`T`\>(`metadata`, `options?`): `T`
+
+Defined in: [packages/base/BaseTransformer.ts:137](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseTransformer.ts#L137)
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* `Partial`\<[`DefaultVideoOutput`](../interfaces/DefaultVideoOutput.md)\> = `Partial`\<[`DefaultVideoOutput`](../interfaces/DefaultVideoOutput.md)\>
+
+#### Parameters
+
+##### metadata
+
+[`DefaultExecutionResult`](../interfaces/DefaultExecutionResult.md)\<`Partial`\<`T`\>\>
+
+##### options?
+
+###### filter?
+
+(`src`) => `boolean`
+
+###### quality?
+
+`string`
+
+###### extraFields?
+
+`Partial`\<`T`\>
+
+#### Returns
+
+`T`
+
+#### Inherited from
+
+[`BaseTransformer`](BaseTransformer.md).[`defaultVideoOutput`](BaseTransformer.md#defaultvideooutput)
+
+***
+
 ### transform()
 
 > **transform**(`url`, `request?`): `Promise`\<[`DefaultExecutionResult`](../interfaces/DefaultExecutionResult.md)\<`unknown`\> \| [`BeegVideoOutput`](../interfaces/BeegVideoOutput.md)\>
 
-Defined in: [packages/providers/beeg/BeegTransformer.ts:18](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/beeg/BeegTransformer.ts#L18)
+Defined in: [packages/providers/beeg/BeegTransformer.ts:18](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/beeg/BeegTransformer.ts#L18)
 
 Fetches HTML and merges default metadata with provider-specific metadata.
 

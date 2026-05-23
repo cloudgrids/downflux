@@ -6,7 +6,7 @@
 
 # Class: HttpClient
 
-Defined in: [packages/engines/http/HttpClient.ts:14](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/engines/http/HttpClient.ts#L14)
+Defined in: [packages/engines/http/HttpClient.ts:14](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/engines/http/HttpClient.ts#L14)
 
 HTTP engine for page and JSON metadata requests.
 
@@ -25,7 +25,7 @@ transport fallback, and response decoding before parsers receive HTML.
 
 > **new HttpClient**(`progressManager`): `HttpClient`
 
-Defined in: [packages/engines/http/HttpClient.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/engines/http/HttpClient.ts#L15)
+Defined in: [packages/engines/http/HttpClient.ts:15](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/engines/http/HttpClient.ts#L15)
 
 #### Parameters
 
@@ -47,7 +47,7 @@ Defined in: [packages/engines/http/HttpClient.ts:15](https://github.com/forkts/d
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseHttpClient.ts:16](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L16)
+Defined in: [packages/base/BaseHttpClient.ts:16](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L16)
 
 #### Inherited from
 
@@ -59,7 +59,7 @@ Defined in: [packages/base/BaseHttpClient.ts:16](https://github.com/forkts/downf
 
 > `protected` `readonly` **cookieJar**: `Map`\<`string`, `Map`\<`string`, `string`\>\>
 
-Defined in: [packages/base/BaseHttpClient.ts:18](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L18)
+Defined in: [packages/base/BaseHttpClient.ts:18](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L18)
 
 #### Inherited from
 
@@ -71,7 +71,7 @@ Defined in: [packages/base/BaseHttpClient.ts:18](https://github.com/forkts/downf
 
 > `protected` `readonly` **CHROME\_CIPHERS**: `string`
 
-Defined in: [packages/base/BaseHttpClient.ts:19](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L19)
+Defined in: [packages/base/BaseHttpClient.ts:19](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L19)
 
 #### Inherited from
 
@@ -83,7 +83,7 @@ Defined in: [packages/base/BaseHttpClient.ts:19](https://github.com/forkts/downf
 
 > `protected` `readonly` **agent**: `Agent`
 
-Defined in: [packages/base/BaseHttpClient.ts:37](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L37)
+Defined in: [packages/base/BaseHttpClient.ts:37](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L37)
 
 #### Inherited from
 
@@ -95,7 +95,7 @@ Defined in: [packages/base/BaseHttpClient.ts:37](https://github.com/forkts/downf
 
 > `protected` `readonly` **spoofAgent**: `Agent`
 
-Defined in: [packages/base/BaseHttpClient.ts:47](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L47)
+Defined in: [packages/base/BaseHttpClient.ts:47](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L47)
 
 #### Inherited from
 
@@ -107,7 +107,7 @@ Defined in: [packages/base/BaseHttpClient.ts:47](https://github.com/forkts/downf
 
 > `protected` **randomHeaders**(`extra?`): `object`
 
-Defined in: [packages/base/BaseHttpClient.ts:60](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L60)
+Defined in: [packages/base/BaseHttpClient.ts:60](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L60)
 
 #### Parameters
 
@@ -129,7 +129,7 @@ Defined in: [packages/base/BaseHttpClient.ts:60](https://github.com/forkts/downf
 
 > `protected` **buildHlsHeaders**(`opts`): `object`
 
-Defined in: [packages/base/BaseHttpClient.ts:69](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L69)
+Defined in: [packages/base/BaseHttpClient.ts:69](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L69)
 
 #### Parameters
 
@@ -167,7 +167,7 @@ Defined in: [packages/base/BaseHttpClient.ts:69](https://github.com/forkts/downf
 
 > `protected` **delay**(`attempt`): `Promise`\<`unknown`\>
 
-Defined in: [packages/base/BaseHttpClient.ts:94](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L94)
+Defined in: [packages/base/BaseHttpClient.ts:94](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L94)
 
 #### Parameters
 
@@ -189,7 +189,7 @@ Defined in: [packages/base/BaseHttpClient.ts:94](https://github.com/forkts/downf
 
 > `protected` **readBody**(`body`): `Promise`\<`Buffer`\<`ArrayBufferLike`\>\>
 
-Defined in: [packages/base/BaseHttpClient.ts:101](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L101)
+Defined in: [packages/base/BaseHttpClient.ts:101](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L101)
 
 #### Parameters
 
@@ -211,7 +211,7 @@ Defined in: [packages/base/BaseHttpClient.ts:101](https://github.com/forkts/down
 
 > `protected` **decodeBody**(`buffer`, `headers`): `Buffer`
 
-Defined in: [packages/base/BaseHttpClient.ts:116](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L116)
+Defined in: [packages/base/BaseHttpClient.ts:116](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L116)
 
 #### Parameters
 
@@ -237,7 +237,7 @@ Defined in: [packages/base/BaseHttpClient.ts:116](https://github.com/forkts/down
 
 > `protected` **applyCookieWithHeader**(`url`, `headers`): `Record`\<`string`, `string`\>
 
-Defined in: [packages/base/BaseHttpClient.ts:132](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L132)
+Defined in: [packages/base/BaseHttpClient.ts:132](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L132)
 
 #### Parameters
 
@@ -263,7 +263,7 @@ Defined in: [packages/base/BaseHttpClient.ts:132](https://github.com/forkts/down
 
 > `protected` **storeCookies**(`url`, `headers`): `void`
 
-Defined in: [packages/base/BaseHttpClient.ts:147](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L147)
+Defined in: [packages/base/BaseHttpClient.ts:147](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L147)
 
 #### Parameters
 
@@ -289,7 +289,7 @@ Defined in: [packages/base/BaseHttpClient.ts:147](https://github.com/forkts/down
 
 > `protected` **addOriginWithHeader**(`headers`, `referer?`): `Record`\<`string`, `string`\>
 
-Defined in: [packages/base/BaseHttpClient.ts:170](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L170)
+Defined in: [packages/base/BaseHttpClient.ts:170](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L170)
 
 #### Parameters
 
@@ -315,7 +315,7 @@ Defined in: [packages/base/BaseHttpClient.ts:170](https://github.com/forkts/down
 
 > `protected` **headers**(`headers`): `Record`\<`string`, `string`\>
 
-Defined in: [packages/base/BaseHttpClient.ts:181](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L181)
+Defined in: [packages/base/BaseHttpClient.ts:181](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L181)
 
 #### Parameters
 
@@ -337,7 +337,7 @@ Defined in: [packages/base/BaseHttpClient.ts:181](https://github.com/forkts/down
 
 > `protected` **isTransportError**(`error`): `string` \| `undefined`
 
-Defined in: [packages/base/BaseHttpClient.ts:185](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L185)
+Defined in: [packages/base/BaseHttpClient.ts:185](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L185)
 
 #### Parameters
 
@@ -359,7 +359,7 @@ Defined in: [packages/base/BaseHttpClient.ts:185](https://github.com/forkts/down
 
 > **fetchWithTransportFallback**(`url`, `init`, `options`, `allowFallback?`): `Promise`\<`Response`\>
 
-Defined in: [packages/base/BaseHttpClient.ts:208](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L208)
+Defined in: [packages/base/BaseHttpClient.ts:208](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L208)
 
 Runs a fetch request with transport fallback for transient TLS/socket failures.
 
@@ -405,7 +405,7 @@ Native fetch response.
 
 > **fetchText**(`url`, `timeoutMs`, `headers`): `Promise`\<`string`\>
 
-Defined in: [packages/base/BaseHttpClient.ts:231](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L231)
+Defined in: [packages/base/BaseHttpClient.ts:231](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L231)
 
 #### Parameters
 
@@ -435,7 +435,7 @@ Defined in: [packages/base/BaseHttpClient.ts:231](https://github.com/forkts/down
 
 > **fetchJson**(`url`, `opts`): `Promise`\<`any`\>
 
-Defined in: [packages/base/BaseHttpClient.ts:235](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseHttpClient.ts#L235)
+Defined in: [packages/base/BaseHttpClient.ts:235](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseHttpClient.ts#L235)
 
 #### Parameters
 
@@ -461,7 +461,7 @@ Defined in: [packages/base/BaseHttpClient.ts:235](https://github.com/forkts/down
 
 > **fetchHtml**(`url`, `opts`): `Promise`\<[`FetchResult`](../interfaces/FetchResult.md)\>
 
-Defined in: [packages/engines/http/HttpClient.ts:27](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/engines/http/HttpClient.ts#L27)
+Defined in: [packages/engines/http/HttpClient.ts:27](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/engines/http/HttpClient.ts#L27)
 
 Fetches a page as HTML using provider-aware transport rules.
 

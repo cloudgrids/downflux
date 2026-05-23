@@ -6,7 +6,7 @@
 
 # Interface: HLSStreamRequest
 
-Defined in: [packages/contracts/DownloadContracts.ts:63](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L63)
+Defined in: [packages/contracts/DownloadContracts.ts:63](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L63)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:63](https://github.com/fork
 
 > **finalUrl**: `string`
 
-Defined in: [packages/contracts/DownloadContracts.ts:64](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L64)
+Defined in: [packages/contracts/DownloadContracts.ts:64](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L64)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:64](https://github.com/fork
 
 > **headers**: `Record`\<`string`, `string`\>
 
-Defined in: [packages/contracts/DownloadContracts.ts:65](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L65)
+Defined in: [packages/contracts/DownloadContracts.ts:65](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L65)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:65](https://github.com/fork
 
 > `optional` **isFmp4?**: `boolean`
 
-Defined in: [packages/contracts/DownloadContracts.ts:66](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L66)
+Defined in: [packages/contracts/DownloadContracts.ts:66](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L66)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/contracts/DownloadContracts.ts:66](https://github.com/fork
 
 > **start**: (`stream`, `noDownload?`) => `Promise`\<`void`\>
 
-Defined in: [packages/contracts/DownloadContracts.ts:67](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/DownloadContracts.ts#L67)
+Defined in: [packages/contracts/DownloadContracts.ts:67](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/DownloadContracts.ts#L67)
 
 #### Parameters
 

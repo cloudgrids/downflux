@@ -6,7 +6,7 @@
 
 # Class: ProgressManager
 
-Defined in: [packages/core/progress/ProgressManager.ts:20](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/progress/ProgressManager.ts#L20)
+Defined in: [packages/core/progress/ProgressManager.ts:20](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/progress/ProgressManager.ts#L20)
 
 Manages progress updates during ExecutionCoordinator execution.
 
@@ -654,7 +654,7 @@ v0.3.5
 
 > **on**\<`E`\>(`eventName`, `listener`): `this`
 
-Defined in: [packages/core/progress/ProgressManager.ts:43](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/progress/ProgressManager.ts#L43)
+Defined in: [packages/core/progress/ProgressManager.ts:43](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/progress/ProgressManager.ts#L43)
 
 Adds the `listener` function to the end of the listeners array for the
 event named `eventName`. No checks are made to see if the `listener` has
@@ -723,7 +723,7 @@ v0.1.101
 
 > **emit**\<`E`\>(`eventName`, ...`args`): `boolean`
 
-Defined in: [packages/core/progress/ProgressManager.ts:47](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/progress/ProgressManager.ts#L47)
+Defined in: [packages/core/progress/ProgressManager.ts:47](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/progress/ProgressManager.ts#L47)
 
 Synchronously calls each of the listeners registered for the event named
 `eventName`, in the order they were registered, passing the supplied arguments
@@ -798,7 +798,7 @@ v0.1.26
 
 > **off**\<`E`\>(`eventName`, `listener`): `this`
 
-Defined in: [packages/core/progress/ProgressManager.ts:51](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/progress/ProgressManager.ts#L51)
+Defined in: [packages/core/progress/ProgressManager.ts:51](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/progress/ProgressManager.ts#L51)
 
 Alias for `emitter.removeListener()`.
 
@@ -836,7 +836,7 @@ v10.0.0
 
 > **once**\<`E`\>(`eventName`, `listener`): `this`
 
-Defined in: [packages/core/progress/ProgressManager.ts:55](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/progress/ProgressManager.ts#L55)
+Defined in: [packages/core/progress/ProgressManager.ts:55](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/progress/ProgressManager.ts#L55)
 
 Adds a **one-time** `listener` function for the event named `eventName`. The
 next time `eventName` is triggered, this listener is removed and then invoked.
@@ -902,7 +902,7 @@ v0.3.0
 
 > **init**(`options`): `void`
 
-Defined in: [packages/core/progress/ProgressManager.ts:59](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/progress/ProgressManager.ts#L59)
+Defined in: [packages/core/progress/ProgressManager.ts:59](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/progress/ProgressManager.ts#L59)
 
 #### Parameters
 
@@ -920,7 +920,7 @@ Defined in: [packages/core/progress/ProgressManager.ts:59](https://github.com/fo
 
 > **update**(`params`): `void`
 
-Defined in: [packages/core/progress/ProgressManager.ts:67](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/core/progress/ProgressManager.ts#L67)
+Defined in: [packages/core/progress/ProgressManager.ts:67](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/core/progress/ProgressManager.ts#L67)
 
 #### Parameters
 

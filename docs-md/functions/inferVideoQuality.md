@@ -8,7 +8,7 @@
 
 > **inferVideoQuality**(`url`, `defaultQuality?`): [`VideoQuality`](../enumerations/VideoQuality.md)
 
-Defined in: [packages/shared/utils/InferVideoQuality.ts:3](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/shared/utils/InferVideoQuality.ts#L3)
+Defined in: [packages/shared/utils/InferVideoQuality.ts:3](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/shared/utils/InferVideoQuality.ts#L3)
 
 ## Parameters
 

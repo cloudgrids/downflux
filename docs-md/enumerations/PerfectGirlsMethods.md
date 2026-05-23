@@ -6,7 +6,7 @@
 
 # Enumeration: PerfectGirlsMethods
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:1](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L1)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:1](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L1)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:1](https://git
 
 > **getAlbums**: `"getAlbums"`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:3](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L3)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:3](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L3)
 
 Album page extraction
 
@@ -24,7 +24,7 @@ Album page extraction
 
 > **getAlbum**: `"getAlbum"`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:6](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L6)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:6](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L6)
 
 Single album extraction
 
@@ -34,7 +34,7 @@ Single album extraction
 
 > **getModels**: `"getModels"`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:9](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L9)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:9](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L9)
 
 Model page extraction
 
@@ -44,7 +44,7 @@ Model page extraction
 
 > **getTags**: `"getTags"`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:12](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L12)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:12](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L12)
 
 Tag group extraction
 
@@ -54,7 +54,7 @@ Tag group extraction
 
 > **getChannels**: `"getChannels"`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L15)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:15](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L15)
 
 Channel page extraction
 
@@ -64,7 +64,7 @@ Channel page extraction
 
 > **getVideos**: `"getVideos"`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:18](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L18)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:18](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L18)
 
 Video page extraction
 
@@ -74,7 +74,7 @@ Video page extraction
 
 > **getVideo**: `"getVideo"`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:21](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L21)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:21](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L21)
 
 Single video extraction
 
@@ -84,6 +84,6 @@ Single video extraction
 
 > **getModelVideoIds**: `"getModelVideoIds"`
 
-Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:24](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L24)
+Defined in: [packages/providers/perfectgirls/PerfectGirlsTypes.ts:24](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/perfectgirls/PerfectGirlsTypes.ts#L24)
 
 Model video card extraction

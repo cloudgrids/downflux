@@ -6,7 +6,7 @@
 
 # Class: XHamsterStrategy
 
-Defined in: [packages/providers/xhamster/XHamsterStrategy.ts:9](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/xhamster/XHamsterStrategy.ts#L9)
+Defined in: [packages/providers/xhamster/XHamsterStrategy.ts:9](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/xhamster/XHamsterStrategy.ts#L9)
 
 Provides XHamster-specific HTTP behavior.
 
@@ -24,7 +24,7 @@ Strategies isolate host fallbacks, headers, and transport quirks from shared HTT
 
 > **new XHamsterStrategy**(`progressManager`): `XHamsterStrategy`
 
-Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseStrategy.ts#L15)
+Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseStrategy.ts#L15)
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflu
 
 > `protected` `readonly` **progressManager**: [`ProgressManager`](ProgressManager.md)
 
-Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseStrategy.ts#L15)
+Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseStrategy.ts#L15)
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Defined in: [packages/base/BaseStrategy.ts:15](https://github.com/forkts/downflu
 
 > **shouldFallback404**(`url`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:17](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseStrategy.ts#L17)
+Defined in: [packages/base/BaseStrategy.ts:17](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseStrategy.ts#L17)
 
 #### Parameters
 
@@ -80,7 +80,7 @@ Defined in: [packages/base/BaseStrategy.ts:17](https://github.com/forkts/downflu
 
 > **getFallbackUrl**(`url`): `string` \| `null`
 
-Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseStrategy.ts#L37)
+Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseStrategy.ts#L37)
 
 #### Parameters
 
@@ -102,7 +102,7 @@ Defined in: [packages/base/BaseStrategy.ts:37](https://github.com/forkts/downflu
 
 > **shouldReExtract**(`url`): `boolean`
 
-Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseStrategy.ts#L41)
+Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseStrategy.ts#L41)
 
 #### Parameters
 
@@ -124,7 +124,7 @@ Defined in: [packages/base/BaseStrategy.ts:41](https://github.com/forkts/downflu
 
 > `protected` **constructPathname**(`url`): `string`
 
-Defined in: [packages/base/BaseStrategy.ts:49](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/base/BaseStrategy.ts#L49)
+Defined in: [packages/base/BaseStrategy.ts:49](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/base/BaseStrategy.ts#L49)
 
 #### Parameters
 
@@ -146,7 +146,7 @@ Defined in: [packages/base/BaseStrategy.ts:49](https://github.com/forkts/downflu
 
 > **getHostFallbackUrls**(`url`): `string`[]
 
-Defined in: [packages/providers/xhamster/XHamsterStrategy.ts:12](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/xhamster/XHamsterStrategy.ts#L12)
+Defined in: [packages/providers/xhamster/XHamsterStrategy.ts:12](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/xhamster/XHamsterStrategy.ts#L12)
 
 #### Parameters
 
@@ -168,7 +168,7 @@ Defined in: [packages/providers/xhamster/XHamsterStrategy.ts:12](https://github.
 
 > **shouldResolveTextResponse**(`url`, `contentType`): `boolean`
 
-Defined in: [packages/providers/xhamster/XHamsterStrategy.ts:16](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/xhamster/XHamsterStrategy.ts#L16)
+Defined in: [packages/providers/xhamster/XHamsterStrategy.ts:16](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/xhamster/XHamsterStrategy.ts#L16)
 
 #### Parameters
 
@@ -194,7 +194,7 @@ Defined in: [packages/providers/xhamster/XHamsterStrategy.ts:16](https://github.
 
 > **getDirectVideoUrlFromText**(`body`): `string` \| `null`
 
-Defined in: [packages/providers/xhamster/XHamsterStrategy.ts:20](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/providers/xhamster/XHamsterStrategy.ts#L20)
+Defined in: [packages/providers/xhamster/XHamsterStrategy.ts:20](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/providers/xhamster/XHamsterStrategy.ts#L20)
 
 #### Parameters
 

@@ -6,7 +6,7 @@
 
 # Interface: VideosFormat
 
-Defined in: [packages/contracts/ExecutionContracts.ts:192](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L192)
+Defined in: [packages/contracts/ExecutionContracts.ts:216](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/ExecutionContracts.ts#L216)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/contracts/ExecutionContracts.ts:192](https://github.com/fo
 
 > `optional` **mp4?**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/contracts/ExecutionContracts.ts:193](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L193)
+Defined in: [packages/contracts/ExecutionContracts.ts:217](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/ExecutionContracts.ts#L217)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [packages/contracts/ExecutionContracts.ts:193](https://github.com/fo
 
 > `optional` **hls?**: [`VideoSourceOutput`](VideoSourceOutput.md)[]
 
-Defined in: [packages/contracts/ExecutionContracts.ts:194](https://github.com/forkts/downflux/blob/59e8e150ff93e02d42e916c7aeaab450c6d72ec3/packages/contracts/ExecutionContracts.ts#L194)
+Defined in: [packages/contracts/ExecutionContracts.ts:218](https://github.com/forkts/downflux/blob/5efca2ef75dcde54077f697ac650839042e172a5/packages/contracts/ExecutionContracts.ts#L218)
