@@ -121,8 +121,14 @@ flowchart TD
         TaskCoordinator[TaskCoordinator<br/>Schedules concurrent tasks]
 
         TransferCoordinator[TransferCoordinator<br/>Coordinates downloads]
+    end
 
-        StreamHttpClient[StreamHttpClient<br/>Streams remote files]
+    subgraph StreamLayer["Stream & Output Layer"]
+        StreamHttpClient[StreamHttpClient<br/>Streams remote files<br/>• Uses Strategy for CDN fallback<br/>• Delegates HLS to HlsClient]
+
+        StrategyRegistry[StrategyRegistry<br/>Loads extraction strategies]
+
+        Strategy[Strategy<br/>• Defines extraction rules<br/>• Provider-specific behavior]
 
         HlsClient[HlsClient<br/>Processes m3u8 playlists]
 
@@ -155,6 +161,9 @@ flowchart TD
     TaskCoordinator --> TransferCoordinator
 
     TransferCoordinator --> StreamHttpClient
+    StreamHttpClient --> StrategyRegistry
+    StrategyRegistry --> Strategy
+    Strategy -.->|CDN Fallback<br/>Re-extraction| StreamHttpClient
     StreamHttpClient --> HlsClient
     StreamHttpClient --> FileManager
 
@@ -171,16 +180,19 @@ flowchart TD
     classDef execution fill:#dc2626,color:#fff,stroke:#7f1d1d,stroke-width:2px;
     classDef network fill:#0369a1,color:#fff,stroke:#0c4a6e,stroke-width:2px;
     classDef parser fill:#7c3aed,color:#fff,stroke:#581c87,stroke-width:2px;
-    classDef file fill:#059669,color:#fff,stroke:#064e3b,stroke-width:2px;
+    classDef strategy fill:#8b5cf6,color:#fff,stroke:#6d28d9,stroke-width:2px;
+    classDef stream fill:#059669,color:#fff,stroke:#064e3b,stroke-width:2px;
     classDef output fill:#ea580c,color:#fff,stroke:#7c2d12,stroke-width:2px;
 
     class ServiceProvider,BaseProvider provider;
     class TransformerRegistry,Transformer transform;
     class PipelineRegistry,Pipeline,PipelineItems,URLs,MediaTypes,Identifiers pipeline;
     class TaskCoordinator,TransferCoordinator execution;
-    class HttpClient,StreamHttpClient,HlsClient network;
+    class HttpClient network;
     class ParserRegistry,Parser parser;
-    class FileManager,FFmpegEngine file;
+    class StrategyRegistry,Strategy strategy;
+    class StreamHttpClient,HlsClient stream;
+    class FileManager,FFmpegEngine stream;
     class Output output;
 ```
 
