@@ -44,7 +44,8 @@ export type ProviderType =
 	| 'politics'
 	| 'history'
 	| 'science'
-	| 'nature';
+	| 'nature'
+	| 'implement';
 
 export type AdultProviders =
 	| 'analrz'

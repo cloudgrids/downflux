@@ -1,0 +1,50 @@
+[
+  {
+    "provider": "DefaultProvider",
+    "method": "getImages",
+    "targets": [
+      "https://www.pexels.com/videos/"
+    ],
+    "entryUrl": "https://www.pexels.com/videos/",
+    "extractionTarget": "IMAGES",
+    "executionType": "SEQUENTIAL",
+    "providerMetadata": {
+      "hasHls": true,
+      "type": "adult",
+      "hasMp4": true,
+      "hasKvs": false,
+      "underGeoRestriction": false,
+      "requiresBrowser": false,
+      "canDownload": true,
+      "underDevelopment": true,
+      "cloudflareChallenge": false,
+      "sniSpoofing": "untested"
+    },
+    "outputType": "JSON",
+    "preferredVideoFormat": "mp4",
+    "logProgress": true,
+    "transformOutput": true,
+    "dirConfig": {
+      "directoryPath": "test/providers"
+    },
+    "executionShape": "multiple",
+    "extracted": [
+      {
+        "anchors": [],
+        "images": [],
+        "sources": [],
+        "title": "Just a moment...",
+        "description": "",
+        "keywords": [],
+        "links": [],
+        "videoSources": [],
+        "sourceUrl": "https://www.pexels.com/videos/",
+        "status": 200
+      }
+    ],
+    "downloaded": 0,
+    "failed": 0,
+    "errors": [],
+    "pipelineItems": []
+  }
+]

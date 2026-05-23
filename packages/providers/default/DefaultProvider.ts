@@ -12,7 +12,7 @@ export class DefaultProvider extends BaseProvider<DefaultExecArgs> {
 	constructor(url: string) {
 		super(url, {
 			provider: Provider.Default,
-			urlPattern: /\*/i,
+			urlPattern: /\.*/i,
 			metadata: {
 				hasHls: true,
 				type: 'adult',

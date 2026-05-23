@@ -83,25 +83,105 @@ pnpm run docs:md
 
 ```mermaid
 flowchart TD
-	User[Caller chooses a Provider] --> Provider[Provider validates URL and builds request]
-	Provider --> ExecutionCoordinator[ExecutionCoordinator]
-	ExecutionCoordinator --> TransformerRegistry[TransformerRegistry]
-	TransformerRegistry --> Transformer[Provider Transformer]
-	Transformer --> HttpClient[HttpClient fetches HTML or API data]
-	HttpClient --> ParserRegistry[ParserRegistry]
-	ParserRegistry --> Parser[Default + Provider Parser]
-	Parser --> Transformer
-	Transformer --> PipelineRegistry[PipelineRegistry]
-	PipelineRegistry --> Pipeline[Provider Pipeline]
-	Pipeline --> Items[Pipeline items: URLs, media types, identifiers]
-	Items --> TaskCoordinator[TaskCoordinator schedules work]
-	TaskCoordinator --> TransferCoordinator[TransferCoordinator]
-	TransferCoordinator --> StreamHttpClient[StreamHttpClient]
-	StreamHttpClient --> HlsClient[HlsClient for m3u8 playlists]
-	StreamHttpClient --> FileManager[FileManager sinks]
-	HlsClient --> FileManager
-	FileManager --> FFmpegEngine[FFmpegEngine when media needs finalization]
-	FileManager --> Output[JSON, Buffer, or Device file output]
+
+    User([Caller chooses Provider])
+
+    subgraph ProviderLayer["Provider Layer"]
+        ServiceProvider[ServiceProvider]
+        BaseProvider[BaseProvider<br/>• Validates URL<br/>• Builds execution request]
+    end
+
+    subgraph TransformLayer["Transformation Layer"]
+        TransformerRegistry[TransformerRegistry<br/>Resolves provider transformer]
+
+        Transformer[Transformer<br/>Coordinates extraction lifecycle]
+
+        HttpClient[HttpClient<br/>Fetches HTML / APIs]
+
+        ParserRegistry[ParserRegistry<br/>Loads matching parsers]
+
+        Parser[Parser<br/>• Extracts metadata<br/>• Detects media sources<br/>• Finds identifiers]
+    end
+
+    subgraph PipelineLayer["Pipeline Layer"]
+        PipelineRegistry[PipelineRegistry<br/>Loads provider pipeline]
+
+        Pipeline[Pipeline<br/>Builds execution items]
+
+        PipelineItems[Pipeline Items]
+
+        URLs[URLs<br/>Media / Playlist URLs]
+
+        MediaTypes[Media Types<br/>Video / Audio / Images]
+
+        Identifiers[Identifiers<br/>Content IDs / Metadata]
+    end
+
+    subgraph ExecutionLayer["Execution Layer"]
+        TaskCoordinator[TaskCoordinator<br/>Schedules concurrent tasks]
+
+        TransferCoordinator[TransferCoordinator<br/>Coordinates downloads]
+
+        StreamHttpClient[StreamHttpClient<br/>Streams remote files]
+
+        HlsClient[HlsClient<br/>Processes m3u8 playlists]
+
+        FileManager[FileManager<br/>Handles sinks & temp files]
+
+        FFmpegEngine[FFmpegEngine<br/>Muxing / Conversion / Finalization]
+
+        Output[Output<br/>JSON / Buffer / Device File]
+    end
+
+    User --> ServiceProvider
+    ServiceProvider --> BaseProvider
+    BaseProvider --> TransformerRegistry
+    TransformerRegistry --> Transformer
+
+    Transformer --> HttpClient
+    HttpClient --> ParserRegistry
+    ParserRegistry --> Parser
+    Parser --> Transformer
+
+    Transformer --> PipelineRegistry
+    PipelineRegistry --> Pipeline
+
+    Pipeline --> PipelineItems
+    PipelineItems --> URLs
+    PipelineItems --> MediaTypes
+    PipelineItems --> Identifiers
+
+    Pipeline --> TaskCoordinator
+    TaskCoordinator --> TransferCoordinator
+
+    TransferCoordinator --> StreamHttpClient
+    StreamHttpClient --> HlsClient
+    StreamHttpClient --> FileManager
+
+    HlsClient --> FileManager
+
+    FileManager --> FFmpegEngine
+    FileManager --> Output
+
+    FFmpegEngine --> Output
+
+    classDef provider fill:#4f46e5,color:#fff,stroke:#312e81,stroke-width:2px;
+    classDef transform fill:#0f766e,color:#fff,stroke:#134e4a,stroke-width:2px;
+    classDef pipeline fill:#ca8a04,color:#fff,stroke:#854d0e,stroke-width:2px;
+    classDef execution fill:#dc2626,color:#fff,stroke:#7f1d1d,stroke-width:2px;
+    classDef network fill:#0369a1,color:#fff,stroke:#0c4a6e,stroke-width:2px;
+    classDef parser fill:#7c3aed,color:#fff,stroke:#581c87,stroke-width:2px;
+    classDef file fill:#059669,color:#fff,stroke:#064e3b,stroke-width:2px;
+    classDef output fill:#ea580c,color:#fff,stroke:#7c2d12,stroke-width:2px;
+
+    class ServiceProvider,BaseProvider provider;
+    class TransformerRegistry,Transformer transform;
+    class PipelineRegistry,Pipeline,PipelineItems,URLs,MediaTypes,Identifiers pipeline;
+    class TaskCoordinator,TransferCoordinator execution;
+    class HttpClient,StreamHttpClient,HlsClient network;
+    class ParserRegistry,Parser parser;
+    class FileManager,FFmpegEngine file;
+    class Output output;
 ```
 
 In short: a provider creates a typed request, coordinators run the extraction/download flow, registries load the correct provider-specific classes, engines handle network transport, pipelines decide what should be downloaded, and storage writes or returns the result.
