@@ -64,4 +64,7 @@ node_modules/
 /test/common.ts
 /test/test.ts
 
+# Optional MD, txt files
+*.md
+*.txt
 
